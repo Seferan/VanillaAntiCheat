@@ -1,6 +1,7 @@
 package net.minecraft.command;
 
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
@@ -55,6 +56,14 @@ public class CommandXP extends CommandBase
             if (par2ArrayOfStr.length > 1)
             {
                 var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
+                if (!var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()))
+                {
+                	String message = "Tried to give " + Integer.valueOf(var6) + " ";
+                	message += var5? "levels" : "experience";
+                	message += " to non-op " + var3.getCommandSenderName()  + "!";
+                	notifyAdmins(par1ICommandSender, message);
+                	return;
+                }
             }
             else
             {

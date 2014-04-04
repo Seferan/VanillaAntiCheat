@@ -66,6 +66,7 @@ public class CommandTime extends CommandBase
             else
             {
             	notifyAdmins(par1ICommandSender, "Tried to use /time!");
+            	return;
             }
         }
 

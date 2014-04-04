@@ -1,6 +1,7 @@
 package net.minecraft.command.server;
 
 import java.util.List;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
@@ -71,7 +72,12 @@ public class CommandTeleport extends CommandBase
                         notifyAdmins(par1ICommandSender, "commands.tp.notSameDimension", new Object[0]);
                         return;
                     }
-
+                    if (!var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()))
+                    {
+                    	notifyAdmins(par1ICommandSender, "Tried to teleport non-op " + var3.getCommandSenderName() + " to " + var11.getCommandSenderName() + "!");
+                    	return;
+                    }
+                    
                     var3.mountEntity((Entity)null);
                     var3.playerNetServerHandler.setPlayerLocation(var11.posX, var11.posY, var11.posZ, var11.rotationYaw, var11.rotationPitch);
                     notifyAdmins(par1ICommandSender, "commands.tp.success", new Object[] {var3.getCommandSenderName(), var11.getCommandSenderName()});
@@ -83,6 +89,16 @@ public class CommandTeleport extends CommandBase
                 double var5 = func_110666_a(par1ICommandSender, var3.posX, par2ArrayOfStr[var4++]);
                 double var7 = func_110665_a(par1ICommandSender, var3.posY, par2ArrayOfStr[var4++], 0, 0);
                 double var9 = func_110666_a(par1ICommandSender, var3.posZ, par2ArrayOfStr[var4++]);
+                
+                if (!var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()))
+                {
+                	StringBuilder message = new StringBuilder();
+                	message.append("Tried to teleport non-op " + var3.getCommandSenderName() + " to ");
+                	message.append(var5).append(",").append(var7).append(",").append(var9).append("!");
+                	notifyAdmins(par1ICommandSender, message.toString());
+                	return;
+                }
+                
                 var3.mountEntity((Entity)null);
                 var3.setPositionAndUpdate(var5, var7, var9);
                 notifyAdmins(par1ICommandSender, "commands.tp.success.coordinates", new Object[] {var3.getCommandSenderName(), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9)});
