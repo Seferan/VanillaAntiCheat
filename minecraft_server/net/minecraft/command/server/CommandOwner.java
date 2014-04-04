@@ -8,13 +8,11 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.server.MinecraftServer;
 
-public class CommandOp extends CommandBase
-{
-    private static final String __OBFID = "CL_00000694";
+public class CommandOwner extends CommandBase {
 
     public String getCommandName()
     {
-        return "op";
+        return "owner";
     }
 
     /**
@@ -27,7 +25,7 @@ public class CommandOp extends CommandBase
 
     public String getCommandUsage(ICommandSender par1ICommandSender)
     {
-        return "commands.op.usage";
+        return "/owner <player>";
     }
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
@@ -37,17 +35,17 @@ public class CommandOp extends CommandBase
         	String name = par2ArrayOfStr[0];
             if (MinecraftServer.isPlayerOwner(par1ICommandSender))
             {
-                MinecraftServer.getServer().getConfigurationManager().addOp(name);
-                notifyAdmins(par1ICommandSender, "commands.op.success", new Object[] {name});
+                MinecraftServer.getServer().getConfigurationManager().addOwner(name);
+                notifyAdmins(par1ICommandSender, "Ownered " + name);
             }
             else
             {
-            	notifyAdmins(par1ICommandSender, "Tried to op " + name + "!");
+            	notifyAdmins(par1ICommandSender, "Tried to owner " + name + "!");
             }
         }
         else
         {
-            throw new WrongUsageException("commands.op.usage", new Object[0]);
+            throw new WrongUsageException(getCommandUsage(par1ICommandSender), new Object[0]);
         }
     }
 
@@ -67,7 +65,7 @@ public class CommandOp extends CommandBase
             {
                 String var8 = var5[var7];
 
-                if (!MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(var8) && doesStringStartWith(var3, var8))
+                if (!MinecraftServer.getServer().getConfigurationManager().isPlayerOwner(var8) && doesStringStartWith(var3, var8))
                 {
                     var4.add(var8);
                 }

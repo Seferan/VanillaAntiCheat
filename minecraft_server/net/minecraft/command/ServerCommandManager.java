@@ -7,12 +7,14 @@ import net.minecraft.command.server.CommandBanPlayer;
 import net.minecraft.command.server.CommandBlockLogic;
 import net.minecraft.command.server.CommandBroadcast;
 import net.minecraft.command.server.CommandDeOp;
+import net.minecraft.command.server.CommandDeOwner;
 import net.minecraft.command.server.CommandEmote;
 import net.minecraft.command.server.CommandListBans;
 import net.minecraft.command.server.CommandListPlayers;
 import net.minecraft.command.server.CommandMessage;
 import net.minecraft.command.server.CommandMessageRaw;
 import net.minecraft.command.server.CommandOp;
+import net.minecraft.command.server.CommandOwner;
 import net.minecraft.command.server.CommandPardonIp;
 import net.minecraft.command.server.CommandPardonPlayer;
 import net.minecraft.command.server.CommandPublishLocalServer;
@@ -76,6 +78,8 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         {
             this.registerCommand(new CommandOp());
             this.registerCommand(new CommandDeOp());
+            this.registerCommand(new CommandOwner());
+            this.registerCommand(new CommandDeOwner());
             this.registerCommand(new CommandStop());
             this.registerCommand(new CommandSaveAll());
             this.registerCommand(new CommandSaveOff());

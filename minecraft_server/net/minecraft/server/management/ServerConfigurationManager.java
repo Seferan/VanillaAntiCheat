@@ -706,6 +706,16 @@ public abstract class ServerConfigurationManager
         return this.ops.contains(name.trim().toLowerCase()) || this.isPlayerPossibleOp(name);
     }
     
+    public void addOwner(String par1Str)
+    {
+        this.owners.add(par1Str.toLowerCase());
+    }
+    
+    public void removeOwner(String par1Str)
+    {
+        this.owners.remove(par1Str.toLowerCase());
+    }
+    
     /**
      * Returns true if the specified player is an owner.
      */

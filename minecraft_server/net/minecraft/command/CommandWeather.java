@@ -21,7 +21,7 @@ public class CommandWeather extends CommandBase
      */
     public int getRequiredPermissionLevel()
     {
-        return 2;
+        return 4;
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)

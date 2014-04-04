@@ -78,6 +78,18 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         super.removeOp(par1Str);
         this.saveOpsList();
     }
+    
+    public void addOwner(String par1Str)
+    {
+        super.addOwner(par1Str);
+        this.saveOwnersList();
+    }
+
+    public void removeOwner(String par1Str)
+    {
+        super.removeOwner(par1Str);
+        this.saveOwnersList();
+    }
 
     /**
      * Remove the specified player from the whitelist.
