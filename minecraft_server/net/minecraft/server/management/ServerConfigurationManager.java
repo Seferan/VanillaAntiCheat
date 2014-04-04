@@ -121,7 +121,7 @@ public abstract class ServerConfigurationManager
 
         if (par1INetworkManager.getRemoteAddress() != null)
         {
-            var4 = par1INetworkManager.getRemoteAddress().toString();
+            var4 = "redacted" /* par1INetworkManager.getRemoteAddress().toString() */;
         }
 
         logger.info(par2EntityPlayerMP.getCommandSenderName() + "[" + var4 + "] logged in with entity id " + par2EntityPlayerMP.getEntityId() + " at (" + par2EntityPlayerMP.posX + ", " + par2EntityPlayerMP.posY + ", " + par2EntityPlayerMP.posZ + ")");
