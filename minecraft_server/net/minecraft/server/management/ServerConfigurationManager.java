@@ -121,7 +121,15 @@ public abstract class ServerConfigurationManager
 
         if (par1INetworkManager.getRemoteAddress() != null)
         {
-            var4 = "redacted" /* par1INetworkManager.getRemoteAddress().toString() */;
+        	// Always uphold promise of not logging IPs regardless of config
+            if (mcServer.shouldLogIps() || mcServer.shouldTellIp())
+            {
+            	var4 = par1INetworkManager.getRemoteAddress().toString();
+            }
+            else
+            {
+            	var4 = "redacted";
+        	}
         }
 
         logger.info(par2EntityPlayerMP.getCommandSenderName() + "[" + var4 + "] logged in with entity id " + par2EntityPlayerMP.getEntityId() + " at (" + par2EntityPlayerMP.posX + ", " + par2EntityPlayerMP.posY + ", " + par2EntityPlayerMP.posZ + ")");
@@ -284,10 +292,13 @@ public abstract class ServerConfigurationManager
             par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S38PacketPlayerListItem(var4.getCommandSenderName(), true, var4.ping));
         }
         
-        String ip = par1EntityPlayerMP.getPlayerIP();
-        MinecraftServer.anonymousTell(par1EntityPlayerMP, "Welcome! Your external IP appears to be: " + ip);
-        MinecraftServer.anonymousTell(par1EntityPlayerMP, "This has not been logged, nor will anyone else recieve this message.");
-        MinecraftServer.anonymousTell(par1EntityPlayerMP, "Have a good day!");
+        if (mcServer.shouldTellIp())
+        {
+	        String ip = par1EntityPlayerMP.getPlayerIP();
+	        MinecraftServer.anonymousTell(par1EntityPlayerMP, "Welcome! Your external IP appears to be: " + ip);
+	        MinecraftServer.anonymousTell(par1EntityPlayerMP, "This has not been logged, nor will anyone else recieve this message.");
+	        MinecraftServer.anonymousTell(par1EntityPlayerMP, "Have a good day!");
+        }
     }
 
     /**

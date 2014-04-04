@@ -1444,6 +1444,16 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return whether command blocks are enabled.
      */
     public abstract boolean isCommandBlockEnabled();
+    
+    /**
+     * Return if we should hide player IPs or not
+     */
+    public abstract boolean shouldLogIps();
+    
+    /**
+     * Return if we should tell the player their IP or not
+     */
+    public abstract boolean shouldTellIp();
 
     public String getMOTD()
     {
