@@ -1154,6 +1154,12 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
     {
     	executeCommand("/tell " + player.getCommandSenderName() + " " + message);
     }
+    
+    // It should NOT be this hard to tell if someone's opped
+    public static boolean isPlayerOpped(EntityPlayerMP player)
+    {
+    	return MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(player.getCommandSenderName());
+    }
 
     /**
      * Notifies this sender of some sort of information.  This is for messages intended to display to the user.  Used
