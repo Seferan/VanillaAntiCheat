@@ -83,7 +83,7 @@ public class CommandGive extends CommandBase
 
             String giverName = par1ICommandSender.getCommandSenderName();
             String recieverName = var3.getCommandSenderName();
-            if (var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()))
+            if (var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()) || MinecraftServer.isPlayerOwner(par1ICommandSender))
             {
 	            EntityItem var11 = var3.dropPlayerItemWithRandomChoice(var7, false);
 	            var11.delayBeforeCanPickup = 0;
