@@ -77,6 +77,8 @@ public abstract class ServerConfigurationManager
 
     /** A set containing the OPs. */
     private final Set ops = new HashSet();
+    /** A set cointaining the owners. */
+    private final Set owners = new HashSet();
 
     /** The Set of all whitelisted players. */
     private final Set whiteListedPlayers = new HashSet();
@@ -699,9 +701,25 @@ public abstract class ServerConfigurationManager
     /**
      * Returns true if the specified player is opped, even if they're currently offline.
      */
-    public boolean isPlayerOpped(String par1Str)
+    public boolean isPlayerOpped(String name)
     {
-        return this.ops.contains(par1Str.trim().toLowerCase()) || this.mcServer.isSinglePlayer() && this.mcServer.worldServers[0].getWorldInfo().areCommandsAllowed() && this.mcServer.getServerOwner().equalsIgnoreCase(par1Str) || this.commandsAllowedForAll;
+        return this.ops.contains(name.trim().toLowerCase()) || this.isPlayerPossibleOp(name);
+    }
+    
+    /**
+     * Returns true if the specified player is an owner.
+     */
+    public boolean isPlayerOwner(String name)
+    {
+        return this.owners.contains(name.trim().toLowerCase()) || this.isPlayerPossibleOp(name);
+    }
+    
+    /**
+     * Returns true if a player can be op (offline or not, are commands allowed, etc)
+     */
+    public boolean isPlayerPossibleOp(String name)
+    {
+        return this.mcServer.isSinglePlayer() && this.mcServer.worldServers[0].getWorldInfo().areCommandsAllowed() && this.mcServer.getServerOwner().equalsIgnoreCase(name) || this.commandsAllowedForAll;
     }
 
     /**
@@ -923,6 +941,11 @@ public abstract class ServerConfigurationManager
     public Set getOps()
     {
         return this.ops;
+    }
+    
+    public Set getOwners()
+    {
+    	return this.owners;
     }
 
     /**

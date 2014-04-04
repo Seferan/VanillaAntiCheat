@@ -92,7 +92,7 @@ public class CommandGive extends CommandBase
             }
             else
             {
-            	notifyAdmins(par1ICommandSender, giverName + " tried to give item " + var7.func_151000_E().getUnformattedText() + " to non-admin " + recieverName + "!");
+            	notifyAdmins(par1ICommandSender, "Tried to give " + var7.func_151000_E().getUnformattedText() + " * " + Integer.valueOf(var5) + " to non-op " + recieverName + "!");
             }
         }
     }

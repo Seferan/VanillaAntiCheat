@@ -15,6 +15,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
 {
     private static final Logger field_164439_d = LogManager.getLogger();
     private File opsList;
+    private File ownersList;
     private File whiteList;
     private static final String __OBFID = "CL_00001783";
 
@@ -22,6 +23,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         super(par1DedicatedServer);
         this.opsList = par1DedicatedServer.getFile("ops.txt");
+        this.ownersList = par1DedicatedServer.getFile("owners.txt");
         this.whiteList = par1DedicatedServer.getFile("white-list.txt");
         this.viewDistance = par1DedicatedServer.getIntProperty("view-distance", 10);
         this.maxPlayers = par1DedicatedServer.getIntProperty("max-players", 20);
@@ -38,12 +40,17 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         this.getBannedIPs().loadBanList();
         this.getBannedIPs().saveToFileWithHeader();
         this.loadOpsList();
+        this.loadOwnersList();
         this.readWhiteList();
         this.saveOpsList();
 
         if (!this.whiteList.exists())
         {
             this.saveWhiteList();
+        }
+        if (!this.ownersList.exists())
+        {
+        	this.saveOwnersList();
         }
     }
 
@@ -140,6 +147,49 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
     }
 
+    private void loadOwnersList()
+    {
+        try
+        {
+            this.getOwners().clear();
+            BufferedReader var1 = new BufferedReader(new FileReader(this.ownersList));
+            String var2 = "";
+
+            while ((var2 = var1.readLine()) != null)
+            {
+            	this.getOwners().add(var2.trim().toLowerCase());
+            	System.out.println("added owner " + var2.trim().toLowerCase());
+            }
+
+            var1.close();
+        }
+        catch (Exception var3)
+        {
+            field_164439_d.warn("Failed to load owners list: " + var3);
+        }
+    }
+    
+    private void saveOwnersList()
+    {
+        try
+        {
+            PrintWriter var1 = new PrintWriter(new FileWriter(this.ownersList, false));
+            Iterator var2 = this.getOwners().iterator();
+
+            while (var2.hasNext())
+            {
+                String var3 = (String)var2.next();
+                var1.println(var3);
+            }
+
+            var1.close();
+        }
+        catch (Exception var4)
+        {
+            field_164439_d.warn("Failed to save owners list: " + var4);
+        }
+    }
+    
     private void readWhiteList()
     {
         try

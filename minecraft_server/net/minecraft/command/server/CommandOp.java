@@ -2,6 +2,7 @@ package net.minecraft.command.server;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
@@ -33,8 +34,16 @@ public class CommandOp extends CommandBase
     {
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 0)
         {
-            MinecraftServer.getServer().getConfigurationManager().addOp(par2ArrayOfStr[0]);
-            notifyAdmins(par1ICommandSender, "commands.op.success", new Object[] {par2ArrayOfStr[0]});
+        	String name = par2ArrayOfStr[0];
+            if (MinecraftServer.isPlayerOwner(par1ICommandSender))
+            {
+                MinecraftServer.getServer().getConfigurationManager().addOp(name);
+                notifyAdmins(par1ICommandSender, "commands.op.success", new Object[] {name});
+            }
+            else
+            {
+            	notifyAdmins(par1ICommandSender, "Tried to use op " + name + "!");
+            }
         }
         else
         {

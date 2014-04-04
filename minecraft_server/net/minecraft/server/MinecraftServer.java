@@ -1155,10 +1155,25 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
     	executeCommand("/tell " + player.getCommandSenderName() + " " + message);
     }
     
-    // It should NOT be this hard to tell if someone's opped
-    public static boolean isPlayerOpped(EntityPlayerMP player)
+    public static boolean isPlayerOpped(String playerName)
     {
-    	return MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(player.getCommandSenderName());
+    	return MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(playerName);
+    }
+    
+    // It should NOT be this hard to tell if someone's opped
+    public static boolean isPlayerOpped(ICommandSender player)
+    {
+    	return isPlayerOpped(player.getCommandSenderName()) || player == getServer();
+    }
+    
+    public static boolean isPlayerOwner(String playerName)
+    {
+    	return MinecraftServer.getServer().getConfigurationManager().isPlayerOwner(playerName);
+    }
+    
+    public static boolean isPlayerOwner(ICommandSender player)
+    {
+    	return isPlayerOwner(player.getCommandSenderName()) || player == getServer();
     }
 
     /**
