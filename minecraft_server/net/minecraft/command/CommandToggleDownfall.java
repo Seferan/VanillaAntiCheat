@@ -27,8 +27,15 @@ public class CommandToggleDownfall extends CommandBase
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        this.toggleDownfall();
-        notifyAdmins(par1ICommandSender, "commands.downfall.success", new Object[0]);
+        if (MinecraftServer.isPlayerOwner(par1ICommandSender))
+        {
+        	this.toggleDownfall();
+            notifyAdmins(par1ICommandSender, "commands.downfall.success", new Object[0]);
+        }
+        else
+        {
+        	notifyAdmins(par1ICommandSender, "Tried to use /toggledownfall!");
+        }
     }
 
     /**

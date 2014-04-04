@@ -1,6 +1,7 @@
 package net.minecraft.command;
 
 import java.util.List;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 
@@ -30,34 +31,41 @@ public class CommandTime extends CommandBase
     {
         if (par2ArrayOfStr.length > 1)
         {
-            int var3;
-
-            if (par2ArrayOfStr[0].equals("set"))
+            if (MinecraftServer.isPlayerOwner(par1ICommandSender))
             {
-                if (par2ArrayOfStr[1].equals("day"))
+                int var3;
+
+                if (par2ArrayOfStr[0].equals("set"))
                 {
-                    var3 = 1000;
+                    if (par2ArrayOfStr[1].equals("day"))
+                    {
+                        var3 = 1000;
+                    }
+                    else if (par2ArrayOfStr[1].equals("night"))
+                    {
+                        var3 = 13000;
+                    }
+                    else
+                    {
+                        var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
+                    }
+
+                    this.setTime(par1ICommandSender, var3);
+                    notifyAdmins(par1ICommandSender, "commands.time.set", new Object[] {Integer.valueOf(var3)});
+                    return;
                 }
-                else if (par2ArrayOfStr[1].equals("night"))
-                {
-                    var3 = 13000;
-                }
-                else
+
+                if (par2ArrayOfStr[0].equals("add"))
                 {
                     var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
+                    this.addTime(par1ICommandSender, var3);
+                    notifyAdmins(par1ICommandSender, "commands.time.added", new Object[] {Integer.valueOf(var3)});
+                    return;
                 }
-
-                this.setTime(par1ICommandSender, var3);
-                notifyAdmins(par1ICommandSender, "commands.time.set", new Object[] {Integer.valueOf(var3)});
-                return;
             }
-
-            if (par2ArrayOfStr[0].equals("add"))
+            else
             {
-                var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
-                this.addTime(par1ICommandSender, var3);
-                notifyAdmins(par1ICommandSender, "commands.time.added", new Object[] {Integer.valueOf(var3)});
-                return;
+            	notifyAdmins(par1ICommandSender, "Tried to use /time!");
             }
         }
 

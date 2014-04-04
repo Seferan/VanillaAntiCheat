@@ -2,6 +2,7 @@ package net.minecraft.command;
 
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
@@ -32,43 +33,50 @@ public class CommandWeather extends CommandBase
     {
         if (par2ArrayOfStr.length >= 1 && par2ArrayOfStr.length <= 2)
         {
-            int var3 = (300 + (new Random()).nextInt(600)) * 20;
-
-            if (par2ArrayOfStr.length >= 2)
+            if (MinecraftServer.isPlayerOwner(par1ICommandSender))
             {
-                var3 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[1], 1, 1000000) * 20;
-            }
+            	int var3 = (300 + (new Random()).nextInt(600)) * 20;
 
-            WorldServer var4 = MinecraftServer.getServer().worldServers[0];
-            WorldInfo var5 = var4.getWorldInfo();
+                if (par2ArrayOfStr.length >= 2)
+                {
+                    var3 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[1], 1, 1000000) * 20;
+                }
 
-            if ("clear".equalsIgnoreCase(par2ArrayOfStr[0]))
-            {
-                var5.setRainTime(0);
-                var5.setThunderTime(0);
-                var5.setRaining(false);
-                var5.setThundering(false);
-                notifyAdmins(par1ICommandSender, "commands.weather.clear", new Object[0]);
-            }
-            else if ("rain".equalsIgnoreCase(par2ArrayOfStr[0]))
-            {
-                var5.setRainTime(var3);
-                var5.setRaining(true);
-                var5.setThundering(false);
-                notifyAdmins(par1ICommandSender, "commands.weather.rain", new Object[0]);
+                WorldServer var4 = MinecraftServer.getServer().worldServers[0];
+                WorldInfo var5 = var4.getWorldInfo();
+
+                if ("clear".equalsIgnoreCase(par2ArrayOfStr[0]))
+                {
+                    var5.setRainTime(0);
+                    var5.setThunderTime(0);
+                    var5.setRaining(false);
+                    var5.setThundering(false);
+                    notifyAdmins(par1ICommandSender, "commands.weather.clear", new Object[0]);
+                }
+                else if ("rain".equalsIgnoreCase(par2ArrayOfStr[0]))
+                {
+                    var5.setRainTime(var3);
+                    var5.setRaining(true);
+                    var5.setThundering(false);
+                    notifyAdmins(par1ICommandSender, "commands.weather.rain", new Object[0]);
+                }
+                else
+                {
+                    if (!"thunder".equalsIgnoreCase(par2ArrayOfStr[0]))
+                    {
+                        throw new WrongUsageException("commands.weather.usage", new Object[0]);
+                    }
+
+                    var5.setRainTime(var3);
+                    var5.setThunderTime(var3);
+                    var5.setRaining(true);
+                    var5.setThundering(true);
+                    notifyAdmins(par1ICommandSender, "commands.weather.thunder", new Object[0]);
+                }
             }
             else
             {
-                if (!"thunder".equalsIgnoreCase(par2ArrayOfStr[0]))
-                {
-                    throw new WrongUsageException("commands.weather.usage", new Object[0]);
-                }
-
-                var5.setRainTime(var3);
-                var5.setThunderTime(var3);
-                var5.setRaining(true);
-                var5.setThundering(true);
-                notifyAdmins(par1ICommandSender, "commands.weather.thunder", new Object[0]);
+            	notifyAdmins(par1ICommandSender, "Tried to use /weather!");
             }
         }
         else
