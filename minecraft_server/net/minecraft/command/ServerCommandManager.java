@@ -123,7 +123,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             {
                 EntityPlayerMP var8 = (EntityPlayerMP)var7.next();
 
-                if (var8 != par1ICommandSender && MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(var8.getCommandSenderName()))
+                if (var8 != par1ICommandSender && MinecraftServer.isPlayerOpped(var8))
                 {
                     var8.addChatMessage(var6);
                 }
