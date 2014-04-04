@@ -83,16 +83,16 @@ public class CommandGive extends CommandBase
 
             String giverName = par1ICommandSender.getCommandSenderName();
             String recieverName = var3.getCommandSenderName();
-            if (var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()) || MinecraftServer.isPlayerOwner(par1ICommandSender))
+            if (this.isTargetOp(var3, par1ICommandSender))
             {
-	            EntityItem var11 = var3.dropPlayerItemWithRandomChoice(var7, false);
-	            var11.delayBeforeCanPickup = 0;
-	            var11.func_145797_a(var3.getCommandSenderName());
-	            notifyAdmins(par1ICommandSender, "commands.give.success", new Object[] {var7.func_151000_E(), Integer.valueOf(var5), recieverName});
+            	notifyAdmins(par1ICommandSender, "Tried to give " + var7.func_151000_E().getUnformattedText() + " * " + Integer.valueOf(var5) + " to non-op " + recieverName + "!");
             }
             else
             {
-            	notifyAdmins(par1ICommandSender, "Tried to give " + var7.func_151000_E().getUnformattedText() + " * " + Integer.valueOf(var5) + " to non-op " + recieverName + "!");
+            	EntityItem var11 = var3.dropPlayerItemWithRandomChoice(var7, false);
+	            var11.delayBeforeCanPickup = 0;
+	            var11.func_145797_a(var3.getCommandSenderName());
+	            notifyAdmins(par1ICommandSender, "commands.give.success", new Object[] {var7.func_151000_E(), Integer.valueOf(var5), recieverName});            	
             }
         }
     }

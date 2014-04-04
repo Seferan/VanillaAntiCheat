@@ -72,7 +72,7 @@ public class CommandTeleport extends CommandBase
                         notifyAdmins(par1ICommandSender, "commands.tp.notSameDimension", new Object[0]);
                         return;
                     }
-                    if (!var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()) && !MinecraftServer.isPlayerOwner(par1ICommandSender))
+                    if (this.isTargetOp(var3, par1ICommandSender))
                     {
                     	notifyAdmins(par1ICommandSender, "Tried to teleport non-op " + var3.getCommandSenderName() + " to " + var11.getCommandSenderName() + "!");
                     	return;
@@ -90,7 +90,7 @@ public class CommandTeleport extends CommandBase
                 double var7 = func_110665_a(par1ICommandSender, var3.posY, par2ArrayOfStr[var4++], 0, 0);
                 double var9 = func_110666_a(par1ICommandSender, var3.posZ, par2ArrayOfStr[var4++]);
                 
-                if (!var3.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()) && !MinecraftServer.isPlayerOwner(par1ICommandSender))
+                if (this.isTargetOp(var3, par1ICommandSender))
                 {
                 	StringBuilder message = new StringBuilder();
                 	message.append("Tried to teleport non-op " + var3.getCommandSenderName() + " to ");
