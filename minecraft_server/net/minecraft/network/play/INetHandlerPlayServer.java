@@ -27,11 +27,11 @@ public interface INetHandlerPlayServer extends INetHandler
 {
     void func_147350_a(C0APacketAnimation var1);
 
-    void func_147354_a(C01PacketChatMessage var1);
+    void handleChat(C01PacketChatMessage var1);
 
     void func_147341_a(C14PacketTabComplete var1);
 
-    void func_147342_a(C16PacketClientStatus var1);
+    void handleCLientCommand(C16PacketClientStatus var1);
 
     void func_147352_a(C15PacketClientSettings var1);
 
@@ -45,7 +45,7 @@ public interface INetHandlerPlayServer extends INetHandler
 
     void func_147349_a(C17PacketCustomPayload var1);
 
-    void func_147340_a(C02PacketUseEntity var1);
+    void handleUseEntity(C02PacketUseEntity var1);
 
     void func_147353_a(C00PacketKeepAlive var1);
 
@@ -63,7 +63,7 @@ public interface INetHandlerPlayServer extends INetHandler
 
     void func_147344_a(C10PacketCreativeInventoryAction var1);
 
-    void func_147343_a(C12PacketUpdateSign var1);
+    void handleUpdateSign(C12PacketUpdateSign var1);
 
     void handlePlace(C08PacketPlayerBlockPlacement var1);
 }

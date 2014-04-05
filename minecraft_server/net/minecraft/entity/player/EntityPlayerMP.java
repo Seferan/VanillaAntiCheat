@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import mx.x10.afffsdd.vanillaanticheat.module.VACState;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
@@ -355,6 +356,11 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         {
             this.playerNetServerHandler.kickPlayerFromServer("You have been idle for too long!");
         }
+    }
+    
+    public VACState getVACState()
+    {
+        return playerNetServerHandler.getVACState();
     }
 
     public void onUpdateEntity()

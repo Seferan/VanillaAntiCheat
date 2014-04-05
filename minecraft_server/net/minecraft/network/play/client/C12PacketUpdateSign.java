@@ -47,20 +47,20 @@ public class C12PacketUpdateSign extends Packet
 
     public void func_148833_a(INetHandlerPlayServer p_149587_1_)
     {
-        p_149587_1_.func_147343_a(this);
+        p_149587_1_.handleUpdateSign(this);
     }
 
-    public int func_149588_c()
+    public int getX()
     {
         return this.field_149593_a;
     }
 
-    public int func_149586_d()
+    public int getY()
     {
         return this.field_149591_b;
     }
 
-    public int func_149585_e()
+    public int getZ()
     {
         return this.field_149592_c;
     }

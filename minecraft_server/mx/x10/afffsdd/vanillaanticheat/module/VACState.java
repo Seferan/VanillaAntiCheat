@@ -20,6 +20,14 @@ public class VACState implements IVacModule
      * The diamond notifications module.
      */
     public VACModuleDiamondNotifications dNotifications;
+    /**
+     * The anti-vclip module.
+     */
+    public VACModuleAntiVClip aVClip;
+    /**
+     * The anti-regen module.
+     */
+    public VACModuleAntiRegen aRegen;
     
     public VACState()
     {
@@ -27,6 +35,8 @@ public class VACState implements IVacModule
         aFastBuild = new VACModuleAntiFastbuild();
         aFly = new VACModuleAntiFly();
         dNotifications = new VACModuleDiamondNotifications();
+        aVClip = new VACModuleAntiVClip();
+        aRegen = new VACModuleAntiRegen();
     }
     
     public String getModuleName()
@@ -40,5 +50,7 @@ public class VACState implements IVacModule
         aFastBuild.updateState();
         aFly.updateState();
         dNotifications.updateState();
+        aVClip.updateState();
+        aRegen.updateState();
     }
 }

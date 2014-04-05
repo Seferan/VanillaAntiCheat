@@ -138,6 +138,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         par3EntityPlayerMP.playerNetServerHandler = this;
         vacState = new VACState();
     }
+    
+    public VACState getVACState()
+    {
+        return vacState;
+    }
 
     /**
      * For scheduled network tasks. Used in NetHandlerPlayServer to send
@@ -202,6 +207,32 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         this.playerEntity.setEntityActionState(p_147358_1_.func_149620_c(), p_147358_1_.func_149616_d(), p_147358_1_.func_149618_e(), p_147358_1_.func_149617_f());
     }
 
+    // Utility methods
+    private double getHorizontalSpeed()
+    {
+        if(Double.valueOf(lastPosX) != null && Double.valueOf(lastPosZ) != null)
+        {
+            return Math.sqrt(Math.pow((playerEntity.posX - lastPosX), 2.0) + Math.pow((playerEntity.posZ - lastPosZ), 2));  
+        } else {
+            return 0;
+        }
+    }
+    
+    private double getVerticalSpeed()
+    {
+        if(Double.valueOf(lastPosY) != null)
+        {
+            return Math.abs(playerEntity.posY - lastPosY);
+        } else {
+            return 0;
+        }
+    }
+    
+    private void setBackPlayer()
+    {
+        setPlayerLocation(lastPosX, lastPosY, lastPosZ, playerEntity.rotationYaw, playerEntity.rotationPitch);
+    }
+    
     public void handleFlying(C03PacketPlayer packet)
     {
         WorldServer var2 = this.serverController.worldServerForDimension(this.playerEntity.dimension);
@@ -213,9 +244,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
             if (!this.hasMoved)
             {
-                var3 = packet.func_149467_d() - this.lastPosY;
+                var3 = packet.getY() - this.lastPosY;
 
-                if (packet.func_149464_c() == this.lastPosX && var3 * var3 < 0.01D && packet.func_149472_e() == this.lastPosZ)
+                if (packet.getX() == this.lastPosX && var3 * var3 < 0.01D && packet.getZ() == this.lastPosZ)
                 {
                     this.hasMoved = true;
                 }
@@ -227,11 +258,33 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 double y;
                 double z;
 
+                // where our hooks for movement will go for now
+                // will refactor it out later
                 if (playerEntity.isSneaking() && playerEntity.isSprinting() && !MinecraftServer.isPlayerOpped(playerEntity))
                 {
                     kickPlayerFromServer("Silly hacker, this isn't Counterstrike! You can't sneak and sprint!");
                     VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and sprinting!");
                     return;
+                }
+
+                if ((Double.valueOf(lastPosY) != null))
+                {
+                    if (getVerticalSpeed() > 3.0D && !MinecraftServer.isPlayerOpped(playerEntity))
+                    {
+                        setBackPlayer();
+                        vacState.aVClip.incrementDetections();
+                        
+                        if (vacState.aVClip.getDetections() == 1)
+                        {
+                            VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " might be VClipping!");
+                        }
+                        
+                        if (vacState.aVClip.getDetections() == 3)
+                        {
+                            kickPlayerFromServer("Teleport hacking detected on the Y-Axis (VClipping).");
+                            VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " was kicked for teleport hacking (vclipping)!");
+                        }
+                    }
                 }
 
                 if (this.playerEntity.ridingEntity != null)
@@ -243,13 +296,23 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     y = this.playerEntity.posY;
                     z = this.playerEntity.posZ;
 
-                    if (packet.func_149463_k())
+                    if (packet.rotating())
                     {
-                        var34 = packet.func_149462_g();
-                        var4 = packet.func_149470_h();
+                        var34 = packet.yaw();
+                        var4 = packet.pitch();
+                    }
+                    
+                    if (packet.getMoving() && packet.getX() == -999.0D && packet.getStance() == -999.0D)
+                    {
+                        if (Math.abs(packet.getX()) > 1.0D || Math.abs(packet.getZ()) > 1.0D)
+                        {
+                            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was caught trying to crash the server with an invalid position!");
+                            kickPlayerFromServer("Nope!");
+                            return;
+                        }
                     }
 
-                    this.playerEntity.onGround = packet.func_149465_i();
+                    this.playerEntity.onGround = packet.getOnGround();
                     this.playerEntity.onUpdateEntity();
                     this.playerEntity.ySize = 0.0F;
                     this.playerEntity.setPositionAndRotation(x, y, z, var34, var4);
@@ -290,19 +353,19 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 float var11 = this.playerEntity.rotationYaw;
                 float var12 = this.playerEntity.rotationPitch;
 
-                if (packet.func_149466_j() && packet.func_149467_d() == -999.0D && packet.func_149471_f() == -999.0D)
+                if (packet.getMoving() && packet.getY() == -999.0D && packet.getStance() == -999.0D)
                 {
-                    packet.func_149469_a(false);
+                    packet.setMoving(false);
                 }
 
                 double var13;
 
-                if (packet.func_149466_j())
+                if (packet.getMoving())
                 {
-                    x = packet.func_149464_c();
-                    y = packet.func_149467_d();
-                    z = packet.func_149472_e();
-                    var13 = packet.func_149471_f() - packet.func_149467_d();
+                    x = packet.getX();
+                    y = packet.getY();
+                    z = packet.getZ();
+                    var13 = packet.getStance() - packet.getY();
 
                     if (!this.playerEntity.isPlayerSleeping() && (var13 > 1.65D || var13 < 0.1D))
                     {
@@ -311,17 +374,17 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                         return;
                     }
 
-                    if (Math.abs(packet.func_149464_c()) > 3.2E7D || Math.abs(packet.func_149472_e()) > 3.2E7D)
+                    if (Math.abs(packet.getX()) > 3.2E7D || Math.abs(packet.getZ()) > 3.2E7D)
                     {
                         this.kickPlayerFromServer("Illegal position");
                         return;
                     }
                 }
 
-                if (packet.func_149463_k())
+                if (packet.rotating())
                 {
-                    var11 = packet.func_149462_g();
-                    var12 = packet.func_149470_h();
+                    var11 = packet.yaw();
+                    var12 = packet.pitch();
                 }
 
                 this.playerEntity.onUpdateEntity();
@@ -348,13 +411,13 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 float var27 = 0.0625F;
                 boolean var28 = var2.getCollidingBoundingBoxes(this.playerEntity, this.playerEntity.boundingBox.copy().contract((double)var27, (double)var27, (double)var27)).isEmpty();
 
-                if (this.playerEntity.onGround && !packet.func_149465_i() && var15 > 0.0D)
+                if (this.playerEntity.onGround && !packet.getOnGround() && var15 > 0.0D)
                 {
                     this.playerEntity.jump();
                 }
 
                 this.playerEntity.moveEntity(var13, var15, var17);
-                this.playerEntity.onGround = packet.func_149465_i();
+                this.playerEntity.onGround = packet.getOnGround();
                 this.playerEntity.addMovementStat(var13, var15, var17);
                 double var29 = var15;
                 var13 = x - this.playerEntity.posX;
@@ -372,7 +435,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 if (var25 > 0.0625D && !this.playerEntity.isPlayerSleeping() && !this.playerEntity.theItemInWorldManager.isCreative())
                 {
                     var31 = true;
-                    logger.warn(this.playerEntity.getCommandSenderName() + " moved wrongly!");
+                    kickPlayerFromServer("Moved wrongly. ICanHasMovementHax?");
+                    VACUtils.notifyAndLog(this.playerEntity.getCommandSenderName() + " was kicked for moving wrongly!");
                 }
 
                 this.playerEntity.setPositionAndRotation(x, y, z, var11, var12);
@@ -401,9 +465,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     vacState.aFly.setAntiFlyPosition(playerEntity);
                 }
 
-                this.playerEntity.onGround = packet.func_149465_i();
+                this.playerEntity.onGround = packet.getOnGround();
                 this.serverController.getConfigurationManager().serverUpdateMountedMovingPlayer(this.playerEntity);
-                this.playerEntity.handleFalling(this.playerEntity.posY - var3, packet.func_149465_i());
+                this.playerEntity.handleFalling(this.playerEntity.posY - var3, packet.getOnGround());
             }
             else if (this.networkTickCount % 20 == 0)
             {
@@ -808,12 +872,20 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         else
         {
-            logger.warn(this.playerEntity.getCommandSenderName() + " tried to set an invalid carried item");
+            kickPlayerFromServer("Silly hacker, that slot isn't even in your hotbar!");
+            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " tried to set an invalid carried item (attempted durability hack)");
         }
     }
 
-    public void func_147354_a(C01PacketChatMessage p_147354_1_)
+    public void handleChat(C01PacketChatMessage packetChat)
     {
+        if (playerEntity.isSneaking() && !MinecraftServer.isPlayerOpped(playerEntity))
+        {
+            kickPlayerFromServer("Silly hacker, you can't sneak and chat!");
+            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and chatting!");
+            return;
+        }
+        
         if (this.playerEntity.func_147096_v() == EntityPlayer.EnumChatVisibility.HIDDEN)
         {
             ChatComponentTranslation var4 = new ChatComponentTranslation("chat.cannotSend", new Object[0]);
@@ -823,25 +895,26 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         else
         {
             this.playerEntity.func_143004_u();
-            String var2 = p_147354_1_.func_149439_c();
-            var2 = StringUtils.normalizeSpace(var2);
+            String message = packetChat.getMessage();
+            message = StringUtils.normalizeSpace(message);
 
-            for (int var3 = 0; var3 < var2.length(); ++var3)
+            for (int var3 = 0; var3 < message.length(); ++var3)
             {
-                if (!ChatAllowedCharacters.isAllowedCharacter(var2.charAt(var3)))
+                if (!ChatAllowedCharacters.isAllowedCharacter(message.charAt(var3)))
                 {
+                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " tried to send illegal characters in chat!");
                     this.kickPlayerFromServer("Illegal characters in chat");
                     return;
                 }
             }
 
-            if (var2.startsWith("/"))
+            if (message.startsWith("/"))
             {
-                this.handleSlashCommand(var2);
+                this.handleSlashCommand(message);
             }
             else
             {
-                ChatComponentTranslation var5 = new ChatComponentTranslation("chat.type.text", new Object[] {this.playerEntity.getUsernameAsIChatComponent(), var2});
+                ChatComponentTranslation var5 = new ChatComponentTranslation("chat.type.text", new Object[] {this.playerEntity.getUsernameAsIChatComponent(), message});
                 this.serverController.getConfigurationManager().sendChatMessageToAllPlayersAndLog(var5, false);
             }
 
@@ -910,10 +983,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
     }
 
-    public void func_147340_a(C02PacketUseEntity p_147340_1_)
+    public void handleUseEntity(C02PacketUseEntity packetUseEntity)
     {
         WorldServer var2 = this.serverController.worldServerForDimension(this.playerEntity.dimension);
-        Entity var3 = p_147340_1_.func_149564_a(var2);
+        Entity var3 = packetUseEntity.getEntity(var2);
         this.playerEntity.func_143004_u();
 
         if (var3 != null)
@@ -928,16 +1001,16 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
             if (this.playerEntity.getDistanceSqToEntity(var3) < var5)
             {
-                if (p_147340_1_.func_149565_c() == C02PacketUseEntity.Action.INTERACT)
+                if (packetUseEntity.getAction() == C02PacketUseEntity.Action.INTERACT)
                 {
                     this.playerEntity.interactWith(var3);
                 }
-                else if (p_147340_1_.func_149565_c() == C02PacketUseEntity.Action.ATTACK)
+                else if (packetUseEntity.getAction() == C02PacketUseEntity.Action.ATTACK)
                 {
                     if (var3 instanceof EntityItem || var3 instanceof EntityXPOrb || var3 instanceof EntityArrow || var3 == this.playerEntity)
                     {
                         this.kickPlayerFromServer("Attempting to attack an invalid entity");
-                        this.serverController.logWarning("Player " + this.playerEntity.getCommandSenderName() + " tried to attack an invalid entity");
+                        VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " tried to attack an invalid entity!");
                         return;
                     }
 
@@ -947,10 +1020,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
     }
 
-    public void func_147342_a(C16PacketClientStatus p_147342_1_)
+    public void handleCLientCommand(C16PacketClientStatus packet)
     {
         this.playerEntity.func_143004_u();
-        C16PacketClientStatus.EnumState var2 = p_147342_1_.func_149435_c();
+        C16PacketClientStatus.EnumState var2 = packet.func_149435_c();
 
         switch (NetHandlerPlayServer.SwitchEnumState.field_151290_a[var2.ordinal()])
         {
@@ -1087,14 +1160,18 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
     }
 
-    public void func_147343_a(C12PacketUpdateSign p_147343_1_)
+    public void handleUpdateSign(C12PacketUpdateSign packetUpdateSign)
     {
         this.playerEntity.func_143004_u();
         WorldServer var2 = this.serverController.worldServerForDimension(this.playerEntity.dimension);
 
-        if (var2.blockExists(p_147343_1_.func_149588_c(), p_147343_1_.func_149586_d(), p_147343_1_.func_149585_e()))
+        int x = packetUpdateSign.getX();
+        int y = packetUpdateSign.getY();
+        int z = packetUpdateSign.getZ();
+        
+        if (var2.blockExists(x, y, z))
         {
-            TileEntity var3 = var2.getTileEntity(p_147343_1_.func_149588_c(), p_147343_1_.func_149586_d(), p_147343_1_.func_149585_e());
+            TileEntity var3 = var2.getTileEntity(x, y, z);
 
             if (var3 instanceof TileEntitySign)
             {
@@ -1102,7 +1179,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 if (!var4.func_145914_a() || var4.func_145911_b() != this.playerEntity)
                 {
-                    this.serverController.logWarning("Player " + this.playerEntity.getCommandSenderName() + " just tried to change non-editable sign");
+                    kickPlayerFromServer("Silly hacker, you can't change that sign!");
+                    VACUtils.notifyAndLog(this.playerEntity.getCommandSenderName() + " just tried to change non-editable sign!");
                     return;
                 }
             }
@@ -1114,15 +1192,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 boolean var5 = true;
 
-                if (p_147343_1_.func_149589_f()[var8].length() > 15)
+                if (packetUpdateSign.func_149589_f()[var8].length() > 15)
                 {
                     var5 = false;
                 }
                 else
                 {
-                    for (var6 = 0; var6 < p_147343_1_.func_149589_f()[var8].length(); ++var6)
+                    for (var6 = 0; var6 < packetUpdateSign.func_149589_f()[var8].length(); ++var6)
                     {
-                        if (!ChatAllowedCharacters.isAllowedCharacter(p_147343_1_.func_149589_f()[var8].charAt(var6)))
+                        if (!ChatAllowedCharacters.isAllowedCharacter(packetUpdateSign.func_149589_f()[var8].charAt(var6)))
                         {
                             var5 = false;
                         }
@@ -1131,17 +1209,17 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 if (!var5)
                 {
-                    p_147343_1_.func_149589_f()[var8] = "!?";
+                    packetUpdateSign.func_149589_f()[var8] = "!?";
                 }
             }
 
             if (var3 instanceof TileEntitySign)
             {
-                var8 = p_147343_1_.func_149588_c();
-                int var9 = p_147343_1_.func_149586_d();
-                var6 = p_147343_1_.func_149585_e();
+                var8 = packetUpdateSign.getX();
+                int var9 = packetUpdateSign.getY();
+                var6 = packetUpdateSign.getZ();
                 TileEntitySign var7 = (TileEntitySign)var3;
-                System.arraycopy(p_147343_1_.func_149589_f(), 0, var7.field_145915_a, 0, 4);
+                System.arraycopy(packetUpdateSign.func_149589_f(), 0, var7.field_145915_a, 0, 4);
                 var7.onInventoryChanged();
                 var2.markBlockForUpdate(var8, var9, var6);
             }

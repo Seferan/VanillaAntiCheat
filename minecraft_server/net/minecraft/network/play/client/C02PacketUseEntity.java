@@ -34,15 +34,15 @@ public class C02PacketUseEntity extends Packet
 
     public void func_148833_a(INetHandlerPlayServer p_149563_1_)
     {
-        p_149563_1_.func_147340_a(this);
+        p_149563_1_.handleUseEntity(this);
     }
 
-    public Entity func_149564_a(World p_149564_1_)
+    public Entity getEntity(World p_149564_1_)
     {
         return p_149564_1_.getEntityByID(this.field_149567_a);
     }
 
-    public C02PacketUseEntity.Action func_149565_c()
+    public C02PacketUseEntity.Action getAction()
     {
         return this.field_149566_b;
     }

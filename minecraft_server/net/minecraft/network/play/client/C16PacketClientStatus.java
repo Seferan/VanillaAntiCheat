@@ -38,7 +38,7 @@ public class C16PacketClientStatus extends Packet
 
     public void func_148833_a(INetHandlerPlayServer p_149436_1_)
     {
-        p_149436_1_.func_147342_a(this);
+        p_149436_1_.handleCLientCommand(this);
     }
 
     public C16PacketClientStatus.EnumState func_149435_c()

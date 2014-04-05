@@ -1,6 +1,9 @@
 package net.minecraft.util;
 
+import mx.x10.afffsdd.vanillaanticheat.VACUtils;
+import mx.x10.afffsdd.vanillaanticheat.module.VACState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -64,9 +67,29 @@ public class FoodStats
 
             if (this.foodTimer >= 80)
             {
-                par1EntityPlayer.heal(1.0F);
-                this.addExhaustion(3.0F);
                 this.foodTimer = 0;
+                
+                VACState vacState = par1EntityPlayer.getVACState();
+                long ticksTaken = vacState.aRegen.getTicksSinceLastHeal();
+                if(ticksTaken < 80 - 10 && ticksTaken > -1)
+                {
+                    if(!vacState.aRegen.hasBeenLogged())
+                    {
+                        StringBuilder message = new StringBuilder();
+                        message.append(par1EntityPlayer.getCommandSenderName());
+                        message.append(" regenerated health too quickly! ");
+                        message.append(ticksTaken);
+                        message.append(" ticks  / 80");
+                        VACUtils.notifyAndLog(vacState.aRegen, message.toString());
+                        vacState.aRegen.log();
+                    }
+                }
+                else
+                {
+                    par1EntityPlayer.heal(1.0F);
+                    this.addExhaustion(3.0F);
+                }
+                par1EntityPlayer.getVACState().aRegen.heal();
             }
         }
         else if (this.foodLevel <= 0)

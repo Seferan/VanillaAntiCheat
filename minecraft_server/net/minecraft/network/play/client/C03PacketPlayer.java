@@ -40,52 +40,52 @@ public class C03PacketPlayer extends Packet
         p_148840_1_.writeByte(this.field_149474_g ? 1 : 0);
     }
 
-    public double func_149464_c()
+    public double getX()
     {
         return this.field_149479_a;
     }
 
-    public double func_149467_d()
+    public double getY()
     {
         return this.field_149477_b;
     }
 
-    public double func_149472_e()
+    public double getZ()
     {
         return this.field_149478_c;
     }
 
-    public double func_149471_f()
+    public double getStance()
     {
         return this.field_149475_d;
     }
 
-    public float func_149462_g()
+    public float yaw()
     {
         return this.field_149476_e;
     }
 
-    public float func_149470_h()
+    public float pitch()
     {
         return this.field_149473_f;
     }
 
-    public boolean func_149465_i()
+    public boolean getOnGround()
     {
         return this.field_149474_g;
     }
 
-    public boolean func_149466_j()
+    public boolean getMoving()
     {
         return this.field_149480_h;
     }
 
-    public boolean func_149463_k()
+    public boolean rotating()
     {
         return this.field_149481_i;
     }
 
-    public void func_149469_a(boolean p_149469_1_)
+    public void setMoving(boolean p_149469_1_)
     {
         this.field_149480_h = p_149469_1_;
     }

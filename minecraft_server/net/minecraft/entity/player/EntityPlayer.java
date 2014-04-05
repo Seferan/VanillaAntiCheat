@@ -2,10 +2,13 @@ package net.minecraft.entity.player;
 
 import com.google.common.base.Charsets;
 import com.mojang.authlib.GameProfile;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+
+import mx.x10.afffsdd.vanillaanticheat.module.VACState;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
@@ -187,6 +190,11 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
         this.fireResistance = 20;
     }
 
+    public VACState getVACState()
+    {
+        return ((EntityPlayerMP)this).getVACState();
+    }
+    
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
