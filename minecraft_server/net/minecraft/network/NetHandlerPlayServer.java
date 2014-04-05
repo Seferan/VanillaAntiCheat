@@ -233,6 +233,55 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         setPlayerLocation(lastPosX, lastPosY, lastPosZ, playerEntity.rotationYaw, playerEntity.rotationPitch);
     }
     
+    // Where all of our anticheat hooks for the player moving will go
+    private void processPlayerMoved(C03PacketPlayer packet)
+    {
+        if(MinecraftServer.isPlayerOpped(playerEntity)) return;
+        
+        // No sneaking and sprinting
+        if (playerEntity.isSneaking() && playerEntity.isSprinting())
+        {
+            kickPlayerFromServer("Silly hacker, this isn't Counterstrike! You can't sneak and sprint!");
+            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and sprinting!");
+            return;
+        }
+
+        // Anti-VClip
+        if ((Double.valueOf(lastPosY) != null))
+        {
+            if (getVerticalSpeed() > 3.0D)
+            {
+                setBackPlayer();
+                vacState.aVClip.incrementDetections();
+                
+                if (vacState.aVClip.getDetections() == 1)
+                {
+                    VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " might be VClipping!");
+                }
+                
+                if (vacState.aVClip.getDetections() == 3)
+                {
+                    kickPlayerFromServer("Teleport hacking detected on the Y-Axis (VClipping).");
+                    VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " was kicked for teleport hacking (vclipping)!");
+                }
+            }
+        }
+        
+        // Patch crash exploit
+        if (this.playerEntity.ridingEntity != null)
+        {
+            if (packet.getMoving() && packet.getX() == -999.0D && packet.getStance() == -999.0D)
+            {
+                if (Math.abs(packet.getX()) > 1.0D || Math.abs(packet.getZ()) > 1.0D)
+                {
+                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was caught trying to crash the server with an invalid position!");
+                    kickPlayerFromServer("Nope!");
+                    return;
+                }
+            }
+        }
+    }
+    
     public void handleFlying(C03PacketPlayer packet)
     {
         WorldServer var2 = this.serverController.worldServerForDimension(this.playerEntity.dimension);
@@ -258,34 +307,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 double y;
                 double z;
 
-                // where our hooks for movement will go for now
-                // will refactor it out later
-                if (playerEntity.isSneaking() && playerEntity.isSprinting() && !MinecraftServer.isPlayerOpped(playerEntity))
-                {
-                    kickPlayerFromServer("Silly hacker, this isn't Counterstrike! You can't sneak and sprint!");
-                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and sprinting!");
-                    return;
-                }
-
-                if ((Double.valueOf(lastPosY) != null))
-                {
-                    if (getVerticalSpeed() > 3.0D && !MinecraftServer.isPlayerOpped(playerEntity))
-                    {
-                        setBackPlayer();
-                        vacState.aVClip.incrementDetections();
-                        
-                        if (vacState.aVClip.getDetections() == 1)
-                        {
-                            VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " might be VClipping!");
-                        }
-                        
-                        if (vacState.aVClip.getDetections() == 3)
-                        {
-                            kickPlayerFromServer("Teleport hacking detected on the Y-Axis (VClipping).");
-                            VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " was kicked for teleport hacking (vclipping)!");
-                        }
-                    }
-                }
+                processPlayerMoved(packet);
 
                 if (this.playerEntity.ridingEntity != null)
                 {
@@ -450,7 +472,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 AxisAlignedBB var33 = this.playerEntity.boundingBox.copy().expand((double)var27, (double)var27, (double)var27).addCoord(0.0D, -0.55D, 0.0D);
 
-                if (!this.serverController.isFlightAllowed() && !this.playerEntity.theItemInWorldManager.isCreative() && !var2.checkBlockCollision(var33) && !MinecraftServer.isPlayerOpped(playerEntity))
+                if (!this.serverController.isFlightAllowed() && !this.playerEntity.theItemInWorldManager.isCreative() && !var2.checkBlockCollision(var33))
                 {
                     if (var29 >= -0.03125D)
                     {
@@ -479,6 +501,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Where all our hooks will go for flying
     private void processFloating()
     {
+        if(MinecraftServer.isPlayerOpped(playerEntity)) return;
+        
         // System.out.println(this.floatingTickCount);
         int logThreshold = MinecraftServer.getServer().getFlyResetLogThreshold();
         int kickThreshold = MinecraftServer.getServer().getFlyResetKickThreshold();
@@ -624,61 +648,60 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Returns false if not set back, returns true if set back
     private boolean processBlockDug(WorldServer world, int x, int y, int z, Block block)
     {
-        if (!MinecraftServer.isPlayerOppedOrCreative(playerEntity))
+        if (!MinecraftServer.isPlayerOppedOrCreative(playerEntity)) return false;
+        
+        // Diamond notification code
+        if (block.getBlockId() == 56 && MinecraftServer.getServer().useDiamondNotifications())
         {
-            // Diamond notification code
-            if (block.getBlockId() == 56 && MinecraftServer.getServer().useDiamondNotifications())
+            // Assume any ores mined within 100 ticks of each other are from the same vein
+            if (vacState.dNotifications.isMiningNewVein())
             {
-                // Assume any ores mined within 100 ticks of each other are from the same vein
-                if (vacState.dNotifications.isMiningNewVein())
-                {
-                    vacState.dNotifications.incrementVeinsMined();
-                    StringBuilder message = new StringBuilder();
-                    message.append(playerEntity.getCommandSenderName());
-                    message.append(" found diamonds. (");
-                    message.append(vacState.dNotifications.getNumberOfVeins());
-                    message.append(" veins found since login)");
-                    VACUtils.notifyAndLog(vacState.dNotifications, message.toString());
-                }
-                vacState.dNotifications.resetTicksSinceLastOre();
+                vacState.dNotifications.incrementVeinsMined();
+                StringBuilder message = new StringBuilder();
+                message.append(playerEntity.getCommandSenderName());
+                message.append(" found diamonds. (");
+                message.append(vacState.dNotifications.getNumberOfVeins());
+                message.append(" veins found since login)");
+                VACUtils.notifyAndLog(vacState.dNotifications, message.toString());
             }
+            vacState.dNotifications.resetTicksSinceLastOre();
+        }
 
-            float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
-            // The number of ticks it SHOULD take for a player to break the
-            // block under ideal circumstances
-            int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
+        float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
+        // The number of ticks it SHOULD take for a player to break the
+        // block under ideal circumstances
+        int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
 
-            // Add this check for players with shitty internet connections
-            if (vacState.aFastBreak.getTicksTaken() > 0)
+        // Add this check for players with shitty internet connections
+        if (vacState.aFastBreak.getTicksTaken() > 0)
+        {
+            // Did the player break this block too quickly?
+            if (vacState.aFastBreak.getTicksTaken() < ticksToBreakBlock)
             {
-                // Did the player break this block too quickly?
-                if (vacState.aFastBreak.getTicksTaken() < ticksToBreakBlock)
+                // Give the player some leeway
+                int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
+                if (ticksToBreakBlock - vacState.aFastBreak.getTicksTaken() > leewayDifference)
                 {
-                    // Give the player some leeway
-                    int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
-                    if (ticksToBreakBlock - vacState.aFastBreak.getTicksTaken() > leewayDifference)
+                    // If broken so fast it was above the leeway, track it
+                    vacState.aFastBreak.incrementDeviations();
+                    if (vacState.aFastBreak.isMinedNonzero())
                     {
-                        // If broken so fast it was above the leeway, track it
-                        vacState.aFastBreak.incrementDeviations();
-                        if (vacState.aFastBreak.isMinedNonzero())
+                        // Check if this guy is bullshit
+                        if (vacState.aFastBreak.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
                         {
-                            // Check if this guy is bullshit
-                            if (vacState.aFastBreak.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
-                            {
-                                // If he's bullshit, update the client and tell
-                                // him that he didn't mine the block
-                                playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
-                                // Log it and notify admins
-                                StringBuilder message = new StringBuilder();
-                                message.append(playerEntity.getCommandSenderName());
-                                message.append(" broke blocks too quickly! (");
-                                message.append(vacState.aFastBreak.getTicksTaken());
-                                message.append(" ticks /");
-                                message.append(ticksToBreakBlock);
-                                message.append(")");
-                                VACUtils.notifyAndLog(vacState.aFastBreak, message.toString());
-                                return true;
-                            }
+                            // If he's bullshit, update the client and tell
+                            // him that he didn't mine the block
+                            playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
+                            // Log it and notify admins
+                            StringBuilder message = new StringBuilder();
+                            message.append(playerEntity.getCommandSenderName());
+                            message.append(" broke blocks too quickly! (");
+                            message.append(vacState.aFastBreak.getTicksTaken());
+                            message.append(" ticks /");
+                            message.append(ticksToBreakBlock);
+                            message.append(")");
+                            VACUtils.notifyAndLog(vacState.aFastBreak, message.toString());
+                            return true;
                         }
                     }
                 }
@@ -791,6 +814,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Where all our hooks will go for a block being placed
     private void processBlockPlaced(Block block, ItemStack itemStack)
     {
+        if (MinecraftServer.isPlayerOpped(this.playerEntity)) return;
+        
         boolean isContainer = block instanceof BlockContainer;
 
         // System.out.println(itemStack.getItemId() + " " +
@@ -799,7 +824,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         {
             vacState.aFastBuild.incrementBlockCount(2);
         }
-        if (vacState.aFastBuild.getBuildCount() > MinecraftServer.getServer().getBuildhackThreshold() && !MinecraftServer.isPlayerOpped(this.playerEntity))
+        if (vacState.aFastBuild.getBuildCount() > MinecraftServer.getServer().getBuildhackThreshold())
         {
             kickPlayerFromServer("Build hacking detected.");
             String message = playerEntity.getCommandSenderName() + " was kicked for buildhacking!";
@@ -879,12 +904,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
     public void handleChat(C01PacketChatMessage packetChat)
     {
-        if (playerEntity.isSneaking() && !MinecraftServer.isPlayerOpped(playerEntity))
-        {
-            kickPlayerFromServer("Silly hacker, you can't sneak and chat!");
-            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and chatting!");
-            return;
-        }
+        processChat();
         
         if (this.playerEntity.func_147096_v() == EntityPlayer.EnumChatVisibility.HIDDEN)
         {
@@ -924,6 +944,17 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 this.kickPlayerFromServer("disconnect.spam");
             }
+        }
+    }
+    
+    // Where the anticheat hooks for chat will go
+    private void processChat()
+    {
+        if (playerEntity.isSneaking() && !MinecraftServer.isPlayerOpped(playerEntity))
+        {
+            kickPlayerFromServer("Silly hacker, you can't sneak and chat!");
+            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and chatting!");
+            return;
         }
     }
 
