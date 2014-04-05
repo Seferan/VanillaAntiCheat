@@ -1128,6 +1128,11 @@ public class Block
         this.textureName = p_149658_1_;
         return this;
     }
+    
+    public int getBlockId()
+    {
+    	return Block.getIdFromBlock(this);
+    }
 
     public static class SoundType
     {

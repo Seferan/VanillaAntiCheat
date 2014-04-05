@@ -140,6 +140,23 @@ public class PropertyManager
             return par2;
         }
     }
+    
+    /**
+     * Gets an double property. If it does not exist, set it to the specified value.
+     */
+    public double getDoubleProperty(String propertyName, double defaultValue)
+    {
+        try
+        {
+            return Double.parseDouble(this.getStringProperty(propertyName, "" + defaultValue));
+        }
+        catch (Exception ex)
+        {
+            this.serverProperties.setProperty(propertyName, "" + defaultValue);
+            this.saveProperties();
+            return defaultValue;
+        }
+    }
 
     /**
      * Gets a boolean property. If it does not exist, set it to the specified value.

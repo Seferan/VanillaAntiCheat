@@ -479,6 +479,16 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
     	return this.settings.getBooleanProperty("tell-ip", false);
     }
+    
+    public double getFastbreakLeeway()
+    {
+    	return this.settings.getDoubleProperty("vac-fastbreak-leeway", 0.3);
+    }
+    
+    public double getFastbreakRatioThreshold()
+    {
+    	return this.settings.getDoubleProperty("vac-fastbreak-ratio-threshold", 0.5);
+    }
 
     /**
      * Returns true if a player does not have permission to edit the block at the given coordinates.

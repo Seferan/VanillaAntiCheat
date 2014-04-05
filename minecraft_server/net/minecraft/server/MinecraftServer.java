@@ -1481,6 +1481,18 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return if we should tell the player their IP or not
      */
     public abstract boolean shouldTellIp();
+    
+    /**
+     * Return the leeway for a fastbreak detection.
+     */
+    public abstract double getFastbreakLeeway();
+    
+    /**
+     * Returns the threshold for the ratio of fastbreak detections
+     * for a setback and a message. 0.0 = perfect timing required,
+     * 1.0 = no protection
+     */
+    public abstract double getFastbreakRatioThreshold();
 
     public String getMOTD()
     {

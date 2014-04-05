@@ -8,11 +8,11 @@ import net.minecraft.network.play.INetHandlerPlayServer;
 
 public class C07PacketPlayerDigging extends Packet
 {
-    private int field_149511_a;
-    private int field_149509_b;
-    private int field_149510_c;
-    private int field_149507_d;
-    private int field_149508_e;
+    private int x;
+    private int y;
+    private int z;
+    private int side;
+    private int status;
     private static final String __OBFID = "CL_00001365";
 
     /**
@@ -20,11 +20,11 @@ public class C07PacketPlayerDigging extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149508_e = p_148837_1_.readUnsignedByte();
-        this.field_149511_a = p_148837_1_.readInt();
-        this.field_149509_b = p_148837_1_.readUnsignedByte();
-        this.field_149510_c = p_148837_1_.readInt();
-        this.field_149507_d = p_148837_1_.readUnsignedByte();
+        this.status = p_148837_1_.readUnsignedByte();
+        this.x = p_148837_1_.readInt();
+        this.y = p_148837_1_.readUnsignedByte();
+        this.z = p_148837_1_.readInt();
+        this.side = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -32,41 +32,41 @@ public class C07PacketPlayerDigging extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149508_e);
-        p_148840_1_.writeInt(this.field_149511_a);
-        p_148840_1_.writeByte(this.field_149509_b);
-        p_148840_1_.writeInt(this.field_149510_c);
-        p_148840_1_.writeByte(this.field_149507_d);
+        p_148840_1_.writeByte(this.status);
+        p_148840_1_.writeInt(this.x);
+        p_148840_1_.writeByte(this.y);
+        p_148840_1_.writeInt(this.z);
+        p_148840_1_.writeByte(this.side);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149504_1_)
     {
-        p_149504_1_.func_147345_a(this);
+        p_149504_1_.handleBlockDig(this);
     }
 
-    public int func_149505_c()
+    public int getX()
     {
-        return this.field_149511_a;
+        return this.x;
     }
 
-    public int func_149503_d()
+    public int getY()
     {
-        return this.field_149509_b;
+        return this.y;
     }
 
-    public int func_149502_e()
+    public int getZ()
     {
-        return this.field_149510_c;
+        return this.z;
     }
 
-    public int func_149501_f()
+    public int getSide()
     {
-        return this.field_149507_d;
+        return this.side;
     }
 
-    public int func_149506_g()
+    public int getStatus()
     {
-        return this.field_149508_e;
+        return this.status;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

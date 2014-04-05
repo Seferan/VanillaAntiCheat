@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 
 import mx.x10.afffsdd.vanillaanticheat.VACUtils;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.server.CommandBlockLogic;
@@ -129,6 +130,16 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     int antiBuildHackBlockCount = 0;
     boolean antiBuildHackAlreadyKicked = false;
     
+    // The number of ticks it SHOULD take for a player to break the block under ideal circumstances
+    private int ticksToBreakBlock = 0;
+    // The number of ticks it ACTUALLY took for the player to break the block 
+    private int ticksTakenToBreakBlock = 0;
+    private boolean isBreakingBlock = false;
+    // Number of times the player broke a block too quickly
+    private int totalDeviations = 0;
+    // Total number of times the block was mined (even if broken too quickly)
+    private int totalMined = 0;
+    
     public NetHandlerPlayServer(MinecraftServer par1MinecraftServer, NetworkManager par2INetworkManager, EntityPlayerMP par3EntityPlayerMP)
     {
         this.serverController = par1MinecraftServer;
@@ -175,10 +186,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     
     private void updateAntiCheatState()
     {
-        if (antiBuildHackBlockCount > 0)
-        {
-        	--antiBuildHackBlockCount;
-        }
+        if (antiBuildHackBlockCount > 0) --antiBuildHackBlockCount;
+        if(isBreakingBlock) ticksTakenToBreakBlock++;
     }
 
     public NetworkManager func_147362_b()
@@ -429,20 +438,28 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         this.playerEntity.playerNetServerHandler.sendPacket(new S08PacketPlayerPosLook(p_147364_1_, p_147364_3_ + 1.6200000047683716D, p_147364_5_, p_147364_7_, p_147364_8_, false));
     }
 
-    public void func_147345_a(C07PacketPlayerDigging p_147345_1_)
+    public void handleBlockDig(C07PacketPlayerDigging packetBlockDig)
     {
-        WorldServer var2 = this.serverController.worldServerForDimension(this.playerEntity.dimension);
+        WorldServer world = this.serverController.worldServerForDimension(this.playerEntity.dimension);
         this.playerEntity.func_143004_u();
-
-        if (p_147345_1_.func_149506_g() == 4)
+        
+        int x = packetBlockDig.getX();
+        int y = packetBlockDig.getY();
+        int z = packetBlockDig.getZ();
+        
+        Block block = world.getBlock(x, y, z);
+        float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
+        ticksToBreakBlock = (int) Math.ceil(1.0f / hardness);
+        
+        if (packetBlockDig.getStatus() == 4)
         {
             this.playerEntity.dropOneItem(false);
         }
-        else if (p_147345_1_.func_149506_g() == 3)
+        else if (packetBlockDig.getStatus() == 3)
         {
             this.playerEntity.dropOneItem(true);
         }
-        else if (p_147345_1_.func_149506_g() == 5)
+        else if (packetBlockDig.getStatus() == 5)
         {
             this.playerEntity.stopUsingItem();
         }
@@ -450,30 +467,82 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         {
             boolean var3 = false;
 
-            if (p_147345_1_.func_149506_g() == 0)
+            // Started digging (i think)
+            if (packetBlockDig.getStatus() == 0)
             {
                 var3 = true;
+                ticksTakenToBreakBlock = 0;
+                isBreakingBlock = true;
             }
 
-            if (p_147345_1_.func_149506_g() == 1)
+            // Finished digging (i think)
+            if (packetBlockDig.getStatus() == 1)
             {
                 var3 = true;
+                ticksTakenToBreakBlock = 0;
+                isBreakingBlock = false;
             }
 
-            if (p_147345_1_.func_149506_g() == 2)
+            // Broke block (i think)
+            // yay lets shove all of our anticheat hooks into here because we're dumb
+            if (packetBlockDig.getStatus() == 2)
             {
                 var3 = true;
+                
+                // Diamond notification code
+                /*
+                if(block.getBlockId() == 56 && !MinecraftServer.isPlayerOpped(playerEntity))
+                {
+                	if(ticksSinceLastOreMined > 100)
+                	{
+                    	veinsMined++;
+                    	VanillaAntiCheatUtils.notifyAndLog(playerEntity.username + " found diamonds. (" + String.valueOf(veinsMined) + " veins found since login)");	
+                	}
+                	ticksSinceLastOreMined = 0;
+                }
+                */
+                
+                // Did the player break this block too quickly?
+                if(ticksTakenToBreakBlock < ticksToBreakBlock && !MinecraftServer.isPlayerOppedOrCreative(playerEntity)) 
+                {
+                	// Give the player some leeway
+                	int leewayDifference = (int) Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
+                	if(ticksToBreakBlock - ticksTakenToBreakBlock > leewayDifference)
+                	{
+                    	//If broken so fast it was above the leeway, track it
+                    	totalDeviations++;
+                    	if(totalMined > 0)
+                    	{
+                        	//Check if this guy is bullshit
+                        	double ratio = totalDeviations / totalMined;
+                        	if(ratio > MinecraftServer.getServer().getFastbreakRatioThreshold())
+                        	{
+                        		// If he's bullshit, update the client and tell him that he didn't mine the block
+                        		playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
+                        		// Log it and notify admins
+                        		VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(ticksTakenToBreakBlock) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
+                        		return;	
+                        	}		
+                    	}
+                	}
+                }
+                totalMined++;
+                
+                // Reset the ratio periodically
+                if(totalMined >= 100)
+                {
+                	totalMined = 0;
+                	totalDeviations = 0;
+                }
+                //System.out.println(String.valueOf(totalDeviations) + "/" + String.valueOf(totalMined) + " (" + String.valueOf(totalDeviations / Math.max((double) totalMined, 1.0)));
+                isBreakingBlock = false;
             }
-
-            int var4 = p_147345_1_.func_149505_c();
-            int var5 = p_147345_1_.func_149503_d();
-            int var6 = p_147345_1_.func_149502_e();
 
             if (var3)
             {
-                double var7 = this.playerEntity.posX - ((double)var4 + 0.5D);
-                double var9 = this.playerEntity.posY - ((double)var5 + 0.5D) + 1.5D;
-                double var11 = this.playerEntity.posZ - ((double)var6 + 0.5D);
+                double var7 = this.playerEntity.posX - ((double)x + 0.5D);
+                double var9 = this.playerEntity.posY - ((double)y + 0.5D) + 1.5D;
+                double var11 = this.playerEntity.posZ - ((double)z + 0.5D);
                 double var13 = var7 * var7 + var9 * var9 + var11 * var11;
 
                 if (var13 > 36.0D)
@@ -481,39 +550,39 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     return;
                 }
 
-                if (var5 >= this.serverController.getBuildLimit())
+                if (y >= this.serverController.getBuildLimit())
                 {
                     return;
                 }
             }
 
-            if (p_147345_1_.func_149506_g() == 0)
+            if (packetBlockDig.getStatus() == 0)
             {
-                if (!this.serverController.isBlockProtected(var2, var4, var5, var6, this.playerEntity))
+                if (!this.serverController.isBlockProtected(world, x, y, z, this.playerEntity))
                 {
-                    this.playerEntity.theItemInWorldManager.onBlockClicked(var4, var5, var6, p_147345_1_.func_149501_f());
+                    this.playerEntity.theItemInWorldManager.onBlockClicked(x, y, z, packetBlockDig.getSide());
                 }
                 else
                 {
-                    this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(var4, var5, var6, var2));
+                    this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
                 }
             }
-            else if (p_147345_1_.func_149506_g() == 2)
+            else if (packetBlockDig.getStatus() == 2)
             {
-                this.playerEntity.theItemInWorldManager.blockRemoving(var4, var5, var6);
+                this.playerEntity.theItemInWorldManager.blockRemoving(x, y, z);
 
-                if (var2.getBlock(var4, var5, var6).getMaterial() != Material.air)
+                if (world.getBlock(x, y, z).getMaterial() != Material.air)
                 {
-                    this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(var4, var5, var6, var2));
+                    this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
                 }
             }
-            else if (p_147345_1_.func_149506_g() == 1)
+            else if (packetBlockDig.getStatus() == 1)
             {
-                this.playerEntity.theItemInWorldManager.cancelDestroyingBlock(var4, var5, var6);
+                this.playerEntity.theItemInWorldManager.cancelDestroyingBlock(x, y, z);
 
-                if (var2.getBlock(var4, var5, var6).getMaterial() != Material.air)
+                if (world.getBlock(x, y, z).getMaterial() != Material.air)
                 {
-                    this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(var4, var5, var6, var2));
+                    this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
                 }
             }
         }

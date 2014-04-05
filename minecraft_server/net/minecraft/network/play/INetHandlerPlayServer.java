@@ -53,7 +53,7 @@ public interface INetHandlerPlayServer extends INetHandler
 
     void func_147348_a(C13PacketPlayerAbilities var1);
 
-    void func_147345_a(C07PacketPlayerDigging var1);
+    void handleBlockDig(C07PacketPlayerDigging var1);
 
     void func_147357_a(C0BPacketEntityAction var1);
 
