@@ -480,14 +480,31 @@ public class DedicatedServer extends MinecraftServer implements IServer
     	return this.settings.getBooleanProperty("tell-ip", false);
     }
     
+    /**
+     * Return the leeway for a fastbreak detection.
+     */
     public double getFastbreakLeeway()
     {
     	return this.settings.getDoubleProperty("vac-fastbreak-leeway", 0.3);
     }
     
+    /**
+     * Returns the threshold for the ratio of fastbreak detections
+     * for a setback and a message. 0.0 = perfect timing required,
+     * 1.0 = no protection
+     */
     public double getFastbreakRatioThreshold()
     {
     	return this.settings.getDoubleProperty("vac-fastbreak-ratio-threshold", 0.5);
+    }
+    
+    /**
+     * Return the threshold for kicking someone due to buildhack.
+     * A good default is 6.
+     */
+    public int getBuildhackThreshold()
+    {
+    	return this.settings.getIntProperty("vac-buildhack-threshold", 6);
     }
 
     /**

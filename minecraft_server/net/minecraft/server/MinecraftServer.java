@@ -1493,6 +1493,12 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * 1.0 = no protection
      */
     public abstract double getFastbreakRatioThreshold();
+    
+    /**
+     * Return the threshold for kicking someone due to buildhack.
+     * A good default is 6.
+     */
+    public abstract int getBuildhackThreshold();
 
     public String getMOTD()
     {
