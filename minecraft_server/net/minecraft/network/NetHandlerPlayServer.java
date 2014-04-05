@@ -2,9 +2,11 @@ package net.minecraft.network;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
+
 import io.netty.buffer.Unpooled;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -12,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.Callable;
+
+import mx.x10.afffsdd.vanillaanticheat.VACUtils;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.server.CommandBlockLogic;
 import net.minecraft.crash.CrashReport;
@@ -31,6 +36,7 @@ import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.inventory.ContainerMerchant;
 import net.minecraft.inventory.ContainerRepair;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemEditableBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemWritableBook;
@@ -81,6 +87,7 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IntHashMap;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.WorldServer;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -116,7 +123,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     private double lastPosZ;
     private boolean hasMoved = true;
     private static final String __OBFID = "CL_00001452";
-
+    
+    // ANTICHEAT VARS
+    // I promise to remove all these anticheat vars from here
+    int antiBuildHackBlockCount = 0;
+    boolean antiBuildHackAlreadyKicked = false;
+    
     public NetHandlerPlayServer(MinecraftServer par1MinecraftServer, NetworkManager par2INetworkManager, EntityPlayerMP par3EntityPlayerMP)
     {
         this.serverController = par1MinecraftServer;
@@ -130,6 +142,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
      * For scheduled network tasks. Used in NetHandlerPlayServer to send keep-alive packets and in NetHandlerLoginServer
      * for a login-timeout
      */
+    // ALSO KNOWN AS HANDLEPACKETS FROM A WHILE AGO
     public void onNetworkTick()
     {
         this.field_147366_g = false;
@@ -153,9 +166,19 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         {
             --this.field_147375_m;
         }
+        
+        updateAntiCheatState();
 
         this.serverController.theProfiler.endStartSection("playerTick");
         this.serverController.theProfiler.endSection();
+    }
+    
+    private void updateAntiCheatState()
+    {
+        if (antiBuildHackBlockCount > 0)
+        {
+        	--antiBuildHackBlockCount;
+        }
     }
 
     public NetworkManager func_147362_b()
@@ -496,27 +519,32 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
     }
 
-    public void func_147346_a(C08PacketPlayerBlockPlacement p_147346_1_)
+    public void handlePlace(C08PacketPlayerBlockPlacement packetPlace)
     {
-        WorldServer var2 = this.serverController.worldServerForDimension(this.playerEntity.dimension);
-        ItemStack var3 = this.playerEntity.inventory.getCurrentItem();
+    	if (this.antiBuildHackAlreadyKicked)
+    	{
+    		return;
+    	}
+    	
+        WorldServer world = this.serverController.worldServerForDimension(this.playerEntity.dimension);
+        ItemStack itemStack = this.playerEntity.inventory.getCurrentItem();
         boolean var4 = false;
-        int var5 = p_147346_1_.func_149576_c();
-        int var6 = p_147346_1_.func_149571_d();
-        int var7 = p_147346_1_.func_149570_e();
-        int var8 = p_147346_1_.func_149568_f();
+        int x = packetPlace.getX();
+        int y = packetPlace.getY();
+        int z = packetPlace.getZ();
+        int side = packetPlace.getSide();
         this.playerEntity.func_143004_u();
 
-        if (p_147346_1_.func_149568_f() == 255)
+        if (packetPlace.getSide() == 255)
         {
-            if (var3 == null)
+            if (itemStack == null)
             {
                 return;
             }
 
-            this.playerEntity.theItemInWorldManager.tryUseItem(this.playerEntity, var2, var3);
+            this.playerEntity.theItemInWorldManager.tryUseItem(this.playerEntity, world, itemStack);
         }
-        else if (p_147346_1_.func_149571_d() >= this.serverController.getBuildLimit() - 1 && (p_147346_1_.func_149568_f() == 1 || p_147346_1_.func_149571_d() >= this.serverController.getBuildLimit()))
+        else if (packetPlace.getY() >= this.serverController.getBuildLimit() - 1 && (packetPlace.getSide() == 1 || packetPlace.getY() >= this.serverController.getBuildLimit()))
         {
             ChatComponentTranslation var9 = new ChatComponentTranslation("build.tooHigh", new Object[] {Integer.valueOf(this.serverController.getBuildLimit())});
             var9.getChatStyle().setColor(EnumChatFormatting.RED);
@@ -525,9 +553,24 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         else
         {
-            if (this.hasMoved && this.playerEntity.getDistanceSq((double)var5 + 0.5D, (double)var6 + 0.5D, (double)var7 + 0.5D) < 64.0D && !this.serverController.isBlockProtected(var2, var5, var6, var7, this.playerEntity))
+            boolean isContainer = world.getBlock(x, y, z) instanceof BlockContainer;
+            
+            System.out.println(itemStack.getItemId() + " " + antiBuildHackBlockCount + " " + isContainer);
+            if (itemStack.getItemId() < 256 && itemStack.getItemId() != 69 && !isContainer)
             {
-                this.playerEntity.theItemInWorldManager.activateBlockOrUseItem(this.playerEntity, var2, var3, var5, var6, var7, var8, p_147346_1_.func_149573_h(), p_147346_1_.func_149569_i(), p_147346_1_.func_149575_j());
+            	antiBuildHackBlockCount += 2;
+            }
+            if (antiBuildHackBlockCount > 6 && !antiBuildHackAlreadyKicked && !MinecraftServer.isPlayerOpped(this.playerEntity))
+            {
+            	kickPlayerFromServer("Build hacking detected.");
+            	VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for buildhacking!");
+            	this.antiBuildHackAlreadyKicked = true;
+            	return;
+            }
+            
+            if (this.hasMoved && this.playerEntity.getDistanceSq((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D) < 64.0D && !this.serverController.isBlockProtected(world, x, y, z, this.playerEntity))
+            {
+                this.playerEntity.theItemInWorldManager.activateBlockOrUseItem(this.playerEntity, world, itemStack, x, y, z, side, packetPlace.getXOffset(), packetPlace.getYOffset(), packetPlace.getZOffset());
             }
 
             var4 = true;
@@ -535,50 +578,50 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
         if (var4)
         {
-            this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(var5, var6, var7, var2));
+            this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
 
-            if (var8 == 0)
+            if (side == 0)
             {
-                --var6;
+                --y;
             }
 
-            if (var8 == 1)
+            if (side == 1)
             {
-                ++var6;
+                ++y;
             }
 
-            if (var8 == 2)
+            if (side == 2)
             {
-                --var7;
+                --z;
             }
 
-            if (var8 == 3)
+            if (side == 3)
             {
-                ++var7;
+                ++z;
             }
 
-            if (var8 == 4)
+            if (side == 4)
             {
-                --var5;
+                --x;
             }
 
-            if (var8 == 5)
+            if (side == 5)
             {
-                ++var5;
+                ++x;
             }
 
-            this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(var5, var6, var7, var2));
+            this.playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
         }
 
-        var3 = this.playerEntity.inventory.getCurrentItem();
+        itemStack = this.playerEntity.inventory.getCurrentItem();
 
-        if (var3 != null && var3.stackSize == 0)
+        if (itemStack != null && itemStack.stackSize == 0)
         {
             this.playerEntity.inventory.mainInventory[this.playerEntity.inventory.currentItem] = null;
-            var3 = null;
+            itemStack = null;
         }
 
-        if (var3 == null || var3.getMaxItemUseDuration() == 0)
+        if (itemStack == null || itemStack.getMaxItemUseDuration() == 0)
         {
             this.playerEntity.isChangingQuantityOnly = true;
             this.playerEntity.inventory.mainInventory[this.playerEntity.inventory.currentItem] = ItemStack.copyItemStack(this.playerEntity.inventory.mainInventory[this.playerEntity.inventory.currentItem]);
@@ -586,7 +629,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             this.playerEntity.openContainer.detectAndSendChanges();
             this.playerEntity.isChangingQuantityOnly = false;
 
-            if (!ItemStack.areItemStacksEqual(this.playerEntity.inventory.getCurrentItem(), p_147346_1_.func_149574_g()))
+            if (!ItemStack.areItemStacksEqual(this.playerEntity.inventory.getCurrentItem(), packetPlace.func_149574_g()))
             {
                 this.sendPacket(new S2FPacketSetSlot(this.playerEntity.openContainer.windowId, var10.slotNumber, this.playerEntity.inventory.getCurrentItem()));
             }

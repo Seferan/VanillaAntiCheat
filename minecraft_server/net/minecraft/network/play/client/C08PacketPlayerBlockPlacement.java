@@ -9,13 +9,13 @@ import net.minecraft.network.play.INetHandlerPlayServer;
 
 public class C08PacketPlayerBlockPlacement extends Packet
 {
-    private int field_149583_a;
-    private int field_149581_b;
-    private int field_149582_c;
-    private int field_149579_d;
+    private int x;
+    private int y;
+    private int z;
+    private int side;
     private ItemStack field_149580_e;
-    private float field_149577_f;
-    private float field_149578_g;
+    private float xOffset;
+    private float yOffset;
     private float field_149584_h;
     private static final String __OBFID = "CL_00001371";
 
@@ -24,13 +24,13 @@ public class C08PacketPlayerBlockPlacement extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149583_a = p_148837_1_.readInt();
-        this.field_149581_b = p_148837_1_.readUnsignedByte();
-        this.field_149582_c = p_148837_1_.readInt();
-        this.field_149579_d = p_148837_1_.readUnsignedByte();
+        this.x = p_148837_1_.readInt();
+        this.y = p_148837_1_.readUnsignedByte();
+        this.z = p_148837_1_.readInt();
+        this.side = p_148837_1_.readUnsignedByte();
         this.field_149580_e = p_148837_1_.readItemStackFromBuffer();
-        this.field_149577_f = (float)p_148837_1_.readUnsignedByte() / 16.0F;
-        this.field_149578_g = (float)p_148837_1_.readUnsignedByte() / 16.0F;
+        this.xOffset = (float)p_148837_1_.readUnsignedByte() / 16.0F;
+        this.yOffset = (float)p_148837_1_.readUnsignedByte() / 16.0F;
         this.field_149584_h = (float)p_148837_1_.readUnsignedByte() / 16.0F;
     }
 
@@ -39,39 +39,39 @@ public class C08PacketPlayerBlockPlacement extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149583_a);
-        p_148840_1_.writeByte(this.field_149581_b);
-        p_148840_1_.writeInt(this.field_149582_c);
-        p_148840_1_.writeByte(this.field_149579_d);
+        p_148840_1_.writeInt(this.x);
+        p_148840_1_.writeByte(this.y);
+        p_148840_1_.writeInt(this.z);
+        p_148840_1_.writeByte(this.side);
         p_148840_1_.writeItemStackToBuffer(this.field_149580_e);
-        p_148840_1_.writeByte((int)(this.field_149577_f * 16.0F));
-        p_148840_1_.writeByte((int)(this.field_149578_g * 16.0F));
+        p_148840_1_.writeByte((int)(this.xOffset * 16.0F));
+        p_148840_1_.writeByte((int)(this.yOffset * 16.0F));
         p_148840_1_.writeByte((int)(this.field_149584_h * 16.0F));
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149572_1_)
     {
-        p_149572_1_.func_147346_a(this);
+        p_149572_1_.handlePlace(this);
     }
 
-    public int func_149576_c()
+    public int getX()
     {
-        return this.field_149583_a;
+        return this.x;
     }
 
-    public int func_149571_d()
+    public int getY()
     {
-        return this.field_149581_b;
+        return this.y;
     }
 
-    public int func_149570_e()
+    public int getZ()
     {
-        return this.field_149582_c;
+        return this.z;
     }
 
-    public int func_149568_f()
+    public int getSide()
     {
-        return this.field_149579_d;
+        return this.side;
     }
 
     public ItemStack func_149574_g()
@@ -79,17 +79,17 @@ public class C08PacketPlayerBlockPlacement extends Packet
         return this.field_149580_e;
     }
 
-    public float func_149573_h()
+    public float getXOffset()
     {
-        return this.field_149577_f;
+        return this.xOffset;
     }
 
-    public float func_149569_i()
+    public float getYOffset()
     {
-        return this.field_149578_g;
+        return this.yOffset;
     }
 
-    public float func_149575_j()
+    public float getZOffset()
     {
         return this.field_149584_h;
     }

@@ -34,7 +34,7 @@ public final class ItemStack
      * Number of animation frames to go when receiving an item (by walking into it, for example).
      */
     public int animationsToGo;
-    private Item field_151002_e;
+    private Item item;
 
     /**
      * A NBTTagMap containing data about an ItemStack. Can only be used for non stackable items
@@ -75,7 +75,7 @@ public final class ItemStack
 
     public ItemStack(Item par1Item, int par2, int par3)
     {
-        this.field_151002_e = par1Item;
+        this.item = par1Item;
         this.stackSize = par2;
         this.itemDamage = par3;
 
@@ -99,7 +99,7 @@ public final class ItemStack
      */
     public ItemStack splitStack(int par1)
     {
-        ItemStack var2 = new ItemStack(this.field_151002_e, par1, this.itemDamage);
+        ItemStack var2 = new ItemStack(this.item, par1, this.itemDamage);
 
         if (this.stackTagCompound != null)
         {
@@ -115,7 +115,7 @@ public final class ItemStack
      */
     public Item getItem()
     {
-        return this.field_151002_e;
+        return this.item;
     }
 
     public boolean tryPlaceItemIntoWorld(EntityPlayer par1EntityPlayer, World par2World, int par3, int par4, int par5, int par6, float par7, float par8, float par9)
@@ -124,7 +124,7 @@ public final class ItemStack
 
         if (var10)
         {
-            par1EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(this.field_151002_e)], 1);
+            par1EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(this.item)], 1);
         }
 
         return var10;
@@ -154,7 +154,7 @@ public final class ItemStack
      */
     public NBTTagCompound writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        par1NBTTagCompound.setShort("id", (short)Item.getIdFromItem(this.field_151002_e));
+        par1NBTTagCompound.setShort("id", (short)Item.getIdFromItem(this.item));
         par1NBTTagCompound.setByte("Count", (byte)this.stackSize);
         par1NBTTagCompound.setShort("Damage", (short)this.itemDamage);
 
@@ -171,7 +171,7 @@ public final class ItemStack
      */
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
-        this.field_151002_e = Item.getItemById(par1NBTTagCompound.getShort("id"));
+        this.item = Item.getItemById(par1NBTTagCompound.getShort("id"));
         this.stackSize = par1NBTTagCompound.getByte("Count");
         this.itemDamage = par1NBTTagCompound.getShort("Damage");
 
@@ -207,12 +207,12 @@ public final class ItemStack
      */
     public boolean isItemStackDamageable()
     {
-        return this.field_151002_e.getMaxDamage() <= 0 ? false : !this.hasTagCompound() || !this.getTagCompound().getBoolean("Unbreakable");
+        return this.item.getMaxDamage() <= 0 ? false : !this.hasTagCompound() || !this.getTagCompound().getBoolean("Unbreakable");
     }
 
     public boolean getHasSubtypes()
     {
-        return this.field_151002_e.getHasSubtypes();
+        return this.item.getHasSubtypes();
     }
 
     /**
@@ -257,7 +257,7 @@ public final class ItemStack
      */
     public int getMaxDamage()
     {
-        return this.field_151002_e.getMaxDamage();
+        return this.item.getMaxDamage();
     }
 
     /**
@@ -317,7 +317,7 @@ public final class ItemStack
                     if (par2EntityLivingBase instanceof EntityPlayer)
                     {
                         EntityPlayer var3 = (EntityPlayer)par2EntityLivingBase;
-                        var3.addStat(StatList.objectBreakStats[Item.getIdFromItem(this.field_151002_e)], 1);
+                        var3.addStat(StatList.objectBreakStats[Item.getIdFromItem(this.item)], 1);
 
                         if (this.stackSize == 0 && this.getItem() instanceof ItemBow)
                         {
@@ -341,32 +341,32 @@ public final class ItemStack
      */
     public void hitEntity(EntityLivingBase par1EntityLivingBase, EntityPlayer par2EntityPlayer)
     {
-        boolean var3 = this.field_151002_e.hitEntity(this, par1EntityLivingBase, par2EntityPlayer);
+        boolean var3 = this.item.hitEntity(this, par1EntityLivingBase, par2EntityPlayer);
 
         if (var3)
         {
-            par2EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(this.field_151002_e)], 1);
+            par2EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(this.item)], 1);
         }
     }
 
     public void func_150999_a(World p_150999_1_, Block p_150999_2_, int p_150999_3_, int p_150999_4_, int p_150999_5_, EntityPlayer p_150999_6_)
     {
-        boolean var7 = this.field_151002_e.onBlockDestroyed(this, p_150999_1_, p_150999_2_, p_150999_3_, p_150999_4_, p_150999_5_, p_150999_6_);
+        boolean var7 = this.item.onBlockDestroyed(this, p_150999_1_, p_150999_2_, p_150999_3_, p_150999_4_, p_150999_5_, p_150999_6_);
 
         if (var7)
         {
-            p_150999_6_.addStat(StatList.objectUseStats[Item.getIdFromItem(this.field_151002_e)], 1);
+            p_150999_6_.addStat(StatList.objectUseStats[Item.getIdFromItem(this.item)], 1);
         }
     }
 
     public boolean func_150998_b(Block p_150998_1_)
     {
-        return this.field_151002_e.func_150897_b(p_150998_1_);
+        return this.item.func_150897_b(p_150998_1_);
     }
 
     public boolean interactWithEntity(EntityPlayer par1EntityPlayer, EntityLivingBase par2EntityLivingBase)
     {
-        return this.field_151002_e.itemInteractionForEntity(this, par1EntityPlayer, par2EntityLivingBase);
+        return this.item.itemInteractionForEntity(this, par1EntityPlayer, par2EntityLivingBase);
     }
 
     /**
@@ -374,7 +374,7 @@ public final class ItemStack
      */
     public ItemStack copy()
     {
-        ItemStack var1 = new ItemStack(this.field_151002_e, this.stackSize, this.itemDamage);
+        ItemStack var1 = new ItemStack(this.item, this.stackSize, this.itemDamage);
 
         if (this.stackTagCompound != null)
         {
@@ -402,7 +402,7 @@ public final class ItemStack
      */
     private boolean isItemStackEqual(ItemStack par1ItemStack)
     {
-        return this.stackSize != par1ItemStack.stackSize ? false : (this.field_151002_e != par1ItemStack.field_151002_e ? false : (this.itemDamage != par1ItemStack.itemDamage ? false : (this.stackTagCompound == null && par1ItemStack.stackTagCompound != null ? false : this.stackTagCompound == null || this.stackTagCompound.equals(par1ItemStack.stackTagCompound))));
+        return this.stackSize != par1ItemStack.stackSize ? false : (this.item != par1ItemStack.item ? false : (this.itemDamage != par1ItemStack.itemDamage ? false : (this.stackTagCompound == null && par1ItemStack.stackTagCompound != null ? false : this.stackTagCompound == null || this.stackTagCompound.equals(par1ItemStack.stackTagCompound))));
     }
 
     /**
@@ -411,12 +411,12 @@ public final class ItemStack
      */
     public boolean isItemEqual(ItemStack par1ItemStack)
     {
-        return this.field_151002_e == par1ItemStack.field_151002_e && this.itemDamage == par1ItemStack.itemDamage;
+        return this.item == par1ItemStack.item && this.itemDamage == par1ItemStack.itemDamage;
     }
 
     public String getUnlocalizedName()
     {
-        return this.field_151002_e.getUnlocalizedName(this);
+        return this.item.getUnlocalizedName(this);
     }
 
     /**
@@ -429,7 +429,7 @@ public final class ItemStack
 
     public String toString()
     {
-        return this.stackSize + "x" + this.field_151002_e.getUnlocalizedName() + "@" + this.itemDamage;
+        return this.stackSize + "x" + this.item.getUnlocalizedName() + "@" + this.itemDamage;
     }
 
     /**
@@ -443,13 +443,13 @@ public final class ItemStack
             --this.animationsToGo;
         }
 
-        this.field_151002_e.onUpdate(this, par1World, par2Entity, par3, par4);
+        this.item.onUpdate(this, par1World, par2Entity, par3, par4);
     }
 
     public void onCrafting(World par1World, EntityPlayer par2EntityPlayer, int par3)
     {
-        par2EntityPlayer.addStat(StatList.objectCraftStats[Item.getIdFromItem(this.field_151002_e)], par3);
-        this.field_151002_e.onCreated(this, par1World, par2EntityPlayer);
+        par2EntityPlayer.addStat(StatList.objectCraftStats[Item.getIdFromItem(this.item)], par3);
+        this.item.onCreated(this, par1World, par2EntityPlayer);
     }
 
     public int getMaxItemUseDuration()
@@ -702,14 +702,14 @@ public final class ItemStack
 
     public void func_150996_a(Item p_150996_1_)
     {
-        this.field_151002_e = p_150996_1_;
+        this.item = p_150996_1_;
     }
 
     public IChatComponent func_151000_E()
     {
         IChatComponent var1 = (new ChatComponentText("[")).appendText(this.getDisplayName()).appendText("]");
 
-        if (this.field_151002_e != null)
+        if (this.item != null)
         {
             NBTTagCompound var2 = new NBTTagCompound();
             this.writeToNBT(var2);
@@ -718,5 +718,11 @@ public final class ItemStack
         }
 
         return var1;
+    }
+    
+    // who the fuck thought of this jesus christ just let me get the item id
+    public int getItemId()
+    {
+    	return Item.getIdFromItem(this.getItem());
     }
 }

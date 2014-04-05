@@ -65,5 +65,5 @@ public interface INetHandlerPlayServer extends INetHandler
 
     void func_147343_a(C12PacketUpdateSign var1);
 
-    void func_147346_a(C08PacketPlayerBlockPlacement var1);
+    void handlePlace(C08PacketPlayerBlockPlacement var1);
 }

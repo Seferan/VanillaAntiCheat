@@ -72,10 +72,13 @@ import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 
 public abstract class MinecraftServer implements ICommandSender, Runnable, IPlayerUsage
 {
     private static final Logger logger = LogManager.getLogger();
+    private static final Marker MARKER_VAC = MarkerManager.getMarker("VAC");
 
     /** Instance of Minecraft Server. */
     private static MinecraftServer mcServer;
@@ -1001,6 +1004,11 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
             logger.info(par1Str);
         }
     }
+    
+    public void logVAC(String message)
+    {
+    	logger.warn(MARKER_VAC, "[VAC]: " + message);
+    }
 
     public String getServerModName()
     {
@@ -1160,7 +1168,6 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
     	return MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(playerName);
     }
     
-    // It should NOT be this hard to tell if someone's opped
     public static boolean isPlayerOpped(ICommandSender player)
     {
     	return isPlayerOpped(player.getCommandSenderName()) || player == getServer();
@@ -1174,6 +1181,11 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
     public static boolean isPlayerOwner(ICommandSender player)
     {
     	return isPlayerOwner(player.getCommandSenderName()) || player == getServer();
+    }
+    
+    public static boolean isPlayerOppedOrCreative(EntityPlayerMP player)
+    {
+    	return isPlayerOpped(player) || player.theItemInWorldManager.isCreative();
     }
 
     /**
