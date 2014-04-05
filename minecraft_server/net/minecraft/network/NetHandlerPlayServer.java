@@ -415,20 +415,22 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Where all our hooks will go for flying
     private void processFloating()
     {
-     // System.out.println(this.floatingTickCount);
+        // System.out.println(this.floatingTickCount);
+        int logThreshold = MinecraftServer.getServer().getFlyResetLogThreshold();
+        int kickThreshold = MinecraftServer.getServer().getFlyResetKickThreshold();
         if (this.floatingTickCount > MinecraftServer.getServer().getFloatingTicksThreshold())
         {
             resetPlayerForFlying();
 
-            if (vacState.getFlyResetCount() == MinecraftServer.getServer().getFlyResetLogThreshold())
+            if (vacState.getFlyResetCount() == logThreshold)
             {
-                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " has been reset for flying " + String.valueOf(MinecraftServer.getServer().getFlyResetLogThreshold()) + " times now.");
+                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " has been reset for flying " + String.valueOf(logThreshold) + " times now.");
             }
 
             this.floatingTickCount = 0;
             return;
         }
-        if (vacState.getFlyResetCount() > MinecraftServer.getServer().getFlyResetKickThreshold())
+        if (vacState.getFlyResetCount() > kickThreshold)
         {
             kickPlayerFromServer("Flying is not allowed on this server.");
             VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for flying!");
@@ -438,8 +440,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
     private void resetPlayerForFlying()
     {
-        double setBackY = playerEntity.worldObj.getTopSolidOrLiquidBlock((int)vacState.getAntiFlyX(), (int)vacState.getAntiFlyZ());
-        setPlayerLocation(vacState.getAntiFlyX(), setBackY, vacState.getAntiFlyZ(), this.playerEntity.rotationYaw, this.playerEntity.rotationPitch);
+        double setBackX = vacState.getAntiFlyX();
+        double setBackZ = vacState.getAntiFlyZ();
+        double setBackY = playerEntity.worldObj.getTopSolidOrLiquidBlock((int)setBackX, (int)setBackZ);
+        setPlayerLocation(setBackX, setBackY, setBackZ, playerEntity.rotationYaw, playerEntity.rotationPitch);
         playerEntity.attackEntityFrom(DamageSource.fall, 4);
         vacState.incrementFlyResetCount();
     }
