@@ -504,7 +504,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 var3 = true;
 
-                processBlockDug(world, x, y, z, block);
+                if (processBlockDug(world, x, y, z, block)) return;
             }
 
             if (var3)
@@ -552,7 +552,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     }
 
     // Where all our anticheat hooks shall go for a block being mined
-    private void processBlockDug(WorldServer world, int x, int y, int z, Block block)
+    // Returns false if not set back, returns true if set back
+    private boolean processBlockDug(WorldServer world, int x, int y, int z, Block block)
     {
         if (!MinecraftServer.isPlayerOppedOrCreative(playerEntity))
         {
@@ -567,30 +568,36 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 }
                 vacState.resetTicksSinceLastOre();
             }
-            
+
             float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
-            // The number of ticks it SHOULD take for a player to break the block under ideal circumstances
+            // The number of ticks it SHOULD take for a player to break the
+            // block under ideal circumstances
             int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
-            
-            // Did the player break this block too quickly?
-            if (vacState.getTicksTakenToBreakBlock() < ticksToBreakBlock)
+
+            // Add this check for players with shitty internet connections
+            if (vacState.getTicksTakenToBreakBlock() > 0)
             {
-                // Give the player some leeway
-                int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
-                if (ticksToBreakBlock - vacState.getTicksTakenToBreakBlock() > leewayDifference)
+                // Did the player break this block too quickly?
+                if (vacState.getTicksTakenToBreakBlock() < ticksToBreakBlock)
                 {
-                    // If broken so fast it was above the leeway, track it
-                    vacState.incrementTotalDeviations();
-                    if (vacState.isTotalMinedNonzero())
+                    // Give the player some leeway
+                    int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
+                    if (ticksToBreakBlock - vacState.getTicksTakenToBreakBlock() > leewayDifference)
                     {
-                        // Check if this guy is bullshit
-                        if (vacState.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
+                        // If broken so fast it was above the leeway, track it
+                        vacState.incrementTotalDeviations();
+                        if (vacState.isTotalMinedNonzero())
                         {
-                            // If he's bullshit, update the client and tell him that he didn't mine the block
-                            playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
-                            // Log it and notify admins
-                            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(vacState.getTicksTakenToBreakBlock()) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
-                            return;
+                            // Check if this guy is bullshit
+                            if (vacState.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
+                            {
+                                // If he's bullshit, update the client and tell
+                                // him that he didn't mine the block
+                                playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
+                                // Log it and notify admins
+                                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(vacState.getTicksTakenToBreakBlock()) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
+                                return true;
+                            }
                         }
                     }
                 }
@@ -598,7 +605,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         
         vacState.incrementTotalMined();
-        vacState.resetDigStatus();   
+        vacState.resetDigStatus();
+        
+        return false;
     }
     
     public void handlePlace(C08PacketPlayerBlockPlacement packetPlace)

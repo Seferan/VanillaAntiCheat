@@ -59,6 +59,7 @@ public class VACState
     public void incrementTotalMined()
     {
         totalMined++;
+        // System.out.println(String.valueOf(totalDeviations) + "/" + String.valueOf(totalMined) + " (" + getDeviationRatio() + ")");
         // Reset the ratio periodically
         if (totalMined >= 100)
         {
@@ -79,7 +80,7 @@ public class VACState
 
     public double getDeviationRatio()
     {
-        return totalDeviations / totalMined;
+        return totalDeviations / Math.max(totalMined, 0.0);
     }
 
     // ANTI-FASTBUILD
