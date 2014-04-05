@@ -420,9 +420,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         {
             resetPlayerForFlying();
 
-            if (vacState.getFlyResetCount() == MinecraftServer.getServer().getFlyResetLogThreshold() && !vacState.hasFlyResetBeenLogged())
+            if (vacState.getFlyResetCount() == MinecraftServer.getServer().getFlyResetLogThreshold())
             {
-                vacState.logFlyReset();
                 VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " has been reset for flying " + String.valueOf(MinecraftServer.getServer().getFlyResetLogThreshold()) + " times now.");
             }
 

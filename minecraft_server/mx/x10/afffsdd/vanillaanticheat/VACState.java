@@ -15,7 +15,6 @@ public class VACState
         kickedForBuildhack = false;
 
         afResetCount = 0;
-        afHasBeenLogged = false;
         antiFlyX = 0.0;
         antiFlyZ = 0.0;
         
@@ -111,7 +110,6 @@ public class VACState
     // ANTI-FLY
     // ===============================================================================
     private int afResetCount;
-    private boolean afHasBeenLogged;
     private double antiFlyX;
     private double antiFlyZ;
 
@@ -139,16 +137,6 @@ public class VACState
     public int getFlyResetCount()
     {
         return afResetCount;
-    }
-
-    public boolean hasFlyResetBeenLogged()
-    {
-        return afHasBeenLogged;
-    }
-
-    public void logFlyReset()
-    {
-        afHasBeenLogged = true;
     }
     
     // DIAMOND NOTIFICATIONS
