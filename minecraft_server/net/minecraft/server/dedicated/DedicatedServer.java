@@ -562,6 +562,30 @@ public class DedicatedServer extends MinecraftServer implements IServer
     }
 
     /**
+     * Return the number of ticks you can be floating and not be set back
+     */
+    public int getFloatingTicksThreshold()
+    {
+        return this.settings.getIntProperty("vac-floating-ticks-threshold", 40);
+    }
+    
+    /**
+     * Return the number of times you can be reset and not have it be logged
+     */
+    public int getFlyResetLogThreshold()
+    {
+        return this.settings.getIntProperty("vac-fly-reset-log-threshold", 3);
+    }
+    
+    /**
+     * Return the number of times you can be reset and not be kicked
+     */
+    public int getFlyResetKickThreshold()
+    {
+        return this.settings.getIntProperty("vac-fly-reset-kick-threshold", 5);
+    }
+    
+    /**
      * Returns true if a player does not have permission to edit the block at
      * the given coordinates.
      */

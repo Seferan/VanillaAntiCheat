@@ -49,7 +49,7 @@ public interface INetHandlerPlayServer extends INetHandler
 
     void func_147353_a(C00PacketKeepAlive var1);
 
-    void func_147347_a(C03PacketPlayer var1);
+    void handleFlying(C03PacketPlayer var1);
 
     void func_147348_a(C13PacketPlayerAbilities var1);
 

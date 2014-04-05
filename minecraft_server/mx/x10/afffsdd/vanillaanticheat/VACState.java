@@ -1,41 +1,59 @@
 package mx.x10.afffsdd.vanillaanticheat;
 
+import net.minecraft.entity.player.EntityPlayerMP;
+
 public class VACState
 {
+    public VACState()
+    {
+        ticksTakenToBreakBlock = 0;
+        isBreakingBlock = false;
+        totalDeviations = 0;
+        totalMined = 0;
+        
+        builtBlockCount = 0;
+        kickedForBuildhack = false;
+
+        afResetCount = 0;
+        afHasBeenLogged = false;
+        antiFlyX = 0.0;
+        antiFlyZ = 0.0;
+    }
+    
     // ANTI-FASTBREAK
     // ===============================================================================
 
     // The number of ticks it ACTUALLY took for the player to break the block
-    private static int ticksTakenToBreakBlock = 0;
-    private static boolean isBreakingBlock = false;
+    private int ticksTakenToBreakBlock;
+    private boolean isBreakingBlock;
     // Number of times the player broke a block too quickly
-    private static int totalDeviations = 0;
+    private int totalDeviations;
     // Total number of times the block was mined (even if broken too quickly)
-    private static int totalMined = 0;
+    private int totalMined;
 
-    public static void updateState()
+    public void updateState()
     {
         if (builtBlockCount > 0) --builtBlockCount;
         if (isBreakingBlock) ticksTakenToBreakBlock++;
     }
 
-    public static void resetDigStatus()
+    public void resetDigStatus()
     {
         isBreakingBlock = false;
     }
 
-    public static void startDiggingBlock()
+    public void startDiggingBlock()
     {
         ticksTakenToBreakBlock = 0;
         isBreakingBlock = true;
     }
 
-    public static void incrementTotalDeviations()
+    public void incrementTotalDeviations()
     {
         totalDeviations++;
     }
 
-    public static void incrementTotalMined()
+    public void incrementTotalMined()
     {
         totalMined++;
         // Reset the ratio periodically
@@ -46,43 +64,86 @@ public class VACState
         }
     }
 
-    public static boolean isTotalMinedNonzero()
+    public boolean isTotalMinedNonzero()
     {
         return totalMined > 0;
     }
 
-    public static int getTicksTakenToBreakBlock()
+    public int getTicksTakenToBreakBlock()
     {
         return ticksTakenToBreakBlock;
     }
 
-    public static double getDeviationRatio()
+    public double getDeviationRatio()
     {
         return totalDeviations / totalMined;
     }
 
     // ANTI-FASTBUILD
     // ===============================================================================
-    private static int builtBlockCount = 0;
-    private static boolean kickedForBuildhack = false;
+    private int builtBlockCount;
+    private boolean kickedForBuildhack;
 
-    public static boolean isAlreadyKicked()
+    public boolean isAlreadyKicked()
     {
         return kickedForBuildhack;
     }
 
-    public static void kickMe()
+    public void kickMe()
     {
         kickedForBuildhack = true;
     }
 
-    public static void incrementBuildCount(int i)
+    public void incrementBuildCount(int i)
     {
         builtBlockCount += i;
     }
 
-    public static int getBuildCount()
+    public int getBuildCount()
     {
         return builtBlockCount;
+    }
+
+    // ANTI-FLY
+    // ===============================================================================
+    private int afResetCount;
+    private boolean afHasBeenLogged;
+    private double antiFlyX;
+    private double antiFlyZ;
+    
+    public void setAntiFlyPosition(EntityPlayerMP player)
+    {
+        antiFlyX = player.posX;
+        antiFlyZ = player.posZ;
+    }
+    
+    public double getAntiFlyX()
+    {
+        return antiFlyX;
+    }
+    
+    public double getAntiFlyZ()
+    {
+        return antiFlyZ;
+    }
+    
+    public void incrementFlyResetCount()
+    {
+        afResetCount++;
+    }
+    
+    public int getFlyResetCount()
+    {
+        return afResetCount;
+    }
+    
+    public boolean hasFlyResetBeenLogged()
+    {
+        return afHasBeenLogged;
+    }
+    
+    public void logFlyReset()
+    {
+        afHasBeenLogged = true;
     }
 }

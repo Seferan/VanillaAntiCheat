@@ -1632,6 +1632,21 @@ public abstract class MinecraftServer implements ICommandSender, Runnable,
      */
     public abstract int getBuildhackThreshold();
 
+    /**
+     * Return the number of ticks you can be floating and not be set back
+     */
+    public abstract int getFloatingTicksThreshold();
+    
+    /**
+     * Return the number of times you can be reset and not have it be logged
+     */
+    public abstract int getFlyResetLogThreshold();
+    
+    /**
+     * Return the number of times you can be reset and not be kicked
+     */
+    public abstract int getFlyResetKickThreshold();
+    
     public String getMOTD()
     {
         return this.motd;

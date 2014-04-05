@@ -21,7 +21,7 @@ public class C03PacketPlayer extends Packet
 
     public void func_148833_a(INetHandlerPlayServer p_149468_1_)
     {
-        p_149468_1_.func_147347_a(this);
+        p_149468_1_.handleFlying(this);
     }
 
     /**

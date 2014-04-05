@@ -84,6 +84,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatAllowedCharacters;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IntHashMap;
@@ -126,6 +127,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     private boolean hasMoved = true;
     private static final String __OBFID = "CL_00001452";
 
+    private VACState vacState;
+
     public NetHandlerPlayServer(MinecraftServer par1MinecraftServer,
             NetworkManager par2INetworkManager,
             EntityPlayerMP par3EntityPlayerMP)
@@ -135,6 +138,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         par2INetworkManager.setNetHandler(this);
         this.playerEntity = par3EntityPlayerMP;
         par3EntityPlayerMP.playerNetServerHandler = this;
+        vacState = new VACState();
     }
 
     /**
@@ -166,7 +170,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             --this.field_147375_m;
         }
 
-        VACState.updateState();
+        vacState.updateState();
 
         this.serverController.theProfiler.endStartSection("playerTick");
         this.serverController.theProfiler.endSection();
@@ -203,7 +207,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 p_147358_1_.func_149617_f());
     }
 
-    public void func_147347_a(C03PacketPlayer p_147347_1_)
+    public void handleFlying(C03PacketPlayer packet)
     {
         WorldServer var2 = this.serverController
                 .worldServerForDimension(this.playerEntity.dimension);
@@ -215,11 +219,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
             if (!this.hasMoved)
             {
-                var3 = p_147347_1_.func_149467_d() - this.lastPosY;
+                var3 = packet.func_149467_d() - this.lastPosY;
 
-                if (p_147347_1_.func_149464_c() == this.lastPosX
+                if (packet.func_149464_c() == this.lastPosX
                         && var3 * var3 < 0.01D
-                        && p_147347_1_.func_149472_e() == this.lastPosZ)
+                        && packet.func_149472_e() == this.lastPosZ)
                 {
                     this.hasMoved = true;
                 }
@@ -227,30 +231,39 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
             if (this.hasMoved)
             {
-                double var5;
-                double var7;
-                double var9;
+                double x;
+                double y;
+                double z;
+
+                if (playerEntity.isSneaking() && playerEntity.isSprinting()
+                        && !MinecraftServer.isPlayerOpped(playerEntity))
+                {
+                    kickPlayerFromServer("Silly hacker, this isn't Counterstrike! You can't sneak and sprint!");
+                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName()
+                            + " was kicked for sneaking and sprinting!");
+                    return;
+                }
 
                 if (this.playerEntity.ridingEntity != null)
                 {
                     float var34 = this.playerEntity.rotationYaw;
                     float var4 = this.playerEntity.rotationPitch;
                     this.playerEntity.ridingEntity.updateRiderPosition();
-                    var5 = this.playerEntity.posX;
-                    var7 = this.playerEntity.posY;
-                    var9 = this.playerEntity.posZ;
+                    x = this.playerEntity.posX;
+                    y = this.playerEntity.posY;
+                    z = this.playerEntity.posZ;
 
-                    if (p_147347_1_.func_149463_k())
+                    if (packet.func_149463_k())
                     {
-                        var34 = p_147347_1_.func_149462_g();
-                        var4 = p_147347_1_.func_149470_h();
+                        var34 = packet.func_149462_g();
+                        var4 = packet.func_149470_h();
                     }
 
-                    this.playerEntity.onGround = p_147347_1_.func_149465_i();
+                    this.playerEntity.onGround = packet.func_149465_i();
                     this.playerEntity.onUpdateEntity();
                     this.playerEntity.ySize = 0.0F;
-                    this.playerEntity.setPositionAndRotation(var5, var7, var9,
-                            var34, var4);
+                    this.playerEntity.setPositionAndRotation(x, y, z, var34,
+                            var4);
 
                     if (this.playerEntity.ridingEntity != null)
                     {
@@ -286,28 +299,26 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 this.lastPosX = this.playerEntity.posX;
                 this.lastPosY = this.playerEntity.posY;
                 this.lastPosZ = this.playerEntity.posZ;
-                var5 = this.playerEntity.posX;
-                var7 = this.playerEntity.posY;
-                var9 = this.playerEntity.posZ;
+                x = this.playerEntity.posX;
+                y = this.playerEntity.posY;
+                z = this.playerEntity.posZ;
                 float var11 = this.playerEntity.rotationYaw;
                 float var12 = this.playerEntity.rotationPitch;
 
-                if (p_147347_1_.func_149466_j()
-                        && p_147347_1_.func_149467_d() == -999.0D
-                        && p_147347_1_.func_149471_f() == -999.0D)
+                if (packet.func_149466_j() && packet.func_149467_d() == -999.0D
+                        && packet.func_149471_f() == -999.0D)
                 {
-                    p_147347_1_.func_149469_a(false);
+                    packet.func_149469_a(false);
                 }
 
                 double var13;
 
-                if (p_147347_1_.func_149466_j())
+                if (packet.func_149466_j())
                 {
-                    var5 = p_147347_1_.func_149464_c();
-                    var7 = p_147347_1_.func_149467_d();
-                    var9 = p_147347_1_.func_149472_e();
-                    var13 = p_147347_1_.func_149471_f()
-                            - p_147347_1_.func_149467_d();
+                    x = packet.func_149464_c();
+                    y = packet.func_149467_d();
+                    z = packet.func_149472_e();
+                    var13 = packet.func_149471_f() - packet.func_149467_d();
 
                     if (!this.playerEntity.isPlayerSleeping()
                             && (var13 > 1.65D || var13 < 0.1D))
@@ -318,18 +329,18 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                         return;
                     }
 
-                    if (Math.abs(p_147347_1_.func_149464_c()) > 3.2E7D
-                            || Math.abs(p_147347_1_.func_149472_e()) > 3.2E7D)
+                    if (Math.abs(packet.func_149464_c()) > 3.2E7D
+                            || Math.abs(packet.func_149472_e()) > 3.2E7D)
                     {
                         this.kickPlayerFromServer("Illegal position");
                         return;
                     }
                 }
 
-                if (p_147347_1_.func_149463_k())
+                if (packet.func_149463_k())
                 {
-                    var11 = p_147347_1_.func_149462_g();
-                    var12 = p_147347_1_.func_149470_h();
+                    var11 = packet.func_149462_g();
+                    var12 = packet.func_149470_h();
                 }
 
                 this.playerEntity.onUpdateEntity();
@@ -339,9 +350,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 if (!this.hasMoved) { return; }
 
-                var13 = var5 - this.playerEntity.posX;
-                double var15 = var7 - this.playerEntity.posY;
-                double var17 = var9 - this.playerEntity.posZ;
+                var13 = x - this.playerEntity.posX;
+                double var15 = y - this.playerEntity.posY;
+                double var17 = z - this.playerEntity.posZ;
                 double var19 = Math.min(Math.abs(var13),
                         Math.abs(this.playerEntity.motionX));
                 double var21 = Math.min(Math.abs(var15),
@@ -373,25 +384,25 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                                 (double)var27, (double)var27, (double)var27))
                         .isEmpty();
 
-                if (this.playerEntity.onGround && !p_147347_1_.func_149465_i()
+                if (this.playerEntity.onGround && !packet.func_149465_i()
                         && var15 > 0.0D)
                 {
                     this.playerEntity.jump();
                 }
 
                 this.playerEntity.moveEntity(var13, var15, var17);
-                this.playerEntity.onGround = p_147347_1_.func_149465_i();
+                this.playerEntity.onGround = packet.func_149465_i();
                 this.playerEntity.addMovementStat(var13, var15, var17);
                 double var29 = var15;
-                var13 = var5 - this.playerEntity.posX;
-                var15 = var7 - this.playerEntity.posY;
+                var13 = x - this.playerEntity.posX;
+                var15 = y - this.playerEntity.posY;
 
                 if (var15 > -0.5D || var15 < 0.5D)
                 {
                     var15 = 0.0D;
                 }
 
-                var17 = var9 - this.playerEntity.posZ;
+                var17 = z - this.playerEntity.posZ;
                 var25 = var13 * var13 + var15 * var15 + var17 * var17;
                 boolean var31 = false;
 
@@ -405,8 +416,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                             + " moved wrongly!");
                 }
 
-                this.playerEntity.setPositionAndRotation(var5, var7, var9,
-                        var11, var12);
+                this.playerEntity.setPositionAndRotation(x, y, z, var11, var12);
                 boolean var32 = var2.getCollidingBoundingBoxes(
                         this.playerEntity,
                         this.playerEntity.boundingBox.copy().contract(
@@ -428,18 +438,40 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 if (!this.serverController.isFlightAllowed()
                         && !this.playerEntity.theItemInWorldManager
                                 .isCreative()
-                        && !var2.checkBlockCollision(var33))
+                        && !var2.checkBlockCollision(var33)
+                        && !MinecraftServer.isPlayerOpped(playerEntity))
                 {
                     if (var29 >= -0.03125D)
                     {
-                        ++this.floatingTickCount;
+                        this.floatingTickCount++;
 
-                        if (this.floatingTickCount > 80)
+//                        System.out.println(this.floatingTickCount);
+                        if (this.floatingTickCount > MinecraftServer
+                                .getServer().getFloatingTicksThreshold())
                         {
-                            logger.warn(this.playerEntity
+                            resetPlayerForFlying();
+
+                            if (vacState.getFlyResetCount() == MinecraftServer.getServer().getFlyResetLogThreshold()
+                                    && !vacState.hasFlyResetBeenLogged())
+                            {
+                                vacState.logFlyReset();
+                                VACUtils.notifyAndLog(playerEntity
+                                        .getCommandSenderName()
+                                        + " has been reset for flying "
+                                        + String.valueOf(MinecraftServer.getServer().getFlyResetLogThreshold())
+                                        + " times now.");
+                            }
+
+                            this.floatingTickCount = 0;
+                            return;
+                        }
+                        if (vacState.getFlyResetCount() > MinecraftServer
+                                .getServer().getFlyResetKickThreshold())
+                        {
+                            kickPlayerFromServer("Flying is not allowed on this server.");
+                            VACUtils.notifyAndLog(playerEntity
                                     .getCommandSenderName()
-                                    + " was kicked for floating too long!");
-                            this.kickPlayerFromServer("Flying is not enabled on this server");
+                                    + " was kicked for flying!");
                             return;
                         }
                     }
@@ -447,13 +479,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 else
                 {
                     this.floatingTickCount = 0;
+                    vacState.setAntiFlyPosition(playerEntity);
                 }
 
-                this.playerEntity.onGround = p_147347_1_.func_149465_i();
+                this.playerEntity.onGround = packet.func_149465_i();
                 this.serverController.getConfigurationManager()
                         .serverUpdateMountedMovingPlayer(this.playerEntity);
                 this.playerEntity.handleFalling(this.playerEntity.posY - var3,
-                        p_147347_1_.func_149465_i());
+                        packet.func_149465_i());
             }
             else if (this.networkTickCount % 20 == 0)
             {
@@ -462,6 +495,17 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                         this.playerEntity.rotationPitch);
             }
         }
+    }
+
+    private void resetPlayerForFlying()
+    {
+        double setBackY = playerEntity.worldObj.getTopSolidOrLiquidBlock(
+                (int)vacState.getAntiFlyX(), (int)vacState.getAntiFlyZ());
+        setPlayerLocation(vacState.getAntiFlyX(), setBackY,
+                vacState.getAntiFlyZ(), this.playerEntity.rotationYaw,
+                this.playerEntity.rotationPitch);
+        playerEntity.attackEntityFrom(DamageSource.fall, 4);
+        vacState.incrementFlyResetCount();
     }
 
     public void setPlayerLocation(double p_147364_1_, double p_147364_3_,
@@ -516,14 +560,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             if (packetBlockDig.getStatus() == 0)
             {
                 var3 = true;
-                VACState.startDiggingBlock();
+                vacState.startDiggingBlock();
             }
 
             // Finished digging (i think)
             if (packetBlockDig.getStatus() == 1)
             {
                 var3 = true;
-                VACState.resetDigStatus();
+                vacState.resetDigStatus();
             }
 
             // Broke block (i think)
@@ -544,7 +588,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                  */
 
                 // Did the player break this block too quickly?
-                if (VACState.getTicksTakenToBreakBlock() < ticksToBreakBlock
+                if (vacState.getTicksTakenToBreakBlock() < ticksToBreakBlock
                         && !MinecraftServer
                                 .isPlayerOppedOrCreative(playerEntity))
                 {
@@ -552,14 +596,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     int leewayDifference = (int)Math.ceil(ticksToBreakBlock
                             * MinecraftServer.getServer().getFastbreakLeeway());
                     if (ticksToBreakBlock
-                            - VACState.getTicksTakenToBreakBlock() > leewayDifference)
+                            - vacState.getTicksTakenToBreakBlock() > leewayDifference)
                     {
                         // If broken so fast it was above the leeway, track it
-                        VACState.incrementTotalDeviations();
-                        if (VACState.isTotalMinedNonzero())
+                        vacState.incrementTotalDeviations();
+                        if (vacState.isTotalMinedNonzero())
                         {
                             // Check if this guy is bullshit
-                            if (VACState.getDeviationRatio() > MinecraftServer
+                            if (vacState.getDeviationRatio() > MinecraftServer
                                     .getServer().getFastbreakRatioThreshold())
                             {
                                 // If he's bullshit, update the client and tell
@@ -571,7 +615,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                                 VACUtils.notifyAndLog(playerEntity
                                         .getCommandSenderName()
                                         + " broke blocks too quickly! ("
-                                        + String.valueOf(VACState
+                                        + String.valueOf(vacState
                                                 .getTicksTakenToBreakBlock())
                                         + " ticks /"
                                         + String.valueOf(ticksToBreakBlock)
@@ -581,13 +625,13 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                         }
                     }
                 }
-                VACState.incrementTotalMined();
+                vacState.incrementTotalMined();
 
-                // System.out.println(String.valueOf(VACState.totalDeviations) +
-                // "/" + String.valueOf(VACState.totalMined) + " (" +
-                // String.valueOf(VACState.totalDeviations / Math.max((double)
-                // VACState.totalMined, 1.0)));
-                VACState.resetDigStatus();
+                // System.out.println(String.valueOf(vacState.totalDeviations) +
+                // "/" + String.valueOf(vacState.totalMined) + " (" +
+                // String.valueOf(vacState.totalDeviations / Math.max((double)
+                // vacState.totalMined, 1.0)));
+                vacState.resetDigStatus();
             }
 
             if (var3)
@@ -643,7 +687,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
     public void handlePlace(C08PacketPlayerBlockPlacement packetPlace)
     {
-        if (VACState.isAlreadyKicked()) return;
+        if (vacState.isAlreadyKicked()) return;
 
         WorldServer world = this.serverController
                 .worldServerForDimension(this.playerEntity.dimension);
@@ -679,20 +723,20 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             boolean isContainer = world.getBlock(x, y, z) instanceof BlockContainer;
 
             // System.out.println(itemStack.getItemId() + " " +
-            // VACState.getBuildCount() + " " + isContainer);
+            // vacState.getBuildCount() + " " + isContainer);
             if (itemStack.getItemId() < 256 && itemStack.getItemId() != 69
                     && !isContainer)
             {
-                VACState.incrementBuildCount(2);
+                vacState.incrementBuildCount(2);
             }
-            if (VACState.getBuildCount() > MinecraftServer.getServer()
+            if (vacState.getBuildCount() > MinecraftServer.getServer()
                     .getBuildhackThreshold()
                     && !MinecraftServer.isPlayerOpped(this.playerEntity))
             {
                 kickPlayerFromServer("Build hacking detected.");
                 VACUtils.notifyAndLog(playerEntity.getCommandSenderName()
                         + " was kicked for buildhacking!");
-                VACState.kickMe();
+                vacState.kickMe();
                 return;
             }
 
