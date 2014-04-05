@@ -6,17 +6,20 @@ public class WorldType
     public static final WorldType[] worldTypes = new WorldType[16];
 
     /** Default world type. */
-    public static final WorldType DEFAULT = (new WorldType(0, "default", 1)).setVersioned();
+    public static final WorldType DEFAULT = (new WorldType(0, "default", 1))
+            .setVersioned();
 
     /** Flat world type. */
     public static final WorldType FLAT = new WorldType(1, "flat");
 
     /** Large Biome world Type. */
     public static final WorldType LARGE_BIOMES = new WorldType(2, "largeBiomes");
-    public static final WorldType field_151360_e = (new WorldType(3, "amplified")).func_151358_j();
+    public static final WorldType field_151360_e = (new WorldType(3,
+            "amplified")).func_151358_j();
 
     /** Default (1.1) world type. */
-    public static final WorldType DEFAULT_1_1 = (new WorldType(8, "default_1_1", 0)).setCanBeCreated(false);
+    public static final WorldType DEFAULT_1_1 = (new WorldType(8,
+            "default_1_1", 0)).setCanBeCreated(false);
 
     /** ID for this world type. */
     private final int worldTypeId;
@@ -26,7 +29,8 @@ public class WorldType
     private final int generatorVersion;
 
     /**
-     * Whether this world type can be generated. Normally true; set to false for out-of-date generator versions.
+     * Whether this world type can be generated. Normally true; set to false for
+     * out-of-date generator versions.
      */
     private boolean canBeCreated;
 
@@ -97,10 +101,8 @@ public class WorldType
     {
         for (int var1 = 0; var1 < worldTypes.length; ++var1)
         {
-            if (worldTypes[var1] != null && worldTypes[var1].worldType.equalsIgnoreCase(par0Str))
-            {
-                return worldTypes[var1];
-            }
+            if (worldTypes[var1] != null
+                    && worldTypes[var1].worldType.equalsIgnoreCase(par0Str)) { return worldTypes[var1]; }
         }
 
         return null;

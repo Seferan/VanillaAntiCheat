@@ -11,7 +11,9 @@ public class NBTTagFloat extends NBTBase.NBTPrimitive
     private float data;
     private static final String __OBFID = "CL_00001220";
 
-    NBTTagFloat() {}
+    NBTTagFloat()
+    {
+    }
 
     public NBTTagFloat(float p_i45131_1_)
     {
@@ -19,7 +21,8 @@ public class NBTTagFloat extends NBTBase.NBTPrimitive
     }
 
     /**
-     * Write the actual data contents of the tag, implemented in NBT extension classes
+     * Write the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
@@ -27,7 +30,8 @@ public class NBTTagFloat extends NBTBase.NBTPrimitive
     }
 
     /**
-     * Read the actual data contents of the tag, implemented in NBT extension classes
+     * Read the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void load(DataInput par1DataInput, int par2) throws IOException
     {

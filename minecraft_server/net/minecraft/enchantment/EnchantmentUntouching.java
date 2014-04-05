@@ -14,7 +14,8 @@ public class EnchantmentUntouching extends Enchantment
     }
 
     /**
-     * Returns the minimal value of enchantability needed on the enchantment level passed.
+     * Returns the minimal value of enchantability needed on the enchantment
+     * level passed.
      */
     public int getMinEnchantability(int par1)
     {
@@ -22,7 +23,8 @@ public class EnchantmentUntouching extends Enchantment
     }
 
     /**
-     * Returns the maximum value of enchantability nedded on the enchantment level passed.
+     * Returns the maximum value of enchantability nedded on the enchantment
+     * level passed.
      */
     public int getMaxEnchantability(int par1)
     {
@@ -38,15 +40,18 @@ public class EnchantmentUntouching extends Enchantment
     }
 
     /**
-     * Determines if the enchantment passed can be applyied together with this enchantment.
+     * Determines if the enchantment passed can be applyied together with this
+     * enchantment.
      */
     public boolean canApplyTogether(Enchantment par1Enchantment)
     {
-        return super.canApplyTogether(par1Enchantment) && par1Enchantment.effectId != fortune.effectId;
+        return super.canApplyTogether(par1Enchantment)
+                && par1Enchantment.effectId != fortune.effectId;
     }
 
     public boolean canApply(ItemStack par1ItemStack)
     {
-        return par1ItemStack.getItem() == Items.shears ? true : super.canApply(par1ItemStack);
+        return par1ItemStack.getItem() == Items.shears ? true : super
+                .canApply(par1ItemStack);
     }
 }

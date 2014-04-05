@@ -18,7 +18,9 @@ public class S18PacketEntityTeleport extends Packet
     private byte field_149453_f;
     private static final String __OBFID = "CL_00001340";
 
-    public S18PacketEntityTeleport() {}
+    public S18PacketEntityTeleport()
+    {
+    }
 
     public S18PacketEntityTeleport(Entity p_i45233_1_)
     {
@@ -30,7 +32,8 @@ public class S18PacketEntityTeleport extends Packet
         this.field_149453_f = (byte)((int)(p_i45233_1_.rotationPitch * 256.0F / 360.0F));
     }
 
-    public S18PacketEntityTeleport(int p_i45234_1_, int p_i45234_2_, int p_i45234_3_, int p_i45234_4_, byte p_i45234_5_, byte p_i45234_6_)
+    public S18PacketEntityTeleport(int p_i45234_1_, int p_i45234_2_,
+            int p_i45234_3_, int p_i45234_4_, byte p_i45234_5_, byte p_i45234_6_)
     {
         this.field_149458_a = p_i45234_1_;
         this.field_149456_b = p_i45234_2_;

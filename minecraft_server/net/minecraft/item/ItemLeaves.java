@@ -24,8 +24,9 @@ public class ItemLeaves extends ItemBlock
     }
 
     /**
-     * Returns the unlocalized name of this item. This version accepts an ItemStack so different stacks can have
-     * different names based on their damage or NBT.
+     * Returns the unlocalized name of this item. This version accepts an
+     * ItemStack so different stacks can have different names based on their
+     * damage or NBT.
      */
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
@@ -36,6 +37,7 @@ public class ItemLeaves extends ItemBlock
             var2 = 0;
         }
 
-        return super.getUnlocalizedName() + "." + this.field_150940_b.func_150125_e()[var2];
+        return super.getUnlocalizedName() + "."
+                + this.field_150940_b.func_150125_e()[var2];
     }
 }

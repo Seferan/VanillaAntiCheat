@@ -17,7 +17,8 @@ public class WorldGenIcePath extends WorldGenerator
         this.field_150554_b = p_i45454_1_;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         while (par1World.isAirBlock(par3, par4, par5) && par4 > 2)
         {
@@ -46,9 +47,11 @@ public class WorldGenIcePath extends WorldGenerator
                         {
                             Block var13 = par1World.getBlock(var8, var12, var9);
 
-                            if (var13 == Blocks.dirt || var13 == Blocks.snow || var13 == Blocks.ice)
+                            if (var13 == Blocks.dirt || var13 == Blocks.snow
+                                    || var13 == Blocks.ice)
                             {
-                                par1World.setBlock(var8, var12, var9, this.field_150555_a, 0, 2);
+                                par1World.setBlock(var8, var12, var9,
+                                        this.field_150555_a, 0, 2);
                             }
                         }
                     }

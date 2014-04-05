@@ -17,7 +17,9 @@ public class S11PacketSpawnExperienceOrb extends Packet
     private int field_148989_e;
     private static final String __OBFID = "CL_00001277";
 
-    public S11PacketSpawnExperienceOrb() {}
+    public S11PacketSpawnExperienceOrb()
+    {
+    }
 
     public S11PacketSpawnExperienceOrb(EntityXPOrb p_i45167_1_)
     {
@@ -58,11 +60,18 @@ public class S11PacketSpawnExperienceOrb extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, value=%d, x=%.2f, y=%.2f, z=%.2f", new Object[] {Integer.valueOf(this.field_148992_a), Integer.valueOf(this.field_148989_e), Float.valueOf((float)this.field_148990_b / 32.0F), Float.valueOf((float)this.field_148991_c / 32.0F), Float.valueOf((float)this.field_148988_d / 32.0F)});
+        return String.format(
+                "id=%d, value=%d, x=%.2f, y=%.2f, z=%.2f",
+                new Object[] {Integer.valueOf(this.field_148992_a),
+                        Integer.valueOf(this.field_148989_e),
+                        Float.valueOf((float)this.field_148990_b / 32.0F),
+                        Float.valueOf((float)this.field_148991_c / 32.0F),
+                        Float.valueOf((float)this.field_148988_d / 32.0F)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

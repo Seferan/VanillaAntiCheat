@@ -20,29 +20,36 @@ public class BlockCommandBlock extends BlockContainer
     }
 
     /**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
+     * Returns a new instance of a block's tile entity class. Called on placing
+     * the block.
      */
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
         return new TileEntityCommandBlock();
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
+            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         if (!p_149695_1_.isClient)
         {
-            boolean var6 = p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_);
-            int var7 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
+            boolean var6 = p_149695_1_.isBlockIndirectlyGettingPowered(
+                    p_149695_2_, p_149695_3_, p_149695_4_);
+            int var7 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_,
+                    p_149695_4_);
             boolean var8 = (var7 & 1) != 0;
 
             if (var6 && !var8)
             {
-                p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var7 | 1, 4);
-                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, this.func_149738_a(p_149695_1_));
+                p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_,
+                        p_149695_4_, var7 | 1, 4);
+                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_,
+                        p_149695_4_, this, this.func_149738_a(p_149695_1_));
             }
             else if (!var6 && var8)
             {
-                p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var7 & -2, 4);
+                p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_,
+                        p_149695_4_, var7 & -2, 4);
             }
         }
     }
@@ -50,15 +57,19 @@ public class BlockCommandBlock extends BlockContainer
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
+            int p_149674_4_, Random p_149674_5_)
     {
-        TileEntity var6 = p_149674_1_.getTileEntity(p_149674_2_, p_149674_3_, p_149674_4_);
+        TileEntity var6 = p_149674_1_.getTileEntity(p_149674_2_, p_149674_3_,
+                p_149674_4_);
 
         if (var6 != null && var6 instanceof TileEntityCommandBlock)
         {
-            CommandBlockLogic var7 = ((TileEntityCommandBlock)var6).func_145993_a();
+            CommandBlockLogic var7 = ((TileEntityCommandBlock)var6)
+                    .func_145993_a();
             var7.func_145755_a(p_149674_1_);
-            p_149674_1_.func_147453_f(p_149674_2_, p_149674_3_, p_149674_4_, this);
+            p_149674_1_.func_147453_f(p_149674_2_, p_149674_3_, p_149674_4_,
+                    this);
         }
     }
 
@@ -70,9 +81,13 @@ public class BlockCommandBlock extends BlockContainer
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
+            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
+            int p_149727_6_, float p_149727_7_, float p_149727_8_,
+            float p_149727_9_)
     {
-        TileEntityCommandBlock var10 = (TileEntityCommandBlock)p_149727_1_.getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
+        TileEntityCommandBlock var10 = (TileEntityCommandBlock)p_149727_1_
+                .getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
 
         if (var10 != null)
         {
@@ -87,18 +102,24 @@ public class BlockCommandBlock extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_, int p_149736_3_, int p_149736_4_, int p_149736_5_)
+    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_,
+            int p_149736_3_, int p_149736_4_, int p_149736_5_)
     {
-        TileEntity var6 = p_149736_1_.getTileEntity(p_149736_2_, p_149736_3_, p_149736_4_);
-        return var6 != null && var6 instanceof TileEntityCommandBlock ? ((TileEntityCommandBlock)var6).func_145993_a().func_145760_g() : 0;
+        TileEntity var6 = p_149736_1_.getTileEntity(p_149736_2_, p_149736_3_,
+                p_149736_4_);
+        return var6 != null && var6 instanceof TileEntityCommandBlock ? ((TileEntityCommandBlock)var6)
+                .func_145993_a().func_145760_g() : 0;
     }
 
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
+            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
+            ItemStack p_149689_6_)
     {
-        TileEntityCommandBlock var7 = (TileEntityCommandBlock)p_149689_1_.getTileEntity(p_149689_2_, p_149689_3_, p_149689_4_);
+        TileEntityCommandBlock var7 = (TileEntityCommandBlock)p_149689_1_
+                .getTileEntity(p_149689_2_, p_149689_3_, p_149689_4_);
 
         if (p_149689_6_.hasDisplayName())
         {

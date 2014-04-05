@@ -13,7 +13,8 @@ public class RecipeBookCloning implements IRecipe
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
+    public boolean matches(InventoryCrafting par1InventoryCrafting,
+            World par2World)
     {
         int var3 = 0;
         ItemStack var4 = null;
@@ -26,19 +27,13 @@ public class RecipeBookCloning implements IRecipe
             {
                 if (var6.getItem() == Items.written_book)
                 {
-                    if (var4 != null)
-                    {
-                        return false;
-                    }
+                    if (var4 != null) { return false; }
 
                     var4 = var6;
                 }
                 else
                 {
-                    if (var6.getItem() != Items.writable_book)
-                    {
-                        return false;
-                    }
+                    if (var6.getItem() != Items.writable_book) { return false; }
 
                     ++var3;
                 }
@@ -64,19 +59,13 @@ public class RecipeBookCloning implements IRecipe
             {
                 if (var5.getItem() == Items.written_book)
                 {
-                    if (var3 != null)
-                    {
-                        return null;
-                    }
+                    if (var3 != null) { return null; }
 
                     var3 = var5;
                 }
                 else
                 {
-                    if (var5.getItem() != Items.writable_book)
-                    {
-                        return null;
-                    }
+                    if (var5.getItem() != Items.writable_book) { return null; }
 
                     ++var2;
                 }

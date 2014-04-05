@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 public class ItemPotion extends Item
 {
     /**
-     * Contains a map from integers to the list of potion effects that potions with that damage value confer (to prevent
-     * recalculating it).
+     * Contains a map from integers to the list of potion effects that potions
+     * with that damage value confer (to prevent recalculating it).
      */
     private HashMap effectCache = new HashMap();
     private static final Map field_77835_b = new LinkedHashMap();
@@ -40,15 +40,19 @@ public class ItemPotion extends Item
      */
     public List getEffects(ItemStack par1ItemStack)
     {
-        if (par1ItemStack.hasTagCompound() && par1ItemStack.getTagCompound().func_150297_b("CustomPotionEffects", 9))
+        if (par1ItemStack.hasTagCompound()
+                && par1ItemStack.getTagCompound().func_150297_b(
+                        "CustomPotionEffects", 9))
         {
             ArrayList var7 = new ArrayList();
-            NBTTagList var3 = par1ItemStack.getTagCompound().getTagList("CustomPotionEffects", 10);
+            NBTTagList var3 = par1ItemStack.getTagCompound().getTagList(
+                    "CustomPotionEffects", 10);
 
             for (int var4 = 0; var4 < var3.tagCount(); ++var4)
             {
                 NBTTagCompound var5 = var3.getCompoundTagAt(var4);
-                PotionEffect var6 = PotionEffect.readCustomPotionEffectFromNBT(var5);
+                PotionEffect var6 = PotionEffect
+                        .readCustomPotionEffectFromNBT(var5);
 
                 if (var6 != null)
                 {
@@ -60,12 +64,15 @@ public class ItemPotion extends Item
         }
         else
         {
-            List var2 = (List)this.effectCache.get(Integer.valueOf(par1ItemStack.getItemDamage()));
+            List var2 = (List)this.effectCache.get(Integer
+                    .valueOf(par1ItemStack.getItemDamage()));
 
             if (var2 == null)
             {
-                var2 = PotionHelper.getPotionEffects(par1ItemStack.getItemDamage(), false);
-                this.effectCache.put(Integer.valueOf(par1ItemStack.getItemDamage()), var2);
+                var2 = PotionHelper.getPotionEffects(
+                        par1ItemStack.getItemDamage(), false);
+                this.effectCache.put(
+                        Integer.valueOf(par1ItemStack.getItemDamage()), var2);
             }
 
             return var2;
@@ -88,7 +95,8 @@ public class ItemPotion extends Item
         return var2;
     }
 
-    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onEaten(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
         if (!par3EntityPlayer.capabilities.isCreativeMode)
         {
@@ -113,12 +121,11 @@ public class ItemPotion extends Item
 
         if (!par3EntityPlayer.capabilities.isCreativeMode)
         {
-            if (par1ItemStack.stackSize <= 0)
-            {
-                return new ItemStack(Items.glass_bottle);
-            }
+            if (par1ItemStack.stackSize <= 0) { return new ItemStack(
+                    Items.glass_bottle); }
 
-            par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.glass_bottle));
+            par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(
+                    Items.glass_bottle));
         }
 
         return par1ItemStack;
@@ -133,7 +140,8 @@ public class ItemPotion extends Item
     }
 
     /**
-     * returns the action that specifies what animation to play when the items is being used
+     * returns the action that specifies what animation to play when the items
+     * is being used
      */
     public EnumAction getItemUseAction(ItemStack par1ItemStack)
     {
@@ -141,9 +149,11 @@ public class ItemPotion extends Item
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
         if (isSplash(par1ItemStack.getItemDamage()))
         {
@@ -152,33 +162,40 @@ public class ItemPotion extends Item
                 --par1ItemStack.stackSize;
             }
 
-            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F,
+                    0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
             if (!par2World.isClient)
             {
-                par2World.spawnEntityInWorld(new EntityPotion(par2World, par3EntityPlayer, par1ItemStack));
+                par2World.spawnEntityInWorld(new EntityPotion(par2World,
+                        par3EntityPlayer, par1ItemStack));
             }
 
             return par1ItemStack;
         }
         else
         {
-            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+            par3EntityPlayer.setItemInUse(par1ItemStack,
+                    this.getMaxItemUseDuration(par1ItemStack));
             return par1ItemStack;
         }
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
-     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right
+     * clicking, he will have one of those. Return True if something happen and
+     * false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack par1ItemStack,
+            EntityPlayer par2EntityPlayer, World par3World, int par4, int par5,
+            int par6, int par7, float par8, float par9, float par10)
     {
         return false;
     }
 
     /**
-     * returns wether or not a potion is a throwable splash potion based on damage value
+     * returns wether or not a potion is a throwable splash potion based on
+     * damage value
      */
     public static boolean isSplash(int par0)
     {
@@ -189,7 +206,8 @@ public class ItemPotion extends Item
     {
         if (par1ItemStack.getItemDamage() == 0)
         {
-            return StatCollector.translateToLocal("item.emptyPotion.name").trim();
+            return StatCollector.translateToLocal("item.emptyPotion.name")
+                    .trim();
         }
         else
         {
@@ -197,7 +215,8 @@ public class ItemPotion extends Item
 
             if (isSplash(par1ItemStack.getItemDamage()))
             {
-                var2 = StatCollector.translateToLocal("potion.prefix.grenade").trim() + " ";
+                var2 = StatCollector.translateToLocal("potion.prefix.grenade")
+                        .trim() + " ";
             }
 
             List var3 = Items.potionitem.getEffects(par1ItemStack);
@@ -212,7 +231,8 @@ public class ItemPotion extends Item
             else
             {
                 var4 = PotionHelper.func_77905_c(par1ItemStack.getItemDamage());
-                return StatCollector.translateToLocal(var4).trim() + " " + super.getItemStackDisplayName(par1ItemStack);
+                return StatCollector.translateToLocal(var4).trim() + " "
+                        + super.getItemStackDisplayName(par1ItemStack);
             }
         }
     }

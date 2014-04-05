@@ -33,11 +33,13 @@ public class PlayerUsageSnooper
     private int selfCounter;
     private static final String __OBFID = "CL_00001515";
 
-    public PlayerUsageSnooper(String par1Str, IPlayerUsage par2IPlayerUsage, long par3)
+    public PlayerUsageSnooper(String par1Str, IPlayerUsage par2IPlayerUsage,
+            long par3)
     {
         try
         {
-            this.serverUrl = new URL("http://snoop.minecraft.net/" + par1Str + "?version=" + 1);
+            this.serverUrl = new URL("http://snoop.minecraft.net/" + par1Str
+                    + "?version=" + 1);
         }
         catch (MalformedURLException var6)
         {
@@ -60,19 +62,25 @@ public class PlayerUsageSnooper
             this.threadTrigger.schedule(new TimerTask()
             {
                 private static final String __OBFID = "CL_00001516";
+
                 public void run()
                 {
-                    if (PlayerUsageSnooper.this.playerStatsCollector.isSnooperEnabled())
+                    if (PlayerUsageSnooper.this.playerStatsCollector
+                            .isSnooperEnabled())
                     {
                         HashMap var1;
 
                         synchronized (PlayerUsageSnooper.this.syncLock)
                         {
                             var1 = new HashMap(PlayerUsageSnooper.this.dataMap);
-                            var1.put("snooper_count", Integer.valueOf(PlayerUsageSnooper.getSelfCounterFor(PlayerUsageSnooper.this)));
+                            var1.put(
+                                    "snooper_count",
+                                    Integer.valueOf(PlayerUsageSnooper
+                                            .getSelfCounterFor(PlayerUsageSnooper.this)));
                         }
 
-                        HttpUtil.func_151226_a(PlayerUsageSnooper.this.serverUrl, var1, true);
+                        HttpUtil.func_151226_a(
+                                PlayerUsageSnooper.this.serverUrl, var1, true);
                     }
                 }
             }, 0L, 900000L);
@@ -113,10 +121,14 @@ public class PlayerUsageSnooper
 
     public void addMemoryStatsToSnooper()
     {
-        this.addData("memory_total", Long.valueOf(Runtime.getRuntime().totalMemory()));
-        this.addData("memory_max", Long.valueOf(Runtime.getRuntime().maxMemory()));
-        this.addData("memory_free", Long.valueOf(Runtime.getRuntime().freeMemory()));
-        this.addData("cpu_cores", Integer.valueOf(Runtime.getRuntime().availableProcessors()));
+        this.addData("memory_total",
+                Long.valueOf(Runtime.getRuntime().totalMemory()));
+        this.addData("memory_max",
+                Long.valueOf(Runtime.getRuntime().maxMemory()));
+        this.addData("memory_free",
+                Long.valueOf(Runtime.getRuntime().freeMemory()));
+        this.addData("cpu_cores",
+                Integer.valueOf(Runtime.getRuntime().availableProcessors()));
         this.playerStatsCollector.addServerStatsToSnooper(this);
     }
 
@@ -152,7 +164,8 @@ public class PlayerUsageSnooper
     }
 
     /**
-     * returns a value indicating how many times this function has been run on the snooper
+     * returns a value indicating how many times this function has been run on
+     * the snooper
      */
     static int getSelfCounterFor(PlayerUsageSnooper par0PlayerUsageSnooper)
     {

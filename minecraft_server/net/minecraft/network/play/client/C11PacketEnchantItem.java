@@ -36,11 +36,15 @@ public class C11PacketEnchantItem extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, button=%d", new Object[] {Integer.valueOf(this.field_149541_a), Integer.valueOf(this.field_149540_b)});
+        return String.format(
+                "id=%d, button=%d",
+                new Object[] {Integer.valueOf(this.field_149541_a),
+                        Integer.valueOf(this.field_149540_b)});
     }
 
     public int func_149539_c()

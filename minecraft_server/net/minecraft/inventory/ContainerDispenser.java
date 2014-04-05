@@ -9,7 +9,8 @@ public class ContainerDispenser extends Container
     private TileEntityDispenser tileEntityDispenser;
     private static final String __OBFID = "CL_00001763";
 
-    public ContainerDispenser(IInventory par1IInventory, TileEntityDispenser par2TileEntityDispenser)
+    public ContainerDispenser(IInventory par1IInventory,
+            TileEntityDispenser par2TileEntityDispenser)
     {
         this.tileEntityDispenser = par2TileEntityDispenser;
         int var3;
@@ -19,7 +20,8 @@ public class ContainerDispenser extends Container
         {
             for (var4 = 0; var4 < 3; ++var4)
             {
-                this.addSlotToContainer(new Slot(par2TileEntityDispenser, var4 + var3 * 3, 62 + var4 * 18, 17 + var3 * 18));
+                this.addSlotToContainer(new Slot(par2TileEntityDispenser, var4
+                        + var3 * 3, 62 + var4 * 18, 17 + var3 * 18));
             }
         }
 
@@ -27,13 +29,15 @@ public class ContainerDispenser extends Container
         {
             for (var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1IInventory, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1IInventory, var4 + var3
+                        * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1IInventory, var3, 8 + var3 * 18, 142));
+            this.addSlotToContainer(new Slot(par1IInventory, var3,
+                    8 + var3 * 18, 142));
         }
     }
 
@@ -57,15 +61,9 @@ public class ContainerDispenser extends Container
 
             if (par2 < 9)
             {
-                if (!this.mergeItemStack(var5, 9, 45, true))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, 9, 45, true)) { return null; }
             }
-            else if (!this.mergeItemStack(var5, 0, 9, false))
-            {
-                return null;
-            }
+            else if (!this.mergeItemStack(var5, 0, 9, false)) { return null; }
 
             if (var5.stackSize == 0)
             {
@@ -76,10 +74,7 @@ public class ContainerDispenser extends Container
                 var4.onSlotChanged();
             }
 
-            if (var5.stackSize == var3.stackSize)
-            {
-                return null;
-            }
+            if (var5.stackSize == var3.stackSize) { return null; }
 
             var4.onPickupFromSlot(par1EntityPlayer, var5);
         }

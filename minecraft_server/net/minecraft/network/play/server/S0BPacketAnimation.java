@@ -13,7 +13,9 @@ public class S0BPacketAnimation extends Packet
     private int field_148980_b;
     private static final String __OBFID = "CL_00001282";
 
-    public S0BPacketAnimation() {}
+    public S0BPacketAnimation()
+    {
+    }
 
     public S0BPacketAnimation(Entity p_i45172_1_, int p_i45172_2_)
     {
@@ -45,11 +47,15 @@ public class S0BPacketAnimation extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, type=%d", new Object[] {Integer.valueOf(this.field_148981_a), Integer.valueOf(this.field_148980_b)});
+        return String.format(
+                "id=%d, type=%d",
+                new Object[] {Integer.valueOf(this.field_148981_a),
+                        Integer.valueOf(this.field_148980_b)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

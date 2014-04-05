@@ -12,10 +12,12 @@ public class Vec3Pool
     private final List vec3Cache = new ArrayList();
 
     /**
-     * The number of elements we consider "in the pool".  Elements already in the backing store whose indices are at or
-     * above this value may have their components reset at any time.  TODO: this variable should really be named
-     * "poolSize", but I'm not renaming it right now in case any mods are actually (inappropriately) using it instead of
-     * using the accessor method..
+     * The number of elements we consider "in the pool". Elements already in the
+     * backing store whose indices are at or above this value may have their
+     * components reset at any time. TODO: this variable should really be named
+     * "poolSize", but I'm not renaming it right now in case any mods are
+     * actually (inappropriately) using it instead of using the accessor
+     * method..
      */
     private int nextFreeSpace;
     private int maximumSizeSinceLastTruncation;
@@ -58,7 +60,8 @@ public class Vec3Pool
     }
 
     /**
-     * Will truncate the array everyN clears to the maximum size observed since the last truncation.
+     * Will truncate the array everyN clears to the maximum size observed since
+     * the last truncation.
      */
     public void clear()
     {
@@ -71,7 +74,8 @@ public class Vec3Pool
 
             if (this.resetCount++ == this.truncateArrayResetThreshold)
             {
-                int var1 = Math.max(this.maximumSizeSinceLastTruncation, this.vec3Cache.size() - this.minimumSize);
+                int var1 = Math.max(this.maximumSizeSinceLastTruncation,
+                        this.vec3Cache.size() - this.minimumSize);
 
                 while (this.vec3Cache.size() > var1)
                 {
@@ -100,7 +104,8 @@ public class Vec3Pool
     }
 
     /**
-     * True if we should skip caching altogether, possibly because this class is not thread-safe.
+     * True if we should skip caching altogether, possibly because this class is
+     * not thread-safe.
      */
     private boolean skipCache()
     {

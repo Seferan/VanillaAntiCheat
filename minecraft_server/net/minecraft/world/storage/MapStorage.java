@@ -27,7 +27,8 @@ public class MapStorage
     private List loadedDataList = new ArrayList();
 
     /**
-     * Map of MapDataBase id String prefixes ('map' etc) to max known unique Short id (the 0 part etc) for that prefix
+     * Map of MapDataBase id String prefixes ('map' etc) to max known unique
+     * Short id (the 0 part etc) for that prefix
      */
     private Map idCounts = new HashMap();
     private static final String __OBFID = "CL_00000604";
@@ -39,8 +40,9 @@ public class MapStorage
     }
 
     /**
-     * Loads an existing MapDataBase corresponding to the given String id from disk, instantiating the given Class, or
-     * returns null if none such file exists. args: Class to instantiate, String dataid
+     * Loads an existing MapDataBase corresponding to the given String id from
+     * disk, instantiating the given Class, or returns null if none such file
+     * exists. args: Class to instantiate, String dataid
      */
     public WorldSavedData loadData(Class par1Class, String par2Str)
     {
@@ -62,15 +64,19 @@ public class MapStorage
                     {
                         try
                         {
-                            var3 = (WorldSavedData)par1Class.getConstructor(new Class[] {String.class}).newInstance(new Object[] {par2Str});
+                            var3 = (WorldSavedData)par1Class.getConstructor(
+                                    new Class[] {String.class}).newInstance(
+                                    new Object[] {par2Str});
                         }
                         catch (Exception var7)
                         {
-                            throw new RuntimeException("Failed to instantiate " + par1Class.toString(), var7);
+                            throw new RuntimeException("Failed to instantiate "
+                                    + par1Class.toString(), var7);
                         }
 
                         FileInputStream var5 = new FileInputStream(var4);
-                        NBTTagCompound var6 = CompressedStreamTools.readCompressed(var5);
+                        NBTTagCompound var6 = CompressedStreamTools
+                                .readCompressed(var5);
                         var5.close();
                         var3.readFromNBT(var6.getCompoundTag("data"));
                     }
@@ -92,7 +98,8 @@ public class MapStorage
     }
 
     /**
-     * Assigns the given String id to the given MapDataBase, removing any existing ones of the same id.
+     * Assigns the given String id to the given MapDataBase, removing any
+     * existing ones of the same id.
      */
     public void setData(String par1Str, WorldSavedData par2WorldSavedData)
     {
@@ -138,7 +145,8 @@ public class MapStorage
         {
             try
             {
-                File var2 = this.saveHandler.getMapFileFromName(par1WorldSavedData.mapName);
+                File var2 = this.saveHandler
+                        .getMapFileFromName(par1WorldSavedData.mapName);
 
                 if (var2 != null)
                 {
@@ -167,16 +175,14 @@ public class MapStorage
         {
             this.idCounts.clear();
 
-            if (this.saveHandler == null)
-            {
-                return;
-            }
+            if (this.saveHandler == null) { return; }
 
             File var1 = this.saveHandler.getMapFileFromName("idcounts");
 
             if (var1 != null && var1.exists())
             {
-                DataInputStream var2 = new DataInputStream(new FileInputStream(var1));
+                DataInputStream var2 = new DataInputStream(new FileInputStream(
+                        var1));
                 NBTTagCompound var3 = CompressedStreamTools.read(var2);
                 var2.close();
                 Iterator var4 = var3.func_150296_c().iterator();
@@ -202,7 +208,8 @@ public class MapStorage
     }
 
     /**
-     * Returns an unique new data id for the given prefix and saves the idCounts map to the 'idcounts' file.
+     * Returns an unique new data id for the given prefix and saves the idCounts
+     * map to the 'idcounts' file.
      */
     public int getUniqueDataId(String par1Str)
     {
@@ -237,11 +244,13 @@ public class MapStorage
                     while (var5.hasNext())
                     {
                         String var6 = (String)var5.next();
-                        short var7 = ((Short)this.idCounts.get(var6)).shortValue();
+                        short var7 = ((Short)this.idCounts.get(var6))
+                                .shortValue();
                         var4.setShort(var6, var7);
                     }
 
-                    DataOutputStream var9 = new DataOutputStream(new FileOutputStream(var3));
+                    DataOutputStream var9 = new DataOutputStream(
+                            new FileOutputStream(var3));
                     CompressedStreamTools.write(var4, var9);
                     var9.close();
                 }

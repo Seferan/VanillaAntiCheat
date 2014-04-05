@@ -17,10 +17,12 @@ public class ContainerEnchantment extends Container
     public IInventory tableInventory = new InventoryBasic("Enchant", true, 1)
     {
         private static final String __OBFID = "CL_00001746";
+
         public int getInventoryStackLimit()
         {
             return 1;
         }
+
         public void onInventoryChanged()
         {
             super.onInventoryChanged();
@@ -42,7 +44,8 @@ public class ContainerEnchantment extends Container
     public int[] enchantLevels = new int[3];
     private static final String __OBFID = "CL_00001745";
 
-    public ContainerEnchantment(InventoryPlayer par1InventoryPlayer, World par2World, int par3, int par4, int par5)
+    public ContainerEnchantment(InventoryPlayer par1InventoryPlayer,
+            World par2World, int par3, int par4, int par5)
     {
         this.worldPointer = par2World;
         this.posX = par3;
@@ -51,6 +54,7 @@ public class ContainerEnchantment extends Container
         this.addSlotToContainer(new Slot(this.tableInventory, 0, 25, 47)
         {
             private static final String __OBFID = "CL_00001747";
+
             public boolean isItemValid(ItemStack par1ItemStack)
             {
                 return true;
@@ -62,13 +66,15 @@ public class ContainerEnchantment extends Container
         {
             for (int var7 = 0; var7 < 9; ++var7)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var7 + var6 * 9 + 9, 8 + var7 * 18, 84 + var6 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var7
+                        + var6 * 9 + 9, 8 + var7 * 18, 84 + var6 * 18));
             }
         }
 
         for (var6 = 0; var6 < 9; ++var6)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var6, 8 + var6 * 18, 142));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var6,
+                    8 + var6 * 18, 142));
         }
     }
 
@@ -119,36 +125,53 @@ public class ContainerEnchantment extends Container
                     {
                         for (int var5 = -1; var5 <= 1; ++var5)
                         {
-                            if ((var4 != 0 || var5 != 0) && this.worldPointer.isAirBlock(this.posX + var5, this.posY, this.posZ + var4) && this.worldPointer.isAirBlock(this.posX + var5, this.posY + 1, this.posZ + var4))
+                            if ((var4 != 0 || var5 != 0)
+                                    && this.worldPointer
+                                            .isAirBlock(this.posX + var5,
+                                                    this.posY, this.posZ + var4)
+                                    && this.worldPointer.isAirBlock(this.posX
+                                            + var5, this.posY + 1, this.posZ
+                                            + var4))
                             {
-                                if (this.worldPointer.getBlock(this.posX + var5 * 2, this.posY, this.posZ + var4 * 2) == Blocks.bookshelf)
+                                if (this.worldPointer.getBlock(this.posX + var5
+                                        * 2, this.posY, this.posZ + var4 * 2) == Blocks.bookshelf)
                                 {
                                     ++var3;
                                 }
 
-                                if (this.worldPointer.getBlock(this.posX + var5 * 2, this.posY + 1, this.posZ + var4 * 2) == Blocks.bookshelf)
+                                if (this.worldPointer.getBlock(this.posX + var5
+                                        * 2, this.posY + 1, this.posZ + var4
+                                        * 2) == Blocks.bookshelf)
                                 {
                                     ++var3;
                                 }
 
                                 if (var5 != 0 && var4 != 0)
                                 {
-                                    if (this.worldPointer.getBlock(this.posX + var5 * 2, this.posY, this.posZ + var4) == Blocks.bookshelf)
+                                    if (this.worldPointer.getBlock(this.posX
+                                            + var5 * 2, this.posY, this.posZ
+                                            + var4) == Blocks.bookshelf)
                                     {
                                         ++var3;
                                     }
 
-                                    if (this.worldPointer.getBlock(this.posX + var5 * 2, this.posY + 1, this.posZ + var4) == Blocks.bookshelf)
+                                    if (this.worldPointer.getBlock(this.posX
+                                            + var5 * 2, this.posY + 1,
+                                            this.posZ + var4) == Blocks.bookshelf)
                                     {
                                         ++var3;
                                     }
 
-                                    if (this.worldPointer.getBlock(this.posX + var5, this.posY, this.posZ + var4 * 2) == Blocks.bookshelf)
+                                    if (this.worldPointer.getBlock(this.posX
+                                            + var5, this.posY, this.posZ + var4
+                                            * 2) == Blocks.bookshelf)
                                     {
                                         ++var3;
                                     }
 
-                                    if (this.worldPointer.getBlock(this.posX + var5, this.posY + 1, this.posZ + var4 * 2) == Blocks.bookshelf)
+                                    if (this.worldPointer.getBlock(this.posX
+                                            + var5, this.posY + 1, this.posZ
+                                            + var4 * 2) == Blocks.bookshelf)
                                     {
                                         ++var3;
                                     }
@@ -159,7 +182,9 @@ public class ContainerEnchantment extends Container
 
                     for (var4 = 0; var4 < 3; ++var4)
                     {
-                        this.enchantLevels[var4] = EnchantmentHelper.calcItemStackEnchantability(this.rand, var4, var3, var2);
+                        this.enchantLevels[var4] = EnchantmentHelper
+                                .calcItemStackEnchantability(this.rand, var4,
+                                        var3, var2);
                     }
 
                     this.detectAndSendChanges();
@@ -176,29 +201,35 @@ public class ContainerEnchantment extends Container
     }
 
     /**
-     * enchants the item on the table using the specified slot; also deducts XP from player
+     * enchants the item on the table using the specified slot; also deducts XP
+     * from player
      */
     public boolean enchantItem(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack var3 = this.tableInventory.getStackInSlot(0);
 
-        if (this.enchantLevels[par2] > 0 && var3 != null && (par1EntityPlayer.experienceLevel >= this.enchantLevels[par2] || par1EntityPlayer.capabilities.isCreativeMode))
+        if (this.enchantLevels[par2] > 0
+                && var3 != null
+                && (par1EntityPlayer.experienceLevel >= this.enchantLevels[par2] || par1EntityPlayer.capabilities.isCreativeMode))
         {
             if (!this.worldPointer.isClient)
             {
-                List var4 = EnchantmentHelper.buildEnchantmentList(this.rand, var3, this.enchantLevels[par2]);
+                List var4 = EnchantmentHelper.buildEnchantmentList(this.rand,
+                        var3, this.enchantLevels[par2]);
                 boolean var5 = var3.getItem() == Items.book;
 
                 if (var4 != null)
                 {
-                    par1EntityPlayer.addExperienceLevel(-this.enchantLevels[par2]);
+                    par1EntityPlayer
+                            .addExperienceLevel(-this.enchantLevels[par2]);
 
                     if (var5)
                     {
                         var3.func_150996_a(Items.enchanted_book);
                     }
 
-                    int var6 = var5 && var4.size() > 1 ? this.rand.nextInt(var4.size()) : -1;
+                    int var6 = var5 && var4.size() > 1 ? this.rand.nextInt(var4
+                            .size()) : -1;
 
                     for (int var7 = 0; var7 < var4.size(); ++var7)
                     {
@@ -212,7 +243,8 @@ public class ContainerEnchantment extends Container
                             }
                             else
                             {
-                                var3.addEnchantment(var8.enchantmentobj, var8.enchantmentLevel);
+                                var3.addEnchantment(var8.enchantmentobj,
+                                        var8.enchantmentLevel);
                             }
                         }
                     }
@@ -249,7 +281,9 @@ public class ContainerEnchantment extends Container
 
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
-        return this.worldPointer.getBlock(this.posX, this.posY, this.posZ) != Blocks.enchanting_table ? false : par1EntityPlayer.getDistanceSq((double)this.posX + 0.5D, (double)this.posY + 0.5D, (double)this.posZ + 0.5D) <= 64.0D;
+        return this.worldPointer.getBlock(this.posX, this.posY, this.posZ) != Blocks.enchanting_table ? false
+                : par1EntityPlayer.getDistanceSq((double)this.posX + 0.5D,
+                        (double)this.posY + 0.5D, (double)this.posZ + 0.5D) <= 64.0D;
     }
 
     /**
@@ -267,17 +301,13 @@ public class ContainerEnchantment extends Container
 
             if (par2 == 0)
             {
-                if (!this.mergeItemStack(var5, 1, 37, true))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, 1, 37, true)) { return null; }
             }
             else
             {
-                if (((Slot)this.inventorySlots.get(0)).getHasStack() || !((Slot)this.inventorySlots.get(0)).isItemValid(var5))
-                {
-                    return null;
-                }
+                if (((Slot)this.inventorySlots.get(0)).getHasStack()
+                        || !((Slot)this.inventorySlots.get(0))
+                                .isItemValid(var5)) { return null; }
 
                 if (var5.hasTagCompound() && var5.stackSize == 1)
                 {
@@ -286,7 +316,8 @@ public class ContainerEnchantment extends Container
                 }
                 else if (var5.stackSize >= 1)
                 {
-                    ((Slot)this.inventorySlots.get(0)).putStack(new ItemStack(var5.getItem(), 1, var5.getItemDamage()));
+                    ((Slot)this.inventorySlots.get(0)).putStack(new ItemStack(
+                            var5.getItem(), 1, var5.getItemDamage()));
                     --var5.stackSize;
                 }
             }
@@ -300,10 +331,7 @@ public class ContainerEnchantment extends Container
                 var4.onSlotChanged();
             }
 
-            if (var5.stackSize == var3.stackSize)
-            {
-                return null;
-            }
+            if (var5.stackSize == var3.stackSize) { return null; }
 
             var4.onPickupFromSlot(par1EntityPlayer, var5);
         }

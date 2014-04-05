@@ -40,15 +40,18 @@ public class CommandMessage extends CommandBase
         return "commands.message.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length < 2)
         {
-            throw new WrongUsageException("commands.message.usage", new Object[0]);
+            throw new WrongUsageException("commands.message.usage",
+                    new Object[0]);
         }
         else
         {
-            EntityPlayerMP var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
+            EntityPlayerMP var3 = getPlayer(par1ICommandSender,
+                    par2ArrayOfStr[0]);
 
             if (var3 == null)
             {
@@ -56,15 +59,28 @@ public class CommandMessage extends CommandBase
             }
             else if (var3 == par1ICommandSender)
             {
-                throw new PlayerNotFoundException("commands.message.sameTarget", new Object[0]);
+                throw new PlayerNotFoundException(
+                        "commands.message.sameTarget", new Object[0]);
             }
             else
             {
-                IChatComponent var4 = func_147176_a(par1ICommandSender, par2ArrayOfStr, 1, !(par1ICommandSender instanceof EntityPlayer));
-                ChatComponentTranslation var5 = new ChatComponentTranslation("commands.message.display.incoming", new Object[] {par1ICommandSender.getUsernameAsIChatComponent(), var4.createCopy()});
-                ChatComponentTranslation var6 = new ChatComponentTranslation("commands.message.display.outgoing", new Object[] {var3.getUsernameAsIChatComponent(), var4.createCopy()});
-                var5.getChatStyle().setColor(EnumChatFormatting.GRAY).setItalic(Boolean.valueOf(true));
-                var6.getChatStyle().setColor(EnumChatFormatting.GRAY).setItalic(Boolean.valueOf(true));
+                IChatComponent var4 = func_147176_a(par1ICommandSender,
+                        par2ArrayOfStr, 1,
+                        !(par1ICommandSender instanceof EntityPlayer));
+                ChatComponentTranslation var5 = new ChatComponentTranslation(
+                        "commands.message.display.incoming",
+                        new Object[] {
+                                par1ICommandSender
+                                        .getUsernameAsIChatComponent(),
+                                var4.createCopy()});
+                ChatComponentTranslation var6 = new ChatComponentTranslation(
+                        "commands.message.display.outgoing", new Object[] {
+                                var3.getUsernameAsIChatComponent(),
+                                var4.createCopy()});
+                var5.getChatStyle().setColor(EnumChatFormatting.GRAY)
+                        .setItalic(Boolean.valueOf(true));
+                var6.getChatStyle().setColor(EnumChatFormatting.GRAY)
+                        .setItalic(Boolean.valueOf(true));
                 var3.addChatMessage(var5);
                 par1ICommandSender.addChatMessage(var6);
             }
@@ -72,15 +88,19 @@ public class CommandMessage extends CommandBase
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames());
+        return getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer
+                .getServer().getAllUsernames());
     }
 
     /**
-     * Return whether the specified command parameter index is a username parameter.
+     * Return whether the specified command parameter index is a username
+     * parameter.
      */
     public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
     {

@@ -25,7 +25,8 @@ public class DerivedWorldInfo extends WorldInfo
     }
 
     /**
-     * Creates a new NBTTagCompound for the world, with the given NBTTag as the "Player"
+     * Creates a new NBTTagCompound for the world, with the given NBTTag as the
+     * "Player"
      */
     public NBTTagCompound cloneNBTCompound(NBTTagCompound par1NBTTagCompound)
     {
@@ -146,47 +147,66 @@ public class DerivedWorldInfo extends WorldInfo
         return this.theWorldInfo.getGameType();
     }
 
-    public void incrementTotalWorldTime(long par1) {}
+    public void incrementTotalWorldTime(long par1)
+    {
+    }
 
     /**
      * Set current world time
      */
-    public void setWorldTime(long par1) {}
+    public void setWorldTime(long par1)
+    {
+    }
 
     /**
      * Sets the spawn zone position. Args: x, y, z
      */
-    public void setSpawnPosition(int par1, int par2, int par3) {}
+    public void setSpawnPosition(int par1, int par2, int par3)
+    {
+    }
 
-    public void setWorldName(String par1Str) {}
+    public void setWorldName(String par1Str)
+    {
+    }
 
     /**
      * Sets the save version of the world
      */
-    public void setSaveVersion(int par1) {}
+    public void setSaveVersion(int par1)
+    {
+    }
 
     /**
      * Sets whether it is thundering or not.
      */
-    public void setThundering(boolean par1) {}
+    public void setThundering(boolean par1)
+    {
+    }
 
     /**
      * Defines the number of ticks until next thunderbolt.
      */
-    public void setThunderTime(int par1) {}
+    public void setThunderTime(int par1)
+    {
+    }
 
     /**
      * Sets whether it is raining or not.
      */
-    public void setRaining(boolean par1) {}
+    public void setRaining(boolean par1)
+    {
+    }
 
     /**
      * Sets the number of ticks until rain.
      */
-    public void setRainTime(int par1) {}
+    public void setRainTime(int par1)
+    {
+    }
 
     /**
-     * Get whether the map features (e.g. strongholds) generation is enabled or disabled.
+     * Get whether the map features (e.g. strongholds) generation is enabled or
+     * disabled.
      */
     public boolean isMapFeaturesEnabled()
     {
@@ -206,7 +226,9 @@ public class DerivedWorldInfo extends WorldInfo
         return this.theWorldInfo.getTerrainType();
     }
 
-    public void setTerrainType(WorldType par1WorldType) {}
+    public void setTerrainType(WorldType par1WorldType)
+    {
+    }
 
     /**
      * Returns true if commands are allowed on this World.
@@ -227,7 +249,9 @@ public class DerivedWorldInfo extends WorldInfo
     /**
      * Sets the initialization status of the World.
      */
-    public void setServerInitialized(boolean par1) {}
+    public void setServerInitialized(boolean par1)
+    {
+    }
 
     /**
      * Gets the GameRules class Instance.

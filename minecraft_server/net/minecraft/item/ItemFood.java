@@ -18,12 +18,14 @@ public class ItemFood extends Item
     private final boolean isWolfsFavoriteMeat;
 
     /**
-     * If this field is true, the food can be consumed even if the player don't need to eat.
+     * If this field is true, the food can be consumed even if the player don't
+     * need to eat.
      */
     private boolean alwaysEdible;
 
     /**
-     * represents the potion effect that will occurr upon eating this food. Set by setPotionEffect
+     * represents the potion effect that will occurr upon eating this food. Set
+     * by setPotionEffect
      */
     private int potionId;
 
@@ -51,20 +53,25 @@ public class ItemFood extends Item
         this(p_i45340_1_, 0.6F, p_i45340_2_);
     }
 
-    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onEaten(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
         --par1ItemStack.stackSize;
         par3EntityPlayer.getFoodStats().func_151686_a(this, par1ItemStack);
-        par2World.playSoundAtEntity(par3EntityPlayer, "random.burp", 0.5F, par2World.rand.nextFloat() * 0.1F + 0.9F);
+        par2World.playSoundAtEntity(par3EntityPlayer, "random.burp", 0.5F,
+                par2World.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
         return par1ItemStack;
     }
 
-    protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    protected void onFoodEaten(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
-        if (!par2World.isClient && this.potionId > 0 && par2World.rand.nextFloat() < this.potionEffectProbability)
+        if (!par2World.isClient && this.potionId > 0
+                && par2World.rand.nextFloat() < this.potionEffectProbability)
         {
-            par3EntityPlayer.addPotionEffect(new PotionEffect(this.potionId, this.potionDuration * 20, this.potionAmplifier));
+            par3EntityPlayer.addPotionEffect(new PotionEffect(this.potionId,
+                    this.potionDuration * 20, this.potionAmplifier));
         }
     }
 
@@ -77,7 +84,8 @@ public class ItemFood extends Item
     }
 
     /**
-     * returns the action that specifies what animation to play when the items is being used
+     * returns the action that specifies what animation to play when the items
+     * is being used
      */
     public EnumAction getItemUseAction(ItemStack par1ItemStack)
     {
@@ -85,13 +93,16 @@ public class ItemFood extends Item
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
         if (par3EntityPlayer.canEat(this.alwaysEdible))
         {
-            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+            par3EntityPlayer.setItemInUse(par1ItemStack,
+                    this.getMaxItemUseDuration(par1ItemStack));
         }
 
         return par1ItemStack;
@@ -116,8 +127,9 @@ public class ItemFood extends Item
     }
 
     /**
-     * sets a potion effect on the item. Args: int potionId, int duration (will be multiplied by 20), int amplifier,
-     * float probability of effect happening
+     * sets a potion effect on the item. Args: int potionId, int duration (will
+     * be multiplied by 20), int amplifier, float probability of effect
+     * happening
      */
     public ItemFood setPotionEffect(int par1, int par2, int par3, float par4)
     {
@@ -129,7 +141,8 @@ public class ItemFood extends Item
     }
 
     /**
-     * Set the field 'alwaysEdible' to true, and make the food edible even if the player don't need to eat.
+     * Set the field 'alwaysEdible' to true, and make the food edible even if
+     * the player don't need to eat.
      */
     public ItemFood setAlwaysEdible()
     {

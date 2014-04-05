@@ -29,17 +29,21 @@ public class PacketBuffer extends ByteBuf
     }
 
     /**
-     * Calculates the number of bytes required to fit the supplied int (0-5) if it were to be read/written using
-     * readVarIntFromBuffer or writeVarIntToBuffer
+     * Calculates the number of bytes required to fit the supplied int (0-5) if
+     * it were to be read/written using readVarIntFromBuffer or
+     * writeVarIntToBuffer
      */
     public static int getVarIntSize(int p_150790_0_)
     {
-        return (p_150790_0_ & -128) == 0 ? 1 : ((p_150790_0_ & -16384) == 0 ? 2 : ((p_150790_0_ & -2097152) == 0 ? 3 : ((p_150790_0_ & -268435456) == 0 ? 4 : 5)));
+        return (p_150790_0_ & -128) == 0 ? 1 : ((p_150790_0_ & -16384) == 0 ? 2
+                : ((p_150790_0_ & -2097152) == 0 ? 3
+                        : ((p_150790_0_ & -268435456) == 0 ? 4 : 5)));
     }
 
     /**
-     * Reads a compressed int from the buffer. To do so it maximally reads 5 byte-sized chunks whose most significant
-     * bit dictates whether another byte should be read.
+     * Reads a compressed int from the buffer. To do so it maximally reads 5
+     * byte-sized chunks whose most significant bit dictates whether another
+     * byte should be read.
      */
     public int readVarIntFromBuffer()
     {
@@ -52,21 +56,18 @@ public class PacketBuffer extends ByteBuf
             var3 = this.readByte();
             var1 |= (var3 & 127) << var2++ * 7;
 
-            if (var2 > 5)
-            {
-                throw new RuntimeException("VarInt too big");
-            }
-        }
-        while ((var3 & 128) == 128);
+            if (var2 > 5) { throw new RuntimeException("VarInt too big"); }
+        } while ((var3 & 128) == 128);
 
         return var1;
     }
 
     /**
-     * Writes a compressed int to the buffer. The smallest number of bytes to fit the passed int will be written. Of
-     * each such byte only 7 bits will be used to describe the actual value since its most significant bit dictates
-     * whether the next byte is part of that same int. Micro-optimization for int values that are expected to have
-     * values below 128.
+     * Writes a compressed int to the buffer. The smallest number of bytes to
+     * fit the passed int will be written. Of each such byte only 7 bits will be
+     * used to describe the actual value since its most significant bit dictates
+     * whether the next byte is part of that same int. Micro-optimization for
+     * int values that are expected to have values below 128.
      */
     public void writeVarIntToBuffer(int p_150787_1_)
     {
@@ -82,7 +83,8 @@ public class PacketBuffer extends ByteBuf
     /**
      * Writes a compressed NBTTagCompound to this buffer
      */
-    public void writeNBTTagCompoundToBuffer(NBTTagCompound p_150786_1_) throws IOException
+    public void writeNBTTagCompoundToBuffer(NBTTagCompound p_150786_1_)
+            throws IOException
     {
         if (p_150786_1_ == null)
         {
@@ -118,7 +120,8 @@ public class PacketBuffer extends ByteBuf
     /**
      * Writes the ItemStack's ID (short), then size (byte), then damage. (short)
      */
-    public void writeItemStackToBuffer(ItemStack p_150788_1_) throws IOException
+    public void writeItemStackToBuffer(ItemStack p_150788_1_)
+            throws IOException
     {
         if (p_150788_1_ == null)
         {
@@ -131,7 +134,8 @@ public class PacketBuffer extends ByteBuf
             this.writeShort(p_150788_1_.getItemDamage());
             NBTTagCompound var2 = null;
 
-            if (p_150788_1_.getItem().isDamageable() || p_150788_1_.getItem().getShareTag())
+            if (p_150788_1_.getItem().isDamageable()
+                    || p_150788_1_.getItem().getShareTag())
             {
                 var2 = p_150788_1_.stackTagCompound;
             }
@@ -160,8 +164,9 @@ public class PacketBuffer extends ByteBuf
     }
 
     /**
-     * Reads a string from this buffer. Expected parameter is maximum allowed string length. Will throw IOException if
-     * string length exceeds this value!
+     * Reads a string from this buffer. Expected parameter is maximum allowed
+     * string length. Will throw IOException if string length exceeds this
+     * value!
      */
     public String readStringFromBuffer(int p_150789_1_) throws IOException
     {
@@ -169,19 +174,25 @@ public class PacketBuffer extends ByteBuf
 
         if (var2 > p_150789_1_ * 4)
         {
-            throw new IOException("The received encoded string buffer length is longer than maximum allowed (" + var2 + " > " + p_150789_1_ * 4 + ")");
+            throw new IOException(
+                    "The received encoded string buffer length is longer than maximum allowed ("
+                            + var2 + " > " + p_150789_1_ * 4 + ")");
         }
         else if (var2 < 0)
         {
-            throw new IOException("The received encoded string buffer length is less than zero! Weird string!");
+            throw new IOException(
+                    "The received encoded string buffer length is less than zero! Weird string!");
         }
         else
         {
-            String var3 = new String(this.readBytes(var2).array(), Charsets.UTF_8);
+            String var3 = new String(this.readBytes(var2).array(),
+                    Charsets.UTF_8);
 
             if (var3.length() > p_150789_1_)
             {
-                throw new IOException("The received string length is longer than maximum allowed (" + var2 + " > " + p_150789_1_ + ")");
+                throw new IOException(
+                        "The received string length is longer than maximum allowed ("
+                                + var2 + " > " + p_150789_1_ + ")");
             }
             else
             {
@@ -191,7 +202,8 @@ public class PacketBuffer extends ByteBuf
     }
 
     /**
-     * Writes a (UTF-8 encoded) String to this buffer. Will throw IOException if String length exceeds 32767 bytes
+     * Writes a (UTF-8 encoded) String to this buffer. Will throw IOException if
+     * String length exceeds 32767 bytes
      */
     public void writeStringToBuffer(String p_150785_1_) throws IOException
     {
@@ -199,7 +211,8 @@ public class PacketBuffer extends ByteBuf
 
         if (var2.length > 32767)
         {
-            throw new IOException("String too big (was " + p_150785_1_.length() + " bytes encoded, max " + 32767 + ")");
+            throw new IOException("String too big (was " + p_150785_1_.length()
+                    + " bytes encoded, max " + 32767 + ")");
         }
         else
         {
@@ -348,9 +361,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.ensureWritable(p_ensureWritable_1_);
     }
 
-    public int ensureWritable(int p_ensureWritable_1_, boolean p_ensureWritable_2_)
+    public int ensureWritable(int p_ensureWritable_1_,
+            boolean p_ensureWritable_2_)
     {
-        return this.field_150794_a.ensureWritable(p_ensureWritable_1_, p_ensureWritable_2_);
+        return this.field_150794_a.ensureWritable(p_ensureWritable_1_,
+                p_ensureWritable_2_);
     }
 
     public boolean getBoolean(int p_getBoolean_1_)
@@ -423,14 +438,18 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_);
     }
 
-    public ByteBuf getBytes(int p_getBytes_1_, ByteBuf p_getBytes_2_, int p_getBytes_3_)
+    public ByteBuf getBytes(int p_getBytes_1_, ByteBuf p_getBytes_2_,
+            int p_getBytes_3_)
     {
-        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_, p_getBytes_3_);
+        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_,
+                p_getBytes_3_);
     }
 
-    public ByteBuf getBytes(int p_getBytes_1_, ByteBuf p_getBytes_2_, int p_getBytes_3_, int p_getBytes_4_)
+    public ByteBuf getBytes(int p_getBytes_1_, ByteBuf p_getBytes_2_,
+            int p_getBytes_3_, int p_getBytes_4_)
     {
-        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_, p_getBytes_3_, p_getBytes_4_);
+        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_,
+                p_getBytes_3_, p_getBytes_4_);
     }
 
     public ByteBuf getBytes(int p_getBytes_1_, byte[] p_getBytes_2_)
@@ -438,9 +457,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_);
     }
 
-    public ByteBuf getBytes(int p_getBytes_1_, byte[] p_getBytes_2_, int p_getBytes_3_, int p_getBytes_4_)
+    public ByteBuf getBytes(int p_getBytes_1_, byte[] p_getBytes_2_,
+            int p_getBytes_3_, int p_getBytes_4_)
     {
-        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_, p_getBytes_3_, p_getBytes_4_);
+        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_,
+                p_getBytes_3_, p_getBytes_4_);
     }
 
     public ByteBuf getBytes(int p_getBytes_1_, ByteBuffer p_getBytes_2_)
@@ -448,14 +469,18 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_);
     }
 
-    public ByteBuf getBytes(int p_getBytes_1_, OutputStream p_getBytes_2_, int p_getBytes_3_) throws IOException
+    public ByteBuf getBytes(int p_getBytes_1_, OutputStream p_getBytes_2_,
+            int p_getBytes_3_) throws IOException
     {
-        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_, p_getBytes_3_);
+        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_,
+                p_getBytes_3_);
     }
 
-    public int getBytes(int p_getBytes_1_, GatheringByteChannel p_getBytes_2_, int p_getBytes_3_) throws IOException
+    public int getBytes(int p_getBytes_1_, GatheringByteChannel p_getBytes_2_,
+            int p_getBytes_3_) throws IOException
     {
-        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_, p_getBytes_3_);
+        return this.field_150794_a.getBytes(p_getBytes_1_, p_getBytes_2_,
+                p_getBytes_3_);
     }
 
     public ByteBuf setBoolean(int p_setBoolean_1_, boolean p_setBoolean_2_)
@@ -508,14 +533,18 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_);
     }
 
-    public ByteBuf setBytes(int p_setBytes_1_, ByteBuf p_setBytes_2_, int p_setBytes_3_)
+    public ByteBuf setBytes(int p_setBytes_1_, ByteBuf p_setBytes_2_,
+            int p_setBytes_3_)
     {
-        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_, p_setBytes_3_);
+        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_,
+                p_setBytes_3_);
     }
 
-    public ByteBuf setBytes(int p_setBytes_1_, ByteBuf p_setBytes_2_, int p_setBytes_3_, int p_setBytes_4_)
+    public ByteBuf setBytes(int p_setBytes_1_, ByteBuf p_setBytes_2_,
+            int p_setBytes_3_, int p_setBytes_4_)
     {
-        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_, p_setBytes_3_, p_setBytes_4_);
+        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_,
+                p_setBytes_3_, p_setBytes_4_);
     }
 
     public ByteBuf setBytes(int p_setBytes_1_, byte[] p_setBytes_2_)
@@ -523,9 +552,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_);
     }
 
-    public ByteBuf setBytes(int p_setBytes_1_, byte[] p_setBytes_2_, int p_setBytes_3_, int p_setBytes_4_)
+    public ByteBuf setBytes(int p_setBytes_1_, byte[] p_setBytes_2_,
+            int p_setBytes_3_, int p_setBytes_4_)
     {
-        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_, p_setBytes_3_, p_setBytes_4_);
+        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_,
+                p_setBytes_3_, p_setBytes_4_);
     }
 
     public ByteBuf setBytes(int p_setBytes_1_, ByteBuffer p_setBytes_2_)
@@ -533,14 +564,18 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_);
     }
 
-    public int setBytes(int p_setBytes_1_, InputStream p_setBytes_2_, int p_setBytes_3_) throws IOException
+    public int setBytes(int p_setBytes_1_, InputStream p_setBytes_2_,
+            int p_setBytes_3_) throws IOException
     {
-        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_, p_setBytes_3_);
+        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_,
+                p_setBytes_3_);
     }
 
-    public int setBytes(int p_setBytes_1_, ScatteringByteChannel p_setBytes_2_, int p_setBytes_3_) throws IOException
+    public int setBytes(int p_setBytes_1_, ScatteringByteChannel p_setBytes_2_,
+            int p_setBytes_3_) throws IOException
     {
-        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_, p_setBytes_3_);
+        return this.field_150794_a.setBytes(p_setBytes_1_, p_setBytes_2_,
+                p_setBytes_3_);
     }
 
     public ByteBuf setZero(int p_setZero_1_, int p_setZero_2_)
@@ -633,9 +668,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.readBytes(p_readBytes_1_, p_readBytes_2_);
     }
 
-    public ByteBuf readBytes(ByteBuf p_readBytes_1_, int p_readBytes_2_, int p_readBytes_3_)
+    public ByteBuf readBytes(ByteBuf p_readBytes_1_, int p_readBytes_2_,
+            int p_readBytes_3_)
     {
-        return this.field_150794_a.readBytes(p_readBytes_1_, p_readBytes_2_, p_readBytes_3_);
+        return this.field_150794_a.readBytes(p_readBytes_1_, p_readBytes_2_,
+                p_readBytes_3_);
     }
 
     public ByteBuf readBytes(byte[] p_readBytes_1_)
@@ -643,9 +680,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.readBytes(p_readBytes_1_);
     }
 
-    public ByteBuf readBytes(byte[] p_readBytes_1_, int p_readBytes_2_, int p_readBytes_3_)
+    public ByteBuf readBytes(byte[] p_readBytes_1_, int p_readBytes_2_,
+            int p_readBytes_3_)
     {
-        return this.field_150794_a.readBytes(p_readBytes_1_, p_readBytes_2_, p_readBytes_3_);
+        return this.field_150794_a.readBytes(p_readBytes_1_, p_readBytes_2_,
+                p_readBytes_3_);
     }
 
     public ByteBuf readBytes(ByteBuffer p_readBytes_1_)
@@ -653,12 +692,14 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.readBytes(p_readBytes_1_);
     }
 
-    public ByteBuf readBytes(OutputStream p_readBytes_1_, int p_readBytes_2_) throws IOException
+    public ByteBuf readBytes(OutputStream p_readBytes_1_, int p_readBytes_2_)
+            throws IOException
     {
         return this.field_150794_a.readBytes(p_readBytes_1_, p_readBytes_2_);
     }
 
-    public int readBytes(GatheringByteChannel p_readBytes_1_, int p_readBytes_2_) throws IOException
+    public int readBytes(GatheringByteChannel p_readBytes_1_, int p_readBytes_2_)
+            throws IOException
     {
         return this.field_150794_a.readBytes(p_readBytes_1_, p_readBytes_2_);
     }
@@ -723,9 +764,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.writeBytes(p_writeBytes_1_, p_writeBytes_2_);
     }
 
-    public ByteBuf writeBytes(ByteBuf p_writeBytes_1_, int p_writeBytes_2_, int p_writeBytes_3_)
+    public ByteBuf writeBytes(ByteBuf p_writeBytes_1_, int p_writeBytes_2_,
+            int p_writeBytes_3_)
     {
-        return this.field_150794_a.writeBytes(p_writeBytes_1_, p_writeBytes_2_, p_writeBytes_3_);
+        return this.field_150794_a.writeBytes(p_writeBytes_1_, p_writeBytes_2_,
+                p_writeBytes_3_);
     }
 
     public ByteBuf writeBytes(byte[] p_writeBytes_1_)
@@ -733,9 +776,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.writeBytes(p_writeBytes_1_);
     }
 
-    public ByteBuf writeBytes(byte[] p_writeBytes_1_, int p_writeBytes_2_, int p_writeBytes_3_)
+    public ByteBuf writeBytes(byte[] p_writeBytes_1_, int p_writeBytes_2_,
+            int p_writeBytes_3_)
     {
-        return this.field_150794_a.writeBytes(p_writeBytes_1_, p_writeBytes_2_, p_writeBytes_3_);
+        return this.field_150794_a.writeBytes(p_writeBytes_1_, p_writeBytes_2_,
+                p_writeBytes_3_);
     }
 
     public ByteBuf writeBytes(ByteBuffer p_writeBytes_1_)
@@ -743,12 +788,14 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.writeBytes(p_writeBytes_1_);
     }
 
-    public int writeBytes(InputStream p_writeBytes_1_, int p_writeBytes_2_) throws IOException
+    public int writeBytes(InputStream p_writeBytes_1_, int p_writeBytes_2_)
+            throws IOException
     {
         return this.field_150794_a.writeBytes(p_writeBytes_1_, p_writeBytes_2_);
     }
 
-    public int writeBytes(ScatteringByteChannel p_writeBytes_1_, int p_writeBytes_2_) throws IOException
+    public int writeBytes(ScatteringByteChannel p_writeBytes_1_,
+            int p_writeBytes_2_) throws IOException
     {
         return this.field_150794_a.writeBytes(p_writeBytes_1_, p_writeBytes_2_);
     }
@@ -760,7 +807,8 @@ public class PacketBuffer extends ByteBuf
 
     public int indexOf(int p_indexOf_1_, int p_indexOf_2_, byte p_indexOf_3_)
     {
-        return this.field_150794_a.indexOf(p_indexOf_1_, p_indexOf_2_, p_indexOf_3_);
+        return this.field_150794_a.indexOf(p_indexOf_1_, p_indexOf_2_,
+                p_indexOf_3_);
     }
 
     public int bytesBefore(byte p_bytesBefore_1_)
@@ -770,12 +818,15 @@ public class PacketBuffer extends ByteBuf
 
     public int bytesBefore(int p_bytesBefore_1_, byte p_bytesBefore_2_)
     {
-        return this.field_150794_a.bytesBefore(p_bytesBefore_1_, p_bytesBefore_2_);
+        return this.field_150794_a.bytesBefore(p_bytesBefore_1_,
+                p_bytesBefore_2_);
     }
 
-    public int bytesBefore(int p_bytesBefore_1_, int p_bytesBefore_2_, byte p_bytesBefore_3_)
+    public int bytesBefore(int p_bytesBefore_1_, int p_bytesBefore_2_,
+            byte p_bytesBefore_3_)
     {
-        return this.field_150794_a.bytesBefore(p_bytesBefore_1_, p_bytesBefore_2_, p_bytesBefore_3_);
+        return this.field_150794_a.bytesBefore(p_bytesBefore_1_,
+                p_bytesBefore_2_, p_bytesBefore_3_);
     }
 
     public int forEachByte(ByteBufProcessor p_forEachByte_1_)
@@ -783,9 +834,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.forEachByte(p_forEachByte_1_);
     }
 
-    public int forEachByte(int p_forEachByte_1_, int p_forEachByte_2_, ByteBufProcessor p_forEachByte_3_)
+    public int forEachByte(int p_forEachByte_1_, int p_forEachByte_2_,
+            ByteBufProcessor p_forEachByte_3_)
     {
-        return this.field_150794_a.forEachByte(p_forEachByte_1_, p_forEachByte_2_, p_forEachByte_3_);
+        return this.field_150794_a.forEachByte(p_forEachByte_1_,
+                p_forEachByte_2_, p_forEachByte_3_);
     }
 
     public int forEachByteDesc(ByteBufProcessor p_forEachByteDesc_1_)
@@ -793,9 +846,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.forEachByteDesc(p_forEachByteDesc_1_);
     }
 
-    public int forEachByteDesc(int p_forEachByteDesc_1_, int p_forEachByteDesc_2_, ByteBufProcessor p_forEachByteDesc_3_)
+    public int forEachByteDesc(int p_forEachByteDesc_1_,
+            int p_forEachByteDesc_2_, ByteBufProcessor p_forEachByteDesc_3_)
     {
-        return this.field_150794_a.forEachByteDesc(p_forEachByteDesc_1_, p_forEachByteDesc_2_, p_forEachByteDesc_3_);
+        return this.field_150794_a.forEachByteDesc(p_forEachByteDesc_1_,
+                p_forEachByteDesc_2_, p_forEachByteDesc_3_);
     }
 
     public ByteBuf copy()
@@ -838,9 +893,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.nioBuffer(p_nioBuffer_1_, p_nioBuffer_2_);
     }
 
-    public ByteBuffer internalNioBuffer(int p_internalNioBuffer_1_, int p_internalNioBuffer_2_)
+    public ByteBuffer internalNioBuffer(int p_internalNioBuffer_1_,
+            int p_internalNioBuffer_2_)
     {
-        return this.field_150794_a.internalNioBuffer(p_internalNioBuffer_1_, p_internalNioBuffer_2_);
+        return this.field_150794_a.internalNioBuffer(p_internalNioBuffer_1_,
+                p_internalNioBuffer_2_);
     }
 
     public ByteBuffer[] nioBuffers()
@@ -883,9 +940,11 @@ public class PacketBuffer extends ByteBuf
         return this.field_150794_a.toString(p_toString_1_);
     }
 
-    public String toString(int p_toString_1_, int p_toString_2_, Charset p_toString_3_)
+    public String toString(int p_toString_1_, int p_toString_2_,
+            Charset p_toString_3_)
     {
-        return this.field_150794_a.toString(p_toString_1_, p_toString_2_, p_toString_3_);
+        return this.field_150794_a.toString(p_toString_1_, p_toString_2_,
+                p_toString_3_);
     }
 
     public int hashCode()

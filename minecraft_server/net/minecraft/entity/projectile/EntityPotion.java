@@ -25,18 +25,22 @@ public class EntityPotion extends EntityThrowable
         super(par1World);
     }
 
-    public EntityPotion(World par1World, EntityLivingBase par2EntityLivingBase, int par3)
+    public EntityPotion(World par1World, EntityLivingBase par2EntityLivingBase,
+            int par3)
     {
-        this(par1World, par2EntityLivingBase, new ItemStack(Items.potionitem, 1, par3));
+        this(par1World, par2EntityLivingBase, new ItemStack(Items.potionitem,
+                1, par3));
     }
 
-    public EntityPotion(World par1World, EntityLivingBase par2EntityLivingBase, ItemStack par3ItemStack)
+    public EntityPotion(World par1World, EntityLivingBase par2EntityLivingBase,
+            ItemStack par3ItemStack)
     {
         super(par1World, par2EntityLivingBase);
         this.potionDamage = par3ItemStack;
     }
 
-    public EntityPotion(World par1World, double par2, double par4, double par6, ItemStack par8ItemStack)
+    public EntityPotion(World par1World, double par2, double par4, double par6,
+            ItemStack par8ItemStack)
     {
         super(par1World, par2, par4, par6);
         this.potionDamage = par8ItemStack;
@@ -71,7 +75,8 @@ public class EntityPotion extends EntityThrowable
     }
 
     /**
-     * Returns the damage value of the thrown potion that this EntityPotion represents.
+     * Returns the damage value of the thrown potion that this EntityPotion
+     * represents.
      */
     public int getPotionDamage()
     {
@@ -95,7 +100,8 @@ public class EntityPotion extends EntityThrowable
             if (var2 != null && !var2.isEmpty())
             {
                 AxisAlignedBB var3 = this.boundingBox.expand(4.0D, 2.0D, 4.0D);
-                List var4 = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, var3);
+                List var4 = this.worldObj.getEntitiesWithinAABB(
+                        EntityLivingBase.class, var3);
 
                 if (var4 != null && !var4.isEmpty())
                 {
@@ -124,15 +130,20 @@ public class EntityPotion extends EntityThrowable
 
                                 if (Potion.potionTypes[var13].isInstant())
                                 {
-                                    Potion.potionTypes[var13].affectEntity(this.getThrower(), var6, var12.getAmplifier(), var9);
+                                    Potion.potionTypes[var13].affectEntity(
+                                            this.getThrower(), var6,
+                                            var12.getAmplifier(), var9);
                                 }
                                 else
                                 {
-                                    int var14 = (int)(var9 * (double)var12.getDuration() + 0.5D);
+                                    int var14 = (int)(var9
+                                            * (double)var12.getDuration() + 0.5D);
 
                                     if (var14 > 20)
                                     {
-                                        var6.addPotionEffect(new PotionEffect(var13, var14, var12.getAmplifier()));
+                                        var6.addPotionEffect(new PotionEffect(
+                                                var13, var14, var12
+                                                        .getAmplifier()));
                                     }
                                 }
                             }
@@ -141,7 +152,9 @@ public class EntityPotion extends EntityThrowable
                 }
             }
 
-            this.worldObj.playAuxSFX(2002, (int)Math.round(this.posX), (int)Math.round(this.posY), (int)Math.round(this.posZ), this.getPotionDamage());
+            this.worldObj.playAuxSFX(2002, (int)Math.round(this.posX),
+                    (int)Math.round(this.posY), (int)Math.round(this.posZ),
+                    this.getPotionDamage());
             this.setDead();
         }
     }
@@ -155,7 +168,9 @@ public class EntityPotion extends EntityThrowable
 
         if (par1NBTTagCompound.func_150297_b("Potion", 10))
         {
-            this.potionDamage = ItemStack.loadItemStackFromNBT(par1NBTTagCompound.getCompoundTag("Potion"));
+            this.potionDamage = ItemStack
+                    .loadItemStackFromNBT(par1NBTTagCompound
+                            .getCompoundTag("Potion"));
         }
         else
         {
@@ -177,7 +192,8 @@ public class EntityPotion extends EntityThrowable
 
         if (this.potionDamage != null)
         {
-            par1NBTTagCompound.setTag("Potion", this.potionDamage.writeToNBT(new NBTTagCompound()));
+            par1NBTTagCompound.setTag("Potion",
+                    this.potionDamage.writeToNBT(new NBTTagCompound()));
         }
     }
 }

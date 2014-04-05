@@ -24,13 +24,14 @@ import net.minecraft.world.World;
 public class EntityCreeper extends EntityMob
 {
     /**
-     * Time when this creeper was last in an active state (Messed up code here, probably causes creeper animation to go
-     * weird)
+     * Time when this creeper was last in an active state (Messed up code here,
+     * probably causes creeper animation to go weird)
      */
     private int lastActiveTime;
 
     /**
-     * The amount of time since the creeper was close enough to the player to ignite
+     * The amount of time since the creeper was close enough to the player to
+     * ignite
      */
     private int timeSinceIgnited;
     private int fuseTime = 30;
@@ -44,19 +45,23 @@ public class EntityCreeper extends EntityMob
         super(par1World);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICreeperSwell(this));
-        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityOcelot.class, 6.0F, 1.0D, 1.2D));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityOcelot.class,
+                6.0F, 1.0D, 1.2D));
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, false));
         this.tasks.addTask(5, new EntityAIWander(this, 0.8D));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this,
+                EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this,
+                EntityPlayer.class, 0, true));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
+                .setBaseValue(0.25D);
     }
 
     /**
@@ -68,11 +73,13 @@ public class EntityCreeper extends EntityMob
     }
 
     /**
-     * The number of iterations PathFinder.getSafePoint will execute before giving up.
+     * The number of iterations PathFinder.getSafePoint will execute before
+     * giving up.
      */
     public int getMaxSafePointTries()
     {
-        return this.getAttackTarget() == null ? 3 : 3 + (int)(this.getHealth() - 1.0F);
+        return this.getAttackTarget() == null ? 3
+                : 3 + (int)(this.getHealth() - 1.0F);
     }
 
     /**
@@ -92,7 +99,7 @@ public class EntityCreeper extends EntityMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte) - 1));
+        this.dataWatcher.addObject(16, Byte.valueOf((byte)-1));
         this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
         this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
     }
@@ -110,7 +117,8 @@ public class EntityCreeper extends EntityMob
         }
 
         par1NBTTagCompound.setShort("Fuse", (short)this.fuseTime);
-        par1NBTTagCompound.setByte("ExplosionRadius", (byte)this.explosionRadius);
+        par1NBTTagCompound.setByte("ExplosionRadius",
+                (byte)this.explosionRadius);
         par1NBTTagCompound.setBoolean("ignited", this.func_146078_ca());
     }
 
@@ -120,7 +128,9 @@ public class EntityCreeper extends EntityMob
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)(par1NBTTagCompound.getBoolean("powered") ? 1 : 0)));
+        this.dataWatcher.updateObject(17, Byte
+                .valueOf((byte)(par1NBTTagCompound.getBoolean("powered") ? 1
+                        : 0)));
 
         if (par1NBTTagCompound.func_150297_b("Fuse", 99))
         {
@@ -129,7 +139,8 @@ public class EntityCreeper extends EntityMob
 
         if (par1NBTTagCompound.func_150297_b("ExplosionRadius", 99))
         {
-            this.explosionRadius = par1NBTTagCompound.getByte("ExplosionRadius");
+            this.explosionRadius = par1NBTTagCompound
+                    .getByte("ExplosionRadius");
         }
 
         if (par1NBTTagCompound.getBoolean("ignited"))
@@ -252,7 +263,8 @@ public class EntityCreeper extends EntityMob
     }
 
     /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
+     * Called when a player interacts with a mob. e.g. gets milk from a cow,
+     * gets into the saddle on a pig.
      */
     protected boolean interact(EntityPlayer par1EntityPlayer)
     {
@@ -260,7 +272,9 @@ public class EntityCreeper extends EntityMob
 
         if (var2 != null && var2.getItem() == Items.flint_and_steel)
         {
-            this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.ignite", 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
+            this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D,
+                    this.posZ + 0.5D, "fire.ignite", 1.0F,
+                    this.rand.nextFloat() * 0.4F + 0.8F);
             par1EntityPlayer.swingItem();
 
             if (!this.worldObj.isClient)
@@ -278,15 +292,18 @@ public class EntityCreeper extends EntityMob
     {
         if (!this.worldObj.isClient)
         {
-            boolean var1 = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+            boolean var1 = this.worldObj.getGameRules()
+                    .getGameRuleBooleanValue("mobGriefing");
 
             if (this.getPowered())
             {
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)(this.explosionRadius * 2), var1);
+                this.worldObj.createExplosion(this, this.posX, this.posY,
+                        this.posZ, (float)(this.explosionRadius * 2), var1);
             }
             else
             {
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)this.explosionRadius, var1);
+                this.worldObj.createExplosion(this, this.posX, this.posY,
+                        this.posZ, (float)this.explosionRadius, var1);
             }
 
             this.setDead();

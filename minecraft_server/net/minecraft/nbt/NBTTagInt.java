@@ -10,7 +10,9 @@ public class NBTTagInt extends NBTBase.NBTPrimitive
     private int data;
     private static final String __OBFID = "CL_00001223";
 
-    NBTTagInt() {}
+    NBTTagInt()
+    {
+    }
 
     public NBTTagInt(int p_i45133_1_)
     {
@@ -18,7 +20,8 @@ public class NBTTagInt extends NBTBase.NBTPrimitive
     }
 
     /**
-     * Write the actual data contents of the tag, implemented in NBT extension classes
+     * Write the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
@@ -26,7 +29,8 @@ public class NBTTagInt extends NBTBase.NBTPrimitive
     }
 
     /**
-     * Read the actual data contents of the tag, implemented in NBT extension classes
+     * Read the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void load(DataInput par1DataInput, int par2) throws IOException
     {

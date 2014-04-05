@@ -13,9 +13,12 @@ public class S1FPacketSetExperience extends Packet
     private int field_149400_c;
     private static final String __OBFID = "CL_00001331";
 
-    public S1FPacketSetExperience() {}
+    public S1FPacketSetExperience()
+    {
+    }
 
-    public S1FPacketSetExperience(float p_i45222_1_, int p_i45222_2_, int p_i45222_3_)
+    public S1FPacketSetExperience(float p_i45222_1_, int p_i45222_2_,
+            int p_i45222_3_)
     {
         this.field_149401_a = p_i45222_1_;
         this.field_149399_b = p_i45222_2_;

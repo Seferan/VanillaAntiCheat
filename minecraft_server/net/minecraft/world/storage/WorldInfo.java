@@ -60,7 +60,8 @@ public class WorldInfo
     private WorldSettings.GameType theGameType;
 
     /**
-     * Whether the map features (e.g. strongholds) generation is enabled or disabled.
+     * Whether the map features (e.g. strongholds) generation is enabled or
+     * disabled.
      */
     private boolean mapFeaturesEnabled;
 
@@ -103,20 +104,24 @@ public class WorldInfo
                     var3 = par1NBTTagCompound.getInteger("generatorVersion");
                 }
 
-                this.terrainType = this.terrainType.getWorldTypeForGeneratorVersion(var3);
+                this.terrainType = this.terrainType
+                        .getWorldTypeForGeneratorVersion(var3);
             }
 
             if (par1NBTTagCompound.func_150297_b("generatorOptions", 8))
             {
-                this.generatorOptions = par1NBTTagCompound.getString("generatorOptions");
+                this.generatorOptions = par1NBTTagCompound
+                        .getString("generatorOptions");
             }
         }
 
-        this.theGameType = WorldSettings.GameType.getByID(par1NBTTagCompound.getInteger("GameType"));
+        this.theGameType = WorldSettings.GameType.getByID(par1NBTTagCompound
+                .getInteger("GameType"));
 
         if (par1NBTTagCompound.func_150297_b("MapFeatures", 99))
         {
-            this.mapFeaturesEnabled = par1NBTTagCompound.getBoolean("MapFeatures");
+            this.mapFeaturesEnabled = par1NBTTagCompound
+                    .getBoolean("MapFeatures");
         }
         else
         {
@@ -173,7 +178,8 @@ public class WorldInfo
 
         if (par1NBTTagCompound.func_150297_b("GameRules", 10))
         {
-            this.theGameRules.readGameRulesFromNBT(par1NBTTagCompound.getCompoundTag("GameRules"));
+            this.theGameRules.readGameRulesFromNBT(par1NBTTagCompound
+                    .getCompoundTag("GameRules"));
         }
     }
 
@@ -235,7 +241,8 @@ public class WorldInfo
     }
 
     /**
-     * Creates a new NBTTagCompound for the world, with the given NBTTag as the "Player"
+     * Creates a new NBTTagCompound for the world, with the given NBTTag as the
+     * "Player"
      */
     public NBTTagCompound cloneNBTCompound(NBTTagCompound par1NBTTagCompound)
     {
@@ -244,11 +251,14 @@ public class WorldInfo
         return var2;
     }
 
-    private void updateTagCompound(NBTTagCompound par1NBTTagCompound, NBTTagCompound par2NBTTagCompound)
+    private void updateTagCompound(NBTTagCompound par1NBTTagCompound,
+            NBTTagCompound par2NBTTagCompound)
     {
         par1NBTTagCompound.setLong("RandomSeed", this.randomSeed);
-        par1NBTTagCompound.setString("generatorName", this.terrainType.getWorldTypeName());
-        par1NBTTagCompound.setInteger("generatorVersion", this.terrainType.getGeneratorVersion());
+        par1NBTTagCompound.setString("generatorName",
+                this.terrainType.getWorldTypeName());
+        par1NBTTagCompound.setInteger("generatorVersion",
+                this.terrainType.getGeneratorVersion());
         par1NBTTagCompound.setString("generatorOptions", this.generatorOptions);
         par1NBTTagCompound.setInteger("GameType", this.theGameType.getID());
         par1NBTTagCompound.setBoolean("MapFeatures", this.mapFeaturesEnabled);
@@ -258,7 +268,8 @@ public class WorldInfo
         par1NBTTagCompound.setLong("Time", this.totalTime);
         par1NBTTagCompound.setLong("DayTime", this.worldTime);
         par1NBTTagCompound.setLong("SizeOnDisk", this.sizeOnDisk);
-        par1NBTTagCompound.setLong("LastPlayed", MinecraftServer.getCurrentTimeMillis());
+        par1NBTTagCompound.setLong("LastPlayed",
+                MinecraftServer.getCurrentTimeMillis());
         par1NBTTagCompound.setString("LevelName", this.levelName);
         par1NBTTagCompound.setInteger("version", this.saveVersion);
         par1NBTTagCompound.setInteger("rainTime", this.rainTime);
@@ -268,7 +279,8 @@ public class WorldInfo
         par1NBTTagCompound.setBoolean("hardcore", this.hardcore);
         par1NBTTagCompound.setBoolean("allowCommands", this.allowCommands);
         par1NBTTagCompound.setBoolean("initialized", this.initialized);
-        par1NBTTagCompound.setTag("GameRules", this.theGameRules.writeGameRulesToNBT());
+        par1NBTTagCompound.setTag("GameRules",
+                this.theGameRules.writeGameRulesToNBT());
 
         if (par2NBTTagCompound != null)
         {
@@ -459,7 +471,8 @@ public class WorldInfo
     }
 
     /**
-     * Get whether the map features (e.g. strongholds) generation is enabled or disabled.
+     * Get whether the map features (e.g. strongholds) generation is enabled or
+     * disabled.
      */
     public boolean isMapFeaturesEnabled()
     {
@@ -534,96 +547,145 @@ public class WorldInfo
      */
     public void addToCrashReport(CrashReportCategory par1CrashReportCategory)
     {
-        par1CrashReportCategory.addCrashSectionCallable("Level seed", new Callable()
-        {
-            private static final String __OBFID = "CL_00000588";
-            public String call()
-            {
-                return String.valueOf(WorldInfo.this.getSeed());
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level generator", new Callable()
-        {
-            private static final String __OBFID = "CL_00000589";
-            public String call()
-            {
-                return String.format("ID %02d - %s, ver %d. Features enabled: %b", new Object[] {Integer.valueOf(WorldInfo.this.terrainType.getWorldTypeID()), WorldInfo.this.terrainType.getWorldTypeName(), Integer.valueOf(WorldInfo.this.terrainType.getGeneratorVersion()), Boolean.valueOf(WorldInfo.this.mapFeaturesEnabled)});
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level generator options", new Callable()
-        {
-            private static final String __OBFID = "CL_00000590";
-            public String call()
-            {
-                return WorldInfo.this.generatorOptions;
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level spawn location", new Callable()
-        {
-            private static final String __OBFID = "CL_00000591";
-            public String call()
-            {
-                return CrashReportCategory.getLocationInfo(WorldInfo.this.spawnX, WorldInfo.this.spawnY, WorldInfo.this.spawnZ);
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level time", new Callable()
-        {
-            private static final String __OBFID = "CL_00000592";
-            public String call()
-            {
-                return String.format("%d game time, %d day time", new Object[] {Long.valueOf(WorldInfo.this.totalTime), Long.valueOf(WorldInfo.this.worldTime)});
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level dimension", new Callable()
-        {
-            private static final String __OBFID = "CL_00000593";
-            public String call()
-            {
-                return String.valueOf(WorldInfo.this.dimension);
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level storage version", new Callable()
-        {
-            private static final String __OBFID = "CL_00000594";
-            public String call()
-            {
-                String var1 = "Unknown?";
-
-                try
+        par1CrashReportCategory.addCrashSectionCallable("Level seed",
+                new Callable()
                 {
-                    switch (WorldInfo.this.saveVersion)
+                    private static final String __OBFID = "CL_00000588";
+
+                    public String call()
                     {
-                        case 19132:
-                            var1 = "McRegion";
-                            break;
-
-                        case 19133:
-                            var1 = "Anvil";
+                        return String.valueOf(WorldInfo.this.getSeed());
                     }
-                }
-                catch (Throwable var3)
+                });
+        par1CrashReportCategory.addCrashSectionCallable("Level generator",
+                new Callable()
                 {
-                    ;
-                }
+                    private static final String __OBFID = "CL_00000589";
 
-                return String.format("0x%05X - %s", new Object[] {Integer.valueOf(WorldInfo.this.saveVersion), var1});
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level weather", new Callable()
-        {
-            private static final String __OBFID = "CL_00000595";
-            public String call()
-            {
-                return String.format("Rain time: %d (now: %b), thunder time: %d (now: %b)", new Object[] {Integer.valueOf(WorldInfo.this.rainTime), Boolean.valueOf(WorldInfo.this.raining), Integer.valueOf(WorldInfo.this.thunderTime), Boolean.valueOf(WorldInfo.this.thundering)});
-            }
-        });
-        par1CrashReportCategory.addCrashSectionCallable("Level game mode", new Callable()
-        {
-            private static final String __OBFID = "CL_00000597";
-            public String call()
-            {
-                return String.format("Game mode: %s (ID %d). Hardcore: %b. Cheats: %b", new Object[] {WorldInfo.this.theGameType.getName(), Integer.valueOf(WorldInfo.this.theGameType.getID()), Boolean.valueOf(WorldInfo.this.hardcore), Boolean.valueOf(WorldInfo.this.allowCommands)});
-            }
-        });
+                    public String call()
+                    {
+                        return String
+                                .format("ID %02d - %s, ver %d. Features enabled: %b",
+                                        new Object[] {
+                                                Integer.valueOf(WorldInfo.this.terrainType
+                                                        .getWorldTypeID()),
+                                                WorldInfo.this.terrainType
+                                                        .getWorldTypeName(),
+                                                Integer.valueOf(WorldInfo.this.terrainType
+                                                        .getGeneratorVersion()),
+                                                Boolean.valueOf(WorldInfo.this.mapFeaturesEnabled)});
+                    }
+                });
+        par1CrashReportCategory.addCrashSectionCallable(
+                "Level generator options", new Callable()
+                {
+                    private static final String __OBFID = "CL_00000590";
+
+                    public String call()
+                    {
+                        return WorldInfo.this.generatorOptions;
+                    }
+                });
+        par1CrashReportCategory.addCrashSectionCallable("Level spawn location",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00000591";
+
+                    public String call()
+                    {
+                        return CrashReportCategory.getLocationInfo(
+                                WorldInfo.this.spawnX, WorldInfo.this.spawnY,
+                                WorldInfo.this.spawnZ);
+                    }
+                });
+        par1CrashReportCategory.addCrashSectionCallable("Level time",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00000592";
+
+                    public String call()
+                    {
+                        return String
+                                .format("%d game time, %d day time",
+                                        new Object[] {
+                                                Long.valueOf(WorldInfo.this.totalTime),
+                                                Long.valueOf(WorldInfo.this.worldTime)});
+                    }
+                });
+        par1CrashReportCategory.addCrashSectionCallable("Level dimension",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00000593";
+
+                    public String call()
+                    {
+                        return String.valueOf(WorldInfo.this.dimension);
+                    }
+                });
+        par1CrashReportCategory.addCrashSectionCallable(
+                "Level storage version", new Callable()
+                {
+                    private static final String __OBFID = "CL_00000594";
+
+                    public String call()
+                    {
+                        String var1 = "Unknown?";
+
+                        try
+                        {
+                            switch (WorldInfo.this.saveVersion)
+                            {
+                            case 19132:
+                                var1 = "McRegion";
+                                break;
+
+                            case 19133:
+                                var1 = "Anvil";
+                            }
+                        }
+                        catch (Throwable var3)
+                        {
+                            ;
+                        }
+
+                        return String.format("0x%05X - %s", new Object[] {
+                                Integer.valueOf(WorldInfo.this.saveVersion),
+                                var1});
+                    }
+                });
+        par1CrashReportCategory.addCrashSectionCallable("Level weather",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00000595";
+
+                    public String call()
+                    {
+                        return String
+                                .format("Rain time: %d (now: %b), thunder time: %d (now: %b)",
+                                        new Object[] {
+                                                Integer.valueOf(WorldInfo.this.rainTime),
+                                                Boolean.valueOf(WorldInfo.this.raining),
+                                                Integer.valueOf(WorldInfo.this.thunderTime),
+                                                Boolean.valueOf(WorldInfo.this.thundering)});
+                    }
+                });
+        par1CrashReportCategory.addCrashSectionCallable("Level game mode",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00000597";
+
+                    public String call()
+                    {
+                        return String
+                                .format("Game mode: %s (ID %d). Hardcore: %b. Cheats: %b",
+                                        new Object[] {
+                                                WorldInfo.this.theGameType
+                                                        .getName(),
+                                                Integer.valueOf(WorldInfo.this.theGameType
+                                                        .getID()),
+                                                Boolean.valueOf(WorldInfo.this.hardcore),
+                                                Boolean.valueOf(WorldInfo.this.allowCommands)});
+                    }
+                });
     }
 }

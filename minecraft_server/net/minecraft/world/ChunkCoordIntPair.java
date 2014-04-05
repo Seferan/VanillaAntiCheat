@@ -34,7 +34,8 @@ public class ChunkCoordIntPair
     public boolean equals(Object par1Obj)
     {
         ChunkCoordIntPair var2 = (ChunkCoordIntPair)par1Obj;
-        return var2.chunkXPos == this.chunkXPos && var2.chunkZPos == this.chunkZPos;
+        return var2.chunkXPos == this.chunkXPos
+                && var2.chunkZPos == this.chunkZPos;
     }
 
     public int getCenterXPos()
@@ -49,7 +50,8 @@ public class ChunkCoordIntPair
 
     public ChunkPosition func_151349_a(int p_151349_1_)
     {
-        return new ChunkPosition(this.getCenterXPos(), p_151349_1_, this.getCenterZPosition());
+        return new ChunkPosition(this.getCenterXPos(), p_151349_1_,
+                this.getCenterZPosition());
     }
 
     public String toString()

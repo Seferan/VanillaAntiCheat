@@ -9,14 +9,16 @@ public class MessageSerializer2 extends MessageToByteEncoder
 {
     private static final String __OBFID = "CL_00001256";
 
-    protected void encode(ChannelHandlerContext p_150667_1_, ByteBuf p_150667_2_, ByteBuf p_150667_3_)
+    protected void encode(ChannelHandlerContext p_150667_1_,
+            ByteBuf p_150667_2_, ByteBuf p_150667_3_)
     {
         int var4 = p_150667_2_.readableBytes();
         int var5 = PacketBuffer.getVarIntSize(var4);
 
         if (var5 > 3)
         {
-            throw new IllegalArgumentException("unable to fit " + var4 + " into " + 3);
+            throw new IllegalArgumentException("unable to fit " + var4
+                    + " into " + 3);
         }
         else
         {
@@ -27,7 +29,8 @@ public class MessageSerializer2 extends MessageToByteEncoder
         }
     }
 
-    protected void encode(ChannelHandlerContext p_encode_1_, Object p_encode_2_, ByteBuf p_encode_3_)
+    protected void encode(ChannelHandlerContext p_encode_1_,
+            Object p_encode_2_, ByteBuf p_encode_3_)
     {
         this.encode(p_encode_1_, (ByteBuf)p_encode_2_, p_encode_3_);
     }

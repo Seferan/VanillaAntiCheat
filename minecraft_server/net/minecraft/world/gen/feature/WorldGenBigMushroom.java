@@ -23,7 +23,8 @@ public class WorldGenBigMushroom extends WorldGenerator
         super(false);
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         int var6 = par2Random.nextInt(2);
 
@@ -55,9 +56,11 @@ public class WorldGenBigMushroom extends WorldGenerator
                     {
                         if (var9 >= 0 && var9 < 256)
                         {
-                            Block var13 = par1World.getBlock(var11, var9, var12);
+                            Block var13 = par1World
+                                    .getBlock(var11, var9, var12);
 
-                            if (var13.getMaterial() != Material.air && var13.getMaterial() != Material.field_151584_j)
+                            if (var13.getMaterial() != Material.air
+                                    && var13.getMaterial() != Material.field_151584_j)
                             {
                                 var8 = false;
                             }
@@ -78,7 +81,8 @@ public class WorldGenBigMushroom extends WorldGenerator
             {
                 Block var16 = par1World.getBlock(par3, par4 - 1, par5);
 
-                if (var16 != Blocks.dirt && var16 != Blocks.grass && var16 != Blocks.mycelium)
+                if (var16 != Blocks.dirt && var16 != Blocks.grass
+                        && var16 != Blocks.mycelium)
                 {
                     return false;
                 }
@@ -107,7 +111,8 @@ public class WorldGenBigMushroom extends WorldGenerator
 
                         for (int var19 = par3 - var12; var19 <= par3 + var12; ++var19)
                         {
-                            for (int var14 = par5 - var12; var14 <= par5 + var12; ++var14)
+                            for (int var14 = par5 - var12; var14 <= par5
+                                    + var12; ++var14)
                             {
                                 int var15 = 5;
 
@@ -133,47 +138,58 @@ public class WorldGenBigMushroom extends WorldGenerator
 
                                 if (var6 == 0 || var11 < par4 + var7)
                                 {
-                                    if ((var19 == par3 - var12 || var19 == par3 + var12) && (var14 == par5 - var12 || var14 == par5 + var12))
+                                    if ((var19 == par3 - var12 || var19 == par3
+                                            + var12)
+                                            && (var14 == par5 - var12 || var14 == par5
+                                                    + var12))
                                     {
                                         continue;
                                     }
 
-                                    if (var19 == par3 - (var12 - 1) && var14 == par5 - var12)
+                                    if (var19 == par3 - (var12 - 1)
+                                            && var14 == par5 - var12)
                                     {
                                         var15 = 1;
                                     }
 
-                                    if (var19 == par3 - var12 && var14 == par5 - (var12 - 1))
+                                    if (var19 == par3 - var12
+                                            && var14 == par5 - (var12 - 1))
                                     {
                                         var15 = 1;
                                     }
 
-                                    if (var19 == par3 + (var12 - 1) && var14 == par5 - var12)
+                                    if (var19 == par3 + (var12 - 1)
+                                            && var14 == par5 - var12)
                                     {
                                         var15 = 3;
                                     }
 
-                                    if (var19 == par3 + var12 && var14 == par5 - (var12 - 1))
+                                    if (var19 == par3 + var12
+                                            && var14 == par5 - (var12 - 1))
                                     {
                                         var15 = 3;
                                     }
 
-                                    if (var19 == par3 - (var12 - 1) && var14 == par5 + var12)
+                                    if (var19 == par3 - (var12 - 1)
+                                            && var14 == par5 + var12)
                                     {
                                         var15 = 7;
                                     }
 
-                                    if (var19 == par3 - var12 && var14 == par5 + (var12 - 1))
+                                    if (var19 == par3 - var12
+                                            && var14 == par5 + (var12 - 1))
                                     {
                                         var15 = 7;
                                     }
 
-                                    if (var19 == par3 + (var12 - 1) && var14 == par5 + var12)
+                                    if (var19 == par3 + (var12 - 1)
+                                            && var14 == par5 + var12)
                                     {
                                         var15 = 9;
                                     }
 
-                                    if (var19 == par3 + var12 && var14 == par5 + (var12 - 1))
+                                    if (var19 == par3 + var12
+                                            && var14 == par5 + (var12 - 1))
                                     {
                                         var15 = 9;
                                     }
@@ -184,9 +200,18 @@ public class WorldGenBigMushroom extends WorldGenerator
                                     var15 = 0;
                                 }
 
-                                if ((var15 != 0 || par4 >= par4 + var7 - 1) && !par1World.getBlock(var19, var11, var14).func_149730_j())
+                                if ((var15 != 0 || par4 >= par4 + var7 - 1)
+                                        && !par1World.getBlock(var19, var11,
+                                                var14).func_149730_j())
                                 {
-                                    this.func_150516_a(par1World, var19, var11, var14, Block.getBlockById(Block.getIdFromBlock(Blocks.brown_mushroom_block) + var6), var15);
+                                    this.func_150516_a(
+                                            par1World,
+                                            var19,
+                                            var11,
+                                            var14,
+                                            Block.getBlockById(Block
+                                                    .getIdFromBlock(Blocks.brown_mushroom_block)
+                                                    + var6), var15);
                                 }
                             }
                         }
@@ -194,11 +219,19 @@ public class WorldGenBigMushroom extends WorldGenerator
 
                     for (var11 = 0; var11 < var7; ++var11)
                     {
-                        Block var18 = par1World.getBlock(par3, par4 + var11, par5);
+                        Block var18 = par1World.getBlock(par3, par4 + var11,
+                                par5);
 
                         if (!var18.func_149730_j())
                         {
-                            this.func_150516_a(par1World, par3, par4 + var11, par5, Block.getBlockById(Block.getIdFromBlock(Blocks.brown_mushroom_block) + var6), 10);
+                            this.func_150516_a(
+                                    par1World,
+                                    par3,
+                                    par4 + var11,
+                                    par5,
+                                    Block.getBlockById(Block
+                                            .getIdFromBlock(Blocks.brown_mushroom_block)
+                                            + var6), 10);
                         }
                     }
 

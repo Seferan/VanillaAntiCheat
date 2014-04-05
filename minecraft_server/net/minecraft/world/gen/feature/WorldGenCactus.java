@@ -8,7 +8,8 @@ public class WorldGenCactus extends WorldGenerator
 {
     private static final String __OBFID = "CL_00000404";
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         for (int var6 = 0; var6 < 10; ++var6)
         {
@@ -22,9 +23,11 @@ public class WorldGenCactus extends WorldGenerator
 
                 for (int var11 = 0; var11 < var10; ++var11)
                 {
-                    if (Blocks.cactus.canBlockStay(par1World, var7, var8 + var11, var9))
+                    if (Blocks.cactus.canBlockStay(par1World, var7, var8
+                            + var11, var9))
                     {
-                        par1World.setBlock(var7, var8 + var11, var9, Blocks.cactus, 0, 2);
+                        par1World.setBlock(var7, var8 + var11, var9,
+                                Blocks.cactus, 0, 2);
                     }
                 }
             }

@@ -19,17 +19,21 @@ public class CommandPublishLocalServer extends CommandBase
         return "commands.publish.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        String var3 = MinecraftServer.getServer().shareToLAN(WorldSettings.GameType.SURVIVAL, false);
+        String var3 = MinecraftServer.getServer().shareToLAN(
+                WorldSettings.GameType.SURVIVAL, false);
 
         if (var3 != null)
         {
-            notifyAdmins(par1ICommandSender, "commands.publish.started", new Object[] {var3});
+            notifyAdmins(par1ICommandSender, "commands.publish.started",
+                    new Object[] {var3});
         }
         else
         {
-            notifyAdmins(par1ICommandSender, "commands.publish.failed", new Object[0]);
+            notifyAdmins(par1ICommandSender, "commands.publish.failed",
+                    new Object[0]);
         }
     }
 }

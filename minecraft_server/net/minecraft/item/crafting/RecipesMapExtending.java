@@ -13,13 +13,20 @@ public class RecipesMapExtending extends ShapedRecipes
 
     public RecipesMapExtending()
     {
-        super(3, 3, new ItemStack[] {new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.filled_map, 0, 32767), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper), new ItemStack(Items.paper)}, new ItemStack(Items.map, 0, 0));
+        super(3, 3, new ItemStack[] {new ItemStack(Items.paper),
+                new ItemStack(Items.paper), new ItemStack(Items.paper),
+                new ItemStack(Items.paper),
+                new ItemStack(Items.filled_map, 0, 32767),
+                new ItemStack(Items.paper), new ItemStack(Items.paper),
+                new ItemStack(Items.paper), new ItemStack(Items.paper)},
+                new ItemStack(Items.map, 0, 0));
     }
 
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
+    public boolean matches(InventoryCrafting par1InventoryCrafting,
+            World par2World)
     {
         if (!super.matches(par1InventoryCrafting, par2World))
         {
@@ -29,7 +36,8 @@ public class RecipesMapExtending extends ShapedRecipes
         {
             ItemStack var3 = null;
 
-            for (int var4 = 0; var4 < par1InventoryCrafting.getSizeInventory() && var3 == null; ++var4)
+            for (int var4 = 0; var4 < par1InventoryCrafting.getSizeInventory()
+                    && var3 == null; ++var4)
             {
                 ItemStack var5 = par1InventoryCrafting.getStackInSlot(var4);
 
@@ -58,7 +66,8 @@ public class RecipesMapExtending extends ShapedRecipes
     {
         ItemStack var2 = null;
 
-        for (int var3 = 0; var3 < par1InventoryCrafting.getSizeInventory() && var2 == null; ++var3)
+        for (int var3 = 0; var3 < par1InventoryCrafting.getSizeInventory()
+                && var2 == null; ++var3)
         {
             ItemStack var4 = par1InventoryCrafting.getStackInSlot(var3);
 

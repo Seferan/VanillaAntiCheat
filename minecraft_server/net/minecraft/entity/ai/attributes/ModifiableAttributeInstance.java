@@ -23,7 +23,8 @@ public class ModifiableAttributeInstance implements IAttributeInstance
     private double cachedValue;
     private static final String __OBFID = "CL_00001567";
 
-    public ModifiableAttributeInstance(BaseAttributeMap par1BaseAttributeMap, IAttribute par2Attribute)
+    public ModifiableAttributeInstance(BaseAttributeMap par1BaseAttributeMap,
+            IAttribute par2Attribute)
     {
         this.attributeMap = par1BaseAttributeMap;
         this.genericAttribute = par2Attribute;
@@ -86,11 +87,13 @@ public class ModifiableAttributeInstance implements IAttributeInstance
     {
         if (this.getModifier(par1AttributeModifier.getID()) != null)
         {
-            throw new IllegalArgumentException("Modifier is already applied on this attribute!");
+            throw new IllegalArgumentException(
+                    "Modifier is already applied on this attribute!");
         }
         else
         {
-            Object var2 = (Set)this.mapByName.get(par1AttributeModifier.getName());
+            Object var2 = (Set)this.mapByName.get(par1AttributeModifier
+                    .getName());
 
             if (var2 == null)
             {
@@ -98,9 +101,11 @@ public class ModifiableAttributeInstance implements IAttributeInstance
                 this.mapByName.put(par1AttributeModifier.getName(), var2);
             }
 
-            ((Set)this.mapByOperation.get(Integer.valueOf(par1AttributeModifier.getOperation()))).add(par1AttributeModifier);
+            ((Set)this.mapByOperation.get(Integer.valueOf(par1AttributeModifier
+                    .getOperation()))).add(par1AttributeModifier);
             ((Set)var2).add(par1AttributeModifier);
-            this.mapByUUID.put(par1AttributeModifier.getID(), par1AttributeModifier);
+            this.mapByUUID.put(par1AttributeModifier.getID(),
+                    par1AttributeModifier);
             this.flagForUpdate();
         }
     }
@@ -151,7 +156,8 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         double var1 = this.getBaseValue();
         AttributeModifier var4;
 
-        for (Iterator var3 = this.getModifiersByOperation(0).iterator(); var3.hasNext(); var1 += var4.getAmount())
+        for (Iterator var3 = this.getModifiersByOperation(0).iterator(); var3
+                .hasNext(); var1 += var4.getAmount())
         {
             var4 = (AttributeModifier)var3.next();
         }
@@ -160,12 +166,14 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         Iterator var5;
         AttributeModifier var6;
 
-        for (var5 = this.getModifiersByOperation(1).iterator(); var5.hasNext(); var7 += var1 * var6.getAmount())
+        for (var5 = this.getModifiersByOperation(1).iterator(); var5.hasNext(); var7 += var1
+                * var6.getAmount())
         {
             var6 = (AttributeModifier)var5.next();
         }
 
-        for (var5 = this.getModifiersByOperation(2).iterator(); var5.hasNext(); var7 *= 1.0D + var6.getAmount())
+        for (var5 = this.getModifiersByOperation(2).iterator(); var5.hasNext(); var7 *= 1.0D + var6
+                .getAmount())
         {
             var6 = (AttributeModifier)var5.next();
         }

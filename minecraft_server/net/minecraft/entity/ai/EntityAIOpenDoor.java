@@ -20,7 +20,8 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
      */
     public boolean continueExecuting()
     {
-        return this.field_75361_i && this.field_75360_j > 0 && super.continueExecuting();
+        return this.field_75361_i && this.field_75360_j > 0
+                && super.continueExecuting();
     }
 
     /**
@@ -29,7 +30,8 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
     public void startExecuting()
     {
         this.field_75360_j = 20;
-        this.field_151504_e.func_150014_a(this.theEntity.worldObj, this.entityPosX, this.entityPosY, this.entityPosZ, true);
+        this.field_151504_e.func_150014_a(this.theEntity.worldObj,
+                this.entityPosX, this.entityPosY, this.entityPosZ, true);
     }
 
     /**
@@ -39,7 +41,8 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
     {
         if (this.field_75361_i)
         {
-            this.field_151504_e.func_150014_a(this.theEntity.worldObj, this.entityPosX, this.entityPosY, this.entityPosZ, false);
+            this.field_151504_e.func_150014_a(this.theEntity.worldObj,
+                    this.entityPosX, this.entityPosY, this.entityPosZ, false);
         }
     }
 

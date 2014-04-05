@@ -3,8 +3,9 @@ package net.minecraft.entity.ai;
 public abstract class EntityAIBase
 {
     /**
-     * A bitmask telling which other tasks may not run concurrently. The test is a simple bitwise AND - if it yields
-     * zero, the two tasks may run concurrently, if not - they must run exclusively from each other.
+     * A bitmask telling which other tasks may not run concurrently. The test is
+     * a simple bitwise AND - if it yields zero, the two tasks may run
+     * concurrently, if not - they must run exclusively from each other.
      */
     private int mutexBits;
     private static final String __OBFID = "CL_00001587";
@@ -33,21 +34,28 @@ public abstract class EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
-    public void startExecuting() {}
+    public void startExecuting()
+    {
+    }
 
     /**
      * Resets the task
      */
-    public void resetTask() {}
+    public void resetTask()
+    {
+    }
 
     /**
      * Updates the task
      */
-    public void updateTask() {}
+    public void updateTask()
+    {
+    }
 
     /**
-     * Sets a bitmask telling which other tasks may not run concurrently. The test is a simple bitwise AND - if it
-     * yields zero, the two tasks may run concurrently, if not - they must run exclusively from each other.
+     * Sets a bitmask telling which other tasks may not run concurrently. The
+     * test is a simple bitwise AND - if it yields zero, the two tasks may run
+     * concurrently, if not - they must run exclusively from each other.
      */
     public void setMutexBits(int par1)
     {
@@ -55,8 +63,9 @@ public abstract class EntityAIBase
     }
 
     /**
-     * Get a bitmask telling which other tasks may not run concurrently. The test is a simple bitwise AND - if it yields
-     * zero, the two tasks may run concurrently, if not - they must run exclusively from each other.
+     * Get a bitmask telling which other tasks may not run concurrently. The
+     * test is a simple bitwise AND - if it yields zero, the two tasks may run
+     * concurrently, if not - they must run exclusively from each other.
      */
     public int getMutexBits()
     {

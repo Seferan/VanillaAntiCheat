@@ -16,11 +16,14 @@ public class ItemEmptyMap extends ItemMapBase
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
-        ItemStack var4 = new ItemStack(Items.filled_map, 1, par2World.getUniqueDataId("map"));
+        ItemStack var4 = new ItemStack(Items.filled_map, 1,
+                par2World.getUniqueDataId("map"));
         String var5 = "map_" + var4.getItemDamage();
         MapData var6 = new MapData(var5);
         par2World.setItemData(var5, var6);
@@ -38,7 +41,8 @@ public class ItemEmptyMap extends ItemMapBase
         }
         else
         {
-            if (!par3EntityPlayer.inventory.addItemStackToInventory(var4.copy()))
+            if (!par3EntityPlayer.inventory
+                    .addItemStackToInventory(var4.copy()))
             {
                 par3EntityPlayer.dropPlayerItemWithRandomChoice(var4, false);
             }

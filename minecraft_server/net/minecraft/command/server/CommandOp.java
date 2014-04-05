@@ -30,19 +30,22 @@ public class CommandOp extends CommandBase
         return "commands.op.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 0)
         {
-        	String name = par2ArrayOfStr[0];
+            String name = par2ArrayOfStr[0];
             if (MinecraftServer.isPlayerOwner(par1ICommandSender))
             {
-                MinecraftServer.getServer().getConfigurationManager().addOp(name);
-                notifyAdmins(par1ICommandSender, "commands.op.success", new Object[] {name});
+                MinecraftServer.getServer().getConfigurationManager()
+                        .addOp(name);
+                notifyAdmins(par1ICommandSender, "commands.op.success",
+                        new Object[] {name});
             }
             else
             {
-            	notifyAdmins(par1ICommandSender, "Tried to op " + name + "!");
+                notifyAdmins(par1ICommandSender, "Tried to op " + name + "!");
             }
         }
         else
@@ -52,9 +55,11 @@ public class CommandOp extends CommandBase
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length == 1)
         {
@@ -67,7 +72,9 @@ public class CommandOp extends CommandBase
             {
                 String var8 = var5[var7];
 
-                if (!MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(var8) && doesStringStartWith(var3, var8))
+                if (!MinecraftServer.getServer().getConfigurationManager()
+                        .isPlayerOpped(var8)
+                        && doesStringStartWith(var3, var8))
                 {
                     var4.add(var8);
                 }

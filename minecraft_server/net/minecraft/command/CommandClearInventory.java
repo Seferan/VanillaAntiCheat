@@ -27,15 +27,20 @@ public class CommandClearInventory extends CommandBase
         return 2;
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        EntityPlayerMP var3 = par2ArrayOfStr.length == 0 ? getCommandSenderAsPlayer(par1ICommandSender) : getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
-        Item var4 = par2ArrayOfStr.length >= 2 ? getItemByText(par1ICommandSender, par2ArrayOfStr[1]) : null;
-        int var5 = par2ArrayOfStr.length >= 3 ? parseIntWithMin(par1ICommandSender, par2ArrayOfStr[2], 0) : -1;
+        EntityPlayerMP var3 = par2ArrayOfStr.length == 0 ? getCommandSenderAsPlayer(par1ICommandSender)
+                : getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
+        Item var4 = par2ArrayOfStr.length >= 2 ? getItemByText(
+                par1ICommandSender, par2ArrayOfStr[1]) : null;
+        int var5 = par2ArrayOfStr.length >= 3 ? parseIntWithMin(
+                par1ICommandSender, par2ArrayOfStr[2], 0) : -1;
 
         if (par2ArrayOfStr.length >= 2 && var4 == null)
         {
-            throw new CommandException("commands.clear.failure", new Object[] {var3.getCommandSenderName()});
+            throw new CommandException("commands.clear.failure",
+                    new Object[] {var3.getCommandSenderName()});
         }
         else
         {
@@ -49,21 +54,31 @@ public class CommandClearInventory extends CommandBase
 
             if (var6 == 0)
             {
-                throw new CommandException("commands.clear.failure", new Object[] {var3.getCommandSenderName()});
+                throw new CommandException("commands.clear.failure",
+                        new Object[] {var3.getCommandSenderName()});
             }
             else
             {
-                notifyAdmins(par1ICommandSender, "commands.clear.success", new Object[] {var3.getCommandSenderName(), Integer.valueOf(var6)});
+                notifyAdmins(
+                        par1ICommandSender,
+                        "commands.clear.success",
+                        new Object[] {var3.getCommandSenderName(),
+                                Integer.valueOf(var6)});
             }
         }
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.func_147209_d()) : (par2ArrayOfStr.length == 2 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, Item.itemRegistry.getKeys()) : null);
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(
+                par2ArrayOfStr, this.func_147209_d())
+                : (par2ArrayOfStr.length == 2 ? getListOfStringsFromIterableMatchingLastWord(
+                        par2ArrayOfStr, Item.itemRegistry.getKeys()) : null);
     }
 
     protected String[] func_147209_d()
@@ -72,7 +87,8 @@ public class CommandClearInventory extends CommandBase
     }
 
     /**
-     * Return whether the specified command parameter index is a username parameter.
+     * Return whether the specified command parameter index is a username
+     * parameter.
      */
     public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
     {

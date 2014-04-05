@@ -15,16 +15,19 @@ public class ItemWritableBook extends Item
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
         par3EntityPlayer.displayGUIBook(par1ItemStack);
         return par1ItemStack;
     }
 
     /**
-     * If this function returns true (or the item is damageable), the ItemStack's NBT tag will be sent to the client.
+     * If this function returns true (or the item is damageable), the
+     * ItemStack's NBT tag will be sent to the client.
      */
     public boolean getShareTag()
     {
@@ -49,15 +52,9 @@ public class ItemWritableBook extends Item
             {
                 String var3 = var1.getStringTagAt(var2);
 
-                if (var3 == null)
-                {
-                    return false;
-                }
+                if (var3 == null) { return false; }
 
-                if (var3.length() > 256)
-                {
-                    return false;
-                }
+                if (var3.length() > 256) { return false; }
             }
 
             return true;

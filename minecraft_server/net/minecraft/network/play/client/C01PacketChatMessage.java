@@ -11,7 +11,9 @@ public class C01PacketChatMessage extends Packet
     private String field_149440_a;
     private static final String __OBFID = "CL_00001347";
 
-    public C01PacketChatMessage() {}
+    public C01PacketChatMessage()
+    {
+    }
 
     public C01PacketChatMessage(String p_i45240_1_)
     {
@@ -45,11 +47,13 @@ public class C01PacketChatMessage extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("message=\'%s\'", new Object[] {this.field_149440_a});
+        return String.format("message=\'%s\'",
+                new Object[] {this.field_149440_a});
     }
 
     public String func_149439_c()

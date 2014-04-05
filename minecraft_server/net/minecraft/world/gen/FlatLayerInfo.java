@@ -66,7 +66,8 @@ public class FlatLayerInfo
 
     public String toString()
     {
-        String var1 = Integer.toString(Block.getIdFromBlock(this.field_151537_a));
+        String var1 = Integer.toString(Block
+                .getIdFromBlock(this.field_151537_a));
 
         if (this.layerCount > 1)
         {

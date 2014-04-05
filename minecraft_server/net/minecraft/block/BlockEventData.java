@@ -12,7 +12,8 @@ public class BlockEventData
     private int eventParameter;
     private static final String __OBFID = "CL_00000131";
 
-    public BlockEventData(int p_i45362_1_, int p_i45362_2_, int p_i45362_3_, Block p_i45362_4_, int p_i45362_5_, int p_i45362_6_)
+    public BlockEventData(int p_i45362_1_, int p_i45362_2_, int p_i45362_3_,
+            Block p_i45362_4_, int p_i45362_5_, int p_i45362_6_)
     {
         this.coordX = p_i45362_1_;
         this.coordY = p_i45362_2_;
@@ -64,12 +65,18 @@ public class BlockEventData
         else
         {
             BlockEventData var2 = (BlockEventData)par1Obj;
-            return this.coordX == var2.coordX && this.coordY == var2.coordY && this.coordZ == var2.coordZ && this.eventID == var2.eventID && this.eventParameter == var2.eventParameter && this.field_151344_d == var2.field_151344_d;
+            return this.coordX == var2.coordX && this.coordY == var2.coordY
+                    && this.coordZ == var2.coordZ
+                    && this.eventID == var2.eventID
+                    && this.eventParameter == var2.eventParameter
+                    && this.field_151344_d == var2.field_151344_d;
         }
     }
 
     public String toString()
     {
-        return "TE(" + this.coordX + "," + this.coordY + "," + this.coordZ + ")," + this.eventID + "," + this.eventParameter + "," + this.field_151344_d;
+        return "TE(" + this.coordX + "," + this.coordY + "," + this.coordZ
+                + ")," + this.eventID + "," + this.eventParameter + ","
+                + this.field_151344_d;
     }
 }

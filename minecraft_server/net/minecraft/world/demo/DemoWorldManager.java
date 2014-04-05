@@ -30,7 +30,8 @@ public class DemoWorldManager extends ItemInWorldManager
         if (!this.field_73105_c && this.field_73102_f > 20)
         {
             this.field_73105_c = true;
-            this.thisPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(5, 0.0F));
+            this.thisPlayerMP.playerNetServerHandler
+                    .sendPacket(new S2BPacketChangeGameState(5, 0.0F));
         }
 
         this.demoTimeExpired = var1 > 120500L;
@@ -44,45 +45,53 @@ public class DemoWorldManager extends ItemInWorldManager
         {
             if (var3 <= 6L)
             {
-                this.thisPlayerMP.addChatMessage(new ChatComponentTranslation("demo.day." + var3, new Object[0]));
+                this.thisPlayerMP.addChatMessage(new ChatComponentTranslation(
+                        "demo.day." + var3, new Object[0]));
             }
         }
         else if (var3 == 1L)
         {
             if (var1 == 100L)
             {
-                this.thisPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(5, 101.0F));
+                this.thisPlayerMP.playerNetServerHandler
+                        .sendPacket(new S2BPacketChangeGameState(5, 101.0F));
             }
             else if (var1 == 175L)
             {
-                this.thisPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(5, 102.0F));
+                this.thisPlayerMP.playerNetServerHandler
+                        .sendPacket(new S2BPacketChangeGameState(5, 102.0F));
             }
             else if (var1 == 250L)
             {
-                this.thisPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(5, 103.0F));
+                this.thisPlayerMP.playerNetServerHandler
+                        .sendPacket(new S2BPacketChangeGameState(5, 103.0F));
             }
         }
         else if (var3 == 5L && var1 % 24000L == 22000L)
         {
-            this.thisPlayerMP.addChatMessage(new ChatComponentTranslation("demo.day.warning", new Object[0]));
+            this.thisPlayerMP.addChatMessage(new ChatComponentTranslation(
+                    "demo.day.warning", new Object[0]));
         }
     }
 
     /**
-     * Sends a message to the player reminding them that this is the demo version
+     * Sends a message to the player reminding them that this is the demo
+     * version
      */
     private void sendDemoReminder()
     {
         if (this.field_73104_e > 100)
         {
-            this.thisPlayerMP.addChatMessage(new ChatComponentTranslation("demo.reminder", new Object[0]));
+            this.thisPlayerMP.addChatMessage(new ChatComponentTranslation(
+                    "demo.reminder", new Object[0]));
             this.field_73104_e = 0;
         }
     }
 
     /**
-     * if not creative, it calls destroyBlockInWorldPartially untill the block is broken first. par4 is the specific
-     * side. tryHarvestBlock can also be the result of this call
+     * if not creative, it calls destroyBlockInWorldPartially untill the block
+     * is broken first. par4 is the specific side. tryHarvestBlock can also be
+     * the result of this call
      */
     public void onBlockClicked(int par1, int par2, int par3, int par4)
     {
@@ -109,13 +118,16 @@ public class DemoWorldManager extends ItemInWorldManager
      */
     public boolean tryHarvestBlock(int par1, int par2, int par3)
     {
-        return this.demoTimeExpired ? false : super.tryHarvestBlock(par1, par2, par3);
+        return this.demoTimeExpired ? false : super.tryHarvestBlock(par1, par2,
+                par3);
     }
 
     /**
-     * Attempts to right-click use an item by the given EntityPlayer in the given World
+     * Attempts to right-click use an item by the given EntityPlayer in the
+     * given World
      */
-    public boolean tryUseItem(EntityPlayer par1EntityPlayer, World par2World, ItemStack par3ItemStack)
+    public boolean tryUseItem(EntityPlayer par1EntityPlayer, World par2World,
+            ItemStack par3ItemStack)
     {
         if (this.demoTimeExpired)
         {
@@ -129,10 +141,12 @@ public class DemoWorldManager extends ItemInWorldManager
     }
 
     /**
-     * Activate the clicked on block, otherwise use the held item. Args: player, world, itemStack, x, y, z, side,
-     * xOffset, yOffset, zOffset
+     * Activate the clicked on block, otherwise use the held item. Args: player,
+     * world, itemStack, x, y, z, side, xOffset, yOffset, zOffset
      */
-    public boolean activateBlockOrUseItem(EntityPlayer par1EntityPlayer, World par2World, ItemStack par3ItemStack, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    public boolean activateBlockOrUseItem(EntityPlayer par1EntityPlayer,
+            World par2World, ItemStack par3ItemStack, int par4, int par5,
+            int par6, int par7, float par8, float par9, float par10)
     {
         if (this.demoTimeExpired)
         {
@@ -141,7 +155,8 @@ public class DemoWorldManager extends ItemInWorldManager
         }
         else
         {
-            return super.activateBlockOrUseItem(par1EntityPlayer, par2World, par3ItemStack, par4, par5, par6, par7, par8, par9, par10);
+            return super.activateBlockOrUseItem(par1EntityPlayer, par2World,
+                    par3ItemStack, par4, par5, par6, par7, par8, par9, par10);
         }
     }
 }

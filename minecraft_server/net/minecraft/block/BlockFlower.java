@@ -5,8 +5,15 @@ import net.minecraft.init.Blocks;
 
 public class BlockFlower extends BlockBush
 {
-    private static final String[][] field_149860_M = new String[][] {{"flower_dandelion"}, {"flower_rose", "flower_blue_orchid", "flower_allium", "flower_houstonia", "flower_tulip_red", "flower_tulip_orange", "flower_tulip_white", "flower_tulip_pink", "flower_oxeye_daisy"}};
-    public static final String[] field_149859_a = new String[] {"poppy", "blueOrchid", "allium", "houstonia", "tulipRed", "tulipOrange", "tulipWhite", "tulipPink", "oxeyeDaisy"};
+    private static final String[][] field_149860_M = new String[][] {
+            {"flower_dandelion"},
+            {"flower_rose", "flower_blue_orchid", "flower_allium",
+                    "flower_houstonia", "flower_tulip_red",
+                    "flower_tulip_orange", "flower_tulip_white",
+                    "flower_tulip_pink", "flower_oxeye_daisy"}};
+    public static final String[] field_149859_a = new String[] {"poppy",
+            "blueOrchid", "allium", "houstonia", "tulipRed", "tulipOrange",
+            "tulipWhite", "tulipPink", "oxeyeDaisy"};
     public static final String[] field_149858_b = new String[] {"dandelion"};
     private int field_149862_O;
     private static final String __OBFID = "CL_00000246";
@@ -18,7 +25,8 @@ public class BlockFlower extends BlockBush
     }
 
     /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
+     * Determines the damage on the item the block drops. Used in cloth and
+     * wood.
      */
     public int damageDropped(int p_149692_1_)
     {
@@ -36,10 +44,7 @@ public class BlockFlower extends BlockBush
         {
             var4 = var1[var3];
 
-            if (var4.equals(p_149857_0_))
-            {
-                return Blocks.yellow_flower;
-            }
+            if (var4.equals(p_149857_0_)) { return Blocks.yellow_flower; }
         }
 
         var1 = field_149859_a;
@@ -49,10 +54,7 @@ public class BlockFlower extends BlockBush
         {
             var4 = var1[var3];
 
-            if (var4.equals(p_149857_0_))
-            {
-                return Blocks.red_flower;
-            }
+            if (var4.equals(p_149857_0_)) { return Blocks.red_flower; }
         }
 
         return null;
@@ -64,18 +66,12 @@ public class BlockFlower extends BlockBush
 
         for (var1 = 0; var1 < field_149858_b.length; ++var1)
         {
-            if (field_149858_b[var1].equals(p_149856_0_))
-            {
-                return var1;
-            }
+            if (field_149858_b[var1].equals(p_149856_0_)) { return var1; }
         }
 
         for (var1 = 0; var1 < field_149859_a.length; ++var1)
         {
-            if (field_149859_a[var1].equals(p_149856_0_))
-            {
-                return var1;
-            }
+            if (field_149859_a[var1].equals(p_149856_0_)) { return var1; }
         }
 
         return 0;

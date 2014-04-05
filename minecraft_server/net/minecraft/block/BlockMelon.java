@@ -16,7 +16,8 @@ public class BlockMelon extends Block
         this.setcreativeTab(CreativeTabs.tabBlock);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
+            int p_149650_3_)
     {
         return Items.melon;
     }
@@ -30,11 +31,13 @@ public class BlockMelon extends Block
     }
 
     /**
-     * Returns the usual quantity dropped by the block plus a bonus of 1 to 'i' (inclusive).
+     * Returns the usual quantity dropped by the block plus a bonus of 1 to 'i'
+     * (inclusive).
      */
     public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
     {
-        int var3 = this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(1 + p_149679_1_);
+        int var3 = this.quantityDropped(p_149679_2_)
+                + p_149679_2_.nextInt(1 + p_149679_1_);
 
         if (var3 > 9)
         {

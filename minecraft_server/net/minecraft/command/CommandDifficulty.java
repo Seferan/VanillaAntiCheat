@@ -27,30 +27,52 @@ public class CommandDifficulty extends CommandBase
         return "commands.difficulty.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length > 0)
         {
-            EnumDifficulty var3 = this.func_147201_h(par1ICommandSender, par2ArrayOfStr[0]);
+            EnumDifficulty var3 = this.func_147201_h(par1ICommandSender,
+                    par2ArrayOfStr[0]);
             MinecraftServer.getServer().func_147139_a(var3);
-            notifyAdmins(par1ICommandSender, "commands.difficulty.success", new Object[] {new ChatComponentTranslation(var3.func_151526_b(), new Object[0])});
+            notifyAdmins(
+                    par1ICommandSender,
+                    "commands.difficulty.success",
+                    new Object[] {new ChatComponentTranslation(var3
+                            .func_151526_b(), new Object[0])});
         }
         else
         {
-            throw new WrongUsageException("commands.difficulty.usage", new Object[0]);
+            throw new WrongUsageException("commands.difficulty.usage",
+                    new Object[0]);
         }
     }
 
-    protected EnumDifficulty func_147201_h(ICommandSender p_147201_1_, String p_147201_2_)
+    protected EnumDifficulty func_147201_h(ICommandSender p_147201_1_,
+            String p_147201_2_)
     {
-        return !p_147201_2_.equalsIgnoreCase("peaceful") && !p_147201_2_.equalsIgnoreCase("p") ? (!p_147201_2_.equalsIgnoreCase("easy") && !p_147201_2_.equalsIgnoreCase("e") ? (!p_147201_2_.equalsIgnoreCase("normal") && !p_147201_2_.equalsIgnoreCase("n") ? (!p_147201_2_.equalsIgnoreCase("hard") && !p_147201_2_.equalsIgnoreCase("h") ? EnumDifficulty.func_151523_a(parseIntBounded(p_147201_1_, p_147201_2_, 0, 3)) : EnumDifficulty.HARD) : EnumDifficulty.NORMAL) : EnumDifficulty.EASY) : EnumDifficulty.PEACEFUL;
+        return !p_147201_2_.equalsIgnoreCase("peaceful")
+                && !p_147201_2_.equalsIgnoreCase("p") ? (!p_147201_2_
+                .equalsIgnoreCase("easy") && !p_147201_2_.equalsIgnoreCase("e") ? (!p_147201_2_
+                .equalsIgnoreCase("normal")
+                && !p_147201_2_.equalsIgnoreCase("n") ? (!p_147201_2_
+                .equalsIgnoreCase("hard") && !p_147201_2_.equalsIgnoreCase("h") ? EnumDifficulty
+                .func_151523_a(parseIntBounded(p_147201_1_, p_147201_2_, 0, 3))
+                : EnumDifficulty.HARD)
+                : EnumDifficulty.NORMAL)
+                : EnumDifficulty.EASY)
+                : EnumDifficulty.PEACEFUL;
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"peaceful", "easy", "normal", "hard"}): null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(
+                par2ArrayOfStr, new String[] {"peaceful", "easy", "normal",
+                        "hard"}) : null;
     }
 }

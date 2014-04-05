@@ -11,7 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionHelper;
 
-public class TileEntityBrewingStand extends TileEntity implements ISidedInventory
+public class TileEntityBrewingStand extends TileEntity implements
+        ISidedInventory
 {
     private static final int[] field_145941_a = new int[] {3};
     private static final int[] field_145947_i = new int[] {0, 1, 2};
@@ -27,7 +28,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.field_145942_n : "container.brewing";
+        return this.isInventoryNameLocalized() ? this.field_145942_n
+                : "container.brewing";
     }
 
     /**
@@ -84,7 +86,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
         if (var1 != this.field_145943_l)
         {
             this.field_145943_l = var1;
-            this.worldObj.setBlockMetadata(this.xCoord, this.yCoord, this.zCoord, var1, 2);
+            this.worldObj.setBlockMetadata(this.xCoord, this.yCoord,
+                    this.zCoord, var1, 2);
         }
 
         super.updateEntity();
@@ -97,7 +100,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
 
     private boolean func_145934_k()
     {
-        if (this.field_145945_j[3] != null && this.field_145945_j[3].stackSize > 0)
+        if (this.field_145945_j[3] != null
+                && this.field_145945_j[3].stackSize > 0)
         {
             ItemStack var1 = this.field_145945_j[3];
 
@@ -111,12 +115,14 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
 
                 for (int var3 = 0; var3 < 3; ++var3)
                 {
-                    if (this.field_145945_j[var3] != null && this.field_145945_j[var3].getItem() == Items.potionitem)
+                    if (this.field_145945_j[var3] != null
+                            && this.field_145945_j[var3].getItem() == Items.potionitem)
                     {
                         int var4 = this.field_145945_j[var3].getItemDamage();
                         int var5 = this.func_145936_c(var4, var1);
 
-                        if (!ItemPotion.isSplash(var4) && ItemPotion.isSplash(var5))
+                        if (!ItemPotion.isSplash(var4)
+                                && ItemPotion.isSplash(var5))
                         {
                             var2 = true;
                             break;
@@ -125,7 +131,9 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
                         List var6 = Items.potionitem.getEffects(var4);
                         List var7 = Items.potionitem.getEffects(var5);
 
-                        if ((var4 <= 0 || var6 != var7) && (var6 == null || !var6.equals(var7) && var7 != null) && var4 != var5)
+                        if ((var4 <= 0 || var6 != var7)
+                                && (var6 == null || !var6.equals(var7)
+                                        && var7 != null) && var4 != var5)
                         {
                             var2 = true;
                             break;
@@ -150,21 +158,25 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
 
             for (int var2 = 0; var2 < 3; ++var2)
             {
-                if (this.field_145945_j[var2] != null && this.field_145945_j[var2].getItem() == Items.potionitem)
+                if (this.field_145945_j[var2] != null
+                        && this.field_145945_j[var2].getItem() == Items.potionitem)
                 {
                     int var3 = this.field_145945_j[var2].getItemDamage();
                     int var4 = this.func_145936_c(var3, var1);
                     List var5 = Items.potionitem.getEffects(var3);
                     List var6 = Items.potionitem.getEffects(var4);
 
-                    if ((var3 <= 0 || var5 != var6) && (var5 == null || !var5.equals(var6) && var6 != null))
+                    if ((var3 <= 0 || var5 != var6)
+                            && (var5 == null || !var5.equals(var6)
+                                    && var6 != null))
                     {
                         if (var3 != var4)
                         {
                             this.field_145945_j[var2].setItemDamage(var4);
                         }
                     }
-                    else if (!ItemPotion.isSplash(var3) && ItemPotion.isSplash(var4))
+                    else if (!ItemPotion.isSplash(var3)
+                            && ItemPotion.isSplash(var4))
                     {
                         this.field_145945_j[var2].setItemDamage(var4);
                     }
@@ -173,7 +185,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
 
             if (var1.getItem().hasContainerItem())
             {
-                this.field_145945_j[3] = new ItemStack(var1.getItem().getContainerItem());
+                this.field_145945_j[3] = new ItemStack(var1.getItem()
+                        .getContainerItem());
             }
             else
             {
@@ -189,7 +202,10 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
 
     private int func_145936_c(int p_145936_1_, ItemStack p_145936_2_)
     {
-        return p_145936_2_ == null ? p_145936_1_ : (p_145936_2_.getItem().isPotionIngredient(p_145936_2_) ? PotionHelper.applyIngredient(p_145936_1_, p_145936_2_.getItem().getPotionEffect(p_145936_2_)) : p_145936_1_);
+        return p_145936_2_ == null ? p_145936_1_ : (p_145936_2_.getItem()
+                .isPotionIngredient(p_145936_2_) ? PotionHelper
+                .applyIngredient(p_145936_1_, p_145936_2_.getItem()
+                        .getPotionEffect(p_145936_2_)) : p_145936_1_);
     }
 
     public void readFromNBT(NBTTagCompound p_145839_1_)
@@ -205,7 +221,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
 
             if (var5 >= 0 && var5 < this.field_145945_j.length)
             {
-                this.field_145945_j[var5] = ItemStack.loadItemStackFromNBT(var4);
+                this.field_145945_j[var5] = ItemStack
+                        .loadItemStackFromNBT(var4);
             }
         }
 
@@ -247,12 +264,13 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return par1 >= 0 && par1 < this.field_145945_j.length ? this.field_145945_j[par1] : null;
+        return par1 >= 0 && par1 < this.field_145945_j.length ? this.field_145945_j[par1]
+                : null;
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
@@ -269,8 +287,9 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
@@ -287,7 +306,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
@@ -298,8 +318,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -307,23 +327,34 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
     }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord,
+                this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(
+                (double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D,
+                (double)this.zCoord + 0.5D) <= 64.0D;
     }
 
-    public void openChest() {}
+    public void openChest()
+    {
+    }
 
-    public void closeChest() {}
+    public void closeChest()
+    {
+    }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
-        return par1 == 3 ? par2ItemStack.getItem().isPotionIngredient(par2ItemStack) : par2ItemStack.getItem() == Items.potionitem || par2ItemStack.getItem() == Items.glass_bottle;
+        return par1 == 3 ? par2ItemStack.getItem().isPotionIngredient(
+                par2ItemStack) : par2ItemStack.getItem() == Items.potionitem
+                || par2ItemStack.getItem() == Items.glass_bottle;
     }
 
     public int func_145939_j()
@@ -350,8 +381,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
     }
 
     /**
-     * Returns true if automation can insert the given item in the given slot from the given side. Args: Slot, item,
-     * side
+     * Returns true if automation can insert the given item in the given slot
+     * from the given side. Args: Slot, item, side
      */
     public boolean canInsertItem(int par1, ItemStack par2ItemStack, int par3)
     {
@@ -359,8 +390,8 @@ public class TileEntityBrewingStand extends TileEntity implements ISidedInventor
     }
 
     /**
-     * Returns true if automation can extract the given item in the given slot from the given side. Args: Slot, item,
-     * side
+     * Returns true if automation can extract the given item in the given slot
+     * from the given side. Args: Slot, item, side
      */
     public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3)
     {

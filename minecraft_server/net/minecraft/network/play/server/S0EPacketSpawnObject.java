@@ -23,21 +23,26 @@ public class S0EPacketSpawnObject extends Packet
     private int field_149020_k;
     private static final String __OBFID = "CL_00001276";
 
-    public S0EPacketSpawnObject() {}
+    public S0EPacketSpawnObject()
+    {
+    }
 
     public S0EPacketSpawnObject(Entity p_i45165_1_, int p_i45165_2_)
     {
         this(p_i45165_1_, p_i45165_2_, 0);
     }
 
-    public S0EPacketSpawnObject(Entity p_i45166_1_, int p_i45166_2_, int p_i45166_3_)
+    public S0EPacketSpawnObject(Entity p_i45166_1_, int p_i45166_2_,
+            int p_i45166_3_)
     {
         this.field_149018_a = p_i45166_1_.getEntityId();
         this.field_149016_b = MathHelper.floor_double(p_i45166_1_.posX * 32.0D);
         this.field_149017_c = MathHelper.floor_double(p_i45166_1_.posY * 32.0D);
         this.field_149014_d = MathHelper.floor_double(p_i45166_1_.posZ * 32.0D);
-        this.field_149021_h = MathHelper.floor_float(p_i45166_1_.rotationPitch * 256.0F / 360.0F);
-        this.field_149022_i = MathHelper.floor_float(p_i45166_1_.rotationYaw * 256.0F / 360.0F);
+        this.field_149021_h = MathHelper
+                .floor_float(p_i45166_1_.rotationPitch * 256.0F / 360.0F);
+        this.field_149022_i = MathHelper
+                .floor_float(p_i45166_1_.rotationYaw * 256.0F / 360.0F);
         this.field_149019_j = p_i45166_2_;
         this.field_149020_k = p_i45166_3_;
 
@@ -134,11 +139,18 @@ public class S0EPacketSpawnObject extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f", new Object[] {Integer.valueOf(this.field_149018_a), Integer.valueOf(this.field_149019_j), Float.valueOf((float)this.field_149016_b / 32.0F), Float.valueOf((float)this.field_149017_c / 32.0F), Float.valueOf((float)this.field_149014_d / 32.0F)});
+        return String.format(
+                "id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f",
+                new Object[] {Integer.valueOf(this.field_149018_a),
+                        Integer.valueOf(this.field_149019_j),
+                        Float.valueOf((float)this.field_149016_b / 32.0F),
+                        Float.valueOf((float)this.field_149017_c / 32.0F),
+                        Float.valueOf((float)this.field_149014_d / 32.0F)});
     }
 
     public void func_148996_a(int p_148996_1_)

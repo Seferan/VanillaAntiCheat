@@ -11,7 +11,9 @@ public class S01PacketPong extends Packet
     private long field_149293_a;
     private static final String __OBFID = "CL_00001383";
 
-    public S01PacketPong() {}
+    public S01PacketPong()
+    {
+    }
 
     public S01PacketPong(long p_i45272_1_)
     {
@@ -40,8 +42,9 @@ public class S01PacketPong extends Packet
     }
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {

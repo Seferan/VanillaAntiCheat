@@ -7,7 +7,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 
-public class CommandMyIP extends CommandBase {
+public class CommandMyIP extends CommandBase
+{
 
     private static final String __OBFID = "CL_00000641";
 
@@ -34,21 +35,28 @@ public class CommandMyIP extends CommandBase {
         return "/myip";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        EntityPlayerMP sender = getPlayer(par1ICommandSender, par1ICommandSender.getCommandSenderName());
+        EntityPlayerMP sender = getPlayer(par1ICommandSender,
+                par1ICommandSender.getCommandSenderName());
 
-        if (sender == par1ICommandSender) //safety precautions, just in case
+        if (sender == par1ICommandSender) // safety precautions, just in case
         {
             String ip = sender.getPlayerIP();
-            MinecraftServer.anonymousTell(sender, "Welcome! Your external IP appears to be: " + ip);
-            MinecraftServer.anonymousTell(sender, "This has not been logged, nor will anyone else recieve this message.");
+            MinecraftServer.anonymousTell(sender,
+                    "Welcome! Your external IP appears to be: " + ip);
+            MinecraftServer
+                    .anonymousTell(sender,
+                            "This has not been logged, nor will anyone else recieve this message.");
             MinecraftServer.anonymousTell(sender, "Have a good day!");
         }
         else
         {
-        	par1ICommandSender.addChatMessage("WTF? Looked up the wrong player.");
-        	par1ICommandSender.addChatMessage("Please report this to an admin and try again later.");
+            par1ICommandSender
+                    .addChatMessage("WTF? Looked up the wrong player.");
+            par1ICommandSender
+                    .addChatMessage("Please report this to an admin and try again later.");
         }
     }
 }

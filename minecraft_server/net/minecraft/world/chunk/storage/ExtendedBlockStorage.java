@@ -7,28 +7,33 @@ import net.minecraft.world.chunk.NibbleArray;
 public class ExtendedBlockStorage
 {
     /**
-     * Contains the bottom-most Y block represented by this ExtendedBlockStorage. Typically a multiple of 16.
+     * Contains the bottom-most Y block represented by this
+     * ExtendedBlockStorage. Typically a multiple of 16.
      */
     private int yBase;
 
     /**
-     * A total count of the number of non-air blocks in this block storage's Chunk.
+     * A total count of the number of non-air blocks in this block storage's
+     * Chunk.
      */
     private int blockRefCount;
 
     /**
-     * Contains the number of blocks in this block storage's parent chunk that require random ticking. Used to cull the
-     * Chunk from random tick updates for performance reasons.
+     * Contains the number of blocks in this block storage's parent chunk that
+     * require random ticking. Used to cull the Chunk from random tick updates
+     * for performance reasons.
      */
     private int tickRefCount;
 
     /**
-     * Contains the least significant 8 bits of each block ID belonging to this block storage's parent Chunk.
+     * Contains the least significant 8 bits of each block ID belonging to this
+     * block storage's parent Chunk.
      */
     private byte[] blockLSBArray;
 
     /**
-     * Contains the most significant 4 bits of each block ID belonging to this block storage's parent Chunk.
+     * Contains the most significant 4 bits of each block ID belonging to this
+     * block storage's parent Chunk.
      */
     private NibbleArray blockMSBArray;
 
@@ -59,23 +64,28 @@ public class ExtendedBlockStorage
 
     public Block func_150819_a(int p_150819_1_, int p_150819_2_, int p_150819_3_)
     {
-        int var4 = this.blockLSBArray[p_150819_2_ << 8 | p_150819_3_ << 4 | p_150819_1_] & 255;
+        int var4 = this.blockLSBArray[p_150819_2_ << 8 | p_150819_3_ << 4
+                | p_150819_1_] & 255;
 
         if (this.blockMSBArray != null)
         {
-            var4 |= this.blockMSBArray.get(p_150819_1_, p_150819_2_, p_150819_3_) << 8;
+            var4 |= this.blockMSBArray.get(p_150819_1_, p_150819_2_,
+                    p_150819_3_) << 8;
         }
 
         return Block.getBlockById(var4);
     }
 
-    public void func_150818_a(int p_150818_1_, int p_150818_2_, int p_150818_3_, Block p_150818_4_)
+    public void func_150818_a(int p_150818_1_, int p_150818_2_,
+            int p_150818_3_, Block p_150818_4_)
     {
-        int var5 = this.blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4 | p_150818_1_] & 255;
+        int var5 = this.blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4
+                | p_150818_1_] & 255;
 
         if (this.blockMSBArray != null)
         {
-            var5 |= this.blockMSBArray.get(p_150818_1_, p_150818_2_, p_150818_3_) << 8;
+            var5 |= this.blockMSBArray.get(p_150818_1_, p_150818_2_,
+                    p_150818_3_) << 8;
         }
 
         Block var6 = Block.getBlockById(var5);
@@ -107,10 +117,12 @@ public class ExtendedBlockStorage
         {
             if (this.blockMSBArray == null)
             {
-                this.blockMSBArray = new NibbleArray(this.blockLSBArray.length, 4);
+                this.blockMSBArray = new NibbleArray(this.blockLSBArray.length,
+                        4);
             }
 
-            this.blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_, (var7 & 3840) >> 8);
+            this.blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_,
+                    (var7 & 3840) >> 8);
         }
         else if (this.blockMSBArray != null)
         {
@@ -119,7 +131,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Returns the metadata associated with the block at the given coordinates in this ExtendedBlockStorage.
+     * Returns the metadata associated with the block at the given coordinates
+     * in this ExtendedBlockStorage.
      */
     public int getExtBlockMetadata(int par1, int par2, int par3)
     {
@@ -127,7 +140,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Sets the metadata of the Block at the given coordinates in this ExtendedBlockStorage to the given metadata.
+     * Sets the metadata of the Block at the given coordinates in this
+     * ExtendedBlockStorage to the given metadata.
      */
     public void setExtBlockMetadata(int par1, int par2, int par3, int par4)
     {
@@ -135,7 +149,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Returns whether or not this block storage's Chunk is fully empty, based on its internal reference count.
+     * Returns whether or not this block storage's Chunk is fully empty, based
+     * on its internal reference count.
      */
     public boolean isEmpty()
     {
@@ -143,8 +158,9 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Returns whether or not this block storage's Chunk will require random ticking, used to avoid looping through
-     * random block ticks when there are no blocks that would randomly tick.
+     * Returns whether or not this block storage's Chunk will require random
+     * ticking, used to avoid looping through random block ticks when there are
+     * no blocks that would randomly tick.
      */
     public boolean getNeedsRandomTick()
     {
@@ -224,7 +240,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Returns the block ID MSB (bits 11..8) array for this storage array's Chunk.
+     * Returns the block ID MSB (bits 11..8) array for this storage array's
+     * Chunk.
      */
     public NibbleArray getBlockMSBArray()
     {
@@ -253,7 +270,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Sets the array of block ID least significant bits for this ExtendedBlockStorage.
+     * Sets the array of block ID least significant bits for this
+     * ExtendedBlockStorage.
      */
     public void setBlockLSBArray(byte[] par1ArrayOfByte)
     {
@@ -261,7 +279,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Sets the array of blockID most significant bits (blockMSBArray) for this ExtendedBlockStorage.
+     * Sets the array of blockID most significant bits (blockMSBArray) for this
+     * ExtendedBlockStorage.
      */
     public void setBlockMSBArray(NibbleArray par1NibbleArray)
     {
@@ -269,7 +288,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Sets the NibbleArray of block metadata (blockMetadataArray) for this ExtendedBlockStorage.
+     * Sets the NibbleArray of block metadata (blockMetadataArray) for this
+     * ExtendedBlockStorage.
      */
     public void setBlockMetadataArray(NibbleArray par1NibbleArray)
     {
@@ -277,7 +297,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Sets the NibbleArray instance used for Block-light values in this particular storage block.
+     * Sets the NibbleArray instance used for Block-light values in this
+     * particular storage block.
      */
     public void setBlocklightArray(NibbleArray par1NibbleArray)
     {
@@ -285,7 +306,8 @@ public class ExtendedBlockStorage
     }
 
     /**
-     * Sets the NibbleArray instance used for Sky-light values in this particular storage block.
+     * Sets the NibbleArray instance used for Sky-light values in this
+     * particular storage block.
      */
     public void setSkylightArray(NibbleArray par1NibbleArray)
     {

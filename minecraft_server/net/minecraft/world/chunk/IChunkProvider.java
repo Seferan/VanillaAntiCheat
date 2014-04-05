@@ -14,8 +14,9 @@ public interface IChunkProvider
     boolean chunkExists(int var1, int var2);
 
     /**
-     * Will return back a chunk, if it doesn't exist and its not a MP client it will generates all the blocks for the
-     * specified chunk from the map seed and chunk seed
+     * Will return back a chunk, if it doesn't exist and its not a MP client it
+     * will generates all the blocks for the specified chunk from the map seed
+     * and chunk seed
      */
     Chunk provideChunk(int var1, int var2);
 
@@ -30,13 +31,15 @@ public interface IChunkProvider
     void populate(IChunkProvider var1, int var2, int var3);
 
     /**
-     * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
-     * Return true if all chunks have been saved.
+     * Two modes of operation: if passed true, save all Chunks in one go. If
+     * passed false, save up to two chunks. Return true if all chunks have been
+     * saved.
      */
     boolean saveChunks(boolean var1, IProgressUpdate var2);
 
     /**
-     * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
+     * Unloads chunks that are marked to be unloaded. This is not guaranteed to
+     * unload every such chunk.
      */
     boolean unloadQueuedChunks();
 
@@ -51,19 +54,22 @@ public interface IChunkProvider
     String makeString();
 
     /**
-     * Returns a list of creatures of the specified type that can spawn at the given location.
+     * Returns a list of creatures of the specified type that can spawn at the
+     * given location.
      */
-    List getPossibleCreatures(EnumCreatureType var1, int var2, int var3, int var4);
+    List getPossibleCreatures(EnumCreatureType var1, int var2, int var3,
+            int var4);
 
-    ChunkPosition func_147416_a(World var1, String var2, int var3, int var4, int var5);
+    ChunkPosition func_147416_a(World var1, String var2, int var3, int var4,
+            int var5);
 
     int getLoadedChunkCount();
 
     void recreateStructures(int var1, int var2);
 
     /**
-     * Save extra data not associated with any Chunk.  Not saved during autosave, only during world unload.  Currently
-     * unimplemented.
+     * Save extra data not associated with any Chunk. Not saved during autosave,
+     * only during world unload. Currently unimplemented.
      */
     void saveExtraData();
 }

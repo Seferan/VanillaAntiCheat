@@ -17,7 +17,9 @@ public class S39PacketPlayerAbilities extends Packet
     private float field_149114_f;
     private static final String __OBFID = "CL_00001317";
 
-    public S39PacketPlayerAbilities() {}
+    public S39PacketPlayerAbilities()
+    {
+    }
 
     public S39PacketPlayerAbilities(PlayerCapabilities p_i45208_1_)
     {
@@ -81,11 +83,19 @@ public class S39PacketPlayerAbilities extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("invuln=%b, flying=%b, canfly=%b, instabuild=%b, flyspeed=%.4f, walkspped=%.4f", new Object[] {Boolean.valueOf(this.func_149112_c()), Boolean.valueOf(this.func_149106_d()), Boolean.valueOf(this.func_149105_e()), Boolean.valueOf(this.func_149103_f()), Float.valueOf(this.func_149101_g()), Float.valueOf(this.func_149107_h())});
+        return String
+                .format("invuln=%b, flying=%b, canfly=%b, instabuild=%b, flyspeed=%.4f, walkspped=%.4f",
+                        new Object[] {Boolean.valueOf(this.func_149112_c()),
+                                Boolean.valueOf(this.func_149106_d()),
+                                Boolean.valueOf(this.func_149105_e()),
+                                Boolean.valueOf(this.func_149103_f()),
+                                Float.valueOf(this.func_149101_g()),
+                                Float.valueOf(this.func_149107_h())});
     }
 
     public boolean func_149112_c()

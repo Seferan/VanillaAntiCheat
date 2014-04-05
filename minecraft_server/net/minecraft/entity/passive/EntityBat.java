@@ -50,7 +50,8 @@ public class EntityBat extends EntityAmbientCreature
      */
     protected String getLivingSound()
     {
-        return this.getIsBatHanging() && this.rand.nextInt(4) != 0 ? null : "mob.bat.idle";
+        return this.getIsBatHanging() && this.rand.nextInt(4) != 0 ? null
+                : "mob.bat.idle";
     }
 
     /**
@@ -70,21 +71,27 @@ public class EntityBat extends EntityAmbientCreature
     }
 
     /**
-     * Returns true if this entity should push and be pushed by other entities when colliding.
+     * Returns true if this entity should push and be pushed by other entities
+     * when colliding.
      */
     public boolean canBePushed()
     {
         return false;
     }
 
-    protected void collideWithEntity(Entity par1Entity) {}
+    protected void collideWithEntity(Entity par1Entity)
+    {
+    }
 
-    protected void collideWithNearbyEntities() {}
+    protected void collideWithNearbyEntities()
+    {
+    }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(6.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+                .setBaseValue(6.0D);
     }
 
     public boolean getIsBatHanging()
@@ -124,7 +131,8 @@ public class EntityBat extends EntityAmbientCreature
         if (this.getIsBatHanging())
         {
             this.motionX = this.motionY = this.motionZ = 0.0D;
-            this.posY = (double)MathHelper.floor_double(this.posY) + 1.0D - (double)this.height;
+            this.posY = (double)MathHelper.floor_double(this.posY) + 1.0D
+                    - (double)this.height;
         }
         else
         {
@@ -138,10 +146,13 @@ public class EntityBat extends EntityAmbientCreature
 
         if (this.getIsBatHanging())
         {
-            if (!this.worldObj.getBlock(MathHelper.floor_double(this.posX), (int)this.posY + 1, MathHelper.floor_double(this.posZ)).isNormalCube())
+            if (!this.worldObj.getBlock(MathHelper.floor_double(this.posX),
+                    (int)this.posY + 1, MathHelper.floor_double(this.posZ))
+                    .isNormalCube())
             {
                 this.setIsBatHanging(false);
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015,
+                        (int)this.posX, (int)this.posY, (int)this.posZ, 0);
             }
             else
             {
@@ -153,20 +164,30 @@ public class EntityBat extends EntityAmbientCreature
                 if (this.worldObj.getClosestPlayerToEntity(this, 4.0D) != null)
                 {
                     this.setIsBatHanging(false);
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015,
+                            (int)this.posX, (int)this.posY, (int)this.posZ, 0);
                 }
             }
         }
         else
         {
-            if (this.spawnPosition != null && (!this.worldObj.isAirBlock(this.spawnPosition.posX, this.spawnPosition.posY, this.spawnPosition.posZ) || this.spawnPosition.posY < 1))
+            if (this.spawnPosition != null
+                    && (!this.worldObj.isAirBlock(this.spawnPosition.posX,
+                            this.spawnPosition.posY, this.spawnPosition.posZ) || this.spawnPosition.posY < 1))
             {
                 this.spawnPosition = null;
             }
 
-            if (this.spawnPosition == null || this.rand.nextInt(30) == 0 || this.spawnPosition.getDistanceSquared((int)this.posX, (int)this.posY, (int)this.posZ) < 4.0F)
+            if (this.spawnPosition == null
+                    || this.rand.nextInt(30) == 0
+                    || this.spawnPosition.getDistanceSquared((int)this.posX,
+                            (int)this.posY, (int)this.posZ) < 4.0F)
             {
-                this.spawnPosition = new ChunkCoordinates((int)this.posX + this.rand.nextInt(7) - this.rand.nextInt(7), (int)this.posY + this.rand.nextInt(6) - 2, (int)this.posZ + this.rand.nextInt(7) - this.rand.nextInt(7));
+                this.spawnPosition = new ChunkCoordinates((int)this.posX
+                        + this.rand.nextInt(7) - this.rand.nextInt(7),
+                        (int)this.posY + this.rand.nextInt(6) - 2,
+                        (int)this.posZ + this.rand.nextInt(7)
+                                - this.rand.nextInt(7));
             }
 
             double var1 = (double)this.spawnPosition.posX + 0.5D - this.posX;
@@ -176,11 +197,16 @@ public class EntityBat extends EntityAmbientCreature
             this.motionY += (Math.signum(var3) * 0.699999988079071D - this.motionY) * 0.10000000149011612D;
             this.motionZ += (Math.signum(var5) * 0.5D - this.motionZ) * 0.10000000149011612D;
             float var7 = (float)(Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) - 90.0F;
-            float var8 = MathHelper.wrapAngleTo180_float(var7 - this.rotationYaw);
+            float var8 = MathHelper.wrapAngleTo180_float(var7
+                    - this.rotationYaw);
             this.moveForward = 0.5F;
             this.rotationYaw += var8;
 
-            if (this.rand.nextInt(100) == 0 && this.worldObj.getBlock(MathHelper.floor_double(this.posX), (int)this.posY + 1, MathHelper.floor_double(this.posZ)).isNormalCube())
+            if (this.rand.nextInt(100) == 0
+                    && this.worldObj.getBlock(
+                            MathHelper.floor_double(this.posX),
+                            (int)this.posY + 1,
+                            MathHelper.floor_double(this.posZ)).isNormalCube())
             {
                 this.setIsBatHanging(true);
             }
@@ -188,8 +214,8 @@ public class EntityBat extends EntityAmbientCreature
     }
 
     /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
+     * returns if this entity triggers Block.onEntityWalking on the blocks they
+     * walk on. used for spiders and wolves to prevent them from trampling crops
      */
     protected boolean canTriggerWalking()
     {
@@ -199,13 +225,18 @@ public class EntityBat extends EntityAmbientCreature
     /**
      * Called when the mob is falling. Calculates and applies fall damage.
      */
-    protected void fall(float par1) {}
+    protected void fall(float par1)
+    {
+    }
 
     /**
-     * Takes in the distance the entity has fallen this tick and whether its on the ground to update the fall distance
-     * and deal fall damage if landing on the ground.  Args: distanceFallenThisTick, onGround
+     * Takes in the distance the entity has fallen this tick and whether its on
+     * the ground to update the fall distance and deal fall damage if landing on
+     * the ground. Args: distanceFallenThisTick, onGround
      */
-    protected void updateFallState(double par1, boolean par3) {}
+    protected void updateFallState(double par1, boolean par3)
+    {
+    }
 
     public boolean func_145773_az()
     {
@@ -238,7 +269,8 @@ public class EntityBat extends EntityAmbientCreature
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.dataWatcher.updateObject(16, Byte.valueOf(par1NBTTagCompound.getByte("BatFlags")));
+        this.dataWatcher.updateObject(16,
+                Byte.valueOf(par1NBTTagCompound.getByte("BatFlags")));
     }
 
     /**
@@ -247,11 +279,13 @@ public class EntityBat extends EntityAmbientCreature
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setByte("BatFlags", this.dataWatcher.getWatchableObjectByte(16));
+        par1NBTTagCompound.setByte("BatFlags",
+                this.dataWatcher.getWatchableObjectByte(16));
     }
 
     /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
+     * Checks if the entity's current position is a valid location to spawn this
+     * entity.
      */
     public boolean getCanSpawnHere()
     {
@@ -269,19 +303,18 @@ public class EntityBat extends EntityAmbientCreature
             byte var5 = 4;
             Calendar var6 = this.worldObj.getCurrentDate();
 
-            if ((var6.get(2) + 1 != 10 || var6.get(5) < 20) && (var6.get(2) + 1 != 11 || var6.get(5) > 3))
+            if ((var6.get(2) + 1 != 10 || var6.get(5) < 20)
+                    && (var6.get(2) + 1 != 11 || var6.get(5) > 3))
             {
-                if (this.rand.nextBoolean())
-                {
-                    return false;
-                }
+                if (this.rand.nextBoolean()) { return false; }
             }
             else
             {
                 var5 = 7;
             }
 
-            return var4 > this.rand.nextInt(var5) ? false : super.getCanSpawnHere();
+            return var4 > this.rand.nextInt(var5) ? false : super
+                    .getCanSpawnHere();
         }
     }
 }

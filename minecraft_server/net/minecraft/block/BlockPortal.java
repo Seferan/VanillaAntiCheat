@@ -13,7 +13,8 @@ import net.minecraft.world.World;
 
 public class BlockPortal extends BlockBreakable
 {
-    public static final int[][] field_150001_a = new int[][] {new int[0], {3, 1}, {2, 0}};
+    public static final int[][] field_150001_a = new int[][] {new int[0],
+            {3, 1}, {2, 0}};
     private static final String __OBFID = "CL_00000284";
 
     public BlockPortal()
@@ -25,22 +26,34 @@ public class BlockPortal extends BlockBreakable
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
+            int p_149674_4_, Random p_149674_5_)
     {
-        super.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
+        super.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_,
+                p_149674_5_);
 
-        if (p_149674_1_.provider.isSurfaceWorld() && p_149674_1_.getGameRules().getGameRuleBooleanValue("doMobSpawning") && p_149674_5_.nextInt(2000) < p_149674_1_.difficultySetting.func_151525_a())
+        if (p_149674_1_.provider.isSurfaceWorld()
+                && p_149674_1_.getGameRules().getGameRuleBooleanValue(
+                        "doMobSpawning")
+                && p_149674_5_.nextInt(2000) < p_149674_1_.difficultySetting
+                        .func_151525_a())
         {
             int var6;
 
-            for (var6 = p_149674_3_; !World.doesBlockHaveSolidTopSurface(p_149674_1_, p_149674_2_, var6, p_149674_4_) && var6 > 0; --var6)
+            for (var6 = p_149674_3_; !World.doesBlockHaveSolidTopSurface(
+                    p_149674_1_, p_149674_2_, var6, p_149674_4_) && var6 > 0; --var6)
             {
                 ;
             }
 
-            if (var6 > 0 && !p_149674_1_.getBlock(p_149674_2_, var6 + 1, p_149674_4_).isNormalCube())
+            if (var6 > 0
+                    && !p_149674_1_
+                            .getBlock(p_149674_2_, var6 + 1, p_149674_4_)
+                            .isNormalCube())
             {
-                Entity var7 = ItemMonsterPlacer.spawnCreature(p_149674_1_, 57, (double)p_149674_2_ + 0.5D, (double)var6 + 1.1D, (double)p_149674_4_ + 0.5D);
+                Entity var7 = ItemMonsterPlacer.spawnCreature(p_149674_1_, 57,
+                        (double)p_149674_2_ + 0.5D, (double)var6 + 1.1D,
+                        (double)p_149674_4_ + 0.5D);
 
                 if (var7 != null)
                 {
@@ -51,21 +64,26 @@ public class BlockPortal extends BlockBreakable
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
-     * cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this
+     * box can change after the pool has been cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_,
+            int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
         return null;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
+            int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        int var5 = func_149999_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
+        int var5 = func_149999_b(p_149719_1_.getBlockMetadata(p_149719_2_,
+                p_149719_3_, p_149719_4_));
 
         if (var5 == 0)
         {
-            if (p_149719_1_.getBlock(p_149719_2_ - 1, p_149719_3_, p_149719_4_) != this && p_149719_1_.getBlock(p_149719_2_ + 1, p_149719_3_, p_149719_4_) != this)
+            if (p_149719_1_.getBlock(p_149719_2_ - 1, p_149719_3_, p_149719_4_) != this
+                    && p_149719_1_.getBlock(p_149719_2_ + 1, p_149719_3_,
+                            p_149719_4_) != this)
             {
                 var5 = 2;
             }
@@ -76,7 +94,8 @@ public class BlockPortal extends BlockBreakable
 
             if (p_149719_1_ instanceof World && !((World)p_149719_1_).isClient)
             {
-                ((World)p_149719_1_).setBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_, var5, 2);
+                ((World)p_149719_1_).setBlockMetadata(p_149719_2_, p_149719_3_,
+                        p_149719_4_, var5, 2);
             }
         }
 
@@ -93,7 +112,8 @@ public class BlockPortal extends BlockBreakable
             var7 = 0.5F;
         }
 
-        this.setBlockBounds(0.5F - var6, 0.0F, 0.5F - var7, 0.5F + var6, 1.0F, 0.5F + var7);
+        this.setBlockBounds(0.5F - var6, 0.0F, 0.5F - var7, 0.5F + var6, 1.0F,
+                0.5F + var7);
     }
 
     public boolean renderAsNormalBlock()
@@ -101,10 +121,13 @@ public class BlockPortal extends BlockBreakable
         return false;
     }
 
-    public boolean func_150000_e(World p_150000_1_, int p_150000_2_, int p_150000_3_, int p_150000_4_)
+    public boolean func_150000_e(World p_150000_1_, int p_150000_2_,
+            int p_150000_3_, int p_150000_4_)
     {
-        BlockPortal.Size var5 = new BlockPortal.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 1);
-        BlockPortal.Size var6 = new BlockPortal.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 2);
+        BlockPortal.Size var5 = new BlockPortal.Size(p_150000_1_, p_150000_2_,
+                p_150000_3_, p_150000_4_, 1);
+        BlockPortal.Size var6 = new BlockPortal.Size(p_150000_1_, p_150000_2_,
+                p_150000_3_, p_150000_4_, 2);
 
         if (var5.func_150860_b() && var5.field_150864_e == 0)
         {
@@ -122,23 +145,34 @@ public class BlockPortal extends BlockBreakable
         }
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
+            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        int var6 = func_149999_b(p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_));
-        BlockPortal.Size var7 = new BlockPortal.Size(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 1);
-        BlockPortal.Size var8 = new BlockPortal.Size(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 2);
+        int var6 = func_149999_b(p_149695_1_.getBlockMetadata(p_149695_2_,
+                p_149695_3_, p_149695_4_));
+        BlockPortal.Size var7 = new BlockPortal.Size(p_149695_1_, p_149695_2_,
+                p_149695_3_, p_149695_4_, 1);
+        BlockPortal.Size var8 = new BlockPortal.Size(p_149695_1_, p_149695_2_,
+                p_149695_3_, p_149695_4_, 2);
 
-        if (var6 == 1 && (!var7.func_150860_b() || var7.field_150864_e < var7.field_150868_h * var7.field_150862_g))
+        if (var6 == 1
+                && (!var7.func_150860_b() || var7.field_150864_e < var7.field_150868_h
+                        * var7.field_150862_g))
         {
-            p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_, Blocks.air);
+            p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_,
+                    Blocks.air);
         }
-        else if (var6 == 2 && (!var8.func_150860_b() || var8.field_150864_e < var8.field_150868_h * var8.field_150862_g))
+        else if (var6 == 2
+                && (!var8.func_150860_b() || var8.field_150864_e < var8.field_150868_h
+                        * var8.field_150862_g))
         {
-            p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_, Blocks.air);
+            p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_,
+                    Blocks.air);
         }
         else if (var6 == 0 && !var7.func_150860_b() && !var8.func_150860_b())
         {
-            p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_, Blocks.air);
+            p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_,
+                    Blocks.air);
         }
     }
 
@@ -150,9 +184,11 @@ public class BlockPortal extends BlockBreakable
         return 0;
     }
 
-    public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity p_149670_5_)
+    public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_,
+            int p_149670_3_, int p_149670_4_, Entity p_149670_5_)
     {
-        if (p_149670_5_.ridingEntity == null && p_149670_5_.riddenByEntity == null)
+        if (p_149670_5_.ridingEntity == null
+                && p_149670_5_.riddenByEntity == null)
         {
             p_149670_5_.setInPortal();
         }
@@ -175,24 +211,34 @@ public class BlockPortal extends BlockBreakable
         private int field_150868_h;
         private static final String __OBFID = "CL_00000285";
 
-        public Size(World p_i45415_1_, int p_i45415_2_, int p_i45415_3_, int p_i45415_4_, int p_i45415_5_)
+        public Size(World p_i45415_1_, int p_i45415_2_, int p_i45415_3_,
+                int p_i45415_4_, int p_i45415_5_)
         {
             this.field_150867_a = p_i45415_1_;
             this.field_150865_b = p_i45415_5_;
             this.field_150863_d = BlockPortal.field_150001_a[p_i45415_5_][0];
             this.field_150866_c = BlockPortal.field_150001_a[p_i45415_5_][1];
 
-            for (int var6 = p_i45415_3_; p_i45415_3_ > var6 - 21 && p_i45415_3_ > 0 && this.func_150857_a(p_i45415_1_.getBlock(p_i45415_2_, p_i45415_3_ - 1, p_i45415_4_)); --p_i45415_3_)
+            for (int var6 = p_i45415_3_; p_i45415_3_ > var6 - 21
+                    && p_i45415_3_ > 0
+                    && this.func_150857_a(p_i45415_1_.getBlock(p_i45415_2_,
+                            p_i45415_3_ - 1, p_i45415_4_)); --p_i45415_3_)
             {
                 ;
             }
 
-            int var7 = this.func_150853_a(p_i45415_2_, p_i45415_3_, p_i45415_4_, this.field_150863_d) - 1;
+            int var7 = this.func_150853_a(p_i45415_2_, p_i45415_3_,
+                    p_i45415_4_, this.field_150863_d) - 1;
 
             if (var7 >= 0)
             {
-                this.field_150861_f = new ChunkCoordinates(p_i45415_2_ + var7 * Direction.offsetX[this.field_150863_d], p_i45415_3_, p_i45415_4_ + var7 * Direction.offsetZ[this.field_150863_d]);
-                this.field_150868_h = this.func_150853_a(this.field_150861_f.posX, this.field_150861_f.posY, this.field_150861_f.posZ, this.field_150866_c);
+                this.field_150861_f = new ChunkCoordinates(p_i45415_2_ + var7
+                        * Direction.offsetX[this.field_150863_d], p_i45415_3_,
+                        p_i45415_4_ + var7
+                                * Direction.offsetZ[this.field_150863_d]);
+                this.field_150868_h = this.func_150853_a(
+                        this.field_150861_f.posX, this.field_150861_f.posY,
+                        this.field_150861_f.posZ, this.field_150866_c);
 
                 if (this.field_150868_h < 2 || this.field_150868_h > 21)
                 {
@@ -207,7 +253,8 @@ public class BlockPortal extends BlockBreakable
             }
         }
 
-        protected int func_150853_a(int p_150853_1_, int p_150853_2_, int p_150853_3_, int p_150853_4_)
+        protected int func_150853_a(int p_150853_1_, int p_150853_2_,
+                int p_150853_3_, int p_150853_4_)
         {
             int var6 = Direction.offsetX[p_150853_4_];
             int var7 = Direction.offsetZ[p_150853_4_];
@@ -216,14 +263,16 @@ public class BlockPortal extends BlockBreakable
 
             for (var5 = 0; var5 < 22; ++var5)
             {
-                var8 = this.field_150867_a.getBlock(p_150853_1_ + var6 * var5, p_150853_2_, p_150853_3_ + var7 * var5);
+                var8 = this.field_150867_a.getBlock(p_150853_1_ + var6 * var5,
+                        p_150853_2_, p_150853_3_ + var7 * var5);
 
                 if (!this.func_150857_a(var8))
                 {
                     break;
                 }
 
-                Block var9 = this.field_150867_a.getBlock(p_150853_1_ + var6 * var5, p_150853_2_ - 1, p_150853_3_ + var7 * var5);
+                Block var9 = this.field_150867_a.getBlock(p_150853_1_ + var6
+                        * var5, p_150853_2_ - 1, p_150853_3_ + var7 * var5);
 
                 if (var9 != Blocks.obsidian)
                 {
@@ -231,7 +280,8 @@ public class BlockPortal extends BlockBreakable
                 }
             }
 
-            var8 = this.field_150867_a.getBlock(p_150853_1_ + var6 * var5, p_150853_2_, p_150853_3_ + var7 * var5);
+            var8 = this.field_150867_a.getBlock(p_150853_1_ + var6 * var5,
+                    p_150853_2_, p_150853_3_ + var7 * var5);
             return var8 == Blocks.obsidian ? var5 : 0;
         }
 
@@ -249,8 +299,12 @@ public class BlockPortal extends BlockBreakable
 
                 for (var2 = 0; var2 < this.field_150868_h; ++var2)
                 {
-                    var3 = this.field_150861_f.posX + var2 * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
-                    var4 = this.field_150861_f.posZ + var2 * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
+                    var3 = this.field_150861_f.posX
+                            + var2
+                            * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
+                    var4 = this.field_150861_f.posZ
+                            + var2
+                            * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
                     Block var5 = this.field_150867_a.getBlock(var3, var1, var4);
 
                     if (!this.func_150857_a(var5))
@@ -265,7 +319,13 @@ public class BlockPortal extends BlockBreakable
 
                     if (var2 == 0)
                     {
-                        var5 = this.field_150867_a.getBlock(var3 + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][0]], var1, var4 + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][0]]);
+                        var5 = this.field_150867_a
+                                .getBlock(
+                                        var3
+                                                + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][0]],
+                                        var1,
+                                        var4
+                                                + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][0]]);
 
                         if (var5 != Blocks.obsidian)
                         {
@@ -274,7 +334,13 @@ public class BlockPortal extends BlockBreakable
                     }
                     else if (var2 == this.field_150868_h - 1)
                     {
-                        var5 = this.field_150867_a.getBlock(var3 + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]], var1, var4 + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]]);
+                        var5 = this.field_150867_a
+                                .getBlock(
+                                        var3
+                                                + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]],
+                                        var1,
+                                        var4
+                                                + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]]);
 
                         if (var5 != Blocks.obsidian)
                         {
@@ -286,9 +352,13 @@ public class BlockPortal extends BlockBreakable
 
             for (var1 = 0; var1 < this.field_150868_h; ++var1)
             {
-                var2 = this.field_150861_f.posX + var1 * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
+                var2 = this.field_150861_f.posX
+                        + var1
+                        * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
                 var3 = this.field_150861_f.posY + this.field_150862_g;
-                var4 = this.field_150861_f.posZ + var1 * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
+                var4 = this.field_150861_f.posZ
+                        + var1
+                        * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
 
                 if (this.field_150867_a.getBlock(var2, var3, var4) != Blocks.obsidian)
                 {
@@ -312,25 +382,32 @@ public class BlockPortal extends BlockBreakable
 
         protected boolean func_150857_a(Block p_150857_1_)
         {
-            return p_150857_1_.blockMaterial == Material.air || p_150857_1_ == Blocks.fire || p_150857_1_ == Blocks.portal;
+            return p_150857_1_.blockMaterial == Material.air
+                    || p_150857_1_ == Blocks.fire
+                    || p_150857_1_ == Blocks.portal;
         }
 
         public boolean func_150860_b()
         {
-            return this.field_150861_f != null && this.field_150868_h >= 2 && this.field_150868_h <= 21 && this.field_150862_g >= 3 && this.field_150862_g <= 21;
+            return this.field_150861_f != null && this.field_150868_h >= 2
+                    && this.field_150868_h <= 21 && this.field_150862_g >= 3
+                    && this.field_150862_g <= 21;
         }
 
         public void func_150859_c()
         {
             for (int var1 = 0; var1 < this.field_150868_h; ++var1)
             {
-                int var2 = this.field_150861_f.posX + Direction.offsetX[this.field_150866_c] * var1;
-                int var3 = this.field_150861_f.posZ + Direction.offsetZ[this.field_150866_c] * var1;
+                int var2 = this.field_150861_f.posX
+                        + Direction.offsetX[this.field_150866_c] * var1;
+                int var3 = this.field_150861_f.posZ
+                        + Direction.offsetZ[this.field_150866_c] * var1;
 
                 for (int var4 = 0; var4 < this.field_150862_g; ++var4)
                 {
                     int var5 = this.field_150861_f.posY + var4;
-                    this.field_150867_a.setBlock(var2, var5, var3, Blocks.portal, this.field_150865_b, 2);
+                    this.field_150867_a.setBlock(var2, var5, var3,
+                            Blocks.portal, this.field_150865_b, 2);
                 }
             }
         }

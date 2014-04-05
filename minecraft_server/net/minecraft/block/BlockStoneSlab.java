@@ -9,7 +9,9 @@ import net.minecraft.item.ItemStack;
 
 public class BlockStoneSlab extends BlockSlab
 {
-    public static final String[] field_150006_b = new String[] {"stone", "sand", "wood", "cobble", "brick", "smoothStoneBrick", "netherBrick", "quartz"};
+    public static final String[] field_150006_b = new String[] {"stone",
+            "sand", "wood", "cobble", "brick", "smoothStoneBrick",
+            "netherBrick", "quartz"};
     private static final String __OBFID = "CL_00000320";
 
     public BlockStoneSlab(boolean p_i45431_1_)
@@ -18,18 +20,22 @@ public class BlockStoneSlab extends BlockSlab
         this.setcreativeTab(CreativeTabs.tabBlock);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
+            int p_149650_3_)
     {
         return Item.getItemFromBlock(Blocks.stone_slab);
     }
 
     /**
-     * Returns an item stack containing a single instance of the current block type. 'i' is the block's subtype/damage
-     * and is ignored for blocks which do not support subtypes. Blocks which cannot be harvested should return null.
+     * Returns an item stack containing a single instance of the current block
+     * type. 'i' is the block's subtype/damage and is ignored for blocks which
+     * do not support subtypes. Blocks which cannot be harvested should return
+     * null.
      */
     protected ItemStack createStackedBlock(int p_149644_1_)
     {
-        return new ItemStack(Item.getItemFromBlock(Blocks.stone_slab), 2, p_149644_1_ & 7);
+        return new ItemStack(Item.getItemFromBlock(Blocks.stone_slab), 2,
+                p_149644_1_ & 7);
     }
 
     public String func_150002_b(int p_150002_1_)

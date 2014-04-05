@@ -11,7 +11,9 @@ public class TileEntityFlowerPot extends TileEntity
     private int field_145968_i;
     private static final String __OBFID = "CL_00000356";
 
-    public TileEntityFlowerPot() {}
+    public TileEntityFlowerPot()
+    {
+    }
 
     public TileEntityFlowerPot(Item p_i45442_1_, int p_i45442_2_)
     {
@@ -40,7 +42,8 @@ public class TileEntityFlowerPot extends TileEntity
     {
         NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 5, var1);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord,
+                this.zCoord, 5, var1);
     }
 
     public void func_145964_a(Item p_145964_1_, int p_145964_2_)

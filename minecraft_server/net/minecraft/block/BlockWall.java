@@ -9,7 +9,8 @@ import net.minecraft.world.World;
 
 public class BlockWall extends Block
 {
-    public static final String[] field_150092_a = new String[] {"normal", "mossy"};
+    public static final String[] field_150092_a = new String[] {"normal",
+            "mossy"};
     private static final String __OBFID = "CL_00000331";
 
     public BlockWall(Block p_i45435_1_)
@@ -34,7 +35,8 @@ public class BlockWall extends Block
         return false;
     }
 
-    public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_, int p_149655_3_, int p_149655_4_)
+    public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_,
+            int p_149655_3_, int p_149655_4_)
     {
         return false;
     }
@@ -44,12 +46,17 @@ public class BlockWall extends Block
         return false;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
+            int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        boolean var5 = this.func_150091_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ - 1);
-        boolean var6 = this.func_150091_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ + 1);
-        boolean var7 = this.func_150091_e(p_149719_1_, p_149719_2_ - 1, p_149719_3_, p_149719_4_);
-        boolean var8 = this.func_150091_e(p_149719_1_, p_149719_2_ + 1, p_149719_3_, p_149719_4_);
+        boolean var5 = this.func_150091_e(p_149719_1_, p_149719_2_,
+                p_149719_3_, p_149719_4_ - 1);
+        boolean var6 = this.func_150091_e(p_149719_1_, p_149719_2_,
+                p_149719_3_, p_149719_4_ + 1);
+        boolean var7 = this.func_150091_e(p_149719_1_, p_149719_2_ - 1,
+                p_149719_3_, p_149719_4_);
+        boolean var8 = this.func_150091_e(p_149719_1_, p_149719_2_ + 1,
+                p_149719_3_, p_149719_4_);
         float var9 = 0.25F;
         float var10 = 0.75F;
         float var11 = 0.25F;
@@ -93,24 +100,33 @@ public class BlockWall extends Block
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
-     * cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this
+     * box can change after the pool has been cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_,
+            int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_,
+                p_149668_4_);
         this.maxY = 1.5D;
-        return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_,
+                p_149668_3_, p_149668_4_);
     }
 
-    public boolean func_150091_e(IBlockAccess p_150091_1_, int p_150091_2_, int p_150091_3_, int p_150091_4_)
+    public boolean func_150091_e(IBlockAccess p_150091_1_, int p_150091_2_,
+            int p_150091_3_, int p_150091_4_)
     {
-        Block var5 = p_150091_1_.getBlock(p_150091_2_, p_150091_3_, p_150091_4_);
-        return var5 != this && var5 != Blocks.fence_gate ? (var5.blockMaterial.isOpaque() && var5.renderAsNormalBlock() ? var5.blockMaterial != Material.field_151572_C : false) : true;
+        Block var5 = p_150091_1_
+                .getBlock(p_150091_2_, p_150091_3_, p_150091_4_);
+        return var5 != this && var5 != Blocks.fence_gate ? (var5.blockMaterial
+                .isOpaque() && var5.renderAsNormalBlock() ? var5.blockMaterial != Material.field_151572_C
+                : false)
+                : true;
     }
 
     /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
+     * Determines the damage on the item the block drops. Used in cloth and
+     * wood.
      */
     public int damageDropped(int p_149692_1_)
     {

@@ -20,7 +20,8 @@ public abstract class EntityWaterMob extends EntityCreature implements IAnimals
     }
 
     /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
+     * Checks if the entity's current position is a valid location to spawn this
+     * entity.
      */
     public boolean getCanSpawnHere()
     {
@@ -28,7 +29,8 @@ public abstract class EntityWaterMob extends EntityCreature implements IAnimals
     }
 
     /**
-     * Get number of ticks, at least during which the living entity will be silent.
+     * Get number of ticks, at least during which the living entity will be
+     * silent.
      */
     public int getTalkInterval()
     {

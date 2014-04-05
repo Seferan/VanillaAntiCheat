@@ -17,36 +17,50 @@ public class EntityAINearestAttackableTarget extends EntityAITarget
     private final EntityAINearestAttackableTarget.Sorter theNearestAttackableTargetSorter;
 
     /**
-     * This filter is applied to the Entity search.  Only matching entities will be targetted.  (null -> no
-     * restrictions)
+     * This filter is applied to the Entity search. Only matching entities will
+     * be targetted. (null -> no restrictions)
      */
     private final IEntitySelector targetEntitySelector;
     private EntityLivingBase targetEntity;
     private static final String __OBFID = "CL_00001620";
 
-    public EntityAINearestAttackableTarget(EntityCreature par1EntityCreature, Class par2Class, int par3, boolean par4)
+    public EntityAINearestAttackableTarget(EntityCreature par1EntityCreature,
+            Class par2Class, int par3, boolean par4)
     {
         this(par1EntityCreature, par2Class, par3, par4, false);
     }
 
-    public EntityAINearestAttackableTarget(EntityCreature par1EntityCreature, Class par2Class, int par3, boolean par4, boolean par5)
+    public EntityAINearestAttackableTarget(EntityCreature par1EntityCreature,
+            Class par2Class, int par3, boolean par4, boolean par5)
     {
-        this(par1EntityCreature, par2Class, par3, par4, par5, (IEntitySelector)null);
+        this(par1EntityCreature, par2Class, par3, par4, par5,
+                (IEntitySelector)null);
     }
 
-    public EntityAINearestAttackableTarget(EntityCreature par1EntityCreature, Class par2Class, int par3, boolean par4, boolean par5, final IEntitySelector par6IEntitySelector)
+    public EntityAINearestAttackableTarget(EntityCreature par1EntityCreature,
+            Class par2Class, int par3, boolean par4, boolean par5,
+            final IEntitySelector par6IEntitySelector)
     {
         super(par1EntityCreature, par4, par5);
         this.targetClass = par2Class;
         this.targetChance = par3;
-        this.theNearestAttackableTargetSorter = new EntityAINearestAttackableTarget.Sorter(par1EntityCreature);
+        this.theNearestAttackableTargetSorter = new EntityAINearestAttackableTarget.Sorter(
+                par1EntityCreature);
         this.setMutexBits(1);
         this.targetEntitySelector = new IEntitySelector()
         {
             private static final String __OBFID = "CL_00001621";
+
             public boolean isEntityApplicable(Entity par1Entity)
             {
-                return !(par1Entity instanceof EntityLivingBase) ? false : (par6IEntitySelector != null && !par6IEntitySelector.isEntityApplicable(par1Entity) ? false : EntityAINearestAttackableTarget.this.isSuitableTarget((EntityLivingBase)par1Entity, false));
+                return !(par1Entity instanceof EntityLivingBase) ? false
+                        : (par6IEntitySelector != null
+                                && !par6IEntitySelector
+                                        .isEntityApplicable(par1Entity) ? false
+                                : EntityAINearestAttackableTarget.this
+                                        .isSuitableTarget(
+                                                (EntityLivingBase)par1Entity,
+                                                false));
             }
         };
     }
@@ -56,14 +70,18 @@ public class EntityAINearestAttackableTarget extends EntityAITarget
      */
     public boolean shouldExecute()
     {
-        if (this.targetChance > 0 && this.taskOwner.getRNG().nextInt(this.targetChance) != 0)
+        if (this.targetChance > 0
+                && this.taskOwner.getRNG().nextInt(this.targetChance) != 0)
         {
             return false;
         }
         else
         {
             double var1 = this.getTargetDistance();
-            List var3 = this.taskOwner.worldObj.selectEntitiesWithinAABB(this.targetClass, this.taskOwner.boundingBox.expand(var1, 4.0D, var1), this.targetEntitySelector);
+            List var3 = this.taskOwner.worldObj.selectEntitiesWithinAABB(
+                    this.targetClass,
+                    this.taskOwner.boundingBox.expand(var1, 4.0D, var1),
+                    this.targetEntitySelector);
             Collections.sort(var3, this.theNearestAttackableTargetSorter);
 
             if (var3.isEmpty())

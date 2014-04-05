@@ -9,8 +9,9 @@ import java.util.List;
 public abstract class ChatComponentStyle implements IChatComponent
 {
     /**
-     * The later siblings of this component.  If this component turns the text bold, that will apply to all the siblings
-     * until a later sibling turns the text something else.
+     * The later siblings of this component. If this component turns the text
+     * bold, that will apply to all the siblings until a later sibling turns the
+     * text something else.
      */
     protected List siblings = Lists.newArrayList();
     private ChatStyle style;
@@ -75,12 +76,14 @@ public abstract class ChatComponentStyle implements IChatComponent
 
     public Iterator iterator()
     {
-        return Iterators.concat(Iterators.forArray(new ChatComponentStyle[] {this}), createDeepCopyIterator(this.siblings));
+        return Iterators.concat(
+                Iterators.forArray(new ChatComponentStyle[] {this}),
+                createDeepCopyIterator(this.siblings));
     }
 
     /**
-     * Gets the text of this component, without any special formatting codes added.  TODO: why is this two different
-     * methods?
+     * Gets the text of this component, without any special formatting codes
+     * added. TODO: why is this two different methods?
      */
     public final String getUnformattedText()
     {
@@ -97,32 +100,38 @@ public abstract class ChatComponentStyle implements IChatComponent
     }
 
     /**
-     * Creates an iterator that iterates over the given components, returning deep copies of each component in turn so
-     * that the properties of the returned objects will remain externally consistent after being returned.
+     * Creates an iterator that iterates over the given components, returning
+     * deep copies of each component in turn so that the properties of the
+     * returned objects will remain externally consistent after being returned.
      */
     public static Iterator createDeepCopyIterator(Iterable p_150262_0_)
     {
-        Iterator var1 = Iterators.concat(Iterators.transform(p_150262_0_.iterator(), new Function()
-        {
-            private static final String __OBFID = "CL_00001258";
-            public Iterator apply(IChatComponent p_150665_1_)
-            {
-                return p_150665_1_.iterator();
-            }
-            public Object apply(Object p_apply_1_)
-            {
-                return this.apply((IChatComponent)p_apply_1_);
-            }
-        }));
+        Iterator var1 = Iterators.concat(Iterators.transform(
+                p_150262_0_.iterator(), new Function()
+                {
+                    private static final String __OBFID = "CL_00001258";
+
+                    public Iterator apply(IChatComponent p_150665_1_)
+                    {
+                        return p_150665_1_.iterator();
+                    }
+
+                    public Object apply(Object p_apply_1_)
+                    {
+                        return this.apply((IChatComponent)p_apply_1_);
+                    }
+                }));
         var1 = Iterators.transform(var1, new Function()
         {
             private static final String __OBFID = "CL_00001259";
+
             public IChatComponent apply(IChatComponent p_150666_1_)
             {
                 IChatComponent var2 = p_150666_1_.createCopy();
                 var2.setChatStyle(var2.getChatStyle().createDeepCopy());
                 return var2;
             }
+
             public Object apply(Object p_apply_1_)
             {
                 return this.apply((IChatComponent)p_apply_1_);
@@ -144,7 +153,8 @@ public abstract class ChatComponentStyle implements IChatComponent
         else
         {
             ChatComponentStyle var2 = (ChatComponentStyle)par1Obj;
-            return this.siblings.equals(var2.siblings) && this.getChatStyle().equals(var2.getChatStyle());
+            return this.siblings.equals(var2.siblings)
+                    && this.getChatStyle().equals(var2.getChatStyle());
         }
     }
 
@@ -155,6 +165,7 @@ public abstract class ChatComponentStyle implements IChatComponent
 
     public String toString()
     {
-        return "BaseComponent{style=" + this.style + ", siblings=" + this.siblings + '}';
+        return "BaseComponent{style=" + this.style + ", siblings="
+                + this.siblings + '}';
     }
 }

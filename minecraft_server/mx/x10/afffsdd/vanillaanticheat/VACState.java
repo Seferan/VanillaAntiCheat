@@ -1,10 +1,11 @@
 package mx.x10.afffsdd.vanillaanticheat;
 
-public class VACState {
+public class VACState
+{
     // ANTI-FASTBREAK
-	// ===============================================================================
-	
-    // The number of ticks it ACTUALLY took for the player to break the block 
+    // ===============================================================================
+
+    // The number of ticks it ACTUALLY took for the player to break the block
     private static int ticksTakenToBreakBlock = 0;
     private static boolean isBreakingBlock = false;
     // Number of times the player broke a block too quickly
@@ -15,73 +16,73 @@ public class VACState {
     public static void updateState()
     {
         if (builtBlockCount > 0) --builtBlockCount;
-        if(isBreakingBlock) ticksTakenToBreakBlock++;
+        if (isBreakingBlock) ticksTakenToBreakBlock++;
     }
-    
+
     public static void resetDigStatus()
     {
-    	isBreakingBlock = false;
+        isBreakingBlock = false;
     }
-    
+
     public static void startDiggingBlock()
     {
-    	ticksTakenToBreakBlock = 0;
-    	isBreakingBlock = true;
+        ticksTakenToBreakBlock = 0;
+        isBreakingBlock = true;
     }
-    
+
     public static void incrementTotalDeviations()
     {
-    	totalDeviations++;
+        totalDeviations++;
     }
-    
+
     public static void incrementTotalMined()
     {
-    	totalMined++;
+        totalMined++;
         // Reset the ratio periodically
-        if(totalMined >= 100)
+        if (totalMined >= 100)
         {
-        	totalMined = 0;
-        	totalDeviations = 0;
+            totalMined = 0;
+            totalDeviations = 0;
         }
     }
-    
+
     public static boolean isTotalMinedNonzero()
     {
-    	return totalMined > 0;
+        return totalMined > 0;
     }
-    
+
     public static int getTicksTakenToBreakBlock()
     {
-    	return ticksTakenToBreakBlock;
+        return ticksTakenToBreakBlock;
     }
-    
+
     public static double getDeviationRatio()
     {
-    	return totalDeviations / totalMined;
+        return totalDeviations / totalMined;
     }
-    
+
     // ANTI-FASTBUILD
- 	// ===============================================================================
-	private static int builtBlockCount = 0;
+    // ===============================================================================
+    private static int builtBlockCount = 0;
     private static boolean kickedForBuildhack = false;
-    
+
     public static boolean isAlreadyKicked()
     {
-    	return kickedForBuildhack;
+        return kickedForBuildhack;
     }
-    
+
     public static void kickMe()
     {
-    	kickedForBuildhack = true;
+        kickedForBuildhack = true;
     }
-    
+
     public static void incrementBuildCount(int i)
     {
-    	builtBlockCount += i;
+        builtBlockCount += i;
     }
-    
+
     public static int getBuildCount()
     {
-    	return builtBlockCount;
+        return builtBlockCount;
     }
 }

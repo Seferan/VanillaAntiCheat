@@ -67,7 +67,8 @@ import net.minecraft.network.play.server.S40PacketDisconnect;
 public interface INetHandlerPlayClient extends INetHandler
 {
     /**
-     * Spawns an instance of the objecttype indicated by the packet and sets its position and momentum
+     * Spawns an instance of the objecttype indicated by the packet and sets its
+     * position and momentum
      */
     void handleSpawnObject(S0EPacketSpawnObject var1);
 
@@ -82,13 +83,15 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleSpawnGlobalEntity(S2CPacketSpawnGlobalEntity var1);
 
     /**
-     * Spawns the mob entity at the specified location, with the specified rotation, momentum and type. Updates the
-     * entities Datawatchers with the entity metadata specified in the packet
+     * Spawns the mob entity at the specified location, with the specified
+     * rotation, momentum and type. Updates the entities Datawatchers with the
+     * entity metadata specified in the packet
      */
     void handleSpawnMob(S0FPacketSpawnMob var1);
 
     /**
-     * May create a scoreboard objective, remove an objective from the scoreboard or update an objectives' displayname
+     * May create a scoreboard objective, remove an objective from the
+     * scoreboard or update an objectives' displayname
      */
     void handleScoreboardObjective(S3BPacketScoreboardObjective var1);
 
@@ -98,13 +101,15 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleSpawnPainting(S10PacketSpawnPainting var1);
 
     /**
-     * Handles the creation of a nearby player entity, sets the position and held item
+     * Handles the creation of a nearby player entity, sets the position and
+     * held item
      */
     void handleSpawnPlayer(S0CPacketSpawnPlayer var1);
 
     /**
-     * Renders a specified animation: Waking up a player, a living entity swinging its currently held item, being hurt
-     * or receiving a critical hit by normal or magical means
+     * Renders a specified animation: Waking up a player, a living entity
+     * swinging its currently held item, being hurt or receiving a critical hit
+     * by normal or magical means
      */
     void handleAnimation(S0BPacketAnimation var1);
 
@@ -114,30 +119,34 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleStatistics(S37PacketStatistics var1);
 
     /**
-     * Updates all registered IWorldAccess instances with destroyBlockInWorldPartially
+     * Updates all registered IWorldAccess instances with
+     * destroyBlockInWorldPartially
      */
     void handleBlockBreakAnim(S25PacketBlockBreakAnim var1);
 
     /**
-     * Creates a sign in the specified location if it didn't exist and opens the GUI to edit its text
+     * Creates a sign in the specified location if it didn't exist and opens the
+     * GUI to edit its text
      */
     void handleSignEditorOpen(S36PacketSignEditorOpen var1);
 
     /**
-     * Updates the NBTTagCompound metadata of instances of the following entitytypes: Mob spawners, command blocks,
-     * beacons, skulls, flowerpot
+     * Updates the NBTTagCompound metadata of instances of the following
+     * entitytypes: Mob spawners, command blocks, beacons, skulls, flowerpot
      */
     void handleUpdateTileEntity(S35PacketUpdateTileEntity var1);
 
     /**
-     * Triggers Block.onBlockEventReceived, which is implemented in BlockPistonBase for extension/retraction, BlockNote
-     * for setting the instrument (including audiovisual feedback) and in BlockContainer to set the number of players
-     * accessing a (Ender)Chest
+     * Triggers Block.onBlockEventReceived, which is implemented in
+     * BlockPistonBase for extension/retraction, BlockNote for setting the
+     * instrument (including audiovisual feedback) and in BlockContainer to set
+     * the number of players accessing a (Ender)Chest
      */
     void handleBlockAction(S24PacketBlockAction var1);
 
     /**
-     * Updates the block and metadata and generates a blockupdate (and notify the clients)
+     * Updates the block and metadata and generates a blockupdate (and notify
+     * the clients)
      */
     void handleBlockChange(S23PacketBlockChange var1);
 
@@ -152,21 +161,22 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleTabComplete(S3APacketTabComplete var1);
 
     /**
-     * Received from the servers PlayerManager if between 1 and 64 blocks in a chunk are changed. If only one block
-     * requires an update, the server sends S23PacketBlockChange and if 64 or more blocks are changed, the server sends
-     * S21PacketChunkData
+     * Received from the servers PlayerManager if between 1 and 64 blocks in a
+     * chunk are changed. If only one block requires an update, the server sends
+     * S23PacketBlockChange and if 64 or more blocks are changed, the server
+     * sends S21PacketChunkData
      */
     void handleMultiBlockChange(S22PacketMultiBlockChange var1);
 
     /**
-     * Updates the worlds MapStorage with the specified MapData for the specified map-identifier and invokes a
-     * MapItemRenderer for it
+     * Updates the worlds MapStorage with the specified MapData for the
+     * specified map-identifier and invokes a MapItemRenderer for it
      */
     void handleMaps(S34PacketMaps var1);
 
     /**
-     * Verifies that the server and client are synchronized with respect to the inventory/container opened by the player
-     * and confirms if it is the case.
+     * Verifies that the server and client are synchronized with respect to the
+     * inventory/container opened by the player and confirms if it is the case.
      */
     void handleConfirmTransaction(S32PacketConfirmTransaction var1);
 
@@ -176,13 +186,15 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleCloseWindow(S2EPacketCloseWindow var1);
 
     /**
-     * Handles the placement of a specified ItemStack in a specified container/inventory slot
+     * Handles the placement of a specified ItemStack in a specified
+     * container/inventory slot
      */
     void handleWindowItems(S30PacketWindowItems var1);
 
     /**
-     * Displays a GUI by ID. In order starting from id 0: Chest, Workbench, Furnace, Dispenser, Enchanting table,
-     * Brewing stand, Villager merchant, Beacon, Anvil, Hopper, Dropper, Horse
+     * Displays a GUI by ID. In order starting from id 0: Chest, Workbench,
+     * Furnace, Dispenser, Enchanting table, Brewing stand, Villager merchant,
+     * Beacon, Anvil, Hopper, Dropper, Horse
      */
     void handleOpenWindow(S2DPacketOpenWindow var1);
 
@@ -192,15 +204,18 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleWindowProperty(S31PacketWindowProperty var1);
 
     /**
-     * Handles pickin up an ItemStack or dropping one in your inventory or an open (non-creative) container
+     * Handles pickin up an ItemStack or dropping one in your inventory or an
+     * open (non-creative) container
      */
     void handleSetSlot(S2FPacketSetSlot var1);
 
     /**
-     * Handles packets that have room for a channel specification. Vanilla implemented channels are "MC|TrList" to
-     * acquire a MerchantRecipeList trades for a villager merchant, "MC|Brand" which sets the server brand? on the
-     * player instance and finally "MC|RPack" which the server uses to communicate the identifier of the default server
-     * resourcepack for the client to load.
+     * Handles packets that have room for a channel specification. Vanilla
+     * implemented channels are "MC|TrList" to acquire a MerchantRecipeList
+     * trades for a villager merchant, "MC|Brand" which sets the server brand?
+     * on the player instance and finally "MC|RPack" which the server uses to
+     * communicate the identifier of the default server resourcepack for the
+     * client to load.
      */
     void handleCustomPayload(S3FPacketCustomPayload var1);
 
@@ -210,23 +225,27 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleDisconnect(S40PacketDisconnect var1);
 
     /**
-     * Retrieves the player identified by the packet, puts him to sleep if possible (and flags whether all players are
-     * asleep)
+     * Retrieves the player identified by the packet, puts him to sleep if
+     * possible (and flags whether all players are asleep)
      */
     void handleUseBed(S0APacketUseBed var1);
 
     /**
-     * Invokes the entities' handleUpdateHealth method which is implemented in LivingBase (hurt/death),
-     * MinecartMobSpawner (spawn delay), FireworkRocket & MinecartTNT (explosion), IronGolem (throwing,...), Witch
-     * (spawn particles), Zombie (villager transformation), Animal (breeding mode particles), Horse (breeding/smoke
-     * particles), Sheep (...), Tameable (...), Villager (particles for breeding mode, angry and happy), Wolf (...)
+     * Invokes the entities' handleUpdateHealth method which is implemented in
+     * LivingBase (hurt/death), MinecartMobSpawner (spawn delay), FireworkRocket
+     * & MinecartTNT (explosion), IronGolem (throwing,...), Witch (spawn
+     * particles), Zombie (villager transformation), Animal (breeding mode
+     * particles), Horse (breeding/smoke particles), Sheep (...), Tameable
+     * (...), Villager (particles for breeding mode, angry and happy), Wolf
+     * (...)
      */
     void handleEntityStatus(S19PacketEntityStatus var1);
 
     void handleEntityAttach(S1BPacketEntityAttach var1);
 
     /**
-     * Initiates a new explosion (sound, particles, drop spawn) for the affected blocks indicated by the packet.
+     * Initiates a new explosion (sound, particles, drop spawn) for the affected
+     * blocks indicated by the packet.
      */
     void handleExplosion(S27PacketExplosion var1);
 
@@ -235,7 +254,8 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleKeepAlive(S00PacketKeepAlive var1);
 
     /**
-     * Updates the specified chunk with the supplied data, marks it for re-rendering and lighting recalculation
+     * Updates the specified chunk with the supplied data, marks it for
+     * re-rendering and lighting recalculation
      */
     void handleChunkData(S21PacketChunkData var1);
 
@@ -244,28 +264,31 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleEffect(S28PacketEffect var1);
 
     /**
-     * Registers some server properties (gametype,hardcore-mode,terraintype,difficulty,player limit), creates a new
-     * WorldClient and sets the player initial dimension
+     * Registers some server properties
+     * (gametype,hardcore-mode,terraintype,difficulty,player limit), creates a
+     * new WorldClient and sets the player initial dimension
      */
     void handleJoinGame(S01PacketJoinGame var1);
 
     /**
-     * Updates the specified entity's position by the specified relative moment and absolute rotation. Note that
-     * subclassing of the packet allows for the specification of a subset of this data (e.g. only rel. position, abs.
+     * Updates the specified entity's position by the specified relative moment
+     * and absolute rotation. Note that subclassing of the packet allows for the
+     * specification of a subset of this data (e.g. only rel. position, abs.
      * rotation or both).
      */
     void handleEntityMovement(S14PacketEntity var1);
 
     /**
-     * Handles changes in player positioning and rotation such as when travelling to a new dimension, (re)spawning,
-     * mounting horses etc. Seems to immediately reply to the server with the clients post-processing perspective on the
-     * player positioning
+     * Handles changes in player positioning and rotation such as when
+     * travelling to a new dimension, (re)spawning, mounting horses etc. Seems
+     * to immediately reply to the server with the clients post-processing
+     * perspective on the player positioning
      */
     void handlePlayerPosLook(S08PacketPlayerPosLook var1);
 
     /**
-     * Spawns a specified number of particles at the specified location with a randomized displacement according to
-     * specified bounds
+     * Spawns a specified number of particles at the specified location with a
+     * randomized displacement according to specified bounds
      */
     void handleParticles(S2APacketParticles var1);
 
@@ -274,9 +297,10 @@ public interface INetHandlerPlayClient extends INetHandler
     void handlePlayerListItem(S38PacketPlayerListItem var1);
 
     /**
-     * Locally eliminates the entities. Invoked by the server when the items are in fact destroyed, or the player is no
-     * longer registered as required to monitor them. The latter  happens when distance between the player and item
-     * increases beyond a certain treshold (typically the viewing distance)
+     * Locally eliminates the entities. Invoked by the server when the items are
+     * in fact destroyed, or the player is no longer registered as required to
+     * monitor them. The latter happens when distance between the player and
+     * item increases beyond a certain treshold (typically the viewing distance)
      */
     void handleDestroyEntities(S13PacketDestroyEntities var1);
 
@@ -285,8 +309,8 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleRespawn(S07PacketRespawn var1);
 
     /**
-     * Updates the direction in which the specified entity is looking, normally this head rotation is independent of the
-     * rotation of the entity itself
+     * Updates the direction in which the specified entity is looking, normally
+     * this head rotation is independent of the rotation of the entity itself
      */
     void handleEntityHeadLook(S19PacketEntityHeadLook var1);
 
@@ -296,14 +320,15 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleHeldItemChange(S09PacketHeldItemChange var1);
 
     /**
-     * Removes or sets the ScoreObjective to be displayed at a particular scoreboard position (list, sidebar, below
-     * name)
+     * Removes or sets the ScoreObjective to be displayed at a particular
+     * scoreboard position (list, sidebar, below name)
      */
     void handleDisplayScoreboard(S3DPacketDisplayScoreboard var1);
 
     /**
-     * Invoked when the server registers new proximate objects in your watchlist or when objects in your watchlist have
-     * changed -> Registers any changes locally
+     * Invoked when the server registers new proximate objects in your watchlist
+     * or when objects in your watchlist have changed -> Registers any changes
+     * locally
      */
     void handleEntityMetadata(S1CPacketEntityMetadata var1);
 
@@ -319,13 +344,15 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleUpdateHealth(S06PacketUpdateHealth var1);
 
     /**
-     * Updates a team managed by the scoreboard: Create/Remove the team registration, Register/Remove the player-team-
-     * memberships, Set team displayname/prefix/suffix and/or whether friendly fire is enabled
+     * Updates a team managed by the scoreboard: Create/Remove the team
+     * registration, Register/Remove the player-team- memberships, Set team
+     * displayname/prefix/suffix and/or whether friendly fire is enabled
      */
     void handleTeams(S3EPacketTeams var1);
 
     /**
-     * Either updates the score with a specified value or removes the score for an objective
+     * Either updates the score with a specified value or removes the score for
+     * an objective
      */
     void handleUpdateScore(S3CPacketUpdateScore var1);
 
@@ -348,9 +375,11 @@ public interface INetHandlerPlayClient extends INetHandler
     void handleEntityTeleport(S18PacketEntityTeleport var1);
 
     /**
-     * Updates en entity's attributes and their respective modifiers, which are used for speed bonusses (player
-     * sprinting, animals fleeing, baby speed), weapon/tool attackDamage, hostiles followRange randomization, zombie
-     * maxHealth and knockback resistance as well as reinforcement spawning chance.
+     * Updates en entity's attributes and their respective modifiers, which are
+     * used for speed bonusses (player sprinting, animals fleeing, baby speed),
+     * weapon/tool attackDamage, hostiles followRange randomization, zombie
+     * maxHealth and knockback resistance as well as reinforcement spawning
+     * chance.
      */
     void handleEntityProperties(S20PacketEntityProperties var1);
 

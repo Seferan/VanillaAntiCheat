@@ -41,7 +41,8 @@ public class BlockBrewingStand extends BlockContainer
     }
 
     /**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
+     * Returns a new instance of a block's tile entity class. Called on placing
+     * the block.
      */
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
@@ -53,12 +54,16 @@ public class BlockBrewingStand extends BlockContainer
         return false;
     }
 
-    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
+    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_,
+            int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_,
+            List p_149743_6_, Entity p_149743_7_)
     {
         this.setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.875F, 0.5625F);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
+                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         this.setBlockBoundsForItemRender();
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
+                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
     }
 
     /**
@@ -72,7 +77,10 @@ public class BlockBrewingStand extends BlockContainer
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
+            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
+            int p_149727_6_, float p_149727_7_, float p_149727_8_,
+            float p_149727_9_)
     {
         if (p_149727_1_.isClient)
         {
@@ -80,7 +88,8 @@ public class BlockBrewingStand extends BlockContainer
         }
         else
         {
-            TileEntityBrewingStand var10 = (TileEntityBrewingStand)p_149727_1_.getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
+            TileEntityBrewingStand var10 = (TileEntityBrewingStand)p_149727_1_
+                    .getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
 
             if (var10 != null)
             {
@@ -94,17 +103,23 @@ public class BlockBrewingStand extends BlockContainer
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
+            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
+            ItemStack p_149689_6_)
     {
         if (p_149689_6_.hasDisplayName())
         {
-            ((TileEntityBrewingStand)p_149689_1_.getTileEntity(p_149689_2_, p_149689_3_, p_149689_4_)).func_145937_a(p_149689_6_.getDisplayName());
+            ((TileEntityBrewingStand)p_149689_1_.getTileEntity(p_149689_2_,
+                    p_149689_3_, p_149689_4_)).func_145937_a(p_149689_6_
+                    .getDisplayName());
         }
     }
 
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_,
+            int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        TileEntity var7 = p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
+        TileEntity var7 = p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_,
+                p_149749_4_);
 
         if (var7 instanceof TileEntityBrewingStand)
         {
@@ -130,21 +145,31 @@ public class BlockBrewingStand extends BlockContainer
                         }
 
                         var10.stackSize -= var14;
-                        EntityItem var15 = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + var11), (double)((float)p_149749_3_ + var12), (double)((float)p_149749_4_ + var13), new ItemStack(var10.getItem(), var14, var10.getItemDamage()));
+                        EntityItem var15 = new EntityItem(p_149749_1_,
+                                (double)((float)p_149749_2_ + var11),
+                                (double)((float)p_149749_3_ + var12),
+                                (double)((float)p_149749_4_ + var13),
+                                new ItemStack(var10.getItem(), var14,
+                                        var10.getItemDamage()));
                         float var16 = 0.05F;
-                        var15.motionX = (double)((float)this.field_149961_a.nextGaussian() * var16);
-                        var15.motionY = (double)((float)this.field_149961_a.nextGaussian() * var16 + 0.2F);
-                        var15.motionZ = (double)((float)this.field_149961_a.nextGaussian() * var16);
+                        var15.motionX = (double)((float)this.field_149961_a
+                                .nextGaussian() * var16);
+                        var15.motionY = (double)((float)this.field_149961_a
+                                .nextGaussian() * var16 + 0.2F);
+                        var15.motionZ = (double)((float)this.field_149961_a
+                                .nextGaussian() * var16);
                         p_149749_1_.spawnEntityInWorld(var15);
                     }
                 }
             }
         }
 
-        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
+        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_,
+                p_149749_5_, p_149749_6_);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
+            int p_149650_3_)
     {
         return Items.brewing_stand;
     }
@@ -154,8 +179,10 @@ public class BlockBrewingStand extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_, int p_149736_3_, int p_149736_4_, int p_149736_5_)
+    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_,
+            int p_149736_3_, int p_149736_4_, int p_149736_5_)
     {
-        return Container.calcRedstoneFromInventory((IInventory)p_149736_1_.getTileEntity(p_149736_2_, p_149736_3_, p_149736_4_));
+        return Container.calcRedstoneFromInventory((IInventory)p_149736_1_
+                .getTileEntity(p_149736_2_, p_149736_3_, p_149736_4_));
     }
 }

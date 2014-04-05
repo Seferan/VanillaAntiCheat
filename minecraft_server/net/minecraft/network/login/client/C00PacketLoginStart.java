@@ -12,7 +12,9 @@ public class C00PacketLoginStart extends Packet
     private GameProfile field_149305_a;
     private static final String __OBFID = "CL_00001379";
 
-    public C00PacketLoginStart() {}
+    public C00PacketLoginStart()
+    {
+    }
 
     public C00PacketLoginStart(GameProfile p_i45270_1_)
     {
@@ -24,7 +26,8 @@ public class C00PacketLoginStart extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149305_a = new GameProfile((String)null, p_148837_1_.readStringFromBuffer(16));
+        this.field_149305_a = new GameProfile((String)null,
+                p_148837_1_.readStringFromBuffer(16));
     }
 
     /**

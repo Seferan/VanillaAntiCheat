@@ -16,9 +16,12 @@ public class S2DPacketOpenWindow extends Packet
     private int field_148904_f;
     private static final String __OBFID = "CL_00001293";
 
-    public S2DPacketOpenWindow() {}
+    public S2DPacketOpenWindow()
+    {
+    }
 
-    public S2DPacketOpenWindow(int p_i45184_1_, int p_i45184_2_, String p_i45184_3_, int p_i45184_4_, boolean p_i45184_5_)
+    public S2DPacketOpenWindow(int p_i45184_1_, int p_i45184_2_,
+            String p_i45184_3_, int p_i45184_4_, boolean p_i45184_5_)
     {
         this.field_148909_a = p_i45184_1_;
         this.field_148907_b = p_i45184_2_;
@@ -27,7 +30,9 @@ public class S2DPacketOpenWindow extends Packet
         this.field_148906_e = p_i45184_5_;
     }
 
-    public S2DPacketOpenWindow(int p_i45185_1_, int p_i45185_2_, String p_i45185_3_, int p_i45185_4_, boolean p_i45185_5_, int p_i45185_6_)
+    public S2DPacketOpenWindow(int p_i45185_1_, int p_i45185_2_,
+            String p_i45185_3_, int p_i45185_4_, boolean p_i45185_5_,
+            int p_i45185_6_)
     {
         this(p_i45185_1_, p_i45185_2_, p_i45185_3_, p_i45185_4_, p_i45185_5_);
         this.field_148904_f = p_i45185_6_;

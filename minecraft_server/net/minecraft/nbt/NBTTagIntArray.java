@@ -11,7 +11,9 @@ public class NBTTagIntArray extends NBTBase
     private int[] intArray;
     private static final String __OBFID = "CL_00001221";
 
-    NBTTagIntArray() {}
+    NBTTagIntArray()
+    {
+    }
 
     public NBTTagIntArray(int[] p_i45132_1_)
     {
@@ -19,7 +21,8 @@ public class NBTTagIntArray extends NBTBase
     }
 
     /**
-     * Write the actual data contents of the tag, implemented in NBT extension classes
+     * Write the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
@@ -32,7 +35,8 @@ public class NBTTagIntArray extends NBTBase
     }
 
     /**
-     * Read the actual data contents of the tag, implemented in NBT extension classes
+     * Read the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void load(DataInput par1DataInput, int par2) throws IOException
     {
@@ -80,7 +84,8 @@ public class NBTTagIntArray extends NBTBase
 
     public boolean equals(Object par1Obj)
     {
-        return super.equals(par1Obj) ? Arrays.equals(this.intArray, ((NBTTagIntArray)par1Obj).intArray) : false;
+        return super.equals(par1Obj) ? Arrays.equals(this.intArray,
+                ((NBTTagIntArray)par1Obj).intArray) : false;
     }
 
     public int hashCode()

@@ -34,7 +34,8 @@ public class EntityAIWander extends EntityAIBase
         }
         else
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
+            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.entity,
+                    10, 7);
 
             if (var1 == null)
             {
@@ -63,6 +64,7 @@ public class EntityAIWander extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
+        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition,
+                this.zPosition, this.speed);
     }
 }

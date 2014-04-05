@@ -14,7 +14,8 @@ public class EnchantmentDigging extends Enchantment
     }
 
     /**
-     * Returns the minimal value of enchantability needed on the enchantment level passed.
+     * Returns the minimal value of enchantability needed on the enchantment
+     * level passed.
      */
     public int getMinEnchantability(int par1)
     {
@@ -22,7 +23,8 @@ public class EnchantmentDigging extends Enchantment
     }
 
     /**
-     * Returns the maximum value of enchantability nedded on the enchantment level passed.
+     * Returns the maximum value of enchantability nedded on the enchantment
+     * level passed.
      */
     public int getMaxEnchantability(int par1)
     {
@@ -39,6 +41,7 @@ public class EnchantmentDigging extends Enchantment
 
     public boolean canApply(ItemStack par1ItemStack)
     {
-        return par1ItemStack.getItem() == Items.shears ? true : super.canApply(par1ItemStack);
+        return par1ItemStack.getItem() == Items.shears ? true : super
+                .canApply(par1ItemStack);
     }
 }

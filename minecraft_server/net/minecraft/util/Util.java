@@ -6,10 +6,11 @@ import java.util.regex.Pattern;
 public class Util
 {
     /**
-     * Matches a UUID string, such as "b2a72a80-d078-4ea4-ae43-fcaf95707a76".  Will not match UUIDs containing upper-
-     * case letters.
+     * Matches a UUID string, such as "b2a72a80-d078-4ea4-ae43-fcaf95707a76".
+     * Will not match UUIDs containing upper- case letters.
      */
-    private static final Pattern uuidPattern = Pattern.compile("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}");
+    private static final Pattern uuidPattern = Pattern
+            .compile("[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}");
     private static final String __OBFID = "CL_00001633";
 
     /**
@@ -21,7 +22,8 @@ public class Util
     }
 
     /**
-     * Parses the given string as a UUID, or returns null if the string could not be parsed.
+     * Parses the given string as a UUID, or returns null if the string could
+     * not be parsed.
      */
     public static UUID tryGetUUIDFromString(String p_147173_0_)
     {
@@ -37,12 +39,13 @@ public class Util
         {
             if (p_147173_0_.length() == 32)
             {
-                String var1 = p_147173_0_.substring(0, 8) + "-" + p_147173_0_.substring(8, 12) + "-" + p_147173_0_.substring(12, 16) + "-" + p_147173_0_.substring(16, 20) + "-" + p_147173_0_.substring(20, 32);
+                String var1 = p_147173_0_.substring(0, 8) + "-"
+                        + p_147173_0_.substring(8, 12) + "-"
+                        + p_147173_0_.substring(12, 16) + "-"
+                        + p_147173_0_.substring(16, 20) + "-"
+                        + p_147173_0_.substring(20, 32);
 
-                if (isUUIDString(var1))
-                {
-                    return UUID.fromString(var1);
-                }
+                if (isUUIDString(var1)) { return UUID.fromString(var1); }
             }
 
             return null;

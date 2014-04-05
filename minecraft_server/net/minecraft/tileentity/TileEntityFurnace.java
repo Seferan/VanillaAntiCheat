@@ -46,8 +46,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
@@ -80,8 +80,9 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
@@ -98,13 +99,15 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
         this.field_145957_n[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null
+                && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -115,7 +118,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.field_145958_o : "container.furnace";
+        return this.isInventoryNameLocalized() ? this.field_145958_o
+                : "container.furnace";
     }
 
     /**
@@ -144,7 +148,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
 
             if (var5 >= 0 && var5 < this.field_145957_n.length)
             {
-                this.field_145957_n[var5] = ItemStack.loadItemStackFromNBT(var4);
+                this.field_145957_n[var5] = ItemStack
+                        .loadItemStackFromNBT(var4);
             }
         }
 
@@ -185,8 +190,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -224,8 +229,10 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
 
                         if (this.field_145957_n[1].stackSize == 0)
                         {
-                            Item var3 = this.field_145957_n[1].getItem().getContainerItem();
-                            this.field_145957_n[1] = var3 != null ? new ItemStack(var3) : null;
+                            Item var3 = this.field_145957_n[1].getItem()
+                                    .getContainerItem();
+                            this.field_145957_n[1] = var3 != null ? new ItemStack(
+                                    var3) : null;
                         }
                     }
                 }
@@ -250,7 +257,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
             if (var1 != this.field_145956_a > 0)
             {
                 var2 = true;
-                BlockFurnace.func_149931_a(this.field_145956_a > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockFurnace.func_149931_a(this.field_145956_a > 0,
+                        this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
@@ -268,8 +276,17 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
         }
         else
         {
-            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(this.field_145957_n[0]);
-            return var1 == null ? false : (this.field_145957_n[2] == null ? true : (!this.field_145957_n[2].isItemEqual(var1) ? false : (this.field_145957_n[2].stackSize < this.getInventoryStackLimit() && this.field_145957_n[2].stackSize < this.field_145957_n[2].getMaxStackSize() ? true : this.field_145957_n[2].stackSize < var1.getMaxStackSize())));
+            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(
+                    this.field_145957_n[0]);
+            return var1 == null ? false
+                    : (this.field_145957_n[2] == null ? true
+                            : (!this.field_145957_n[2].isItemEqual(var1) ? false
+                                    : (this.field_145957_n[2].stackSize < this
+                                            .getInventoryStackLimit()
+                                            && this.field_145957_n[2].stackSize < this.field_145957_n[2]
+                                                    .getMaxStackSize() ? true
+                                            : this.field_145957_n[2].stackSize < var1
+                                                    .getMaxStackSize())));
         }
     }
 
@@ -277,7 +294,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     {
         if (this.func_145948_k())
         {
-            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(this.field_145957_n[0]);
+            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(
+                    this.field_145957_n[0]);
 
             if (this.field_145957_n[2] == null)
             {
@@ -307,27 +325,32 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
         {
             Item var1 = p_145952_0_.getItem();
 
-            if (var1 instanceof ItemBlock && Block.getBlockFromItem(var1) != Blocks.air)
+            if (var1 instanceof ItemBlock
+                    && Block.getBlockFromItem(var1) != Blocks.air)
             {
                 Block var2 = Block.getBlockFromItem(var1);
 
-                if (var2 == Blocks.wooden_slab)
-                {
-                    return 150;
-                }
+                if (var2 == Blocks.wooden_slab) { return 150; }
 
-                if (var2.getMaterial() == Material.wood)
-                {
-                    return 300;
-                }
+                if (var2.getMaterial() == Material.wood) { return 300; }
 
-                if (var2 == Blocks.coal_block)
-                {
-                    return 16000;
-                }
+                if (var2 == Blocks.coal_block) { return 16000; }
             }
 
-            return var1 instanceof ItemTool && ((ItemTool)var1).getToolMaterialName().equals("WOOD") ? 200 : (var1 instanceof ItemSword && ((ItemSword)var1).func_150932_j().equals("WOOD") ? 200 : (var1 instanceof ItemHoe && ((ItemHoe)var1).getMaterialName().equals("WOOD") ? 200 : (var1 == Items.stick ? 100 : (var1 == Items.coal ? 1600 : (var1 == Items.lava_bucket ? 20000 : (var1 == Item.getItemFromBlock(Blocks.sapling) ? 100 : (var1 == Items.blaze_rod ? 2400 : 0)))))));
+            return var1 instanceof ItemTool
+                    && ((ItemTool)var1).getToolMaterialName().equals("WOOD") ? 200
+                    : (var1 instanceof ItemSword
+                            && ((ItemSword)var1).func_150932_j().equals("WOOD") ? 200
+                            : (var1 instanceof ItemHoe
+                                    && ((ItemHoe)var1).getMaterialName()
+                                            .equals("WOOD") ? 200
+                                    : (var1 == Items.stick ? 100
+                                            : (var1 == Items.coal ? 1600
+                                                    : (var1 == Items.lava_bucket ? 20000
+                                                            : (var1 == Item
+                                                                    .getItemFromBlock(Blocks.sapling) ? 100
+                                                                    : (var1 == Items.blaze_rod ? 2400
+                                                                            : 0)))))));
         }
     }
 
@@ -337,23 +360,33 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord,
+                this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(
+                (double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D,
+                (double)this.zCoord + 0.5D) <= 64.0D;
     }
 
-    public void openChest() {}
+    public void openChest()
+    {
+    }
 
-    public void closeChest() {}
+    public void closeChest()
+    {
+    }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
-        return par1 == 2 ? false : (par1 == 1 ? func_145954_b(par2ItemStack) : true);
+        return par1 == 2 ? false : (par1 == 1 ? func_145954_b(par2ItemStack)
+                : true);
     }
 
     /**
@@ -361,12 +394,13 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
      */
     public int[] getSlotsForFace(int par1)
     {
-        return par1 == 0 ? field_145959_l : (par1 == 1 ? field_145962_k : field_145960_m);
+        return par1 == 0 ? field_145959_l : (par1 == 1 ? field_145962_k
+                : field_145960_m);
     }
 
     /**
-     * Returns true if automation can insert the given item in the given slot from the given side. Args: Slot, item,
-     * side
+     * Returns true if automation can insert the given item in the given slot
+     * from the given side. Args: Slot, item, side
      */
     public boolean canInsertItem(int par1, ItemStack par2ItemStack, int par3)
     {
@@ -374,11 +408,12 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     }
 
     /**
-     * Returns true if automation can extract the given item in the given slot from the given side. Args: Slot, item,
-     * side
+     * Returns true if automation can extract the given item in the given slot
+     * from the given side. Args: Slot, item, side
      */
     public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3)
     {
-        return par3 != 0 || par1 != 1 || par2ItemStack.getItem() == Items.bucket;
+        return par3 != 0 || par1 != 1
+                || par2ItemStack.getItem() == Items.bucket;
     }
 }

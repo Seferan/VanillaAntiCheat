@@ -12,7 +12,9 @@ public class C14PacketTabComplete extends Packet
     private String field_149420_a;
     private static final String __OBFID = "CL_00001346";
 
-    public C14PacketTabComplete() {}
+    public C14PacketTabComplete()
+    {
+    }
 
     public C14PacketTabComplete(String p_i45239_1_)
     {
@@ -32,7 +34,8 @@ public class C14PacketTabComplete extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(StringUtils.substring(this.field_149420_a, 0, 32767));
+        p_148840_1_.writeStringToBuffer(StringUtils.substring(
+                this.field_149420_a, 0, 32767));
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149418_1_)
@@ -46,11 +49,13 @@ public class C14PacketTabComplete extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("message=\'%s\'", new Object[] {this.field_149420_a});
+        return String.format("message=\'%s\'",
+                new Object[] {this.field_149420_a});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

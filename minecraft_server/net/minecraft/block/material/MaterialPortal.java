@@ -15,7 +15,8 @@ public class MaterialPortal extends Material
     }
 
     /**
-     * Will prevent grass from growing on dirt underneath and kill any grass below it if it returns true
+     * Will prevent grass from growing on dirt underneath and kill any grass
+     * below it if it returns true
      */
     public boolean getCanBlockGrass()
     {

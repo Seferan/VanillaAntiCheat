@@ -22,12 +22,14 @@ public abstract class WorldSavedData
     public abstract void readFromNBT(NBTTagCompound var1);
 
     /**
-     * write data to NBTTagCompound from this MapDataBase, similar to Entities and TileEntities
+     * write data to NBTTagCompound from this MapDataBase, similar to Entities
+     * and TileEntities
      */
     public abstract void writeToNBT(NBTTagCompound var1);
 
     /**
-     * Marks this MapDataBase dirty, to be saved to disk when the level next saves.
+     * Marks this MapDataBase dirty, to be saved to disk when the level next
+     * saves.
      */
     public void markDirty()
     {
@@ -35,7 +37,8 @@ public abstract class WorldSavedData
     }
 
     /**
-     * Sets the dirty state of this MapDataBase, whether it needs saving to disk.
+     * Sets the dirty state of this MapDataBase, whether it needs saving to
+     * disk.
      */
     public void setDirty(boolean par1)
     {

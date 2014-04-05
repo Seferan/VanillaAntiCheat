@@ -14,14 +14,18 @@ public class S33PacketUpdateSign extends Packet
     private String[] field_149349_d;
     private static final String __OBFID = "CL_00001338";
 
-    public S33PacketUpdateSign() {}
+    public S33PacketUpdateSign()
+    {
+    }
 
-    public S33PacketUpdateSign(int p_i45231_1_, int p_i45231_2_, int p_i45231_3_, String[] p_i45231_4_)
+    public S33PacketUpdateSign(int p_i45231_1_, int p_i45231_2_,
+            int p_i45231_3_, String[] p_i45231_4_)
     {
         this.field_149352_a = p_i45231_1_;
         this.field_149350_b = p_i45231_2_;
         this.field_149351_c = p_i45231_3_;
-        this.field_149349_d = new String[] {p_i45231_4_[0], p_i45231_4_[1], p_i45231_4_[2], p_i45231_4_[3]};
+        this.field_149349_d = new String[] {p_i45231_4_[0], p_i45231_4_[1],
+                p_i45231_4_[2], p_i45231_4_[3]};
     }
 
     /**

@@ -15,7 +15,8 @@ public class BlockColored extends Block
     }
 
     /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
+     * Determines the damage on the item the block drops. Used in cloth and
+     * wood.
      */
     public int damageDropped(int p_149692_1_)
     {

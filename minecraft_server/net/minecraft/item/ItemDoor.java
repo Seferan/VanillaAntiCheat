@@ -21,10 +21,13 @@ public class ItemDoor extends Item
     }
 
     /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
-     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+     * Callback for item usage. If the item does something special on right
+     * clicking, he will have one of those. Return True if something happen and
+     * false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack par1ItemStack,
+            EntityPlayer par2EntityPlayer, World par3World, int par4, int par5,
+            int par6, int par7, float par8, float par9, float par10)
     {
         if (par7 != 1)
         {
@@ -44,7 +47,10 @@ public class ItemDoor extends Item
                 var11 = Blocks.iron_door;
             }
 
-            if (par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6, par7, par1ItemStack))
+            if (par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7,
+                    par1ItemStack)
+                    && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6,
+                            par7, par1ItemStack))
             {
                 if (!var11.canPlaceBlockAt(par3World, par4, par5, par6))
                 {
@@ -52,7 +58,8 @@ public class ItemDoor extends Item
                 }
                 else
                 {
-                    int var12 = MathHelper.floor_double((double)((par2EntityPlayer.rotationYaw + 180.0F) * 4.0F / 360.0F) - 0.5D) & 3;
+                    int var12 = MathHelper
+                            .floor_double((double)((par2EntityPlayer.rotationYaw + 180.0F) * 4.0F / 360.0F) - 0.5D) & 3;
                     func_150924_a(par3World, par4, par5, par6, var12, var11);
                     --par1ItemStack.stackSize;
                     return true;
@@ -65,7 +72,8 @@ public class ItemDoor extends Item
         }
     }
 
-    public static void func_150924_a(World p_150924_0_, int p_150924_1_, int p_150924_2_, int p_150924_3_, int p_150924_4_, Block p_150924_5_)
+    public static void func_150924_a(World p_150924_0_, int p_150924_1_,
+            int p_150924_2_, int p_150924_3_, int p_150924_4_, Block p_150924_5_)
     {
         byte var6 = 0;
         byte var7 = 0;
@@ -90,10 +98,22 @@ public class ItemDoor extends Item
             var6 = 1;
         }
 
-        int var8 = (p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_, p_150924_3_ - var7).isNormalCube() ? 1 : 0) + (p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_ + 1, p_150924_3_ - var7).isNormalCube() ? 1 : 0);
-        int var9 = (p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_, p_150924_3_ + var7).isNormalCube() ? 1 : 0) + (p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_ + 1, p_150924_3_ + var7).isNormalCube() ? 1 : 0);
-        boolean var10 = p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_, p_150924_3_ - var7) == p_150924_5_ || p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_ + 1, p_150924_3_ - var7) == p_150924_5_;
-        boolean var11 = p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_, p_150924_3_ + var7) == p_150924_5_ || p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_ + 1, p_150924_3_ + var7) == p_150924_5_;
+        int var8 = (p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_,
+                p_150924_3_ - var7).isNormalCube() ? 1 : 0)
+                + (p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_ + 1,
+                        p_150924_3_ - var7).isNormalCube() ? 1 : 0);
+        int var9 = (p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_,
+                p_150924_3_ + var7).isNormalCube() ? 1 : 0)
+                + (p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_ + 1,
+                        p_150924_3_ + var7).isNormalCube() ? 1 : 0);
+        boolean var10 = p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_,
+                p_150924_3_ - var7) == p_150924_5_
+                || p_150924_0_.getBlock(p_150924_1_ - var6, p_150924_2_ + 1,
+                        p_150924_3_ - var7) == p_150924_5_;
+        boolean var11 = p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_,
+                p_150924_3_ + var7) == p_150924_5_
+                || p_150924_0_.getBlock(p_150924_1_ + var6, p_150924_2_ + 1,
+                        p_150924_3_ + var7) == p_150924_5_;
         boolean var12 = false;
 
         if (var10 && !var11)
@@ -105,9 +125,13 @@ public class ItemDoor extends Item
             var12 = true;
         }
 
-        p_150924_0_.setBlock(p_150924_1_, p_150924_2_, p_150924_3_, p_150924_5_, p_150924_4_, 2);
-        p_150924_0_.setBlock(p_150924_1_, p_150924_2_ + 1, p_150924_3_, p_150924_5_, 8 | (var12 ? 1 : 0), 2);
-        p_150924_0_.notifyBlocksOfNeighborChange(p_150924_1_, p_150924_2_, p_150924_3_, p_150924_5_);
-        p_150924_0_.notifyBlocksOfNeighborChange(p_150924_1_, p_150924_2_ + 1, p_150924_3_, p_150924_5_);
+        p_150924_0_.setBlock(p_150924_1_, p_150924_2_, p_150924_3_,
+                p_150924_5_, p_150924_4_, 2);
+        p_150924_0_.setBlock(p_150924_1_, p_150924_2_ + 1, p_150924_3_,
+                p_150924_5_, 8 | (var12 ? 1 : 0), 2);
+        p_150924_0_.notifyBlocksOfNeighborChange(p_150924_1_, p_150924_2_,
+                p_150924_3_, p_150924_5_);
+        p_150924_0_.notifyBlocksOfNeighborChange(p_150924_1_, p_150924_2_ + 1,
+                p_150924_3_, p_150924_5_);
     }
 }

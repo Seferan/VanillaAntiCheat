@@ -30,7 +30,8 @@ public class WorldProviderHell extends WorldProvider
         for (int var2 = 0; var2 <= 15; ++var2)
         {
             float var3 = 1.0F - (float)var2 / 15.0F;
-            this.lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
+            this.lightBrightnessTable[var2] = (1.0F - var3)
+                    / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
         }
     }
 
@@ -43,7 +44,8 @@ public class WorldProviderHell extends WorldProvider
     }
 
     /**
-     * Returns 'true' if in the "main surface world", but 'false' if in the Nether or End dimensions.
+     * Returns 'true' if in the "main surface world", but 'false' if in the
+     * Nether or End dimensions.
      */
     public boolean isSurfaceWorld()
     {
@@ -51,7 +53,8 @@ public class WorldProviderHell extends WorldProvider
     }
 
     /**
-     * Will check if the x, z position specified is alright to be set as the map spawn point
+     * Will check if the x, z position specified is alright to be set as the map
+     * spawn point
      */
     public boolean canCoordinateBeSpawn(int par1, int par2)
     {
@@ -59,7 +62,8 @@ public class WorldProviderHell extends WorldProvider
     }
 
     /**
-     * Calculates the angle of sun and moon in the sky relative to a specified time (usually worldTime)
+     * Calculates the angle of sun and moon in the sky relative to a specified
+     * time (usually worldTime)
      */
     public float calculateCelestialAngle(long par1, float par3)
     {
@@ -67,7 +71,8 @@ public class WorldProviderHell extends WorldProvider
     }
 
     /**
-     * True if the player can respawn in this dimension (true = overworld, false = nether).
+     * True if the player can respawn in this dimension (true = overworld, false
+     * = nether).
      */
     public boolean canRespawnHere()
     {

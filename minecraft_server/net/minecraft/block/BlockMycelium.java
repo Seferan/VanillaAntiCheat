@@ -21,15 +21,21 @@ public class BlockMycelium extends Block
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
+            int p_149674_4_, Random p_149674_5_)
     {
         if (!p_149674_1_.isClient)
         {
-            if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) < 4 && p_149674_1_.getBlock(p_149674_2_, p_149674_3_ + 1, p_149674_4_).getLightOpacity() > 2)
+            if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1,
+                    p_149674_4_) < 4
+                    && p_149674_1_.getBlock(p_149674_2_, p_149674_3_ + 1,
+                            p_149674_4_).getLightOpacity() > 2)
             {
-                p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, Blocks.dirt);
+                p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_,
+                        Blocks.dirt);
             }
-            else if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) >= 9)
+            else if (p_149674_1_.getBlockLightValue(p_149674_2_,
+                    p_149674_3_ + 1, p_149674_4_) >= 9)
             {
                 for (int var6 = 0; var6 < 4; ++var6)
                 {
@@ -38,7 +44,10 @@ public class BlockMycelium extends Block
                     int var9 = p_149674_4_ + p_149674_5_.nextInt(3) - 1;
                     Block var10 = p_149674_1_.getBlock(var7, var8 + 1, var9);
 
-                    if (p_149674_1_.getBlock(var7, var8, var9) == Blocks.dirt && p_149674_1_.getBlockMetadata(var7, var8, var9) == 0 && p_149674_1_.getBlockLightValue(var7, var8 + 1, var9) >= 4 && var10.getLightOpacity() <= 2)
+                    if (p_149674_1_.getBlock(var7, var8, var9) == Blocks.dirt
+                            && p_149674_1_.getBlockMetadata(var7, var8, var9) == 0
+                            && p_149674_1_.getBlockLightValue(var7, var8 + 1,
+                                    var9) >= 4 && var10.getLightOpacity() <= 2)
                     {
                         p_149674_1_.setBlock(var7, var8, var9, this);
                     }
@@ -47,7 +56,8 @@ public class BlockMycelium extends Block
         }
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
+            int p_149650_3_)
     {
         return Blocks.dirt.getItemDropped(0, p_149650_2_, p_149650_3_);
     }

@@ -48,11 +48,13 @@ public class EntityIronGolem extends EntityGolem
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(5, new EntityAILookAtVillager(this));
         this.tasks.addTask(6, new EntityAIWander(this, 0.6D));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this,
+                EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIDefendVillage(this));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, true, IMob.mobSelector));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this,
+                EntityLiving.class, 0, false, true, IMob.mobSelector));
     }
 
     protected void entityInit()
@@ -77,7 +79,10 @@ public class EntityIronGolem extends EntityGolem
         if (--this.homeCheckTimer <= 0)
         {
             this.homeCheckTimer = 70 + this.rand.nextInt(50);
-            this.villageObj = this.worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ), 32);
+            this.villageObj = this.worldObj.villageCollectionObj
+                    .findNearestVillage(MathHelper.floor_double(this.posX),
+                            MathHelper.floor_double(this.posY),
+                            MathHelper.floor_double(this.posZ), 32);
 
             if (this.villageObj == null)
             {
@@ -86,7 +91,8 @@ public class EntityIronGolem extends EntityGolem
             else
             {
                 ChunkCoordinates var1 = this.villageObj.getCenter();
-                this.setHomeArea(var1.posX, var1.posY, var1.posZ, (int)((float)this.villageObj.getVillageRadius() * 0.6F));
+                this.setHomeArea(var1.posX, var1.posY, var1.posZ,
+                        (int)((float)this.villageObj.getVillageRadius() * 0.6F));
             }
         }
 
@@ -96,8 +102,10 @@ public class EntityIronGolem extends EntityGolem
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+                .setBaseValue(100.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
+                .setBaseValue(0.25D);
     }
 
     /**
@@ -119,8 +127,9 @@ public class EntityIronGolem extends EntityGolem
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as
+     * required. For example, zombies and skeletons use this to react to
+     * sunlight and start to burn.
      */
     public void onLivingUpdate()
     {
@@ -136,16 +145,30 @@ public class EntityIronGolem extends EntityGolem
             --this.holdRoseTick;
         }
 
-        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D && this.rand.nextInt(5) == 0)
+        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 2.500000277905201E-7D
+                && this.rand.nextInt(5) == 0)
         {
             int var1 = MathHelper.floor_double(this.posX);
-            int var2 = MathHelper.floor_double(this.posY - 0.20000000298023224D - (double)this.yOffset);
+            int var2 = MathHelper.floor_double(this.posY - 0.20000000298023224D
+                    - (double)this.yOffset);
             int var3 = MathHelper.floor_double(this.posZ);
             Block var4 = this.worldObj.getBlock(var1, var2, var3);
 
             if (var4.getMaterial() != Material.air)
             {
-                this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(var4) + "_" + this.worldObj.getBlockMetadata(var1, var2, var3), this.posX + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, this.boundingBox.minY + 0.1D, this.posZ + ((double)this.rand.nextFloat() - 0.5D) * (double)this.width, 4.0D * ((double)this.rand.nextFloat() - 0.5D), 0.5D, ((double)this.rand.nextFloat() - 0.5D) * 4.0D);
+                this.worldObj.spawnParticle(
+                        "blockcrack_"
+                                + Block.getIdFromBlock(var4)
+                                + "_"
+                                + this.worldObj.getBlockMetadata(var1, var2,
+                                        var3),
+                        this.posX + ((double)this.rand.nextFloat() - 0.5D)
+                                * (double)this.width,
+                        this.boundingBox.minY + 0.1D, this.posZ
+                                + ((double)this.rand.nextFloat() - 0.5D)
+                                * (double)this.width,
+                        4.0D * ((double)this.rand.nextFloat() - 0.5D), 0.5D,
+                        ((double)this.rand.nextFloat() - 0.5D) * 4.0D);
             }
         }
     }
@@ -155,7 +178,9 @@ public class EntityIronGolem extends EntityGolem
      */
     public boolean canAttackClass(Class par1Class)
     {
-        return this.isPlayerCreated() && EntityPlayer.class.isAssignableFrom(par1Class) ? false : super.canAttackClass(par1Class);
+        return this.isPlayerCreated()
+                && EntityPlayer.class.isAssignableFrom(par1Class) ? false
+                : super.canAttackClass(par1Class);
     }
 
     /**
@@ -180,7 +205,9 @@ public class EntityIronGolem extends EntityGolem
     {
         this.attackTimer = 10;
         this.worldObj.setEntityState(this, (byte)4);
-        boolean var2 = par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(7 + this.rand.nextInt(15)));
+        boolean var2 = par1Entity.attackEntityFrom(
+                DamageSource.causeMobDamage(this),
+                (float)(7 + this.rand.nextInt(15)));
 
         if (var2)
         {
@@ -218,7 +245,8 @@ public class EntityIronGolem extends EntityGolem
         return "mob.irongolem.death";
     }
 
-    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_,
+            int p_145780_3_, Block p_145780_4_)
     {
         this.playSound("mob.irongolem.walk", 1.0F, 1.0F);
     }
@@ -233,7 +261,8 @@ public class EntityIronGolem extends EntityGolem
 
         for (var4 = 0; var4 < var3; ++var4)
         {
-            this.func_145778_a(Item.getItemFromBlock(Blocks.red_flower), 1, 0.0F);
+            this.func_145778_a(Item.getItemFromBlock(Blocks.red_flower), 1,
+                    0.0F);
         }
 
         var4 = 3 + this.rand.nextInt(3);
@@ -273,9 +302,11 @@ public class EntityIronGolem extends EntityGolem
      */
     public void onDeath(DamageSource par1DamageSource)
     {
-        if (!this.isPlayerCreated() && this.attackingPlayer != null && this.villageObj != null)
+        if (!this.isPlayerCreated() && this.attackingPlayer != null
+                && this.villageObj != null)
         {
-            this.villageObj.setReputationForPlayer(this.attackingPlayer.getCommandSenderName(), -5);
+            this.villageObj.setReputationForPlayer(
+                    this.attackingPlayer.getCommandSenderName(), -5);
         }
 
         super.onDeath(par1DamageSource);

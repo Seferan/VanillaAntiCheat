@@ -23,9 +23,11 @@ public class CompressedStreamTools
     /**
      * Load the gzipped compound from the inputstream.
      */
-    public static NBTTagCompound readCompressed(InputStream par0InputStream) throws IOException
+    public static NBTTagCompound readCompressed(InputStream par0InputStream)
+            throws IOException
     {
-        DataInputStream var1 = new DataInputStream(new BufferedInputStream(new GZIPInputStream(par0InputStream)));
+        DataInputStream var1 = new DataInputStream(new BufferedInputStream(
+                new GZIPInputStream(par0InputStream)));
         NBTTagCompound var2;
 
         try
@@ -43,9 +45,11 @@ public class CompressedStreamTools
     /**
      * Write the compound, gzipped, to the outputstream.
      */
-    public static void writeCompressed(NBTTagCompound par0NBTTagCompound, OutputStream par1OutputStream) throws IOException
+    public static void writeCompressed(NBTTagCompound par0NBTTagCompound,
+            OutputStream par1OutputStream) throws IOException
     {
-        DataOutputStream var2 = new DataOutputStream(new GZIPOutputStream(par1OutputStream));
+        DataOutputStream var2 = new DataOutputStream(new GZIPOutputStream(
+                par1OutputStream));
 
         try
         {
@@ -57,9 +61,11 @@ public class CompressedStreamTools
         }
     }
 
-    public static NBTTagCompound decompress(byte[] par0ArrayOfByte) throws IOException
+    public static NBTTagCompound decompress(byte[] par0ArrayOfByte)
+            throws IOException
     {
-        DataInputStream var1 = new DataInputStream(new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(par0ArrayOfByte))));
+        DataInputStream var1 = new DataInputStream(new BufferedInputStream(
+                new GZIPInputStream(new ByteArrayInputStream(par0ArrayOfByte))));
         NBTTagCompound var2;
 
         try
@@ -74,7 +80,8 @@ public class CompressedStreamTools
         return var2;
     }
 
-    public static byte[] compress(NBTTagCompound par0NBTTagCompound) throws IOException
+    public static byte[] compress(NBTTagCompound par0NBTTagCompound)
+            throws IOException
     {
         ByteArrayOutputStream var1 = new ByteArrayOutputStream();
         DataOutputStream var2 = new DataOutputStream(new GZIPOutputStream(var1));
@@ -94,7 +101,8 @@ public class CompressedStreamTools
     /**
      * Reads from a CompressedStream.
      */
-    public static NBTTagCompound read(DataInput par0DataInput) throws IOException
+    public static NBTTagCompound read(DataInput par0DataInput)
+            throws IOException
     {
         NBTBase var1 = func_150664_a(par0DataInput, 0);
 
@@ -108,12 +116,14 @@ public class CompressedStreamTools
         }
     }
 
-    public static void write(NBTTagCompound par0NBTTagCompound, DataOutput par1DataOutput) throws IOException
+    public static void write(NBTTagCompound par0NBTTagCompound,
+            DataOutput par1DataOutput) throws IOException
     {
         func_150663_a(par0NBTTagCompound, par1DataOutput);
     }
 
-    private static void func_150663_a(NBTBase p_150663_0_, DataOutput p_150663_1_) throws IOException
+    private static void func_150663_a(NBTBase p_150663_0_,
+            DataOutput p_150663_1_) throws IOException
     {
         p_150663_1_.writeByte(p_150663_0_.getId());
 
@@ -124,7 +134,8 @@ public class CompressedStreamTools
         }
     }
 
-    private static NBTBase func_150664_a(DataInput p_150664_0_, int p_150664_1_) throws IOException
+    private static NBTBase func_150664_a(DataInput p_150664_0_, int p_150664_1_)
+            throws IOException
     {
         byte var2 = p_150664_0_.readByte();
 
@@ -144,7 +155,8 @@ public class CompressedStreamTools
             }
             catch (IOException var7)
             {
-                CrashReport var5 = CrashReport.makeCrashReport(var7, "Loading NBT data");
+                CrashReport var5 = CrashReport.makeCrashReport(var7,
+                        "Loading NBT data");
                 CrashReportCategory var6 = var5.makeCategory("NBT Tag");
                 var6.addCrashSection("Tag name", "[UNNAMED TAG]");
                 var6.addCrashSection("Tag type", Byte.valueOf(var2));

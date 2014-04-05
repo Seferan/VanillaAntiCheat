@@ -37,16 +37,16 @@ public class CommandAchievement extends CommandBase
         return "commands.achievement.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length >= 2)
         {
             StatBase var3 = StatList.func_151177_a(par2ArrayOfStr[1]);
 
-            if (var3 == null && !par2ArrayOfStr[1].equals("*"))
-            {
-                throw new CommandException("commands.achievement.unknownAchievement", new Object[] {par2ArrayOfStr[1]});
-            }
+            if (var3 == null && !par2ArrayOfStr[1].equals("*")) { throw new CommandException(
+                    "commands.achievement.unknownAchievement",
+                    new Object[] {par2ArrayOfStr[1]}); }
 
             EntityPlayerMP var4;
 
@@ -71,7 +71,9 @@ public class CommandAchievement extends CommandBase
                         var4.triggerAchievement(var6);
                     }
 
-                    notifyAdmins(par1ICommandSender, "commands.achievement.give.success.all", new Object[] {var4.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender,
+                            "commands.achievement.give.success.all",
+                            new Object[] {var4.getCommandSenderName()});
                 }
                 else
                 {
@@ -80,7 +82,9 @@ public class CommandAchievement extends CommandBase
                         Achievement var9 = (Achievement)var3;
                         ArrayList var10;
 
-                        for (var10 = Lists.newArrayList(); var9.parentAchievement != null && !var4.func_147099_x().func_77443_a(var9.parentAchievement); var9 = var9.parentAchievement)
+                        for (var10 = Lists.newArrayList(); var9.parentAchievement != null
+                                && !var4.func_147099_x().func_77443_a(
+                                        var9.parentAchievement); var9 = var9.parentAchievement)
                         {
                             var10.add(var9.parentAchievement);
                         }
@@ -95,28 +99,38 @@ public class CommandAchievement extends CommandBase
                     }
 
                     var4.triggerAchievement(var3);
-                    notifyAdmins(par1ICommandSender, "commands.achievement.give.success.one", new Object[] {var4.getCommandSenderName(), var3.func_150955_j()});
+                    notifyAdmins(
+                            par1ICommandSender,
+                            "commands.achievement.give.success.one",
+                            new Object[] {var4.getCommandSenderName(),
+                                    var3.func_150955_j()});
                 }
 
                 return;
             }
         }
 
-        throw new WrongUsageException("commands.achievement.usage", new Object[0]);
+        throw new WrongUsageException("commands.achievement.usage",
+                new Object[0]);
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length == 1)
         {
-            return getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"give"});
+            return getListOfStringsMatchingLastWord(par2ArrayOfStr,
+                    new String[] {"give"});
         }
         else if (par2ArrayOfStr.length != 2)
         {
-            return par2ArrayOfStr.length == 3 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames()) : null;
+            return par2ArrayOfStr.length == 3 ? getListOfStringsMatchingLastWord(
+                    par2ArrayOfStr, MinecraftServer.getServer()
+                            .getAllUsernames()) : null;
         }
         else
         {
@@ -129,12 +143,14 @@ public class CommandAchievement extends CommandBase
                 var3.add(var5.statId);
             }
 
-            return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, var3);
+            return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr,
+                    var3);
         }
     }
 
     /**
-     * Return whether the specified command parameter index is a username parameter.
+     * Return whether the specified command parameter index is a username
+     * parameter.
      */
     public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
     {

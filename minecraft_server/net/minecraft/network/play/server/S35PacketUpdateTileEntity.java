@@ -16,9 +16,12 @@ public class S35PacketUpdateTileEntity extends Packet
     private NBTTagCompound field_148860_e;
     private static final String __OBFID = "CL_00001285";
 
-    public S35PacketUpdateTileEntity() {}
+    public S35PacketUpdateTileEntity()
+    {
+    }
 
-    public S35PacketUpdateTileEntity(int p_i45175_1_, int p_i45175_2_, int p_i45175_3_, int p_i45175_4_, NBTTagCompound p_i45175_5_)
+    public S35PacketUpdateTileEntity(int p_i45175_1_, int p_i45175_2_,
+            int p_i45175_3_, int p_i45175_4_, NBTTagCompound p_i45175_5_)
     {
         this.field_148863_a = p_i45175_1_;
         this.field_148861_b = p_i45175_2_;

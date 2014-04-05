@@ -31,17 +31,21 @@ public abstract class BlockLog extends BlockRotatedPillar
         return 1;
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
+            int p_149650_3_)
     {
         return Item.getItemFromBlock(this);
     }
 
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_,
+            int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
         byte var7 = 4;
         int var8 = var7 + 1;
 
-        if (p_149749_1_.checkChunksExist(p_149749_2_ - var8, p_149749_3_ - var8, p_149749_4_ - var8, p_149749_2_ + var8, p_149749_3_ + var8, p_149749_4_ + var8))
+        if (p_149749_1_.checkChunksExist(p_149749_2_ - var8,
+                p_149749_3_ - var8, p_149749_4_ - var8, p_149749_2_ + var8,
+                p_149749_3_ + var8, p_149749_4_ + var8))
         {
             for (int var9 = -var7; var9 <= var7; ++var9)
             {
@@ -49,13 +53,20 @@ public abstract class BlockLog extends BlockRotatedPillar
                 {
                     for (int var11 = -var7; var11 <= var7; ++var11)
                     {
-                        if (p_149749_1_.getBlock(p_149749_2_ + var9, p_149749_3_ + var10, p_149749_4_ + var11).getMaterial() == Material.field_151584_j)
+                        if (p_149749_1_.getBlock(p_149749_2_ + var9,
+                                p_149749_3_ + var10, p_149749_4_ + var11)
+                                .getMaterial() == Material.field_151584_j)
                         {
-                            int var12 = p_149749_1_.getBlockMetadata(p_149749_2_ + var9, p_149749_3_ + var10, p_149749_4_ + var11);
+                            int var12 = p_149749_1_.getBlockMetadata(
+                                    p_149749_2_ + var9, p_149749_3_ + var10,
+                                    p_149749_4_ + var11);
 
                             if ((var12 & 8) == 0)
                             {
-                                p_149749_1_.setBlockMetadata(p_149749_2_ + var9, p_149749_3_ + var10, p_149749_4_ + var11, var12 | 8, 4);
+                                p_149749_1_.setBlockMetadata(
+                                        p_149749_2_ + var9,
+                                        p_149749_3_ + var10, p_149749_4_
+                                                + var11, var12 | 8, 4);
                             }
                         }
                     }

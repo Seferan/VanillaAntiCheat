@@ -14,7 +14,8 @@ public class BiomeCache
     private long lastCleanupTime;
 
     /**
-     * The map of keys to BiomeCacheBlocks. Keys are based on the chunk x, z coordinates as (x | z << 32).
+     * The map of keys to BiomeCacheBlocks. Keys are based on the chunk x, z
+     * coordinates as (x | z << 32).
      */
     private LongHashMap cacheMap = new LongHashMap();
 
@@ -35,7 +36,8 @@ public class BiomeCache
         par1 >>= 4;
         par2 >>= 4;
         long var3 = (long)par1 & 4294967295L | ((long)par2 & 4294967295L) << 32;
-        BiomeCache.Block var5 = (BiomeCache.Block)this.cacheMap.getValueByKey(var3);
+        BiomeCache.Block var5 = (BiomeCache.Block)this.cacheMap
+                .getValueByKey(var3);
 
         if (var5 == null)
         {
@@ -57,7 +59,8 @@ public class BiomeCache
     }
 
     /**
-     * Removes BiomeCacheBlocks from this cache that haven't been accessed in at least 30 seconds.
+     * Removes BiomeCacheBlocks from this cache that haven't been accessed in at
+     * least 30 seconds.
      */
     public void cleanupCache()
     {
@@ -76,7 +79,8 @@ public class BiomeCache
                 if (var7 > 30000L || var7 < 0L)
                 {
                     this.cache.remove(var5--);
-                    long var9 = (long)var6.xPosition & 4294967295L | ((long)var6.zPosition & 4294967295L) << 32;
+                    long var9 = (long)var6.xPosition & 4294967295L
+                            | ((long)var6.zPosition & 4294967295L) << 32;
                     this.cacheMap.remove(var9);
                 }
             }
@@ -84,7 +88,8 @@ public class BiomeCache
     }
 
     /**
-     * Returns the array of cached biome types in the BiomeCacheBlock at the given location.
+     * Returns the array of cached biome types in the BiomeCacheBlock at the
+     * given location.
      */
     public BiomeGenBase[] getCachedBiomes(int par1, int par2)
     {
@@ -104,8 +109,10 @@ public class BiomeCache
         {
             this.xPosition = par2;
             this.zPosition = par3;
-            BiomeCache.this.chunkManager.getRainfall(this.rainfallValues, par2 << 4, par3 << 4, 16, 16);
-            BiomeCache.this.chunkManager.getBiomeGenAt(this.biomes, par2 << 4, par3 << 4, 16, 16, false);
+            BiomeCache.this.chunkManager.getRainfall(this.rainfallValues,
+                    par2 << 4, par3 << 4, 16, 16);
+            BiomeCache.this.chunkManager.getBiomeGenAt(this.biomes, par2 << 4,
+                    par3 << 4, 16, 16, false);
         }
 
         public BiomeGenBase getBiomeGenAt(int par1, int par2)

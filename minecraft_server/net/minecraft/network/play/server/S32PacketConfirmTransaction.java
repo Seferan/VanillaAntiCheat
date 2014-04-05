@@ -13,9 +13,12 @@ public class S32PacketConfirmTransaction extends Packet
     private boolean field_148893_c;
     private static final String __OBFID = "CL_00001291";
 
-    public S32PacketConfirmTransaction() {}
+    public S32PacketConfirmTransaction()
+    {
+    }
 
-    public S32PacketConfirmTransaction(int p_i45182_1_, short p_i45182_2_, boolean p_i45182_3_)
+    public S32PacketConfirmTransaction(int p_i45182_1_, short p_i45182_2_,
+            boolean p_i45182_3_)
     {
         this.field_148894_a = p_i45182_1_;
         this.field_148892_b = p_i45182_2_;
@@ -48,11 +51,16 @@ public class S32PacketConfirmTransaction extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, uid=%d, accepted=%b", new Object[] {Integer.valueOf(this.field_148894_a), Short.valueOf(this.field_148892_b), Boolean.valueOf(this.field_148893_c)});
+        return String.format(
+                "id=%d, uid=%d, accepted=%b",
+                new Object[] {Integer.valueOf(this.field_148894_a),
+                        Short.valueOf(this.field_148892_b),
+                        Boolean.valueOf(this.field_148893_c)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

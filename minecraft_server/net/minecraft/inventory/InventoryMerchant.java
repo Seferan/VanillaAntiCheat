@@ -15,7 +15,8 @@ public class InventoryMerchant implements IInventory
     private int currentRecipeIndex;
     private static final String __OBFID = "CL_00001756";
 
-    public InventoryMerchant(EntityPlayer par1EntityPlayer, IMerchant par2IMerchant)
+    public InventoryMerchant(EntityPlayer par1EntityPlayer,
+            IMerchant par2IMerchant)
     {
         this.thePlayer = par1EntityPlayer;
         this.theMerchant = par2IMerchant;
@@ -38,8 +39,8 @@ public class InventoryMerchant implements IInventory
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
@@ -97,8 +98,9 @@ public class InventoryMerchant implements IInventory
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
@@ -115,13 +117,15 @@ public class InventoryMerchant implements IInventory
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
         this.theInventory[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null
+                && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -149,8 +153,8 @@ public class InventoryMerchant implements IInventory
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -158,19 +162,25 @@ public class InventoryMerchant implements IInventory
     }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
         return this.theMerchant.getCustomer() == par1EntityPlayer;
     }
 
-    public void openChest() {}
+    public void openChest()
+    {
+    }
 
-    public void closeChest() {}
+    public void closeChest()
+    {
+    }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
@@ -203,25 +213,30 @@ public class InventoryMerchant implements IInventory
         }
         else
         {
-            MerchantRecipeList var3 = this.theMerchant.getRecipes(this.thePlayer);
+            MerchantRecipeList var3 = this.theMerchant
+                    .getRecipes(this.thePlayer);
 
             if (var3 != null)
             {
-                MerchantRecipe var4 = var3.canRecipeBeUsed(var1, var2, this.currentRecipeIndex);
+                MerchantRecipe var4 = var3.canRecipeBeUsed(var1, var2,
+                        this.currentRecipeIndex);
 
                 if (var4 != null && !var4.func_82784_g())
                 {
                     this.currentRecipe = var4;
-                    this.setInventorySlotContents(2, var4.getItemToSell().copy());
+                    this.setInventorySlotContents(2, var4.getItemToSell()
+                            .copy());
                 }
                 else if (var2 != null)
                 {
-                    var4 = var3.canRecipeBeUsed(var2, var1, this.currentRecipeIndex);
+                    var4 = var3.canRecipeBeUsed(var2, var1,
+                            this.currentRecipeIndex);
 
                     if (var4 != null && !var4.func_82784_g())
                     {
                         this.currentRecipe = var4;
-                        this.setInventorySlotContents(2, var4.getItemToSell().copy());
+                        this.setInventorySlotContents(2, var4.getItemToSell()
+                                .copy());
                     }
                     else
                     {

@@ -18,12 +18,14 @@ public interface ICommand extends Comparable
     boolean canCommandSenderUseCommand(ICommandSender var1);
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
     List addTabCompletionOptions(ICommandSender var1, String[] var2);
 
     /**
-     * Return whether the specified command parameter index is a username parameter.
+     * Return whether the specified command parameter index is a username
+     * parameter.
      */
     boolean isUsernameIndex(String[] var1, int var2);
 }

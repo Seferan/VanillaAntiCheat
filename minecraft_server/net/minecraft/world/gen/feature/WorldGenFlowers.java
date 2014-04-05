@@ -21,7 +21,8 @@ public class WorldGenFlowers extends WorldGenerator
         this.field_150551_b = p_150550_2_;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         for (int var6 = 0; var6 < 64; ++var6)
         {
@@ -29,9 +30,13 @@ public class WorldGenFlowers extends WorldGenerator
             int var8 = par4 + par2Random.nextInt(4) - par2Random.nextInt(4);
             int var9 = par5 + par2Random.nextInt(8) - par2Random.nextInt(8);
 
-            if (par1World.isAirBlock(var7, var8, var9) && (!par1World.provider.hasNoSky || var8 < 255) && this.field_150552_a.canBlockStay(par1World, var7, var8, var9))
+            if (par1World.isAirBlock(var7, var8, var9)
+                    && (!par1World.provider.hasNoSky || var8 < 255)
+                    && this.field_150552_a.canBlockStay(par1World, var7, var8,
+                            var9))
             {
-                par1World.setBlock(var7, var8, var9, this.field_150552_a, this.field_150551_b, 2);
+                par1World.setBlock(var7, var8, var9, this.field_150552_a,
+                        this.field_150551_b, 2);
             }
         }
 

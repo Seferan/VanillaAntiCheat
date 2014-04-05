@@ -8,7 +8,8 @@ public interface ICommandManager
     int executeCommand(ICommandSender var1, String var2);
 
     /**
-     * Performs a "begins with" string match on each token in par2. Only returns commands that par1 can use.
+     * Performs a "begins with" string match on each token in par2. Only returns
+     * commands that par1 can use.
      */
     List getPossibleCommands(ICommandSender var1, String var2);
 
@@ -18,7 +19,8 @@ public interface ICommandManager
     List getPossibleCommands(ICommandSender var1);
 
     /**
-     * returns a map of string to commads. All commands are returned, not just ones which someone has permission to use.
+     * returns a map of string to commads. All commands are returned, not just
+     * ones which someone has permission to use.
      */
     Map getCommands();
 }

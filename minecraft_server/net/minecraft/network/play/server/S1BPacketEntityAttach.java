@@ -14,13 +14,17 @@ public class S1BPacketEntityAttach extends Packet
     private int field_149407_c;
     private static final String __OBFID = "CL_00001327";
 
-    public S1BPacketEntityAttach() {}
+    public S1BPacketEntityAttach()
+    {
+    }
 
-    public S1BPacketEntityAttach(int p_i45218_1_, Entity p_i45218_2_, Entity p_i45218_3_)
+    public S1BPacketEntityAttach(int p_i45218_1_, Entity p_i45218_2_,
+            Entity p_i45218_3_)
     {
         this.field_149408_a = p_i45218_1_;
         this.field_149406_b = p_i45218_2_.getEntityId();
-        this.field_149407_c = p_i45218_3_ != null ? p_i45218_3_.getEntityId() : -1;
+        this.field_149407_c = p_i45218_3_ != null ? p_i45218_3_.getEntityId()
+                : -1;
     }
 
     /**

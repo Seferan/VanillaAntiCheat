@@ -25,8 +25,8 @@ public class HoverEvent
     }
 
     /**
-     * Gets the value to perform the action on when this event is raised.  For example, if the action is "show item",
-     * this would be the item to show.
+     * Gets the value to perform the action on when this event is raised. For
+     * example, if the action is "show item", this would be the item to show.
      */
     public IChatComponent getValue()
     {
@@ -51,15 +51,9 @@ public class HoverEvent
             {
                 if (this.value != null)
                 {
-                    if (!this.value.equals(var2.value))
-                    {
-                        return false;
-                    }
+                    if (!this.value.equals(var2.value)) { return false; }
                 }
-                else if (var2.value != null)
-                {
-                    return false;
-                }
+                else if (var2.value != null) { return false; }
 
                 return true;
             }
@@ -72,7 +66,8 @@ public class HoverEvent
 
     public String toString()
     {
-        return "HoverEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
+        return "HoverEvent{action=" + this.action + ", value=\'" + this.value
+                + '\'' + '}';
     }
 
     public int hashCode()
@@ -84,17 +79,19 @@ public class HoverEvent
 
     public static enum Action
     {
-        SHOW_TEXT("SHOW_TEXT", 0, "show_text", true),
-        SHOW_ACHIEVEMENT("SHOW_ACHIEVEMENT", 1, "show_achievement", true),
-        SHOW_ITEM("SHOW_ITEM", 2, "show_item", true);
+        SHOW_TEXT("SHOW_TEXT", 0, "show_text", true), SHOW_ACHIEVEMENT(
+                "SHOW_ACHIEVEMENT", 1, "show_achievement", true), SHOW_ITEM(
+                "SHOW_ITEM", 2, "show_item", true);
         private static final Map nameMapping = Maps.newHashMap();
         private final boolean allowedInChat;
         private final String canonicalName;
 
-        private static final HoverEvent.Action[] $VALUES = new HoverEvent.Action[]{SHOW_TEXT, SHOW_ACHIEVEMENT, SHOW_ITEM};
+        private static final HoverEvent.Action[] $VALUES = new HoverEvent.Action[] {
+                SHOW_TEXT, SHOW_ACHIEVEMENT, SHOW_ITEM};
         private static final String __OBFID = "CL_00001265";
 
-        private Action(String p_i45157_1_, int p_i45157_2_, String p_i45157_3_, boolean p_i45157_4_)
+        private Action(String p_i45157_1_, int p_i45157_2_, String p_i45157_3_,
+                boolean p_i45157_4_)
         {
             this.canonicalName = p_i45157_3_;
             this.allowedInChat = p_i45157_4_;
@@ -110,12 +107,14 @@ public class HoverEvent
             return this.canonicalName;
         }
 
-        public static HoverEvent.Action getValueByCanonicalName(String p_150684_0_)
+        public static HoverEvent.Action getValueByCanonicalName(
+                String p_150684_0_)
         {
             return (HoverEvent.Action)nameMapping.get(p_150684_0_);
         }
 
-        static {
+        static
+        {
             HoverEvent.Action[] var0 = values();
             int var1 = var0.length;
 

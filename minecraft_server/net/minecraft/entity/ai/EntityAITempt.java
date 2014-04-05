@@ -26,8 +26,9 @@ public class EntityAITempt extends EntityAIBase
     private EntityPlayer temptingPlayer;
 
     /**
-     * A counter that is decremented each time the shouldExecute method is called. The shouldExecute method will always
-     * return false if delayTemptCounter is greater than 0.
+     * A counter that is decremented each time the shouldExecute method is
+     * called. The shouldExecute method will always return false if
+     * delayTemptCounter is greater than 0.
      */
     private int delayTemptCounter;
 
@@ -36,13 +37,15 @@ public class EntityAITempt extends EntityAIBase
     private Item field_151484_k;
 
     /**
-     * Whether the entity using this AI will be scared by the tempter's sudden movement.
+     * Whether the entity using this AI will be scared by the tempter's sudden
+     * movement.
      */
     private boolean scaredByPlayerMovement;
     private boolean field_75286_m;
     private static final String __OBFID = "CL_00001616";
 
-    public EntityAITempt(EntityCreature p_i45316_1_, double p_i45316_2_, Item p_i45316_4_, boolean p_i45316_5_)
+    public EntityAITempt(EntityCreature p_i45316_1_, double p_i45316_2_,
+            Item p_i45316_4_, boolean p_i45316_5_)
     {
         this.temptedEntity = p_i45316_1_;
         this.field_75282_b = p_i45316_2_;
@@ -63,7 +66,8 @@ public class EntityAITempt extends EntityAIBase
         }
         else
         {
-            this.temptingPlayer = this.temptedEntity.worldObj.getClosestPlayerToEntity(this.temptedEntity, 10.0D);
+            this.temptingPlayer = this.temptedEntity.worldObj
+                    .getClosestPlayerToEntity(this.temptedEntity, 10.0D);
 
             if (this.temptingPlayer == null)
             {
@@ -72,7 +76,8 @@ public class EntityAITempt extends EntityAIBase
             else
             {
                 ItemStack var1 = this.temptingPlayer.getCurrentEquippedItem();
-                return var1 == null ? false : var1.getItem() == this.field_151484_k;
+                return var1 == null ? false
+                        : var1.getItem() == this.field_151484_k;
             }
         }
     }
@@ -86,15 +91,13 @@ public class EntityAITempt extends EntityAIBase
         {
             if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 36.0D)
             {
-                if (this.temptingPlayer.getDistanceSq(this.targetX, this.targetY, this.targetZ) > 0.010000000000000002D)
-                {
-                    return false;
-                }
+                if (this.temptingPlayer.getDistanceSq(this.targetX,
+                        this.targetY, this.targetZ) > 0.010000000000000002D) { return false; }
 
-                if (Math.abs((double)this.temptingPlayer.rotationPitch - this.field_75278_f) > 5.0D || Math.abs((double)this.temptingPlayer.rotationYaw - this.field_75279_g) > 5.0D)
-                {
-                    return false;
-                }
+                if (Math.abs((double)this.temptingPlayer.rotationPitch
+                        - this.field_75278_f) > 5.0D
+                        || Math.abs((double)this.temptingPlayer.rotationYaw
+                                - this.field_75279_g) > 5.0D) { return false; }
             }
             else
             {
@@ -140,7 +143,9 @@ public class EntityAITempt extends EntityAIBase
      */
     public void updateTask()
     {
-        this.temptedEntity.getLookHelper().setLookPositionWithEntity(this.temptingPlayer, 30.0F, (float)this.temptedEntity.getVerticalFaceSpeed());
+        this.temptedEntity.getLookHelper().setLookPositionWithEntity(
+                this.temptingPlayer, 30.0F,
+                (float)this.temptedEntity.getVerticalFaceSpeed());
 
         if (this.temptedEntity.getDistanceSqToEntity(this.temptingPlayer) < 6.25D)
         {
@@ -148,7 +153,8 @@ public class EntityAITempt extends EntityAIBase
         }
         else
         {
-            this.temptedEntity.getNavigator().tryMoveToEntityLiving(this.temptingPlayer, this.field_75282_b);
+            this.temptedEntity.getNavigator().tryMoveToEntityLiving(
+                    this.temptingPlayer, this.field_75282_b);
         }
     }
 

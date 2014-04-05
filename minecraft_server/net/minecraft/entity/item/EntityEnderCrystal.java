@@ -26,8 +26,8 @@ public class EntityEnderCrystal extends Entity
     }
 
     /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
+     * returns if this entity triggers Block.onEntityWalking on the blocks they
+     * walk on. used for spiders and wolves to prevent them from trampling crops
      */
     protected boolean canTriggerWalking()
     {
@@ -53,7 +53,8 @@ public class EntityEnderCrystal extends Entity
         int var2 = MathHelper.floor_double(this.posY);
         int var3 = MathHelper.floor_double(this.posZ);
 
-        if (this.worldObj.provider instanceof WorldProviderEnd && this.worldObj.getBlock(var1, var2, var3) != Blocks.fire)
+        if (this.worldObj.provider instanceof WorldProviderEnd
+                && this.worldObj.getBlock(var1, var2, var3) != Blocks.fire)
         {
             this.worldObj.setBlock(var1, var2, var3, Blocks.fire);
         }
@@ -62,15 +63,20 @@ public class EntityEnderCrystal extends Entity
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
-    protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {}
+    protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
+    {
+    }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {}
+    protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+    }
 
     /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
+     * Returns true if other Entities should be prevented from moving through
+     * this Entity.
      */
     public boolean canBeCollidedWith()
     {
@@ -98,7 +104,8 @@ public class EntityEnderCrystal extends Entity
 
                     if (!this.worldObj.isClient)
                     {
-                        this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 6.0F, true);
+                        this.worldObj.createExplosion((Entity)null, this.posX,
+                                this.posY, this.posZ, 6.0F, true);
                     }
                 }
             }

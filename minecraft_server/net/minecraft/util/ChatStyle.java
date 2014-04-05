@@ -13,7 +13,8 @@ import net.minecraft.event.HoverEvent;
 public class ChatStyle
 {
     /**
-     * The parent of this ChatStyle.  Used for looking up values that this instance does not override.
+     * The parent of this ChatStyle. Used for looking up values that this
+     * instance does not override.
      */
     private ChatStyle parentStyle;
     private EnumChatFormatting color;
@@ -26,87 +27,108 @@ public class ChatStyle
     private HoverEvent chatHoverEvent;
 
     /**
-     * The base of the ChatStyle hierarchy.  All ChatStyle instances are implicitly children of this.
+     * The base of the ChatStyle hierarchy. All ChatStyle instances are
+     * implicitly children of this.
      */
     private static final ChatStyle rootStyle = new ChatStyle()
     {
         private static final String __OBFID = "CL_00001267";
+
         public EnumChatFormatting getColor()
         {
             return null;
         }
+
         public boolean getBold()
         {
             return false;
         }
+
         public boolean getItalic()
         {
             return false;
         }
+
         public boolean getStrikethrough()
         {
             return false;
         }
+
         public boolean getUnderlined()
         {
             return false;
         }
+
         public boolean getObfuscated()
         {
             return false;
         }
+
         public ClickEvent getChatClickEvent()
         {
             return null;
         }
+
         public HoverEvent getChatHoverEvent()
         {
             return null;
         }
+
         public ChatStyle setColor(EnumChatFormatting p_150238_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setBold(Boolean p_150227_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setItalic(Boolean p_150217_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setStrikethrough(Boolean p_150225_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setUnderlined(Boolean p_150228_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setObfuscated(Boolean p_150237_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setChatClickEvent(ClickEvent p_150241_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setChatHoverEvent(HoverEvent p_150209_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public ChatStyle setParentStyle(ChatStyle p_150221_1_)
         {
             throw new UnsupportedOperationException();
         }
+
         public String toString()
         {
             return "Style.ROOT";
         }
+
         public ChatStyle createShallowCopy()
         {
             return this;
         }
+
         public ChatStyle createDeepCopy()
         {
             return this;
@@ -127,7 +149,8 @@ public class ChatStyle
      */
     public boolean getBold()
     {
-        return this.bold == null ? this.getParent().getBold() : this.bold.booleanValue();
+        return this.bold == null ? this.getParent().getBold() : this.bold
+                .booleanValue();
     }
 
     /**
@@ -135,7 +158,8 @@ public class ChatStyle
      */
     public boolean getItalic()
     {
-        return this.italic == null ? this.getParent().getItalic() : this.italic.booleanValue();
+        return this.italic == null ? this.getParent().getItalic() : this.italic
+                .booleanValue();
     }
 
     /**
@@ -143,7 +167,8 @@ public class ChatStyle
      */
     public boolean getStrikethrough()
     {
-        return this.strikethrough == null ? this.getParent().getStrikethrough() : this.strikethrough.booleanValue();
+        return this.strikethrough == null ? this.getParent().getStrikethrough()
+                : this.strikethrough.booleanValue();
     }
 
     /**
@@ -151,7 +176,8 @@ public class ChatStyle
      */
     public boolean getUnderlined()
     {
-        return this.underlined == null ? this.getParent().getUnderlined() : this.underlined.booleanValue();
+        return this.underlined == null ? this.getParent().getUnderlined()
+                : this.underlined.booleanValue();
     }
 
     /**
@@ -159,7 +185,8 @@ public class ChatStyle
      */
     public boolean getObfuscated()
     {
-        return this.obfuscated == null ? this.getParent().getObfuscated() : this.obfuscated.booleanValue();
+        return this.obfuscated == null ? this.getParent().getObfuscated()
+                : this.obfuscated.booleanValue();
     }
 
     /**
@@ -167,7 +194,10 @@ public class ChatStyle
      */
     public boolean isEmpty()
     {
-        return this.bold == null && this.italic == null && this.strikethrough == null && this.underlined == null && this.obfuscated == null && this.color == null && this.chatClickEvent == null && this.chatHoverEvent == null;
+        return this.bold == null && this.italic == null
+                && this.strikethrough == null && this.underlined == null
+                && this.obfuscated == null && this.color == null
+                && this.chatClickEvent == null && this.chatHoverEvent == null;
     }
 
     /**
@@ -175,7 +205,8 @@ public class ChatStyle
      */
     public ClickEvent getChatClickEvent()
     {
-        return this.chatClickEvent == null ? this.getParent().getChatClickEvent() : this.chatClickEvent;
+        return this.chatClickEvent == null ? this.getParent()
+                .getChatClickEvent() : this.chatClickEvent;
     }
 
     /**
@@ -183,12 +214,13 @@ public class ChatStyle
      */
     public HoverEvent getChatHoverEvent()
     {
-        return this.chatHoverEvent == null ? this.getParent().getChatHoverEvent() : this.chatHoverEvent;
+        return this.chatHoverEvent == null ? this.getParent()
+                .getChatHoverEvent() : this.chatHoverEvent;
     }
 
     /**
-     * Sets the color for this ChatStyle to the given value.  Only use color values for this; set other values using the
-     * specific methods.
+     * Sets the color for this ChatStyle to the given value. Only use color
+     * values for this; set other values using the specific methods.
      */
     public ChatStyle setColor(EnumChatFormatting p_150238_1_)
     {
@@ -197,8 +229,9 @@ public class ChatStyle
     }
 
     /**
-     * Sets whether or not text of this ChatStyle should be in bold.  Set to false if, e.g., the parent style is bold
-     * and you want text of this style to be unbolded.
+     * Sets whether or not text of this ChatStyle should be in bold. Set to
+     * false if, e.g., the parent style is bold and you want text of this style
+     * to be unbolded.
      */
     public ChatStyle setBold(Boolean p_150227_1_)
     {
@@ -207,8 +240,9 @@ public class ChatStyle
     }
 
     /**
-     * Sets whether or not text of this ChatStyle should be italicized.  Set to false if, e.g., the parent style is
-     * italicized and you want to override that for this style.
+     * Sets whether or not text of this ChatStyle should be italicized. Set to
+     * false if, e.g., the parent style is italicized and you want to override
+     * that for this style.
      */
     public ChatStyle setItalic(Boolean p_150217_1_)
     {
@@ -217,8 +251,9 @@ public class ChatStyle
     }
 
     /**
-     * Sets whether or not to format text of this ChatStyle using strikethrough.  Set to false if, e.g., the parent
-     * style uses strikethrough and you want to override that for this style.
+     * Sets whether or not to format text of this ChatStyle using strikethrough.
+     * Set to false if, e.g., the parent style uses strikethrough and you want
+     * to override that for this style.
      */
     public ChatStyle setStrikethrough(Boolean p_150225_1_)
     {
@@ -227,8 +262,9 @@ public class ChatStyle
     }
 
     /**
-     * Sets whether or not text of this ChatStyle should be underlined.  Set to false if, e.g., the parent style is
-     * underlined and you want to override that for this style.
+     * Sets whether or not text of this ChatStyle should be underlined. Set to
+     * false if, e.g., the parent style is underlined and you want to override
+     * that for this style.
      */
     public ChatStyle setUnderlined(Boolean p_150228_1_)
     {
@@ -237,8 +273,9 @@ public class ChatStyle
     }
 
     /**
-     * Sets whether or not text of this ChatStyle should be obfuscated.  Set to false if, e.g., the parent style is
-     * obfuscated and you want to override that for this style.
+     * Sets whether or not text of this ChatStyle should be obfuscated. Set to
+     * false if, e.g., the parent style is obfuscated and you want to override
+     * that for this style.
      */
     public ChatStyle setObfuscated(Boolean p_150237_1_)
     {
@@ -247,7 +284,8 @@ public class ChatStyle
     }
 
     /**
-     * Sets the event that should be run when text of this ChatStyle is clicked on.
+     * Sets the event that should be run when text of this ChatStyle is clicked
+     * on.
      */
     public ChatStyle setChatClickEvent(ClickEvent p_150241_1_)
     {
@@ -256,7 +294,8 @@ public class ChatStyle
     }
 
     /**
-     * Sets the event that should be run when text of this ChatStyle is hovered over.
+     * Sets the event that should be run when text of this ChatStyle is hovered
+     * over.
      */
     public ChatStyle setChatHoverEvent(HoverEvent p_150209_1_)
     {
@@ -265,8 +304,9 @@ public class ChatStyle
     }
 
     /**
-     * Sets the fallback ChatStyle to use if this ChatStyle does not override some value.  Without a parent, obvious
-     * defaults are used (bold: false, underlined: false, etc).
+     * Sets the fallback ChatStyle to use if this ChatStyle does not override
+     * some value. Without a parent, obvious defaults are used (bold: false,
+     * underlined: false, etc).
      */
     public ChatStyle setParentStyle(ChatStyle p_150221_1_)
     {
@@ -284,7 +324,12 @@ public class ChatStyle
 
     public String toString()
     {
-        return "Style{hasParent=" + (this.parentStyle != null) + ", color=" + this.color + ", bold=" + this.bold + ", italic=" + this.italic + ", underlined=" + this.underlined + ", obfuscated=" + this.obfuscated + ", clickEvent=" + this.getChatClickEvent() + ", hoverEvent=" + this.getChatHoverEvent() + '}';
+        return "Style{hasParent=" + (this.parentStyle != null) + ", color="
+                + this.color + ", bold=" + this.bold + ", italic="
+                + this.italic + ", underlined=" + this.underlined
+                + ", obfuscated=" + this.obfuscated + ", clickEvent="
+                + this.getChatClickEvent() + ", hoverEvent="
+                + this.getChatHoverEvent() + '}';
     }
 
     public boolean equals(Object par1Obj)
@@ -302,13 +347,19 @@ public class ChatStyle
             ChatStyle var2 = (ChatStyle)par1Obj;
             boolean var10000;
 
-            if (this.getBold() == var2.getBold() && this.getColor() == var2.getColor() && this.getItalic() == var2.getItalic() && this.getObfuscated() == var2.getObfuscated() && this.getStrikethrough() == var2.getStrikethrough() && this.getUnderlined() == var2.getUnderlined())
+            if (this.getBold() == var2.getBold()
+                    && this.getColor() == var2.getColor()
+                    && this.getItalic() == var2.getItalic()
+                    && this.getObfuscated() == var2.getObfuscated()
+                    && this.getStrikethrough() == var2.getStrikethrough()
+                    && this.getUnderlined() == var2.getUnderlined())
             {
                 label56:
                 {
                     if (this.getChatClickEvent() != null)
                     {
-                        if (!this.getChatClickEvent().equals(var2.getChatClickEvent()))
+                        if (!this.getChatClickEvent().equals(
+                                var2.getChatClickEvent()))
                         {
                             break label56;
                         }
@@ -320,7 +371,8 @@ public class ChatStyle
 
                     if (this.getChatHoverEvent() != null)
                     {
-                        if (!this.getChatHoverEvent().equals(var2.getChatHoverEvent()))
+                        if (!this.getChatHoverEvent().equals(
+                                var2.getChatHoverEvent()))
                         {
                             break label56;
                         }
@@ -354,9 +406,10 @@ public class ChatStyle
     }
 
     /**
-     * Creates a shallow copy of this style.  Changes to this instance's values will not be reflected in the copy, but
-     * changes to the parent style's values WILL be reflected in both this instance and the copy, wherever either does
-     * not override a value.
+     * Creates a shallow copy of this style. Changes to this instance's values
+     * will not be reflected in the copy, but changes to the parent style's
+     * values WILL be reflected in both this instance and the copy, wherever
+     * either does not override a value.
      */
     public ChatStyle createShallowCopy()
     {
@@ -374,8 +427,8 @@ public class ChatStyle
     }
 
     /**
-     * Creates a deep copy of this style.  No changes to this instance or its parent style will be reflected in the
-     * copy.
+     * Creates a deep copy of this style. No changes to this instance or its
+     * parent style will be reflected in the copy.
      */
     public ChatStyle createDeepCopy()
     {
@@ -395,7 +448,8 @@ public class ChatStyle
     {
         private static final String __OBFID = "CL_00001268";
 
-        public ChatStyle deserialize(JsonElement p_150204_1_, Type p_150204_2_, JsonDeserializationContext p_150204_3_)
+        public ChatStyle deserialize(JsonElement p_150204_1_, Type p_150204_2_,
+                JsonDeserializationContext p_150204_3_)
         {
             if (p_150204_1_.isJsonObject())
             {
@@ -404,32 +458,38 @@ public class ChatStyle
 
                 if (var5.has("bold"))
                 {
-                    var4.bold = Boolean.valueOf(var5.get("bold").getAsBoolean());
+                    var4.bold = Boolean
+                            .valueOf(var5.get("bold").getAsBoolean());
                 }
 
                 if (var5.has("italic"))
                 {
-                    var4.italic = Boolean.valueOf(var5.get("italic").getAsBoolean());
+                    var4.italic = Boolean.valueOf(var5.get("italic")
+                            .getAsBoolean());
                 }
 
                 if (var5.has("underlined"))
                 {
-                    var4.underlined = Boolean.valueOf(var5.get("underlined").getAsBoolean());
+                    var4.underlined = Boolean.valueOf(var5.get("underlined")
+                            .getAsBoolean());
                 }
 
                 if (var5.has("strikethrough"))
                 {
-                    var4.strikethrough = Boolean.valueOf(var5.get("strikethrough").getAsBoolean());
+                    var4.strikethrough = Boolean.valueOf(var5.get(
+                            "strikethrough").getAsBoolean());
                 }
 
                 if (var5.has("obfuscated"))
                 {
-                    var4.obfuscated = Boolean.valueOf(var5.get("obfuscated").getAsBoolean());
+                    var4.obfuscated = Boolean.valueOf(var5.get("obfuscated")
+                            .getAsBoolean());
                 }
 
                 if (var5.has("color"))
                 {
-                    var4.color = (EnumChatFormatting)p_150204_3_.deserialize(var5.get("color"), EnumChatFormatting.class);
+                    var4.color = (EnumChatFormatting)p_150204_3_.deserialize(
+                            var5.get("color"), EnumChatFormatting.class);
                 }
 
                 JsonObject var6;
@@ -437,10 +497,14 @@ public class ChatStyle
                 if (var5.has("clickEvent"))
                 {
                     var6 = var5.getAsJsonObject("clickEvent");
-                    ClickEvent.Action var7 = ClickEvent.Action.getValueByCanonicalName(var6.getAsJsonPrimitive("action").getAsString());
-                    String var8 = var6.getAsJsonPrimitive("value").getAsString();
+                    ClickEvent.Action var7 = ClickEvent.Action
+                            .getValueByCanonicalName(var6.getAsJsonPrimitive(
+                                    "action").getAsString());
+                    String var8 = var6.getAsJsonPrimitive("value")
+                            .getAsString();
 
-                    if (var7 != null && var8 != null && var7.shouldAllowInChat())
+                    if (var7 != null && var8 != null
+                            && var7.shouldAllowInChat())
                     {
                         var4.chatClickEvent = new ClickEvent(var7, var8);
                     }
@@ -449,10 +513,15 @@ public class ChatStyle
                 if (var5.has("hoverEvent"))
                 {
                     var6 = var5.getAsJsonObject("hoverEvent");
-                    HoverEvent.Action var9 = HoverEvent.Action.getValueByCanonicalName(var6.getAsJsonPrimitive("action").getAsString());
-                    IChatComponent var10 = (IChatComponent)p_150204_3_.deserialize(var6.get("value"), IChatComponent.class);
+                    HoverEvent.Action var9 = HoverEvent.Action
+                            .getValueByCanonicalName(var6.getAsJsonPrimitive(
+                                    "action").getAsString());
+                    IChatComponent var10 = (IChatComponent)p_150204_3_
+                            .deserialize(var6.get("value"),
+                                    IChatComponent.class);
 
-                    if (var9 != null && var10 != null && var9.shouldAllowInChat())
+                    if (var9 != null && var10 != null
+                            && var9.shouldAllowInChat())
                     {
                         var4.chatHoverEvent = new HoverEvent(var9, var10);
                     }
@@ -466,7 +535,8 @@ public class ChatStyle
             }
         }
 
-        public JsonElement serialize(ChatStyle p_150203_1_, Type p_150203_2_, JsonSerializationContext p_150203_3_)
+        public JsonElement serialize(ChatStyle p_150203_1_, Type p_150203_2_,
+                JsonSerializationContext p_150203_3_)
         {
             if (p_150203_1_.isEmpty())
             {
@@ -511,16 +581,20 @@ public class ChatStyle
                 if (p_150203_1_.chatClickEvent != null)
                 {
                     var5 = new JsonObject();
-                    var5.addProperty("action", p_150203_1_.chatClickEvent.getAction().getCanonicalName());
-                    var5.addProperty("value", p_150203_1_.chatClickEvent.getValue());
+                    var5.addProperty("action", p_150203_1_.chatClickEvent
+                            .getAction().getCanonicalName());
+                    var5.addProperty("value",
+                            p_150203_1_.chatClickEvent.getValue());
                     var4.add("clickEvent", var5);
                 }
 
                 if (p_150203_1_.chatHoverEvent != null)
                 {
                     var5 = new JsonObject();
-                    var5.addProperty("action", p_150203_1_.chatHoverEvent.getAction().getCanonicalName());
-                    var5.add("value", p_150203_3_.serialize(p_150203_1_.chatHoverEvent.getValue()));
+                    var5.addProperty("action", p_150203_1_.chatHoverEvent
+                            .getAction().getCanonicalName());
+                    var5.add("value", p_150203_3_
+                            .serialize(p_150203_1_.chatHoverEvent.getValue()));
                     var4.add("hoverEvent", var5);
                 }
 
@@ -528,9 +602,11 @@ public class ChatStyle
             }
         }
 
-        public JsonElement serialize(Object par1Obj, Type par2Type, JsonSerializationContext par3JsonSerializationContext)
+        public JsonElement serialize(Object par1Obj, Type par2Type,
+                JsonSerializationContext par3JsonSerializationContext)
         {
-            return this.serialize((ChatStyle)par1Obj, par2Type, par3JsonSerializationContext);
+            return this.serialize((ChatStyle)par1Obj, par2Type,
+                    par3JsonSerializationContext);
         }
     }
 }

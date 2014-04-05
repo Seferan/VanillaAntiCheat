@@ -35,7 +35,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 
-public class ServerCommandManager extends CommandHandler implements IAdminCommand
+public class ServerCommandManager extends CommandHandler implements
+        IAdminCommand
 {
     private static final String __OBFID = "CL_00000922";
 
@@ -103,31 +104,40 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
     }
 
     /**
-     * Sends a message to the admins of the server from a given CommandSender with the given resource string and given
-     * extra srings. If the int par2 is even or zero, the original sender is also notified.
+     * Sends a message to the admins of the server from a given CommandSender
+     * with the given resource string and given extra srings. If the int par2 is
+     * even or zero, the original sender is also notified.
      */
-    public void notifyAdmins(ICommandSender par1ICommandSender, int par2, String par3Str, Object ... par4ArrayOfObj)
+    public void notifyAdmins(ICommandSender par1ICommandSender, int par2,
+            String par3Str, Object... par4ArrayOfObj)
     {
         boolean var5 = true;
 
-        if (par1ICommandSender instanceof CommandBlockLogic && !MinecraftServer.getServer().worldServers[0].getGameRules().getGameRuleBooleanValue("commandBlockOutput"))
+        if (par1ICommandSender instanceof CommandBlockLogic
+                && !MinecraftServer.getServer().worldServers[0].getGameRules()
+                        .getGameRuleBooleanValue("commandBlockOutput"))
         {
             var5 = false;
         }
 
-        ChatComponentTranslation var6 = new ChatComponentTranslation("chat.type.admin", new Object[] {par1ICommandSender.getCommandSenderName(), new ChatComponentTranslation(par3Str, par4ArrayOfObj)});
+        ChatComponentTranslation var6 = new ChatComponentTranslation(
+                "chat.type.admin", new Object[] {
+                        par1ICommandSender.getCommandSenderName(),
+                        new ChatComponentTranslation(par3Str, par4ArrayOfObj)});
         var6.getChatStyle().setColor(EnumChatFormatting.GRAY);
         var6.getChatStyle().setItalic(Boolean.valueOf(true));
 
         if (var5)
         {
-            Iterator var7 = MinecraftServer.getServer().getConfigurationManager().playerEntityList.iterator();
+            Iterator var7 = MinecraftServer.getServer()
+                    .getConfigurationManager().playerEntityList.iterator();
 
             while (var7.hasNext())
             {
                 EntityPlayerMP var8 = (EntityPlayerMP)var7.next();
 
-                if (var8 != par1ICommandSender && MinecraftServer.isPlayerOpped(var8))
+                if (var8 != par1ICommandSender
+                        && MinecraftServer.isPlayerOpped(var8))
                 {
                     var8.addChatMessage(var6);
                 }
@@ -141,7 +151,8 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
 
         if ((par2 & 1) != 1)
         {
-            par1ICommandSender.addChatMessage(new ChatComponentTranslation(par3Str, par4ArrayOfObj));
+            par1ICommandSender.addChatMessage(new ChatComponentTranslation(
+                    par3Str, par4ArrayOfObj));
         }
     }
 }

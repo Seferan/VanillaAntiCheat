@@ -18,7 +18,10 @@ import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityBeacon extends TileEntity implements IInventory
 {
-    public static final Potion[][] field_146009_a = new Potion[][] {{Potion.moveSpeed, Potion.digSpeed}, {Potion.resistance, Potion.jump}, {Potion.damageBoost}, {Potion.regeneration}};
+    public static final Potion[][] field_146009_a = new Potion[][] {
+            {Potion.moveSpeed, Potion.digSpeed},
+            {Potion.resistance, Potion.jump}, {Potion.damageBoost},
+            {Potion.regeneration}};
     private boolean field_146015_k;
     private int field_146012_l = -1;
     private int field_146013_m;
@@ -38,36 +41,48 @@ public class TileEntityBeacon extends TileEntity implements IInventory
 
     private void func_146000_x()
     {
-        if (this.field_146015_k && this.field_146012_l > 0 && !this.worldObj.isClient && this.field_146013_m > 0)
+        if (this.field_146015_k && this.field_146012_l > 0
+                && !this.worldObj.isClient && this.field_146013_m > 0)
         {
             double var1 = (double)(this.field_146012_l * 10 + 10);
             byte var3 = 0;
 
-            if (this.field_146012_l >= 4 && this.field_146013_m == this.field_146010_n)
+            if (this.field_146012_l >= 4
+                    && this.field_146013_m == this.field_146010_n)
             {
                 var3 = 1;
             }
 
-            AxisAlignedBB var4 = AxisAlignedBB.getAABBPool().getAABB((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)(this.xCoord + 1), (double)(this.yCoord + 1), (double)(this.zCoord + 1)).expand(var1, var1, var1);
+            AxisAlignedBB var4 = AxisAlignedBB
+                    .getAABBPool()
+                    .getAABB((double)this.xCoord, (double)this.yCoord,
+                            (double)this.zCoord, (double)(this.xCoord + 1),
+                            (double)(this.yCoord + 1),
+                            (double)(this.zCoord + 1)).expand(var1, var1, var1);
             var4.maxY = (double)this.worldObj.getHeight();
-            List var5 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, var4);
+            List var5 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class,
+                    var4);
             Iterator var6 = var5.iterator();
             EntityPlayer var7;
 
             while (var6.hasNext())
             {
                 var7 = (EntityPlayer)var6.next();
-                var7.addPotionEffect(new PotionEffect(this.field_146013_m, 180, var3, true));
+                var7.addPotionEffect(new PotionEffect(this.field_146013_m, 180,
+                        var3, true));
             }
 
-            if (this.field_146012_l >= 4 && this.field_146013_m != this.field_146010_n && this.field_146010_n > 0)
+            if (this.field_146012_l >= 4
+                    && this.field_146013_m != this.field_146010_n
+                    && this.field_146010_n > 0)
             {
                 var6 = var5.iterator();
 
                 while (var6.hasNext())
                 {
                     var7 = (EntityPlayer)var6.next();
-                    var7.addPotionEffect(new PotionEffect(this.field_146010_n, 180, 0, true));
+                    var7.addPotionEffect(new PotionEffect(this.field_146010_n,
+                            180, 0, true));
                 }
             }
         }
@@ -77,7 +92,8 @@ public class TileEntityBeacon extends TileEntity implements IInventory
     {
         int var1 = this.field_146012_l;
 
-        if (!this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord + 1, this.zCoord))
+        if (!this.worldObj.canBlockSeeTheSky(this.xCoord, this.yCoord + 1,
+                this.zCoord))
         {
             this.field_146015_k = false;
             this.field_146012_l = 0;
@@ -98,13 +114,18 @@ public class TileEntityBeacon extends TileEntity implements IInventory
 
                 boolean var4 = true;
 
-                for (int var5 = this.xCoord - var2; var5 <= this.xCoord + var2 && var4; ++var5)
+                for (int var5 = this.xCoord - var2; var5 <= this.xCoord + var2
+                        && var4; ++var5)
                 {
-                    for (int var6 = this.zCoord - var2; var6 <= this.zCoord + var2; ++var6)
+                    for (int var6 = this.zCoord - var2; var6 <= this.zCoord
+                            + var2; ++var6)
                     {
                         Block var7 = this.worldObj.getBlock(var5, var3, var6);
 
-                        if (var7 != Blocks.emerald_block && var7 != Blocks.gold_block && var7 != Blocks.diamond_block && var7 != Blocks.iron_block)
+                        if (var7 != Blocks.emerald_block
+                                && var7 != Blocks.gold_block
+                                && var7 != Blocks.diamond_block
+                                && var7 != Blocks.iron_block)
                         {
                             var4 = false;
                             break;
@@ -124,9 +145,18 @@ public class TileEntityBeacon extends TileEntity implements IInventory
             }
         }
 
-        if (!this.worldObj.isClient && this.field_146012_l == 4 && var1 < this.field_146012_l)
+        if (!this.worldObj.isClient && this.field_146012_l == 4
+                && var1 < this.field_146012_l)
         {
-            Iterator var8 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getAABBPool().getAABB((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)this.xCoord, (double)(this.yCoord - 4), (double)this.zCoord).expand(10.0D, 5.0D, 10.0D)).iterator();
+            Iterator var8 = this.worldObj.getEntitiesWithinAABB(
+                    EntityPlayer.class,
+                    AxisAlignedBB
+                            .getAABBPool()
+                            .getAABB((double)this.xCoord, (double)this.yCoord,
+                                    (double)this.zCoord, (double)this.xCoord,
+                                    (double)(this.yCoord - 4),
+                                    (double)this.zCoord)
+                            .expand(10.0D, 5.0D, 10.0D)).iterator();
 
             while (var8.hasNext())
             {
@@ -205,7 +235,8 @@ public class TileEntityBeacon extends TileEntity implements IInventory
     {
         NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 3, var1);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord,
+                this.zCoord, 3, var1);
     }
 
     public void readFromNBT(NBTTagCompound p_145839_1_)
@@ -241,8 +272,8 @@ public class TileEntityBeacon extends TileEntity implements IInventory
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
@@ -257,7 +288,8 @@ public class TileEntityBeacon extends TileEntity implements IInventory
             else
             {
                 this.field_146011_o.stackSize -= par2;
-                return new ItemStack(this.field_146011_o.getItem(), par2, this.field_146011_o.getItemDamage());
+                return new ItemStack(this.field_146011_o.getItem(), par2,
+                        this.field_146011_o.getItemDamage());
             }
         }
         else
@@ -267,8 +299,9 @@ public class TileEntityBeacon extends TileEntity implements IInventory
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
@@ -285,7 +318,8 @@ public class TileEntityBeacon extends TileEntity implements IInventory
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
@@ -300,7 +334,8 @@ public class TileEntityBeacon extends TileEntity implements IInventory
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.field_146008_p : "container.beacon";
+        return this.isInventoryNameLocalized() ? this.field_146008_p
+                : "container.beacon";
     }
 
     /**
@@ -317,8 +352,8 @@ public class TileEntityBeacon extends TileEntity implements IInventory
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -326,22 +361,34 @@ public class TileEntityBeacon extends TileEntity implements IInventory
     }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord,
+                this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(
+                (double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D,
+                (double)this.zCoord + 0.5D) <= 64.0D;
     }
 
-    public void openChest() {}
+    public void openChest()
+    {
+    }
 
-    public void closeChest() {}
+    public void closeChest()
+    {
+    }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
-        return par2ItemStack.getItem() == Items.emerald || par2ItemStack.getItem() == Items.diamond || par2ItemStack.getItem() == Items.gold_ingot || par2ItemStack.getItem() == Items.iron_ingot;
+        return par2ItemStack.getItem() == Items.emerald
+                || par2ItemStack.getItem() == Items.diamond
+                || par2ItemStack.getItem() == Items.gold_ingot
+                || par2ItemStack.getItem() == Items.iron_ingot;
     }
 }

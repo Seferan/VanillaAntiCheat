@@ -12,7 +12,9 @@ public class S34PacketMaps extends Packet
     private byte[] field_149190_b;
     private static final String __OBFID = "CL_00001311";
 
-    public S34PacketMaps() {}
+    public S34PacketMaps()
+    {
+    }
 
     public S34PacketMaps(int p_i45202_1_, byte[] p_i45202_2_)
     {
@@ -46,11 +48,15 @@ public class S34PacketMaps extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, length=%d", new Object[] {Integer.valueOf(this.field_149191_a), Integer.valueOf(this.field_149190_b.length)});
+        return String.format(
+                "id=%d, length=%d",
+                new Object[] {Integer.valueOf(this.field_149191_a),
+                        Integer.valueOf(this.field_149190_b.length)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

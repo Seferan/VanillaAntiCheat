@@ -4,7 +4,8 @@ public class EnchantmentLootBonus extends Enchantment
 {
     private static final String __OBFID = "CL_00000119";
 
-    protected EnchantmentLootBonus(int par1, int par2, EnumEnchantmentType par3EnumEnchantmentType)
+    protected EnchantmentLootBonus(int par1, int par2,
+            EnumEnchantmentType par3EnumEnchantmentType)
     {
         super(par1, par2, par3EnumEnchantmentType);
 
@@ -23,7 +24,8 @@ public class EnchantmentLootBonus extends Enchantment
     }
 
     /**
-     * Returns the minimal value of enchantability needed on the enchantment level passed.
+     * Returns the minimal value of enchantability needed on the enchantment
+     * level passed.
      */
     public int getMinEnchantability(int par1)
     {
@@ -31,7 +33,8 @@ public class EnchantmentLootBonus extends Enchantment
     }
 
     /**
-     * Returns the maximum value of enchantability nedded on the enchantment level passed.
+     * Returns the maximum value of enchantability nedded on the enchantment
+     * level passed.
      */
     public int getMaxEnchantability(int par1)
     {
@@ -47,10 +50,12 @@ public class EnchantmentLootBonus extends Enchantment
     }
 
     /**
-     * Determines if the enchantment passed can be applyied together with this enchantment.
+     * Determines if the enchantment passed can be applyied together with this
+     * enchantment.
      */
     public boolean canApplyTogether(Enchantment par1Enchantment)
     {
-        return super.canApplyTogether(par1Enchantment) && par1Enchantment.effectId != silkTouch.effectId;
+        return super.canApplyTogether(par1Enchantment)
+                && par1Enchantment.effectId != silkTouch.effectId;
     }
 }

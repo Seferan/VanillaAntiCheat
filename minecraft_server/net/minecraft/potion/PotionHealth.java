@@ -10,7 +10,8 @@ public class PotionHealth extends Potion
     }
 
     /**
-     * Returns true if the potion has an instant effect instead of a continuous one (eg Harming)
+     * Returns true if the potion has an instant effect instead of a continuous
+     * one (eg Harming)
      */
     public boolean isInstant()
     {

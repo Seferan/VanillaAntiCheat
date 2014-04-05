@@ -28,12 +28,14 @@ public class FoodStats
     public void addStats(int par1, float par2)
     {
         this.foodLevel = Math.min(par1 + this.foodLevel, 20);
-        this.foodSaturationLevel = Math.min(this.foodSaturationLevel + (float)par1 * par2 * 2.0F, (float)this.foodLevel);
+        this.foodSaturationLevel = Math.min(this.foodSaturationLevel
+                + (float)par1 * par2 * 2.0F, (float)this.foodLevel);
     }
 
     public void func_151686_a(ItemFood p_151686_1_, ItemStack p_151686_2_)
     {
-        this.addStats(p_151686_1_.func_150905_g(p_151686_2_), p_151686_1_.func_150906_h(p_151686_2_));
+        this.addStats(p_151686_1_.func_150905_g(p_151686_2_),
+                p_151686_1_.func_150906_h(p_151686_2_));
     }
 
     /**
@@ -50,7 +52,8 @@ public class FoodStats
 
             if (this.foodSaturationLevel > 0.0F)
             {
-                this.foodSaturationLevel = Math.max(this.foodSaturationLevel - 1.0F, 0.0F);
+                this.foodSaturationLevel = Math.max(
+                        this.foodSaturationLevel - 1.0F, 0.0F);
             }
             else if (var2 != EnumDifficulty.PEACEFUL)
             {
@@ -58,7 +61,9 @@ public class FoodStats
             }
         }
 
-        if (par1EntityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.foodLevel >= 18 && par1EntityPlayer.shouldHeal())
+        if (par1EntityPlayer.worldObj.getGameRules().getGameRuleBooleanValue(
+                "naturalRegeneration")
+                && this.foodLevel >= 18 && par1EntityPlayer.shouldHeal())
         {
             ++this.foodTimer;
 
@@ -75,9 +80,13 @@ public class FoodStats
 
             if (this.foodTimer >= 80)
             {
-                if (par1EntityPlayer.getHealth() > 10.0F || var2 == EnumDifficulty.HARD || par1EntityPlayer.getHealth() > 1.0F && var2 == EnumDifficulty.NORMAL)
+                if (par1EntityPlayer.getHealth() > 10.0F
+                        || var2 == EnumDifficulty.HARD
+                        || par1EntityPlayer.getHealth() > 1.0F
+                        && var2 == EnumDifficulty.NORMAL)
                 {
-                    par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
+                    par1EntityPlayer
+                            .attackEntityFrom(DamageSource.starve, 1.0F);
                 }
 
                 this.foodTimer = 0;
@@ -98,8 +107,10 @@ public class FoodStats
         {
             this.foodLevel = par1NBTTagCompound.getInteger("foodLevel");
             this.foodTimer = par1NBTTagCompound.getInteger("foodTickTimer");
-            this.foodSaturationLevel = par1NBTTagCompound.getFloat("foodSaturationLevel");
-            this.foodExhaustionLevel = par1NBTTagCompound.getFloat("foodExhaustionLevel");
+            this.foodSaturationLevel = par1NBTTagCompound
+                    .getFloat("foodSaturationLevel");
+            this.foodExhaustionLevel = par1NBTTagCompound
+                    .getFloat("foodExhaustionLevel");
         }
     }
 
@@ -110,8 +121,10 @@ public class FoodStats
     {
         par1NBTTagCompound.setInteger("foodLevel", this.foodLevel);
         par1NBTTagCompound.setInteger("foodTickTimer", this.foodTimer);
-        par1NBTTagCompound.setFloat("foodSaturationLevel", this.foodSaturationLevel);
-        par1NBTTagCompound.setFloat("foodExhaustionLevel", this.foodExhaustionLevel);
+        par1NBTTagCompound.setFloat("foodSaturationLevel",
+                this.foodSaturationLevel);
+        par1NBTTagCompound.setFloat("foodExhaustionLevel",
+                this.foodExhaustionLevel);
     }
 
     /**
@@ -135,7 +148,8 @@ public class FoodStats
      */
     public void addExhaustion(float par1)
     {
-        this.foodExhaustionLevel = Math.min(this.foodExhaustionLevel + par1, 40.0F);
+        this.foodExhaustionLevel = Math.min(this.foodExhaustionLevel + par1,
+                40.0F);
     }
 
     /**

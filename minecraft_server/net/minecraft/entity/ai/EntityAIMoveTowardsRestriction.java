@@ -13,7 +13,8 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
     private double movementSpeed;
     private static final String __OBFID = "CL_00001598";
 
-    public EntityAIMoveTowardsRestriction(EntityCreature par1EntityCreature, double par2)
+    public EntityAIMoveTowardsRestriction(EntityCreature par1EntityCreature,
+            double par2)
     {
         this.theEntity = par1EntityCreature;
         this.movementSpeed = par2;
@@ -32,7 +33,13 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
         else
         {
             ChunkCoordinates var1 = this.theEntity.getHomePosition();
-            Vec3 var2 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool((double)var1.posX, (double)var1.posY, (double)var1.posZ));
+            Vec3 var2 = RandomPositionGenerator.findRandomTargetBlockTowards(
+                    this.theEntity,
+                    16,
+                    7,
+                    this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool(
+                            (double)var1.posX, (double)var1.posY,
+                            (double)var1.posZ));
 
             if (var2 == null)
             {
@@ -61,6 +68,7 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.movementSpeed);
+        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX,
+                this.movePosY, this.movePosZ, this.movementSpeed);
     }
 }

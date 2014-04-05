@@ -15,7 +15,8 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
         super(false);
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         int var6 = par2Random.nextInt(5) + 7;
         int var7 = var6 - par2Random.nextInt(2) - 3;
@@ -48,7 +49,8 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
                     {
                         if (var11 >= 0 && var11 < 256)
                         {
-                            Block var15 = par1World.getBlock(var13, var11, var14);
+                            Block var15 = par1World.getBlock(var13, var11,
+                                    var14);
 
                             if (!this.func_150523_a(var15))
                             {
@@ -71,9 +73,11 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
             {
                 Block var19 = par1World.getBlock(par3, par4 - 1, par5);
 
-                if ((var19 == Blocks.grass || var19 == Blocks.dirt) && par4 < 256 - var6 - 1)
+                if ((var19 == Blocks.grass || var19 == Blocks.dirt)
+                        && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
+                    this.func_150515_a(par1World, par3, par4 - 1, par5,
+                            Blocks.dirt);
                     var18 = 0;
 
                     for (var13 = par4 + var6; var13 >= par4 + var7; --var13)
@@ -82,13 +86,18 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
                         {
                             int var21 = var14 - par3;
 
-                            for (int var16 = par5 - var18; var16 <= par5 + var18; ++var16)
+                            for (int var16 = par5 - var18; var16 <= par5
+                                    + var18; ++var16)
                             {
                                 int var17 = var16 - par5;
 
-                                if ((Math.abs(var21) != var18 || Math.abs(var17) != var18 || var18 <= 0) && !par1World.getBlock(var14, var13, var16).func_149730_j())
+                                if ((Math.abs(var21) != var18
+                                        || Math.abs(var17) != var18 || var18 <= 0)
+                                        && !par1World.getBlock(var14, var13,
+                                                var16).func_149730_j())
                                 {
-                                    this.func_150516_a(par1World, var14, var13, var16, Blocks.leaves, 1);
+                                    this.func_150516_a(par1World, var14, var13,
+                                            var16, Blocks.leaves, 1);
                                 }
                             }
                         }
@@ -105,11 +114,14 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
                     for (var13 = 0; var13 < var6 - 1; ++var13)
                     {
-                        Block var20 = par1World.getBlock(par3, par4 + var13, par5);
+                        Block var20 = par1World.getBlock(par3, par4 + var13,
+                                par5);
 
-                        if (var20.getMaterial() == Material.air || var20.getMaterial() == Material.field_151584_j)
+                        if (var20.getMaterial() == Material.air
+                                || var20.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, par3, par4 + var13, par5, Blocks.log, 1);
+                            this.func_150516_a(par1World, par3, par4 + var13,
+                                    par5, Blocks.log, 1);
                         }
                     }
 

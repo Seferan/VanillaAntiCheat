@@ -42,7 +42,10 @@ public class EntityAIOcelotAttack extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.theVictim.isEntityAlive() ? false : (this.theEntity.getDistanceSqToEntity(this.theVictim) > 225.0D ? false : !this.theEntity.getNavigator().noPath() || this.shouldExecute());
+        return !this.theVictim.isEntityAlive() ? false : (this.theEntity
+                .getDistanceSqToEntity(this.theVictim) > 225.0D ? false
+                : !this.theEntity.getNavigator().noPath()
+                        || this.shouldExecute());
     }
 
     /**
@@ -59,9 +62,12 @@ public class EntityAIOcelotAttack extends EntityAIBase
      */
     public void updateTask()
     {
-        this.theEntity.getLookHelper().setLookPositionWithEntity(this.theVictim, 30.0F, 30.0F);
-        double var1 = (double)(this.theEntity.width * 2.0F * this.theEntity.width * 2.0F);
-        double var3 = this.theEntity.getDistanceSq(this.theVictim.posX, this.theVictim.boundingBox.minY, this.theVictim.posZ);
+        this.theEntity.getLookHelper().setLookPositionWithEntity(
+                this.theVictim, 30.0F, 30.0F);
+        double var1 = (double)(this.theEntity.width * 2.0F
+                * this.theEntity.width * 2.0F);
+        double var3 = this.theEntity.getDistanceSq(this.theVictim.posX,
+                this.theVictim.boundingBox.minY, this.theVictim.posZ);
         double var5 = 0.8D;
 
         if (var3 > var1 && var3 < 16.0D)
@@ -73,7 +79,8 @@ public class EntityAIOcelotAttack extends EntityAIBase
             var5 = 0.6D;
         }
 
-        this.theEntity.getNavigator().tryMoveToEntityLiving(this.theVictim, var5);
+        this.theEntity.getNavigator().tryMoveToEntityLiving(this.theVictim,
+                var5);
         this.attackCountdown = Math.max(this.attackCountdown - 1, 0);
 
         if (var3 <= var1)

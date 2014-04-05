@@ -8,7 +8,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.world.World;
 
-public abstract class EntityTameable extends EntityAnimal implements IEntityOwnable
+public abstract class EntityTameable extends EntityAnimal implements
+        IEntityOwnable
 {
     protected EntityAISit aiSit = new EntityAISit(this);
     private static final String __OBFID = "CL_00001561";
@@ -63,7 +64,8 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
     }
 
     /**
-     * Play the taming effect, will either be hearts or smoke depending on status
+     * Play the taming effect, will either be hearts or smoke depending on
+     * status
      */
     protected void playTameEffect(boolean par1)
     {
@@ -79,7 +81,20 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
             double var4 = this.rand.nextGaussian() * 0.02D;
             double var6 = this.rand.nextGaussian() * 0.02D;
             double var8 = this.rand.nextGaussian() * 0.02D;
-            this.worldObj.spawnParticle(var2, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, var4, var6, var8);
+            this.worldObj
+                    .spawnParticle(
+                            var2,
+                            this.posX
+                                    + (double)(this.rand.nextFloat()
+                                            * this.width * 2.0F)
+                                    - (double)this.width,
+                            this.posY
+                                    + 0.5D
+                                    + (double)(this.rand.nextFloat() * this.height),
+                            this.posZ
+                                    + (double)(this.rand.nextFloat()
+                                            * this.width * 2.0F)
+                                    - (double)this.width, var4, var6, var8);
         }
     }
 
@@ -141,7 +156,8 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
         return this.aiSit;
     }
 
-    public boolean func_142018_a(EntityLivingBase par1EntityLivingBase, EntityLivingBase par2EntityLivingBase)
+    public boolean func_142018_a(EntityLivingBase par1EntityLivingBase,
+            EntityLivingBase par2EntityLivingBase)
     {
         return true;
     }
@@ -152,10 +168,7 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
         {
             EntityLivingBase var1 = this.getOwner();
 
-            if (var1 != null)
-            {
-                return var1.getTeam();
-            }
+            if (var1 != null) { return var1.getTeam(); }
         }
 
         return super.getTeam();
@@ -167,15 +180,9 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
         {
             EntityLivingBase var2 = this.getOwner();
 
-            if (par1EntityLivingBase == var2)
-            {
-                return true;
-            }
+            if (par1EntityLivingBase == var2) { return true; }
 
-            if (var2 != null)
-            {
-                return var2.isOnSameTeam(par1EntityLivingBase);
-            }
+            if (var2 != null) { return var2.isOnSameTeam(par1EntityLivingBase); }
         }
 
         return super.isOnSameTeam(par1EntityLivingBase);

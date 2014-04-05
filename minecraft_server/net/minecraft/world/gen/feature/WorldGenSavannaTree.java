@@ -16,7 +16,8 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
         super(p_i45463_1_);
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         int var6 = par2Random.nextInt(3) + par2Random.nextInt(3) + 5;
         boolean var7 = true;
@@ -46,7 +47,8 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                     {
                         if (var8 >= 0 && var8 < 256)
                         {
-                            Block var12 = par1World.getBlock(var10, var8, var11);
+                            Block var12 = par1World
+                                    .getBlock(var10, var8, var11);
 
                             if (!this.func_150523_a(var12))
                             {
@@ -69,9 +71,11 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
             {
                 Block var21 = par1World.getBlock(par3, par4 - 1, par5);
 
-                if ((var21 == Blocks.grass || var21 == Blocks.dirt) && par4 < 256 - var6 - 1)
+                if ((var21 == Blocks.grass || var21 == Blocks.dirt)
+                        && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
+                    this.func_150515_a(par1World, par3, par4 - 1, par5,
+                            Blocks.dirt);
                     int var22 = par2Random.nextInt(4);
                     var10 = var6 - par2Random.nextInt(4) - 1;
                     var11 = 3 - par2Random.nextInt(3);
@@ -94,9 +98,11 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
 
                         Block var17 = par1World.getBlock(var23, var16, var13);
 
-                        if (var17.getMaterial() == Material.air || var17.getMaterial() == Material.field_151584_j)
+                        if (var17.getMaterial() == Material.air
+                                || var17.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, var23, var16, var13, Blocks.log2, 0);
+                            this.func_150516_a(par1World, var23, var16, var13,
+                                    Blocks.log2, 0);
                             var14 = var16;
                         }
                     }
@@ -105,7 +111,8 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                     {
                         for (var16 = -1; var16 <= 1; ++var16)
                         {
-                            this.func_150525_a(par1World, var23 + var15, var14 + 1, var13 + var16);
+                            this.func_150525_a(par1World, var23 + var15,
+                                    var14 + 1, var13 + var16);
                         }
                     }
 
@@ -120,7 +127,8 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                         {
                             if (Math.abs(var15) != 3 || Math.abs(var16) != 3)
                             {
-                                this.func_150525_a(par1World, var23 + var15, var14, var13 + var16);
+                                this.func_150525_a(par1World, var23 + var15,
+                                        var14, var13 + var16);
                             }
                         }
                     }
@@ -144,11 +152,14 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                                 var19 = par4 + var18;
                                 var23 += Direction.offsetX[var15];
                                 var13 += Direction.offsetZ[var15];
-                                Block var20 = par1World.getBlock(var23, var19, var13);
+                                Block var20 = par1World.getBlock(var23, var19,
+                                        var13);
 
-                                if (var20.getMaterial() == Material.air || var20.getMaterial() == Material.field_151584_j)
+                                if (var20.getMaterial() == Material.air
+                                        || var20.getMaterial() == Material.field_151584_j)
                                 {
-                                    this.func_150516_a(par1World, var23, var19, var13, Blocks.log2, 0);
+                                    this.func_150516_a(par1World, var23, var19,
+                                            var13, Blocks.log2, 0);
                                     var14 = var19;
                                 }
                             }
@@ -162,7 +173,9 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                             {
                                 for (var19 = -1; var19 <= 1; ++var19)
                                 {
-                                    this.func_150525_a(par1World, var23 + var18, var14 + 1, var13 + var19);
+                                    this.func_150525_a(par1World,
+                                            var23 + var18, var14 + 1, var13
+                                                    + var19);
                                 }
                             }
 
@@ -170,9 +183,11 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
                             {
                                 for (var19 = -2; var19 <= 2; ++var19)
                                 {
-                                    if (Math.abs(var18) != 2 || Math.abs(var19) != 2)
+                                    if (Math.abs(var18) != 2
+                                            || Math.abs(var19) != 2)
                                     {
-                                        this.func_150525_a(par1World, var23 + var18, var14, var13 + var19);
+                                        this.func_150525_a(par1World, var23
+                                                + var18, var14, var13 + var19);
                                     }
                                 }
                             }
@@ -193,13 +208,17 @@ public class WorldGenSavannaTree extends WorldGenAbstractTree
         }
     }
 
-    private void func_150525_a(World p_150525_1_, int p_150525_2_, int p_150525_3_, int p_150525_4_)
+    private void func_150525_a(World p_150525_1_, int p_150525_2_,
+            int p_150525_3_, int p_150525_4_)
     {
-        Block var5 = p_150525_1_.getBlock(p_150525_2_, p_150525_3_, p_150525_4_);
+        Block var5 = p_150525_1_
+                .getBlock(p_150525_2_, p_150525_3_, p_150525_4_);
 
-        if (var5.getMaterial() == Material.air || var5.getMaterial() == Material.field_151584_j)
+        if (var5.getMaterial() == Material.air
+                || var5.getMaterial() == Material.field_151584_j)
         {
-            this.func_150516_a(p_150525_1_, p_150525_2_, p_150525_3_, p_150525_4_, Blocks.leaves2, 0);
+            this.func_150516_a(p_150525_1_, p_150525_2_, p_150525_3_,
+                    p_150525_4_, Blocks.leaves2, 0);
         }
     }
 }

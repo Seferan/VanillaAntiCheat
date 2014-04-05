@@ -31,7 +31,8 @@ public class CrashReport
     private final Throwable cause;
 
     /** Category of crash */
-    private final CrashReportCategory theReportCategory = new CrashReportCategory(this, "System Details");
+    private final CrashReportCategory theReportCategory = new CrashReportCategory(
+            this, "System Details");
 
     /** Holds the keys and values of all crash report sections. */
     private final List crashReportSections = new ArrayList();
@@ -50,46 +51,60 @@ public class CrashReport
     }
 
     /**
-     * Populates this crash report with initial information about the running server and operating system / java
-     * environment
+     * Populates this crash report with initial information about the running
+     * server and operating system / java environment
      */
     private void populateEnvironment()
     {
-        this.theReportCategory.addCrashSectionCallable("Minecraft Version", new Callable()
-        {
-            private static final String __OBFID = "CL_00001197";
-            public String call()
-            {
-                return "1.7.2";
-            }
-        });
-        this.theReportCategory.addCrashSectionCallable("Operating System", new Callable()
-        {
-            private static final String __OBFID = "CL_00001222";
-            public String call()
-            {
-                return System.getProperty("os.name") + " (" + System.getProperty("os.arch") + ") version " + System.getProperty("os.version");
-            }
-        });
-        this.theReportCategory.addCrashSectionCallable("Java Version", new Callable()
-        {
-            private static final String __OBFID = "CL_00001248";
-            public String call()
-            {
-                return System.getProperty("java.version") + ", " + System.getProperty("java.vendor");
-            }
-        });
-        this.theReportCategory.addCrashSectionCallable("Java VM Version", new Callable()
-        {
-            private static final String __OBFID = "CL_00001275";
-            public String call()
-            {
-                return System.getProperty("java.vm.name") + " (" + System.getProperty("java.vm.info") + "), " + System.getProperty("java.vm.vendor");
-            }
-        });
+        this.theReportCategory.addCrashSectionCallable("Minecraft Version",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00001197";
+
+                    public String call()
+                    {
+                        return "1.7.2";
+                    }
+                });
+        this.theReportCategory.addCrashSectionCallable("Operating System",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00001222";
+
+                    public String call()
+                    {
+                        return System.getProperty("os.name") + " ("
+                                + System.getProperty("os.arch") + ") version "
+                                + System.getProperty("os.version");
+                    }
+                });
+        this.theReportCategory.addCrashSectionCallable("Java Version",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00001248";
+
+                    public String call()
+                    {
+                        return System.getProperty("java.version") + ", "
+                                + System.getProperty("java.vendor");
+                    }
+                });
+        this.theReportCategory.addCrashSectionCallable("Java VM Version",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00001275";
+
+                    public String call()
+                    {
+                        return System.getProperty("java.vm.name") + " ("
+                                + System.getProperty("java.vm.info") + "), "
+                                + System.getProperty("java.vm.vendor");
+                    }
+                });
         this.theReportCategory.addCrashSectionCallable("Memory", new Callable()
         {
             private static final String __OBFID = "CL_00001302";
+
             public String call()
             {
                 Runtime var1 = Runtime.getRuntime();
@@ -99,60 +114,76 @@ public class CrashReport
                 long var8 = var2 / 1024L / 1024L;
                 long var10 = var4 / 1024L / 1024L;
                 long var12 = var6 / 1024L / 1024L;
-                return var6 + " bytes (" + var12 + " MB) / " + var4 + " bytes (" + var10 + " MB) up to " + var2 + " bytes (" + var8 + " MB)";
+                return var6 + " bytes (" + var12 + " MB) / " + var4
+                        + " bytes (" + var10 + " MB) up to " + var2
+                        + " bytes (" + var8 + " MB)";
             }
         });
-        this.theReportCategory.addCrashSectionCallable("JVM Flags", new Callable()
-        {
-            private static final String __OBFID = "CL_00001329";
-            public String call()
-            {
-                RuntimeMXBean var1 = ManagementFactory.getRuntimeMXBean();
-                List var2 = var1.getInputArguments();
-                int var3 = 0;
-                StringBuilder var4 = new StringBuilder();
-                Iterator var5 = var2.iterator();
-
-                while (var5.hasNext())
+        this.theReportCategory.addCrashSectionCallable("JVM Flags",
+                new Callable()
                 {
-                    String var6 = (String)var5.next();
+                    private static final String __OBFID = "CL_00001329";
 
-                    if (var6.startsWith("-X"))
+                    public String call()
                     {
-                        if (var3++ > 0)
+                        RuntimeMXBean var1 = ManagementFactory
+                                .getRuntimeMXBean();
+                        List var2 = var1.getInputArguments();
+                        int var3 = 0;
+                        StringBuilder var4 = new StringBuilder();
+                        Iterator var5 = var2.iterator();
+
+                        while (var5.hasNext())
                         {
-                            var4.append(" ");
+                            String var6 = (String)var5.next();
+
+                            if (var6.startsWith("-X"))
+                            {
+                                if (var3++ > 0)
+                                {
+                                    var4.append(" ");
+                                }
+
+                                var4.append(var6);
+                            }
                         }
 
-                        var4.append(var6);
+                        return String.format("%d total; %s", new Object[] {
+                                Integer.valueOf(var3), var4.toString()});
                     }
-                }
+                });
+        this.theReportCategory.addCrashSectionCallable("AABB Pool Size",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00001355";
 
-                return String.format("%d total; %s", new Object[] {Integer.valueOf(var3), var4.toString()});
-            }
-        });
-        this.theReportCategory.addCrashSectionCallable("AABB Pool Size", new Callable()
-        {
-            private static final String __OBFID = "CL_00001355";
-            public String call()
-            {
-                int var1 = AxisAlignedBB.getAABBPool().getlistAABBsize();
-                int var2 = 56 * var1;
-                int var3 = var2 / 1024 / 1024;
-                int var4 = AxisAlignedBB.getAABBPool().getnextPoolIndex();
-                int var5 = 56 * var4;
-                int var6 = var5 / 1024 / 1024;
-                return var1 + " (" + var2 + " bytes; " + var3 + " MB) allocated, " + var4 + " (" + var5 + " bytes; " + var6 + " MB) used";
-            }
-        });
-        this.theReportCategory.addCrashSectionCallable("IntCache", new Callable()
-        {
-            private static final String __OBFID = "CL_00001382";
-            public String call() throws SecurityException, NoSuchFieldException, IllegalAccessException, IllegalArgumentException
-            {
-                return IntCache.getCacheSizes();
-            }
-        });
+                    public String call()
+                    {
+                        int var1 = AxisAlignedBB.getAABBPool()
+                                .getlistAABBsize();
+                        int var2 = 56 * var1;
+                        int var3 = var2 / 1024 / 1024;
+                        int var4 = AxisAlignedBB.getAABBPool()
+                                .getnextPoolIndex();
+                        int var5 = 56 * var4;
+                        int var6 = var5 / 1024 / 1024;
+                        return var1 + " (" + var2 + " bytes; " + var3
+                                + " MB) allocated, " + var4 + " (" + var5
+                                + " bytes; " + var6 + " MB) used";
+                    }
+                });
+        this.theReportCategory.addCrashSectionCallable("IntCache",
+                new Callable()
+                {
+                    private static final String __OBFID = "CL_00001382";
+
+                    public String call() throws SecurityException,
+                            NoSuchFieldException, IllegalAccessException,
+                            IllegalArgumentException
+                    {
+                        return IntCache.getCacheSizes();
+                    }
+                });
     }
 
     /**
@@ -164,7 +195,8 @@ public class CrashReport
     }
 
     /**
-     * Returns the Throwable object that is the cause for the crash and Crash Report.
+     * Returns the Throwable object that is the cause for the crash and Crash
+     * Report.
      */
     public Throwable getCrashCause()
     {
@@ -172,13 +204,17 @@ public class CrashReport
     }
 
     /**
-     * Gets the various sections of the crash report into the given StringBuilder
+     * Gets the various sections of the crash report into the given
+     * StringBuilder
      */
     public void getSectionsInStringBuilder(StringBuilder par1StringBuilder)
     {
-        if ((this.stacktrace == null || this.stacktrace.length <= 0) && this.crashReportSections.size() > 0)
+        if ((this.stacktrace == null || this.stacktrace.length <= 0)
+                && this.crashReportSections.size() > 0)
         {
-            this.stacktrace = (StackTraceElement[])ArrayUtils.subarray(((CrashReportCategory)this.crashReportSections.get(0)).func_147152_a(), 0, 1);
+            this.stacktrace = (StackTraceElement[])ArrayUtils.subarray(
+                    ((CrashReportCategory)this.crashReportSections.get(0))
+                            .func_147152_a(), 0, 1);
         }
 
         if (this.stacktrace != null && this.stacktrace.length > 0)
@@ -191,7 +227,8 @@ public class CrashReport
             for (int var4 = 0; var4 < var3; ++var4)
             {
                 StackTraceElement var5 = var2[var4];
-                par1StringBuilder.append("\t").append("at ").append(var5.toString());
+                par1StringBuilder.append("\t").append("at ")
+                        .append(var5.toString());
                 par1StringBuilder.append("\n");
             }
 
@@ -211,7 +248,8 @@ public class CrashReport
     }
 
     /**
-     * Gets the stack trace of the Throwable that caused this crash report, or if that fails, the cause .toString().
+     * Gets the stack trace of the Throwable that caused this crash report, or
+     * if that fails, the cause .toString().
      */
     public String getCauseStackTraceOrString()
     {
@@ -256,7 +294,8 @@ public class CrashReport
     }
 
     /**
-     * Gets the complete report with headers, stack trace, and different sections as a string.
+     * Gets the complete report with headers, stack trace, and different
+     * sections as a string.
      */
     public String getCompleteReport()
     {
@@ -285,7 +324,8 @@ public class CrashReport
     }
 
     /**
-     * Saves this CrashReport to the given file and returns a value indicating whether we were successful at doing so.
+     * Saves this CrashReport to the given file and returns a value indicating
+     * whether we were successful at doing so.
      */
     public boolean saveToFile(File p_147149_1_)
     {
@@ -310,7 +350,8 @@ public class CrashReport
             }
             catch (Throwable var3)
             {
-                logger.error("Could not save crash report to " + p_147149_1_, var3);
+                logger.error("Could not save crash report to " + p_147149_1_,
+                        var3);
                 return false;
             }
         }
@@ -353,17 +394,20 @@ public class CrashReport
                 }
             }
 
-            this.field_85059_f = var3.firstTwoElementsOfStackTraceMatch(var6, var7);
+            this.field_85059_f = var3.firstTwoElementsOfStackTraceMatch(var6,
+                    var7);
 
             if (var4 > 0 && !this.crashReportSections.isEmpty())
             {
-                CrashReportCategory var8 = (CrashReportCategory)this.crashReportSections.get(this.crashReportSections.size() - 1);
+                CrashReportCategory var8 = (CrashReportCategory)this.crashReportSections
+                        .get(this.crashReportSections.size() - 1);
                 var8.trimStackTraceEntriesFromBottom(var4);
             }
             else if (var5 != null && var5.length >= var4)
             {
                 this.stacktrace = new StackTraceElement[var5.length - var4];
-                System.arraycopy(var5, 0, this.stacktrace, 0, this.stacktrace.length);
+                System.arraycopy(var5, 0, this.stacktrace, 0,
+                        this.stacktrace.length);
             }
             else
             {
@@ -380,7 +424,40 @@ public class CrashReport
      */
     private static String getWittyComment()
     {
-        String[] var0 = new String[] {"Who set us up the TNT?", "Everything\'s going to plan. No, really, that was supposed to happen.", "Uh... Did I do that?", "Oops.", "Why did you do that?", "I feel sad now :(", "My bad.", "I\'m sorry, Dave.", "I let you down. Sorry :(", "On the bright side, I bought you a teddy bear!", "Daisy, daisy...", "Oh - I know what I did wrong!", "Hey, that tickles! Hehehe!", "I blame Dinnerbone.", "You should try our sister game, Minceraft!", "Don\'t be sad. I\'ll do better next time, I promise!", "Don\'t be sad, have a hug! <3", "I just don\'t know what went wrong :(", "Shall we play a game?", "Quite honestly, I wouldn\'t worry myself about that.", "I bet Cylons wouldn\'t have this problem.", "Sorry :(", "Surprise! Haha. Well, this is awkward.", "Would you like a cupcake?", "Hi. I\'m Minecraft, and I\'m a crashaholic.", "Ooh. Shiny.", "This doesn\'t make any sense!", "Why is it breaking :(", "Don\'t do that.", "Ouch. That hurt :(", "You\'re mean.", "This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]", "There are four lights!"};
+        String[] var0 = new String[] {
+                "Who set us up the TNT?",
+                "Everything\'s going to plan. No, really, that was supposed to happen.",
+                "Uh... Did I do that?",
+                "Oops.",
+                "Why did you do that?",
+                "I feel sad now :(",
+                "My bad.",
+                "I\'m sorry, Dave.",
+                "I let you down. Sorry :(",
+                "On the bright side, I bought you a teddy bear!",
+                "Daisy, daisy...",
+                "Oh - I know what I did wrong!",
+                "Hey, that tickles! Hehehe!",
+                "I blame Dinnerbone.",
+                "You should try our sister game, Minceraft!",
+                "Don\'t be sad. I\'ll do better next time, I promise!",
+                "Don\'t be sad, have a hug! <3",
+                "I just don\'t know what went wrong :(",
+                "Shall we play a game?",
+                "Quite honestly, I wouldn\'t worry myself about that.",
+                "I bet Cylons wouldn\'t have this problem.",
+                "Sorry :(",
+                "Surprise! Haha. Well, this is awkward.",
+                "Would you like a cupcake?",
+                "Hi. I\'m Minecraft, and I\'m a crashaholic.",
+                "Ooh. Shiny.",
+                "This doesn\'t make any sense!",
+                "Why is it breaking :(",
+                "Don\'t do that.",
+                "Ouch. That hurt :(",
+                "You\'re mean.",
+                "This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]",
+                "There are four lights!"};
 
         try
         {
@@ -395,7 +472,8 @@ public class CrashReport
     /**
      * Creates a crash report for the exception
      */
-    public static CrashReport makeCrashReport(Throwable par0Throwable, String par1Str)
+    public static CrashReport makeCrashReport(Throwable par0Throwable,
+            String par1Str)
     {
         CrashReport var2;
 

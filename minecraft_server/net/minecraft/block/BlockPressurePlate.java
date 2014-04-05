@@ -13,7 +13,8 @@ public class BlockPressurePlate extends BlockBasePressurePlate
     private BlockPressurePlate.Sensitivity field_150069_a;
     private static final String __OBFID = "CL_00000289";
 
-    protected BlockPressurePlate(String p_i45418_1_, Material p_i45418_2_, BlockPressurePlate.Sensitivity p_i45418_3_)
+    protected BlockPressurePlate(String p_i45418_1_, Material p_i45418_2_,
+            BlockPressurePlate.Sensitivity p_i45418_3_)
     {
         super(p_i45418_1_, p_i45418_2_);
         this.field_150069_a = p_i45418_3_;
@@ -29,23 +30,28 @@ public class BlockPressurePlate extends BlockBasePressurePlate
         return p_150060_1_ == 1 ? 15 : 0;
     }
 
-    protected int func_150065_e(World p_150065_1_, int p_150065_2_, int p_150065_3_, int p_150065_4_)
+    protected int func_150065_e(World p_150065_1_, int p_150065_2_,
+            int p_150065_3_, int p_150065_4_)
     {
         List var5 = null;
 
         if (this.field_150069_a == BlockPressurePlate.Sensitivity.everything)
         {
-            var5 = p_150065_1_.getEntitiesWithinAABBExcludingEntity((Entity)null, this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
+            var5 = p_150065_1_.getEntitiesWithinAABBExcludingEntity(
+                    (Entity)null,
+                    this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
         }
 
         if (this.field_150069_a == BlockPressurePlate.Sensitivity.mobs)
         {
-            var5 = p_150065_1_.getEntitiesWithinAABB(EntityLivingBase.class, this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
+            var5 = p_150065_1_.getEntitiesWithinAABB(EntityLivingBase.class,
+                    this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
         }
 
         if (this.field_150069_a == BlockPressurePlate.Sensitivity.players)
         {
-            var5 = p_150065_1_.getEntitiesWithinAABB(EntityPlayer.class, this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
+            var5 = p_150065_1_.getEntitiesWithinAABB(EntityPlayer.class,
+                    this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
         }
 
         if (var5 != null && !var5.isEmpty())
@@ -56,10 +62,7 @@ public class BlockPressurePlate extends BlockBasePressurePlate
             {
                 Entity var7 = (Entity)var6.next();
 
-                if (!var7.func_145773_az())
-                {
-                    return 15;
-                }
+                if (!var7.func_145773_az()) { return 15; }
             }
         }
 
@@ -68,13 +71,14 @@ public class BlockPressurePlate extends BlockBasePressurePlate
 
     public static enum Sensitivity
     {
-        everything("everything", 0),
-        mobs("mobs", 1),
-        players("players", 2);
+        everything("everything", 0), mobs("mobs", 1), players("players", 2);
 
-        private static final BlockPressurePlate.Sensitivity[] $VALUES = new BlockPressurePlate.Sensitivity[]{everything, mobs, players};
+        private static final BlockPressurePlate.Sensitivity[] $VALUES = new BlockPressurePlate.Sensitivity[] {
+                everything, mobs, players};
         private static final String __OBFID = "CL_00000290";
 
-        private Sensitivity(String p_i45417_1_, int p_i45417_2_) {}
+        private Sensitivity(String p_i45417_1_, int p_i45417_2_)
+        {
+        }
     }
 }

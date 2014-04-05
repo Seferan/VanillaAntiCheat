@@ -6,12 +6,14 @@ import java.util.List;
 public class AABBPool
 {
     /**
-     * Maximum number of times the pool can be "cleaned" before the list is shrunk
+     * Maximum number of times the pool can be "cleaned" before the list is
+     * shrunk
      */
     private final int maxNumCleans;
 
     /**
-     * Number of Pool entries to remove when cleanPool is called maxNumCleans times.
+     * Number of Pool entries to remove when cleanPool is called maxNumCleans
+     * times.
      */
     private final int numEntriesToRemove;
 
@@ -22,7 +24,8 @@ public class AABBPool
     private int nextPoolIndex;
 
     /**
-     * Largest index reached by this Pool (can be reset to 0 upon calling cleanPool)
+     * Largest index reached by this Pool (can be reset to 0 upon calling
+     * cleanPool)
      */
     private int maxPoolIndex;
 
@@ -37,10 +40,13 @@ public class AABBPool
     }
 
     /**
-     * Creates a new AABB, or reuses one that's no longer in use. Parameters: minX, minY, minZ, maxX, maxY, maxZ. AABBs
-     * returned from this function should only be used for one frame or tick, as after that they will be reused.
+     * Creates a new AABB, or reuses one that's no longer in use. Parameters:
+     * minX, minY, minZ, maxX, maxY, maxZ. AABBs returned from this function
+     * should only be used for one frame or tick, as after that they will be
+     * reused.
      */
-    public AxisAlignedBB getAABB(double par1, double par3, double par5, double par7, double par9, double par11)
+    public AxisAlignedBB getAABB(double par1, double par3, double par5,
+            double par7, double par9, double par11)
     {
         AxisAlignedBB var13;
 
@@ -60,8 +66,8 @@ public class AABBPool
     }
 
     /**
-     * Marks the pool as "empty", starting over when adding new entries. If this is called maxNumCleans times, the list
-     * size is reduced
+     * Marks the pool as "empty", starting over when adding new entries. If this
+     * is called maxNumCleans times, the list size is reduced
      */
     public void cleanPool()
     {
@@ -72,7 +78,8 @@ public class AABBPool
 
         if (this.numCleans++ == this.maxNumCleans)
         {
-            int var1 = Math.max(this.maxPoolIndex, this.listAABB.size() - this.numEntriesToRemove);
+            int var1 = Math.max(this.maxPoolIndex, this.listAABB.size()
+                    - this.numEntriesToRemove);
 
             while (this.listAABB.size() > var1)
             {

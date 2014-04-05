@@ -13,9 +13,12 @@ public class S05PacketSpawnPosition extends Packet
     private int field_149363_c;
     private static final String __OBFID = "CL_00001336";
 
-    public S05PacketSpawnPosition() {}
+    public S05PacketSpawnPosition()
+    {
+    }
 
-    public S05PacketSpawnPosition(int p_i45229_1_, int p_i45229_2_, int p_i45229_3_)
+    public S05PacketSpawnPosition(int p_i45229_1_, int p_i45229_2_,
+            int p_i45229_3_)
     {
         this.field_149364_a = p_i45229_1_;
         this.field_149362_b = p_i45229_2_;
@@ -48,8 +51,9 @@ public class S05PacketSpawnPosition extends Packet
     }
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {
@@ -57,11 +61,16 @@ public class S05PacketSpawnPosition extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("x=%d, y=%d, z=%d", new Object[] {Integer.valueOf(this.field_149364_a), Integer.valueOf(this.field_149362_b), Integer.valueOf(this.field_149363_c)});
+        return String.format(
+                "x=%d, y=%d, z=%d",
+                new Object[] {Integer.valueOf(this.field_149364_a),
+                        Integer.valueOf(this.field_149362_b),
+                        Integer.valueOf(this.field_149363_c)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

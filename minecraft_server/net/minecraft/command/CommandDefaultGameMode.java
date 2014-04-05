@@ -20,17 +20,23 @@ public class CommandDefaultGameMode extends CommandGameMode
         return "commands.defaultgamemode.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length > 0)
         {
-            WorldSettings.GameType var3 = this.getGameModeFromCommand(par1ICommandSender, par2ArrayOfStr[0]);
+            WorldSettings.GameType var3 = this.getGameModeFromCommand(
+                    par1ICommandSender, par2ArrayOfStr[0]);
             this.setGameType(var3);
-            notifyAdmins(par1ICommandSender, "commands.defaultgamemode.success", new Object[] {new ChatComponentTranslation("gameMode." + var3.getName(), new Object[0])});
+            notifyAdmins(par1ICommandSender,
+                    "commands.defaultgamemode.success",
+                    new Object[] {new ChatComponentTranslation("gameMode."
+                            + var3.getName(), new Object[0])});
         }
         else
         {
-            throw new WrongUsageException("commands.defaultgamemode.usage", new Object[0]);
+            throw new WrongUsageException("commands.defaultgamemode.usage",
+                    new Object[0]);
         }
     }
 
@@ -42,7 +48,9 @@ public class CommandDefaultGameMode extends CommandGameMode
 
         if (var2.getForceGamemode())
         {
-            for (Iterator var3 = MinecraftServer.getServer().getConfigurationManager().playerEntityList.iterator(); var3.hasNext(); var4.fallDistance = 0.0F)
+            for (Iterator var3 = MinecraftServer.getServer()
+                    .getConfigurationManager().playerEntityList.iterator(); var3
+                    .hasNext(); var4.fallDistance = 0.0F)
             {
                 var4 = (EntityPlayerMP)var3.next();
                 var4.setGameType(par1EnumGameType);

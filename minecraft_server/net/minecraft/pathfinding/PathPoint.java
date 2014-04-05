@@ -45,7 +45,8 @@ public class PathPoint
 
     public static int makeHash(int par0, int par1, int par2)
     {
-        return par1 & 255 | (par0 & 32767) << 8 | (par2 & 32767) << 24 | (par0 < 0 ? Integer.MIN_VALUE : 0) | (par2 < 0 ? 32768 : 0);
+        return par1 & 255 | (par0 & 32767) << 8 | (par2 & 32767) << 24
+                | (par0 < 0 ? Integer.MIN_VALUE : 0) | (par2 < 0 ? 32768 : 0);
     }
 
     /**
@@ -76,7 +77,8 @@ public class PathPoint
         else
         {
             PathPoint var2 = (PathPoint)par1Obj;
-            return this.hash == var2.hash && this.xCoord == var2.xCoord && this.yCoord == var2.yCoord && this.zCoord == var2.zCoord;
+            return this.hash == var2.hash && this.xCoord == var2.xCoord
+                    && this.yCoord == var2.yCoord && this.zCoord == var2.zCoord;
         }
     }
 

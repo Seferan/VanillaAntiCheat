@@ -11,7 +11,9 @@ public class S09PacketHeldItemChange extends Packet
     private int field_149387_a;
     private static final String __OBFID = "CL_00001324";
 
-    public S09PacketHeldItemChange() {}
+    public S09PacketHeldItemChange()
+    {
+    }
 
     public S09PacketHeldItemChange(int p_i45215_1_)
     {

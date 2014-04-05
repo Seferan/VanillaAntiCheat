@@ -21,7 +21,8 @@ public interface IBlockAccess
     Vec3Pool getWorldVec3Pool();
 
     /**
-     * Is this block powering in the specified direction Args: x, y, z, direction
+     * Is this block powering in the specified direction Args: x, y, z,
+     * direction
      */
     int isBlockProvidingPowerTo(int var1, int var2, int var3, int var4);
 }

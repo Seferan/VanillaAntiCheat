@@ -12,7 +12,8 @@ public class VillageDoorInfo
     private int doorOpeningRestrictionCounter;
     private static final String __OBFID = "CL_00001630";
 
-    public VillageDoorInfo(int par1, int par2, int par3, int par4, int par5, int par6)
+    public VillageDoorInfo(int par1, int par2, int par3, int par4, int par5,
+            int par6)
     {
         this.posX = par1;
         this.posY = par2;
@@ -34,8 +35,8 @@ public class VillageDoorInfo
     }
 
     /**
-     * Get the square of the distance from a location 2 blocks away from the door considered 'inside' and the given
-     * arguments
+     * Get the square of the distance from a location 2 blocks away from the
+     * door considered 'inside' and the given arguments
      */
     public int getInsideDistanceSquare(int par1, int par2, int par3)
     {

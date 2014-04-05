@@ -82,7 +82,8 @@ public class PropertyManager
         }
         catch (Exception var11)
         {
-            field_164440_a.warn("Failed to save " + this.serverPropertiesFile, var11);
+            field_164440_a.warn("Failed to save " + this.serverPropertiesFile,
+                    var11);
             this.generateNewProperties();
         }
         finally
@@ -110,7 +111,8 @@ public class PropertyManager
     }
 
     /**
-     * Returns a string property. If the property doesn't exist the default is returned.
+     * Returns a string property. If the property doesn't exist the default is
+     * returned.
      */
     public String getStringProperty(String par1Str, String par2Str)
     {
@@ -125,7 +127,8 @@ public class PropertyManager
     }
 
     /**
-     * Gets an integer property. If it does not exist, set it to the specified value.
+     * Gets an integer property. If it does not exist, set it to the specified
+     * value.
      */
     public int getIntProperty(String par1Str, int par2)
     {
@@ -140,15 +143,17 @@ public class PropertyManager
             return par2;
         }
     }
-    
+
     /**
-     * Gets an double property. If it does not exist, set it to the specified value.
+     * Gets an double property. If it does not exist, set it to the specified
+     * value.
      */
     public double getDoubleProperty(String propertyName, double defaultValue)
     {
         try
         {
-            return Double.parseDouble(this.getStringProperty(propertyName, "" + defaultValue));
+            return Double.parseDouble(this.getStringProperty(propertyName, ""
+                    + defaultValue));
         }
         catch (Exception ex)
         {
@@ -159,13 +164,15 @@ public class PropertyManager
     }
 
     /**
-     * Gets a boolean property. If it does not exist, set it to the specified value.
+     * Gets a boolean property. If it does not exist, set it to the specified
+     * value.
      */
     public boolean getBooleanProperty(String par1Str, boolean par2)
     {
         try
         {
-            return Boolean.parseBoolean(this.getStringProperty(par1Str, "" + par2));
+            return Boolean.parseBoolean(this.getStringProperty(par1Str, ""
+                    + par2));
         }
         catch (Exception var4)
         {

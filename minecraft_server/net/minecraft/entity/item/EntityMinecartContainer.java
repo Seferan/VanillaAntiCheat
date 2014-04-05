@@ -9,13 +9,15 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class EntityMinecartContainer extends EntityMinecart implements IInventory
+public abstract class EntityMinecartContainer extends EntityMinecart implements
+        IInventory
 {
     private ItemStack[] minecartContainerItems = new ItemStack[36];
 
     /**
-     * When set to true, the minecart will drop all items when setDead() is called. When false (such as when travelling
-     * dimensions) it preserves its contents.
+     * When set to true, the minecart will drop all items when setDead() is
+     * called. When false (such as when travelling dimensions) it preserves its
+     * contents.
      */
     private boolean dropContentsWhenDead = true;
     private static final String __OBFID = "CL_00001674";
@@ -25,7 +27,8 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
         super(par1World);
     }
 
-    public EntityMinecartContainer(World par1World, double par2, double par4, double par6)
+    public EntityMinecartContainer(World par1World, double par2, double par4,
+            double par6)
     {
         super(par1World, par2, par4, par6);
     }
@@ -54,10 +57,14 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
                     }
 
                     var3.stackSize -= var7;
-                    EntityItem var8 = new EntityItem(this.worldObj, this.posX + (double)var4, this.posY + (double)var5, this.posZ + (double)var6, new ItemStack(var3.getItem(), var7, var3.getItemDamage()));
+                    EntityItem var8 = new EntityItem(this.worldObj, this.posX
+                            + (double)var4, this.posY + (double)var5, this.posZ
+                            + (double)var6, new ItemStack(var3.getItem(), var7,
+                            var3.getItemDamage()));
                     float var9 = 0.05F;
                     var8.motionX = (double)((float)this.rand.nextGaussian() * var9);
-                    var8.motionY = (double)((float)this.rand.nextGaussian() * var9 + 0.2F);
+                    var8.motionY = (double)((float)this.rand.nextGaussian()
+                            * var9 + 0.2F);
                     var8.motionZ = (double)((float)this.rand.nextGaussian() * var9);
                     this.worldObj.spawnEntityInWorld(var8);
                 }
@@ -74,8 +81,8 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
@@ -108,8 +115,9 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
@@ -126,13 +134,15 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
         this.minecartContainerItems[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null
+                && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -141,22 +151,31 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     /**
      * Called when an the contents of an Inventory change, usually
      */
-    public void onInventoryChanged() {}
+    public void onInventoryChanged()
+    {
+    }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.isDead ? false : par1EntityPlayer.getDistanceSqToEntity(this) <= 64.0D;
+        return this.isDead ? false : par1EntityPlayer
+                .getDistanceSqToEntity(this) <= 64.0D;
     }
 
-    public void openChest() {}
+    public void openChest()
+    {
+    }
 
-    public void closeChest() {}
+    public void closeChest()
+    {
+    }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
@@ -168,12 +187,13 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.func_95999_t() : "container.minecart";
+        return this.isInventoryNameLocalized() ? this.func_95999_t()
+                : "container.minecart";
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -181,7 +201,8 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     }
 
     /**
-     * Teleports the entity to another dimension. Params: Dimension number to teleport to
+     * Teleports the entity to another dimension. Params: Dimension number to
+     * teleport to
      */
     public void travelToDimension(int par1)
     {
@@ -216,16 +237,24 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
                         }
 
                         var2.stackSize -= var6;
-                        EntityItem var7 = new EntityItem(this.worldObj, this.posX + (double)var3, this.posY + (double)var4, this.posZ + (double)var5, new ItemStack(var2.getItem(), var6, var2.getItemDamage()));
+                        EntityItem var7 = new EntityItem(this.worldObj,
+                                this.posX + (double)var3, this.posY
+                                        + (double)var4, this.posZ
+                                        + (double)var5, new ItemStack(
+                                        var2.getItem(), var6,
+                                        var2.getItemDamage()));
 
                         if (var2.hasTagCompound())
                         {
-                            var7.getEntityItem().setTagCompound((NBTTagCompound)var2.getTagCompound().copy());
+                            var7.getEntityItem().setTagCompound(
+                                    (NBTTagCompound)var2.getTagCompound()
+                                            .copy());
                         }
 
                         float var8 = 0.05F;
                         var7.motionX = (double)((float)this.rand.nextGaussian() * var8);
-                        var7.motionY = (double)((float)this.rand.nextGaussian() * var8 + 0.2F);
+                        var7.motionY = (double)((float)this.rand.nextGaussian()
+                                * var8 + 0.2F);
                         var7.motionZ = (double)((float)this.rand.nextGaussian() * var8);
                         this.worldObj.spawnEntityInWorld(var7);
                     }
@@ -274,7 +303,8 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
 
             if (var5 >= 0 && var5 < this.minecartContainerItems.length)
             {
-                this.minecartContainerItems[var5] = ItemStack.loadItemStackFromNBT(var4);
+                this.minecartContainerItems[var5] = ItemStack
+                        .loadItemStackFromNBT(var4);
             }
         }
     }

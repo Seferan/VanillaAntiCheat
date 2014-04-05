@@ -16,10 +16,14 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class BiomeGenTaiga extends BiomeGenBase
 {
     private static final WorldGenTaiga1 field_150639_aC = new WorldGenTaiga1();
-    private static final WorldGenTaiga2 field_150640_aD = new WorldGenTaiga2(false);
-    private static final WorldGenMegaPineTree field_150641_aE = new WorldGenMegaPineTree(false, false);
-    private static final WorldGenMegaPineTree field_150642_aF = new WorldGenMegaPineTree(false, true);
-    private static final WorldGenBlockBlob field_150643_aG = new WorldGenBlockBlob(Blocks.mossy_cobblestone, 0);
+    private static final WorldGenTaiga2 field_150640_aD = new WorldGenTaiga2(
+            false);
+    private static final WorldGenMegaPineTree field_150641_aE = new WorldGenMegaPineTree(
+            false, false);
+    private static final WorldGenMegaPineTree field_150642_aF = new WorldGenMegaPineTree(
+            false, true);
+    private static final WorldGenBlockBlob field_150643_aG = new WorldGenBlockBlob(
+            Blocks.mossy_cobblestone, 0);
     private int field_150644_aH;
     private static final String __OBFID = "CL_00000186";
 
@@ -27,7 +31,8 @@ public class BiomeGenTaiga extends BiomeGenBase
     {
         super(p_i45385_1_);
         this.field_150644_aH = p_i45385_2_;
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 8, 4, 4));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(
+                EntityWolf.class, 8, 4, 4));
         this.theBiomeDecorator.treesPerChunk = 10;
 
         if (p_i45385_2_ != 1 && p_i45385_2_ != 2)
@@ -45,7 +50,12 @@ public class BiomeGenTaiga extends BiomeGenBase
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)((this.field_150644_aH == 1 || this.field_150644_aH == 2) && p_150567_1_.nextInt(3) == 0 ? (this.field_150644_aH != 2 && p_150567_1_.nextInt(13) != 0 ? field_150641_aE : field_150642_aF) : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC : field_150640_aD));
+        return (WorldGenAbstractTree)((this.field_150644_aH == 1 || this.field_150644_aH == 2)
+                && p_150567_1_.nextInt(3) == 0 ? (this.field_150644_aH != 2
+                && p_150567_1_.nextInt(13) != 0 ? field_150641_aE
+                : field_150642_aF)
+                : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC
+                        : field_150640_aD));
     }
 
     /**
@@ -53,7 +63,9 @@ public class BiomeGenTaiga extends BiomeGenBase
      */
     public WorldGenerator getRandomWorldGenForGrass(Random par1Random)
     {
-        return par1Random.nextInt(5) > 0 ? new WorldGenTallGrass(Blocks.tallgrass, 2) : new WorldGenTallGrass(Blocks.tallgrass, 1);
+        return par1Random.nextInt(5) > 0 ? new WorldGenTallGrass(
+                Blocks.tallgrass, 2) : new WorldGenTallGrass(Blocks.tallgrass,
+                1);
     }
 
     public void decorate(World par1World, Random par2Random, int par3, int par4)
@@ -72,7 +84,8 @@ public class BiomeGenTaiga extends BiomeGenBase
                 var7 = par3 + par2Random.nextInt(16) + 8;
                 var8 = par4 + par2Random.nextInt(16) + 8;
                 int var9 = par1World.getHeightValue(var7, var8);
-                field_150643_aG.generate(par1World, par2Random, var7, var9, var8);
+                field_150643_aG.generate(par1World, par2Random, var7, var9,
+                        var8);
             }
         }
 
@@ -82,14 +95,17 @@ public class BiomeGenTaiga extends BiomeGenBase
         {
             var6 = par3 + par2Random.nextInt(16) + 8;
             var7 = par4 + par2Random.nextInt(16) + 8;
-            var8 = par2Random.nextInt(par1World.getHeightValue(var6, var7) + 32);
+            var8 = par2Random
+                    .nextInt(par1World.getHeightValue(var6, var7) + 32);
             field_150610_ae.generate(par1World, par2Random, var6, var8, var7);
         }
 
         super.decorate(par1World, par2Random, par3, par4);
     }
 
-    public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
+    public void func_150573_a(World p_150573_1_, Random p_150573_2_,
+            Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_,
+            int p_150573_6_, double p_150573_7_)
     {
         if (this.field_150644_aH == 1 || this.field_150644_aH == 2)
         {
@@ -109,11 +125,20 @@ public class BiomeGenTaiga extends BiomeGenBase
             }
         }
 
-        this.func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        this.func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_,
+                p_150573_5_, p_150573_6_, p_150573_7_);
     }
 
     protected BiomeGenBase func_150566_k()
     {
-        return this.biomeID == BiomeGenBase.field_150578_U.biomeID ? (new BiomeGenTaiga(this.biomeID + 128, 2)).func_150557_a(5858897, true).setBiomeName("Mega Spruce Taiga").func_76733_a(5159473).setTemperatureRainfall(0.25F, 0.8F).func_150570_a(new BiomeGenBase.Height(this.minHeight, this.maxHeight)) : super.func_150566_k();
+        return this.biomeID == BiomeGenBase.field_150578_U.biomeID ? (new BiomeGenTaiga(
+                this.biomeID + 128, 2))
+                .func_150557_a(5858897, true)
+                .setBiomeName("Mega Spruce Taiga")
+                .func_76733_a(5159473)
+                .setTemperatureRainfall(0.25F, 0.8F)
+                .func_150570_a(
+                        new BiomeGenBase.Height(this.minHeight, this.maxHeight))
+                : super.func_150566_k();
     }
 }

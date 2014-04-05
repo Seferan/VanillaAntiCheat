@@ -19,14 +19,13 @@ public class NBTTagString extends NBTBase
     {
         this.data = par1Str;
 
-        if (par1Str == null)
-        {
-            throw new IllegalArgumentException("Empty string not allowed");
-        }
+        if (par1Str == null) { throw new IllegalArgumentException(
+                "Empty string not allowed"); }
     }
 
     /**
-     * Write the actual data contents of the tag, implemented in NBT extension classes
+     * Write the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
@@ -34,7 +33,8 @@ public class NBTTagString extends NBTBase
     }
 
     /**
-     * Read the actual data contents of the tag, implemented in NBT extension classes
+     * Read the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void load(DataInput par1DataInput, int par2) throws IOException
     {
@@ -71,7 +71,8 @@ public class NBTTagString extends NBTBase
         else
         {
             NBTTagString var2 = (NBTTagString)par1Obj;
-            return this.data == null && var2.data == null || this.data != null && this.data.equals(var2.data);
+            return this.data == null && var2.data == null || this.data != null
+                    && this.data.equals(var2.data);
         }
     }
 

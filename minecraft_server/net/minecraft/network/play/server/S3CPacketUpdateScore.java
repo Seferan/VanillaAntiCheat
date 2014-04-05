@@ -15,7 +15,9 @@ public class S3CPacketUpdateScore extends Packet
     private int field_149326_d;
     private static final String __OBFID = "CL_00001335";
 
-    public S3CPacketUpdateScore() {}
+    public S3CPacketUpdateScore()
+    {
+    }
 
     public S3CPacketUpdateScore(Score p_i45227_1_, int p_i45227_2_)
     {

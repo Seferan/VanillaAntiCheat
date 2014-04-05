@@ -16,9 +16,13 @@ public class S08PacketPlayerPosLook extends Packet
     private boolean field_148935_f;
     private static final String __OBFID = "CL_00001273";
 
-    public S08PacketPlayerPosLook() {}
+    public S08PacketPlayerPosLook()
+    {
+    }
 
-    public S08PacketPlayerPosLook(double p_i45164_1_, double p_i45164_3_, double p_i45164_5_, float p_i45164_7_, float p_i45164_8_, boolean p_i45164_9_)
+    public S08PacketPlayerPosLook(double p_i45164_1_, double p_i45164_3_,
+            double p_i45164_5_, float p_i45164_7_, float p_i45164_8_,
+            boolean p_i45164_9_)
     {
         this.field_148940_a = p_i45164_1_;
         this.field_148938_b = p_i45164_3_;

@@ -29,7 +29,9 @@ public class CrashReportCategory
 
         try
         {
-            var3.append(String.format("World: (%d,%d,%d)", new Object[] {Integer.valueOf(par0), Integer.valueOf(par1), Integer.valueOf(par2)}));
+            var3.append(String.format("World: (%d,%d,%d)",
+                    new Object[] {Integer.valueOf(par0), Integer.valueOf(par1),
+                            Integer.valueOf(par2)}));
         }
         catch (Throwable var16)
         {
@@ -58,7 +60,17 @@ public class CrashReportCategory
             var10 = var5 << 4;
             var11 = (var4 + 1 << 4) - 1;
             var12 = (var5 + 1 << 4) - 1;
-            var3.append(String.format("Chunk: (at %d,%d,%d in %d,%d; contains blocks %d,0,%d to %d,255,%d)", new Object[] {Integer.valueOf(var6), Integer.valueOf(var7), Integer.valueOf(var8), Integer.valueOf(var4), Integer.valueOf(var5), Integer.valueOf(var9), Integer.valueOf(var10), Integer.valueOf(var11), Integer.valueOf(var12)}));
+            var3.append(String
+                    .format("Chunk: (at %d,%d,%d in %d,%d; contains blocks %d,0,%d to %d,255,%d)",
+                            new Object[] {Integer.valueOf(var6),
+                                    Integer.valueOf(var7),
+                                    Integer.valueOf(var8),
+                                    Integer.valueOf(var4),
+                                    Integer.valueOf(var5),
+                                    Integer.valueOf(var9),
+                                    Integer.valueOf(var10),
+                                    Integer.valueOf(var11),
+                                    Integer.valueOf(var12)}));
         }
         catch (Throwable var15)
         {
@@ -79,7 +91,18 @@ public class CrashReportCategory
             var11 = var5 << 9;
             var12 = (var4 + 1 << 9) - 1;
             int var13 = (var5 + 1 << 9) - 1;
-            var3.append(String.format("Region: (%d,%d; contains chunks %d,%d to %d,%d, blocks %d,0,%d to %d,255,%d)", new Object[] {Integer.valueOf(var4), Integer.valueOf(var5), Integer.valueOf(var6), Integer.valueOf(var7), Integer.valueOf(var8), Integer.valueOf(var9), Integer.valueOf(var10), Integer.valueOf(var11), Integer.valueOf(var12), Integer.valueOf(var13)}));
+            var3.append(String
+                    .format("Region: (%d,%d; contains chunks %d,%d to %d,%d, blocks %d,0,%d to %d,255,%d)",
+                            new Object[] {Integer.valueOf(var4),
+                                    Integer.valueOf(var5),
+                                    Integer.valueOf(var6),
+                                    Integer.valueOf(var7),
+                                    Integer.valueOf(var8),
+                                    Integer.valueOf(var9),
+                                    Integer.valueOf(var10),
+                                    Integer.valueOf(var11),
+                                    Integer.valueOf(var12),
+                                    Integer.valueOf(var13)}));
         }
         catch (Throwable var14)
         {
@@ -90,7 +113,8 @@ public class CrashReportCategory
     }
 
     /**
-     * Adds a Crashreport section with the given name with the value set to the result of the given Callable;
+     * Adds a Crashreport section with the given name with the value set to the
+     * result of the given Callable;
      */
     public void addCrashSectionCallable(String par1Str, Callable par2Callable)
     {
@@ -105,7 +129,8 @@ public class CrashReportCategory
     }
 
     /**
-     * Adds a Crashreport section with the given name with the given value (convered .toString())
+     * Adds a Crashreport section with the given name with the given value
+     * (convered .toString())
      */
     public void addCrashSection(String par1Str, Object par2Obj)
     {
@@ -121,8 +146,10 @@ public class CrashReportCategory
     }
 
     /**
-     * Resets our stack trace according to the current trace, pruning the deepest 3 entries.  The parameter indicates
-     * how many additional deepest entries to prune.  Returns the number of entries in the resulting pruned stack trace.
+     * Resets our stack trace according to the current trace, pruning the
+     * deepest 3 entries. The parameter indicates how many additional deepest
+     * entries to prune. Returns the number of entries in the resulting pruned
+     * stack trace.
      */
     public int getPrunedStackTrace(int par1)
     {
@@ -135,27 +162,38 @@ public class CrashReportCategory
         else
         {
             this.stackTrace = new StackTraceElement[var2.length - 3 - par1];
-            System.arraycopy(var2, 3 + par1, this.stackTrace, 0, this.stackTrace.length);
+            System.arraycopy(var2, 3 + par1, this.stackTrace, 0,
+                    this.stackTrace.length);
             return this.stackTrace.length;
         }
     }
 
     /**
-     * Do the deepest two elements of our saved stack trace match the given elements, in order from the deepest?
+     * Do the deepest two elements of our saved stack trace match the given
+     * elements, in order from the deepest?
      */
-    public boolean firstTwoElementsOfStackTraceMatch(StackTraceElement par1StackTraceElement, StackTraceElement par2StackTraceElement)
+    public boolean firstTwoElementsOfStackTraceMatch(
+            StackTraceElement par1StackTraceElement,
+            StackTraceElement par2StackTraceElement)
     {
         if (this.stackTrace.length != 0 && par1StackTraceElement != null)
         {
             StackTraceElement var3 = this.stackTrace[0];
 
-            if (var3.isNativeMethod() == par1StackTraceElement.isNativeMethod() && var3.getClassName().equals(par1StackTraceElement.getClassName()) && var3.getFileName().equals(par1StackTraceElement.getFileName()) && var3.getMethodName().equals(par1StackTraceElement.getMethodName()))
+            if (var3.isNativeMethod() == par1StackTraceElement.isNativeMethod()
+                    && var3.getClassName().equals(
+                            par1StackTraceElement.getClassName())
+                    && var3.getFileName().equals(
+                            par1StackTraceElement.getFileName())
+                    && var3.getMethodName().equals(
+                            par1StackTraceElement.getMethodName()))
             {
                 if (par2StackTraceElement != null != this.stackTrace.length > 1)
                 {
                     return false;
                 }
-                else if (par2StackTraceElement != null && !this.stackTrace[1].equals(par2StackTraceElement))
+                else if (par2StackTraceElement != null
+                        && !this.stackTrace[1].equals(par2StackTraceElement))
                 {
                     return false;
                 }
@@ -181,20 +219,23 @@ public class CrashReportCategory
      */
     public void trimStackTraceEntriesFromBottom(int par1)
     {
-        StackTraceElement[] var2 = new StackTraceElement[this.stackTrace.length - par1];
+        StackTraceElement[] var2 = new StackTraceElement[this.stackTrace.length
+                - par1];
         System.arraycopy(this.stackTrace, 0, var2, 0, var2.length);
         this.stackTrace = var2;
     }
 
     public void appendToStringBuilder(StringBuilder par1StringBuilder)
     {
-        par1StringBuilder.append("-- ").append(this.field_85076_b).append(" --\n");
+        par1StringBuilder.append("-- ").append(this.field_85076_b)
+                .append(" --\n");
         par1StringBuilder.append("Details:");
         Iterator var2 = this.field_85077_c.iterator();
 
         while (var2.hasNext())
         {
-            CrashReportCategory.Entry var3 = (CrashReportCategory.Entry)var2.next();
+            CrashReportCategory.Entry var3 = (CrashReportCategory.Entry)var2
+                    .next();
             par1StringBuilder.append("\n\t");
             par1StringBuilder.append(var3.func_85089_a());
             par1StringBuilder.append(": ");
@@ -221,17 +262,25 @@ public class CrashReportCategory
         return this.stackTrace;
     }
 
-    public static void func_147153_a(CrashReportCategory p_147153_0_, final int p_147153_1_, final int p_147153_2_, final int p_147153_3_, final Block p_147153_4_, final int p_147153_5_)
+    public static void func_147153_a(CrashReportCategory p_147153_0_,
+            final int p_147153_1_, final int p_147153_2_,
+            final int p_147153_3_, final Block p_147153_4_,
+            final int p_147153_5_)
     {
         final int var6 = Block.getIdFromBlock(p_147153_4_);
         p_147153_0_.addCrashSectionCallable("Block type", new Callable()
         {
             private static final String __OBFID = "CL_00001426";
+
             public String call()
             {
                 try
                 {
-                    return String.format("ID #%d (%s // %s)", new Object[] {Integer.valueOf(var6), p_147153_4_.getUnlocalizedName(), p_147153_4_.getClass().getCanonicalName()});
+                    return String.format(
+                            "ID #%d (%s // %s)",
+                            new Object[] {Integer.valueOf(var6),
+                                    p_147153_4_.getUnlocalizedName(),
+                                    p_147153_4_.getClass().getCanonicalName()});
                 }
                 catch (Throwable var2)
                 {
@@ -242,6 +291,7 @@ public class CrashReportCategory
         p_147153_0_.addCrashSectionCallable("Block data value", new Callable()
         {
             private static final String __OBFID = "CL_00001441";
+
             public String call()
             {
                 if (p_147153_5_ < 0)
@@ -250,17 +300,22 @@ public class CrashReportCategory
                 }
                 else
                 {
-                    String var1 = String.format("%4s", new Object[] {Integer.toBinaryString(p_147153_5_)}).replace(" ", "0");
-                    return String.format("%1$d / 0x%1$X / 0b%2$s", new Object[] {Integer.valueOf(p_147153_5_), var1});
+                    String var1 = String.format("%4s",
+                            new Object[] {Integer.toBinaryString(p_147153_5_)})
+                            .replace(" ", "0");
+                    return String.format("%1$d / 0x%1$X / 0b%2$s",
+                            new Object[] {Integer.valueOf(p_147153_5_), var1});
                 }
             }
         });
         p_147153_0_.addCrashSectionCallable("Block location", new Callable()
         {
             private static final String __OBFID = "CL_00001465";
+
             public String call()
             {
-                return CrashReportCategory.getLocationInfo(p_147153_1_, p_147153_2_, p_147153_3_);
+                return CrashReportCategory.getLocationInfo(p_147153_1_,
+                        p_147153_2_, p_147153_3_);
             }
         });
     }
@@ -282,7 +337,9 @@ public class CrashReportCategory
             else if (par2Obj instanceof Throwable)
             {
                 Throwable var3 = (Throwable)par2Obj;
-                this.field_85091_b = "~~ERROR~~ " + var3.getClass().getSimpleName() + ": " + var3.getMessage();
+                this.field_85091_b = "~~ERROR~~ "
+                        + var3.getClass().getSimpleName() + ": "
+                        + var3.getMessage();
             }
             else
             {

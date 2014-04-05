@@ -85,11 +85,13 @@ public class RegionFile
                 var4 = this.dataFile.readInt();
                 this.offsets[var3] = var4;
 
-                if (var4 != 0 && (var4 >> 8) + (var4 & 255) <= this.sectorFree.size())
+                if (var4 != 0
+                        && (var4 >> 8) + (var4 & 255) <= this.sectorFree.size())
                 {
                     for (int var5 = 0; var5 < (var4 & 255); ++var5)
                     {
-                        this.sectorFree.set((var4 >> 8) + var5, Boolean.valueOf(false));
+                        this.sectorFree.set((var4 >> 8) + var5,
+                                Boolean.valueOf(false));
                     }
                 }
             }
@@ -109,7 +111,8 @@ public class RegionFile
     /**
      * args: x, y - get uncompressed chunk stream from the region file
      */
-    public synchronized DataInputStream getChunkDataInputStream(int par1, int par2)
+    public synchronized DataInputStream getChunkDataInputStream(int par1,
+            int par2)
     {
         if (this.outOfBounds(par1, par2))
         {
@@ -156,13 +159,21 @@ public class RegionFile
                             {
                                 var8 = new byte[var6 - 1];
                                 this.dataFile.read(var8);
-                                return new DataInputStream(new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(var8))));
+                                return new DataInputStream(
+                                        new BufferedInputStream(
+                                                new GZIPInputStream(
+                                                        new ByteArrayInputStream(
+                                                                var8))));
                             }
                             else if (var7 == 2)
                             {
                                 var8 = new byte[var6 - 1];
                                 this.dataFile.read(var8);
-                                return new DataInputStream(new BufferedInputStream(new InflaterInputStream(new ByteArrayInputStream(var8))));
+                                return new DataInputStream(
+                                        new BufferedInputStream(
+                                                new InflaterInputStream(
+                                                        new ByteArrayInputStream(
+                                                                var8))));
                             }
                             else
                             {
@@ -180,17 +191,21 @@ public class RegionFile
     }
 
     /**
-     * args: x, z - get an output stream used to write chunk data, data is on disk when the returned stream is closed
+     * args: x, z - get an output stream used to write chunk data, data is on
+     * disk when the returned stream is closed
      */
     public DataOutputStream getChunkDataOutputStream(int par1, int par2)
     {
-        return this.outOfBounds(par1, par2) ? null : new DataOutputStream(new DeflaterOutputStream(new RegionFile.ChunkBuffer(par1, par2)));
+        return this.outOfBounds(par1, par2) ? null
+                : new DataOutputStream(new DeflaterOutputStream(
+                        new RegionFile.ChunkBuffer(par1, par2)));
     }
 
     /**
      * args: x, z, data, length - write chunk data at (x, z) to disk
      */
-    protected synchronized void write(int par1, int par2, byte[] par3ArrayOfByte, int par4)
+    protected synchronized void write(int par1, int par2,
+            byte[] par3ArrayOfByte, int par4)
     {
         try
         {
@@ -199,10 +214,7 @@ public class RegionFile
             int var7 = var5 & 255;
             int var8 = (par4 + 5) / 4096 + 1;
 
-            if (var8 >= 256)
-            {
-                return;
-            }
+            if (var8 >= 256) { return; }
 
             if (var6 != 0 && var7 == var8)
             {
@@ -227,7 +239,8 @@ public class RegionFile
                     {
                         if (var10 != 0)
                         {
-                            if (((Boolean)this.sectorFree.get(var11)).booleanValue())
+                            if (((Boolean)this.sectorFree.get(var11))
+                                    .booleanValue())
                             {
                                 ++var10;
                             }
@@ -236,7 +249,8 @@ public class RegionFile
                                 var10 = 0;
                             }
                         }
-                        else if (((Boolean)this.sectorFree.get(var11)).booleanValue())
+                        else if (((Boolean)this.sectorFree.get(var11))
+                                .booleanValue())
                         {
                             var9 = var11;
                             var10 = 1;
@@ -256,7 +270,8 @@ public class RegionFile
 
                     for (var11 = 0; var11 < var8; ++var11)
                     {
-                        this.sectorFree.set(var6 + var11, Boolean.valueOf(false));
+                        this.sectorFree.set(var6 + var11,
+                                Boolean.valueOf(false));
                     }
 
                     this.write(var6, par3ArrayOfByte, par4);
@@ -278,7 +293,8 @@ public class RegionFile
                 }
             }
 
-            this.setChunkTimestamp(par1, par2, (int)(MinecraftServer.getCurrentTimeMillis() / 1000L));
+            this.setChunkTimestamp(par1, par2,
+                    (int)(MinecraftServer.getCurrentTimeMillis() / 1000L));
         }
         catch (IOException var12)
         {
@@ -287,9 +303,11 @@ public class RegionFile
     }
 
     /**
-     * args: sectorNumber, data, length - write the chunk data to this RegionFile
+     * args: sectorNumber, data, length - write the chunk data to this
+     * RegionFile
      */
-    private void write(int par1, byte[] par2ArrayOfByte, int par3) throws IOException
+    private void write(int par1, byte[] par2ArrayOfByte, int par3)
+            throws IOException
     {
         this.dataFile.seek((long)(par1 * 4096));
         this.dataFile.writeInt(par3 + 1);
@@ -334,7 +352,8 @@ public class RegionFile
     /**
      * args: x, z, timestamp - sets the chunk's write timestamp
      */
-    private void setChunkTimestamp(int par1, int par2, int par3) throws IOException
+    private void setChunkTimestamp(int par1, int par2, int par3)
+            throws IOException
     {
         this.chunkTimestamps[par1 + par2 * 32] = par3;
         this.dataFile.seek((long)(4096 + (par1 + par2 * 32) * 4));
@@ -367,7 +386,8 @@ public class RegionFile
 
         public void close() throws IOException
         {
-            RegionFile.this.write(this.chunkX, this.chunkZ, this.buf, this.count);
+            RegionFile.this.write(this.chunkX, this.chunkZ, this.buf,
+                    this.count);
         }
     }
 }

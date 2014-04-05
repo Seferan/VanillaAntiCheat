@@ -27,7 +27,8 @@ public class ItemEditableBook extends Item
         else
         {
             String var1 = par0NBTTagCompound.getString("title");
-            return var1 != null && var1.length() <= 16 ? par0NBTTagCompound.func_150297_b("author", 8) : false;
+            return var1 != null && var1.length() <= 16 ? par0NBTTagCompound
+                    .func_150297_b("author", 8) : false;
         }
     }
 
@@ -38,26 +39,26 @@ public class ItemEditableBook extends Item
             NBTTagCompound var2 = par1ItemStack.getTagCompound();
             String var3 = var2.getString("title");
 
-            if (!StringUtils.isNullOrEmpty(var3))
-            {
-                return var3;
-            }
+            if (!StringUtils.isNullOrEmpty(var3)) { return var3; }
         }
 
         return super.getItemStackDisplayName(par1ItemStack);
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
         par3EntityPlayer.displayGUIBook(par1ItemStack);
         return par1ItemStack;
     }
 
     /**
-     * If this function returns true (or the item is damageable), the ItemStack's NBT tag will be sent to the client.
+     * If this function returns true (or the item is damageable), the
+     * ItemStack's NBT tag will be sent to the client.
      */
     public boolean getShareTag()
     {

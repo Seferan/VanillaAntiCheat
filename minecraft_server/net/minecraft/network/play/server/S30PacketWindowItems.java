@@ -14,7 +14,9 @@ public class S30PacketWindowItems extends Packet
     private ItemStack[] field_148913_b;
     private static final String __OBFID = "CL_00001294";
 
-    public S30PacketWindowItems() {}
+    public S30PacketWindowItems()
+    {
+    }
 
     public S30PacketWindowItems(int p_i45186_1_, List p_i45186_2_)
     {

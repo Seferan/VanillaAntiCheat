@@ -62,7 +62,8 @@ public class MapColor
         }
         else
         {
-            throw new IndexOutOfBoundsException("Map colour ID must be between 0 and 63 (inclusive)");
+            throw new IndexOutOfBoundsException(
+                    "Map colour ID must be between 0 and 63 (inclusive)");
         }
     }
 
@@ -70,56 +71,56 @@ public class MapColor
     {
         switch (BlockColored.func_150031_c(p_151644_0_))
         {
-            case 0:
-                return field_151646_E;
+        case 0:
+            return field_151646_E;
 
-            case 1:
-                return field_151645_D;
+        case 1:
+            return field_151645_D;
 
-            case 2:
-                return field_151651_C;
+        case 2:
+            return field_151651_C;
 
-            case 3:
-                return field_151650_B;
+        case 3:
+            return field_151650_B;
 
-            case 4:
-                return field_151649_A;
+        case 4:
+            return field_151649_A;
 
-            case 5:
-                return field_151678_z;
+        case 5:
+            return field_151678_z;
 
-            case 6:
-                return field_151679_y;
+        case 6:
+            return field_151679_y;
 
-            case 7:
-                return field_151680_x;
+        case 7:
+            return field_151680_x;
 
-            case 8:
-                return field_151670_w;
+        case 8:
+            return field_151670_w;
 
-            case 9:
-                return field_151671_v;
+        case 9:
+            return field_151671_v;
 
-            case 10:
-                return field_151672_u;
+        case 10:
+            return field_151672_u;
 
-            case 11:
-                return field_151673_t;
+        case 11:
+            return field_151673_t;
 
-            case 12:
-                return field_151674_s;
+        case 12:
+            return field_151674_s;
 
-            case 13:
-                return field_151675_r;
+        case 13:
+            return field_151675_r;
 
-            case 14:
-                return field_151676_q;
+        case 14:
+            return field_151676_q;
 
-            case 15:
-                return field_151666_j;
+        case 15:
+            return field_151666_j;
 
-            default:
-                return field_151660_b;
+        default:
+            return field_151660_b;
         }
     }
 }

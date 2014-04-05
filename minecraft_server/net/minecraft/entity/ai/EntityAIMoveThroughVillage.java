@@ -22,7 +22,8 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
     private List doorList = new ArrayList();
     private static final String __OBFID = "CL_00001597";
 
-    public EntityAIMoveThroughVillage(EntityCreature par1EntityCreature, double par2, boolean par4)
+    public EntityAIMoveThroughVillage(EntityCreature par1EntityCreature,
+            double par2, boolean par4)
     {
         this.theEntity = par1EntityCreature;
         this.movementSpeed = par2;
@@ -43,7 +44,11 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
         }
         else
         {
-            Village var1 = this.theEntity.worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(this.theEntity.posX), MathHelper.floor_double(this.theEntity.posY), MathHelper.floor_double(this.theEntity.posZ), 0);
+            Village var1 = this.theEntity.worldObj.villageCollectionObj
+                    .findNearestVillage(
+                            MathHelper.floor_double(this.theEntity.posX),
+                            MathHelper.floor_double(this.theEntity.posY),
+                            MathHelper.floor_double(this.theEntity.posZ), 0);
 
             if (var1 == null)
             {
@@ -59,9 +64,13 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
                 }
                 else
                 {
-                    boolean var2 = this.theEntity.getNavigator().getCanBreakDoors();
+                    boolean var2 = this.theEntity.getNavigator()
+                            .getCanBreakDoors();
                     this.theEntity.getNavigator().setBreakDoors(false);
-                    this.entityPathNavigate = this.theEntity.getNavigator().getPathToXYZ((double)this.doorInfo.posX, (double)this.doorInfo.posY, (double)this.doorInfo.posZ);
+                    this.entityPathNavigate = this.theEntity.getNavigator()
+                            .getPathToXYZ((double)this.doorInfo.posX,
+                                    (double)this.doorInfo.posY,
+                                    (double)this.doorInfo.posZ);
                     this.theEntity.getNavigator().setBreakDoors(var2);
 
                     if (this.entityPathNavigate != null)
@@ -70,7 +79,17 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
                     }
                     else
                     {
-                        Vec3 var3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 10, 7, this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool((double)this.doorInfo.posX, (double)this.doorInfo.posY, (double)this.doorInfo.posZ));
+                        Vec3 var3 = RandomPositionGenerator
+                                .findRandomTargetBlockTowards(
+                                        this.theEntity,
+                                        10,
+                                        7,
+                                        this.theEntity.worldObj
+                                                .getWorldVec3Pool()
+                                                .getVecFromPool(
+                                                        (double)this.doorInfo.posX,
+                                                        (double)this.doorInfo.posY,
+                                                        (double)this.doorInfo.posZ));
 
                         if (var3 == null)
                         {
@@ -79,7 +98,9 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
                         else
                         {
                             this.theEntity.getNavigator().setBreakDoors(false);
-                            this.entityPathNavigate = this.theEntity.getNavigator().getPathToXYZ(var3.xCoord, var3.yCoord, var3.zCoord);
+                            this.entityPathNavigate = this.theEntity
+                                    .getNavigator().getPathToXYZ(var3.xCoord,
+                                            var3.yCoord, var3.zCoord);
                             this.theEntity.getNavigator().setBreakDoors(var2);
                             return this.entityPathNavigate != null;
                         }
@@ -101,7 +122,8 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
         else
         {
             float var1 = this.theEntity.width + 4.0F;
-            return this.theEntity.getDistanceSq((double)this.doorInfo.posX, (double)this.doorInfo.posY, (double)this.doorInfo.posZ) > (double)(var1 * var1);
+            return this.theEntity.getDistanceSq((double)this.doorInfo.posX,
+                    (double)this.doorInfo.posY, (double)this.doorInfo.posZ) > (double)(var1 * var1);
         }
     }
 
@@ -110,7 +132,8 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().setPath(this.entityPathNavigate, this.movementSpeed);
+        this.theEntity.getNavigator().setPath(this.entityPathNavigate,
+                this.movementSpeed);
     }
 
     /**
@@ -118,7 +141,9 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
      */
     public void resetTask()
     {
-        if (this.theEntity.getNavigator().noPath() || this.theEntity.getDistanceSq((double)this.doorInfo.posX, (double)this.doorInfo.posY, (double)this.doorInfo.posZ) < 16.0D)
+        if (this.theEntity.getNavigator().noPath()
+                || this.theEntity.getDistanceSq((double)this.doorInfo.posX,
+                        (double)this.doorInfo.posY, (double)this.doorInfo.posZ) < 16.0D)
         {
             this.doorList.add(this.doorInfo);
         }
@@ -134,7 +159,10 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
         while (var5.hasNext())
         {
             VillageDoorInfo var6 = (VillageDoorInfo)var5.next();
-            int var7 = var6.getDistanceSquared(MathHelper.floor_double(this.theEntity.posX), MathHelper.floor_double(this.theEntity.posY), MathHelper.floor_double(this.theEntity.posZ));
+            int var7 = var6.getDistanceSquared(
+                    MathHelper.floor_double(this.theEntity.posX),
+                    MathHelper.floor_double(this.theEntity.posY),
+                    MathHelper.floor_double(this.theEntity.posZ));
 
             if (var7 < var3 && !this.func_75413_a(var6))
             {
@@ -153,14 +181,12 @@ public class EntityAIMoveThroughVillage extends EntityAIBase
 
         do
         {
-            if (!var2.hasNext())
-            {
-                return false;
-            }
+            if (!var2.hasNext()) { return false; }
 
             var3 = (VillageDoorInfo)var2.next();
-        }
-        while (par1VillageDoorInfo.posX != var3.posX || par1VillageDoorInfo.posY != var3.posY || par1VillageDoorInfo.posZ != var3.posZ);
+        } while (par1VillageDoorInfo.posX != var3.posX
+                || par1VillageDoorInfo.posY != var3.posY
+                || par1VillageDoorInfo.posZ != var3.posZ);
 
         return true;
     }

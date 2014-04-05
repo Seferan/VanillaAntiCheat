@@ -12,7 +12,9 @@ public class S02PacketLoginSuccess extends Packet
     private GameProfile field_149602_a;
     private static final String __OBFID = "CL_00001375";
 
-    public S02PacketLoginSuccess() {}
+    public S02PacketLoginSuccess()
+    {
+    }
 
     public S02PacketLoginSuccess(GameProfile p_i45267_1_)
     {
@@ -44,8 +46,9 @@ public class S02PacketLoginSuccess extends Packet
     }
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {

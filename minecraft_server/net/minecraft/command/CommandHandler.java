@@ -44,16 +44,14 @@ public class CommandHandler implements ICommandManager
 
         try
         {
-            if (var5 == null)
-            {
-                throw new CommandNotFoundException();
-            }
+            if (var5 == null) { throw new CommandNotFoundException(); }
 
             if (var5.canCommandSenderUseCommand(par1ICommandSender))
             {
                 if (var6 > -1)
                 {
-                    EntityPlayerMP[] var8 = PlayerSelector.matchPlayers(par1ICommandSender, var3[var6]);
+                    EntityPlayerMP[] var8 = PlayerSelector.matchPlayers(
+                            par1ICommandSender, var3[var6]);
                     String var21 = var3[var6];
                     EntityPlayerMP[] var10 = var8;
                     int var11 = var8.length;
@@ -70,8 +68,10 @@ public class CommandHandler implements ICommandManager
                         }
                         catch (CommandException var16)
                         {
-                            ChatComponentTranslation var15 = new ChatComponentTranslation(var16.getMessage(), var16.getErrorOjbects());
-                            var15.getChatStyle().setColor(EnumChatFormatting.RED);
+                            ChatComponentTranslation var15 = new ChatComponentTranslation(
+                                    var16.getMessage(), var16.getErrorOjbects());
+                            var15.getChatStyle().setColor(
+                                    EnumChatFormatting.RED);
                             par1ICommandSender.addChatMessage(var15);
                         }
                     }
@@ -86,26 +86,31 @@ public class CommandHandler implements ICommandManager
             }
             else
             {
-                ChatComponentTranslation var20 = new ChatComponentTranslation("commands.generic.permission", new Object[0]);
+                ChatComponentTranslation var20 = new ChatComponentTranslation(
+                        "commands.generic.permission", new Object[0]);
                 var20.getChatStyle().setColor(EnumChatFormatting.RED);
                 par1ICommandSender.addChatMessage(var20);
             }
         }
         catch (WrongUsageException var17)
         {
-            var9 = new ChatComponentTranslation("commands.generic.usage", new Object[] {new ChatComponentTranslation(var17.getMessage(), var17.getErrorOjbects())});
+            var9 = new ChatComponentTranslation("commands.generic.usage",
+                    new Object[] {new ChatComponentTranslation(
+                            var17.getMessage(), var17.getErrorOjbects())});
             var9.getChatStyle().setColor(EnumChatFormatting.RED);
             par1ICommandSender.addChatMessage(var9);
         }
         catch (CommandException var18)
         {
-            var9 = new ChatComponentTranslation(var18.getMessage(), var18.getErrorOjbects());
+            var9 = new ChatComponentTranslation(var18.getMessage(),
+                    var18.getErrorOjbects());
             var9.getChatStyle().setColor(EnumChatFormatting.RED);
             par1ICommandSender.addChatMessage(var9);
         }
         catch (Throwable var19)
         {
-            var9 = new ChatComponentTranslation("commands.generic.exception", new Object[0]);
+            var9 = new ChatComponentTranslation("commands.generic.exception",
+                    new Object[0]);
             var9.getChatStyle().setColor(EnumChatFormatting.RED);
             par1ICommandSender.addChatMessage(var9);
             logger.error("Couldn\'t process command", var19);
@@ -115,7 +120,8 @@ public class CommandHandler implements ICommandManager
     }
 
     /**
-     * adds the command and any aliases it has to the internal map of available commands
+     * adds the command and any aliases it has to the internal map of available
+     * commands
      */
     public ICommand registerCommand(ICommand par1ICommand)
     {
@@ -143,7 +149,8 @@ public class CommandHandler implements ICommandManager
     }
 
     /**
-     * creates a new array and sets elements 0..n-2 to be 0..n-1 of the input (n elements)
+     * creates a new array and sets elements 0..n-2 to be 0..n-1 of the input (n
+     * elements)
      */
     private static String[] dropFirstString(String[] par0ArrayOfStr)
     {
@@ -158,9 +165,11 @@ public class CommandHandler implements ICommandManager
     }
 
     /**
-     * Performs a "begins with" string match on each token in par2. Only returns commands that par1 can use.
+     * Performs a "begins with" string match on each token in par2. Only returns
+     * commands that par1 can use.
      */
-    public List getPossibleCommands(ICommandSender par1ICommandSender, String par2Str)
+    public List getPossibleCommands(ICommandSender par1ICommandSender,
+            String par2Str)
     {
         String[] var3 = par2Str.split(" ", -1);
         String var4 = var3[0];
@@ -174,7 +183,10 @@ public class CommandHandler implements ICommandManager
             {
                 Entry var7 = (Entry)var6.next();
 
-                if (CommandBase.doesStringStartWith(var4, (String)var7.getKey()) && ((ICommand)var7.getValue()).canCommandSenderUseCommand(par1ICommandSender))
+                if (CommandBase
+                        .doesStringStartWith(var4, (String)var7.getKey())
+                        && ((ICommand)var7.getValue())
+                                .canCommandSenderUseCommand(par1ICommandSender))
                 {
                     var8.add(var7.getKey());
                 }
@@ -188,10 +200,8 @@ public class CommandHandler implements ICommandManager
             {
                 ICommand var5 = (ICommand)this.commandMap.get(var4);
 
-                if (var5 != null)
-                {
-                    return var5.addTabCompletionOptions(par1ICommandSender, dropFirstString(var3));
-                }
+                if (var5 != null) { return var5.addTabCompletionOptions(
+                        par1ICommandSender, dropFirstString(var3)); }
             }
 
             return null;
@@ -220,7 +230,8 @@ public class CommandHandler implements ICommandManager
     }
 
     /**
-     * returns a map of string to commads. All commands are returned, not just ones which someone has permission to use.
+     * returns a map of string to commads. All commands are returned, not just
+     * ones which someone has permission to use.
      */
     public Map getCommands()
     {
@@ -240,10 +251,9 @@ public class CommandHandler implements ICommandManager
         {
             for (int var3 = 0; var3 < par2ArrayOfStr.length; ++var3)
             {
-                if (par1ICommand.isUsernameIndex(par2ArrayOfStr, var3) && PlayerSelector.matchesMultiplePlayers(par2ArrayOfStr[var3]))
-                {
-                    return var3;
-                }
+                if (par1ICommand.isUsernameIndex(par2ArrayOfStr, var3)
+                        && PlayerSelector
+                                .matchesMultiplePlayers(par2ArrayOfStr[var3])) { return var3; }
             }
 
             return -1;

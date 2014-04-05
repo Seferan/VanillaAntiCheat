@@ -22,7 +22,8 @@ public class EntityItemFrame extends EntityHanging
         super(par1World);
     }
 
-    public EntityItemFrame(World par1World, int par2, int par3, int par4, int par5)
+    public EntityItemFrame(World par1World, int par2, int par3, int par4,
+            int par5)
     {
         super(par1World, par2, par3, par4, par5);
         this.setDirection(par5);
@@ -106,7 +107,8 @@ public class EntityItemFrame extends EntityHanging
     }
 
     /**
-     * Removes the dot representing this frame's position from the map when the item frame is broken.
+     * Removes the dot representing this frame's position from the map when the
+     * item frame is broken.
      */
     private void removeFrameFromMap(ItemStack par1ItemStack)
     {
@@ -114,7 +116,8 @@ public class EntityItemFrame extends EntityHanging
         {
             if (par1ItemStack.getItem() == Items.filled_map)
             {
-                MapData var2 = ((ItemMap)par1ItemStack.getItem()).getMapData(par1ItemStack, this.worldObj);
+                MapData var2 = ((ItemMap)par1ItemStack.getItem()).getMapData(
+                        par1ItemStack, this.worldObj);
                 var2.playersVisibleOnMap.remove("frame-" + this.getEntityId());
             }
 
@@ -160,8 +163,10 @@ public class EntityItemFrame extends EntityHanging
     {
         if (this.getDisplayedItem() != null)
         {
-            par1NBTTagCompound.setTag("Item", this.getDisplayedItem().writeToNBT(new NBTTagCompound()));
-            par1NBTTagCompound.setByte("ItemRotation", (byte)this.getRotation());
+            par1NBTTagCompound.setTag("Item", this.getDisplayedItem()
+                    .writeToNBT(new NBTTagCompound()));
+            par1NBTTagCompound
+                    .setByte("ItemRotation", (byte)this.getRotation());
             par1NBTTagCompound.setFloat("ItemDropChance", this.itemDropChance);
         }
 
@@ -182,7 +187,8 @@ public class EntityItemFrame extends EntityHanging
 
             if (par1NBTTagCompound.func_150297_b("ItemDropChance", 99))
             {
-                this.itemDropChance = par1NBTTagCompound.getFloat("ItemDropChance");
+                this.itemDropChance = par1NBTTagCompound
+                        .getFloat("ItemDropChance");
             }
         }
 
@@ -202,9 +208,12 @@ public class EntityItemFrame extends EntityHanging
             {
                 this.setDisplayedItem(var2);
 
-                if (!par1EntityPlayer.capabilities.isCreativeMode && --var2.stackSize <= 0)
+                if (!par1EntityPlayer.capabilities.isCreativeMode
+                        && --var2.stackSize <= 0)
                 {
-                    par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack)null);
+                    par1EntityPlayer.inventory.setInventorySlotContents(
+                            par1EntityPlayer.inventory.currentItem,
+                            (ItemStack)null);
                 }
             }
         }

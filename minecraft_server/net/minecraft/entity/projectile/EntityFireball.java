@@ -34,33 +34,44 @@ public abstract class EntityFireball extends Entity
         this.setSize(1.0F, 1.0F);
     }
 
-    protected void entityInit() {}
+    protected void entityInit()
+    {
+    }
 
-    public EntityFireball(World par1World, double par2, double par4, double par6, double par8, double par10, double par12)
+    public EntityFireball(World par1World, double par2, double par4,
+            double par6, double par8, double par10, double par12)
     {
         super(par1World);
         this.setSize(1.0F, 1.0F);
-        this.setLocationAndAngles(par2, par4, par6, this.rotationYaw, this.rotationPitch);
+        this.setLocationAndAngles(par2, par4, par6, this.rotationYaw,
+                this.rotationPitch);
         this.setPosition(par2, par4, par6);
-        double var14 = (double)MathHelper.sqrt_double(par8 * par8 + par10 * par10 + par12 * par12);
+        double var14 = (double)MathHelper.sqrt_double(par8 * par8 + par10
+                * par10 + par12 * par12);
         this.accelerationX = par8 / var14 * 0.1D;
         this.accelerationY = par10 / var14 * 0.1D;
         this.accelerationZ = par12 / var14 * 0.1D;
     }
 
-    public EntityFireball(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
+    public EntityFireball(World par1World,
+            EntityLivingBase par2EntityLivingBase, double par3, double par5,
+            double par7)
     {
         super(par1World);
         this.shootingEntity = par2EntityLivingBase;
         this.setSize(1.0F, 1.0F);
-        this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY, par2EntityLivingBase.posZ, par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
+        this.setLocationAndAngles(par2EntityLivingBase.posX,
+                par2EntityLivingBase.posY, par2EntityLivingBase.posZ,
+                par2EntityLivingBase.rotationYaw,
+                par2EntityLivingBase.rotationPitch);
         this.setPosition(this.posX, this.posY, this.posZ);
         this.yOffset = 0.0F;
         this.motionX = this.motionY = this.motionZ = 0.0D;
         par3 += this.rand.nextGaussian() * 0.4D;
         par5 += this.rand.nextGaussian() * 0.4D;
         par7 += this.rand.nextGaussian() * 0.4D;
-        double var9 = (double)MathHelper.sqrt_double(par3 * par3 + par5 * par5 + par7 * par7);
+        double var9 = (double)MathHelper.sqrt_double(par3 * par3 + par5 * par5
+                + par7 * par7);
         this.accelerationX = par3 / var9 * 0.1D;
         this.accelerationY = par5 / var9 * 0.1D;
         this.accelerationZ = par7 / var9 * 0.1D;
@@ -71,7 +82,10 @@ public abstract class EntityFireball extends Entity
      */
     public void onUpdate()
     {
-        if (!this.worldObj.isClient && (this.shootingEntity != null && this.shootingEntity.isDead || !this.worldObj.blockExists((int)this.posX, (int)this.posY, (int)this.posZ)))
+        if (!this.worldObj.isClient
+                && (this.shootingEntity != null && this.shootingEntity.isDead || !this.worldObj
+                        .blockExists((int)this.posX, (int)this.posY,
+                                (int)this.posZ)))
         {
             this.setDead();
         }
@@ -82,7 +96,8 @@ public abstract class EntityFireball extends Entity
 
             if (this.inGround)
             {
-                if (this.worldObj.getBlock(this.field_145795_e, this.field_145793_f, this.field_145794_g) == this.field_145796_h)
+                if (this.worldObj.getBlock(this.field_145795_e,
+                        this.field_145793_f, this.field_145794_g) == this.field_145796_h)
                 {
                     ++this.ticksAlive;
 
@@ -106,30 +121,45 @@ public abstract class EntityFireball extends Entity
                 ++this.ticksInAir;
             }
 
-            Vec3 var1 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
-            Vec3 var2 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            MovingObjectPosition var3 = this.worldObj.rayTraceBlocks(var1, var2);
-            var1 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
-            var2 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            Vec3 var1 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+                    this.posX, this.posY, this.posZ);
+            Vec3 var2 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+                    this.posX + this.motionX, this.posY + this.motionY,
+                    this.posZ + this.motionZ);
+            MovingObjectPosition var3 = this.worldObj
+                    .rayTraceBlocks(var1, var2);
+            var1 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX,
+                    this.posY, this.posZ);
+            var2 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+                    this.posX + this.motionX, this.posY + this.motionY,
+                    this.posZ + this.motionZ);
 
             if (var3 != null)
             {
-                var2 = this.worldObj.getWorldVec3Pool().getVecFromPool(var3.hitVec.xCoord, var3.hitVec.yCoord, var3.hitVec.zCoord);
+                var2 = this.worldObj.getWorldVec3Pool().getVecFromPool(
+                        var3.hitVec.xCoord, var3.hitVec.yCoord,
+                        var3.hitVec.zCoord);
             }
 
             Entity var4 = null;
-            List var5 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List var5 = this.worldObj.getEntitiesWithinAABBExcludingEntity(
+                    this,
+                    this.boundingBox.addCoord(this.motionX, this.motionY,
+                            this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double var6 = 0.0D;
 
             for (int var8 = 0; var8 < var5.size(); ++var8)
             {
                 Entity var9 = (Entity)var5.get(var8);
 
-                if (var9.canBeCollidedWith() && (!var9.isEntityEqual(this.shootingEntity) || this.ticksInAir >= 25))
+                if (var9.canBeCollidedWith()
+                        && (!var9.isEntityEqual(this.shootingEntity) || this.ticksInAir >= 25))
                 {
                     float var10 = 0.3F;
-                    AxisAlignedBB var11 = var9.boundingBox.expand((double)var10, (double)var10, (double)var10);
-                    MovingObjectPosition var12 = var11.calculateIntercept(var1, var2);
+                    AxisAlignedBB var11 = var9.boundingBox.expand(
+                            (double)var10, (double)var10, (double)var10);
+                    MovingObjectPosition var12 = var11.calculateIntercept(var1,
+                            var2);
 
                     if (var12 != null)
                     {
@@ -157,10 +187,13 @@ public abstract class EntityFireball extends Entity
             this.posX += this.motionX;
             this.posY += this.motionY;
             this.posZ += this.motionZ;
-            float var15 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float var15 = MathHelper.sqrt_double(this.motionX * this.motionX
+                    + this.motionZ * this.motionZ);
             this.rotationYaw = (float)(Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) + 90.0F;
 
-            for (this.rotationPitch = (float)(Math.atan2((double)var15, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+            for (this.rotationPitch = (float)(Math.atan2((double)var15,
+                    this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch
+                    - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
             {
                 ;
             }
@@ -180,8 +213,10 @@ public abstract class EntityFireball extends Entity
                 this.prevRotationYaw += 360.0F;
             }
 
-            this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-            this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+            this.rotationPitch = this.prevRotationPitch
+                    + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+            this.rotationYaw = this.prevRotationYaw
+                    + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
             float var16 = this.getMotionFactor();
 
             if (this.isInWater())
@@ -189,7 +224,11 @@ public abstract class EntityFireball extends Entity
                 for (int var18 = 0; var18 < 4; ++var18)
                 {
                     float var17 = 0.25F;
-                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * (double)var17, this.posY - this.motionY * (double)var17, this.posZ - this.motionZ * (double)var17, this.motionX, this.motionY, this.motionZ);
+                    this.worldObj.spawnParticle("bubble", this.posX
+                            - this.motionX * (double)var17, this.posY
+                            - this.motionY * (double)var17, this.posZ
+                            - this.motionZ * (double)var17, this.motionX,
+                            this.motionY, this.motionZ);
                 }
 
                 var16 = 0.8F;
@@ -201,13 +240,15 @@ public abstract class EntityFireball extends Entity
             this.motionX *= (double)var16;
             this.motionY *= (double)var16;
             this.motionZ *= (double)var16;
-            this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D,
+                    this.posZ, 0.0D, 0.0D, 0.0D);
             this.setPosition(this.posX, this.posY, this.posZ);
         }
     }
 
     /**
-     * Return the motion factor for this projectile. The factor is multiplied by the original motion.
+     * Return the motion factor for this projectile. The factor is multiplied by
+     * the original motion.
      */
     protected float getMotionFactor()
     {
@@ -227,9 +268,13 @@ public abstract class EntityFireball extends Entity
         par1NBTTagCompound.setShort("xTile", (short)this.field_145795_e);
         par1NBTTagCompound.setShort("yTile", (short)this.field_145793_f);
         par1NBTTagCompound.setShort("zTile", (short)this.field_145794_g);
-        par1NBTTagCompound.setByte("inTile", (byte)Block.getIdFromBlock(this.field_145796_h));
+        par1NBTTagCompound.setByte("inTile",
+                (byte)Block.getIdFromBlock(this.field_145796_h));
         par1NBTTagCompound.setByte("inGround", (byte)(this.inGround ? 1 : 0));
-        par1NBTTagCompound.setTag("direction", this.newDoubleNBTList(new double[] {this.motionX, this.motionY, this.motionZ}));
+        par1NBTTagCompound.setTag(
+                "direction",
+                this.newDoubleNBTList(new double[] {this.motionX, this.motionY,
+                        this.motionZ}));
     }
 
     /**
@@ -240,7 +285,8 @@ public abstract class EntityFireball extends Entity
         this.field_145795_e = par1NBTTagCompound.getShort("xTile");
         this.field_145793_f = par1NBTTagCompound.getShort("yTile");
         this.field_145794_g = par1NBTTagCompound.getShort("zTile");
-        this.field_145796_h = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
+        this.field_145796_h = Block.getBlockById(par1NBTTagCompound
+                .getByte("inTile") & 255);
         this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
 
         if (par1NBTTagCompound.func_150297_b("direction", 9))
@@ -257,7 +303,8 @@ public abstract class EntityFireball extends Entity
     }
 
     /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
+     * Returns true if other Entities should be prevented from moving through
+     * this Entity.
      */
     public boolean canBeCollidedWith()
     {
@@ -298,7 +345,8 @@ public abstract class EntityFireball extends Entity
 
                 if (par1DamageSource.getEntity() instanceof EntityLivingBase)
                 {
-                    this.shootingEntity = (EntityLivingBase)par1DamageSource.getEntity();
+                    this.shootingEntity = (EntityLivingBase)par1DamageSource
+                            .getEntity();
                 }
 
                 return true;

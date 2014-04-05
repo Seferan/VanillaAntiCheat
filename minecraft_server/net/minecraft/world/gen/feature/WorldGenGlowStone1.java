@@ -10,7 +10,8 @@ public class WorldGenGlowStone1 extends WorldGenerator
 {
     private static final String __OBFID = "CL_00000419";
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         if (!par1World.isAirBlock(par3, par4, par5))
         {
@@ -76,7 +77,8 @@ public class WorldGenGlowStone1 extends WorldGenerator
 
                     if (var10 == 1)
                     {
-                        par1World.setBlock(var7, var8, var9, Blocks.glowstone, 0, 2);
+                        par1World.setBlock(var7, var8, var9, Blocks.glowstone,
+                                0, 2);
                     }
                 }
             }

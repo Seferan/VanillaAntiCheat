@@ -16,7 +16,8 @@ public class EntitySquid extends EntityWaterMob
     public float prevSquidYaw;
 
     /**
-     * appears to be rotation in radians; we already have pitch & yaw, so this completes the triumvirate.
+     * appears to be rotation in radians; we already have pitch & yaw, so this
+     * completes the triumvirate.
      */
     public float squidRotation;
 
@@ -48,7 +49,8 @@ public class EntitySquid extends EntityWaterMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+                .setBaseValue(10.0D);
     }
 
     /**
@@ -89,8 +91,8 @@ public class EntitySquid extends EntityWaterMob
     }
 
     /**
-     * returns if this entity triggers Block.onEntityWalking on the blocks they walk on. used for spiders and wolves to
-     * prevent them from trampling crops
+     * returns if this entity triggers Block.onEntityWalking on the blocks they
+     * walk on. used for spiders and wolves to prevent them from trampling crops
      */
     protected boolean canTriggerWalking()
     {
@@ -111,17 +113,20 @@ public class EntitySquid extends EntityWaterMob
     }
 
     /**
-     * Checks if this entity is inside water (if inWater field is true as a result of handleWaterMovement() returning
-     * true)
+     * Checks if this entity is inside water (if inWater field is true as a
+     * result of handleWaterMovement() returning true)
      */
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.field_151586_h, this);
+        return this.worldObj.handleMaterialAcceleration(
+                this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D),
+                Material.field_151586_h, this);
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as
+     * required. For example, zombies and skeletons use this to react to
+     * sunlight and start to burn.
      */
     public void onLivingUpdate()
     {
@@ -149,7 +154,9 @@ public class EntitySquid extends EntityWaterMob
             if (this.squidRotation < (float)Math.PI)
             {
                 var1 = this.squidRotation / (float)Math.PI;
-                this.tentacleAngle = MathHelper.sin(var1 * var1 * (float)Math.PI) * (float)Math.PI * 0.25F;
+                this.tentacleAngle = MathHelper.sin(var1 * var1
+                        * (float)Math.PI)
+                        * (float)Math.PI * 0.25F;
 
                 if ((double)var1 > 0.75D)
                 {
@@ -175,15 +182,19 @@ public class EntitySquid extends EntityWaterMob
                 this.motionZ = (double)(this.randomMotionVecZ * this.randomMotionSpeed);
             }
 
-            var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.renderYawOffset += (-((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
+            var1 = MathHelper.sqrt_double(this.motionX * this.motionX
+                    + this.motionZ * this.motionZ);
+            this.renderYawOffset += (-((float)Math.atan2(this.motionX,
+                    this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
             this.rotationYaw = this.renderYawOffset;
             this.squidYaw += (float)Math.PI * this.field_70871_bB * 1.5F;
-            this.squidPitch += (-((float)Math.atan2((double)var1, this.motionY)) * 180.0F / (float)Math.PI - this.squidPitch) * 0.1F;
+            this.squidPitch += (-((float)Math.atan2((double)var1, this.motionY))
+                    * 180.0F / (float)Math.PI - this.squidPitch) * 0.1F;
         }
         else
         {
-            this.tentacleAngle = MathHelper.abs(MathHelper.sin(this.squidRotation)) * (float)Math.PI * 0.25F;
+            this.tentacleAngle = MathHelper.abs(MathHelper
+                    .sin(this.squidRotation)) * (float)Math.PI * 0.25F;
 
             if (!this.worldObj.isClient)
             {
@@ -198,7 +209,7 @@ public class EntitySquid extends EntityWaterMob
     }
 
     /**
-     * Moves the entity based on the specified heading.  Args: strafe, forward
+     * Moves the entity based on the specified heading. Args: strafe, forward
      */
     public void moveEntityWithHeading(float par1, float par2)
     {
@@ -213,7 +224,10 @@ public class EntitySquid extends EntityWaterMob
         {
             this.randomMotionVecX = this.randomMotionVecY = this.randomMotionVecZ = 0.0F;
         }
-        else if (this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F)
+        else if (this.rand.nextInt(50) == 0 || !this.inWater
+                || this.randomMotionVecX == 0.0F
+                && this.randomMotionVecY == 0.0F
+                && this.randomMotionVecZ == 0.0F)
         {
             float var1 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
             this.randomMotionVecX = MathHelper.cos(var1) * 0.2F;
@@ -225,10 +239,12 @@ public class EntitySquid extends EntityWaterMob
     }
 
     /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
+     * Checks if the entity's current position is a valid location to spawn this
+     * entity.
      */
     public boolean getCanSpawnHere()
     {
-        return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
+        return this.posY > 45.0D && this.posY < 63.0D
+                && super.getCanSpawnHere();
     }
 }

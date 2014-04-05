@@ -12,7 +12,9 @@ public class S3APacketTabComplete extends Packet
     private String[] field_149632_a;
     private static final String __OBFID = "CL_00001288";
 
-    public S3APacketTabComplete() {}
+    public S3APacketTabComplete()
+    {
+    }
 
     public S3APacketTabComplete(String[] p_i45178_1_)
     {
@@ -54,11 +56,13 @@ public class S3APacketTabComplete extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("candidates=\'%s\'", new Object[] {ArrayUtils.toString(this.field_149632_a)});
+        return String.format("candidates=\'%s\'",
+                new Object[] {ArrayUtils.toString(this.field_149632_a)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

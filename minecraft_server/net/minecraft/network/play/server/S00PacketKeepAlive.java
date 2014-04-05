@@ -11,7 +11,9 @@ public class S00PacketKeepAlive extends Packet
     private int field_149136_a;
     private static final String __OBFID = "CL_00001303";
 
-    public S00PacketKeepAlive() {}
+    public S00PacketKeepAlive()
+    {
+    }
 
     public S00PacketKeepAlive(int p_i45195_1_)
     {
@@ -40,8 +42,9 @@ public class S00PacketKeepAlive extends Packet
     }
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {

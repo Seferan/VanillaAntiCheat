@@ -18,11 +18,17 @@ public class ItemShears extends Item
         this.setCreativeTab(CreativeTabs.tabTools);
     }
 
-    public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)
+    public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_,
+            Block p_150894_3_, int p_150894_4_, int p_150894_5_,
+            int p_150894_6_, EntityLivingBase p_150894_7_)
     {
-        if (p_150894_3_.getMaterial() != Material.field_151584_j && p_150894_3_ != Blocks.web && p_150894_3_ != Blocks.tallgrass && p_150894_3_ != Blocks.vine && p_150894_3_ != Blocks.tripwire)
+        if (p_150894_3_.getMaterial() != Material.field_151584_j
+                && p_150894_3_ != Blocks.web && p_150894_3_ != Blocks.tallgrass
+                && p_150894_3_ != Blocks.vine && p_150894_3_ != Blocks.tripwire)
         {
-            return super.onBlockDestroyed(p_150894_1_, p_150894_2_, p_150894_3_, p_150894_4_, p_150894_5_, p_150894_6_, p_150894_7_);
+            return super.onBlockDestroyed(p_150894_1_, p_150894_2_,
+                    p_150894_3_, p_150894_4_, p_150894_5_, p_150894_6_,
+                    p_150894_7_);
         }
         else
         {
@@ -33,11 +39,15 @@ public class ItemShears extends Item
 
     public boolean func_150897_b(Block p_150897_1_)
     {
-        return p_150897_1_ == Blocks.web || p_150897_1_ == Blocks.redstone_wire || p_150897_1_ == Blocks.tripwire;
+        return p_150897_1_ == Blocks.web || p_150897_1_ == Blocks.redstone_wire
+                || p_150897_1_ == Blocks.tripwire;
     }
 
     public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_)
     {
-        return p_150893_2_ != Blocks.web && p_150893_2_.getMaterial() != Material.field_151584_j ? (p_150893_2_ == Blocks.wool ? 5.0F : super.func_150893_a(p_150893_1_, p_150893_2_)) : 15.0F;
+        return p_150893_2_ != Blocks.web
+                && p_150893_2_.getMaterial() != Material.field_151584_j ? (p_150893_2_ == Blocks.wool ? 5.0F
+                : super.func_150893_a(p_150893_1_, p_150893_2_))
+                : 15.0F;
     }
 }

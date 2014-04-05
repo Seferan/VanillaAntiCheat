@@ -2,10 +2,9 @@ package net.minecraft.world;
 
 public enum EnumDifficulty
 {
-    PEACEFUL(0, "options.difficulty.peaceful"),
-    EASY(1, "options.difficulty.easy"),
-    NORMAL(2, "options.difficulty.normal"),
-    HARD(3, "options.difficulty.hard");
+    PEACEFUL(0, "options.difficulty.peaceful"), EASY(1,
+            "options.difficulty.easy"), NORMAL(2, "options.difficulty.normal"), HARD(
+            3, "options.difficulty.hard");
     private static final EnumDifficulty[] field_151530_e = new EnumDifficulty[values().length];
     private final int field_151527_f;
     private final String field_151528_g;
@@ -32,7 +31,8 @@ public enum EnumDifficulty
         return this.field_151528_g;
     }
 
-    static {
+    static
+    {
         EnumDifficulty[] var0 = values();
         int var1 = var0.length;
 

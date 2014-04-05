@@ -38,13 +38,15 @@ public class MapGenStructureIO
         return (String)field_143037_d.get(par0StructureComponent.getClass());
     }
 
-    public static StructureStart func_143035_a(NBTTagCompound par0NBTTagCompound, World par1World)
+    public static StructureStart func_143035_a(
+            NBTTagCompound par0NBTTagCompound, World par1World)
     {
         StructureStart var2 = null;
 
         try
         {
-            Class var3 = (Class)field_143040_a.get(par0NBTTagCompound.getString("id"));
+            Class var3 = (Class)field_143040_a.get(par0NBTTagCompound
+                    .getString("id"));
 
             if (var3 != null)
             {
@@ -53,7 +55,8 @@ public class MapGenStructureIO
         }
         catch (Exception var4)
         {
-            logger.warn("Failed Start with id " + par0NBTTagCompound.getString("id"));
+            logger.warn("Failed Start with id "
+                    + par0NBTTagCompound.getString("id"));
             var4.printStackTrace();
         }
 
@@ -63,19 +66,22 @@ public class MapGenStructureIO
         }
         else
         {
-            logger.warn("Skipping Structure with id " + par0NBTTagCompound.getString("id"));
+            logger.warn("Skipping Structure with id "
+                    + par0NBTTagCompound.getString("id"));
         }
 
         return var2;
     }
 
-    public static StructureComponent func_143032_b(NBTTagCompound par0NBTTagCompound, World par1World)
+    public static StructureComponent func_143032_b(
+            NBTTagCompound par0NBTTagCompound, World par1World)
     {
         StructureComponent var2 = null;
 
         try
         {
-            Class var3 = (Class)field_143039_c.get(par0NBTTagCompound.getString("id"));
+            Class var3 = (Class)field_143039_c.get(par0NBTTagCompound
+                    .getString("id"));
 
             if (var3 != null)
             {
@@ -84,7 +90,8 @@ public class MapGenStructureIO
         }
         catch (Exception var4)
         {
-            logger.warn("Failed Piece with id " + par0NBTTagCompound.getString("id"));
+            logger.warn("Failed Piece with id "
+                    + par0NBTTagCompound.getString("id"));
             var4.printStackTrace();
         }
 
@@ -94,7 +101,8 @@ public class MapGenStructureIO
         }
         else
         {
-            logger.warn("Skipping Piece with id " + par0NBTTagCompound.getString("id"));
+            logger.warn("Skipping Piece with id "
+                    + par0NBTTagCompound.getString("id"));
         }
 
         return var2;

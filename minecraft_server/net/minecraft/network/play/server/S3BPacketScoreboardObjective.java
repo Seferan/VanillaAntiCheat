@@ -14,9 +14,12 @@ public class S3BPacketScoreboardObjective extends Packet
     private int field_149342_c;
     private static final String __OBFID = "CL_00001333";
 
-    public S3BPacketScoreboardObjective() {}
+    public S3BPacketScoreboardObjective()
+    {
+    }
 
-    public S3BPacketScoreboardObjective(ScoreObjective p_i45224_1_, int p_i45224_2_)
+    public S3BPacketScoreboardObjective(ScoreObjective p_i45224_1_,
+            int p_i45224_2_)
     {
         this.field_149343_a = p_i45224_1_.getName();
         this.field_149341_b = p_i45224_1_.getDisplayName();

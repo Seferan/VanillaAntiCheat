@@ -3,7 +3,8 @@ package net.minecraft.util;
 public class Vec3
 {
     /**
-     * A global Vec3Pool that always creates new vectors instead of reusing them and is thread-safe.
+     * A global Vec3Pool that always creates new vectors instead of reusing them
+     * and is thread-safe.
      */
     public static final Vec3Pool fakePool = new Vec3Pool(-1, -1);
     public final Vec3Pool myVec3LocalPool;
@@ -19,8 +20,9 @@ public class Vec3
     private static final String __OBFID = "CL_00000612";
 
     /**
-     * Static method for creating a new Vec3D given the three x,y,z values. This is only called from the other static
-     * method which creates and places it in the list.
+     * Static method for creating a new Vec3D given the three x,y,z values. This
+     * is only called from the other static method which creates and places it
+     * in the list.
      */
     public static Vec3 createVectorHelper(double par0, double par2, double par4)
     {
@@ -66,37 +68,45 @@ public class Vec3
      */
     public Vec3 normalize()
     {
-        double var1 = (double)MathHelper.sqrt_double(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
-        return var1 < 1.0E-4D ? this.myVec3LocalPool.getVecFromPool(0.0D, 0.0D, 0.0D) : this.myVec3LocalPool.getVecFromPool(this.xCoord / var1, this.yCoord / var1, this.zCoord / var1);
+        double var1 = (double)MathHelper.sqrt_double(this.xCoord * this.xCoord
+                + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
+        return var1 < 1.0E-4D ? this.myVec3LocalPool.getVecFromPool(0.0D, 0.0D,
+                0.0D) : this.myVec3LocalPool.getVecFromPool(this.xCoord / var1,
+                this.yCoord / var1, this.zCoord / var1);
     }
 
     public double dotProduct(Vec3 par1Vec3)
     {
-        return this.xCoord * par1Vec3.xCoord + this.yCoord * par1Vec3.yCoord + this.zCoord * par1Vec3.zCoord;
+        return this.xCoord * par1Vec3.xCoord + this.yCoord * par1Vec3.yCoord
+                + this.zCoord * par1Vec3.zCoord;
     }
 
     /**
-     * Adds the specified x,y,z vector components to this vector and returns the resulting vector. Does not change this
-     * vector.
+     * Adds the specified x,y,z vector components to this vector and returns the
+     * resulting vector. Does not change this vector.
      */
     public Vec3 addVector(double par1, double par3, double par5)
     {
-        return this.myVec3LocalPool.getVecFromPool(this.xCoord + par1, this.yCoord + par3, this.zCoord + par5);
+        return this.myVec3LocalPool.getVecFromPool(this.xCoord + par1,
+                this.yCoord + par3, this.zCoord + par5);
     }
 
     /**
-     * Euclidean distance between this and the specified vector, returned as double.
+     * Euclidean distance between this and the specified vector, returned as
+     * double.
      */
     public double distanceTo(Vec3 par1Vec3)
     {
         double var2 = par1Vec3.xCoord - this.xCoord;
         double var4 = par1Vec3.yCoord - this.yCoord;
         double var6 = par1Vec3.zCoord - this.zCoord;
-        return (double)MathHelper.sqrt_double(var2 * var2 + var4 * var4 + var6 * var6);
+        return (double)MathHelper.sqrt_double(var2 * var2 + var4 * var4 + var6
+                * var6);
     }
 
     /**
-     * The square of the Euclidean distance between this and the specified vector.
+     * The square of the Euclidean distance between this and the specified
+     * vector.
      */
     public double squareDistanceTo(Vec3 par1Vec3)
     {
@@ -107,7 +117,8 @@ public class Vec3
     }
 
     /**
-     * The square of the Euclidean distance between this and the vector of x,y,z components passed in.
+     * The square of the Euclidean distance between this and the vector of x,y,z
+     * components passed in.
      */
     public double squareDistanceTo(double par1, double par3, double par5)
     {
@@ -122,12 +133,14 @@ public class Vec3
      */
     public double lengthVector()
     {
-        return (double)MathHelper.sqrt_double(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
+        return (double)MathHelper.sqrt_double(this.xCoord * this.xCoord
+                + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
     }
 
     /**
-     * Returns a new vector with x value equal to the second parameter, along the line between this vector and the
-     * passed in vector, or null if not possible.
+     * Returns a new vector with x value equal to the second parameter, along
+     * the line between this vector and the passed in vector, or null if not
+     * possible.
      */
     public Vec3 getIntermediateWithXValue(Vec3 par1Vec3, double par2)
     {
@@ -142,13 +155,16 @@ public class Vec3
         else
         {
             double var10 = (par2 - this.xCoord) / var4;
-            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool.getVecFromPool(this.xCoord + var4 * var10, this.yCoord + var6 * var10, this.zCoord + var8 * var10) : null;
+            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool
+                    .getVecFromPool(this.xCoord + var4 * var10, this.yCoord
+                            + var6 * var10, this.zCoord + var8 * var10) : null;
         }
     }
 
     /**
-     * Returns a new vector with y value equal to the second parameter, along the line between this vector and the
-     * passed in vector, or null if not possible.
+     * Returns a new vector with y value equal to the second parameter, along
+     * the line between this vector and the passed in vector, or null if not
+     * possible.
      */
     public Vec3 getIntermediateWithYValue(Vec3 par1Vec3, double par2)
     {
@@ -163,13 +179,16 @@ public class Vec3
         else
         {
             double var10 = (par2 - this.yCoord) / var6;
-            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool.getVecFromPool(this.xCoord + var4 * var10, this.yCoord + var6 * var10, this.zCoord + var8 * var10) : null;
+            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool
+                    .getVecFromPool(this.xCoord + var4 * var10, this.yCoord
+                            + var6 * var10, this.zCoord + var8 * var10) : null;
         }
     }
 
     /**
-     * Returns a new vector with z value equal to the second parameter, along the line between this vector and the
-     * passed in vector, or null if not possible.
+     * Returns a new vector with z value equal to the second parameter, along
+     * the line between this vector and the passed in vector, or null if not
+     * possible.
      */
     public Vec3 getIntermediateWithZValue(Vec3 par1Vec3, double par2)
     {
@@ -184,13 +203,16 @@ public class Vec3
         else
         {
             double var10 = (par2 - this.zCoord) / var8;
-            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool.getVecFromPool(this.xCoord + var4 * var10, this.yCoord + var6 * var10, this.zCoord + var8 * var10) : null;
+            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool
+                    .getVecFromPool(this.xCoord + var4 * var10, this.yCoord
+                            + var6 * var10, this.zCoord + var8 * var10) : null;
         }
     }
 
     public String toString()
     {
-        return "(" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + ")";
+        return "(" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord
+                + ")";
     }
 
     /**

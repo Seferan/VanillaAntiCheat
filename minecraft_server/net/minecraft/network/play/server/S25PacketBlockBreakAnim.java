@@ -15,9 +15,12 @@ public class S25PacketBlockBreakAnim extends Packet
     private int field_148849_e;
     private static final String __OBFID = "CL_00001284";
 
-    public S25PacketBlockBreakAnim() {}
+    public S25PacketBlockBreakAnim()
+    {
+    }
 
-    public S25PacketBlockBreakAnim(int p_i45174_1_, int p_i45174_2_, int p_i45174_3_, int p_i45174_4_, int p_i45174_5_)
+    public S25PacketBlockBreakAnim(int p_i45174_1_, int p_i45174_2_,
+            int p_i45174_3_, int p_i45174_4_, int p_i45174_5_)
     {
         this.field_148852_a = p_i45174_1_;
         this.field_148850_b = p_i45174_2_;

@@ -6,16 +6,20 @@ import java.io.IOException;
 
 public abstract class NBTBase
 {
-    public static final String[] NBTTypes = new String[] {"END", "BYTE", "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "BYTE[]", "STRING", "LIST", "COMPOUND", "INT[]"};
+    public static final String[] NBTTypes = new String[] {"END", "BYTE",
+            "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "BYTE[]", "STRING",
+            "LIST", "COMPOUND", "INT[]"};
     private static final String __OBFID = "CL_00001229";
 
     /**
-     * Write the actual data contents of the tag, implemented in NBT extension classes
+     * Write the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     abstract void write(DataOutput var1) throws IOException;
 
     /**
-     * Read the actual data contents of the tag, implemented in NBT extension classes
+     * Read the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     abstract void load(DataInput var1, int var2) throws IOException;
 
@@ -30,44 +34,44 @@ public abstract class NBTBase
     {
         switch (p_150284_0_)
         {
-            case 0:
-                return new NBTTagEnd();
+        case 0:
+            return new NBTTagEnd();
 
-            case 1:
-                return new NBTTagByte();
+        case 1:
+            return new NBTTagByte();
 
-            case 2:
-                return new NBTTagShort();
+        case 2:
+            return new NBTTagShort();
 
-            case 3:
-                return new NBTTagInt();
+        case 3:
+            return new NBTTagInt();
 
-            case 4:
-                return new NBTTagLong();
+        case 4:
+            return new NBTTagLong();
 
-            case 5:
-                return new NBTTagFloat();
+        case 5:
+            return new NBTTagFloat();
 
-            case 6:
-                return new NBTTagDouble();
+        case 6:
+            return new NBTTagDouble();
 
-            case 7:
-                return new NBTTagByteArray();
+        case 7:
+            return new NBTTagByteArray();
 
-            case 8:
-                return new NBTTagString();
+        case 8:
+            return new NBTTagString();
 
-            case 9:
-                return new NBTTagList();
+        case 9:
+            return new NBTTagList();
 
-            case 10:
-                return new NBTTagCompound();
+        case 10:
+            return new NBTTagCompound();
 
-            case 11:
-                return new NBTTagIntArray();
+        case 11:
+            return new NBTTagIntArray();
 
-            default:
-                return null;
+        default:
+            return null;
         }
     }
 
@@ -75,47 +79,47 @@ public abstract class NBTBase
     {
         switch (p_150283_0_)
         {
-            case 0:
-                return "TAG_End";
+        case 0:
+            return "TAG_End";
 
-            case 1:
-                return "TAG_Byte";
+        case 1:
+            return "TAG_Byte";
 
-            case 2:
-                return "TAG_Short";
+        case 2:
+            return "TAG_Short";
 
-            case 3:
-                return "TAG_Int";
+        case 3:
+            return "TAG_Int";
 
-            case 4:
-                return "TAG_Long";
+        case 4:
+            return "TAG_Long";
 
-            case 5:
-                return "TAG_Float";
+        case 5:
+            return "TAG_Float";
 
-            case 6:
-                return "TAG_Double";
+        case 6:
+            return "TAG_Double";
 
-            case 7:
-                return "TAG_Byte_Array";
+        case 7:
+            return "TAG_Byte_Array";
 
-            case 8:
-                return "TAG_String";
+        case 8:
+            return "TAG_String";
 
-            case 9:
-                return "TAG_List";
+        case 9:
+            return "TAG_List";
 
-            case 10:
-                return "TAG_Compound";
+        case 10:
+            return "TAG_Compound";
 
-            case 11:
-                return "TAG_Int_Array";
+        case 11:
+            return "TAG_Int_Array";
 
-            case 99:
-                return "Any Numeric Tag";
+        case 99:
+            return "Any Numeric Tag";
 
-            default:
-                return "UNKNOWN";
+        default:
+            return "UNKNOWN";
         }
     }
 

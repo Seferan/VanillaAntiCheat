@@ -58,7 +58,8 @@ public class FlatGeneratorInfo
         int var1 = 0;
         FlatLayerInfo var3;
 
-        for (Iterator var2 = this.flatLayers.iterator(); var2.hasNext(); var1 += var3.getLayerCount())
+        for (Iterator var2 = this.flatLayers.iterator(); var2.hasNext(); var1 += var3
+                .getLayerCount())
         {
             var3 = (FlatLayerInfo)var2.next();
             var3.setMinY(var1);
@@ -192,7 +193,8 @@ public class FlatGeneratorInfo
             return null;
         }
 
-        FlatLayerInfo var9 = new FlatLayerInfo(var3, Block.getBlockById(var4), var5);
+        FlatLayerInfo var9 = new FlatLayerInfo(var3, Block.getBlockById(var4),
+                var5);
         var9.setMinY(par1);
         return var9;
     }
@@ -212,10 +214,7 @@ public class FlatGeneratorInfo
                 String var7 = var4[var6];
                 FlatLayerInfo var8 = func_82646_a(var7, var3);
 
-                if (var8 == null)
-                {
-                    return null;
-                }
+                if (var8 == null) { return null; }
 
                 var1.add(var8);
                 var3 += var8.getLayerCount();
@@ -238,7 +237,8 @@ public class FlatGeneratorInfo
         else
         {
             String[] var1 = par0Str.split(";", -1);
-            int var2 = var1.length == 1 ? 0 : MathHelper.parseIntWithDefault(var1[0], 0);
+            int var2 = var1.length == 1 ? 0 : MathHelper.parseIntWithDefault(
+                    var1[0], 0);
 
             if (var2 >= 0 && var2 <= 2)
             {
@@ -254,7 +254,8 @@ public class FlatGeneratorInfo
 
                     if (var2 > 0 && var1.length > var4)
                     {
-                        var6 = MathHelper.parseIntWithDefault(var1[var4++], var6);
+                        var6 = MathHelper.parseIntWithDefault(var1[var4++],
+                                var6);
                     }
 
                     var3.setBiome(var6);
@@ -275,13 +276,16 @@ public class FlatGeneratorInfo
                             {
                                 var3.getWorldFeatures().put(var12[0], var13);
 
-                                if (var12.length > 1 && var12[1].endsWith(")") && var12[1].length() > 1)
+                                if (var12.length > 1 && var12[1].endsWith(")")
+                                        && var12[1].length() > 1)
                                 {
-                                    String[] var14 = var12[1].substring(0, var12[1].length() - 1).split(" ");
+                                    String[] var14 = var12[1].substring(0,
+                                            var12[1].length() - 1).split(" ");
 
                                     for (int var15 = 0; var15 < var14.length; ++var15)
                                     {
-                                        String[] var16 = var14[var15].split("=", 2);
+                                        String[] var16 = var14[var15].split(
+                                                "=", 2);
 
                                         if (var16.length == 2)
                                         {

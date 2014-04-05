@@ -13,12 +13,16 @@ public class C00PacketServerQuery extends Packet
     /**
      * Reads the raw packet data from the data stream.
      */
-    public void readPacketData(PacketBuffer p_148837_1_) throws IOException {}
+    public void readPacketData(PacketBuffer p_148837_1_) throws IOException
+    {
+    }
 
     /**
      * Writes the raw packet data to the data stream.
      */
-    public void writePacketData(PacketBuffer p_148840_1_) throws IOException {}
+    public void writePacketData(PacketBuffer p_148840_1_) throws IOException
+    {
+    }
 
     public void func_148833_a(INetHandlerStatusServer p_149287_1_)
     {
@@ -26,8 +30,9 @@ public class C00PacketServerQuery extends Packet
     }
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {

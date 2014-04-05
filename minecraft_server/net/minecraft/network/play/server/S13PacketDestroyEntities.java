@@ -11,9 +11,11 @@ public class S13PacketDestroyEntities extends Packet
     private int[] field_149100_a;
     private static final String __OBFID = "CL_00001320";
 
-    public S13PacketDestroyEntities() {}
+    public S13PacketDestroyEntities()
+    {
+    }
 
-    public S13PacketDestroyEntities(int ... p_i45211_1_)
+    public S13PacketDestroyEntities(int... p_i45211_1_)
     {
         this.field_149100_a = p_i45211_1_;
     }
@@ -50,7 +52,8 @@ public class S13PacketDestroyEntities extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
@@ -66,7 +69,11 @@ public class S13PacketDestroyEntities extends Packet
             var1.append(this.field_149100_a[var2]);
         }
 
-        return String.format("entities=%d[%s]", new Object[] {Integer.valueOf(this.field_149100_a.length), var1});
+        return String
+                .format("entities=%d[%s]",
+                        new Object[] {
+                                Integer.valueOf(this.field_149100_a.length),
+                                var1});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

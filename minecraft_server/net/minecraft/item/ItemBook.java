@@ -13,7 +13,8 @@ public class ItemBook extends Item
     }
 
     /**
-     * Return the enchantability factor of the item, most of the time is based on material.
+     * Return the enchantability factor of the item, most of the time is based
+     * on material.
      */
     public int getItemEnchantability()
     {

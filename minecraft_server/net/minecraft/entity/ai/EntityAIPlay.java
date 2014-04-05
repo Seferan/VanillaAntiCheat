@@ -36,7 +36,9 @@ public class EntityAIPlay extends EntityAIBase
         }
         else
         {
-            List var1 = this.villagerObj.worldObj.getEntitiesWithinAABB(EntityVillager.class, this.villagerObj.boundingBox.expand(6.0D, 3.0D, 6.0D));
+            List var1 = this.villagerObj.worldObj.getEntitiesWithinAABB(
+                    EntityVillager.class,
+                    this.villagerObj.boundingBox.expand(6.0D, 3.0D, 6.0D));
             double var2 = Double.MAX_VALUE;
             Iterator var4 = var1.iterator();
 
@@ -44,7 +46,8 @@ public class EntityAIPlay extends EntityAIBase
             {
                 EntityVillager var5 = (EntityVillager)var4.next();
 
-                if (var5 != this.villagerObj && !var5.isPlaying() && var5.getGrowingAge() < 0)
+                if (var5 != this.villagerObj && !var5.isPlaying()
+                        && var5.getGrowingAge() < 0)
                 {
                     double var6 = var5.getDistanceSqToEntity(this.villagerObj);
 
@@ -58,12 +61,10 @@ public class EntityAIPlay extends EntityAIBase
 
             if (this.targetVillager == null)
             {
-                Vec3 var8 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+                Vec3 var8 = RandomPositionGenerator.findRandomTarget(
+                        this.villagerObj, 16, 3);
 
-                if (var8 == null)
-                {
-                    return false;
-                }
+                if (var8 == null) { return false; }
             }
 
             return true;
@@ -111,19 +112,19 @@ public class EntityAIPlay extends EntityAIBase
         {
             if (this.villagerObj.getDistanceSqToEntity(this.targetVillager) > 4.0D)
             {
-                this.villagerObj.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.field_75261_c);
+                this.villagerObj.getNavigator().tryMoveToEntityLiving(
+                        this.targetVillager, this.field_75261_c);
             }
         }
         else if (this.villagerObj.getNavigator().noPath())
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+            Vec3 var1 = RandomPositionGenerator.findRandomTarget(
+                    this.villagerObj, 16, 3);
 
-            if (var1 == null)
-            {
-                return;
-            }
+            if (var1 == null) { return; }
 
-            this.villagerObj.getNavigator().tryMoveToXYZ(var1.xCoord, var1.yCoord, var1.zCoord, this.field_75261_c);
+            this.villagerObj.getNavigator().tryMoveToXYZ(var1.xCoord,
+                    var1.yCoord, var1.zCoord, this.field_75261_c);
         }
     }
 }

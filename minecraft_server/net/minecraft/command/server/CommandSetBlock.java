@@ -36,29 +36,36 @@ public class CommandSetBlock extends CommandBase
         return "commands.setblock.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length >= 4)
         {
             int var3 = par1ICommandSender.getCommandSenderPosition().posX;
             int var4 = par1ICommandSender.getCommandSenderPosition().posY;
             int var5 = par1ICommandSender.getCommandSenderPosition().posZ;
-            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var3, par2ArrayOfStr[0]));
-            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var4, par2ArrayOfStr[1]));
-            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var5, par2ArrayOfStr[2]));
-            Block var6 = CommandBase.getBlockByText(par1ICommandSender, par2ArrayOfStr[3]);
+            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender,
+                    (double)var3, par2ArrayOfStr[0]));
+            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender,
+                    (double)var4, par2ArrayOfStr[1]));
+            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender,
+                    (double)var5, par2ArrayOfStr[2]));
+            Block var6 = CommandBase.getBlockByText(par1ICommandSender,
+                    par2ArrayOfStr[3]);
             int var7 = 0;
 
             if (par2ArrayOfStr.length >= 5)
             {
-                var7 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[4], 0, 15);
+                var7 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[4],
+                        0, 15);
             }
 
             World var8 = par1ICommandSender.getEntityWorld();
 
             if (!var8.blockExists(var3, var4, var5))
             {
-                throw new CommandException("commands.setblock.outOfWorld", new Object[0]);
+                throw new CommandException("commands.setblock.outOfWorld",
+                        new Object[0]);
             }
             else
             {
@@ -67,23 +74,25 @@ public class CommandSetBlock extends CommandBase
 
                 if (par2ArrayOfStr.length >= 7 && var6.hasTileEntity())
                 {
-                    String var11 = func_147178_a(par1ICommandSender, par2ArrayOfStr, 6).getUnformattedText();
+                    String var11 = func_147178_a(par1ICommandSender,
+                            par2ArrayOfStr, 6).getUnformattedText();
 
                     try
                     {
                         NBTBase var12 = JsonToNBT.func_150315_a(var11);
 
-                        if (!(var12 instanceof NBTTagCompound))
-                        {
-                            throw new CommandException("commands.setblock.tagError", new Object[] {"Not a valid tag"});
-                        }
+                        if (!(var12 instanceof NBTTagCompound)) { throw new CommandException(
+                                "commands.setblock.tagError",
+                                new Object[] {"Not a valid tag"}); }
 
                         var9 = (NBTTagCompound)var12;
                         var10 = true;
                     }
                     catch (NBTException var13)
                     {
-                        throw new CommandException("commands.setblock.tagError", new Object[] {var13.getMessage()});
+                        throw new CommandException(
+                                "commands.setblock.tagError",
+                                new Object[] {var13.getMessage()});
                     }
                 }
 
@@ -93,15 +102,15 @@ public class CommandSetBlock extends CommandBase
                     {
                         var8.func_147480_a(var3, var4, var5, true);
                     }
-                    else if (par2ArrayOfStr[5].equals("keep") && !var8.isAirBlock(var3, var4, var5))
-                    {
-                        throw new CommandException("commands.setblock.noChange", new Object[0]);
-                    }
+                    else if (par2ArrayOfStr[5].equals("keep")
+                            && !var8.isAirBlock(var3, var4, var5)) { throw new CommandException(
+                            "commands.setblock.noChange", new Object[0]); }
                 }
 
                 if (!var8.setBlock(var3, var4, var5, var6, var7, 3))
                 {
-                    throw new CommandException("commands.setblock.noChange", new Object[0]);
+                    throw new CommandException("commands.setblock.noChange",
+                            new Object[0]);
                 }
                 else
                 {
@@ -118,21 +127,29 @@ public class CommandSetBlock extends CommandBase
                         }
                     }
 
-                    notifyAdmins(par1ICommandSender, "commands.setblock.success", new Object[0]);
+                    notifyAdmins(par1ICommandSender,
+                            "commands.setblock.success", new Object[0]);
                 }
             }
         }
         else
         {
-            throw new WrongUsageException("commands.setblock.usage", new Object[0]);
+            throw new WrongUsageException("commands.setblock.usage",
+                    new Object[0]);
         }
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 4 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, Block.blockRegistry.getKeys()) : (par2ArrayOfStr.length == 6 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"replace", "destroy", "keep"}): null);
+        return par2ArrayOfStr.length == 4 ? getListOfStringsFromIterableMatchingLastWord(
+                par2ArrayOfStr, Block.blockRegistry.getKeys())
+                : (par2ArrayOfStr.length == 6 ? getListOfStringsMatchingLastWord(
+                        par2ArrayOfStr, new String[] {"replace", "destroy",
+                                "keep"}) : null);
     }
 }

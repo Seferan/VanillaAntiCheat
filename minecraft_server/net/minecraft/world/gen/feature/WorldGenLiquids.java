@@ -16,7 +16,8 @@ public class WorldGenLiquids extends WorldGenerator
         this.field_150521_a = p_i45465_1_;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         if (par1World.getBlock(par3, par4 + 1, par5) != Blocks.stone)
         {
@@ -26,7 +27,8 @@ public class WorldGenLiquids extends WorldGenerator
         {
             return false;
         }
-        else if (par1World.getBlock(par3, par4, par5).getMaterial() != Material.air && par1World.getBlock(par3, par4, par5) != Blocks.stone)
+        else if (par1World.getBlock(par3, par4, par5).getMaterial() != Material.air
+                && par1World.getBlock(par3, par4, par5) != Blocks.stone)
         {
             return false;
         }
@@ -80,7 +82,8 @@ public class WorldGenLiquids extends WorldGenerator
             {
                 par1World.setBlock(par3, par4, par5, this.field_150521_a, 0, 2);
                 par1World.scheduledUpdatesAreImmediate = true;
-                this.field_150521_a.updateTick(par1World, par3, par4, par5, par2Random);
+                this.field_150521_a.updateTick(par1World, par3, par4, par5,
+                        par2Random);
                 par1World.scheduledUpdatesAreImmediate = false;
             }
 

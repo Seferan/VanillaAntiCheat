@@ -20,7 +20,8 @@ public class C02PacketUseEntity extends Packet
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
         this.field_149567_a = p_148837_1_.readInt();
-        this.field_149566_b = C02PacketUseEntity.Action.field_151421_c[p_148837_1_.readByte() % C02PacketUseEntity.Action.field_151421_c.length];
+        this.field_149566_b = C02PacketUseEntity.Action.field_151421_c[p_148837_1_
+                .readByte() % C02PacketUseEntity.Action.field_151421_c.length];
     }
 
     /**
@@ -54,12 +55,12 @@ public class C02PacketUseEntity extends Packet
 
     public static enum Action
     {
-        INTERACT("INTERACT", 0, 0),
-        ATTACK("ATTACK", 1, 1);
+        INTERACT("INTERACT", 0, 0), ATTACK("ATTACK", 1, 1);
         private static final C02PacketUseEntity.Action[] field_151421_c = new C02PacketUseEntity.Action[values().length];
         private final int field_151418_d;
 
-        private static final C02PacketUseEntity.Action[] $VALUES = new C02PacketUseEntity.Action[]{INTERACT, ATTACK};
+        private static final C02PacketUseEntity.Action[] $VALUES = new C02PacketUseEntity.Action[] {
+                INTERACT, ATTACK};
         private static final String __OBFID = "CL_00001358";
 
         private Action(String p_i45250_1_, int p_i45250_2_, int p_i45250_3_)
@@ -67,7 +68,8 @@ public class C02PacketUseEntity extends Packet
             this.field_151418_d = p_i45250_3_;
         }
 
-        static {
+        static
+        {
             C02PacketUseEntity.Action[] var0 = values();
             int var1 = var0.length;
 

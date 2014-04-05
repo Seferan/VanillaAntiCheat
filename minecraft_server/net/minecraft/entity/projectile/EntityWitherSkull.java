@@ -21,14 +21,17 @@ public class EntityWitherSkull extends EntityFireball
         this.setSize(0.3125F, 0.3125F);
     }
 
-    public EntityWitherSkull(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
+    public EntityWitherSkull(World par1World,
+            EntityLivingBase par2EntityLivingBase, double par3, double par5,
+            double par7)
     {
         super(par1World, par2EntityLivingBase, par3, par5, par7);
         this.setSize(0.3125F, 0.3125F);
     }
 
     /**
-     * Return the motion factor for this projectile. The factor is multiplied by the original motion.
+     * Return the motion factor for this projectile. The factor is multiplied by
+     * the original motion.
      */
     protected float getMotionFactor()
     {
@@ -36,18 +39,24 @@ public class EntityWitherSkull extends EntityFireball
     }
 
     /**
-     * Returns true if the entity is on fire. Used by render to add the fire effect on rendering.
+     * Returns true if the entity is on fire. Used by render to add the fire
+     * effect on rendering.
      */
     public boolean isBurning()
     {
         return false;
     }
 
-    public float func_145772_a(Explosion p_145772_1_, World p_145772_2_, int p_145772_3_, int p_145772_4_, int p_145772_5_, Block p_145772_6_)
+    public float func_145772_a(Explosion p_145772_1_, World p_145772_2_,
+            int p_145772_3_, int p_145772_4_, int p_145772_5_, Block p_145772_6_)
     {
-        float var7 = super.func_145772_a(p_145772_1_, p_145772_2_, p_145772_3_, p_145772_4_, p_145772_5_, p_145772_6_);
+        float var7 = super.func_145772_a(p_145772_1_, p_145772_2_, p_145772_3_,
+                p_145772_4_, p_145772_5_, p_145772_6_);
 
-        if (this.isInvulnerable() && p_145772_6_ != Blocks.bedrock && p_145772_6_ != Blocks.end_portal && p_145772_6_ != Blocks.end_portal_frame && p_145772_6_ != Blocks.command_block)
+        if (this.isInvulnerable() && p_145772_6_ != Blocks.bedrock
+                && p_145772_6_ != Blocks.end_portal
+                && p_145772_6_ != Blocks.end_portal_frame
+                && p_145772_6_ != Blocks.command_block)
         {
             var7 = Math.min(0.8F, var7);
         }
@@ -66,14 +75,19 @@ public class EntityWitherSkull extends EntityFireball
             {
                 if (this.shootingEntity != null)
                 {
-                    if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeMobDamage(this.shootingEntity), 8.0F) && !par1MovingObjectPosition.entityHit.isEntityAlive())
+                    if (par1MovingObjectPosition.entityHit.attackEntityFrom(
+                            DamageSource.causeMobDamage(this.shootingEntity),
+                            8.0F)
+                            && !par1MovingObjectPosition.entityHit
+                                    .isEntityAlive())
                     {
                         this.shootingEntity.heal(5.0F);
                     }
                 }
                 else
                 {
-                    par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.magic, 5.0F);
+                    par1MovingObjectPosition.entityHit.attackEntityFrom(
+                            DamageSource.magic, 5.0F);
                 }
 
                 if (par1MovingObjectPosition.entityHit instanceof EntityLivingBase)
@@ -91,18 +105,23 @@ public class EntityWitherSkull extends EntityFireball
 
                     if (var2 > 0)
                     {
-                        ((EntityLivingBase)par1MovingObjectPosition.entityHit).addPotionEffect(new PotionEffect(Potion.wither.id, 20 * var2, 1));
+                        ((EntityLivingBase)par1MovingObjectPosition.entityHit)
+                                .addPotionEffect(new PotionEffect(
+                                        Potion.wither.id, 20 * var2, 1));
                     }
                 }
             }
 
-            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 1.0F, false, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
+            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ,
+                    1.0F, false, this.worldObj.getGameRules()
+                            .getGameRuleBooleanValue("mobGriefing"));
             this.setDead();
         }
     }
 
     /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
+     * Returns true if other Entities should be prevented from moving through
+     * this Entity.
      */
     public boolean canBeCollidedWith()
     {

@@ -33,7 +33,8 @@ public class CommandGive extends CommandBase
         return "commands.give.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length < 2)
         {
@@ -41,14 +42,16 @@ public class CommandGive extends CommandBase
         }
         else
         {
-            EntityPlayerMP var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
+            EntityPlayerMP var3 = getPlayer(par1ICommandSender,
+                    par2ArrayOfStr[0]);
             Item var4 = getItemByText(par1ICommandSender, par2ArrayOfStr[1]);
             int var5 = 1;
             int var6 = 0;
 
             if (par2ArrayOfStr.length >= 3)
             {
-                var5 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[2], 1, 64);
+                var5 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[2],
+                        1, 64);
             }
 
             if (par2ArrayOfStr.length >= 4)
@@ -60,7 +63,8 @@ public class CommandGive extends CommandBase
 
             if (par2ArrayOfStr.length >= 5)
             {
-                String var8 = func_147178_a(par1ICommandSender, par2ArrayOfStr, 4).getUnformattedText();
+                String var8 = func_147178_a(par1ICommandSender, par2ArrayOfStr,
+                        4).getUnformattedText();
 
                 try
                 {
@@ -68,7 +72,9 @@ public class CommandGive extends CommandBase
 
                     if (!(var9 instanceof NBTTagCompound))
                     {
-                        notifyAdmins(par1ICommandSender, "commands.give.tagError", new Object[] {"Not a valid tag"});
+                        notifyAdmins(par1ICommandSender,
+                                "commands.give.tagError",
+                                new Object[] {"Not a valid tag"});
                         return;
                     }
 
@@ -76,7 +82,8 @@ public class CommandGive extends CommandBase
                 }
                 catch (NBTException var10)
                 {
-                    notifyAdmins(par1ICommandSender, "commands.give.tagError", new Object[] {var10.getMessage()});
+                    notifyAdmins(par1ICommandSender, "commands.give.tagError",
+                            new Object[] {var10.getMessage()});
                     return;
                 }
             }
@@ -85,24 +92,37 @@ public class CommandGive extends CommandBase
             String recieverName = var3.getCommandSenderName();
             if (this.isTargetOp(var3, par1ICommandSender))
             {
-            	notifyAdmins(par1ICommandSender, "Tried to give " + var7.func_151000_E().getUnformattedText() + " * " + Integer.valueOf(var5) + " to non-op " + recieverName + "!");
+                notifyAdmins(par1ICommandSender, "Tried to give "
+                        + var7.func_151000_E().getUnformattedText() + " * "
+                        + Integer.valueOf(var5) + " to non-op " + recieverName
+                        + "!");
             }
             else
             {
-            	EntityItem var11 = var3.dropPlayerItemWithRandomChoice(var7, false);
-	            var11.delayBeforeCanPickup = 0;
-	            var11.func_145797_a(var3.getCommandSenderName());
-	            notifyAdmins(par1ICommandSender, "commands.give.success", new Object[] {var7.func_151000_E(), Integer.valueOf(var5), recieverName});            	
+                EntityItem var11 = var3.dropPlayerItemWithRandomChoice(var7,
+                        false);
+                var11.delayBeforeCanPickup = 0;
+                var11.func_145797_a(var3.getCommandSenderName());
+                notifyAdmins(
+                        par1ICommandSender,
+                        "commands.give.success",
+                        new Object[] {var7.func_151000_E(),
+                                Integer.valueOf(var5), recieverName});
             }
         }
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getPlayers()) : (par2ArrayOfStr.length == 2 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, Item.itemRegistry.getKeys()) : null);
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(
+                par2ArrayOfStr, this.getPlayers())
+                : (par2ArrayOfStr.length == 2 ? getListOfStringsFromIterableMatchingLastWord(
+                        par2ArrayOfStr, Item.itemRegistry.getKeys()) : null);
     }
 
     protected String[] getPlayers()
@@ -111,7 +131,8 @@ public class CommandGive extends CommandBase
     }
 
     /**
-     * Return whether the specified command parameter index is a username parameter.
+     * Return whether the specified command parameter index is a username
+     * parameter.
      */
     public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
     {

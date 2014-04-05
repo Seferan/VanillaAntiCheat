@@ -9,17 +9,23 @@ public class ChunkLoader
 {
     private static final String __OBFID = "CL_00000379";
 
-    public static ChunkLoader.AnvilConverterData load(NBTTagCompound par0NBTTagCompound)
+    public static ChunkLoader.AnvilConverterData load(
+            NBTTagCompound par0NBTTagCompound)
     {
         int var1 = par0NBTTagCompound.getInteger("xPos");
         int var2 = par0NBTTagCompound.getInteger("zPos");
-        ChunkLoader.AnvilConverterData var3 = new ChunkLoader.AnvilConverterData(var1, var2);
+        ChunkLoader.AnvilConverterData var3 = new ChunkLoader.AnvilConverterData(
+                var1, var2);
         var3.blocks = par0NBTTagCompound.getByteArray("Blocks");
-        var3.data = new NibbleArrayReader(par0NBTTagCompound.getByteArray("Data"), 7);
-        var3.skyLight = new NibbleArrayReader(par0NBTTagCompound.getByteArray("SkyLight"), 7);
-        var3.blockLight = new NibbleArrayReader(par0NBTTagCompound.getByteArray("BlockLight"), 7);
+        var3.data = new NibbleArrayReader(
+                par0NBTTagCompound.getByteArray("Data"), 7);
+        var3.skyLight = new NibbleArrayReader(
+                par0NBTTagCompound.getByteArray("SkyLight"), 7);
+        var3.blockLight = new NibbleArrayReader(
+                par0NBTTagCompound.getByteArray("BlockLight"), 7);
         var3.heightmap = par0NBTTagCompound.getByteArray("HeightMap");
-        var3.terrainPopulated = par0NBTTagCompound.getBoolean("TerrainPopulated");
+        var3.terrainPopulated = par0NBTTagCompound
+                .getBoolean("TerrainPopulated");
         var3.entities = par0NBTTagCompound.getTagList("Entities", 10);
         var3.field_151564_i = par0NBTTagCompound.getTagList("TileEntities", 10);
         var3.field_151563_j = par0NBTTagCompound.getTagList("TileTicks", 10);
@@ -30,17 +36,22 @@ public class ChunkLoader
         }
         catch (ClassCastException var5)
         {
-            var3.lastUpdated = (long)par0NBTTagCompound.getInteger("LastUpdate");
+            var3.lastUpdated = (long)par0NBTTagCompound
+                    .getInteger("LastUpdate");
         }
 
         return var3;
     }
 
-    public static void convertToAnvilFormat(ChunkLoader.AnvilConverterData par0AnvilConverterData, NBTTagCompound par1NBTTagCompound, WorldChunkManager par2WorldChunkManager)
+    public static void convertToAnvilFormat(
+            ChunkLoader.AnvilConverterData par0AnvilConverterData,
+            NBTTagCompound par1NBTTagCompound,
+            WorldChunkManager par2WorldChunkManager)
     {
         par1NBTTagCompound.setInteger("xPos", par0AnvilConverterData.x);
         par1NBTTagCompound.setInteger("zPos", par0AnvilConverterData.z);
-        par1NBTTagCompound.setLong("LastUpdate", par0AnvilConverterData.lastUpdated);
+        par1NBTTagCompound.setLong("LastUpdate",
+                par0AnvilConverterData.lastUpdated);
         int[] var3 = new int[par0AnvilConverterData.heightmap.length];
 
         for (int var4 = 0; var4 < par0AnvilConverterData.heightmap.length; ++var4)
@@ -49,7 +60,8 @@ public class ChunkLoader
         }
 
         par1NBTTagCompound.setIntArray("HeightMap", var3);
-        par1NBTTagCompound.setBoolean("TerrainPopulated", par0AnvilConverterData.terrainPopulated);
+        par1NBTTagCompound.setBoolean("TerrainPopulated",
+                par0AnvilConverterData.terrainPopulated);
         NBTTagList var16 = new NBTTagList();
         int var7;
 
@@ -69,7 +81,8 @@ public class ChunkLoader
                     {
                         if (var9 < 16)
                         {
-                            int var10 = var7 << 11 | var9 << 7 | var8 + (var5 << 4);
+                            int var10 = var7 << 11 | var9 << 7 | var8
+                                    + (var5 << 4);
                             byte var11 = par0AnvilConverterData.blocks[var10];
 
                             if (var11 == 0)
@@ -100,12 +113,19 @@ public class ChunkLoader
                     {
                         for (int var13 = 0; var13 < 16; ++var13)
                         {
-                            int var14 = var22 << 11 | var13 << 7 | var12 + (var5 << 4);
+                            int var14 = var22 << 11 | var13 << 7 | var12
+                                    + (var5 << 4);
                             byte var15 = par0AnvilConverterData.blocks[var14];
                             var19[var12 << 8 | var13 << 4 | var22] = (byte)(var15 & 255);
-                            var20.set(var22, var12, var13, par0AnvilConverterData.data.get(var22, var12 + (var5 << 4), var13));
-                            var21.set(var22, var12, var13, par0AnvilConverterData.skyLight.get(var22, var12 + (var5 << 4), var13));
-                            var23.set(var22, var12, var13, par0AnvilConverterData.blockLight.get(var22, var12 + (var5 << 4), var13));
+                            var20.set(var22, var12, var13,
+                                    par0AnvilConverterData.data.get(var22,
+                                            var12 + (var5 << 4), var13));
+                            var21.set(var22, var12, var13,
+                                    par0AnvilConverterData.skyLight.get(var22,
+                                            var12 + (var5 << 4), var13));
+                            var23.set(var22, var12, var13,
+                                    par0AnvilConverterData.blockLight.get(
+                                            var22, var12 + (var5 << 4), var13));
                         }
                     }
                 }
@@ -127,17 +147,21 @@ public class ChunkLoader
         {
             for (var7 = 0; var7 < 16; ++var7)
             {
-                var17[var7 << 4 | var18] = (byte)(par2WorldChunkManager.getBiomeGenAt(par0AnvilConverterData.x << 4 | var18, par0AnvilConverterData.z << 4 | var7).biomeID & 255);
+                var17[var7 << 4 | var18] = (byte)(par2WorldChunkManager
+                        .getBiomeGenAt(par0AnvilConverterData.x << 4 | var18,
+                                par0AnvilConverterData.z << 4 | var7).biomeID & 255);
             }
         }
 
         par1NBTTagCompound.setByteArray("Biomes", var17);
         par1NBTTagCompound.setTag("Entities", par0AnvilConverterData.entities);
-        par1NBTTagCompound.setTag("TileEntities", par0AnvilConverterData.field_151564_i);
+        par1NBTTagCompound.setTag("TileEntities",
+                par0AnvilConverterData.field_151564_i);
 
         if (par0AnvilConverterData.field_151563_j != null)
         {
-            par1NBTTagCompound.setTag("TileTicks", par0AnvilConverterData.field_151563_j);
+            par1NBTTagCompound.setTag("TileTicks",
+                    par0AnvilConverterData.field_151563_j);
         }
     }
 

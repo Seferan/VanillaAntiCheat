@@ -32,7 +32,9 @@ public class EntityEgg extends EntityThrowable
     {
         if (par1MovingObjectPosition.entityHit != null)
         {
-            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0.0F);
+            par1MovingObjectPosition.entityHit.attackEntityFrom(
+                    DamageSource.causeThrownDamage(this, this.getThrower()),
+                    0.0F);
         }
 
         if (!this.worldObj.isClient && this.rand.nextInt(8) == 0)
@@ -48,14 +50,16 @@ public class EntityEgg extends EntityThrowable
             {
                 EntityChicken var4 = new EntityChicken(this.worldObj);
                 var4.setGrowingAge(-24000);
-                var4.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+                var4.setLocationAndAngles(this.posX, this.posY, this.posZ,
+                        this.rotationYaw, 0.0F);
                 this.worldObj.spawnEntityInWorld(var4);
             }
         }
 
         for (int var5 = 0; var5 < 8; ++var5)
         {
-            this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY,
+                    this.posZ, 0.0D, 0.0D, 0.0D);
         }
 
         if (!this.worldObj.isClient)

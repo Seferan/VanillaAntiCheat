@@ -9,7 +9,8 @@ public class LongHashMap
     private transient int numHashElements;
 
     /**
-     * the maximum amount of elements in the hash (probably 3/4 the size due to meh hashing function)
+     * the maximum amount of elements in the hash (probably 3/4 the size due to
+     * meh hashing function)
      */
     private int capacity = 12;
 
@@ -59,12 +60,10 @@ public class LongHashMap
     {
         int var3 = getHashedKey(par1);
 
-        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3, this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
+        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3,
+                this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
         {
-            if (var4.key == par1)
-            {
-                return var4.value;
-            }
+            if (var4.key == par1) { return var4.value; }
         }
 
         return null;
@@ -79,12 +78,10 @@ public class LongHashMap
     {
         int var3 = getHashedKey(par1);
 
-        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3, this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
+        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3,
+                this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
         {
-            if (var4.key == par1)
-            {
-                return var4;
-            }
+            if (var4.key == par1) { return var4; }
         }
 
         return null;
@@ -156,8 +153,7 @@ public class LongHashMap
                     var5.nextEntry = par1ArrayOfLongHashMapEntry[var7];
                     par1ArrayOfLongHashMapEntry[var7] = var5;
                     var5 = var6;
-                }
-                while (var6 != null);
+                } while (var6 != null);
             }
         }
     }
@@ -231,7 +227,8 @@ public class LongHashMap
         final int hash;
         private static final String __OBFID = "CL_00001493";
 
-        Entry(int par1, long par2, Object par4Obj, LongHashMap.Entry par5LongHashMapEntry)
+        Entry(int par1, long par2, Object par4Obj,
+                LongHashMap.Entry par5LongHashMapEntry)
         {
             this.value = par4Obj;
             this.nextEntry = par5LongHashMapEntry;
@@ -266,10 +263,7 @@ public class LongHashMap
                     Object var5 = this.getValue();
                     Object var6 = var2.getValue();
 
-                    if (var5 == var6 || var5 != null && var5.equals(var6))
-                    {
-                        return true;
-                    }
+                    if (var5 == var6 || var5 != null && var5.equals(var6)) { return true; }
                 }
 
                 return false;

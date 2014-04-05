@@ -13,9 +13,12 @@ public class S06PacketUpdateHealth extends Packet
     private float field_149335_c;
     private static final String __OBFID = "CL_00001332";
 
-    public S06PacketUpdateHealth() {}
+    public S06PacketUpdateHealth()
+    {
+    }
 
-    public S06PacketUpdateHealth(float p_i45223_1_, int p_i45223_2_, float p_i45223_3_)
+    public S06PacketUpdateHealth(float p_i45223_1_, int p_i45223_2_,
+            float p_i45223_3_)
     {
         this.field_149336_a = p_i45223_1_;
         this.field_149334_b = p_i45223_2_;

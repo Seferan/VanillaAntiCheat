@@ -15,7 +15,8 @@ public class InventoryLargeChest implements IInventory
     private IInventory lowerChest;
     private static final String __OBFID = "CL_00001507";
 
-    public InventoryLargeChest(String par1Str, IInventory par2IInventory, IInventory par3IInventory)
+    public InventoryLargeChest(String par1Str, IInventory par2IInventory,
+            IInventory par3IInventory)
     {
         this.name = par1Str;
 
@@ -38,7 +39,8 @@ public class InventoryLargeChest implements IInventory
      */
     public int getSizeInventory()
     {
-        return this.upperChest.getSizeInventory() + this.lowerChest.getSizeInventory();
+        return this.upperChest.getSizeInventory()
+                + this.lowerChest.getSizeInventory();
     }
 
     /**
@@ -46,7 +48,8 @@ public class InventoryLargeChest implements IInventory
      */
     public boolean isPartOfLargeChest(IInventory par1IInventory)
     {
-        return this.upperChest == par1IInventory || this.lowerChest == par1IInventory;
+        return this.upperChest == par1IInventory
+                || this.lowerChest == par1IInventory;
     }
 
     /**
@@ -54,7 +57,10 @@ public class InventoryLargeChest implements IInventory
      */
     public String getInventoryName()
     {
-        return this.upperChest.isInventoryNameLocalized() ? this.upperChest.getInventoryName() : (this.lowerChest.isInventoryNameLocalized() ? this.lowerChest.getInventoryName() : this.name);
+        return this.upperChest.isInventoryNameLocalized() ? this.upperChest
+                .getInventoryName() : (this.lowerChest
+                .isInventoryNameLocalized() ? this.lowerChest
+                .getInventoryName() : this.name);
     }
 
     /**
@@ -62,7 +68,8 @@ public class InventoryLargeChest implements IInventory
      */
     public boolean isInventoryNameLocalized()
     {
-        return this.upperChest.isInventoryNameLocalized() || this.lowerChest.isInventoryNameLocalized();
+        return this.upperChest.isInventoryNameLocalized()
+                || this.lowerChest.isInventoryNameLocalized();
     }
 
     /**
@@ -70,35 +77,45 @@ public class InventoryLargeChest implements IInventory
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest.getStackInSlot(par1 - this.upperChest.getSizeInventory()) : this.upperChest.getStackInSlot(par1);
+        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest
+                .getStackInSlot(par1 - this.upperChest.getSizeInventory())
+                : this.upperChest.getStackInSlot(par1);
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest.decrStackSize(par1 - this.upperChest.getSizeInventory(), par2) : this.upperChest.decrStackSize(par1, par2);
+        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest
+                .decrStackSize(par1 - this.upperChest.getSizeInventory(), par2)
+                : this.upperChest.decrStackSize(par1, par2);
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest.getStackInSlotOnClosing(par1 - this.upperChest.getSizeInventory()) : this.upperChest.getStackInSlotOnClosing(par1);
+        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest
+                .getStackInSlotOnClosing(par1
+                        - this.upperChest.getSizeInventory()) : this.upperChest
+                .getStackInSlotOnClosing(par1);
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
         if (par1 >= this.upperChest.getSizeInventory())
         {
-            this.lowerChest.setInventorySlotContents(par1 - this.upperChest.getSizeInventory(), par2ItemStack);
+            this.lowerChest.setInventorySlotContents(
+                    par1 - this.upperChest.getSizeInventory(), par2ItemStack);
         }
         else
         {
@@ -107,8 +124,8 @@ public class InventoryLargeChest implements IInventory
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -125,11 +142,13 @@ public class InventoryLargeChest implements IInventory
     }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.upperChest.isUseableByPlayer(par1EntityPlayer) && this.lowerChest.isUseableByPlayer(par1EntityPlayer);
+        return this.upperChest.isUseableByPlayer(par1EntityPlayer)
+                && this.lowerChest.isUseableByPlayer(par1EntityPlayer);
     }
 
     public void openChest()
@@ -145,7 +164,8 @@ public class InventoryLargeChest implements IInventory
     }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {

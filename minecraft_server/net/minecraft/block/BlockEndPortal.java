@@ -23,20 +23,26 @@ public class BlockEndPortal extends BlockContainer
     }
 
     /**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
+     * Returns a new instance of a block's tile entity class. Called on placing
+     * the block.
      */
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {
         return new TileEntityEndPortal();
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
+            int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         float var5 = 0.0625F;
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var5, 1.0F);
     }
 
-    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_) {}
+    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_,
+            int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_,
+            List p_149743_6_, Entity p_149743_7_)
+    {
+    }
 
     public boolean isOpaqueCube()
     {
@@ -56,9 +62,11 @@ public class BlockEndPortal extends BlockContainer
         return 0;
     }
 
-    public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity p_149670_5_)
+    public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_,
+            int p_149670_3_, int p_149670_4_, Entity p_149670_5_)
     {
-        if (p_149670_5_.ridingEntity == null && p_149670_5_.riddenByEntity == null && !p_149670_1_.isClient)
+        if (p_149670_5_.ridingEntity == null
+                && p_149670_5_.riddenByEntity == null && !p_149670_1_.isClient)
         {
             p_149670_5_.travelToDimension(1);
         }
@@ -72,13 +80,15 @@ public class BlockEndPortal extends BlockContainer
         return -1;
     }
 
-    public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
+    public void onBlockAdded(World p_149726_1_, int p_149726_2_,
+            int p_149726_3_, int p_149726_4_)
     {
         if (!field_149948_a)
         {
             if (p_149726_1_.provider.dimensionId != 0)
             {
-                p_149726_1_.setBlockToAir(p_149726_2_, p_149726_3_, p_149726_4_);
+                p_149726_1_
+                        .setBlockToAir(p_149726_2_, p_149726_3_, p_149726_4_);
             }
         }
     }

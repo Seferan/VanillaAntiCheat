@@ -11,7 +11,9 @@ public class MerchantRecipeList extends ArrayList
 {
     private static final String __OBFID = "CL_00000127";
 
-    public MerchantRecipeList() {}
+    public MerchantRecipeList()
+    {
+    }
 
     public MerchantRecipeList(NBTTagCompound par1NBTTagCompound)
     {
@@ -21,12 +23,21 @@ public class MerchantRecipeList extends ArrayList
     /**
      * can par1,par2 be used to in crafting recipe par3
      */
-    public MerchantRecipe canRecipeBeUsed(ItemStack par1ItemStack, ItemStack par2ItemStack, int par3)
+    public MerchantRecipe canRecipeBeUsed(ItemStack par1ItemStack,
+            ItemStack par2ItemStack, int par3)
     {
         if (par3 > 0 && par3 < this.size())
         {
             MerchantRecipe var6 = (MerchantRecipe)this.get(par3);
-            return par1ItemStack.getItem() == var6.getItemToBuy().getItem() && (par2ItemStack == null && !var6.hasSecondItemToBuy() || var6.hasSecondItemToBuy() && par2ItemStack != null && var6.getSecondItemToBuy().getItem() == par2ItemStack.getItem()) && par1ItemStack.stackSize >= var6.getItemToBuy().stackSize && (!var6.hasSecondItemToBuy() || par2ItemStack.stackSize >= var6.getSecondItemToBuy().stackSize) ? var6 : null;
+            return par1ItemStack.getItem() == var6.getItemToBuy().getItem()
+                    && (par2ItemStack == null && !var6.hasSecondItemToBuy() || var6
+                            .hasSecondItemToBuy()
+                            && par2ItemStack != null
+                            && var6.getSecondItemToBuy().getItem() == par2ItemStack
+                                    .getItem())
+                    && par1ItemStack.stackSize >= var6.getItemToBuy().stackSize
+                    && (!var6.hasSecondItemToBuy() || par2ItemStack.stackSize >= var6
+                            .getSecondItemToBuy().stackSize) ? var6 : null;
         }
         else
         {
@@ -34,10 +45,15 @@ public class MerchantRecipeList extends ArrayList
             {
                 MerchantRecipe var5 = (MerchantRecipe)this.get(var4);
 
-                if (par1ItemStack.getItem() == var5.getItemToBuy().getItem() && par1ItemStack.stackSize >= var5.getItemToBuy().stackSize && (!var5.hasSecondItemToBuy() && par2ItemStack == null || var5.hasSecondItemToBuy() && par2ItemStack != null && var5.getSecondItemToBuy().getItem() == par2ItemStack.getItem() && par2ItemStack.stackSize >= var5.getSecondItemToBuy().stackSize))
-                {
-                    return var5;
-                }
+                if (par1ItemStack.getItem() == var5.getItemToBuy().getItem()
+                        && par1ItemStack.stackSize >= var5.getItemToBuy().stackSize
+                        && (!var5.hasSecondItemToBuy() && par2ItemStack == null || var5
+                                .hasSecondItemToBuy()
+                                && par2ItemStack != null
+                                && var5.getSecondItemToBuy().getItem() == par2ItemStack
+                                        .getItem()
+                                && par2ItemStack.stackSize >= var5
+                                        .getSecondItemToBuy().stackSize)) { return var5; }
             }
 
             return null;
@@ -45,7 +61,8 @@ public class MerchantRecipeList extends ArrayList
     }
 
     /**
-     * checks if there is a recipie for the same ingredients already on the list, and replaces it. otherwise, adds it
+     * checks if there is a recipie for the same ingredients already on the
+     * list, and replaces it. otherwise, adds it
      */
     public void addToListWithCheck(MerchantRecipe par1MerchantRecipe)
     {

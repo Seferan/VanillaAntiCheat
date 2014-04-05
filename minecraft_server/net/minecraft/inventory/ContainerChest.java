@@ -22,7 +22,8 @@ public class ContainerChest extends Container
         {
             for (var5 = 0; var5 < 9; ++var5)
             {
-                this.addSlotToContainer(new Slot(par2IInventory, var5 + var4 * 9, 8 + var5 * 18, 18 + var4 * 18));
+                this.addSlotToContainer(new Slot(par2IInventory, var5 + var4
+                        * 9, 8 + var5 * 18, 18 + var4 * 18));
             }
         }
 
@@ -30,13 +31,15 @@ public class ContainerChest extends Container
         {
             for (var5 = 0; var5 < 9; ++var5)
             {
-                this.addSlotToContainer(new Slot(par1IInventory, var5 + var4 * 9 + 9, 8 + var5 * 18, 103 + var4 * 18 + var3));
+                this.addSlotToContainer(new Slot(par1IInventory, var5 + var4
+                        * 9 + 9, 8 + var5 * 18, 103 + var4 * 18 + var3));
             }
         }
 
         for (var4 = 0; var4 < 9; ++var4)
         {
-            this.addSlotToContainer(new Slot(par1IInventory, var4, 8 + var4 * 18, 161 + var3));
+            this.addSlotToContainer(new Slot(par1IInventory, var4,
+                    8 + var4 * 18, 161 + var3));
         }
     }
 
@@ -60,15 +63,10 @@ public class ContainerChest extends Container
 
             if (par2 < this.numRows * 9)
             {
-                if (!this.mergeItemStack(var5, this.numRows * 9, this.inventorySlots.size(), true))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, this.numRows * 9,
+                        this.inventorySlots.size(), true)) { return null; }
             }
-            else if (!this.mergeItemStack(var5, 0, this.numRows * 9, false))
-            {
-                return null;
-            }
+            else if (!this.mergeItemStack(var5, 0, this.numRows * 9, false)) { return null; }
 
             if (var5.stackSize == 0)
             {

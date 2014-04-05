@@ -16,9 +16,11 @@ public class ItemSaddle extends Item
     }
 
     /**
-     * Returns true if the item can be used on the given entity, e.g. shears on sheep.
+     * Returns true if the item can be used on the given entity, e.g. shears on
+     * sheep.
      */
-    public boolean itemInteractionForEntity(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, EntityLivingBase par3EntityLivingBase)
+    public boolean itemInteractionForEntity(ItemStack par1ItemStack,
+            EntityPlayer par2EntityPlayer, EntityLivingBase par3EntityLivingBase)
     {
         if (par3EntityLivingBase instanceof EntityPig)
         {
@@ -27,7 +29,8 @@ public class ItemSaddle extends Item
             if (!var4.getSaddled() && !var4.isChild())
             {
                 var4.setSaddled(true);
-                var4.worldObj.playSoundAtEntity(var4, "mob.horse.leather", 0.5F, 1.0F);
+                var4.worldObj.playSoundAtEntity(var4, "mob.horse.leather",
+                        0.5F, 1.0F);
                 --par1ItemStack.stackSize;
             }
 
@@ -40,12 +43,15 @@ public class ItemSaddle extends Item
     }
 
     /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
+     * Current implementations of this method in child classes do not use the
+     * entry argument beside ev. They just raise the damage on the stack.
      */
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
+    public boolean hitEntity(ItemStack par1ItemStack,
+            EntityLivingBase par2EntityLivingBase,
+            EntityLivingBase par3EntityLivingBase)
     {
-        this.itemInteractionForEntity(par1ItemStack, (EntityPlayer)null, par2EntityLivingBase);
+        this.itemInteractionForEntity(par1ItemStack, (EntityPlayer)null,
+                par2EntityLivingBase);
         return true;
     }
 }

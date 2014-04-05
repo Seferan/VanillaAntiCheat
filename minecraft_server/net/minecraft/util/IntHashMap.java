@@ -48,12 +48,10 @@ public class IntHashMap
     {
         int var2 = computeHash(par1);
 
-        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2, this.slots.length)]; var3 != null; var3 = var3.nextEntry)
+        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2,
+                this.slots.length)]; var3 != null; var3 = var3.nextEntry)
         {
-            if (var3.hashEntry == par1)
-            {
-                return var3.valueEntry;
-            }
+            if (var3.hashEntry == par1) { return var3.valueEntry; }
         }
 
         return null;
@@ -74,12 +72,10 @@ public class IntHashMap
     {
         int var2 = computeHash(par1);
 
-        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2, this.slots.length)]; var3 != null; var3 = var3.nextEntry)
+        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2,
+                this.slots.length)]; var3 != null; var3 = var3.nextEntry)
         {
-            if (var3.hashEntry == par1)
-            {
-                return var3;
-            }
+            if (var3.hashEntry == par1) { return var3; }
         }
 
         return null;
@@ -152,8 +148,7 @@ public class IntHashMap
                     var5.nextEntry = par1ArrayOfIntHashMapEntry[var7];
                     par1ArrayOfIntHashMapEntry[var7] = var5;
                     var5 = var6;
-                }
-                while (var6 != null);
+                } while (var6 != null);
             }
         }
     }
@@ -244,7 +239,8 @@ public class IntHashMap
         final int slotHash;
         private static final String __OBFID = "CL_00001491";
 
-        Entry(int par1, int par2, Object par3Obj, IntHashMap.Entry par4IntHashMapEntry)
+        Entry(int par1, int par2, Object par3Obj,
+                IntHashMap.Entry par4IntHashMapEntry)
         {
             this.valueEntry = par3Obj;
             this.nextEntry = par4IntHashMapEntry;
@@ -279,10 +275,7 @@ public class IntHashMap
                     Object var5 = this.getValue();
                     Object var6 = var2.getValue();
 
-                    if (var5 == var6 || var5 != null && var5.equals(var6))
-                    {
-                        return true;
-                    }
+                    if (var5 == var6 || var5 != null && var5.equals(var6)) { return true; }
                 }
 
                 return false;

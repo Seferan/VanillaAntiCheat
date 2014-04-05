@@ -24,13 +24,15 @@ public class EntityAIPanic extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.theEntityCreature.getAITarget() == null && !this.theEntityCreature.isBurning())
+        if (this.theEntityCreature.getAITarget() == null
+                && !this.theEntityCreature.isBurning())
         {
             return false;
         }
         else
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.theEntityCreature, 5, 4);
+            Vec3 var1 = RandomPositionGenerator.findRandomTarget(
+                    this.theEntityCreature, 5, 4);
 
             if (var1 == null)
             {
@@ -51,7 +53,8 @@ public class EntityAIPanic extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
+        this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX,
+                this.randPosY, this.randPosZ, this.speed);
     }
 
     /**

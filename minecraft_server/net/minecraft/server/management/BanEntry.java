@@ -10,7 +10,8 @@ import org.apache.logging.log4j.Logger;
 public class BanEntry
 {
     private static final Logger logger = LogManager.getLogger();
-    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat(
+            "yyyy-MM-dd HH:mm:ss Z");
     private final String username;
     private Date banStartDate = new Date();
     private String bannedBy = "(Unknown)";
@@ -63,7 +64,8 @@ public class BanEntry
 
     public boolean hasBanExpired()
     {
-        return this.banEndDate == null ? false : this.banEndDate.before(new Date());
+        return this.banEndDate == null ? false : this.banEndDate
+                .before(new Date());
     }
 
     public String getBanReason()
@@ -85,7 +87,8 @@ public class BanEntry
         var1.append("|");
         var1.append(this.getBannedBy());
         var1.append("|");
-        var1.append(this.getBanEndDate() == null ? "Forever" : dateFormat.format(this.getBanEndDate()));
+        var1.append(this.getBanEndDate() == null ? "Forever" : dateFormat
+                .format(this.getBanEndDate()));
         var1.append("|");
         var1.append(this.getBanReason());
         return var1.toString();
@@ -117,7 +120,10 @@ public class BanEntry
                 }
                 catch (ParseException var6)
                 {
-                    logger.warn("Could not read creation date format for ban entry \'" + var2.getBannedUsername() + "\' (was: \'" + var1[var7] + "\')", var6);
+                    logger.warn(
+                            "Could not read creation date format for ban entry \'"
+                                    + var2.getBannedUsername() + "\' (was: \'"
+                                    + var1[var7] + "\')", var6);
                 }
 
                 var10000 = var1.length;
@@ -143,14 +149,19 @@ public class BanEntry
                         {
                             String var4 = var1[var7].trim();
 
-                            if (!var4.equalsIgnoreCase("Forever") && var4.length() > 0)
+                            if (!var4.equalsIgnoreCase("Forever")
+                                    && var4.length() > 0)
                             {
                                 var2.setBanEndDate(dateFormat.parse(var4));
                             }
                         }
                         catch (ParseException var5)
                         {
-                            logger.warn("Could not read expiry date format for ban entry \'" + var2.getBannedUsername() + "\' (was: \'" + var1[var7] + "\')", var5);
+                            logger.warn(
+                                    "Could not read expiry date format for ban entry \'"
+                                            + var2.getBannedUsername()
+                                            + "\' (was: \'" + var1[var7]
+                                            + "\')", var5);
                         }
 
                         var10000 = var1.length;

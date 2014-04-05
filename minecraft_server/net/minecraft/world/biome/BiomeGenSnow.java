@@ -40,14 +40,16 @@ public class BiomeGenSnow extends BiomeGenBase
             {
                 var6 = par3 + par2Random.nextInt(16) + 8;
                 var7 = par4 + par2Random.nextInt(16) + 8;
-                this.field_150616_aD.generate(par1World, par2Random, var6, par1World.getHeightValue(var6, var7), var7);
+                this.field_150616_aD.generate(par1World, par2Random, var6,
+                        par1World.getHeightValue(var6, var7), var7);
             }
 
             for (var5 = 0; var5 < 2; ++var5)
             {
                 var6 = par3 + par2Random.nextInt(16) + 8;
                 var7 = par4 + par2Random.nextInt(16) + 8;
-                this.field_150617_aE.generate(par1World, par2Random, var6, par1World.getHeightValue(var6, var7), var7);
+                this.field_150617_aE.generate(par1World, par2Random, var6,
+                        par1World.getHeightValue(var6, var7), var7);
             }
         }
 
@@ -61,7 +63,14 @@ public class BiomeGenSnow extends BiomeGenBase
 
     protected BiomeGenBase func_150566_k()
     {
-        BiomeGenBase var1 = (new BiomeGenSnow(this.biomeID + 128, true)).func_150557_a(13828095, true).setBiomeName(this.biomeName + " Spikes").setEnableSnow().setTemperatureRainfall(0.0F, 0.5F).func_150570_a(new BiomeGenBase.Height(this.minHeight + 0.1F, this.maxHeight + 0.1F));
+        BiomeGenBase var1 = (new BiomeGenSnow(this.biomeID + 128, true))
+                .func_150557_a(13828095, true)
+                .setBiomeName(this.biomeName + " Spikes")
+                .setEnableSnow()
+                .setTemperatureRainfall(0.0F, 0.5F)
+                .func_150570_a(
+                        new BiomeGenBase.Height(this.minHeight + 0.1F,
+                                this.maxHeight + 0.1F));
         var1.minHeight = this.minHeight + 0.3F;
         var1.maxHeight = this.maxHeight + 0.4F;
         return var1;

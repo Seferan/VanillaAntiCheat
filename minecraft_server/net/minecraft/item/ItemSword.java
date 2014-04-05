@@ -40,23 +40,31 @@ public class ItemSword extends Item
         else
         {
             Material var3 = p_150893_2_.getMaterial();
-            return var3 != Material.plants && var3 != Material.field_151582_l && var3 != Material.coral && var3 != Material.field_151584_j && var3 != Material.field_151572_C ? 1.0F : 1.5F;
+            return var3 != Material.plants && var3 != Material.field_151582_l
+                    && var3 != Material.coral
+                    && var3 != Material.field_151584_j
+                    && var3 != Material.field_151572_C ? 1.0F : 1.5F;
         }
     }
 
     /**
-     * Current implementations of this method in child classes do not use the entry argument beside ev. They just raise
-     * the damage on the stack.
+     * Current implementations of this method in child classes do not use the
+     * entry argument beside ev. They just raise the damage on the stack.
      */
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
+    public boolean hitEntity(ItemStack par1ItemStack,
+            EntityLivingBase par2EntityLivingBase,
+            EntityLivingBase par3EntityLivingBase)
     {
         par1ItemStack.damageItem(1, par3EntityLivingBase);
         return true;
     }
 
-    public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)
+    public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_,
+            Block p_150894_3_, int p_150894_4_, int p_150894_5_,
+            int p_150894_6_, EntityLivingBase p_150894_7_)
     {
-        if ((double)p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
+        if ((double)p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_,
+                p_150894_5_, p_150894_6_) != 0.0D)
         {
             p_150894_1_.damageItem(2, p_150894_7_);
         }
@@ -65,7 +73,8 @@ public class ItemSword extends Item
     }
 
     /**
-     * returns the action that specifies what animation to play when the items is being used
+     * returns the action that specifies what animation to play when the items
+     * is being used
      */
     public EnumAction getItemUseAction(ItemStack par1ItemStack)
     {
@@ -81,11 +90,14 @@ public class ItemSword extends Item
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
-        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        par3EntityPlayer.setItemInUse(par1ItemStack,
+                this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
 
@@ -95,7 +107,8 @@ public class ItemSword extends Item
     }
 
     /**
-     * Return the enchantability factor of the item, most of the time is based on material.
+     * Return the enchantability factor of the item, most of the time is based
+     * on material.
      */
     public int getItemEnchantability()
     {
@@ -110,18 +123,24 @@ public class ItemSword extends Item
     /**
      * Return whether this item is repairable in an anvil.
      */
-    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    public boolean getIsRepairable(ItemStack par1ItemStack,
+            ItemStack par2ItemStack)
     {
-        return this.field_150933_b.func_150995_f() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return this.field_150933_b.func_150995_f() == par2ItemStack.getItem() ? true
+                : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
-     * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
+     * Gets a map of item attribute modifiers, used by ItemSword to increase hit
+     * damage.
      */
     public Multimap getItemAttributeModifiers()
     {
         Multimap var1 = super.getItemAttributeModifiers();
-        var1.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double)this.field_150934_a, 0));
+        var1.put(SharedMonsterAttributes.attackDamage
+                .getAttributeUnlocalizedName(), new AttributeModifier(
+                field_111210_e, "Weapon modifier", (double)this.field_150934_a,
+                0));
         return var1;
     }
 }

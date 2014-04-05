@@ -13,7 +13,9 @@ public class S19PacketEntityHeadLook extends Packet
     private byte field_149383_b;
     private static final String __OBFID = "CL_00001323";
 
-    public S19PacketEntityHeadLook() {}
+    public S19PacketEntityHeadLook()
+    {
+    }
 
     public S19PacketEntityHeadLook(Entity p_i45214_1_, byte p_i45214_2_)
     {
@@ -45,11 +47,15 @@ public class S19PacketEntityHeadLook extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, rot=%d", new Object[] {Integer.valueOf(this.field_149384_a), Byte.valueOf(this.field_149383_b)});
+        return String.format(
+                "id=%d, rot=%d",
+                new Object[] {Integer.valueOf(this.field_149384_a),
+                        Byte.valueOf(this.field_149383_b)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

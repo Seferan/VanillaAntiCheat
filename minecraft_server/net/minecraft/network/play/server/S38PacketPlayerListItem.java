@@ -13,9 +13,12 @@ public class S38PacketPlayerListItem extends Packet
     private int field_149125_c;
     private static final String __OBFID = "CL_00001318";
 
-    public S38PacketPlayerListItem() {}
+    public S38PacketPlayerListItem()
+    {
+    }
 
-    public S38PacketPlayerListItem(String p_i45209_1_, boolean p_i45209_2_, int p_i45209_3_)
+    public S38PacketPlayerListItem(String p_i45209_1_, boolean p_i45209_2_,
+            int p_i45209_3_)
     {
         this.field_149126_a = p_i45209_1_;
         this.field_149124_b = p_i45209_2_;

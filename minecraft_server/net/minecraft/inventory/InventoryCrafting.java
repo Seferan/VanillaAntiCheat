@@ -12,7 +12,8 @@ public class InventoryCrafting implements IInventory
     private int inventoryWidth;
 
     /**
-     * Class containing the callbacks for the events on_GUIClosed and on_CraftMaxtrixChanged.
+     * Class containing the callbacks for the events on_GUIClosed and
+     * on_CraftMaxtrixChanged.
      */
     private Container eventHandler;
     private static final String __OBFID = "CL_00001743";
@@ -42,7 +43,8 @@ public class InventoryCrafting implements IInventory
     }
 
     /**
-     * Returns the itemstack in the slot specified (Top left is 0, 0). Args: row, column
+     * Returns the itemstack in the slot specified (Top left is 0, 0). Args:
+     * row, column
      */
     public ItemStack getStackInRowAndColumn(int par1, int par2)
     {
@@ -74,8 +76,9 @@ public class InventoryCrafting implements IInventory
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
@@ -92,8 +95,8 @@ public class InventoryCrafting implements IInventory
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
@@ -128,7 +131,8 @@ public class InventoryCrafting implements IInventory
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
@@ -137,8 +141,8 @@ public class InventoryCrafting implements IInventory
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -148,22 +152,30 @@ public class InventoryCrafting implements IInventory
     /**
      * Called when an the contents of an Inventory change, usually
      */
-    public void onInventoryChanged() {}
+    public void onInventoryChanged()
+    {
+    }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
         return true;
     }
 
-    public void openChest() {}
+    public void openChest()
+    {
+    }
 
-    public void closeChest() {}
+    public void closeChest()
+    {
+    }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {

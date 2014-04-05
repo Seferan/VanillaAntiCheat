@@ -12,7 +12,8 @@ public abstract class Packet
     private static final String __OBFID = "CL_00001272";
 
     /**
-     * Returns a packet instance, given the params: BiMap<int, (Packet) Class> and (int) id
+     * Returns a packet instance, given the params: BiMap<int, (Packet) Class>
+     * and (int) id
      */
     public static Packet generatePacket(BiMap p_148839_0_, int p_148839_1_)
     {
@@ -29,8 +30,8 @@ public abstract class Packet
     }
 
     /**
-     * Will write a byte array to supplied ByteBuf as a separately defined structure by prefixing the byte array with
-     * its length
+     * Will write a byte array to supplied ByteBuf as a separately defined
+     * structure by prefixing the byte array with its length
      */
     public static void writeBlob(ByteBuf p_148838_0_, byte[] p_148838_1_)
     {
@@ -39,8 +40,8 @@ public abstract class Packet
     }
 
     /**
-     * Will read a byte array from the supplied ByteBuf, the first short encountered will be interpreted as the size of
-     * the byte array to read in
+     * Will read a byte array from the supplied ByteBuf, the first short
+     * encountered will be interpreted as the size of the byte array to read in
      */
     public static byte[] readBlob(ByteBuf p_148834_0_) throws IOException
     {
@@ -71,8 +72,9 @@ public abstract class Packet
     public abstract void func_148833_a(INetHandler var1);
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {
@@ -85,7 +87,8 @@ public abstract class Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {

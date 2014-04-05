@@ -18,7 +18,8 @@ public class WorldGenBlockBlob extends WorldGenerator
         this.field_150544_b = p_i45450_2_;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         while (true)
         {
@@ -30,7 +31,8 @@ public class WorldGenBlockBlob extends WorldGenerator
                     {
                         Block var6 = par1World.getBlock(par3, par4 - 1, par5);
 
-                        if (var6 == Blocks.grass || var6 == Blocks.dirt || var6 == Blocks.stone)
+                        if (var6 == Blocks.grass || var6 == Blocks.dirt
+                                || var6 == Blocks.stone)
                         {
                             break label63;
                         }
@@ -41,10 +43,7 @@ public class WorldGenBlockBlob extends WorldGenerator
                 }
             }
 
-            if (par4 <= 3)
-            {
-                return false;
-            }
+            if (par4 <= 3) { return false; }
 
             int var18 = this.field_150544_b;
 
@@ -65,9 +64,11 @@ public class WorldGenBlockBlob extends WorldGenerator
                             float var16 = (float)(var13 - par5);
                             float var17 = (float)(var14 - par4);
 
-                            if (var15 * var15 + var16 * var16 + var17 * var17 <= var11 * var11)
+                            if (var15 * var15 + var16 * var16 + var17 * var17 <= var11
+                                    * var11)
                             {
-                                par1World.setBlock(var12, var14, var13, this.field_150545_a, 0, 4);
+                                par1World.setBlock(var12, var14, var13,
+                                        this.field_150545_a, 0, 4);
                             }
                         }
                     }

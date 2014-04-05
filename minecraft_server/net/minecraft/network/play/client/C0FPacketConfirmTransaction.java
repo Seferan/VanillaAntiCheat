@@ -39,11 +39,16 @@ public class C0FPacketConfirmTransaction extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, uid=%d, accepted=%b", new Object[] {Integer.valueOf(this.field_149536_a), Short.valueOf(this.field_149534_b), Boolean.valueOf(this.field_149535_c)});
+        return String.format(
+                "id=%d, uid=%d, accepted=%b",
+                new Object[] {Integer.valueOf(this.field_149536_a),
+                        Short.valueOf(this.field_149534_b),
+                        Boolean.valueOf(this.field_149535_c)});
     }
 
     public int func_149532_c()

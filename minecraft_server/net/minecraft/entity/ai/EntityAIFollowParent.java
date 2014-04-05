@@ -30,7 +30,9 @@ public class EntityAIFollowParent extends EntityAIBase
         }
         else
         {
-            List var1 = this.childAnimal.worldObj.getEntitiesWithinAABB(this.childAnimal.getClass(), this.childAnimal.boundingBox.expand(8.0D, 4.0D, 8.0D));
+            List var1 = this.childAnimal.worldObj.getEntitiesWithinAABB(
+                    this.childAnimal.getClass(),
+                    this.childAnimal.boundingBox.expand(8.0D, 4.0D, 8.0D));
             EntityAnimal var2 = null;
             double var3 = Double.MAX_VALUE;
             Iterator var5 = var1.iterator();
@@ -78,7 +80,8 @@ public class EntityAIFollowParent extends EntityAIBase
         }
         else
         {
-            double var1 = this.childAnimal.getDistanceSqToEntity(this.parentAnimal);
+            double var1 = this.childAnimal
+                    .getDistanceSqToEntity(this.parentAnimal);
             return var1 >= 9.0D && var1 <= 256.0D;
         }
     }
@@ -107,7 +110,8 @@ public class EntityAIFollowParent extends EntityAIBase
         if (--this.field_75345_d <= 0)
         {
             this.field_75345_d = 10;
-            this.childAnimal.getNavigator().tryMoveToEntityLiving(this.parentAnimal, this.field_75347_c);
+            this.childAnimal.getNavigator().tryMoveToEntityLiving(
+                    this.parentAnimal, this.field_75347_c);
         }
     }
 }

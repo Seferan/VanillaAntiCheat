@@ -17,14 +17,17 @@ public class EntityGiantZombie extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(50.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+                .setBaseValue(100.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
+                .setBaseValue(0.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage)
+                .setBaseValue(50.0D);
     }
 
     /**
-     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block.
-     * Args: x, y, z
+     * Takes a coordinate in and returns a weight to determine how likely this
+     * creature will try to path to the block. Args: x, y, z
      */
     public float getBlockPathWeight(int par1, int par2, int par3)
     {

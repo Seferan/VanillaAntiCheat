@@ -15,11 +15,13 @@ public class WorldGenDeadBush extends WorldGenerator
         this.field_150547_a = p_i45451_1_;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3,
+            int par4, int par5)
     {
         Block var6;
 
-        while (((var6 = par1World.getBlock(par3, par4, par5)).getMaterial() == Material.air || var6.getMaterial() == Material.field_151584_j) && par4 > 0)
+        while (((var6 = par1World.getBlock(par3, par4, par5)).getMaterial() == Material.air || var6
+                .getMaterial() == Material.field_151584_j) && par4 > 0)
         {
             --par4;
         }
@@ -30,9 +32,12 @@ public class WorldGenDeadBush extends WorldGenerator
             int var9 = par4 + par2Random.nextInt(4) - par2Random.nextInt(4);
             int var10 = par5 + par2Random.nextInt(8) - par2Random.nextInt(8);
 
-            if (par1World.isAirBlock(var8, var9, var10) && this.field_150547_a.canBlockStay(par1World, var8, var9, var10))
+            if (par1World.isAirBlock(var8, var9, var10)
+                    && this.field_150547_a.canBlockStay(par1World, var8, var9,
+                            var10))
             {
-                par1World.setBlock(var8, var9, var10, this.field_150547_a, 0, 2);
+                par1World
+                        .setBlock(var8, var9, var10, this.field_150547_a, 0, 2);
             }
         }
 

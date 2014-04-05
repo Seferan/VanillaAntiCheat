@@ -12,7 +12,8 @@ import net.minecraft.world.gen.FlatGeneratorInfo;
 
 public abstract class WorldProvider
 {
-    public static final float[] moonPhaseFactors = new float[] {1.0F, 0.75F, 0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F};
+    public static final float[] moonPhaseFactors = new float[] {1.0F, 0.75F,
+            0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F};
 
     /** world object being used */
     public World worldObj;
@@ -23,12 +24,14 @@ public abstract class WorldProvider
     public WorldChunkManager worldChunkMgr;
 
     /**
-     * States whether the Hell world provider is used(true) or if the normal world provider is used(false)
+     * States whether the Hell world provider is used(true) or if the normal
+     * world provider is used(false)
      */
     public boolean isHellWorld;
 
     /**
-     * A boolean that tells if a world does not have a sky. Used in calculating weather and skylight
+     * A boolean that tells if a world does not have a sky. Used in calculating
+     * weather and skylight
      */
     public boolean hasNoSky;
 
@@ -43,7 +46,8 @@ public abstract class WorldProvider
     private static final String __OBFID = "CL_00000386";
 
     /**
-     * associate an existing world with a World provider, and setup its lightbrightness table
+     * associate an existing world with a World provider, and setup its
+     * lightbrightness table
      */
     public final void registerWorld(World par1World)
     {
@@ -64,7 +68,8 @@ public abstract class WorldProvider
         for (int var2 = 0; var2 <= 15; ++var2)
         {
             float var3 = 1.0F - (float)var2 / 15.0F;
-            this.lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
+            this.lightBrightnessTable[var2] = (1.0F - var3)
+                    / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
         }
     }
 
@@ -75,8 +80,11 @@ public abstract class WorldProvider
     {
         if (this.worldObj.getWorldInfo().getTerrainType() == WorldType.FLAT)
         {
-            FlatGeneratorInfo var1 = FlatGeneratorInfo.createFlatGeneratorFromString(this.worldObj.getWorldInfo().getGeneratorOptions());
-            this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.func_150568_d(var1.getBiome()), 0.5F);
+            FlatGeneratorInfo var1 = FlatGeneratorInfo
+                    .createFlatGeneratorFromString(this.worldObj.getWorldInfo()
+                            .getGeneratorOptions());
+            this.worldChunkMgr = new WorldChunkManagerHell(
+                    BiomeGenBase.func_150568_d(var1.getBiome()), 0.5F);
         }
         else
         {
@@ -89,11 +97,17 @@ public abstract class WorldProvider
      */
     public IChunkProvider createChunkGenerator()
     {
-        return (IChunkProvider)(this.terrainType == WorldType.FLAT ? new ChunkProviderFlat(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.field_82913_c) : new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled()));
+        return (IChunkProvider)(this.terrainType == WorldType.FLAT ? new ChunkProviderFlat(
+                this.worldObj, this.worldObj.getSeed(), this.worldObj
+                        .getWorldInfo().isMapFeaturesEnabled(),
+                this.field_82913_c) : new ChunkProviderGenerate(this.worldObj,
+                this.worldObj.getSeed(), this.worldObj.getWorldInfo()
+                        .isMapFeaturesEnabled()));
     }
 
     /**
-     * Will check if the x, z position specified is alright to be set as the map spawn point
+     * Will check if the x, z position specified is alright to be set as the map
+     * spawn point
      */
     public boolean canCoordinateBeSpawn(int par1, int par2)
     {
@@ -101,7 +115,8 @@ public abstract class WorldProvider
     }
 
     /**
-     * Calculates the angle of sun and moon in the sky relative to a specified time (usually worldTime)
+     * Calculates the angle of sun and moon in the sky relative to a specified
+     * time (usually worldTime)
      */
     public float calculateCelestialAngle(long par1, float par3)
     {
@@ -130,7 +145,8 @@ public abstract class WorldProvider
     }
 
     /**
-     * Returns 'true' if in the "main surface world", but 'false' if in the Nether or End dimensions.
+     * Returns 'true' if in the "main surface world", but 'false' if in the
+     * Nether or End dimensions.
      */
     public boolean isSurfaceWorld()
     {
@@ -138,7 +154,8 @@ public abstract class WorldProvider
     }
 
     /**
-     * True if the player can respawn in this dimension (true = overworld, false = nether).
+     * True if the player can respawn in this dimension (true = overworld, false
+     * = nether).
      */
     public boolean canRespawnHere()
     {
@@ -147,7 +164,9 @@ public abstract class WorldProvider
 
     public static WorldProvider getProviderForDimension(int par0)
     {
-        return (WorldProvider)(par0 == -1 ? new WorldProviderHell() : (par0 == 0 ? new WorldProviderSurface() : (par0 == 1 ? new WorldProviderEnd() : null)));
+        return (WorldProvider)(par0 == -1 ? new WorldProviderHell()
+                : (par0 == 0 ? new WorldProviderSurface()
+                        : (par0 == 1 ? new WorldProviderEnd() : null)));
     }
 
     /**

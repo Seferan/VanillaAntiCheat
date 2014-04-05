@@ -37,7 +37,9 @@ public class EntityAISit extends EntityAIBase
         else
         {
             EntityLivingBase var1 = this.theEntity.getOwner();
-            return var1 == null ? true : (this.theEntity.getDistanceSqToEntity(var1) < 144.0D && var1.getAITarget() != null ? false : this.isSitting);
+            return var1 == null ? true : (this.theEntity
+                    .getDistanceSqToEntity(var1) < 144.0D
+                    && var1.getAITarget() != null ? false : this.isSitting);
         }
     }
 

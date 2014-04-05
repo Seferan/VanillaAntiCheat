@@ -37,7 +37,10 @@ public class EntityAIFleeSun extends EntityAIBase
         {
             return false;
         }
-        else if (!this.theWorld.canBlockSeeTheSky(MathHelper.floor_double(this.theCreature.posX), (int)this.theCreature.boundingBox.minY, MathHelper.floor_double(this.theCreature.posZ)))
+        else if (!this.theWorld.canBlockSeeTheSky(
+                MathHelper.floor_double(this.theCreature.posX),
+                (int)this.theCreature.boundingBox.minY,
+                MathHelper.floor_double(this.theCreature.posZ)))
         {
             return false;
         }
@@ -72,7 +75,8 @@ public class EntityAIFleeSun extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theCreature.getNavigator().tryMoveToXYZ(this.shelterX, this.shelterY, this.shelterZ, this.movementSpeed);
+        this.theCreature.getNavigator().tryMoveToXYZ(this.shelterX,
+                this.shelterY, this.shelterZ, this.movementSpeed);
     }
 
     private Vec3 findPossibleShelter()
@@ -81,14 +85,18 @@ public class EntityAIFleeSun extends EntityAIBase
 
         for (int var2 = 0; var2 < 10; ++var2)
         {
-            int var3 = MathHelper.floor_double(this.theCreature.posX + (double)var1.nextInt(20) - 10.0D);
-            int var4 = MathHelper.floor_double(this.theCreature.boundingBox.minY + (double)var1.nextInt(6) - 3.0D);
-            int var5 = MathHelper.floor_double(this.theCreature.posZ + (double)var1.nextInt(20) - 10.0D);
+            int var3 = MathHelper.floor_double(this.theCreature.posX
+                    + (double)var1.nextInt(20) - 10.0D);
+            int var4 = MathHelper
+                    .floor_double(this.theCreature.boundingBox.minY
+                            + (double)var1.nextInt(6) - 3.0D);
+            int var5 = MathHelper.floor_double(this.theCreature.posZ
+                    + (double)var1.nextInt(20) - 10.0D);
 
-            if (!this.theWorld.canBlockSeeTheSky(var3, var4, var5) && this.theCreature.getBlockPathWeight(var3, var4, var5) < 0.0F)
-            {
-                return this.theWorld.getWorldVec3Pool().getVecFromPool((double)var3, (double)var4, (double)var5);
-            }
+            if (!this.theWorld.canBlockSeeTheSky(var3, var4, var5)
+                    && this.theCreature.getBlockPathWeight(var3, var4, var5) < 0.0F) { return this.theWorld
+                    .getWorldVec3Pool().getVecFromPool((double)var3,
+                            (double)var4, (double)var5); }
         }
 
         return null;

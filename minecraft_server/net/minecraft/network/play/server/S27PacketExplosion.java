@@ -23,9 +23,13 @@ public class S27PacketExplosion extends Packet
     private float field_149159_h;
     private static final String __OBFID = "CL_00001300";
 
-    public S27PacketExplosion() {}
+    public S27PacketExplosion()
+    {
+    }
 
-    public S27PacketExplosion(double p_i45193_1_, double p_i45193_3_, double p_i45193_5_, float p_i45193_7_, List p_i45193_8_, Vec3 p_i45193_9_)
+    public S27PacketExplosion(double p_i45193_1_, double p_i45193_3_,
+            double p_i45193_5_, float p_i45193_7_, List p_i45193_8_,
+            Vec3 p_i45193_9_)
     {
         this.field_149158_a = p_i45193_1_;
         this.field_149156_b = p_i45193_3_;

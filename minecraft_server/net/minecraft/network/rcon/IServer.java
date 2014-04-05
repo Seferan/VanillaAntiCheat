@@ -3,12 +3,14 @@ package net.minecraft.network.rcon;
 public interface IServer
 {
     /**
-     * Gets an integer property. If it does not exist, set it to the specified value.
+     * Gets an integer property. If it does not exist, set it to the specified
+     * value.
      */
     int getIntProperty(String var1, int var2);
 
     /**
-     * Gets a string property. If it does not exist, set it to the specified value.
+     * Gets a string property. If it does not exist, set it to the specified
+     * value.
      */
     String getStringProperty(String var1, String var2);
 
@@ -65,7 +67,8 @@ public interface IServer
     String getFolderName();
 
     /**
-     * Used by RCon's Query in the form of "MajorServerMod 1.2.3: MyPlugin 1.3; AnotherPlugin 2.1; AndSoForth 1.0".
+     * Used by RCon's Query in the form of
+     * "MajorServerMod 1.2.3: MyPlugin 1.3; AnotherPlugin 2.1; AndSoForth 1.0".
      */
     String getPlugins();
 

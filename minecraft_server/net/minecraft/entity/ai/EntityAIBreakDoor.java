@@ -20,7 +20,10 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
      */
     public boolean shouldExecute()
     {
-        return !super.shouldExecute() ? false : (!this.theEntity.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") ? false : !this.field_151504_e.func_150015_f(this.theEntity.worldObj, this.entityPosX, this.entityPosY, this.entityPosZ));
+        return !super.shouldExecute() ? false : (!this.theEntity.worldObj
+                .getGameRules().getGameRuleBooleanValue("mobGriefing") ? false
+                : !this.field_151504_e.func_150015_f(this.theEntity.worldObj,
+                        this.entityPosX, this.entityPosY, this.entityPosZ));
     }
 
     /**
@@ -37,8 +40,12 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
      */
     public boolean continueExecuting()
     {
-        double var1 = this.theEntity.getDistanceSq((double)this.entityPosX, (double)this.entityPosY, (double)this.entityPosZ);
-        return this.breakingTime <= 240 && !this.field_151504_e.func_150015_f(this.theEntity.worldObj, this.entityPosX, this.entityPosY, this.entityPosZ) && var1 < 4.0D;
+        double var1 = this.theEntity.getDistanceSq((double)this.entityPosX,
+                (double)this.entityPosY, (double)this.entityPosZ);
+        return this.breakingTime <= 240
+                && !this.field_151504_e.func_150015_f(this.theEntity.worldObj,
+                        this.entityPosX, this.entityPosY, this.entityPosZ)
+                && var1 < 4.0D;
     }
 
     /**
@@ -47,7 +54,9 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
     public void resetTask()
     {
         super.resetTask();
-        this.theEntity.worldObj.destroyBlockInWorldPartially(this.theEntity.getEntityId(), this.entityPosX, this.entityPosY, this.entityPosZ, -1);
+        this.theEntity.worldObj.destroyBlockInWorldPartially(
+                this.theEntity.getEntityId(), this.entityPosX, this.entityPosY,
+                this.entityPosZ, -1);
     }
 
     /**
@@ -59,7 +68,8 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 
         if (this.theEntity.getRNG().nextInt(20) == 0)
         {
-            this.theEntity.worldObj.playAuxSFX(1010, this.entityPosX, this.entityPosY, this.entityPosZ, 0);
+            this.theEntity.worldObj.playAuxSFX(1010, this.entityPosX,
+                    this.entityPosY, this.entityPosZ, 0);
         }
 
         ++this.breakingTime;
@@ -67,15 +77,22 @@ public class EntityAIBreakDoor extends EntityAIDoorInteract
 
         if (var1 != this.field_75358_j)
         {
-            this.theEntity.worldObj.destroyBlockInWorldPartially(this.theEntity.getEntityId(), this.entityPosX, this.entityPosY, this.entityPosZ, var1);
+            this.theEntity.worldObj.destroyBlockInWorldPartially(
+                    this.theEntity.getEntityId(), this.entityPosX,
+                    this.entityPosY, this.entityPosZ, var1);
             this.field_75358_j = var1;
         }
 
-        if (this.breakingTime == 240 && this.theEntity.worldObj.difficultySetting == EnumDifficulty.HARD)
+        if (this.breakingTime == 240
+                && this.theEntity.worldObj.difficultySetting == EnumDifficulty.HARD)
         {
-            this.theEntity.worldObj.setBlockToAir(this.entityPosX, this.entityPosY, this.entityPosZ);
-            this.theEntity.worldObj.playAuxSFX(1012, this.entityPosX, this.entityPosY, this.entityPosZ, 0);
-            this.theEntity.worldObj.playAuxSFX(2001, this.entityPosX, this.entityPosY, this.entityPosZ, Block.getIdFromBlock(this.field_151504_e));
+            this.theEntity.worldObj.setBlockToAir(this.entityPosX,
+                    this.entityPosY, this.entityPosZ);
+            this.theEntity.worldObj.playAuxSFX(1012, this.entityPosX,
+                    this.entityPosY, this.entityPosZ, 0);
+            this.theEntity.worldObj.playAuxSFX(2001, this.entityPosX,
+                    this.entityPosY, this.entityPosZ,
+                    Block.getIdFromBlock(this.field_151504_e));
         }
     }
 }

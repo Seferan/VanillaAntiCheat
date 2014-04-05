@@ -31,8 +31,8 @@ public class TileEntityDispenser extends TileEntity implements IInventory
     }
 
     /**
-     * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
-     * new stack.
+     * Removes from an inventory slot (first arg) up to a specified number
+     * (second arg) of items and returns them in a new stack.
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
@@ -67,8 +67,9 @@ public class TileEntityDispenser extends TileEntity implements IInventory
     }
 
     /**
-     * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
-     * like when you close a workbench GUI.
+     * When some containers are closed they call this on each slot, then drop
+     * whatever it returns as an EntityItem - like when you close a workbench
+     * GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
@@ -91,7 +92,8 @@ public class TileEntityDispenser extends TileEntity implements IInventory
 
         for (int var3 = 0; var3 < this.field_146022_i.length; ++var3)
         {
-            if (this.field_146022_i[var3] != null && this.field_146021_j.nextInt(var2++) == 0)
+            if (this.field_146022_i[var3] != null
+                    && this.field_146021_j.nextInt(var2++) == 0)
             {
                 var1 = var3;
             }
@@ -101,13 +103,15 @@ public class TileEntityDispenser extends TileEntity implements IInventory
     }
 
     /**
-     * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+     * Sets the given item stack to the specified slot in the inventory (can be
+     * crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
         this.field_146022_i[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null
+                && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -119,7 +123,8 @@ public class TileEntityDispenser extends TileEntity implements IInventory
     {
         for (int var2 = 0; var2 < this.field_146022_i.length; ++var2)
         {
-            if (this.field_146022_i[var2] == null || this.field_146022_i[var2].getItem() == null)
+            if (this.field_146022_i[var2] == null
+                    || this.field_146022_i[var2].getItem() == null)
             {
                 this.setInventorySlotContents(var2, p_146019_1_);
                 return var2;
@@ -134,7 +139,8 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.field_146020_a : "container.dispenser";
+        return this.isInventoryNameLocalized() ? this.field_146020_a
+                : "container.dispenser";
     }
 
     public void func_146018_a(String p_146018_1_)
@@ -163,7 +169,8 @@ public class TileEntityDispenser extends TileEntity implements IInventory
 
             if (var5 >= 0 && var5 < this.field_146022_i.length)
             {
-                this.field_146022_i[var5] = ItemStack.loadItemStackFromNBT(var4);
+                this.field_146022_i[var5] = ItemStack
+                        .loadItemStackFromNBT(var4);
             }
         }
 
@@ -198,8 +205,8 @@ public class TileEntityDispenser extends TileEntity implements IInventory
     }
 
     /**
-     * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't
-     * this more of a set than a get?*
+     * Returns the maximum stack size for a inventory slot. Seems to always be
+     * 64, possibly will be extended. *Isn't this more of a set than a get?*
      */
     public int getInventoryStackLimit()
     {
@@ -207,19 +214,28 @@ public class TileEntityDispenser extends TileEntity implements IInventory
     }
 
     /**
-     * Do not make give this method the name canInteractWith because it clashes with Container
+     * Do not make give this method the name canInteractWith because it clashes
+     * with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord,
+                this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(
+                (double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D,
+                (double)this.zCoord + 0.5D) <= 64.0D;
     }
 
-    public void openChest() {}
+    public void openChest()
+    {
+    }
 
-    public void closeChest() {}
+    public void closeChest()
+    {
+    }
 
     /**
-     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     * Returns true if automation is allowed to insert the given stack (ignoring
+     * stack size) into the given slot.
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {

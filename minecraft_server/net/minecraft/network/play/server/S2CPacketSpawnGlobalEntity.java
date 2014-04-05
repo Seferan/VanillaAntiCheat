@@ -18,7 +18,9 @@ public class S2CPacketSpawnGlobalEntity extends Packet
     private int field_149056_e;
     private static final String __OBFID = "CL_00001278";
 
-    public S2CPacketSpawnGlobalEntity() {}
+    public S2CPacketSpawnGlobalEntity()
+    {
+    }
 
     public S2CPacketSpawnGlobalEntity(Entity p_i45191_1_)
     {
@@ -63,11 +65,18 @@ public class S2CPacketSpawnGlobalEntity extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
-        return String.format("id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f", new Object[] {Integer.valueOf(this.field_149059_a), Integer.valueOf(this.field_149056_e), Float.valueOf((float)this.field_149057_b / 32.0F), Float.valueOf((float)this.field_149058_c / 32.0F), Float.valueOf((float)this.field_149055_d / 32.0F)});
+        return String.format(
+                "id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f",
+                new Object[] {Integer.valueOf(this.field_149059_a),
+                        Integer.valueOf(this.field_149056_e),
+                        Float.valueOf((float)this.field_149057_b / 32.0F),
+                        Float.valueOf((float)this.field_149058_c / 32.0F),
+                        Float.valueOf((float)this.field_149055_d / 32.0F)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

@@ -5,7 +5,8 @@ import com.google.common.collect.HashBiMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class RegistryNamespaced extends RegistrySimple implements IObjectIntIterable
+public class RegistryNamespaced extends RegistrySimple implements
+        IObjectIntIterable
 {
     /** The backing store that maps Integers to objects. */
     protected final ObjectIntIdentityMap underlyingIntegerMap = new ObjectIntIdentityMap();
@@ -18,9 +19,11 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
     }
 
     /**
-     * Adds a new object to this registry, keyed by both the given integer ID and the given string.
+     * Adds a new object to this registry, keyed by both the given integer ID
+     * and the given string.
      */
-    public void addObject(int p_148756_1_, String p_148756_2_, Object p_148756_3_)
+    public void addObject(int p_148756_1_, String p_148756_2_,
+            Object p_148756_3_)
     {
         this.underlyingIntegerMap.func_148746_a(p_148756_3_, p_148756_1_);
         this.putObject(ensureNamespaced(p_148756_2_), p_148756_3_);
@@ -77,8 +80,8 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
     }
 
     /**
-     * Gets a value indicating whether this registry contains an object that can be identified by the given integer
-     * value
+     * Gets a value indicating whether this registry contains an object that can
+     * be identified by the given integer value
      */
     public boolean containsID(int p_148753_1_)
     {
@@ -86,12 +89,13 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
     }
 
     /**
-     * Ensures that the given name is indicated by a colon-delimited namespace, prepending "minecraft:" if it is not
-     * already.
+     * Ensures that the given name is indicated by a colon-delimited namespace,
+     * prepending "minecraft:" if it is not already.
      */
     private static String ensureNamespaced(String p_148755_0_)
     {
-        return p_148755_0_.indexOf(58) == -1 ? "minecraft:" + p_148755_0_ : p_148755_0_;
+        return p_148755_0_.indexOf(58) == -1 ? "minecraft:" + p_148755_0_
+                : p_148755_0_;
     }
 
     /**

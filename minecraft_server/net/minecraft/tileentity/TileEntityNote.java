@@ -39,11 +39,14 @@ public class TileEntityNote extends TileEntity
         this.onInventoryChanged();
     }
 
-    public void func_145878_a(World p_145878_1_, int p_145878_2_, int p_145878_3_, int p_145878_4_)
+    public void func_145878_a(World p_145878_1_, int p_145878_2_,
+            int p_145878_3_, int p_145878_4_)
     {
-        if (p_145878_1_.getBlock(p_145878_2_, p_145878_3_ + 1, p_145878_4_).getMaterial() == Material.air)
+        if (p_145878_1_.getBlock(p_145878_2_, p_145878_3_ + 1, p_145878_4_)
+                .getMaterial() == Material.air)
         {
-            Material var5 = p_145878_1_.getBlock(p_145878_2_, p_145878_3_ - 1, p_145878_4_).getMaterial();
+            Material var5 = p_145878_1_.getBlock(p_145878_2_, p_145878_3_ - 1,
+                    p_145878_4_).getMaterial();
             byte var6 = 0;
 
             if (var5 == Material.rock)
@@ -66,7 +69,8 @@ public class TileEntityNote extends TileEntity
                 var6 = 4;
             }
 
-            p_145878_1_.func_147452_c(p_145878_2_, p_145878_3_, p_145878_4_, Blocks.noteblock, var6, this.field_145879_a);
+            p_145878_1_.func_147452_c(p_145878_2_, p_145878_3_, p_145878_4_,
+                    Blocks.noteblock, var6, this.field_145879_a);
         }
     }
 }

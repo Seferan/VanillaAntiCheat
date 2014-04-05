@@ -31,7 +31,8 @@ public class EntitySenses
     }
 
     /**
-     * Checks, whether 'our' entity can see the entity given as argument (true) or not (false), caching the result.
+     * Checks, whether 'our' entity can see the entity given as argument (true)
+     * or not (false), caching the result.
      */
     public boolean canSee(Entity par1Entity)
     {

@@ -30,12 +30,22 @@ public class CommandBroadcast extends CommandBase
         return "commands.say.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length > 0 && par2ArrayOfStr[0].length() > 0)
         {
-            IChatComponent var3 = func_147176_a(par1ICommandSender, par2ArrayOfStr, 0, true);
-            MinecraftServer.getServer().getConfigurationManager().func_148539_a(new ChatComponentTranslation("chat.type.announcement", new Object[] {par1ICommandSender.getCommandSenderName(), var3}));
+            IChatComponent var3 = func_147176_a(par1ICommandSender,
+                    par2ArrayOfStr, 0, true);
+            MinecraftServer
+                    .getServer()
+                    .getConfigurationManager()
+                    .func_148539_a(
+                            new ChatComponentTranslation(
+                                    "chat.type.announcement", new Object[] {
+                                            par1ICommandSender
+                                                    .getCommandSenderName(),
+                                            var3}));
         }
         else
         {
@@ -44,10 +54,14 @@ public class CommandBroadcast extends CommandBase
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames()) : null;
+        return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(
+                par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames())
+                : null;
     }
 }

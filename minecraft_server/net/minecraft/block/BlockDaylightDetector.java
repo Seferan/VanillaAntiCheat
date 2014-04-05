@@ -23,31 +23,47 @@ public class BlockDaylightDetector extends BlockContainer
         this.setcreativeTab(CreativeTabs.tabRedstone);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
+            int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
     }
 
-    public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
+    public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_,
+            int p_149709_3_, int p_149709_4_, int p_149709_5_)
     {
-        return p_149709_1_.getBlockMetadata(p_149709_2_, p_149709_3_, p_149709_4_);
+        return p_149709_1_.getBlockMetadata(p_149709_2_, p_149709_3_,
+                p_149709_4_);
     }
 
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_) {}
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
+            int p_149674_4_, Random p_149674_5_)
+    {
+    }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_) {}
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
+            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    {
+    }
 
-    public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_) {}
+    public void onBlockAdded(World p_149726_1_, int p_149726_2_,
+            int p_149726_3_, int p_149726_4_)
+    {
+    }
 
-    public void func_149957_e(World p_149957_1_, int p_149957_2_, int p_149957_3_, int p_149957_4_)
+    public void func_149957_e(World p_149957_1_, int p_149957_2_,
+            int p_149957_3_, int p_149957_4_)
     {
         if (!p_149957_1_.provider.hasNoSky)
         {
-            int var5 = p_149957_1_.getBlockMetadata(p_149957_2_, p_149957_3_, p_149957_4_);
-            int var6 = p_149957_1_.getSavedLightValue(EnumSkyBlock.Sky, p_149957_2_, p_149957_3_, p_149957_4_) - p_149957_1_.skylightSubtracted;
+            int var5 = p_149957_1_.getBlockMetadata(p_149957_2_, p_149957_3_,
+                    p_149957_4_);
+            int var6 = p_149957_1_.getSavedLightValue(EnumSkyBlock.Sky,
+                    p_149957_2_, p_149957_3_, p_149957_4_)
+                    - p_149957_1_.skylightSubtracted;
             float var7 = p_149957_1_.getCelestialAngleRadians(1.0F);
 
             if (var7 < (float)Math.PI)
@@ -73,7 +89,8 @@ public class BlockDaylightDetector extends BlockContainer
 
             if (var5 != var6)
             {
-                p_149957_1_.setBlockMetadata(p_149957_2_, p_149957_3_, p_149957_4_, var6, 3);
+                p_149957_1_.setBlockMetadata(p_149957_2_, p_149957_3_,
+                        p_149957_4_, var6, 3);
             }
         }
     }
@@ -89,7 +106,8 @@ public class BlockDaylightDetector extends BlockContainer
     }
 
     /**
-     * Can this block provide power. Only wire currently seems to have this change based on its state.
+     * Can this block provide power. Only wire currently seems to have this
+     * change based on its state.
      */
     public boolean canProvidePower()
     {
@@ -97,7 +115,8 @@ public class BlockDaylightDetector extends BlockContainer
     }
 
     /**
-     * Returns a new instance of a block's tile entity class. Called on placing the block.
+     * Returns a new instance of a block's tile entity class. Called on placing
+     * the block.
      */
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
     {

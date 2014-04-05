@@ -20,7 +20,8 @@ public abstract class EntityAgeable extends EntityCreature
     public abstract EntityAgeable createChild(EntityAgeable var1);
 
     /**
-     * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
+     * Called when a player interacts with a mob. e.g. gets milk from a cow,
+     * gets into the saddle on a pig.
      */
     public boolean interact(EntityPlayer par1EntityPlayer)
     {
@@ -39,7 +40,8 @@ public abstract class EntityAgeable extends EntityCreature
                     if (var4 != null)
                     {
                         var4.setGrowingAge(-24000);
-                        var4.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
+                        var4.setLocationAndAngles(this.posX, this.posY,
+                                this.posZ, 0.0F, 0.0F);
                         this.worldObj.spawnEntityInWorld(var4);
 
                         if (var2.hasDisplayName())
@@ -53,7 +55,10 @@ public abstract class EntityAgeable extends EntityCreature
 
                             if (var2.stackSize <= 0)
                             {
-                                par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack)null);
+                                par1EntityPlayer.inventory
+                                        .setInventorySlotContents(
+                                                par1EntityPlayer.inventory.currentItem,
+                                                (ItemStack)null);
                             }
                         }
                     }
@@ -75,9 +80,10 @@ public abstract class EntityAgeable extends EntityCreature
     }
 
     /**
-     * The age value may be negative or positive or zero. If it's negative, it get's incremented on each tick, if it's
-     * positive, it get's decremented each tick. Don't confuse this with EntityLiving.getAge. With a negative value the
-     * Entity is considered a child.
+     * The age value may be negative or positive or zero. If it's negative, it
+     * get's incremented on each tick, if it's positive, it get's decremented
+     * each tick. Don't confuse this with EntityLiving.getAge. With a negative
+     * value the Entity is considered a child.
      */
     public int getGrowingAge()
     {
@@ -85,8 +91,9 @@ public abstract class EntityAgeable extends EntityCreature
     }
 
     /**
-     * "Adds the value of the parameter times 20 to the age of this entity. If the entity is an adult (if the entity's
-     * age is greater than 0), it will have no effect."
+     * "Adds the value of the parameter times 20 to the age of this entity. If
+     * the entity is an adult (if the entity's age is greater than 0), it will
+     * have no effect."
      */
     public void addGrowth(int par1)
     {
@@ -102,8 +109,9 @@ public abstract class EntityAgeable extends EntityCreature
     }
 
     /**
-     * The age value may be negative or positive or zero. If it's negative, it get's incremented on each tick, if it's
-     * positive, it get's decremented each tick. With a negative value the Entity is considered a child.
+     * The age value may be negative or positive or zero. If it's negative, it
+     * get's incremented on each tick, if it's positive, it get's decremented
+     * each tick. With a negative value the Entity is considered a child.
      */
     public void setGrowingAge(int par1)
     {
@@ -130,8 +138,9 @@ public abstract class EntityAgeable extends EntityCreature
     }
 
     /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
+     * Called frequently so the entity can update its state every tick as
+     * required. For example, zombies and skeletons use this to react to
+     * sunlight and start to burn.
      */
     public void onLivingUpdate()
     {

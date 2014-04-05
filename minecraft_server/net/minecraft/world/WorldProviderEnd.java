@@ -29,7 +29,8 @@ public class WorldProviderEnd extends WorldProvider
     }
 
     /**
-     * Calculates the angle of sun and moon in the sky relative to a specified time (usually worldTime)
+     * Calculates the angle of sun and moon in the sky relative to a specified
+     * time (usually worldTime)
      */
     public float calculateCelestialAngle(long par1, float par3)
     {
@@ -37,7 +38,8 @@ public class WorldProviderEnd extends WorldProvider
     }
 
     /**
-     * True if the player can respawn in this dimension (true = overworld, false = nether).
+     * True if the player can respawn in this dimension (true = overworld, false
+     * = nether).
      */
     public boolean canRespawnHere()
     {
@@ -45,7 +47,8 @@ public class WorldProviderEnd extends WorldProvider
     }
 
     /**
-     * Returns 'true' if in the "main surface world", but 'false' if in the Nether or End dimensions.
+     * Returns 'true' if in the "main surface world", but 'false' if in the
+     * Nether or End dimensions.
      */
     public boolean isSurfaceWorld()
     {
@@ -53,11 +56,13 @@ public class WorldProviderEnd extends WorldProvider
     }
 
     /**
-     * Will check if the x, z position specified is alright to be set as the map spawn point
+     * Will check if the x, z position specified is alright to be set as the map
+     * spawn point
      */
     public boolean canCoordinateBeSpawn(int par1, int par2)
     {
-        return this.worldObj.getTopBlock(par1, par2).getMaterial().blocksMovement();
+        return this.worldObj.getTopBlock(par1, par2).getMaterial()
+                .blocksMovement();
     }
 
     /**

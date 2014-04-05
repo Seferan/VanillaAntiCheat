@@ -19,10 +19,12 @@ public class ContainerBeacon extends Container
     private int field_82868_i;
     private static final String __OBFID = "CL_00001735";
 
-    public ContainerBeacon(InventoryPlayer par1InventoryPlayer, TileEntityBeacon par2TileEntityBeacon)
+    public ContainerBeacon(InventoryPlayer par1InventoryPlayer,
+            TileEntityBeacon par2TileEntityBeacon)
     {
         this.theBeacon = par2TileEntityBeacon;
-        this.addSlotToContainer(this.beaconSlot = new ContainerBeacon.BeaconSlot(par2TileEntityBeacon, 0, 136, 110));
+        this.addSlotToContainer(this.beaconSlot = new ContainerBeacon.BeaconSlot(
+                par2TileEntityBeacon, 0, 136, 110));
         byte var3 = 36;
         short var4 = 137;
         int var5;
@@ -31,13 +33,15 @@ public class ContainerBeacon extends Container
         {
             for (int var6 = 0; var6 < 9; ++var6)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var6 + var5 * 9 + 9, var3 + var6 * 18, var4 + var5 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var6
+                        + var5 * 9 + 9, var3 + var6 * 18, var4 + var5 * 18));
             }
         }
 
         for (var5 = 0; var5 < 9; ++var5)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var5, var3 + var5 * 18, 58 + var4));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var5, var3
+                    + var5 * 18, 58 + var4));
         }
 
         this.field_82865_g = par2TileEntityBeacon.func_145998_l();
@@ -78,38 +82,24 @@ public class ContainerBeacon extends Container
 
             if (par2 == 0)
             {
-                if (!this.mergeItemStack(var5, 1, 37, true))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, 1, 37, true)) { return null; }
 
                 var4.onSlotChange(var5, var3);
             }
-            else if (!this.beaconSlot.getHasStack() && this.beaconSlot.isItemValid(var5) && var5.stackSize == 1)
+            else if (!this.beaconSlot.getHasStack()
+                    && this.beaconSlot.isItemValid(var5) && var5.stackSize == 1)
             {
-                if (!this.mergeItemStack(var5, 0, 1, false))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, 0, 1, false)) { return null; }
             }
             else if (par2 >= 1 && par2 < 28)
             {
-                if (!this.mergeItemStack(var5, 28, 37, false))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, 28, 37, false)) { return null; }
             }
             else if (par2 >= 28 && par2 < 37)
             {
-                if (!this.mergeItemStack(var5, 1, 28, false))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, 1, 28, false)) { return null; }
             }
-            else if (!this.mergeItemStack(var5, 1, 37, false))
-            {
-                return null;
-            }
+            else if (!this.mergeItemStack(var5, 1, 37, false)) { return null; }
 
             if (var5.stackSize == 0)
             {
@@ -120,10 +110,7 @@ public class ContainerBeacon extends Container
                 var4.onSlotChanged();
             }
 
-            if (var5.stackSize == var3.stackSize)
-            {
-                return null;
-            }
+            if (var5.stackSize == var3.stackSize) { return null; }
 
             var4.onPickupFromSlot(par1EntityPlayer, var5);
         }
@@ -135,14 +122,19 @@ public class ContainerBeacon extends Container
     {
         private static final String __OBFID = "CL_00001736";
 
-        public BeaconSlot(IInventory par2IInventory, int par3, int par4, int par5)
+        public BeaconSlot(IInventory par2IInventory, int par3, int par4,
+                int par5)
         {
             super(par2IInventory, par3, par4, par5);
         }
 
         public boolean isItemValid(ItemStack par1ItemStack)
         {
-            return par1ItemStack == null ? false : par1ItemStack.getItem() == Items.emerald || par1ItemStack.getItem() == Items.diamond || par1ItemStack.getItem() == Items.gold_ingot || par1ItemStack.getItem() == Items.iron_ingot;
+            return par1ItemStack == null ? false
+                    : par1ItemStack.getItem() == Items.emerald
+                            || par1ItemStack.getItem() == Items.diamond
+                            || par1ItemStack.getItem() == Items.gold_ingot
+                            || par1ItemStack.getItem() == Items.iron_ingot;
         }
 
         public int getSlotStackLimit()

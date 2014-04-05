@@ -8,10 +8,14 @@ public class Score
     public static final Comparator field_96658_a = new Comparator()
     {
         private static final String __OBFID = "CL_00000618";
+
         public int compare(Score par1Score, Score par2Score)
         {
-            return par1Score.getScorePoints() > par2Score.getScorePoints() ? 1 : (par1Score.getScorePoints() < par2Score.getScorePoints() ? -1 : 0);
+            return par1Score.getScorePoints() > par2Score.getScorePoints() ? 1
+                    : (par1Score.getScorePoints() < par2Score.getScorePoints() ? -1
+                            : 0);
         }
+
         public int compare(Object par1Obj, Object par2Obj)
         {
             return this.compare((Score)par1Obj, (Score)par2Obj);
@@ -23,7 +27,8 @@ public class Score
     private int field_96655_e;
     private static final String __OBFID = "CL_00000617";
 
-    public Score(Scoreboard par1Scoreboard, ScoreObjective par2ScoreObjective, String par3Str)
+    public Score(Scoreboard par1Scoreboard, ScoreObjective par2ScoreObjective,
+            String par3Str)
     {
         this.theScoreboard = par1Scoreboard;
         this.theScoreObjective = par2ScoreObjective;
@@ -102,6 +107,7 @@ public class Score
 
     public void func_96651_a(List par1List)
     {
-        this.setScorePoints(this.theScoreObjective.getCriteria().func_96635_a(par1List));
+        this.setScorePoints(this.theScoreObjective.getCriteria().func_96635_a(
+                par1List));
     }
 }

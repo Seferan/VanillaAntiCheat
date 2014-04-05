@@ -23,7 +23,8 @@ public class C00Handshake extends Packet
         this.field_149600_a = p_148837_1_.readVarIntFromBuffer();
         this.field_149598_b = p_148837_1_.readStringFromBuffer(255);
         this.field_149599_c = p_148837_1_.readUnsignedShort();
-        this.field_149597_d = EnumConnectionState.func_150760_a(p_148837_1_.readVarIntFromBuffer());
+        this.field_149597_d = EnumConnectionState.func_150760_a(p_148837_1_
+                .readVarIntFromBuffer());
     }
 
     /**
@@ -43,8 +44,9 @@ public class C00Handshake extends Packet
     }
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {

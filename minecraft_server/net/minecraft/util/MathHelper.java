@@ -5,16 +5,19 @@ import java.util.Random;
 public class MathHelper
 {
     /**
-     * A table of sin values computed from 0 (inclusive) to 2*pi (exclusive), with steps of 2*PI / 65536.
+     * A table of sin values computed from 0 (inclusive) to 2*pi (exclusive),
+     * with steps of 2*PI / 65536.
      */
     private static float[] SIN_TABLE = new float[65536];
 
     /**
-     * Though it looks like an array, this is really more like a mapping.  Key (index of this array) is the upper 5 bits
-     * of the result of multiplying a 32-bit unsigned integer by the B(2, 5) De Bruijn sequence 0x077CB531.  Value
-     * (value stored in the array) is the unique index (from the right) of the leftmost one-bit in a 32-bit unsigned
-     * integer that can cause the upper 5 bits to get that value.  Used for highly optimized "find the log-base-2 of
-     * this number" calculations.
+     * Though it looks like an array, this is really more like a mapping. Key
+     * (index of this array) is the upper 5 bits of the result of multiplying a
+     * 32-bit unsigned integer by the B(2, 5) De Bruijn sequence 0x077CB531.
+     * Value (value stored in the array) is the unique index (from the right) of
+     * the leftmost one-bit in a 32-bit unsigned integer that can cause the
+     * upper 5 bits to get that value. Used for highly optimized "find the
+     * log-base-2 of this number" calculations.
      */
     private static final int[] multiplyDeBruijnBitPosition;
     private static final String __OBFID = "CL_00001496";
@@ -98,8 +101,8 @@ public class MathHelper
     }
 
     /**
-     * Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and
-     * third parameters.
+     * Returns the value of the first parameter, clamped to be within the lower
+     * and upper limits given by the second and third parameters.
      */
     public static int clamp_int(int par0, int par1, int par2)
     {
@@ -107,22 +110,27 @@ public class MathHelper
     }
 
     /**
-     * Returns the value of the first parameter, clamped to be within the lower and upper limits given by the second and
-     * third parameters
+     * Returns the value of the first parameter, clamped to be within the lower
+     * and upper limits given by the second and third parameters
      */
     public static float clamp_float(float par0, float par1, float par2)
     {
         return par0 < par1 ? par1 : (par0 > par2 ? par2 : par0);
     }
 
-    public static double func_151237_a(double p_151237_0_, double p_151237_2_, double p_151237_4_)
+    public static double func_151237_a(double p_151237_0_, double p_151237_2_,
+            double p_151237_4_)
     {
-        return p_151237_0_ < p_151237_2_ ? p_151237_2_ : (p_151237_0_ > p_151237_4_ ? p_151237_4_ : p_151237_0_);
+        return p_151237_0_ < p_151237_2_ ? p_151237_2_
+                : (p_151237_0_ > p_151237_4_ ? p_151237_4_ : p_151237_0_);
     }
 
-    public static double func_151238_b(double p_151238_0_, double p_151238_2_, double p_151238_4_)
+    public static double func_151238_b(double p_151238_0_, double p_151238_2_,
+            double p_151238_4_)
     {
-        return p_151238_4_ < 0.0D ? p_151238_0_ : (p_151238_4_ > 1.0D ? p_151238_2_ : p_151238_0_ + (p_151238_2_ - p_151238_0_) * p_151238_4_);
+        return p_151238_4_ < 0.0D ? p_151238_0_
+                : (p_151238_4_ > 1.0D ? p_151238_2_ : p_151238_0_
+                        + (p_151238_2_ - p_151238_0_) * p_151238_4_);
     }
 
     /**
@@ -143,19 +151,24 @@ public class MathHelper
         return par0 > par2 ? par0 : par2;
     }
 
-    public static int getRandomIntegerInRange(Random par0Random, int par1, int par2)
+    public static int getRandomIntegerInRange(Random par0Random, int par1,
+            int par2)
     {
         return par1 >= par2 ? par1 : par0Random.nextInt(par2 - par1 + 1) + par1;
     }
 
-    public static float func_151240_a(Random p_151240_0_, float p_151240_1_, float p_151240_2_)
+    public static float func_151240_a(Random p_151240_0_, float p_151240_1_,
+            float p_151240_2_)
     {
-        return p_151240_1_ >= p_151240_2_ ? p_151240_1_ : p_151240_0_.nextFloat() * (p_151240_2_ - p_151240_1_) + p_151240_1_;
+        return p_151240_1_ >= p_151240_2_ ? p_151240_1_ : p_151240_0_
+                .nextFloat() * (p_151240_2_ - p_151240_1_) + p_151240_1_;
     }
 
-    public static double getRandomDoubleInRange(Random par0Random, double par1, double par3)
+    public static double getRandomDoubleInRange(Random par0Random, double par1,
+            double par3)
     {
-        return par1 >= par3 ? par1 : par0Random.nextDouble() * (par3 - par1) + par1;
+        return par1 >= par3 ? par1 : par0Random.nextDouble() * (par3 - par1)
+                + par1;
     }
 
     public static double average(long[] par0ArrayOfLong)
@@ -174,7 +187,8 @@ public class MathHelper
     }
 
     /**
-     * the angle is reduced to an angle between -180 and +180 by mod, and a 360 check
+     * the angle is reduced to an angle between -180 and +180 by mod, and a 360
+     * check
      */
     public static float wrapAngleTo180_float(float par0)
     {
@@ -194,7 +208,8 @@ public class MathHelper
     }
 
     /**
-     * the angle is reduced to an angle between -180 and +180 by mod, and a 360 check
+     * the angle is reduced to an angle between -180 and +180 by mod, and a 360
+     * check
      */
     public static double wrapAngleTo180_double(double par0)
     {
@@ -233,9 +248,11 @@ public class MathHelper
     }
 
     /**
-     * parses the string as integer or returns the second parameter if it fails. this value is capped to par2
+     * parses the string as integer or returns the second parameter if it fails.
+     * this value is capped to par2
      */
-    public static int parseIntWithDefaultAndMax(String par0Str, int par1, int par2)
+    public static int parseIntWithDefaultAndMax(String par0Str, int par1,
+            int par2)
     {
         int var3 = par1;
 
@@ -300,9 +317,12 @@ public class MathHelper
     {
         for (int var0 = 0; var0 < 65536; ++var0)
         {
-            SIN_TABLE[var0] = (float)Math.sin((double)var0 * Math.PI * 2.0D / 65536.0D);
+            SIN_TABLE[var0] = (float)Math.sin((double)var0 * Math.PI * 2.0D
+                    / 65536.0D);
         }
 
-        multiplyDeBruijnBitPosition = new int[] {0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9};
+        multiplyDeBruijnBitPosition = new int[] {0, 1, 28, 2, 29, 14, 24, 3,
+                30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7,
+                26, 12, 18, 6, 11, 5, 10, 9};
     }
 }

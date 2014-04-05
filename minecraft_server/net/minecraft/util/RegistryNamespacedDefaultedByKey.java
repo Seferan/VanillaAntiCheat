@@ -12,9 +12,11 @@ public class RegistryNamespacedDefaultedByKey extends RegistryNamespaced
     }
 
     /**
-     * Adds a new object to this registry, keyed by both the given integer ID and the given string.
+     * Adds a new object to this registry, keyed by both the given integer ID
+     * and the given string.
      */
-    public void addObject(int p_148756_1_, String p_148756_2_, Object p_148756_3_)
+    public void addObject(int p_148756_1_, String p_148756_2_,
+            Object p_148756_3_)
     {
         if (this.field_148760_d.equals(p_148756_2_))
         {

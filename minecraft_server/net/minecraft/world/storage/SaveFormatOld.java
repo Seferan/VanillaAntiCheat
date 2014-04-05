@@ -13,7 +13,8 @@ public class SaveFormatOld implements ISaveFormat
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * Reference to the File object representing the directory for the world saves
+     * Reference to the File object representing the directory for the world
+     * saves
      */
     protected final File savesDirectory;
     private static final String __OBFID = "CL_00000586";
@@ -28,7 +29,9 @@ public class SaveFormatOld implements ISaveFormat
         this.savesDirectory = par1File;
     }
 
-    public void flushCache() {}
+    public void flushCache()
+    {
+    }
 
     /**
      * gets the world info
@@ -51,7 +54,8 @@ public class SaveFormatOld implements ISaveFormat
             {
                 try
                 {
-                    var4 = CompressedStreamTools.readCompressed(new FileInputStream(var3));
+                    var4 = CompressedStreamTools
+                            .readCompressed(new FileInputStream(var3));
                     var5 = var4.getCompoundTag("Data");
                     return new WorldInfo(var5);
                 }
@@ -67,7 +71,8 @@ public class SaveFormatOld implements ISaveFormat
             {
                 try
                 {
-                    var4 = CompressedStreamTools.readCompressed(new FileInputStream(var3));
+                    var4 = CompressedStreamTools
+                            .readCompressed(new FileInputStream(var3));
                     var5 = var4.getCompoundTag("Data");
                     return new WorldInfo(var5);
                 }
@@ -82,8 +87,9 @@ public class SaveFormatOld implements ISaveFormat
     }
 
     /**
-     * @args: Takes one argument - the name of the directory of the world to delete. @desc: Delete the world by deleting
-     * the associated directory recursively.
+     * @args: Takes one argument - the name of the directory of the world to
+     *        delete. @desc: Delete the world by deleting the associated
+     *        directory recursively.
      */
     public boolean deleteWorldDirectory(String par1Str)
     {
@@ -126,8 +132,9 @@ public class SaveFormatOld implements ISaveFormat
     }
 
     /**
-     * @args: Takes one argument - the list of files and directories to delete. @desc: Deletes the files and directory
-     * listed in the list recursively.
+     * @args: Takes one argument - the list of files and directories to delete.
+     *        @desc: Deletes the files and directory listed in the list
+     *        recursively.
      */
     protected static boolean deleteFiles(File[] par0ArrayOfFile)
     {
@@ -171,7 +178,8 @@ public class SaveFormatOld implements ISaveFormat
     /**
      * converts the map to mcRegion
      */
-    public boolean convertMapFormat(String par1Str, IProgressUpdate par2IProgressUpdate)
+    public boolean convertMapFormat(String par1Str,
+            IProgressUpdate par2IProgressUpdate)
     {
         return false;
     }

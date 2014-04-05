@@ -14,7 +14,8 @@ public class EntityAILookIdle extends EntityAIBase
     private double lookZ;
 
     /**
-     * A decrementing tick that stops the entity from being idle once it reaches 0.
+     * A decrementing tick that stops the entity from being idle once it reaches
+     * 0.
      */
     private int idleTime;
     private static final String __OBFID = "CL_00001607";
@@ -58,6 +59,10 @@ public class EntityAILookIdle extends EntityAIBase
     public void updateTask()
     {
         --this.idleTime;
-        this.idleEntity.getLookHelper().setLookPosition(this.idleEntity.posX + this.lookX, this.idleEntity.posY + (double)this.idleEntity.getEyeHeight(), this.idleEntity.posZ + this.lookZ, 10.0F, (float)this.idleEntity.getVerticalFaceSpeed());
+        this.idleEntity.getLookHelper().setLookPosition(
+                this.idleEntity.posX + this.lookX,
+                this.idleEntity.posY + (double)this.idleEntity.getEyeHeight(),
+                this.idleEntity.posZ + this.lookZ, 10.0F,
+                (float)this.idleEntity.getVerticalFaceSpeed());
     }
 }

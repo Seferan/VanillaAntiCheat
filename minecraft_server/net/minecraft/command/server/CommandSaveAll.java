@@ -22,10 +22,12 @@ public class CommandSaveAll extends CommandBase
         return "commands.save.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         MinecraftServer var3 = MinecraftServer.getServer();
-        par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.save.start", new Object[0]));
+        par1ICommandSender.addChatMessage(new ChatComponentTranslation(
+                "commands.save.start", new Object[0]));
 
         if (var3.getConfigurationManager() != null)
         {
@@ -52,7 +54,8 @@ public class CommandSaveAll extends CommandBase
 
             if (par2ArrayOfStr.length > 0 && "flush".equals(par2ArrayOfStr[0]))
             {
-                par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.save.flushStart", new Object[0]));
+                par1ICommandSender.addChatMessage(new ChatComponentTranslation(
+                        "commands.save.flushStart", new Object[0]));
 
                 for (var4 = 0; var4 < var3.worldServers.length; ++var4)
                 {
@@ -66,12 +69,14 @@ public class CommandSaveAll extends CommandBase
                     }
                 }
 
-                par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.save.flushEnd", new Object[0]));
+                par1ICommandSender.addChatMessage(new ChatComponentTranslation(
+                        "commands.save.flushEnd", new Object[0]));
             }
         }
         catch (MinecraftException var7)
         {
-            notifyAdmins(par1ICommandSender, "commands.save.failed", new Object[] {var7.getMessage()});
+            notifyAdmins(par1ICommandSender, "commands.save.failed",
+                    new Object[] {var7.getMessage()});
             return;
         }
 

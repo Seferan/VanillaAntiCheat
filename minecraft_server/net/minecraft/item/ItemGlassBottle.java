@@ -17,11 +17,14 @@ public class ItemGlassBottle extends Item
     }
 
     /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+     * Called whenever this item is equipped and the right mouse button is
+     * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
+            EntityPlayer par3EntityPlayer)
     {
-        MovingObjectPosition var4 = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
+        MovingObjectPosition var4 = this.getMovingObjectPositionFromPlayer(
+                par2World, par3EntityPlayer, true);
 
         if (var4 == null)
         {
@@ -35,28 +38,24 @@ public class ItemGlassBottle extends Item
                 int var6 = var4.blockY;
                 int var7 = var4.blockZ;
 
-                if (!par2World.canMineBlock(par3EntityPlayer, var5, var6, var7))
-                {
-                    return par1ItemStack;
-                }
+                if (!par2World.canMineBlock(par3EntityPlayer, var5, var6, var7)) { return par1ItemStack; }
 
-                if (!par3EntityPlayer.canPlayerEdit(var5, var6, var7, var4.sideHit, par1ItemStack))
-                {
-                    return par1ItemStack;
-                }
+                if (!par3EntityPlayer.canPlayerEdit(var5, var6, var7,
+                        var4.sideHit, par1ItemStack)) { return par1ItemStack; }
 
                 if (par2World.getBlock(var5, var6, var7).getMaterial() == Material.field_151586_h)
                 {
                     --par1ItemStack.stackSize;
 
-                    if (par1ItemStack.stackSize <= 0)
-                    {
-                        return new ItemStack(Items.potionitem);
-                    }
+                    if (par1ItemStack.stackSize <= 0) { return new ItemStack(
+                            Items.potionitem); }
 
-                    if (!par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.potionitem)))
+                    if (!par3EntityPlayer.inventory
+                            .addItemStackToInventory(new ItemStack(
+                                    Items.potionitem)))
                     {
-                        par3EntityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.potionitem, 1, 0), false);
+                        par3EntityPlayer.dropPlayerItemWithRandomChoice(
+                                new ItemStack(Items.potionitem, 1, 0), false);
                     }
                 }
             }

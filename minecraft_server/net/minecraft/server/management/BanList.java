@@ -89,7 +89,8 @@ public class BanList
     }
 
     /**
-     * Loads the ban list from the file (adds every entry, does not clear the current list).
+     * Loads the ban list from the file (adds every entry, does not clear the
+     * current list).
      */
     public void loadBanList()
     {
@@ -144,11 +145,14 @@ public class BanList
 
         try
         {
-            PrintWriter var2 = new PrintWriter(new FileWriter(this.fileName, false));
+            PrintWriter var2 = new PrintWriter(new FileWriter(this.fileName,
+                    false));
 
             if (par1)
             {
-                var2.println("# Updated " + (new SimpleDateFormat()).format(new Date()) + " by Minecraft " + "1.7.2");
+                var2.println("# Updated "
+                        + (new SimpleDateFormat()).format(new Date())
+                        + " by Minecraft " + "1.7.2");
                 var2.println("# victim name | ban date | banned by | banned until | reason");
                 var2.println();
             }

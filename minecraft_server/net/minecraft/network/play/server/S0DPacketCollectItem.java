@@ -12,7 +12,9 @@ public class S0DPacketCollectItem extends Packet
     private int field_149356_b;
     private static final String __OBFID = "CL_00001339";
 
-    public S0DPacketCollectItem() {}
+    public S0DPacketCollectItem()
+    {
+    }
 
     public S0DPacketCollectItem(int p_i45232_1_, int p_i45232_2_)
     {

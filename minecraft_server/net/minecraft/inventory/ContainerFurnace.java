@@ -14,34 +14,41 @@ public class ContainerFurnace extends Container
     private int lastItemBurnTime;
     private static final String __OBFID = "CL_00001748";
 
-    public ContainerFurnace(InventoryPlayer par1InventoryPlayer, TileEntityFurnace par2TileEntityFurnace)
+    public ContainerFurnace(InventoryPlayer par1InventoryPlayer,
+            TileEntityFurnace par2TileEntityFurnace)
     {
         this.furnace = par2TileEntityFurnace;
         this.addSlotToContainer(new Slot(par2TileEntityFurnace, 0, 56, 17));
         this.addSlotToContainer(new Slot(par2TileEntityFurnace, 1, 56, 53));
-        this.addSlotToContainer(new SlotFurnace(par1InventoryPlayer.player, par2TileEntityFurnace, 2, 116, 35));
+        this.addSlotToContainer(new SlotFurnace(par1InventoryPlayer.player,
+                par2TileEntityFurnace, 2, 116, 35));
         int var3;
 
         for (var3 = 0; var3 < 3; ++var3)
         {
             for (int var4 = 0; var4 < 9; ++var4)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4 + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var4
+                        + var3 * 9 + 9, 8 + var4 * 18, 84 + var3 * 18));
             }
         }
 
         for (var3 = 0; var3 < 9; ++var3)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3, 8 + var3 * 18, 142));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var3,
+                    8 + var3 * 18, 142));
         }
     }
 
     public void onCraftGuiOpened(ICrafting par1ICrafting)
     {
         super.onCraftGuiOpened(par1ICrafting);
-        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.field_145961_j);
-        par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.field_145956_a);
-        par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.field_145963_i);
+        par1ICrafting.sendProgressBarUpdate(this, 0,
+                this.furnace.field_145961_j);
+        par1ICrafting.sendProgressBarUpdate(this, 1,
+                this.furnace.field_145956_a);
+        par1ICrafting.sendProgressBarUpdate(this, 2,
+                this.furnace.field_145963_i);
     }
 
     /**
@@ -96,10 +103,7 @@ public class ContainerFurnace extends Container
 
             if (par2 == 2)
             {
-                if (!this.mergeItemStack(var5, 3, 39, true))
-                {
-                    return null;
-                }
+                if (!this.mergeItemStack(var5, 3, 39, true)) { return null; }
 
                 var4.onSlotChange(var5, var3);
             }
@@ -107,34 +111,20 @@ public class ContainerFurnace extends Container
             {
                 if (FurnaceRecipes.smelting().func_151395_a(var5) != null)
                 {
-                    if (!this.mergeItemStack(var5, 0, 1, false))
-                    {
-                        return null;
-                    }
+                    if (!this.mergeItemStack(var5, 0, 1, false)) { return null; }
                 }
                 else if (TileEntityFurnace.func_145954_b(var5))
                 {
-                    if (!this.mergeItemStack(var5, 1, 2, false))
-                    {
-                        return null;
-                    }
+                    if (!this.mergeItemStack(var5, 1, 2, false)) { return null; }
                 }
                 else if (par2 >= 3 && par2 < 30)
                 {
-                    if (!this.mergeItemStack(var5, 30, 39, false))
-                    {
-                        return null;
-                    }
+                    if (!this.mergeItemStack(var5, 30, 39, false)) { return null; }
                 }
-                else if (par2 >= 30 && par2 < 39 && !this.mergeItemStack(var5, 3, 30, false))
-                {
-                    return null;
-                }
+                else if (par2 >= 30 && par2 < 39
+                        && !this.mergeItemStack(var5, 3, 30, false)) { return null; }
             }
-            else if (!this.mergeItemStack(var5, 3, 39, false))
-            {
-                return null;
-            }
+            else if (!this.mergeItemStack(var5, 3, 39, false)) { return null; }
 
             if (var5.stackSize == 0)
             {
@@ -145,10 +135,7 @@ public class ContainerFurnace extends Container
                 var4.onSlotChanged();
             }
 
-            if (var5.stackSize == var3.stackSize)
-            {
-                return null;
-            }
+            if (var5.stackSize == var3.stackSize) { return null; }
 
             var4.onPickupFromSlot(par1EntityPlayer, var5);
         }

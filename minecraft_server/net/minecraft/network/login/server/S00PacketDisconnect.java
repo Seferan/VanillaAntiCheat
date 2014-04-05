@@ -12,7 +12,9 @@ public class S00PacketDisconnect extends Packet
     private IChatComponent field_149605_a;
     private static final String __OBFID = "CL_00001377";
 
-    public S00PacketDisconnect() {}
+    public S00PacketDisconnect()
+    {
+    }
 
     public S00PacketDisconnect(IChatComponent p_i45269_1_)
     {
@@ -24,7 +26,8 @@ public class S00PacketDisconnect extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149605_a = IChatComponent.Serializer.func_150699_a(p_148837_1_.readStringFromBuffer(32767));
+        this.field_149605_a = IChatComponent.Serializer
+                .func_150699_a(p_148837_1_.readStringFromBuffer(32767));
     }
 
     /**
@@ -32,7 +35,8 @@ public class S00PacketDisconnect extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(IChatComponent.Serializer.func_150696_a(this.field_149605_a));
+        p_148840_1_.writeStringToBuffer(IChatComponent.Serializer
+                .func_150696_a(this.field_149605_a));
     }
 
     public void func_148833_a(INetHandlerLoginClient p_149604_1_)
@@ -41,8 +45,9 @@ public class S00PacketDisconnect extends Packet
     }
 
     /**
-     * If true, the network manager will process the packet immediately when received, otherwise it will queue it for
-     * processing. Currently true for: Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
+     * If true, the network manager will process the packet immediately when
+     * received, otherwise it will queue it for processing. Currently true for:
+     * Disconnect, LoginSuccess, KeepAlive, ServerQuery/Info, Ping/Pong
      */
     public boolean hasPriority()
     {

@@ -20,14 +20,21 @@ public class BlockCarpet extends Block
     }
 
     /**
-     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
-     * cleared to be reused)
+     * Returns a bounding box from the pool of bounding boxes (this means this
+     * box can change after the pool has been cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_,
+            int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
         byte var5 = 0;
         float var6 = 0.0625F;
-        return AxisAlignedBB.getAABBPool().getAABB((double)p_149668_2_ + this.minX, (double)p_149668_3_ + this.minY, (double)p_149668_4_ + this.minZ, (double)p_149668_2_ + this.maxX, (double)((float)p_149668_3_ + (float)var5 * var6), (double)p_149668_4_ + this.maxZ);
+        return AxisAlignedBB.getAABBPool().getAABB(
+                (double)p_149668_2_ + this.minX,
+                (double)p_149668_3_ + this.minY,
+                (double)p_149668_4_ + this.minZ,
+                (double)p_149668_2_ + this.maxX,
+                (double)((float)p_149668_3_ + (float)var5 * var6),
+                (double)p_149668_4_ + this.maxZ);
     }
 
     public boolean isOpaqueCube()
@@ -48,9 +55,11 @@ public class BlockCarpet extends Block
         this.func_150089_b(0);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
+            int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.func_150089_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
+        this.func_150089_b(p_149719_1_.getBlockMetadata(p_149719_2_,
+                p_149719_3_, p_149719_4_));
     }
 
     protected void func_150089_b(int p_150089_1_)
@@ -60,21 +69,30 @@ public class BlockCarpet extends Block
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var3, 1.0F);
     }
 
-    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
+    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_,
+            int p_149742_3_, int p_149742_4_)
     {
-        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) && this.canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
+        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_,
+                p_149742_4_)
+                && this.canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_,
+                        p_149742_4_);
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
+            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         this.func_150090_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
     }
 
-    private boolean func_150090_e(World p_150090_1_, int p_150090_2_, int p_150090_3_, int p_150090_4_)
+    private boolean func_150090_e(World p_150090_1_, int p_150090_2_,
+            int p_150090_3_, int p_150090_4_)
     {
-        if (!this.canBlockStay(p_150090_1_, p_150090_2_, p_150090_3_, p_150090_4_))
+        if (!this.canBlockStay(p_150090_1_, p_150090_2_, p_150090_3_,
+                p_150090_4_))
         {
-            this.dropBlockAsItem(p_150090_1_, p_150090_2_, p_150090_3_, p_150090_4_, p_150090_1_.getBlockMetadata(p_150090_2_, p_150090_3_, p_150090_4_), 0);
+            this.dropBlockAsItem(p_150090_1_, p_150090_2_, p_150090_3_,
+                    p_150090_4_, p_150090_1_.getBlockMetadata(p_150090_2_,
+                            p_150090_3_, p_150090_4_), 0);
             p_150090_1_.setBlockToAir(p_150090_2_, p_150090_3_, p_150090_4_);
             return false;
         }
@@ -85,15 +103,19 @@ public class BlockCarpet extends Block
     }
 
     /**
-     * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
+     * Can this block stay at this position. Similar to canPlaceBlockAt except
+     * gets checked often with plants.
      */
-    public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
+    public boolean canBlockStay(World p_149718_1_, int p_149718_2_,
+            int p_149718_3_, int p_149718_4_)
     {
-        return !p_149718_1_.isAirBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_);
+        return !p_149718_1_.isAirBlock(p_149718_2_, p_149718_3_ - 1,
+                p_149718_4_);
     }
 
     /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
+     * Determines the damage on the item the block drops. Used in cloth and
+     * wood.
      */
     public int damageDropped(int p_149692_1_)
     {

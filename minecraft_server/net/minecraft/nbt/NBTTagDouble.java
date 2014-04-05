@@ -11,7 +11,9 @@ public class NBTTagDouble extends NBTBase.NBTPrimitive
     private double data;
     private static final String __OBFID = "CL_00001218";
 
-    NBTTagDouble() {}
+    NBTTagDouble()
+    {
+    }
 
     public NBTTagDouble(double p_i45130_1_)
     {
@@ -19,7 +21,8 @@ public class NBTTagDouble extends NBTBase.NBTPrimitive
     }
 
     /**
-     * Write the actual data contents of the tag, implemented in NBT extension classes
+     * Write the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
@@ -27,7 +30,8 @@ public class NBTTagDouble extends NBTBase.NBTPrimitive
     }
 
     /**
-     * Read the actual data contents of the tag, implemented in NBT extension classes
+     * Read the actual data contents of the tag, implemented in NBT extension
+     * classes
      */
     void load(DataInput par1DataInput, int par2) throws IOException
     {

@@ -12,7 +12,8 @@ public class RecipesMapCloning implements IRecipe
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
+    public boolean matches(InventoryCrafting par1InventoryCrafting,
+            World par2World)
     {
         int var3 = 0;
         ItemStack var4 = null;
@@ -25,19 +26,13 @@ public class RecipesMapCloning implements IRecipe
             {
                 if (var6.getItem() == Items.filled_map)
                 {
-                    if (var4 != null)
-                    {
-                        return false;
-                    }
+                    if (var4 != null) { return false; }
 
                     var4 = var6;
                 }
                 else
                 {
-                    if (var6.getItem() != Items.map)
-                    {
-                        return false;
-                    }
+                    if (var6.getItem() != Items.map) { return false; }
 
                     ++var3;
                 }
@@ -63,19 +58,13 @@ public class RecipesMapCloning implements IRecipe
             {
                 if (var5.getItem() == Items.filled_map)
                 {
-                    if (var3 != null)
-                    {
-                        return null;
-                    }
+                    if (var3 != null) { return null; }
 
                     var3 = var5;
                 }
                 else
                 {
-                    if (var5.getItem() != Items.map)
-                    {
-                        return null;
-                    }
+                    if (var5.getItem() != Items.map) { return null; }
 
                     ++var2;
                 }
@@ -84,7 +73,8 @@ public class RecipesMapCloning implements IRecipe
 
         if (var3 != null && var2 >= 1)
         {
-            ItemStack var6 = new ItemStack(Items.filled_map, var2 + 1, var3.getItemDamage());
+            ItemStack var6 = new ItemStack(Items.filled_map, var2 + 1,
+                    var3.getItemDamage());
 
             if (var3.hasDisplayName())
             {

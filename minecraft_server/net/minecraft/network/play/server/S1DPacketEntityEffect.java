@@ -15,7 +15,9 @@ public class S1DPacketEntityEffect extends Packet
     private short field_149431_d;
     private static final String __OBFID = "CL_00001343";
 
-    public S1DPacketEntityEffect() {}
+    public S1DPacketEntityEffect()
+    {
+    }
 
     public S1DPacketEntityEffect(int p_i45237_1_, PotionEffect p_i45237_2_)
     {

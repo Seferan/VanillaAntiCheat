@@ -28,7 +28,8 @@ public final class WorldSettings
     private String field_82751_h;
     private static final String __OBFID = "CL_00000147";
 
-    public WorldSettings(long par1, WorldSettings.GameType par3EnumGameType, boolean par4, boolean par5, WorldType par6WorldType)
+    public WorldSettings(long par1, WorldSettings.GameType par3EnumGameType,
+            boolean par4, boolean par5, WorldType par6WorldType)
     {
         this.field_82751_h = "";
         this.seed = par1;
@@ -40,7 +41,10 @@ public final class WorldSettings
 
     public WorldSettings(WorldInfo par1WorldInfo)
     {
-        this(par1WorldInfo.getSeed(), par1WorldInfo.getGameType(), par1WorldInfo.isMapFeaturesEnabled(), par1WorldInfo.isHardcoreModeEnabled(), par1WorldInfo.getTerrainType());
+        this(par1WorldInfo.getSeed(), par1WorldInfo.getGameType(),
+                par1WorldInfo.isMapFeaturesEnabled(), par1WorldInfo
+                        .isHardcoreModeEnabled(), par1WorldInfo
+                        .getTerrainType());
     }
 
     /**
@@ -91,7 +95,8 @@ public final class WorldSettings
     }
 
     /**
-     * Get whether the map features (e.g. strongholds) generation is enabled or disabled.
+     * Get whether the map features (e.g. strongholds) generation is enabled or
+     * disabled.
      */
     public boolean isMapFeaturesEnabled()
     {
@@ -126,14 +131,14 @@ public final class WorldSettings
 
     public static enum GameType
     {
-        NOT_SET("NOT_SET", 0, -1, ""),
-        SURVIVAL("SURVIVAL", 1, 0, "survival"),
-        CREATIVE("CREATIVE", 2, 1, "creative"),
-        ADVENTURE("ADVENTURE", 3, 2, "adventure");
+        NOT_SET("NOT_SET", 0, -1, ""), SURVIVAL("SURVIVAL", 1, 0, "survival"), CREATIVE(
+                "CREATIVE", 2, 1, "creative"), ADVENTURE("ADVENTURE", 3, 2,
+                "adventure");
         int id;
         String name;
 
-        private static final WorldSettings.GameType[] $VALUES = new WorldSettings.GameType[]{NOT_SET, SURVIVAL, CREATIVE, ADVENTURE};
+        private static final WorldSettings.GameType[] $VALUES = new WorldSettings.GameType[] {
+                NOT_SET, SURVIVAL, CREATIVE, ADVENTURE};
         private static final String __OBFID = "CL_00000148";
 
         private GameType(String par1Str, int par2, int par3, String par4Str)
@@ -152,7 +157,8 @@ public final class WorldSettings
             return this.name;
         }
 
-        public void configurePlayerCapabilities(PlayerCapabilities par1PlayerCapabilities)
+        public void configurePlayerCapabilities(
+                PlayerCapabilities par1PlayerCapabilities)
         {
             if (this == CREATIVE)
             {
@@ -190,10 +196,7 @@ public final class WorldSettings
             {
                 WorldSettings.GameType var4 = var1[var3];
 
-                if (var4.id == par0)
-                {
-                    return var4;
-                }
+                if (var4.id == par0) { return var4; }
             }
 
             return SURVIVAL;

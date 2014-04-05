@@ -12,10 +12,8 @@ public abstract class BaseAttribute implements IAttribute
         this.unlocalizedName = par1Str;
         this.defaultValue = par2;
 
-        if (par1Str == null)
-        {
-            throw new IllegalArgumentException("Name cannot be null!");
-        }
+        if (par1Str == null) { throw new IllegalArgumentException(
+                "Name cannot be null!"); }
     }
 
     public String getAttributeUnlocalizedName()

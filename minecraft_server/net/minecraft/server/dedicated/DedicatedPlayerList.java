@@ -25,9 +25,11 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         this.opsList = par1DedicatedServer.getFile("ops.txt");
         this.ownersList = par1DedicatedServer.getFile("owners.txt");
         this.whiteList = par1DedicatedServer.getFile("white-list.txt");
-        this.viewDistance = par1DedicatedServer.getIntProperty("view-distance", 10);
+        this.viewDistance = par1DedicatedServer.getIntProperty("view-distance",
+                10);
         this.maxPlayers = par1DedicatedServer.getIntProperty("max-players", 20);
-        this.setWhiteListEnabled(par1DedicatedServer.getBooleanProperty("white-list", false));
+        this.setWhiteListEnabled(par1DedicatedServer.getBooleanProperty(
+                "white-list", false));
 
         if (!par1DedicatedServer.isSinglePlayer())
         {
@@ -50,14 +52,15 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         if (!this.ownersList.exists())
         {
-        	this.saveOwnersList();
+            this.saveOwnersList();
         }
     }
 
     public void setWhiteListEnabled(boolean par1)
     {
         super.setWhiteListEnabled(par1);
-        this.getServerInstance().setProperty("white-list", Boolean.valueOf(par1));
+        this.getServerInstance().setProperty("white-list",
+                Boolean.valueOf(par1));
         this.getServerInstance().saveProperties();
     }
 
@@ -78,7 +81,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         super.removeOp(par1Str);
         this.saveOpsList();
     }
-    
+
     public void addOwner(String par1Str)
     {
         super.addOwner(par1Str);
@@ -122,7 +125,8 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         try
         {
             this.getOps().clear();
-            BufferedReader var1 = new BufferedReader(new FileReader(this.opsList));
+            BufferedReader var1 = new BufferedReader(new FileReader(
+                    this.opsList));
             String var2 = "";
 
             while ((var2 = var1.readLine()) != null)
@@ -142,7 +146,8 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            PrintWriter var1 = new PrintWriter(new FileWriter(this.opsList, false));
+            PrintWriter var1 = new PrintWriter(new FileWriter(this.opsList,
+                    false));
             Iterator var2 = this.getOps().iterator();
 
             while (var2.hasNext())
@@ -164,13 +169,14 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         try
         {
             this.getOwners().clear();
-            BufferedReader var1 = new BufferedReader(new FileReader(this.ownersList));
+            BufferedReader var1 = new BufferedReader(new FileReader(
+                    this.ownersList));
             String var2 = "";
 
             while ((var2 = var1.readLine()) != null)
             {
-            	this.getOwners().add(var2.trim().toLowerCase());
-            	System.out.println("added owner " + var2.trim().toLowerCase());
+                this.getOwners().add(var2.trim().toLowerCase());
+                System.out.println("added owner " + var2.trim().toLowerCase());
             }
 
             var1.close();
@@ -180,12 +186,13 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             field_164439_d.warn("Failed to load owners list: " + var3);
         }
     }
-    
+
     private void saveOwnersList()
     {
         try
         {
-            PrintWriter var1 = new PrintWriter(new FileWriter(this.ownersList, false));
+            PrintWriter var1 = new PrintWriter(new FileWriter(this.ownersList,
+                    false));
             Iterator var2 = this.getOwners().iterator();
 
             while (var2.hasNext())
@@ -201,13 +208,14 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             field_164439_d.warn("Failed to save owners list: " + var4);
         }
     }
-    
+
     private void readWhiteList()
     {
         try
         {
             this.getWhiteListedPlayers().clear();
-            BufferedReader var1 = new BufferedReader(new FileReader(this.whiteList));
+            BufferedReader var1 = new BufferedReader(new FileReader(
+                    this.whiteList));
             String var2 = "";
 
             while ((var2 = var1.readLine()) != null)
@@ -227,7 +235,8 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            PrintWriter var1 = new PrintWriter(new FileWriter(this.whiteList, false));
+            PrintWriter var1 = new PrintWriter(new FileWriter(this.whiteList,
+                    false));
             Iterator var2 = this.getWhiteListedPlayers().iterator();
 
             while (var2.hasNext())
@@ -245,12 +254,14 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     }
 
     /**
-     * Determine if the player is allowed to connect based on current server settings.
+     * Determine if the player is allowed to connect based on current server
+     * settings.
      */
     public boolean isAllowedToLogin(String par1Str)
     {
         par1Str = par1Str.trim().toLowerCase();
-        return !this.isWhiteListEnabled() || this.isPlayerOpped(par1Str) || this.getWhiteListedPlayers().contains(par1Str);
+        return !this.isWhiteListEnabled() || this.isPlayerOpped(par1Str)
+                || this.getWhiteListedPlayers().contains(par1Str);
     }
 
     public DedicatedServer getServerInstance()

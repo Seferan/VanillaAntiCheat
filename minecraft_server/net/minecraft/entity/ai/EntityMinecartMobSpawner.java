@@ -14,22 +14,28 @@ public class EntityMinecartMobSpawner extends EntityMinecart
     private final MobSpawnerBaseLogic mobSpawnerLogic = new MobSpawnerBaseLogic()
     {
         private static final String __OBFID = "CL_00001679";
+
         public void func_98267_a(int par1)
         {
-            EntityMinecartMobSpawner.this.worldObj.setEntityState(EntityMinecartMobSpawner.this, (byte)par1);
+            EntityMinecartMobSpawner.this.worldObj.setEntityState(
+                    EntityMinecartMobSpawner.this, (byte)par1);
         }
+
         public World getSpawnerWorld()
         {
             return EntityMinecartMobSpawner.this.worldObj;
         }
+
         public int getSpawnerX()
         {
             return MathHelper.floor_double(EntityMinecartMobSpawner.this.posX);
         }
+
         public int getSpawnerY()
         {
             return MathHelper.floor_double(EntityMinecartMobSpawner.this.posY);
         }
+
         public int getSpawnerZ()
         {
             return MathHelper.floor_double(EntityMinecartMobSpawner.this.posZ);
@@ -42,7 +48,8 @@ public class EntityMinecartMobSpawner extends EntityMinecart
         super(par1World);
     }
 
-    public EntityMinecartMobSpawner(World par1World, double par2, double par4, double par6)
+    public EntityMinecartMobSpawner(World par1World, double par2, double par4,
+            double par6)
     {
         super(par1World, par2, par4, par6);
     }

@@ -24,7 +24,9 @@ public class S26PacketMapChunkBulk extends Packet
     private static byte[] field_149268_i = new byte[0];
     private static final String __OBFID = "CL_00001306";
 
-    public S26PacketMapChunkBulk() {}
+    public S26PacketMapChunkBulk()
+    {
+    }
 
     public S26PacketMapChunkBulk(List p_i45197_1_)
     {
@@ -34,22 +36,26 @@ public class S26PacketMapChunkBulk extends Packet
         this.field_149265_c = new int[var2];
         this.field_149262_d = new int[var2];
         this.field_149260_f = new byte[var2][];
-        this.field_149267_h = !p_i45197_1_.isEmpty() && !((Chunk)p_i45197_1_.get(0)).worldObj.provider.hasNoSky;
+        this.field_149267_h = !p_i45197_1_.isEmpty()
+                && !((Chunk)p_i45197_1_.get(0)).worldObj.provider.hasNoSky;
         int var3 = 0;
 
         for (int var4 = 0; var4 < var2; ++var4)
         {
             Chunk var5 = (Chunk)p_i45197_1_.get(var4);
-            S21PacketChunkData.Extracted var6 = S21PacketChunkData.func_149269_a(var5, true, 65535);
+            S21PacketChunkData.Extracted var6 = S21PacketChunkData
+                    .func_149269_a(var5, true, 65535);
 
             if (field_149268_i.length < var3 + var6.field_150282_a.length)
             {
                 byte[] var7 = new byte[var3 + var6.field_150282_a.length];
-                System.arraycopy(field_149268_i, 0, var7, 0, field_149268_i.length);
+                System.arraycopy(field_149268_i, 0, var7, 0,
+                        field_149268_i.length);
                 field_149268_i = var7;
             }
 
-            System.arraycopy(var6.field_150282_a, 0, field_149268_i, var3, var6.field_150282_a.length);
+            System.arraycopy(var6.field_150282_a, 0, field_149268_i, var3,
+                    var6.field_150282_a.length);
             var3 += var6.field_150282_a.length;
             this.field_149266_a[var4] = var5.xPosition;
             this.field_149264_b[var4] = var5.zPosition;
@@ -172,7 +178,8 @@ public class S26PacketMapChunkBulk extends Packet
     }
 
     /**
-     * Returns a string formatted as comma separated [field]=[value] values. Used by Minecraft for logging purposes.
+     * Returns a string formatted as comma separated [field]=[value] values.
+     * Used by Minecraft for logging purposes.
      */
     public String serialize()
     {
@@ -185,10 +192,19 @@ public class S26PacketMapChunkBulk extends Packet
                 var1.append(", ");
             }
 
-            var1.append(String.format("{x=%d, z=%d, sections=%d, adds=%d, data=%d}", new Object[] {Integer.valueOf(this.field_149266_a[var2]), Integer.valueOf(this.field_149264_b[var2]), Integer.valueOf(this.field_149265_c[var2]), Integer.valueOf(this.field_149262_d[var2]), Integer.valueOf(this.field_149260_f[var2].length)}));
+            var1.append(String.format(
+                    "{x=%d, z=%d, sections=%d, adds=%d, data=%d}",
+                    new Object[] {Integer.valueOf(this.field_149266_a[var2]),
+                            Integer.valueOf(this.field_149264_b[var2]),
+                            Integer.valueOf(this.field_149265_c[var2]),
+                            Integer.valueOf(this.field_149262_d[var2]),
+                            Integer.valueOf(this.field_149260_f[var2].length)}));
         }
 
-        return String.format("size=%d, chunks=%d[%s]", new Object[] {Integer.valueOf(this.field_149261_g), Integer.valueOf(this.field_149266_a.length), var1});
+        return String.format(
+                "size=%d, chunks=%d[%s]",
+                new Object[] {Integer.valueOf(this.field_149261_g),
+                        Integer.valueOf(this.field_149266_a.length), var1});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

@@ -47,7 +47,8 @@ public class AnvilSaveHandler extends SaveHandler
     /**
      * Saves the given World Info with the given NBTTagCompound as the Player.
      */
-    public void saveWorldInfoWithPlayer(WorldInfo par1WorldInfo, NBTTagCompound par2NBTTagCompound)
+    public void saveWorldInfoWithPlayer(WorldInfo par1WorldInfo,
+            NBTTagCompound par2NBTTagCompound)
     {
         par1WorldInfo.setSaveVersion(19133);
         super.saveWorldInfoWithPlayer(par1WorldInfo, par2NBTTagCompound);

@@ -30,7 +30,9 @@ public class CommandPardonIp extends CommandBase
      */
     public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
     {
-        return MinecraftServer.getServer().getConfigurationManager().getBannedIPs().isListActive() && super.canCommandSenderUseCommand(par1ICommandSender);
+        return MinecraftServer.getServer().getConfigurationManager()
+                .getBannedIPs().isListActive()
+                && super.canCommandSenderUseCommand(par1ICommandSender);
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)
@@ -38,33 +40,44 @@ public class CommandPardonIp extends CommandBase
         return "commands.unbanip.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 1)
         {
-            Matcher var3 = CommandBanIp.field_147211_a.matcher(par2ArrayOfStr[0]);
+            Matcher var3 = CommandBanIp.field_147211_a
+                    .matcher(par2ArrayOfStr[0]);
 
             if (var3.matches())
             {
-                MinecraftServer.getServer().getConfigurationManager().getBannedIPs().remove(par2ArrayOfStr[0]);
-                notifyAdmins(par1ICommandSender, "commands.unbanip.success", new Object[] {par2ArrayOfStr[0]});
+                MinecraftServer.getServer().getConfigurationManager()
+                        .getBannedIPs().remove(par2ArrayOfStr[0]);
+                notifyAdmins(par1ICommandSender, "commands.unbanip.success",
+                        new Object[] {par2ArrayOfStr[0]});
             }
             else
             {
-                throw new SyntaxErrorException("commands.unbanip.invalid", new Object[0]);
+                throw new SyntaxErrorException("commands.unbanip.invalid",
+                        new Object[0]);
             }
         }
         else
         {
-            throw new WrongUsageException("commands.unbanip.usage", new Object[0]);
+            throw new WrongUsageException("commands.unbanip.usage",
+                    new Object[0]);
         }
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getConfigurationManager().getBannedIPs().getBannedList().keySet()) : null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsFromIterableMatchingLastWord(
+                par2ArrayOfStr, MinecraftServer.getServer()
+                        .getConfigurationManager().getBannedIPs()
+                        .getBannedList().keySet()) : null;
     }
 }

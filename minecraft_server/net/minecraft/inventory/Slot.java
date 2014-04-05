@@ -30,7 +30,8 @@ public class Slot
     }
 
     /**
-     * if par2 has more items than par1, onCrafting(item,countIncrease) is called
+     * if par2 has more items than par1, onCrafting(item,countIncrease) is
+     * called
      */
     public void onSlotChange(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
@@ -49,23 +50,31 @@ public class Slot
     }
 
     /**
-     * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an
-     * internal count then calls onCrafting(item).
+     * the itemStack passed in is the output - ie, iron ingots, and pickaxes,
+     * not ore and wood. Typically increases an internal count then calls
+     * onCrafting(item).
      */
-    protected void onCrafting(ItemStack par1ItemStack, int par2) {}
+    protected void onCrafting(ItemStack par1ItemStack, int par2)
+    {
+    }
 
     /**
-     * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood.
+     * the itemStack passed in is the output - ie, iron ingots, and pickaxes,
+     * not ore and wood.
      */
-    protected void onCrafting(ItemStack par1ItemStack) {}
+    protected void onCrafting(ItemStack par1ItemStack)
+    {
+    }
 
-    public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
+    public void onPickupFromSlot(EntityPlayer par1EntityPlayer,
+            ItemStack par2ItemStack)
     {
         this.onSlotChanged();
     }
 
     /**
-     * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
+     * Check if the stack is a valid item for this slot. Always true beside for
+     * the armor slots.
      */
     public boolean isItemValid(ItemStack par1ItemStack)
     {
@@ -106,8 +115,8 @@ public class Slot
     }
 
     /**
-     * Returns the maximum stack size for a given slot (usually the same as getInventoryStackLimit(), but 1 in the case
-     * of armor slots)
+     * Returns the maximum stack size for a given slot (usually the same as
+     * getInventoryStackLimit(), but 1 in the case of armor slots)
      */
     public int getSlotStackLimit()
     {
@@ -115,8 +124,8 @@ public class Slot
     }
 
     /**
-     * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new
-     * stack.
+     * Decrease the size of the stack in slot (first int arg) by the amount of
+     * the second int arg. Returns the new stack.
      */
     public ItemStack decrStackSize(int par1)
     {

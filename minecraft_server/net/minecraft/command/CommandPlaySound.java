@@ -25,18 +25,21 @@ public class CommandPlaySound extends CommandBase
         return "commands.playsound.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length < 2)
         {
-            throw new WrongUsageException(this.getCommandUsage(par1ICommandSender), new Object[0]);
+            throw new WrongUsageException(
+                    this.getCommandUsage(par1ICommandSender), new Object[0]);
         }
         else
         {
             byte var3 = 0;
             int var36 = var3 + 1;
             String var4 = par2ArrayOfStr[var3];
-            EntityPlayerMP var5 = getPlayer(par1ICommandSender, par2ArrayOfStr[var36++]);
+            EntityPlayerMP var5 = getPlayer(par1ICommandSender,
+                    par2ArrayOfStr[var36++]);
             double var6 = (double)var5.getCommandSenderPosition().posX;
             double var8 = (double)var5.getCommandSenderPosition().posY;
             double var10 = (double)var5.getCommandSenderPosition().posZ;
@@ -46,32 +49,38 @@ public class CommandPlaySound extends CommandBase
 
             if (par2ArrayOfStr.length > var36)
             {
-                var6 = func_110666_a(par1ICommandSender, var6, par2ArrayOfStr[var36++]);
+                var6 = func_110666_a(par1ICommandSender, var6,
+                        par2ArrayOfStr[var36++]);
             }
 
             if (par2ArrayOfStr.length > var36)
             {
-                var8 = func_110665_a(par1ICommandSender, var8, par2ArrayOfStr[var36++], 0, 0);
+                var8 = func_110665_a(par1ICommandSender, var8,
+                        par2ArrayOfStr[var36++], 0, 0);
             }
 
             if (par2ArrayOfStr.length > var36)
             {
-                var10 = func_110666_a(par1ICommandSender, var10, par2ArrayOfStr[var36++]);
+                var10 = func_110666_a(par1ICommandSender, var10,
+                        par2ArrayOfStr[var36++]);
             }
 
             if (par2ArrayOfStr.length > var36)
             {
-                var12 = parseDoubleBounded(par1ICommandSender, par2ArrayOfStr[var36++], 0.0D, 3.4028234663852886E38D);
+                var12 = parseDoubleBounded(par1ICommandSender,
+                        par2ArrayOfStr[var36++], 0.0D, 3.4028234663852886E38D);
             }
 
             if (par2ArrayOfStr.length > var36)
             {
-                var14 = parseDoubleBounded(par1ICommandSender, par2ArrayOfStr[var36++], 0.0D, 2.0D);
+                var14 = parseDoubleBounded(par1ICommandSender,
+                        par2ArrayOfStr[var36++], 0.0D, 2.0D);
             }
 
             if (par2ArrayOfStr.length > var36)
             {
-                var16 = parseDoubleBounded(par1ICommandSender, par2ArrayOfStr[var36++], 0.0D, 1.0D);
+                var16 = parseDoubleBounded(par1ICommandSender,
+                        par2ArrayOfStr[var36++], 0.0D, 1.0D);
             }
 
             double var18 = var12 > 1.0D ? var12 * 16.0D : 16.0D;
@@ -79,15 +88,15 @@ public class CommandPlaySound extends CommandBase
 
             if (var20 > var18)
             {
-                if (var16 <= 0.0D)
-                {
-                    throw new CommandException("commands.playsound.playerTooFar", new Object[] {var5.getCommandSenderName()});
-                }
+                if (var16 <= 0.0D) { throw new CommandException(
+                        "commands.playsound.playerTooFar",
+                        new Object[] {var5.getCommandSenderName()}); }
 
                 double var22 = var6 - var5.posX;
                 double var24 = var8 - var5.posY;
                 double var26 = var10 - var5.posZ;
-                double var28 = Math.sqrt(var22 * var22 + var24 * var24 + var26 * var26);
+                double var28 = Math.sqrt(var22 * var22 + var24 * var24 + var26
+                        * var26);
                 double var30 = var5.posX;
                 double var32 = var5.posY;
                 double var34 = var5.posZ;
@@ -99,19 +108,25 @@ public class CommandPlaySound extends CommandBase
                     var34 += var26 / var28 * 2.0D;
                 }
 
-                var5.playerNetServerHandler.sendPacket(new S29PacketSoundEffect(var4, var30, var32, var34, (float)var16, (float)var14));
+                var5.playerNetServerHandler
+                        .sendPacket(new S29PacketSoundEffect(var4, var30,
+                                var32, var34, (float)var16, (float)var14));
             }
             else
             {
-                var5.playerNetServerHandler.sendPacket(new S29PacketSoundEffect(var4, var6, var8, var10, (float)var12, (float)var14));
+                var5.playerNetServerHandler
+                        .sendPacket(new S29PacketSoundEffect(var4, var6, var8,
+                                var10, (float)var12, (float)var14));
             }
 
-            notifyAdmins(par1ICommandSender, "commands.playsound.success", new Object[] {var4, var5.getCommandSenderName()});
+            notifyAdmins(par1ICommandSender, "commands.playsound.success",
+                    new Object[] {var4, var5.getCommandSenderName()});
         }
     }
 
     /**
-     * Return whether the specified command parameter index is a username parameter.
+     * Return whether the specified command parameter index is a username
+     * parameter.
      */
     public boolean isUsernameIndex(String[] par1ArrayOfStr, int par2)
     {

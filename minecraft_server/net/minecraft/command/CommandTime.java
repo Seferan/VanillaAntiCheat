@@ -27,7 +27,8 @@ public class CommandTime extends CommandBase
         return "commands.time.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length > 1)
         {
@@ -47,26 +48,30 @@ public class CommandTime extends CommandBase
                     }
                     else
                     {
-                        var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
+                        var3 = parseIntWithMin(par1ICommandSender,
+                                par2ArrayOfStr[1], 0);
                     }
 
                     this.setTime(par1ICommandSender, var3);
-                    notifyAdmins(par1ICommandSender, "commands.time.set", new Object[] {Integer.valueOf(var3)});
+                    notifyAdmins(par1ICommandSender, "commands.time.set",
+                            new Object[] {Integer.valueOf(var3)});
                     return;
                 }
 
                 if (par2ArrayOfStr[0].equals("add"))
                 {
-                    var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
+                    var3 = parseIntWithMin(par1ICommandSender,
+                            par2ArrayOfStr[1], 0);
                     this.addTime(par1ICommandSender, var3);
-                    notifyAdmins(par1ICommandSender, "commands.time.added", new Object[] {Integer.valueOf(var3)});
+                    notifyAdmins(par1ICommandSender, "commands.time.added",
+                            new Object[] {Integer.valueOf(var3)});
                     return;
                 }
             }
             else
             {
-            	notifyAdmins(par1ICommandSender, "Tried to use /time!");
-            	return;
+                notifyAdmins(par1ICommandSender, "Tried to use /time!");
+                return;
             }
         }
 
@@ -74,11 +79,17 @@ public class CommandTime extends CommandBase
     }
 
     /**
-     * Adds the strings available in this command to the given list of tab completion options.
+     * Adds the strings available in this command to the given list of tab
+     * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
+            String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"set", "add"}): (par2ArrayOfStr.length == 2 && par2ArrayOfStr[0].equals("set") ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"day", "night"}): null);
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(
+                par2ArrayOfStr, new String[] {"set", "add"})
+                : (par2ArrayOfStr.length == 2
+                        && par2ArrayOfStr[0].equals("set") ? getListOfStringsMatchingLastWord(
+                        par2ArrayOfStr, new String[] {"day", "night"}) : null);
     }
 
     /**
@@ -88,7 +99,8 @@ public class CommandTime extends CommandBase
     {
         for (int var3 = 0; var3 < MinecraftServer.getServer().worldServers.length; ++var3)
         {
-            MinecraftServer.getServer().worldServers[var3].setWorldTime((long)par2);
+            MinecraftServer.getServer().worldServers[var3]
+                    .setWorldTime((long)par2);
         }
     }
 
