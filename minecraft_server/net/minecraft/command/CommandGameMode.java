@@ -1,6 +1,7 @@
 package net.minecraft.command;
 
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
@@ -33,10 +34,23 @@ public class CommandGameMode extends CommandBase
         if (par2ArrayOfStr.length > 0)
         {
             WorldSettings.GameType var3 = this.getGameModeFromCommand(par1ICommandSender, par2ArrayOfStr[0]);
-            EntityPlayerMP var4 = par2ArrayOfStr.length >= 2 ? getPlayer(par1ICommandSender, par2ArrayOfStr[1]) : getCommandSenderAsPlayer(par1ICommandSender);
+            EntityPlayerMP var4;
+            ChatComponentTranslation var5 = new ChatComponentTranslation("gameMode." + var3.getName(), new Object[0]);
+            if (par2ArrayOfStr.length >= 2)
+            {
+                var4 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
+                if (this.isTargetOp(var4, par1ICommandSender))
+                {
+                    notifyAdmins(par1ICommandSender, "Tried to set non-op " + var4.getCommandSenderName() + "'s game mode to " + var5.getUnformattedText() + "!");
+                    return;
+                }
+            }
+            else
+            {
+                var4 = getCommandSenderAsPlayer(par1ICommandSender);
+            }
             var4.setGameType(var3);
             var4.fallDistance = 0.0F;
-            ChatComponentTranslation var5 = new ChatComponentTranslation("gameMode." + var3.getName(), new Object[0]);
 
             if (var4 != par1ICommandSender)
             {
