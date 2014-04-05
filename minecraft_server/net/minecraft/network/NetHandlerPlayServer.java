@@ -485,21 +485,21 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         {
             boolean var3 = false;
 
-            // Started digging (i think)
+            // Started digging
             if (packetBlockDig.getStatus() == 0)
             {
                 var3 = true;
                 vacState.startDiggingBlock();
             }
 
-            // Finished digging (i think)
+            // Stopped digging
             if (packetBlockDig.getStatus() == 1)
             {
                 var3 = true;
                 vacState.resetDigStatus();
             }
 
-            // Broke block (i think)
+            // Broke block
             if (packetBlockDig.getStatus() == 2)
             {
                 var3 = true;
@@ -554,53 +554,50 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Where all our anticheat hooks shall go for a block being mined
     private void processBlockDug(WorldServer world, int x, int y, int z, Block block)
     {
-        // Diamond notification code
-        if (block.getBlockId() == 56 && !MinecraftServer.isPlayerOpped(playerEntity) && MinecraftServer.getServer().useDiamondNotifications())
+        if (!MinecraftServer.isPlayerOppedOrCreative(playerEntity))
         {
-            // Assume any ores mined within 100 ticks of each other are from the same vein
-            if (vacState.isMiningNewVein())
+            // Diamond notification code
+            if (block.getBlockId() == 56 && MinecraftServer.getServer().useDiamondNotifications())
             {
-                vacState.incrementVeinsMined();
-                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " found diamonds. (" + String.valueOf(vacState.getNumberOfVeins()) + " veins found since login)");
-            }
-            vacState.resetTicksSinceLastOre();
-        }
-
-        float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
-        // The number of ticks it SHOULD take for a player to break the block
-        // under ideal circumstances
-        int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
-        
-        // Did the player break this block too quickly?
-        if (vacState.getTicksTakenToBreakBlock() < ticksToBreakBlock && !MinecraftServer.isPlayerOppedOrCreative(playerEntity))
-        {
-            // Give the player some leeway
-            int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
-            if (ticksToBreakBlock - vacState.getTicksTakenToBreakBlock() > leewayDifference)
-            {
-                // If broken so fast it was above the leeway, track it
-                vacState.incrementTotalDeviations();
-                if (vacState.isTotalMinedNonzero())
+                // Assume any ores mined within 100 ticks of each other are from the same vein
+                if (vacState.isMiningNewVein())
                 {
-                    // Check if this guy is bullshit
-                    if (vacState.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
+                    vacState.incrementVeinsMined();
+                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " found diamonds. (" + String.valueOf(vacState.getNumberOfVeins()) + " veins found since login)");
+                }
+                vacState.resetTicksSinceLastOre();
+            }
+            
+            float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
+            // The number of ticks it SHOULD take for a player to break the block under ideal circumstances
+            int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
+            
+            // Did the player break this block too quickly?
+            if (vacState.getTicksTakenToBreakBlock() < ticksToBreakBlock)
+            {
+                // Give the player some leeway
+                int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
+                if (ticksToBreakBlock - vacState.getTicksTakenToBreakBlock() > leewayDifference)
+                {
+                    // If broken so fast it was above the leeway, track it
+                    vacState.incrementTotalDeviations();
+                    if (vacState.isTotalMinedNonzero())
                     {
-                        // If he's bullshit, update the client and tell
-                        // him that he didn't mine the block
-                        playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
-                        // Log it and notify admins
-                        VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(vacState.getTicksTakenToBreakBlock()) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
-                        return;
+                        // Check if this guy is bullshit
+                        if (vacState.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
+                        {
+                            // If he's bullshit, update the client and tell him that he didn't mine the block
+                            playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
+                            // Log it and notify admins
+                            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(vacState.getTicksTakenToBreakBlock()) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
+                            return;
+                        }
                     }
                 }
             }
         }
+        
         vacState.incrementTotalMined();
-
-        // System.out.println(String.valueOf(vacState.totalDeviations) +
-        // "/" + String.valueOf(vacState.totalMined) + " (" +
-        // String.valueOf(vacState.totalDeviations / Math.max((double)
-        // vacState.totalMined, 1.0)));
         vacState.resetDigStatus();   
     }
     
