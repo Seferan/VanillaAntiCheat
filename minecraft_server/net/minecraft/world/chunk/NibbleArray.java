@@ -40,8 +40,7 @@ public class NibbleArray
      */
     public int get(int par1, int par2, int par3)
     {
-        int var4 = par2 << this.depthBitsPlusFour | par3 << this.depthBits
-                | par1;
+        int var4 = par2 << this.depthBitsPlusFour | par3 << this.depthBits | par1;
         int var5 = var4 >> 1;
         int var6 = var4 & 1;
         return var6 == 0 ? this.data[var5] & 15 : this.data[var5] >> 4 & 15;
@@ -53,8 +52,7 @@ public class NibbleArray
      */
     public void set(int par1, int par2, int par3, int par4)
     {
-        int var5 = par2 << this.depthBitsPlusFour | par3 << this.depthBits
-                | par1;
+        int var5 = par2 << this.depthBitsPlusFour | par3 << this.depthBits | par1;
         int var6 = var5 >> 1;
         int var7 = var5 & 1;
 

@@ -30,11 +30,9 @@ public class MapGenStructureData extends WorldSavedData
         par1NBTTagCompound.setTag("Features", this.field_143044_a);
     }
 
-    public void func_143043_a(NBTTagCompound par1NBTTagCompound, int par2,
-            int par3)
+    public void func_143043_a(NBTTagCompound par1NBTTagCompound, int par2, int par3)
     {
-        this.field_143044_a.setTag(func_143042_b(par2, par3),
-                par1NBTTagCompound);
+        this.field_143044_a.setTag(func_143042_b(par2, par3), par1NBTTagCompound);
     }
 
     public static String func_143042_b(int par1, int par2)

@@ -9,29 +9,18 @@ import net.minecraft.world.Explosion;
 
 public class DamageSource
 {
-    public static DamageSource inFire = (new DamageSource("inFire"))
-            .setFireDamage();
-    public static DamageSource onFire = (new DamageSource("onFire"))
-            .setDamageBypassesArmor().setFireDamage();
-    public static DamageSource lava = (new DamageSource("lava"))
-            .setFireDamage();
-    public static DamageSource inWall = (new DamageSource("inWall"))
-            .setDamageBypassesArmor();
-    public static DamageSource drown = (new DamageSource("drown"))
-            .setDamageBypassesArmor();
-    public static DamageSource starve = (new DamageSource("starve"))
-            .setDamageBypassesArmor().setDamageIsAbsolute();
+    public static DamageSource inFire = (new DamageSource("inFire")).setFireDamage();
+    public static DamageSource onFire = (new DamageSource("onFire")).setDamageBypassesArmor().setFireDamage();
+    public static DamageSource lava = (new DamageSource("lava")).setFireDamage();
+    public static DamageSource inWall = (new DamageSource("inWall")).setDamageBypassesArmor();
+    public static DamageSource drown = (new DamageSource("drown")).setDamageBypassesArmor();
+    public static DamageSource starve = (new DamageSource("starve")).setDamageBypassesArmor().setDamageIsAbsolute();
     public static DamageSource cactus = new DamageSource("cactus");
-    public static DamageSource fall = (new DamageSource("fall"))
-            .setDamageBypassesArmor();
-    public static DamageSource outOfWorld = (new DamageSource("outOfWorld"))
-            .setDamageBypassesArmor().setDamageAllowedInCreativeMode();
-    public static DamageSource generic = (new DamageSource("generic"))
-            .setDamageBypassesArmor();
-    public static DamageSource magic = (new DamageSource("magic"))
-            .setDamageBypassesArmor().setMagicDamage();
-    public static DamageSource wither = (new DamageSource("wither"))
-            .setDamageBypassesArmor();
+    public static DamageSource fall = (new DamageSource("fall")).setDamageBypassesArmor();
+    public static DamageSource outOfWorld = (new DamageSource("outOfWorld")).setDamageBypassesArmor().setDamageAllowedInCreativeMode();
+    public static DamageSource generic = (new DamageSource("generic")).setDamageBypassesArmor();
+    public static DamageSource magic = (new DamageSource("magic")).setDamageBypassesArmor().setMagicDamage();
+    public static DamageSource wither = (new DamageSource("wither")).setDamageBypassesArmor();
     public static DamageSource anvil = new DamageSource("anvil");
     public static DamageSource fallingBlock = new DamageSource("fallingBlock");
 
@@ -64,8 +53,7 @@ public class DamageSource
     public String damageType;
     private static final String __OBFID = "CL_00001521";
 
-    public static DamageSource causeMobDamage(
-            EntityLivingBase par0EntityLivingBase)
+    public static DamageSource causeMobDamage(EntityLivingBase par0EntityLivingBase)
     {
         return new EntityDamageSource("mob", par0EntityLivingBase);
     }
@@ -81,38 +69,27 @@ public class DamageSource
     /**
      * returns EntityDamageSourceIndirect of an arrow
      */
-    public static DamageSource causeArrowDamage(EntityArrow par0EntityArrow,
-            Entity par1Entity)
+    public static DamageSource causeArrowDamage(EntityArrow par0EntityArrow, Entity par1Entity)
     {
-        return (new EntityDamageSourceIndirect("arrow", par0EntityArrow,
-                par1Entity)).setProjectile();
+        return (new EntityDamageSourceIndirect("arrow", par0EntityArrow, par1Entity)).setProjectile();
     }
 
     /**
      * returns EntityDamageSourceIndirect of a fireball
      */
-    public static DamageSource causeFireballDamage(
-            EntityFireball par0EntityFireball, Entity par1Entity)
+    public static DamageSource causeFireballDamage(EntityFireball par0EntityFireball, Entity par1Entity)
     {
-        return par1Entity == null ? (new EntityDamageSourceIndirect("onFire",
-                par0EntityFireball, par0EntityFireball)).setFireDamage()
-                .setProjectile() : (new EntityDamageSourceIndirect("fireball",
-                par0EntityFireball, par1Entity)).setFireDamage()
-                .setProjectile();
+        return par1Entity == null ? (new EntityDamageSourceIndirect("onFire", par0EntityFireball, par0EntityFireball)).setFireDamage().setProjectile() : (new EntityDamageSourceIndirect("fireball", par0EntityFireball, par1Entity)).setFireDamage().setProjectile();
     }
 
-    public static DamageSource causeThrownDamage(Entity par0Entity,
-            Entity par1Entity)
+    public static DamageSource causeThrownDamage(Entity par0Entity, Entity par1Entity)
     {
-        return (new EntityDamageSourceIndirect("thrown", par0Entity, par1Entity))
-                .setProjectile();
+        return (new EntityDamageSourceIndirect("thrown", par0Entity, par1Entity)).setProjectile();
     }
 
-    public static DamageSource causeIndirectMagicDamage(Entity par0Entity,
-            Entity par1Entity)
+    public static DamageSource causeIndirectMagicDamage(Entity par0Entity, Entity par1Entity)
     {
-        return (new EntityDamageSourceIndirect("indirectMagic", par0Entity,
-                par1Entity)).setDamageBypassesArmor().setMagicDamage();
+        return (new EntityDamageSourceIndirect("indirectMagic", par0Entity, par1Entity)).setDamageBypassesArmor().setMagicDamage();
     }
 
     /**
@@ -125,11 +102,7 @@ public class DamageSource
 
     public static DamageSource setExplosionSource(Explosion par0Explosion)
     {
-        return par0Explosion != null
-                && par0Explosion.getExplosivePlacedBy() != null ? (new EntityDamageSource(
-                "explosion.player", par0Explosion.getExplosivePlacedBy()))
-                .setDifficultyScaled().setExplosion() : (new DamageSource(
-                "explosion")).setDifficultyScaled().setExplosion();
+        return par0Explosion != null && par0Explosion.getExplosivePlacedBy() != null ? (new EntityDamageSource("explosion.player", par0Explosion.getExplosivePlacedBy())).setDifficultyScaled().setExplosion() : (new DamageSource("explosion")).setDifficultyScaled().setExplosion();
     }
 
     /**
@@ -241,12 +214,7 @@ public class DamageSource
         EntityLivingBase var2 = p_151519_1_.func_94060_bK();
         String var3 = "death.attack." + this.damageType;
         String var4 = var3 + ".player";
-        return var2 != null && StatCollector.canTranslate(var4) ? new ChatComponentTranslation(
-                var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(),
-                        var2.getUsernameAsIChatComponent()})
-                : new ChatComponentTranslation(
-                        var3,
-                        new Object[] {p_151519_1_.getUsernameAsIChatComponent()});
+        return var2 != null && StatCollector.canTranslate(var4) ? new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), var2.getUsernameAsIChatComponent()}) : new ChatComponentTranslation(var3, new Object[] {p_151519_1_.getUsernameAsIChatComponent()});
     }
 
     /**

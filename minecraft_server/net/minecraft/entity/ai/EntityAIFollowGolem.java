@@ -34,9 +34,7 @@ public class EntityAIFollowGolem extends EntityAIBase
         }
         else
         {
-            List var1 = this.theVillager.worldObj.getEntitiesWithinAABB(
-                    EntityIronGolem.class,
-                    this.theVillager.boundingBox.expand(6.0D, 2.0D, 6.0D));
+            List var1 = this.theVillager.worldObj.getEntitiesWithinAABB(EntityIronGolem.class, this.theVillager.boundingBox.expand(6.0D, 2.0D, 6.0D));
 
             if (var1.isEmpty())
             {
@@ -94,18 +92,15 @@ public class EntityAIFollowGolem extends EntityAIBase
      */
     public void updateTask()
     {
-        this.theVillager.getLookHelper().setLookPositionWithEntity(
-                this.theGolem, 30.0F, 30.0F);
+        this.theVillager.getLookHelper().setLookPositionWithEntity(this.theGolem, 30.0F, 30.0F);
 
         if (this.theGolem.getHoldRoseTick() == this.takeGolemRoseTick)
         {
-            this.theVillager.getNavigator().tryMoveToEntityLiving(
-                    this.theGolem, 0.5D);
+            this.theVillager.getNavigator().tryMoveToEntityLiving(this.theGolem, 0.5D);
             this.tookGolemRose = true;
         }
 
-        if (this.tookGolemRose
-                && this.theVillager.getDistanceSqToEntity(this.theGolem) < 4.0D)
+        if (this.tookGolemRose && this.theVillager.getDistanceSqToEntity(this.theGolem) < 4.0D)
         {
             this.theGolem.setHoldingRose(false);
             this.theVillager.getNavigator().clearPathEntity();

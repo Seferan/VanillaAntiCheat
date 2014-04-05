@@ -81,13 +81,9 @@ public class Village
 
         int var2 = this.numVillagers / 10;
 
-        if (this.numIronGolems < var2 && this.villageDoorInfoList.size() > 20
-                && this.worldObj.rand.nextInt(7000) == 0)
+        if (this.numIronGolems < var2 && this.villageDoorInfoList.size() > 20 && this.worldObj.rand.nextInt(7000) == 0)
         {
-            Vec3 var3 = this.tryGetIronGolemSpawningLocation(
-                    MathHelper.floor_float((float)this.center.posX),
-                    MathHelper.floor_float((float)this.center.posY),
-                    MathHelper.floor_float((float)this.center.posZ), 2, 4, 2);
+            Vec3 var3 = this.tryGetIronGolemSpawningLocation(MathHelper.floor_float((float)this.center.posX), MathHelper.floor_float((float)this.center.posY), MathHelper.floor_float((float)this.center.posZ), 2, 4, 2);
 
             if (var3 != null)
             {
@@ -103,8 +99,7 @@ public class Village
      * Tries up to 10 times to get a valid spawning location before eventually
      * failing and returning null.
      */
-    private Vec3 tryGetIronGolemSpawningLocation(int par1, int par2, int par3,
-            int par4, int par5, int par6)
+    private Vec3 tryGetIronGolemSpawningLocation(int par1, int par2, int par3, int par4, int par5, int par6)
     {
         for (int var7 = 0; var7 < 10; ++var7)
         {
@@ -112,21 +107,15 @@ public class Village
             int var9 = par2 + this.worldObj.rand.nextInt(6) - 3;
             int var10 = par3 + this.worldObj.rand.nextInt(16) - 8;
 
-            if (this.isInRange(var8, var9, var10)
-                    && this.isValidIronGolemSpawningLocation(var8, var9, var10,
-                            par4, par5, par6)) { return this.worldObj
-                    .getWorldVec3Pool().getVecFromPool((double)var8,
-                            (double)var9, (double)var10); }
+            if (this.isInRange(var8, var9, var10) && this.isValidIronGolemSpawningLocation(var8, var9, var10, par4, par5, par6)) { return this.worldObj.getWorldVec3Pool().getVecFromPool((double)var8, (double)var9, (double)var10); }
         }
 
         return null;
     }
 
-    private boolean isValidIronGolemSpawningLocation(int par1, int par2,
-            int par3, int par4, int par5, int par6)
+    private boolean isValidIronGolemSpawningLocation(int par1, int par2, int par3, int par4, int par5, int par6)
     {
-        if (!World.doesBlockHaveSolidTopSurface(this.worldObj, par1, par2 - 1,
-                par3))
+        if (!World.doesBlockHaveSolidTopSurface(this.worldObj, par1, par2 - 1, par3))
         {
             return false;
         }
@@ -141,8 +130,7 @@ public class Village
                 {
                     for (int var11 = var8; var11 < var8 + par6; ++var11)
                     {
-                        if (this.worldObj.getBlock(var9, var10, var11)
-                                .isNormalCube()) { return false; }
+                        if (this.worldObj.getBlock(var9, var10, var11).isNormalCube()) { return false; }
                     }
                 }
             }
@@ -153,29 +141,13 @@ public class Village
 
     private void updateNumIronGolems()
     {
-        List var1 = this.worldObj.getEntitiesWithinAABB(
-                EntityIronGolem.class,
-                AxisAlignedBB.getAABBPool().getAABB(
-                        (double)(this.center.posX - this.villageRadius),
-                        (double)(this.center.posY - 4),
-                        (double)(this.center.posZ - this.villageRadius),
-                        (double)(this.center.posX + this.villageRadius),
-                        (double)(this.center.posY + 4),
-                        (double)(this.center.posZ + this.villageRadius)));
+        List var1 = this.worldObj.getEntitiesWithinAABB(EntityIronGolem.class, AxisAlignedBB.getAABBPool().getAABB((double)(this.center.posX - this.villageRadius), (double)(this.center.posY - 4), (double)(this.center.posZ - this.villageRadius), (double)(this.center.posX + this.villageRadius), (double)(this.center.posY + 4), (double)(this.center.posZ + this.villageRadius)));
         this.numIronGolems = var1.size();
     }
 
     private void updateNumVillagers()
     {
-        List var1 = this.worldObj.getEntitiesWithinAABB(
-                EntityVillager.class,
-                AxisAlignedBB.getAABBPool().getAABB(
-                        (double)(this.center.posX - this.villageRadius),
-                        (double)(this.center.posY - 4),
-                        (double)(this.center.posZ - this.villageRadius),
-                        (double)(this.center.posX + this.villageRadius),
-                        (double)(this.center.posY + 4),
-                        (double)(this.center.posZ + this.villageRadius)));
+        List var1 = this.worldObj.getEntitiesWithinAABB(EntityVillager.class, AxisAlignedBB.getAABBPool().getAABB((double)(this.center.posX - this.villageRadius), (double)(this.center.posY - 4), (double)(this.center.posZ - this.villageRadius), (double)(this.center.posX + this.villageRadius), (double)(this.center.posY + 4), (double)(this.center.posZ + this.villageRadius)));
         this.numVillagers = var1.size();
 
         if (this.numVillagers == 0)
@@ -257,8 +229,7 @@ public class Village
      * lowest number of villagers) of them is chosen, else the nearest one
      * regardless of restriction.
      */
-    public VillageDoorInfo findNearestDoorUnrestricted(int par1, int par2,
-            int par3)
+    public VillageDoorInfo findNearestDoorUnrestricted(int par1, int par2, int par3)
     {
         VillageDoorInfo var4 = null;
         int var5 = Integer.MAX_VALUE;
@@ -304,8 +275,7 @@ public class Village
                 if (!var4.hasNext()) { return null; }
 
                 var5 = (VillageDoorInfo)var4.next();
-            } while (var5.posX != par1 || var5.posZ != par3
-                    || Math.abs(var5.posY - par2) > 1);
+            } while (var5.posX != par1 || var5.posZ != par3 || Math.abs(var5.posY - par2) > 1);
 
             return var5;
         }
@@ -339,8 +309,7 @@ public class Village
         {
             if (!var2.hasNext())
             {
-                this.villageAgressors.add(new Village.VillageAgressor(
-                        par1EntityLivingBase, this.tickCounter));
+                this.villageAgressors.add(new Village.VillageAgressor(par1EntityLivingBase, this.tickCounter));
                 return;
             }
 
@@ -350,18 +319,15 @@ public class Village
         var3.agressionTime = this.tickCounter;
     }
 
-    public EntityLivingBase findNearestVillageAggressor(
-            EntityLivingBase par1EntityLivingBase)
+    public EntityLivingBase findNearestVillageAggressor(EntityLivingBase par1EntityLivingBase)
     {
         double var2 = Double.MAX_VALUE;
         Village.VillageAgressor var4 = null;
 
         for (int var5 = 0; var5 < this.villageAgressors.size(); ++var5)
         {
-            Village.VillageAgressor var6 = (Village.VillageAgressor)this.villageAgressors
-                    .get(var5);
-            double var7 = var6.agressor
-                    .getDistanceSqToEntity(par1EntityLivingBase);
+            Village.VillageAgressor var6 = (Village.VillageAgressor)this.villageAgressors.get(var5);
+            double var7 = var6.agressor.getDistanceSqToEntity(par1EntityLivingBase);
 
             if (var7 <= var2)
             {
@@ -389,8 +355,7 @@ public class Village
 
                 if (var7 != null)
                 {
-                    double var8 = var7
-                            .getDistanceSqToEntity(par1EntityLivingBase);
+                    double var8 = var7.getDistanceSqToEntity(par1EntityLivingBase);
 
                     if (var8 <= var2)
                     {
@@ -412,8 +377,7 @@ public class Village
         {
             Village.VillageAgressor var2 = (Village.VillageAgressor)var1.next();
 
-            if (!var2.agressor.isEntityAlive()
-                    || Math.abs(this.tickCounter - var2.agressionTime) > 300)
+            if (!var2.agressor.isEntityAlive() || Math.abs(this.tickCounter - var2.agressionTime) > 300)
             {
                 var1.remove();
             }
@@ -435,8 +399,7 @@ public class Village
                 var4.resetDoorOpeningRestrictionCounter();
             }
 
-            if (!this.isBlockDoor(var4.posX, var4.posY, var4.posZ)
-                    || Math.abs(this.tickCounter - var4.lastActivityTimestamp) > 1200)
+            if (!this.isBlockDoor(var4.posX, var4.posY, var4.posZ) || Math.abs(this.tickCounter - var4.lastActivityTimestamp) > 1200)
             {
                 this.centerHelper.posX -= var4.posX;
                 this.centerHelper.posY -= var4.posY;
@@ -469,16 +432,11 @@ public class Village
         }
         else
         {
-            this.center.set(this.centerHelper.posX / var1,
-                    this.centerHelper.posY / var1, this.centerHelper.posZ
-                            / var1);
+            this.center.set(this.centerHelper.posX / var1, this.centerHelper.posY / var1, this.centerHelper.posZ / var1);
             int var2 = 0;
             VillageDoorInfo var4;
 
-            for (Iterator var3 = this.villageDoorInfoList.iterator(); var3
-                    .hasNext(); var2 = Math
-                    .max(var4.getDistanceSquared(this.center.posX,
-                            this.center.posY, this.center.posZ), var2))
+            for (Iterator var3 = this.villageDoorInfoList.iterator(); var3.hasNext(); var2 = Math.max(var4.getDistanceSquared(this.center.posX, this.center.posY, this.center.posZ), var2))
             {
                 var4 = (VillageDoorInfo)var3.next();
             }
@@ -537,10 +495,7 @@ public class Village
         for (int var3 = 0; var3 < var2.tagCount(); ++var3)
         {
             NBTTagCompound var4 = var2.getCompoundTagAt(var3);
-            VillageDoorInfo var5 = new VillageDoorInfo(var4.getInteger("X"),
-                    var4.getInteger("Y"), var4.getInteger("Z"),
-                    var4.getInteger("IDX"), var4.getInteger("IDZ"),
-                    var4.getInteger("TS"));
+            VillageDoorInfo var5 = new VillageDoorInfo(var4.getInteger("X"), var4.getInteger("Y"), var4.getInteger("Z"), var4.getInteger("IDX"), var4.getInteger("IDZ"), var4.getInteger("TS"));
             this.villageDoorInfoList.add(var5);
         }
 
@@ -549,8 +504,7 @@ public class Village
         for (int var7 = 0; var7 < var6.tagCount(); ++var7)
         {
             NBTTagCompound var8 = var6.getCompoundTagAt(var7);
-            this.playerReputation.put(var8.getString("Name"),
-                    Integer.valueOf(var8.getInteger("S")));
+            this.playerReputation.put(var8.getString("Name"), Integer.valueOf(var8.getInteger("S")));
         }
     }
 
@@ -596,8 +550,7 @@ public class Village
             String var9 = (String)var8.next();
             NBTTagCompound var6 = new NBTTagCompound();
             var6.setString("Name", var9);
-            var6.setInteger("S",
-                    ((Integer)this.playerReputation.get(var9)).intValue());
+            var6.setInteger("S", ((Integer)this.playerReputation.get(var9)).intValue());
             var7.appendTag(var6);
         }
 
@@ -617,8 +570,7 @@ public class Village
      */
     public boolean isMatingSeason()
     {
-        return this.noBreedTicks == 0
-                || this.tickCounter - this.noBreedTicks >= 3600;
+        return this.noBreedTicks == 0 || this.tickCounter - this.noBreedTicks >= 3600;
     }
 
     public void func_82683_b(int par1)

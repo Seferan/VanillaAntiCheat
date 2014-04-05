@@ -139,8 +139,7 @@ public enum EnumConnectionState
             this.func_150756_b(20, S14PacketEntity.class);
             this.func_150756_b(21, S14PacketEntity.S15PacketEntityRelMove.class);
             this.func_150756_b(22, S14PacketEntity.S16PacketEntityLook.class);
-            this.func_150756_b(23,
-                    S14PacketEntity.S17PacketEntityLookMove.class);
+            this.func_150756_b(23, S14PacketEntity.S17PacketEntityLookMove.class);
             this.func_150756_b(24, S18PacketEntityTeleport.class);
             this.func_150756_b(25, S19PacketEntityHeadLook.class);
             this.func_150756_b(26, S19PacketEntityStatus.class);
@@ -243,26 +242,19 @@ public enum EnumConnectionState
         this.field_150762_g = p_i45152_3_;
     }
 
-    protected EnumConnectionState func_150751_a(int p_150751_1_,
-            Class p_150751_2_)
+    protected EnumConnectionState func_150751_a(int p_150751_1_, Class p_150751_2_)
     {
         String var3;
 
         if (this.field_150769_h.containsKey(Integer.valueOf(p_150751_1_)))
         {
-            var3 = "Serverbound packet ID " + p_150751_1_
-                    + " is already assigned to "
-                    + this.field_150769_h.get(Integer.valueOf(p_150751_1_))
-                    + "; cannot re-assign to " + p_150751_2_;
+            var3 = "Serverbound packet ID " + p_150751_1_ + " is already assigned to " + this.field_150769_h.get(Integer.valueOf(p_150751_1_)) + "; cannot re-assign to " + p_150751_2_;
             LogManager.getLogger().fatal(var3);
             throw new IllegalArgumentException(var3);
         }
         else if (this.field_150769_h.containsValue(p_150751_2_))
         {
-            var3 = "Serverbound packet " + p_150751_2_
-                    + " is already assigned to ID "
-                    + this.field_150769_h.inverse().get(p_150751_2_)
-                    + "; cannot re-assign to " + p_150751_1_;
+            var3 = "Serverbound packet " + p_150751_2_ + " is already assigned to ID " + this.field_150769_h.inverse().get(p_150751_2_) + "; cannot re-assign to " + p_150751_1_;
             LogManager.getLogger().fatal(var3);
             throw new IllegalArgumentException(var3);
         }
@@ -273,26 +265,19 @@ public enum EnumConnectionState
         }
     }
 
-    protected EnumConnectionState func_150756_b(int p_150756_1_,
-            Class p_150756_2_)
+    protected EnumConnectionState func_150756_b(int p_150756_1_, Class p_150756_2_)
     {
         String var3;
 
         if (this.field_150770_i.containsKey(Integer.valueOf(p_150756_1_)))
         {
-            var3 = "Clientbound packet ID " + p_150756_1_
-                    + " is already assigned to "
-                    + this.field_150770_i.get(Integer.valueOf(p_150756_1_))
-                    + "; cannot re-assign to " + p_150756_2_;
+            var3 = "Clientbound packet ID " + p_150756_1_ + " is already assigned to " + this.field_150770_i.get(Integer.valueOf(p_150756_1_)) + "; cannot re-assign to " + p_150756_2_;
             LogManager.getLogger().fatal(var3);
             throw new IllegalArgumentException(var3);
         }
         else if (this.field_150770_i.containsValue(p_150756_2_))
         {
-            var3 = "Clientbound packet " + p_150756_2_
-                    + " is already assigned to ID "
-                    + this.field_150770_i.inverse().get(p_150756_2_)
-                    + "; cannot re-assign to " + p_150756_1_;
+            var3 = "Clientbound packet " + p_150756_2_ + " is already assigned to ID " + this.field_150770_i.inverse().get(p_150756_2_) + "; cannot re-assign to " + p_150756_1_;
             LogManager.getLogger().fatal(var3);
             throw new IllegalArgumentException(var3);
         }
@@ -352,18 +337,13 @@ public enum EnumConnectionState
         {
             EnumConnectionState var3 = var0[var2];
             field_150764_e.put(var3.func_150759_c(), var3);
-            Iterator var4 = Iterables.concat(var3.func_150755_b().values(),
-                    var3.func_150753_a().values()).iterator();
+            Iterator var4 = Iterables.concat(var3.func_150755_b().values(), var3.func_150753_a().values()).iterator();
 
             while (var4.hasNext())
             {
                 Class var5 = (Class)var4.next();
 
-                if (field_150761_f.containsKey(var5)
-                        && field_150761_f.get(var5) != var3) { throw new Error(
-                        "Packet " + var5 + " is already assigned to protocol "
-                                + field_150761_f.get(var5)
-                                + " - can\'t reassign to " + var3); }
+                if (field_150761_f.containsKey(var5) && field_150761_f.get(var5) != var3) { throw new Error("Packet " + var5 + " is already assigned to protocol " + field_150761_f.get(var5) + " - can\'t reassign to " + var3); }
 
                 field_150761_f.put(var5, var3);
             }

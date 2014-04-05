@@ -38,10 +38,7 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
             {
                 this.theOwnerAttacker = var1.getAITarget();
                 int var2 = var1.func_142015_aE();
-                return var2 != this.field_142051_e
-                        && this.isSuitableTarget(this.theOwnerAttacker, false)
-                        && this.theDefendingTameable.func_142018_a(
-                                this.theOwnerAttacker, var1);
+                return var2 != this.field_142051_e && this.isSuitableTarget(this.theOwnerAttacker, false) && this.theDefendingTameable.func_142018_a(this.theOwnerAttacker, var1);
             }
         }
     }

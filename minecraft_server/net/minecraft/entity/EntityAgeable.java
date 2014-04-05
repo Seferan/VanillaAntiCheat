@@ -40,8 +40,7 @@ public abstract class EntityAgeable extends EntityCreature
                     if (var4 != null)
                     {
                         var4.setGrowingAge(-24000);
-                        var4.setLocationAndAngles(this.posX, this.posY,
-                                this.posZ, 0.0F, 0.0F);
+                        var4.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
                         this.worldObj.spawnEntityInWorld(var4);
 
                         if (var2.hasDisplayName())
@@ -55,10 +54,7 @@ public abstract class EntityAgeable extends EntityCreature
 
                             if (var2.stackSize <= 0)
                             {
-                                par1EntityPlayer.inventory
-                                        .setInventorySlotContents(
-                                                par1EntityPlayer.inventory.currentItem,
-                                                (ItemStack)null);
+                                par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack)null);
                             }
                         }
                     }

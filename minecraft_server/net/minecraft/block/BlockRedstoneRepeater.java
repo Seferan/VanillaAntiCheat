@@ -10,8 +10,7 @@ import net.minecraft.world.World;
 
 public class BlockRedstoneRepeater extends BlockRedstoneDiode
 {
-    public static final double[] field_149973_b = new double[] {-0.0625D,
-            0.0625D, 0.1875D, 0.3125D};
+    public static final double[] field_149973_b = new double[] {-0.0625D, 0.0625D, 0.1875D, 0.3125D};
     private static final int[] field_149974_M = new int[] {1, 2, 3, 4};
     private static final String __OBFID = "CL_00000301";
 
@@ -23,17 +22,12 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
-            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
-            int p_149727_6_, float p_149727_7_, float p_149727_8_,
-            float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-        int var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_,
-                p_149727_4_);
+        int var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_);
         int var11 = (var10 & 12) >> 2;
         var11 = var11 + 1 << 2 & 12;
-        p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_,
-                var11 | var10 & 3, 3);
+        p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_, var11 | var10 & 3, 3);
         return true;
     }
 
@@ -52,8 +46,7 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
         return Blocks.unpowered_repeater;
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return Items.repeater;
     }
@@ -66,11 +59,9 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
         return 15;
     }
 
-    public boolean func_149910_g(IBlockAccess p_149910_1_, int p_149910_2_,
-            int p_149910_3_, int p_149910_4_, int p_149910_5_)
+    public boolean func_149910_g(IBlockAccess p_149910_1_, int p_149910_2_, int p_149910_3_, int p_149910_4_, int p_149910_5_)
     {
-        return this.func_149902_h(p_149910_1_, p_149910_2_, p_149910_3_,
-                p_149910_4_, p_149910_5_) > 0;
+        return this.func_149902_h(p_149910_1_, p_149910_2_, p_149910_3_, p_149910_4_, p_149910_5_) > 0;
     }
 
     protected boolean func_149908_a(Block p_149908_1_)
@@ -78,11 +69,9 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
         return func_149909_d(p_149908_1_);
     }
 
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_,
-            int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_,
-                p_149749_5_, p_149749_6_);
+        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
         this.func_149911_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
     }
 }

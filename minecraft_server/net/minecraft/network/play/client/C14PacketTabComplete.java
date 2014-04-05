@@ -34,8 +34,7 @@ public class C14PacketTabComplete extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(StringUtils.substring(
-                this.field_149420_a, 0, 32767));
+        p_148840_1_.writeStringToBuffer(StringUtils.substring(this.field_149420_a, 0, 32767));
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149418_1_)
@@ -54,8 +53,7 @@ public class C14PacketTabComplete extends Packet
      */
     public String serialize()
     {
-        return String.format("message=\'%s\'",
-                new Object[] {this.field_149420_a});
+        return String.format("message=\'%s\'", new Object[] {this.field_149420_a});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

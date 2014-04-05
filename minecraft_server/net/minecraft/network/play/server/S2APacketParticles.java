@@ -23,10 +23,7 @@ public class S2APacketParticles extends Packet
     {
     }
 
-    public S2APacketParticles(String p_i45199_1_, float p_i45199_2_,
-            float p_i45199_3_, float p_i45199_4_, float p_i45199_5_,
-            float p_i45199_6_, float p_i45199_7_, float p_i45199_8_,
-            int p_i45199_9_)
+    public S2APacketParticles(String p_i45199_1_, float p_i45199_2_, float p_i45199_3_, float p_i45199_4_, float p_i45199_5_, float p_i45199_6_, float p_i45199_7_, float p_i45199_8_, int p_i45199_9_)
     {
         this.field_149236_a = p_i45199_1_;
         this.field_149234_b = p_i45199_2_;

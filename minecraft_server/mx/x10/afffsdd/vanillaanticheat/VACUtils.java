@@ -12,8 +12,7 @@ public class VACUtils
 {
     public static void notifyAdmins(String message)
     {
-        Iterator it = MinecraftServer.getServer().getConfigurationManager().playerEntityList
-                .iterator();
+        Iterator it = MinecraftServer.getServer().getConfigurationManager().playerEntityList.iterator();
 
         while (it.hasNext())
         {
@@ -21,8 +20,7 @@ public class VACUtils
 
             if (MinecraftServer.isPlayerOpped(player))
             {
-                player.addChatMessage("" + EnumChatFormatting.BLUE + "[VAC]: "
-                        + message);
+                player.addChatMessage("" + EnumChatFormatting.BLUE + "[VAC]: " + message);
             }
         }
     }

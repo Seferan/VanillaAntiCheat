@@ -18,8 +18,7 @@ public class StringTranslate
      * Pattern that matches numeric variable placeholders in a resource string,
      * such as "%d", "%3$d", "%.2f"
      */
-    private static final Pattern numericVariablePattern = Pattern
-            .compile("%(\\d+\\$)?[\\d\\.]*[df]");
+    private static final Pattern numericVariablePattern = Pattern.compile("%(\\d+\\$)?[\\d\\.]*[df]");
 
     /**
      * A Splitter that splits a string on the first "=". For example, "a=b=c"
@@ -42,8 +41,7 @@ public class StringTranslate
     {
         try
         {
-            InputStream var1 = StringTranslate.class
-                    .getResourceAsStream("/assets/minecraft/lang/en_US.lang");
+            InputStream var1 = StringTranslate.class.getResourceAsStream("/assets/minecraft/lang/en_US.lang");
             Iterator var2 = IOUtils.readLines(var1, Charsets.UTF_8).iterator();
 
             while (var2.hasNext())
@@ -52,14 +50,12 @@ public class StringTranslate
 
                 if (!var3.isEmpty() && var3.charAt(0) != 35)
                 {
-                    String[] var4 = (String[])Iterables.toArray(
-                            equalSignSplitter.split(var3), String.class);
+                    String[] var4 = (String[])Iterables.toArray(equalSignSplitter.split(var3), String.class);
 
                     if (var4 != null && var4.length == 2)
                     {
                         String var5 = var4[0];
-                        String var6 = numericVariablePattern.matcher(var4[1])
-                                .replaceAll("%$1s");
+                        String var6 = numericVariablePattern.matcher(var4[1]).replaceAll("%$1s");
                         this.languageList.put(var5, var6);
                     }
                 }
@@ -92,8 +88,7 @@ public class StringTranslate
     /**
      * Translate a key to current language applying String.format()
      */
-    public synchronized String translateKeyFormat(String par1Str,
-            Object... par2ArrayOfObj)
+    public synchronized String translateKeyFormat(String par1Str, Object... par2ArrayOfObj)
     {
         String var3 = this.tryTranslateKey(par1Str);
 

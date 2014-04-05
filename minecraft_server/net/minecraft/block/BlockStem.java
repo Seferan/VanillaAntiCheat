@@ -21,8 +21,7 @@ public class BlockStem extends BlockBush implements IGrowable
         this.field_149877_a = p_i45430_1_;
         this.setTickRandomly(true);
         float var2 = 0.125F;
-        this.setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, 0.25F,
-                0.5F + var2);
+        this.setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, 0.25F, 0.5F + var2);
         this.setcreativeTab((CreativeTabs)null);
     }
 
@@ -34,42 +33,32 @@ public class BlockStem extends BlockBush implements IGrowable
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
-            int p_149674_4_, Random p_149674_5_)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        super.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_,
-                p_149674_5_);
+        super.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
 
-        if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1,
-                p_149674_4_) >= 9)
+        if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) >= 9)
         {
-            float var6 = this.func_149875_n(p_149674_1_, p_149674_2_,
-                    p_149674_3_, p_149674_4_);
+            float var6 = this.func_149875_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
 
             if (p_149674_5_.nextInt((int)(25.0F / var6) + 1) == 0)
             {
-                int var7 = p_149674_1_.getBlockMetadata(p_149674_2_,
-                        p_149674_3_, p_149674_4_);
+                int var7 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
 
                 if (var7 < 7)
                 {
                     ++var7;
-                    p_149674_1_.setBlockMetadata(p_149674_2_, p_149674_3_,
-                            p_149674_4_, var7, 2);
+                    p_149674_1_.setBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_, var7, 2);
                 }
                 else
                 {
-                    if (p_149674_1_.getBlock(p_149674_2_ - 1, p_149674_3_,
-                            p_149674_4_) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_ - 1, p_149674_3_, p_149674_4_) == this.field_149877_a) { return; }
 
-                    if (p_149674_1_.getBlock(p_149674_2_ + 1, p_149674_3_,
-                            p_149674_4_) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_ + 1, p_149674_3_, p_149674_4_) == this.field_149877_a) { return; }
 
-                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_,
-                            p_149674_4_ - 1) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ - 1) == this.field_149877_a) { return; }
 
-                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_,
-                            p_149674_4_ + 1) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ + 1) == this.field_149877_a) { return; }
 
                     int var8 = p_149674_5_.nextInt(4);
                     int var9 = p_149674_2_;
@@ -95,76 +84,56 @@ public class BlockStem extends BlockBush implements IGrowable
                         ++var10;
                     }
 
-                    Block var11 = p_149674_1_.getBlock(var9, p_149674_3_ - 1,
-                            var10);
+                    Block var11 = p_149674_1_.getBlock(var9, p_149674_3_ - 1, var10);
 
-                    if (p_149674_1_.getBlock(var9, p_149674_3_, var10).blockMaterial == Material.air
-                            && (var11 == Blocks.farmland
-                                    || var11 == Blocks.dirt || var11 == Blocks.grass))
+                    if (p_149674_1_.getBlock(var9, p_149674_3_, var10).blockMaterial == Material.air && (var11 == Blocks.farmland || var11 == Blocks.dirt || var11 == Blocks.grass))
                     {
-                        p_149674_1_.setBlock(var9, p_149674_3_, var10,
-                                this.field_149877_a);
+                        p_149674_1_.setBlock(var9, p_149674_3_, var10, this.field_149877_a);
                     }
                 }
             }
         }
     }
 
-    public void func_149874_m(World p_149874_1_, int p_149874_2_,
-            int p_149874_3_, int p_149874_4_)
+    public void func_149874_m(World p_149874_1_, int p_149874_2_, int p_149874_3_, int p_149874_4_)
     {
-        int var5 = p_149874_1_.getBlockMetadata(p_149874_2_, p_149874_3_,
-                p_149874_4_)
-                + MathHelper.getRandomIntegerInRange(p_149874_1_.rand, 2, 5);
+        int var5 = p_149874_1_.getBlockMetadata(p_149874_2_, p_149874_3_, p_149874_4_) + MathHelper.getRandomIntegerInRange(p_149874_1_.rand, 2, 5);
 
         if (var5 > 7)
         {
             var5 = 7;
         }
 
-        p_149874_1_.setBlockMetadata(p_149874_2_, p_149874_3_, p_149874_4_,
-                var5, 2);
+        p_149874_1_.setBlockMetadata(p_149874_2_, p_149874_3_, p_149874_4_, var5, 2);
     }
 
-    private float func_149875_n(World p_149875_1_, int p_149875_2_,
-            int p_149875_3_, int p_149875_4_)
+    private float func_149875_n(World p_149875_1_, int p_149875_2_, int p_149875_3_, int p_149875_4_)
     {
         float var5 = 1.0F;
-        Block var6 = p_149875_1_.getBlock(p_149875_2_, p_149875_3_,
-                p_149875_4_ - 1);
-        Block var7 = p_149875_1_.getBlock(p_149875_2_, p_149875_3_,
-                p_149875_4_ + 1);
-        Block var8 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_,
-                p_149875_4_);
-        Block var9 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_,
-                p_149875_4_);
-        Block var10 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_,
-                p_149875_4_ - 1);
-        Block var11 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_,
-                p_149875_4_ - 1);
-        Block var12 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_,
-                p_149875_4_ + 1);
-        Block var13 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_,
-                p_149875_4_ + 1);
+        Block var6 = p_149875_1_.getBlock(p_149875_2_, p_149875_3_, p_149875_4_ - 1);
+        Block var7 = p_149875_1_.getBlock(p_149875_2_, p_149875_3_, p_149875_4_ + 1);
+        Block var8 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_, p_149875_4_);
+        Block var9 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_, p_149875_4_);
+        Block var10 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_, p_149875_4_ - 1);
+        Block var11 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_, p_149875_4_ - 1);
+        Block var12 = p_149875_1_.getBlock(p_149875_2_ + 1, p_149875_3_, p_149875_4_ + 1);
+        Block var13 = p_149875_1_.getBlock(p_149875_2_ - 1, p_149875_3_, p_149875_4_ + 1);
         boolean var14 = var8 == this || var9 == this;
         boolean var15 = var6 == this || var7 == this;
-        boolean var16 = var10 == this || var11 == this || var12 == this
-                || var13 == this;
+        boolean var16 = var10 == this || var11 == this || var12 == this || var13 == this;
 
         for (int var17 = p_149875_2_ - 1; var17 <= p_149875_2_ + 1; ++var17)
         {
             for (int var18 = p_149875_4_ - 1; var18 <= p_149875_4_ + 1; ++var18)
             {
-                Block var19 = p_149875_1_.getBlock(var17, p_149875_3_ - 1,
-                        var18);
+                Block var19 = p_149875_1_.getBlock(var17, p_149875_3_ - 1, var18);
                 float var20 = 0.0F;
 
                 if (var19 == Blocks.farmland)
                 {
                     var20 = 1.0F;
 
-                    if (p_149875_1_.getBlockMetadata(var17, p_149875_3_ - 1,
-                            var18) > 0)
+                    if (p_149875_1_.getBlockMetadata(var17, p_149875_3_ - 1, var18) > 0)
                     {
                         var20 = 3.0F;
                     }
@@ -193,18 +162,14 @@ public class BlockStem extends BlockBush implements IGrowable
     public void setBlockBoundsForItemRender()
     {
         float var1 = 0.125F;
-        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F,
-                0.5F + var1);
+        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.maxY = (double)((float)(p_149719_1_.getBlockMetadata(p_149719_2_,
-                p_149719_3_, p_149719_4_) * 2 + 2) / 16.0F);
+        this.maxY = (double)((float)(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_) * 2 + 2) / 16.0F);
         float var5 = 0.125F;
-        this.setBlockBounds(0.5F - var5, 0.0F, 0.5F - var5, 0.5F + var5,
-                (float)this.maxY, 0.5F + var5);
+        this.setBlockBounds(0.5F - var5, 0.0F, 0.5F - var5, 0.5F + var5, (float)this.maxY, 0.5F + var5);
     }
 
     /**
@@ -219,12 +184,9 @@ public class BlockStem extends BlockBush implements IGrowable
      * Drops the block items with a specified chance of dropping the specified
      * items
      */
-    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_,
-            int p_149690_3_, int p_149690_4_, int p_149690_5_,
-            float p_149690_6_, int p_149690_7_)
+    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
     {
-        super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_,
-                p_149690_4_, p_149690_5_, p_149690_6_, p_149690_7_);
+        super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, p_149690_6_, p_149690_7_);
 
         if (!p_149690_1_.isClient)
         {
@@ -244,15 +206,13 @@ public class BlockStem extends BlockBush implements IGrowable
             {
                 if (p_149690_1_.rand.nextInt(15) <= p_149690_5_)
                 {
-                    this.dropBlockAsItem_do(p_149690_1_, p_149690_2_,
-                            p_149690_3_, p_149690_4_, new ItemStack(var8));
+                    this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var8));
                 }
             }
         }
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return null;
     }
@@ -265,21 +225,17 @@ public class BlockStem extends BlockBush implements IGrowable
         return 1;
     }
 
-    public boolean func_149851_a(World p_149851_1_, int p_149851_2_,
-            int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
+    public boolean func_149851_a(World p_149851_1_, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
     {
-        return p_149851_1_.getBlockMetadata(p_149851_2_, p_149851_3_,
-                p_149851_4_) != 7;
+        return p_149851_1_.getBlockMetadata(p_149851_2_, p_149851_3_, p_149851_4_) != 7;
     }
 
-    public boolean func_149852_a(World p_149852_1_, Random p_149852_2_,
-            int p_149852_3_, int p_149852_4_, int p_149852_5_)
+    public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_)
     {
         return true;
     }
 
-    public void func_149853_b(World p_149853_1_, Random p_149853_2_,
-            int p_149853_3_, int p_149853_4_, int p_149853_5_)
+    public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
     {
         this.func_149874_m(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_);
     }

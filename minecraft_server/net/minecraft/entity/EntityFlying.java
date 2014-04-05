@@ -55,10 +55,7 @@ public abstract class EntityFlying extends EntityLiving
 
             if (this.onGround)
             {
-                var3 = this.worldObj.getBlock(
-                        MathHelper.floor_double(this.posX),
-                        MathHelper.floor_double(this.boundingBox.minY) - 1,
-                        MathHelper.floor_double(this.posZ)).slipperiness * 0.91F;
+                var3 = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)).slipperiness * 0.91F;
             }
 
             float var4 = 0.16277136F / (var3 * var3 * var3);
@@ -67,10 +64,7 @@ public abstract class EntityFlying extends EntityLiving
 
             if (this.onGround)
             {
-                var3 = this.worldObj.getBlock(
-                        MathHelper.floor_double(this.posX),
-                        MathHelper.floor_double(this.boundingBox.minY) - 1,
-                        MathHelper.floor_double(this.posZ)).slipperiness * 0.91F;
+                var3 = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)).slipperiness * 0.91F;
             }
 
             this.moveEntity(this.motionX, this.motionY, this.motionZ);

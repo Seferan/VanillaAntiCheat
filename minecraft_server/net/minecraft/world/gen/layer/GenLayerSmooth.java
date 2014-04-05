@@ -36,8 +36,7 @@ public class GenLayerSmooth extends GenLayer
 
                 if (var13 == var14 && var15 == var16)
                 {
-                    this.initChunkSeed((long)(var12 + par1),
-                            (long)(var11 + par2));
+                    this.initChunkSeed((long)(var12 + par1), (long)(var11 + par2));
 
                     if (this.nextInt(2) == 0)
                     {

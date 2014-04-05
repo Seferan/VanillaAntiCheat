@@ -27,13 +27,11 @@ public class CommandTestFor extends CommandBase
         return "commands.testfor.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length != 1)
         {
-            throw new WrongUsageException("commands.testfor.usage",
-                    new Object[0]);
+            throw new WrongUsageException("commands.testfor.usage", new Object[0]);
         }
         else if (!(par1ICommandSender instanceof CommandBlockLogic))
         {

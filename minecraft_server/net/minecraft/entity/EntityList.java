@@ -97,13 +97,11 @@ public class EntityList
     {
         if (stringToClassMapping.containsKey(par1Str))
         {
-            throw new IllegalArgumentException("ID is already registered: "
-                    + par1Str);
+            throw new IllegalArgumentException("ID is already registered: " + par1Str);
         }
         else if (IDtoClassMapping.containsKey(Integer.valueOf(par2)))
         {
-            throw new IllegalArgumentException("ID is already registered: "
-                    + par2);
+            throw new IllegalArgumentException("ID is already registered: " + par2);
         }
         else
         {
@@ -118,12 +116,10 @@ public class EntityList
     /**
      * Adds a entity mapping with egg info.
      */
-    private static void addMapping(Class par0Class, String par1Str, int par2,
-            int par3, int par4)
+    private static void addMapping(Class par0Class, String par1Str, int par2, int par3, int par4)
     {
         addMapping(par0Class, par1Str, par2);
-        entityEggs.put(Integer.valueOf(par2), new EntityList.EntityEggInfo(
-                par2, par3, par4));
+        entityEggs.put(Integer.valueOf(par2), new EntityList.EntityEggInfo(par2, par3, par4));
     }
 
     /**
@@ -139,8 +135,7 @@ public class EntityList
 
             if (var3 != null)
             {
-                var2 = (Entity)var3.getConstructor(new Class[] {World.class})
-                        .newInstance(new Object[] {par1World});
+                var2 = (Entity)var3.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par1World});
             }
         }
         catch (Exception var4)
@@ -154,8 +149,7 @@ public class EntityList
     /**
      * create a new instance of an entity from NBT store
      */
-    public static Entity createEntityFromNBT(NBTTagCompound par0NBTTagCompound,
-            World par1World)
+    public static Entity createEntityFromNBT(NBTTagCompound par0NBTTagCompound, World par1World)
     {
         Entity var2 = null;
 
@@ -180,13 +174,11 @@ public class EntityList
 
         try
         {
-            Class var3 = (Class)stringToClassMapping.get(par0NBTTagCompound
-                    .getString("id"));
+            Class var3 = (Class)stringToClassMapping.get(par0NBTTagCompound.getString("id"));
 
             if (var3 != null)
             {
-                var2 = (Entity)var3.getConstructor(new Class[] {World.class})
-                        .newInstance(new Object[] {par1World});
+                var2 = (Entity)var3.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par1World});
             }
         }
         catch (Exception var4)
@@ -200,8 +192,7 @@ public class EntityList
         }
         else
         {
-            logger.warn("Skipping Entity with id "
-                    + par0NBTTagCompound.getString("id"));
+            logger.warn("Skipping Entity with id " + par0NBTTagCompound.getString("id"));
         }
 
         return var2;
@@ -220,8 +211,7 @@ public class EntityList
 
             if (var3 != null)
             {
-                var2 = (Entity)var3.getConstructor(new Class[] {World.class})
-                        .newInstance(new Object[] {par1World});
+                var2 = (Entity)var3.getConstructor(new Class[] {World.class}).newInstance(new Object[] {par1World});
             }
         }
         catch (Exception var4)
@@ -243,8 +233,7 @@ public class EntityList
     public static int getEntityID(Entity par0Entity)
     {
         Class var1 = par0Entity.getClass();
-        return classToIDMapping.containsKey(var1) ? ((Integer)classToIDMapping
-                .get(var1)).intValue() : 0;
+        return classToIDMapping.containsKey(var1) ? ((Integer)classToIDMapping.get(var1)).intValue() : 0;
     }
 
     /**

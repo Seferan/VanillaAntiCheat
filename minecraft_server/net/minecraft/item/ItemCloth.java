@@ -29,9 +29,6 @@ public class ItemCloth extends ItemBlock
      */
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
-        return super.getUnlocalizedName()
-                + "."
-                + ItemDye.field_150923_a[BlockColored
-                        .func_150032_b(par1ItemStack.getItemDamage())];
+        return super.getUnlocalizedName() + "." + ItemDye.field_150923_a[BlockColored.func_150032_b(par1ItemStack.getItemDamage())];
     }
 }

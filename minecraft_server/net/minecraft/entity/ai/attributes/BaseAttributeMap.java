@@ -35,8 +35,7 @@ public abstract class BaseAttributeMap
         return this.attributesByName.values();
     }
 
-    public void addAttributeInstance(
-            ModifiableAttributeInstance par1ModifiableAttributeInstance)
+    public void addAttributeInstance(ModifiableAttributeInstance par1ModifiableAttributeInstance)
     {
     }
 
@@ -47,8 +46,7 @@ public abstract class BaseAttributeMap
         while (var2.hasNext())
         {
             Entry var3 = (Entry)var2.next();
-            IAttributeInstance var4 = this
-                    .getAttributeInstanceByName((String)var3.getKey());
+            IAttributeInstance var4 = this.getAttributeInstanceByName((String)var3.getKey());
 
             if (var4 != null)
             {
@@ -64,8 +62,7 @@ public abstract class BaseAttributeMap
         while (var2.hasNext())
         {
             Entry var3 = (Entry)var2.next();
-            IAttributeInstance var4 = this
-                    .getAttributeInstanceByName((String)var3.getKey());
+            IAttributeInstance var4 = this.getAttributeInstanceByName((String)var3.getKey());
 
             if (var4 != null)
             {

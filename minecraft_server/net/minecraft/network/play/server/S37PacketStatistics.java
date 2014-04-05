@@ -41,8 +41,7 @@ public class S37PacketStatistics extends Packet
 
         for (int var3 = 0; var3 < var2; ++var3)
         {
-            StatBase var4 = StatList.func_151177_a(p_148837_1_
-                    .readStringFromBuffer(32767));
+            StatBase var4 = StatList.func_151177_a(p_148837_1_.readStringFromBuffer(32767));
             int var5 = p_148837_1_.readVarIntFromBuffer();
 
             if (var4 != null)
@@ -64,8 +63,7 @@ public class S37PacketStatistics extends Packet
         {
             Entry var3 = (Entry)var2.next();
             p_148840_1_.writeStringToBuffer(((StatBase)var3.getKey()).statId);
-            p_148840_1_.writeVarIntToBuffer(((Integer)var3.getValue())
-                    .intValue());
+            p_148840_1_.writeVarIntToBuffer(((Integer)var3.getValue()).intValue());
         }
     }
 
@@ -75,8 +73,7 @@ public class S37PacketStatistics extends Packet
      */
     public String serialize()
     {
-        return String.format("count=%d",
-                new Object[] {Integer.valueOf(this.field_148976_a.size())});
+        return String.format("count=%d", new Object[] {Integer.valueOf(this.field_148976_a.size())});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

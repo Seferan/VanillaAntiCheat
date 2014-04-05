@@ -25,14 +25,12 @@ public class CommandToggleDownfall extends CommandBase
         return "commands.downfall.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (MinecraftServer.isPlayerOwner(par1ICommandSender))
         {
             this.toggleDownfall();
-            notifyAdmins(par1ICommandSender, "commands.downfall.success",
-                    new Object[0]);
+            notifyAdmins(par1ICommandSender, "commands.downfall.success", new Object[0]);
         }
         else
         {
@@ -45,8 +43,7 @@ public class CommandToggleDownfall extends CommandBase
      */
     protected void toggleDownfall()
     {
-        WorldInfo var1 = MinecraftServer.getServer().worldServers[0]
-                .getWorldInfo();
+        WorldInfo var1 = MinecraftServer.getServer().worldServers[0].getWorldInfo();
         var1.setRaining(!var1.isRaining());
     }
 }

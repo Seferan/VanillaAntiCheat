@@ -15,24 +15,19 @@ public abstract class Enchantment
     public static final Enchantment[] enchantmentsBookList;
 
     /** Converts environmental damage to armour damage */
-    public static final Enchantment protection = new EnchantmentProtection(0,
-            10, 0);
+    public static final Enchantment protection = new EnchantmentProtection(0, 10, 0);
 
     /** Protection against fire */
-    public static final Enchantment fireProtection = new EnchantmentProtection(
-            1, 5, 1);
+    public static final Enchantment fireProtection = new EnchantmentProtection(1, 5, 1);
 
     /** Less fall damage */
-    public static final Enchantment featherFalling = new EnchantmentProtection(
-            2, 5, 2);
+    public static final Enchantment featherFalling = new EnchantmentProtection(2, 5, 2);
 
     /** Protection against explosions */
-    public static final Enchantment blastProtection = new EnchantmentProtection(
-            3, 2, 3);
+    public static final Enchantment blastProtection = new EnchantmentProtection(3, 2, 3);
 
     /** Protection against projectile entities (e.g. arrows) */
-    public static final Enchantment projectileProtection = new EnchantmentProtection(
-            4, 5, 4);
+    public static final Enchantment projectileProtection = new EnchantmentProtection(4, 5, 4);
 
     /**
      * Decreases the rate of air loss underwater; increases time between damage
@@ -41,8 +36,7 @@ public abstract class Enchantment
     public static final Enchantment respiration = new EnchantmentOxygen(5, 2);
 
     /** Increases underwater mining rate */
-    public static final Enchantment aquaAffinity = new EnchantmentWaterWorker(
-            6, 2);
+    public static final Enchantment aquaAffinity = new EnchantmentWaterWorker(6, 2);
     public static final Enchantment thorns = new EnchantmentThorns(7, 1);
 
     /** Extra damage to mobs */
@@ -52,19 +46,16 @@ public abstract class Enchantment
     public static final Enchantment smite = new EnchantmentDamage(17, 5, 1);
 
     /** Extra damage to spiders, cave spiders and silverfish */
-    public static final Enchantment baneOfArthropods = new EnchantmentDamage(
-            18, 5, 2);
+    public static final Enchantment baneOfArthropods = new EnchantmentDamage(18, 5, 2);
 
     /** Knocks mob and players backwards upon hit */
     public static final Enchantment knockback = new EnchantmentKnockback(19, 5);
 
     /** Lights mobs on fire */
-    public static final Enchantment fireAspect = new EnchantmentFireAspect(20,
-            2);
+    public static final Enchantment fireAspect = new EnchantmentFireAspect(20, 2);
 
     /** Mobs have a chance to drop more loot */
-    public static final Enchantment looting = new EnchantmentLootBonus(21, 2,
-            EnumEnchantmentType.weapon);
+    public static final Enchantment looting = new EnchantmentLootBonus(21, 2, EnumEnchantmentType.weapon);
 
     /** Faster resource gathering while in use */
     public static final Enchantment efficiency = new EnchantmentDigging(32, 10);
@@ -78,12 +69,10 @@ public abstract class Enchantment
     /**
      * Sometimes, the tool's durability will not be spent when the tool is used
      */
-    public static final Enchantment unbreaking = new EnchantmentDurability(34,
-            5);
+    public static final Enchantment unbreaking = new EnchantmentDurability(34, 5);
 
     /** Can multiply the drop rate of items from blocks */
-    public static final Enchantment fortune = new EnchantmentLootBonus(35, 2,
-            EnumEnchantmentType.digger);
+    public static final Enchantment fortune = new EnchantmentLootBonus(35, 2, EnumEnchantmentType.digger);
 
     /** Power enchantment for bows, add's extra damage to arrows. */
     public static final Enchantment power = new EnchantmentArrowDamage(48, 10);
@@ -104,12 +93,9 @@ public abstract class Enchantment
      * Infinity enchantment for bows. The bow will not consume arrows anymore,
      * but will still required at least one arrow on inventory use the bow.
      */
-    public static final Enchantment infinity = new EnchantmentArrowInfinite(51,
-            1);
-    public static final Enchantment field_151370_z = new EnchantmentLootBonus(
-            61, 2, EnumEnchantmentType.fishing_rod);
-    public static final Enchantment field_151369_A = new EnchantmentFishingSpeed(
-            62, 2, EnumEnchantmentType.fishing_rod);
+    public static final Enchantment infinity = new EnchantmentArrowInfinite(51, 1);
+    public static final Enchantment field_151370_z = new EnchantmentLootBonus(61, 2, EnumEnchantmentType.fishing_rod);
+    public static final Enchantment field_151369_A = new EnchantmentFishingSpeed(62, 2, EnumEnchantmentType.fishing_rod);
     public final int effectId;
     private final int weight;
 
@@ -120,8 +106,7 @@ public abstract class Enchantment
     protected String name;
     private static final String __OBFID = "CL_00000105";
 
-    protected Enchantment(int par1, int par2,
-            EnumEnchantmentType par3EnumEnchantmentType)
+    protected Enchantment(int par1, int par2, EnumEnchantmentType par3EnumEnchantmentType)
     {
         this.effectId = par1;
         this.weight = par2;
@@ -189,8 +174,7 @@ public abstract class Enchantment
      * Calculates de (magic) damage done by the enchantment on a living entity
      * based on level and entity passed.
      */
-    public float calcModifierLiving(int par1,
-            EntityLivingBase par2EntityLivingBase)
+    public float calcModifierLiving(int par1, EntityLivingBase par2EntityLivingBase)
     {
         return 0.0F;
     }
@@ -228,8 +212,7 @@ public abstract class Enchantment
     public String getTranslatedName(int par1)
     {
         String var2 = StatCollector.translateToLocal(this.getName());
-        return var2 + " "
-                + StatCollector.translateToLocal("enchantment.level." + par1);
+        return var2 + " " + StatCollector.translateToLocal("enchantment.level." + par1);
     }
 
     public boolean canApply(ItemStack par1ItemStack)
@@ -237,13 +220,11 @@ public abstract class Enchantment
         return this.type.canEnchantItem(par1ItemStack.getItem());
     }
 
-    public void func_151368_a(EntityLivingBase p_151368_1_, Entity p_151368_2_,
-            int p_151368_3_)
+    public void func_151368_a(EntityLivingBase p_151368_1_, Entity p_151368_2_, int p_151368_3_)
     {
     }
 
-    public void func_151367_b(EntityLivingBase p_151367_1_, Entity p_151367_2_,
-            int p_151367_3_)
+    public void func_151367_b(EntityLivingBase p_151367_1_, Entity p_151367_2_, int p_151367_3_)
     {
     }
 

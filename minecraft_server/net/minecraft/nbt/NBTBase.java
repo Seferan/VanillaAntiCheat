@@ -6,9 +6,7 @@ import java.io.IOException;
 
 public abstract class NBTBase
 {
-    public static final String[] NBTTypes = new String[] {"END", "BYTE",
-            "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "BYTE[]", "STRING",
-            "LIST", "COMPOUND", "INT[]"};
+    public static final String[] NBTTypes = new String[] {"END", "BYTE", "SHORT", "INT", "LONG", "FLOAT", "DOUBLE", "BYTE[]", "STRING", "LIST", "COMPOUND", "INT[]"};
     private static final String __OBFID = "CL_00001229";
 
     /**

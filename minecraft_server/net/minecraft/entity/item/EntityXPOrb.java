@@ -33,8 +33,7 @@ public class EntityXPOrb extends Entity
     private int xpTargetColor;
     private static final String __OBFID = "CL_00001544";
 
-    public EntityXPOrb(World par1World, double par2, double par4, double par6,
-            int par8)
+    public EntityXPOrb(World par1World, double par2, double par4, double par6, int par8)
     {
         super(par1World);
         this.setSize(0.5F, 0.5F);
@@ -84,32 +83,22 @@ public class EntityXPOrb extends Entity
         this.prevPosZ = this.posZ;
         this.motionY -= 0.029999999329447746D;
 
-        if (this.worldObj.getBlock(MathHelper.floor_double(this.posX),
-                MathHelper.floor_double(this.posY),
-                MathHelper.floor_double(this.posZ)).getMaterial() == Material.field_151587_i)
+        if (this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)).getMaterial() == Material.field_151587_i)
         {
             this.motionY = 0.20000000298023224D;
-            this.motionX = (double)((this.rand.nextFloat() - this.rand
-                    .nextFloat()) * 0.2F);
-            this.motionZ = (double)((this.rand.nextFloat() - this.rand
-                    .nextFloat()) * 0.2F);
-            this.playSound("random.fizz", 0.4F,
-                    2.0F + this.rand.nextFloat() * 0.4F);
+            this.motionX = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            this.motionZ = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            this.playSound("random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
         }
 
-        this.func_145771_j(this.posX,
-                (this.boundingBox.minY + this.boundingBox.maxY) / 2.0D,
-                this.posZ);
+        this.func_145771_j(this.posX, (this.boundingBox.minY + this.boundingBox.maxY) / 2.0D, this.posZ);
         double var1 = 8.0D;
 
         if (this.xpTargetColor < this.xpColor - 20 + this.getEntityId() % 100)
         {
-            if (this.closestPlayer == null
-                    || this.closestPlayer.getDistanceSqToEntity(this) > var1
-                            * var1)
+            if (this.closestPlayer == null || this.closestPlayer.getDistanceSqToEntity(this) > var1 * var1)
             {
-                this.closestPlayer = this.worldObj.getClosestPlayerToEntity(
-                        this, var1);
+                this.closestPlayer = this.worldObj.getClosestPlayerToEntity(this, var1);
             }
 
             this.xpTargetColor = this.xpColor;
@@ -118,9 +107,7 @@ public class EntityXPOrb extends Entity
         if (this.closestPlayer != null)
         {
             double var3 = (this.closestPlayer.posX - this.posX) / var1;
-            double var5 = (this.closestPlayer.posY
-                    + (double)this.closestPlayer.getEyeHeight() - this.posY)
-                    / var1;
+            double var5 = (this.closestPlayer.posY + (double)this.closestPlayer.getEyeHeight() - this.posY) / var1;
             double var7 = (this.closestPlayer.posZ - this.posZ) / var1;
             double var9 = Math.sqrt(var3 * var3 + var5 * var5 + var7 * var7);
             double var11 = 1.0D - var9;
@@ -139,9 +126,7 @@ public class EntityXPOrb extends Entity
 
         if (this.onGround)
         {
-            var13 = this.worldObj.getBlock(MathHelper.floor_double(this.posX),
-                    MathHelper.floor_double(this.boundingBox.minY) - 1,
-                    MathHelper.floor_double(this.posZ)).slipperiness * 0.98F;
+            var13 = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)).slipperiness * 0.98F;
         }
 
         this.motionX *= (double)var13;
@@ -168,8 +153,7 @@ public class EntityXPOrb extends Entity
      */
     public boolean handleWaterMovement()
     {
-        return this.worldObj.handleMaterialAcceleration(this.boundingBox,
-                Material.field_151586_h, this);
+        return this.worldObj.handleMaterialAcceleration(this.boundingBox, Material.field_151586_h, this);
     }
 
     /**
@@ -234,11 +218,7 @@ public class EntityXPOrb extends Entity
             if (this.field_70532_c == 0 && par1EntityPlayer.xpCooldown == 0)
             {
                 par1EntityPlayer.xpCooldown = 2;
-                this.worldObj
-                        .playSoundAtEntity(par1EntityPlayer, "random.orb",
-                                0.1F,
-                                0.5F * ((this.rand.nextFloat() - this.rand
-                                        .nextFloat()) * 0.7F + 1.8F));
+                this.worldObj.playSoundAtEntity(par1EntityPlayer, "random.orb", 0.1F, 0.5F * ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.8F));
                 par1EntityPlayer.onItemPickup(this, 1);
                 par1EntityPlayer.addExperience(this.xpValue);
                 this.setDead();
@@ -260,10 +240,7 @@ public class EntityXPOrb extends Entity
      */
     public static int getXPSplit(int par0)
     {
-        return par0 >= 2477 ? 2477 : (par0 >= 1237 ? 1237 : (par0 >= 617 ? 617
-                : (par0 >= 307 ? 307 : (par0 >= 149 ? 149 : (par0 >= 73 ? 73
-                        : (par0 >= 37 ? 37 : (par0 >= 17 ? 17 : (par0 >= 7 ? 7
-                                : (par0 >= 3 ? 3 : 1)))))))));
+        return par0 >= 2477 ? 2477 : (par0 >= 1237 ? 1237 : (par0 >= 617 ? 617 : (par0 >= 307 ? 307 : (par0 >= 149 ? 149 : (par0 >= 73 ? 73 : (par0 >= 37 ? 37 : (par0 >= 17 ? 17 : (par0 >= 7 ? 7 : (par0 >= 3 ? 3 : 1)))))))));
     }
 
     /**

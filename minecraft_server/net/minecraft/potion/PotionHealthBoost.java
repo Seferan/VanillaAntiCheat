@@ -12,15 +12,11 @@ public class PotionHealthBoost extends Potion
         super(par1, par2, par3);
     }
 
-    public void removeAttributesModifiersFromEntity(
-            EntityLivingBase par1EntityLivingBase,
-            BaseAttributeMap par2BaseAttributeMap, int par3)
+    public void removeAttributesModifiersFromEntity(EntityLivingBase par1EntityLivingBase, BaseAttributeMap par2BaseAttributeMap, int par3)
     {
-        super.removeAttributesModifiersFromEntity(par1EntityLivingBase,
-                par2BaseAttributeMap, par3);
+        super.removeAttributesModifiersFromEntity(par1EntityLivingBase, par2BaseAttributeMap, par3);
 
-        if (par1EntityLivingBase.getHealth() > par1EntityLivingBase
-                .getMaxHealth())
+        if (par1EntityLivingBase.getHealth() > par1EntityLivingBase.getMaxHealth())
         {
             par1EntityLivingBase.setHealth(par1EntityLivingBase.getMaxHealth());
         }

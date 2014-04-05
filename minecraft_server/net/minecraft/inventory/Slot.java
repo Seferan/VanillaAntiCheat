@@ -66,8 +66,7 @@ public class Slot
     {
     }
 
-    public void onPickupFromSlot(EntityPlayer par1EntityPlayer,
-            ItemStack par2ItemStack)
+    public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
     {
         this.onSlotChanged();
     }

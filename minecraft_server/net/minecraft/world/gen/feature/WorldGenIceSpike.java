@@ -11,8 +11,7 @@ public class WorldGenIceSpike extends WorldGenerator
 {
     private static final String __OBFID = "CL_00000417";
 
-    public boolean generate(World par1World, Random par2Random, int par3,
-            int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         while (par1World.isAirBlock(par3, par4, par5) && par4 > 2)
         {
@@ -51,38 +50,22 @@ public class WorldGenIceSpike extends WorldGenerator
                     {
                         float var14 = (float)MathHelper.abs_int(var13) - 0.25F;
 
-                        if ((var11 == 0 && var13 == 0 || var12 * var12 + var14
-                                * var14 <= var9 * var9)
-                                && (var11 != -var10 && var11 != var10
-                                        && var13 != -var10 && var13 != var10 || par2Random
-                                        .nextFloat() <= 0.75F))
+                        if ((var11 == 0 && var13 == 0 || var12 * var12 + var14 * var14 <= var9 * var9) && (var11 != -var10 && var11 != var10 && var13 != -var10 && var13 != var10 || par2Random.nextFloat() <= 0.75F))
                         {
-                            Block var15 = par1World.getBlock(par3 + var11, par4
-                                    + var8, par5 + var13);
+                            Block var15 = par1World.getBlock(par3 + var11, par4 + var8, par5 + var13);
 
-                            if (var15.getMaterial() == Material.air
-                                    || var15 == Blocks.dirt
-                                    || var15 == Blocks.snow
-                                    || var15 == Blocks.ice)
+                            if (var15.getMaterial() == Material.air || var15 == Blocks.dirt || var15 == Blocks.snow || var15 == Blocks.ice)
                             {
-                                this.func_150515_a(par1World, par3 + var11,
-                                        par4 + var8, par5 + var13,
-                                        Blocks.packed_ice);
+                                this.func_150515_a(par1World, par3 + var11, par4 + var8, par5 + var13, Blocks.packed_ice);
                             }
 
                             if (var8 != 0 && var10 > 1)
                             {
-                                var15 = par1World.getBlock(par3 + var11, par4
-                                        - var8, par5 + var13);
+                                var15 = par1World.getBlock(par3 + var11, par4 - var8, par5 + var13);
 
-                                if (var15.getMaterial() == Material.air
-                                        || var15 == Blocks.dirt
-                                        || var15 == Blocks.snow
-                                        || var15 == Blocks.ice)
+                                if (var15.getMaterial() == Material.air || var15 == Blocks.dirt || var15 == Blocks.snow || var15 == Blocks.ice)
                                 {
-                                    this.func_150515_a(par1World, par3 + var11,
-                                            par4 - var8, par5 + var13,
-                                            Blocks.packed_ice);
+                                    this.func_150515_a(par1World, par3 + var11, par4 - var8, par5 + var13, Blocks.packed_ice);
                                 }
                             }
                         }
@@ -119,17 +102,11 @@ public class WorldGenIceSpike extends WorldGenerator
                     {
                         if (var11 > 50)
                         {
-                            Block var18 = par1World.getBlock(par3 + var16,
-                                    var11, par5 + var10);
+                            Block var18 = par1World.getBlock(par3 + var16, var11, par5 + var10);
 
-                            if (var18.getMaterial() == Material.air
-                                    || var18 == Blocks.dirt
-                                    || var18 == Blocks.snow
-                                    || var18 == Blocks.ice
-                                    || var18 == Blocks.packed_ice)
+                            if (var18.getMaterial() == Material.air || var18 == Blocks.dirt || var18 == Blocks.snow || var18 == Blocks.ice || var18 == Blocks.packed_ice)
                             {
-                                this.func_150515_a(par1World, par3 + var16,
-                                        var11, par5 + var10, Blocks.packed_ice);
+                                this.func_150515_a(par1World, par3 + var16, var11, par5 + var10, Blocks.packed_ice);
                                 --var11;
                                 --var17;
 

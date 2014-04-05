@@ -25,11 +25,9 @@ public class C15PacketClientSettings extends Packet
     {
         this.field_149530_a = p_148837_1_.readStringFromBuffer(7);
         this.field_149528_b = p_148837_1_.readByte();
-        this.field_149529_c = EntityPlayer.EnumChatVisibility
-                .func_151426_a(p_148837_1_.readByte());
+        this.field_149529_c = EntityPlayer.EnumChatVisibility.func_151426_a(p_148837_1_.readByte());
         this.field_149526_d = p_148837_1_.readBoolean();
-        this.field_149527_e = EnumDifficulty.func_151523_a(p_148837_1_
-                .readByte());
+        this.field_149527_e = EnumDifficulty.func_151523_a(p_148837_1_.readByte());
         this.field_149525_f = p_148837_1_.readBoolean();
     }
 
@@ -87,14 +85,7 @@ public class C15PacketClientSettings extends Packet
      */
     public String serialize()
     {
-        return String
-                .format("lang=\'%s\', view=%d, chat=%s, col=%b, difficulty=%s, cape=%b",
-                        new Object[] {this.field_149530_a,
-                                Integer.valueOf(this.field_149528_b),
-                                this.field_149529_c,
-                                Boolean.valueOf(this.field_149526_d),
-                                this.field_149527_e,
-                                Boolean.valueOf(this.field_149525_f)});
+        return String.format("lang=\'%s\', view=%d, chat=%s, col=%b, difficulty=%s, cape=%b", new Object[] {this.field_149530_a, Integer.valueOf(this.field_149528_b), this.field_149529_c, Boolean.valueOf(this.field_149526_d), this.field_149527_e, Boolean.valueOf(this.field_149525_f)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

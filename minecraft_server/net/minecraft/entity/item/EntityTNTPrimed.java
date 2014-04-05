@@ -20,8 +20,7 @@ public class EntityTNTPrimed extends Entity
         this.yOffset = this.height / 2.0F;
     }
 
-    public EntityTNTPrimed(World par1World, double par2, double par4,
-            double par6, EntityLivingBase par8EntityLivingBase)
+    public EntityTNTPrimed(World par1World, double par2, double par4, double par6, EntityLivingBase par8EntityLivingBase)
     {
         this(par1World);
         this.setPosition(par2, par4, par6);
@@ -90,16 +89,14 @@ public class EntityTNTPrimed extends Entity
         }
         else
         {
-            this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D,
-                    this.posZ, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
         }
     }
 
     private void explode()
     {
         float var1 = 4.0F;
-        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ,
-                var1, true);
+        this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, var1, true);
     }
 
     /**

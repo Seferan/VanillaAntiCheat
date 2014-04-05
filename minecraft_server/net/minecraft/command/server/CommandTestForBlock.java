@@ -39,26 +39,21 @@ public class CommandTestForBlock extends CommandBase
         return "commands.testforblock.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length >= 4)
         {
             int var3 = par1ICommandSender.getCommandSenderPosition().posX;
             int var4 = par1ICommandSender.getCommandSenderPosition().posY;
             int var5 = par1ICommandSender.getCommandSenderPosition().posZ;
-            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender,
-                    (double)var3, par2ArrayOfStr[0]));
-            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender,
-                    (double)var4, par2ArrayOfStr[1]));
-            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender,
-                    (double)var5, par2ArrayOfStr[2]));
+            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var3, par2ArrayOfStr[0]));
+            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var4, par2ArrayOfStr[1]));
+            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var5, par2ArrayOfStr[2]));
             Block var6 = Block.getBlockFromName(par2ArrayOfStr[3]);
 
             if (var6 == null)
             {
-                throw new NumberInvalidException("commands.setblock.notFound",
-                        new Object[] {par2ArrayOfStr[3]});
+                throw new NumberInvalidException("commands.setblock.notFound", new Object[] {par2ArrayOfStr[3]});
             }
             else
             {
@@ -66,16 +61,14 @@ public class CommandTestForBlock extends CommandBase
 
                 if (par2ArrayOfStr.length >= 5)
                 {
-                    var7 = parseIntBounded(par1ICommandSender,
-                            par2ArrayOfStr[4], -1, 15);
+                    var7 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[4], -1, 15);
                 }
 
                 World var8 = par1ICommandSender.getEntityWorld();
 
                 if (!var8.blockExists(var3, var4, var5))
                 {
-                    throw new CommandException(
-                            "commands.testforblock.outOfWorld", new Object[0]);
+                    throw new CommandException("commands.testforblock.outOfWorld", new Object[0]);
                 }
                 else
                 {
@@ -84,25 +77,20 @@ public class CommandTestForBlock extends CommandBase
 
                     if (par2ArrayOfStr.length >= 6 && var6.hasTileEntity())
                     {
-                        String var11 = func_147178_a(par1ICommandSender,
-                                par2ArrayOfStr, 5).getUnformattedText();
+                        String var11 = func_147178_a(par1ICommandSender, par2ArrayOfStr, 5).getUnformattedText();
 
                         try
                         {
                             NBTBase var12 = JsonToNBT.func_150315_a(var11);
 
-                            if (!(var12 instanceof NBTTagCompound)) { throw new CommandException(
-                                    "commands.setblock.tagError",
-                                    new Object[] {"Not a valid tag"}); }
+                            if (!(var12 instanceof NBTTagCompound)) { throw new CommandException("commands.setblock.tagError", new Object[] {"Not a valid tag"}); }
 
                             var9 = (NBTTagCompound)var12;
                             var10 = true;
                         }
                         catch (NBTException var14)
                         {
-                            throw new CommandException(
-                                    "commands.setblock.tagError",
-                                    new Object[] {var14.getMessage()});
+                            throw new CommandException("commands.setblock.tagError", new Object[] {var14.getMessage()});
                         }
                     }
 
@@ -110,13 +98,7 @@ public class CommandTestForBlock extends CommandBase
 
                     if (var15 != var6)
                     {
-                        throw new CommandException(
-                                "commands.testforblock.failed.tile",
-                                new Object[] {Integer.valueOf(var3),
-                                        Integer.valueOf(var4),
-                                        Integer.valueOf(var5),
-                                        var15.getLocalizedName(),
-                                        var6.getLocalizedName()});
+                        throw new CommandException("commands.testforblock.failed.tile", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5), var15.getLocalizedName(), var6.getLocalizedName()});
                     }
                     else
                     {
@@ -124,50 +106,29 @@ public class CommandTestForBlock extends CommandBase
                         {
                             int var16 = var8.getBlockMetadata(var3, var4, var5);
 
-                            if (var16 != var7) { throw new CommandException(
-                                    "commands.testforblock.failed.data",
-                                    new Object[] {Integer.valueOf(var3),
-                                            Integer.valueOf(var4),
-                                            Integer.valueOf(var5),
-                                            Integer.valueOf(var16),
-                                            Integer.valueOf(var7)}); }
+                            if (var16 != var7) { throw new CommandException("commands.testforblock.failed.data", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5), Integer.valueOf(var16), Integer.valueOf(var7)}); }
                         }
 
                         if (var10)
                         {
-                            TileEntity var17 = var8.getTileEntity(var3, var4,
-                                    var5);
+                            TileEntity var17 = var8.getTileEntity(var3, var4, var5);
 
-                            if (var17 == null) { throw new CommandException(
-                                    "commands.testforblock.failed.tileEntity",
-                                    new Object[] {Integer.valueOf(var3),
-                                            Integer.valueOf(var4),
-                                            Integer.valueOf(var5)}); }
+                            if (var17 == null) { throw new CommandException("commands.testforblock.failed.tileEntity", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5)}); }
 
                             NBTTagCompound var13 = new NBTTagCompound();
                             var17.writeToNBT(var13);
 
-                            if (!this.func_147181_a(var9, var13)) { throw new CommandException(
-                                    "commands.testforblock.failed.nbt",
-                                    new Object[] {Integer.valueOf(var3),
-                                            Integer.valueOf(var4),
-                                            Integer.valueOf(var5)}); }
+                            if (!this.func_147181_a(var9, var13)) { throw new CommandException("commands.testforblock.failed.nbt", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5)}); }
                         }
 
-                        par1ICommandSender
-                                .addChatMessage(new ChatComponentTranslation(
-                                        "commands.testforblock.success",
-                                        new Object[] {Integer.valueOf(var3),
-                                                Integer.valueOf(var4),
-                                                Integer.valueOf(var5)}));
+                        par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.testforblock.success", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5)}));
                     }
                 }
             }
         }
         else
         {
-            throw new WrongUsageException("commands.testforblock.usage",
-                    new Object[0]);
+            throw new WrongUsageException("commands.testforblock.usage", new Object[0]);
         }
     }
 
@@ -217,10 +178,8 @@ public class CommandTestForBlock extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 4 ? getListOfStringsFromIterableMatchingLastWord(
-                par2ArrayOfStr, Block.blockRegistry.getKeys()) : null;
+        return par2ArrayOfStr.length == 4 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, Block.blockRegistry.getKeys()) : null;
     }
 }

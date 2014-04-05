@@ -15,9 +15,7 @@ public class TileEntityCommandBlock extends TileEntity
 
         public ChunkCoordinates getCommandSenderPosition()
         {
-            return new ChunkCoordinates(TileEntityCommandBlock.this.xCoord,
-                    TileEntityCommandBlock.this.yCoord,
-                    TileEntityCommandBlock.this.zCoord);
+            return new ChunkCoordinates(TileEntityCommandBlock.this.xCoord, TileEntityCommandBlock.this.yCoord, TileEntityCommandBlock.this.zCoord);
         }
 
         public World getEntityWorld()
@@ -33,10 +31,7 @@ public class TileEntityCommandBlock extends TileEntity
 
         public void func_145756_e()
         {
-            TileEntityCommandBlock.this.getWorldObj().markBlockForUpdate(
-                    TileEntityCommandBlock.this.xCoord,
-                    TileEntityCommandBlock.this.yCoord,
-                    TileEntityCommandBlock.this.zCoord);
+            TileEntityCommandBlock.this.getWorldObj().markBlockForUpdate(TileEntityCommandBlock.this.xCoord, TileEntityCommandBlock.this.yCoord, TileEntityCommandBlock.this.zCoord);
         }
     };
     private static final String __OBFID = "CL_00000347";
@@ -60,8 +55,7 @@ public class TileEntityCommandBlock extends TileEntity
     {
         NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord,
-                this.zCoord, 2, var1);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 2, var1);
     }
 
     public CommandBlockLogic func_145993_a()

@@ -21,8 +21,7 @@ public class S24PacketBlockAction extends Packet
     {
     }
 
-    public S24PacketBlockAction(int p_i45176_1_, int p_i45176_2_,
-            int p_i45176_3_, Block p_i45176_4_, int p_i45176_5_, int p_i45176_6_)
+    public S24PacketBlockAction(int p_i45176_1_, int p_i45176_2_, int p_i45176_3_, Block p_i45176_4_, int p_i45176_5_, int p_i45176_6_)
     {
         this.field_148876_a = p_i45176_1_;
         this.field_148874_b = p_i45176_2_;
@@ -42,8 +41,7 @@ public class S24PacketBlockAction extends Packet
         this.field_148875_c = p_148837_1_.readInt();
         this.field_148872_d = p_148837_1_.readUnsignedByte();
         this.field_148873_e = p_148837_1_.readUnsignedByte();
-        this.field_148871_f = Block.getBlockById(p_148837_1_
-                .readVarIntFromBuffer() & 4095);
+        this.field_148871_f = Block.getBlockById(p_148837_1_.readVarIntFromBuffer() & 4095);
     }
 
     /**
@@ -56,8 +54,7 @@ public class S24PacketBlockAction extends Packet
         p_148840_1_.writeInt(this.field_148875_c);
         p_148840_1_.writeByte(this.field_148872_d);
         p_148840_1_.writeByte(this.field_148873_e);
-        p_148840_1_.writeVarIntToBuffer(Block
-                .getIdFromBlock(this.field_148871_f) & 4095);
+        p_148840_1_.writeVarIntToBuffer(Block.getIdFromBlock(this.field_148871_f) & 4095);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148870_1_)

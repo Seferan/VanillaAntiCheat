@@ -7,8 +7,7 @@ import net.minecraft.world.World;
 
 public class BlockDirt extends Block
 {
-    public static final String[] field_150009_a = new String[] {"default",
-            "default", "podzol"};
+    public static final String[] field_150009_a = new String[] {"default", "default", "podzol"};
     private static final String __OBFID = "CL_00000228";
 
     protected BlockDirt()
@@ -45,11 +44,9 @@ public class BlockDirt extends Block
     /**
      * Get the block's damage value (for use with pick block).
      */
-    public int getDamageValue(World p_149643_1_, int p_149643_2_,
-            int p_149643_3_, int p_149643_4_)
+    public int getDamageValue(World p_149643_1_, int p_149643_2_, int p_149643_3_, int p_149643_4_)
     {
-        int var5 = p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_,
-                p_149643_4_);
+        int var5 = p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_, p_149643_4_);
 
         if (var5 == 1)
         {

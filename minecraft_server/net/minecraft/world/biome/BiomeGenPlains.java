@@ -15,18 +15,15 @@ public class BiomeGenPlains extends BiomeGenBase
         super(par1);
         this.setTemperatureRainfall(0.8F, 0.4F);
         this.func_150570_a(field_150593_e);
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(
-                EntityHorse.class, 5, 2, 6));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 5, 2, 6));
         this.theBiomeDecorator.treesPerChunk = -999;
         this.theBiomeDecorator.flowersPerChunk = 4;
         this.theBiomeDecorator.grassPerChunk = 10;
     }
 
-    public String func_150572_a(Random p_150572_1_, int p_150572_2_,
-            int p_150572_3_, int p_150572_4_)
+    public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
     {
-        double var5 = field_150606_ad.func_151601_a(
-                (double)p_150572_2_ / 200.0D, (double)p_150572_4_ / 200.0D);
+        double var5 = field_150606_ad.func_151601_a((double)p_150572_2_ / 200.0D, (double)p_150572_4_ / 200.0D);
         int var7;
 
         if (var5 < -0.8D)
@@ -37,9 +34,7 @@ public class BiomeGenPlains extends BiomeGenBase
         else if (p_150572_1_.nextInt(3) > 0)
         {
             var7 = p_150572_1_.nextInt(3);
-            return var7 == 0 ? BlockFlower.field_149859_a[0]
-                    : (var7 == 1 ? BlockFlower.field_149859_a[3]
-                            : BlockFlower.field_149859_a[8]);
+            return var7 == 0 ? BlockFlower.field_149859_a[0] : (var7 == 1 ? BlockFlower.field_149859_a[3] : BlockFlower.field_149859_a[8]);
         }
         else
         {
@@ -49,8 +44,7 @@ public class BiomeGenPlains extends BiomeGenBase
 
     public void decorate(World par1World, Random par2Random, int par3, int par4)
     {
-        double var5 = field_150606_ad.func_151601_a(
-                (double)(par3 + 8) / 200.0D, (double)(par4 + 8) / 200.0D);
+        double var5 = field_150606_ad.func_151601_a((double)(par3 + 8) / 200.0D, (double)(par4 + 8) / 200.0D);
         int var7;
         int var8;
         int var9;
@@ -71,10 +65,8 @@ public class BiomeGenPlains extends BiomeGenBase
             {
                 var8 = par3 + par2Random.nextInt(16) + 8;
                 var9 = par4 + par2Random.nextInt(16) + 8;
-                var10 = par2Random
-                        .nextInt(par1World.getHeightValue(var8, var9) + 32);
-                field_150610_ae.generate(par1World, par2Random, var8, var10,
-                        var9);
+                var10 = par2Random.nextInt(par1World.getHeightValue(var8, var9) + 32);
+                field_150610_ae.generate(par1World, par2Random, var8, var10, var9);
             }
         }
 
@@ -86,10 +78,8 @@ public class BiomeGenPlains extends BiomeGenBase
             {
                 var8 = par3 + par2Random.nextInt(16) + 8;
                 var9 = par4 + par2Random.nextInt(16) + 8;
-                var10 = par2Random
-                        .nextInt(par1World.getHeightValue(var8, var9) + 32);
-                field_150610_ae.generate(par1World, par2Random, var8, var10,
-                        var9);
+                var10 = par2Random.nextInt(par1World.getHeightValue(var8, var9) + 32);
+                field_150610_ae.generate(par1World, par2Random, var8, var10, var9);
             }
         }
 

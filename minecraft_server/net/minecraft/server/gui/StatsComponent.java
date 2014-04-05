@@ -12,8 +12,7 @@ import net.minecraft.server.MinecraftServer;
 
 public class StatsComponent extends JComponent
 {
-    private static final DecimalFormat field_120040_a = new DecimalFormat(
-            "########0.000");
+    private static final DecimalFormat field_120040_a = new DecimalFormat("########0.000");
     private int[] field_120038_b = new int[256];
     private int field_120039_c;
     private String[] field_120036_d = new String[11];
@@ -40,17 +39,10 @@ public class StatsComponent extends JComponent
 
     private void func_120034_a()
     {
-        long var1 = Runtime.getRuntime().totalMemory()
-                - Runtime.getRuntime().freeMemory();
+        long var1 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         System.gc();
-        this.field_120036_d[0] = "Memory use: " + var1 / 1024L / 1024L
-                + " mb (" + Runtime.getRuntime().freeMemory() * 100L
-                / Runtime.getRuntime().maxMemory() + "% free)";
-        this.field_120036_d[1] = "Avg tick: "
-                + field_120040_a
-                        .format(this
-                                .func_120035_a(this.field_120037_e.tickTimeArray) * 1.0E-6D)
-                + " ms";
+        this.field_120036_d[0] = "Memory use: " + var1 / 1024L / 1024L + " mb (" + Runtime.getRuntime().freeMemory() * 100L / Runtime.getRuntime().maxMemory() + "% free)";
+        this.field_120036_d[1] = "Avg tick: " + field_120040_a.format(this.func_120035_a(this.field_120037_e.tickTimeArray) * 1.0E-6D) + " ms";
         this.repaint();
     }
 

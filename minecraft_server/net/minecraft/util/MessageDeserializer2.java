@@ -12,8 +12,7 @@ public class MessageDeserializer2 extends ByteToMessageDecoder
 {
     private static final String __OBFID = "CL_00001255";
 
-    protected void decode(ChannelHandlerContext p_decode_1_,
-            ByteBuf p_decode_2_, List p_decode_3_)
+    protected void decode(ChannelHandlerContext p_decode_1_, ByteBuf p_decode_2_, List p_decode_3_)
     {
         p_decode_2_.markReaderIndex();
         byte[] var4 = new byte[3];
@@ -30,8 +29,7 @@ public class MessageDeserializer2 extends ByteToMessageDecoder
 
             if (var4[var5] >= 0)
             {
-                int var6 = (new PacketBuffer(Unpooled.wrappedBuffer(var4)))
-                        .readVarIntFromBuffer();
+                int var6 = (new PacketBuffer(Unpooled.wrappedBuffer(var4))).readVarIntFromBuffer();
 
                 if (p_decode_2_.readableBytes() < var6)
                 {

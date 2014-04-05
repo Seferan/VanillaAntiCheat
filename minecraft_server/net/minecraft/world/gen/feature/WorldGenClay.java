@@ -20,8 +20,7 @@ public class WorldGenClay extends WorldGenerator
         this.numberOfBlocks = par1;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3,
-            int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         if (par1World.getBlock(par3, par4, par5).getMaterial() != Material.field_151586_h)
         {
@@ -47,8 +46,7 @@ public class WorldGenClay extends WorldGenerator
 
                             if (var13 == Blocks.dirt || var13 == Blocks.clay)
                             {
-                                par1World.setBlock(var8, var12, var9,
-                                        this.field_150546_a, 0, 2);
+                                par1World.setBlock(var8, var12, var9, this.field_150546_a, 0, 2);
                             }
                         }
                     }

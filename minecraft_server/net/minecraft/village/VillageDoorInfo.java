@@ -12,8 +12,7 @@ public class VillageDoorInfo
     private int doorOpeningRestrictionCounter;
     private static final String __OBFID = "CL_00001630";
 
-    public VillageDoorInfo(int par1, int par2, int par3, int par4, int par5,
-            int par6)
+    public VillageDoorInfo(int par1, int par2, int par3, int par4, int par5, int par6)
     {
         this.posX = par1;
         this.posY = par2;

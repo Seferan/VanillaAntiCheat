@@ -84,8 +84,7 @@ public class NBTTagIntArray extends NBTBase
 
     public boolean equals(Object par1Obj)
     {
-        return super.equals(par1Obj) ? Arrays.equals(this.intArray,
-                ((NBTTagIntArray)par1Obj).intArray) : false;
+        return super.equals(par1Obj) ? Arrays.equals(this.intArray, ((NBTTagIntArray)par1Obj).intArray) : false;
     }
 
     public int hashCode()

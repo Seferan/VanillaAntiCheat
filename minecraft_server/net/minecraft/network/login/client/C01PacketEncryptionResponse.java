@@ -45,8 +45,7 @@ public class C01PacketEncryptionResponse extends Packet
 
     public byte[] func_149299_b(PrivateKey p_149299_1_)
     {
-        return p_149299_1_ == null ? this.field_149301_b : CryptManager
-                .decryptData(p_149299_1_, this.field_149301_b);
+        return p_149299_1_ == null ? this.field_149301_b : CryptManager.decryptData(p_149299_1_, this.field_149301_b);
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

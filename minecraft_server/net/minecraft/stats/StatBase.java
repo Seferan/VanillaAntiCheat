@@ -20,14 +20,12 @@ public class StatBase
     private final IStatType type;
     private final IScoreObjectiveCriteria field_150957_c;
     private Class field_150956_d;
-    private static NumberFormat numberFormat = NumberFormat
-            .getIntegerInstance(Locale.US);
+    private static NumberFormat numberFormat = NumberFormat.getIntegerInstance(Locale.US);
     public static IStatType simpleStatType = new IStatType()
     {
         private static final String __OBFID = "CL_00001473";
     };
-    private static DecimalFormat decimalFormat = new DecimalFormat(
-            "########0.00");
+    private static DecimalFormat decimalFormat = new DecimalFormat("########0.00");
     public static IStatType timeStatType = new IStatType()
     {
         private static final String __OBFID = "CL_00001474";
@@ -42,15 +40,13 @@ public class StatBase
     };
     private static final String __OBFID = "CL_00001472";
 
-    public StatBase(String p_i45307_1_, IChatComponent p_i45307_2_,
-            IStatType p_i45307_3_)
+    public StatBase(String p_i45307_1_, IChatComponent p_i45307_2_, IStatType p_i45307_3_)
     {
         this.statId = p_i45307_1_;
         this.statName = p_i45307_2_;
         this.type = p_i45307_3_;
         this.field_150957_c = new ObjectiveStat(this);
-        IScoreObjectiveCriteria.field_96643_a.put(
-                this.field_150957_c.func_96636_a(), this.field_150957_c);
+        IScoreObjectiveCriteria.field_96643_a.put(this.field_150957_c.func_96636_a(), this.field_150957_c);
     }
 
     public StatBase(String p_i45308_1_, IChatComponent p_i45308_2_)
@@ -75,11 +71,7 @@ public class StatBase
     {
         if (StatList.oneShotStats.containsKey(this.statId))
         {
-            throw new RuntimeException(
-                    "Duplicate stat id: \""
-                            + ((StatBase)StatList.oneShotStats.get(this.statId)).statName
-                            + "\" and \"" + this.statName + "\" at id "
-                            + this.statId);
+            throw new RuntimeException("Duplicate stat id: \"" + ((StatBase)StatList.oneShotStats.get(this.statId)).statName + "\" and \"" + this.statName + "\" at id " + this.statId);
         }
         else
         {
@@ -98,17 +90,14 @@ public class StatBase
     {
         IChatComponent var1 = this.statName.createCopy();
         var1.getChatStyle().setColor(EnumChatFormatting.GRAY);
-        var1.getChatStyle().setChatHoverEvent(
-                new HoverEvent(HoverEvent.Action.SHOW_ACHIEVEMENT,
-                        new ChatComponentText(this.statId)));
+        var1.getChatStyle().setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ACHIEVEMENT, new ChatComponentText(this.statId)));
         return var1;
     }
 
     public IChatComponent func_150955_j()
     {
         IChatComponent var1 = this.func_150951_e();
-        IChatComponent var2 = (new ChatComponentText("[")).appendSibling(var1)
-                .appendText("]");
+        IChatComponent var2 = (new ChatComponentText("[")).appendSibling(var1).appendText("]");
         var2.setChatStyle(var1.getChatStyle());
         return var2;
     }
@@ -137,10 +126,7 @@ public class StatBase
 
     public String toString()
     {
-        return "Stat{id=" + this.statId + ", nameId=" + this.statName
-                + ", awardLocallyOnly=" + this.isIndependent + ", formatter="
-                + this.type + ", objectiveCriteria=" + this.field_150957_c
-                + '}';
+        return "Stat{id=" + this.statId + ", nameId=" + this.statName + ", awardLocallyOnly=" + this.isIndependent + ", formatter=" + this.type + ", objectiveCriteria=" + this.field_150957_c + '}';
     }
 
     public IScoreObjectiveCriteria func_150952_k()

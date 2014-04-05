@@ -53,8 +53,7 @@ public class S14PacketEntity extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d",
-                new Object[] {Integer.valueOf(this.field_149074_a)});
+        return String.format("id=%d", new Object[] {Integer.valueOf(this.field_149074_a)});
     }
 
     public String toString()
@@ -76,8 +75,7 @@ public class S14PacketEntity extends Packet
             this.field_149069_g = true;
         }
 
-        public S16PacketEntityLook(int p_i45205_1_, byte p_i45205_2_,
-                byte p_i45205_3_)
+        public S16PacketEntityLook(int p_i45205_1_, byte p_i45205_2_, byte p_i45205_3_)
         {
             super(p_i45205_1_);
             this.field_149071_e = p_i45205_2_;
@@ -92,8 +90,7 @@ public class S14PacketEntity extends Packet
             this.field_149068_f = p_148837_1_.readByte();
         }
 
-        public void writePacketData(PacketBuffer p_148840_1_)
-                throws IOException
+        public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
             super.writePacketData(p_148840_1_);
             p_148840_1_.writeByte(this.field_149071_e);
@@ -102,10 +99,7 @@ public class S14PacketEntity extends Packet
 
         public String serialize()
         {
-            return super.serialize()
-                    + String.format(", yRot=%d, xRot=%d",
-                            new Object[] {Byte.valueOf(this.field_149071_e),
-                                    Byte.valueOf(this.field_149068_f)});
+            return super.serialize() + String.format(", yRot=%d, xRot=%d", new Object[] {Byte.valueOf(this.field_149071_e), Byte.valueOf(this.field_149068_f)});
         }
 
         public void func_148833_a(INetHandler p_148833_1_)
@@ -122,8 +116,7 @@ public class S14PacketEntity extends Packet
         {
         }
 
-        public S15PacketEntityRelMove(int p_i45203_1_, byte p_i45203_2_,
-                byte p_i45203_3_, byte p_i45203_4_)
+        public S15PacketEntityRelMove(int p_i45203_1_, byte p_i45203_2_, byte p_i45203_3_, byte p_i45203_4_)
         {
             super(p_i45203_1_);
             this.field_149072_b = p_i45203_2_;
@@ -139,8 +132,7 @@ public class S14PacketEntity extends Packet
             this.field_149070_d = p_148837_1_.readByte();
         }
 
-        public void writePacketData(PacketBuffer p_148840_1_)
-                throws IOException
+        public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
             super.writePacketData(p_148840_1_);
             p_148840_1_.writeByte(this.field_149072_b);
@@ -150,12 +142,7 @@ public class S14PacketEntity extends Packet
 
         public String serialize()
         {
-            return super.serialize()
-                    + String.format(
-                            ", xa=%d, ya=%d, za=%d",
-                            new Object[] {Byte.valueOf(this.field_149072_b),
-                                    Byte.valueOf(this.field_149073_c),
-                                    Byte.valueOf(this.field_149070_d)});
+            return super.serialize() + String.format(", xa=%d, ya=%d, za=%d", new Object[] {Byte.valueOf(this.field_149072_b), Byte.valueOf(this.field_149073_c), Byte.valueOf(this.field_149070_d)});
         }
 
         public void func_148833_a(INetHandler p_148833_1_)
@@ -173,9 +160,7 @@ public class S14PacketEntity extends Packet
             this.field_149069_g = true;
         }
 
-        public S17PacketEntityLookMove(int p_i45204_1_, byte p_i45204_2_,
-                byte p_i45204_3_, byte p_i45204_4_, byte p_i45204_5_,
-                byte p_i45204_6_)
+        public S17PacketEntityLookMove(int p_i45204_1_, byte p_i45204_2_, byte p_i45204_3_, byte p_i45204_4_, byte p_i45204_5_, byte p_i45204_6_)
         {
             super(p_i45204_1_);
             this.field_149072_b = p_i45204_2_;
@@ -196,8 +181,7 @@ public class S14PacketEntity extends Packet
             this.field_149068_f = p_148837_1_.readByte();
         }
 
-        public void writePacketData(PacketBuffer p_148840_1_)
-                throws IOException
+        public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
             super.writePacketData(p_148840_1_);
             p_148840_1_.writeByte(this.field_149072_b);
@@ -209,14 +193,7 @@ public class S14PacketEntity extends Packet
 
         public String serialize()
         {
-            return super.serialize()
-                    + String.format(
-                            ", xa=%d, ya=%d, za=%d, yRot=%d, xRot=%d",
-                            new Object[] {Byte.valueOf(this.field_149072_b),
-                                    Byte.valueOf(this.field_149073_c),
-                                    Byte.valueOf(this.field_149070_d),
-                                    Byte.valueOf(this.field_149071_e),
-                                    Byte.valueOf(this.field_149068_f)});
+            return super.serialize() + String.format(", xa=%d, ya=%d, za=%d, yRot=%d, xRot=%d", new Object[] {Byte.valueOf(this.field_149072_b), Byte.valueOf(this.field_149073_c), Byte.valueOf(this.field_149070_d), Byte.valueOf(this.field_149071_e), Byte.valueOf(this.field_149068_f)});
         }
 
         public void func_148833_a(INetHandler p_148833_1_)

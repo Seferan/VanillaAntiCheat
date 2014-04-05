@@ -52,10 +52,7 @@ public class S19PacketEntityHeadLook extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "id=%d, rot=%d",
-                new Object[] {Integer.valueOf(this.field_149384_a),
-                        Byte.valueOf(this.field_149383_b)});
+        return String.format("id=%d, rot=%d", new Object[] {Integer.valueOf(this.field_149384_a), Byte.valueOf(this.field_149383_b)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

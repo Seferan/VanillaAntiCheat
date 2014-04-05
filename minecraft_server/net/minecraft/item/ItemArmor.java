@@ -20,30 +20,20 @@ public class ItemArmor extends Item
 {
     /** Holds the 'base' maxDamage that each armorType have. */
     private static final int[] maxDamageArray = new int[] {11, 16, 15, 13};
-    private static final String[] CLOTH_OVERLAY_NAMES = new String[] {
-            "leather_helmet_overlay", "leather_chestplate_overlay",
-            "leather_leggings_overlay", "leather_boots_overlay"};
-    public static final String[] EMPTY_SLOT_NAMES = new String[] {
-            "empty_armor_slot_helmet", "empty_armor_slot_chestplate",
-            "empty_armor_slot_leggings", "empty_armor_slot_boots"};
+    private static final String[] CLOTH_OVERLAY_NAMES = new String[] {"leather_helmet_overlay", "leather_chestplate_overlay", "leather_leggings_overlay", "leather_boots_overlay"};
+    public static final String[] EMPTY_SLOT_NAMES = new String[] {"empty_armor_slot_helmet", "empty_armor_slot_chestplate", "empty_armor_slot_leggings", "empty_armor_slot_boots"};
     private static final IBehaviorDispenseItem dispenserBehavior = new BehaviorDefaultDispenseItem()
     {
         private static final String __OBFID = "CL_00001767";
 
-        protected ItemStack dispenseStack(IBlockSource par1IBlockSource,
-                ItemStack par2ItemStack)
+        protected ItemStack dispenseStack(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
         {
-            EnumFacing var3 = BlockDispenser.func_149937_b(par1IBlockSource
-                    .getBlockMetadata());
+            EnumFacing var3 = BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata());
             int var4 = par1IBlockSource.getXInt() + var3.getFrontOffsetX();
             int var5 = par1IBlockSource.getYInt() + var3.getFrontOffsetY();
             int var6 = par1IBlockSource.getZInt() + var3.getFrontOffsetZ();
-            AxisAlignedBB var7 = AxisAlignedBB.getAABBPool().getAABB(
-                    (double)var4, (double)var5, (double)var6,
-                    (double)(var4 + 1), (double)(var5 + 1), (double)(var6 + 1));
-            List var8 = par1IBlockSource.getWorld().selectEntitiesWithinAABB(
-                    EntityLivingBase.class, var7,
-                    new IEntitySelector.ArmoredMob(par2ItemStack));
+            AxisAlignedBB var7 = AxisAlignedBB.getAABBPool().getAABB((double)var4, (double)var5, (double)var6, (double)(var4 + 1), (double)(var5 + 1), (double)(var6 + 1));
+            List var8 = par1IBlockSource.getWorld().selectEntitiesWithinAABB(EntityLivingBase.class, var7, new IEntitySelector.ArmoredMob(par2ItemStack));
 
             if (var8.size() > 0)
             {
@@ -88,14 +78,12 @@ public class ItemArmor extends Item
     private final ItemArmor.ArmorMaterial material;
     private static final String __OBFID = "CL_00001766";
 
-    public ItemArmor(ItemArmor.ArmorMaterial p_i45325_1_, int p_i45325_2_,
-            int p_i45325_3_)
+    public ItemArmor(ItemArmor.ArmorMaterial p_i45325_1_, int p_i45325_2_, int p_i45325_3_)
     {
         this.material = p_i45325_1_;
         this.armorType = p_i45325_3_;
         this.renderIndex = p_i45325_2_;
-        this.damageReduceAmount = p_i45325_1_
-                .getDamageReductionAmount(p_i45325_3_);
+        this.damageReduceAmount = p_i45325_1_.getDamageReductionAmount(p_i45325_3_);
         this.setMaxDamage(p_i45325_1_.getDurability(p_i45325_3_));
         this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.tabCombat);
@@ -124,12 +112,7 @@ public class ItemArmor extends Item
      */
     public boolean hasColor(ItemStack par1ItemStack)
     {
-        return this.material != ItemArmor.ArmorMaterial.CLOTH ? false
-                : (!par1ItemStack.hasTagCompound() ? false : (!par1ItemStack
-                        .getTagCompound().func_150297_b("display", 10) ? false
-                        : par1ItemStack.getTagCompound()
-                                .getCompoundTag("display")
-                                .func_150297_b("color", 3)));
+        return this.material != ItemArmor.ArmorMaterial.CLOTH ? false : (!par1ItemStack.hasTagCompound() ? false : (!par1ItemStack.getTagCompound().func_150297_b("display", 10) ? false : par1ItemStack.getTagCompound().getCompoundTag("display").func_150297_b("color", 3)));
     }
 
     /**
@@ -152,9 +135,7 @@ public class ItemArmor extends Item
             else
             {
                 NBTTagCompound var3 = var2.getCompoundTag("display");
-                return var3 == null ? 10511680 : (var3
-                        .func_150297_b("color", 3) ? var3.getInteger("color")
-                        : 10511680);
+                return var3 == null ? 10511680 : (var3.func_150297_b("color", 3) ? var3.getInteger("color") : 10511680);
             }
         }
     }
@@ -210,19 +191,16 @@ public class ItemArmor extends Item
     /**
      * Return whether this item is repairable in an anvil.
      */
-    public boolean getIsRepairable(ItemStack par1ItemStack,
-            ItemStack par2ItemStack)
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
-        return this.material.func_151685_b() == par2ItemStack.getItem() ? true
-                : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return this.material.func_151685_b() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
      * Called whenever this item is equipped and the right mouse button is
      * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         int var4 = EntityLiving.getArmorPosition(par1ItemStack) - 1;
         ItemStack var5 = par3EntityPlayer.getCurrentArmor(var4);
@@ -238,20 +216,15 @@ public class ItemArmor extends Item
 
     public static enum ArmorMaterial
     {
-        CLOTH("CLOTH", 0, 5, new int[] {1, 3, 2, 1}, 15), CHAIN("CHAIN", 1, 15,
-                new int[] {2, 5, 4, 1}, 12), IRON("IRON", 2, 15, new int[] {2,
-                6, 5, 2}, 9), GOLD("GOLD", 3, 7, new int[] {2, 5, 3, 1}, 25), DIAMOND(
-                "DIAMOND", 4, 33, new int[] {3, 8, 6, 3}, 10);
+        CLOTH("CLOTH", 0, 5, new int[] {1, 3, 2, 1}, 15), CHAIN("CHAIN", 1, 15, new int[] {2, 5, 4, 1}, 12), IRON("IRON", 2, 15, new int[] {2, 6, 5, 2}, 9), GOLD("GOLD", 3, 7, new int[] {2, 5, 3, 1}, 25), DIAMOND("DIAMOND", 4, 33, new int[] {3, 8, 6, 3}, 10);
         private int maxDamageFactor;
         private int[] damageReductionAmountArray;
         private int enchantability;
 
-        private static final ItemArmor.ArmorMaterial[] $VALUES = new ItemArmor.ArmorMaterial[] {
-                CLOTH, CHAIN, IRON, GOLD, DIAMOND};
+        private static final ItemArmor.ArmorMaterial[] $VALUES = new ItemArmor.ArmorMaterial[] {CLOTH, CHAIN, IRON, GOLD, DIAMOND};
         private static final String __OBFID = "CL_00001768";
 
-        private ArmorMaterial(String par1Str, int par2, int par3,
-                int[] par4ArrayOfInteger, int par5)
+        private ArmorMaterial(String par1Str, int par2, int par3, int[] par4ArrayOfInteger, int par5)
         {
             this.maxDamageFactor = par3;
             this.damageReductionAmountArray = par4ArrayOfInteger;
@@ -275,12 +248,7 @@ public class ItemArmor extends Item
 
         public Item func_151685_b()
         {
-            return this == CLOTH ? Items.leather
-                    : (this == CHAIN ? Items.iron_ingot
-                            : (this == GOLD ? Items.gold_ingot
-                                    : (this == IRON ? Items.iron_ingot
-                                            : (this == DIAMOND ? Items.diamond
-                                                    : null))));
+            return this == CLOTH ? Items.leather : (this == CHAIN ? Items.iron_ingot : (this == GOLD ? Items.gold_ingot : (this == IRON ? Items.iron_ingot : (this == DIAMOND ? Items.diamond : null))));
         }
     }
 }

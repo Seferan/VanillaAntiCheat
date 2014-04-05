@@ -18,8 +18,7 @@ public class EntityAIWatchClosest extends EntityAIBase
     private Class watchedClass;
     private static final String __OBFID = "CL_00001592";
 
-    public EntityAIWatchClosest(EntityLiving par1EntityLiving, Class par2Class,
-            float par3)
+    public EntityAIWatchClosest(EntityLiving par1EntityLiving, Class par2Class, float par3)
     {
         this.theWatcher = par1EntityLiving;
         this.watchedClass = par2Class;
@@ -28,8 +27,7 @@ public class EntityAIWatchClosest extends EntityAIBase
         this.setMutexBits(2);
     }
 
-    public EntityAIWatchClosest(EntityLiving par1EntityLiving, Class par2Class,
-            float par3, float par4)
+    public EntityAIWatchClosest(EntityLiving par1EntityLiving, Class par2Class, float par3, float par4)
     {
         this.theWatcher = par1EntityLiving;
         this.watchedClass = par2Class;
@@ -56,20 +54,11 @@ public class EntityAIWatchClosest extends EntityAIBase
 
             if (this.watchedClass == EntityPlayer.class)
             {
-                this.closestEntity = this.theWatcher.worldObj
-                        .getClosestPlayerToEntity(this.theWatcher,
-                                (double)this.maxDistanceForPlayer);
+                this.closestEntity = this.theWatcher.worldObj.getClosestPlayerToEntity(this.theWatcher, (double)this.maxDistanceForPlayer);
             }
             else
             {
-                this.closestEntity = this.theWatcher.worldObj
-                        .findNearestEntityWithinAABB(
-                                this.watchedClass,
-                                this.theWatcher.boundingBox
-                                        .expand((double)this.maxDistanceForPlayer,
-                                                3.0D,
-                                                (double)this.maxDistanceForPlayer),
-                                this.theWatcher);
+                this.closestEntity = this.theWatcher.worldObj.findNearestEntityWithinAABB(this.watchedClass, this.theWatcher.boundingBox.expand((double)this.maxDistanceForPlayer, 3.0D, (double)this.maxDistanceForPlayer), this.theWatcher);
             }
 
             return this.closestEntity != null;
@@ -81,9 +70,7 @@ public class EntityAIWatchClosest extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.closestEntity.isEntityAlive() ? false
-                : (this.theWatcher.getDistanceSqToEntity(this.closestEntity) > (double)(this.maxDistanceForPlayer * this.maxDistanceForPlayer) ? false
-                        : this.lookTime > 0);
+        return !this.closestEntity.isEntityAlive() ? false : (this.theWatcher.getDistanceSqToEntity(this.closestEntity) > (double)(this.maxDistanceForPlayer * this.maxDistanceForPlayer) ? false : this.lookTime > 0);
     }
 
     /**
@@ -107,12 +94,7 @@ public class EntityAIWatchClosest extends EntityAIBase
      */
     public void updateTask()
     {
-        this.theWatcher.getLookHelper().setLookPosition(
-                this.closestEntity.posX,
-                this.closestEntity.posY
-                        + (double)this.closestEntity.getEyeHeight(),
-                this.closestEntity.posZ, 10.0F,
-                (float)this.theWatcher.getVerticalFaceSpeed());
+        this.theWatcher.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + (double)this.closestEntity.getEyeHeight(), this.closestEntity.posZ, 10.0F, (float)this.theWatcher.getVerticalFaceSpeed());
         --this.lookTime;
     }
 }

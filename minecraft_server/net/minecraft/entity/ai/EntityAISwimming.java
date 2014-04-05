@@ -19,8 +19,7 @@ public class EntityAISwimming extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        return this.theEntity.isInWater()
-                || this.theEntity.handleLavaMovement();
+        return this.theEntity.isInWater() || this.theEntity.handleLavaMovement();
     }
 
     /**

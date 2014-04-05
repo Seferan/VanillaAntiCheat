@@ -16,8 +16,7 @@ public class BlockNetherWart extends BlockBush
     {
         this.setTickRandomly(true);
         float var1 = 0.5F;
-        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F,
-                0.5F + var1);
+        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
         this.setcreativeTab((CreativeTabs)null);
     }
 
@@ -30,31 +29,25 @@ public class BlockNetherWart extends BlockBush
      * Can this block stay at this position. Similar to canPlaceBlockAt except
      * gets checked often with plants.
      */
-    public boolean canBlockStay(World p_149718_1_, int p_149718_2_,
-            int p_149718_3_, int p_149718_4_)
+    public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
     {
-        return this.func_149854_a(p_149718_1_.getBlock(p_149718_2_,
-                p_149718_3_ - 1, p_149718_4_));
+        return this.func_149854_a(p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_));
     }
 
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
-            int p_149674_4_, Random p_149674_5_)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        int var6 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_,
-                p_149674_4_);
+        int var6 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
 
         if (var6 < 3 && p_149674_5_.nextInt(10) == 0)
         {
             ++var6;
-            p_149674_1_.setBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_,
-                    var6, 2);
+            p_149674_1_.setBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_, var6, 2);
         }
 
-        super.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_,
-                p_149674_5_);
+        super.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
     }
 
     /**
@@ -69,9 +62,7 @@ public class BlockNetherWart extends BlockBush
      * Drops the block items with a specified chance of dropping the specified
      * items
      */
-    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_,
-            int p_149690_3_, int p_149690_4_, int p_149690_5_,
-            float p_149690_6_, int p_149690_7_)
+    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
     {
         if (!p_149690_1_.isClient)
         {
@@ -89,14 +80,12 @@ public class BlockNetherWart extends BlockBush
 
             for (int var9 = 0; var9 < var8; ++var9)
             {
-                this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_,
-                        p_149690_4_, new ItemStack(Items.nether_wart));
+                this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(Items.nether_wart));
             }
         }
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return null;
     }

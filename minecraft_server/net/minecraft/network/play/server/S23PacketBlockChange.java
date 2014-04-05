@@ -21,16 +21,13 @@ public class S23PacketBlockChange extends Packet
     {
     }
 
-    public S23PacketBlockChange(int p_i45177_1_, int p_i45177_2_,
-            int p_i45177_3_, World p_i45177_4_)
+    public S23PacketBlockChange(int p_i45177_1_, int p_i45177_2_, int p_i45177_3_, World p_i45177_4_)
     {
         this.field_148887_a = p_i45177_1_;
         this.field_148885_b = p_i45177_2_;
         this.field_148886_c = p_i45177_3_;
-        this.field_148883_d = p_i45177_4_.getBlock(p_i45177_1_, p_i45177_2_,
-                p_i45177_3_);
-        this.field_148884_e = p_i45177_4_.getBlockMetadata(p_i45177_1_,
-                p_i45177_2_, p_i45177_3_);
+        this.field_148883_d = p_i45177_4_.getBlock(p_i45177_1_, p_i45177_2_, p_i45177_3_);
+        this.field_148884_e = p_i45177_4_.getBlockMetadata(p_i45177_1_, p_i45177_2_, p_i45177_3_);
     }
 
     /**
@@ -41,8 +38,7 @@ public class S23PacketBlockChange extends Packet
         this.field_148887_a = p_148837_1_.readInt();
         this.field_148885_b = p_148837_1_.readUnsignedByte();
         this.field_148886_c = p_148837_1_.readInt();
-        this.field_148883_d = Block.getBlockById(p_148837_1_
-                .readVarIntFromBuffer());
+        this.field_148883_d = Block.getBlockById(p_148837_1_.readVarIntFromBuffer());
         this.field_148884_e = p_148837_1_.readUnsignedByte();
     }
 
@@ -54,8 +50,7 @@ public class S23PacketBlockChange extends Packet
         p_148840_1_.writeInt(this.field_148887_a);
         p_148840_1_.writeByte(this.field_148885_b);
         p_148840_1_.writeInt(this.field_148886_c);
-        p_148840_1_.writeVarIntToBuffer(Block
-                .getIdFromBlock(this.field_148883_d));
+        p_148840_1_.writeVarIntToBuffer(Block.getIdFromBlock(this.field_148883_d));
         p_148840_1_.writeByte(this.field_148884_e);
     }
 
@@ -70,15 +65,7 @@ public class S23PacketBlockChange extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "type=%d, data=%d, x=%d, y=%d, z=%d",
-                new Object[] {
-                        Integer.valueOf(Block
-                                .getIdFromBlock(this.field_148883_d)),
-                        Integer.valueOf(this.field_148884_e),
-                        Integer.valueOf(this.field_148887_a),
-                        Integer.valueOf(this.field_148885_b),
-                        Integer.valueOf(this.field_148886_c)});
+        return String.format("type=%d, data=%d, x=%d, y=%d, z=%d", new Object[] {Integer.valueOf(Block.getIdFromBlock(this.field_148883_d)), Integer.valueOf(this.field_148884_e), Integer.valueOf(this.field_148887_a), Integer.valueOf(this.field_148885_b), Integer.valueOf(this.field_148886_c)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

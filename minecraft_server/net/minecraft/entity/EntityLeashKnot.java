@@ -21,8 +21,7 @@ public class EntityLeashKnot extends EntityHanging
     public EntityLeashKnot(World par1World, int par2, int par3, int par4)
     {
         super(par1World, par2, par3, par4, 0);
-        this.setPosition((double)par2 + 0.5D, (double)par3 + 0.5D,
-                (double)par4 + 0.5D);
+        this.setPosition((double)par2 + 0.5D, (double)par3 + 0.5D, (double)par4 + 0.5D);
     }
 
     protected void entityInit()
@@ -88,16 +87,10 @@ public class EntityLeashKnot extends EntityHanging
         Iterator var7;
         EntityLiving var8;
 
-        if (var2 != null && var2.getItem() == Items.lead
-                && !this.worldObj.isClient)
+        if (var2 != null && var2.getItem() == Items.lead && !this.worldObj.isClient)
         {
             var4 = 7.0D;
-            var6 = this.worldObj.getEntitiesWithinAABB(
-                    EntityLiving.class,
-                    AxisAlignedBB.getAABBPool().getAABB(this.posX - var4,
-                            this.posY - var4, this.posZ - var4,
-                            this.posX + var4, this.posY + var4,
-                            this.posZ + var4));
+            var6 = this.worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getAABBPool().getAABB(this.posX - var4, this.posY - var4, this.posZ - var4, this.posX + var4, this.posY + var4, this.posZ + var4));
 
             if (var6 != null)
             {
@@ -107,8 +100,7 @@ public class EntityLeashKnot extends EntityHanging
                 {
                     var8 = (EntityLiving)var7.next();
 
-                    if (var8.getLeashed()
-                            && var8.getLeashedToEntity() == par1EntityPlayer)
+                    if (var8.getLeashed() && var8.getLeashedToEntity() == par1EntityPlayer)
                     {
                         var8.setLeashedToEntity(this, true);
                         var3 = true;
@@ -124,12 +116,7 @@ public class EntityLeashKnot extends EntityHanging
             if (par1EntityPlayer.capabilities.isCreativeMode)
             {
                 var4 = 7.0D;
-                var6 = this.worldObj.getEntitiesWithinAABB(
-                        EntityLiving.class,
-                        AxisAlignedBB.getAABBPool().getAABB(this.posX - var4,
-                                this.posY - var4, this.posZ - var4,
-                                this.posX + var4, this.posY + var4,
-                                this.posZ + var4));
+                var6 = this.worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getAABBPool().getAABB(this.posX - var4, this.posY - var4, this.posZ - var4, this.posX + var4, this.posY + var4, this.posZ + var4));
 
                 if (var6 != null)
                 {
@@ -139,8 +126,7 @@ public class EntityLeashKnot extends EntityHanging
                     {
                         var8 = (EntityLiving)var7.next();
 
-                        if (var8.getLeashed()
-                                && var8.getLeashedToEntity() == this)
+                        if (var8.getLeashed() && var8.getLeashedToEntity() == this)
                         {
                             var8.clearLeashed(true, false);
                         }
@@ -157,12 +143,10 @@ public class EntityLeashKnot extends EntityHanging
      */
     public boolean onValidSurface()
     {
-        return this.worldObj.getBlock(this.field_146063_b, this.field_146064_c,
-                this.field_146062_d).getRenderType() == 11;
+        return this.worldObj.getBlock(this.field_146063_b, this.field_146064_c, this.field_146062_d).getRenderType() == 11;
     }
 
-    public static EntityLeashKnot func_110129_a(World par0World, int par1,
-            int par2, int par3)
+    public static EntityLeashKnot func_110129_a(World par0World, int par1, int par2, int par3)
     {
         EntityLeashKnot var4 = new EntityLeashKnot(par0World, par1, par2, par3);
         var4.forceSpawn = true;
@@ -170,15 +154,9 @@ public class EntityLeashKnot extends EntityHanging
         return var4;
     }
 
-    public static EntityLeashKnot getKnotForBlock(World par0World, int par1,
-            int par2, int par3)
+    public static EntityLeashKnot getKnotForBlock(World par0World, int par1, int par2, int par3)
     {
-        List var4 = par0World.getEntitiesWithinAABB(
-                EntityLeashKnot.class,
-                AxisAlignedBB.getAABBPool().getAABB((double)par1 - 1.0D,
-                        (double)par2 - 1.0D, (double)par3 - 1.0D,
-                        (double)par1 + 1.0D, (double)par2 + 1.0D,
-                        (double)par3 + 1.0D));
+        List var4 = par0World.getEntitiesWithinAABB(EntityLeashKnot.class, AxisAlignedBB.getAABBPool().getAABB((double)par1 - 1.0D, (double)par2 - 1.0D, (double)par3 - 1.0D, (double)par1 + 1.0D, (double)par2 + 1.0D, (double)par3 + 1.0D));
 
         if (var4 != null)
         {
@@ -188,8 +166,7 @@ public class EntityLeashKnot extends EntityHanging
             {
                 EntityLeashKnot var6 = (EntityLeashKnot)var5.next();
 
-                if (var6.field_146063_b == par1 && var6.field_146064_c == par2
-                        && var6.field_146062_d == par3) { return var6; }
+                if (var6.field_146063_b == par1 && var6.field_146064_c == par2 && var6.field_146062_d == par3) { return var6; }
             }
         }
 

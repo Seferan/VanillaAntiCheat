@@ -27,8 +27,7 @@ public class CommandXP extends CommandBase
         return "commands.xp.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length <= 0)
         {
@@ -59,11 +58,9 @@ public class CommandXP extends CommandBase
                 var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
                 if (this.isTargetOp(var3, par1ICommandSender))
                 {
-                    String message = "Tried to give " + Integer.valueOf(var6)
-                            + " ";
+                    String message = "Tried to give " + Integer.valueOf(var6) + " ";
                     message += var5 ? "levels" : "experience";
-                    message += " to non-op " + var3.getCommandSenderName()
-                            + "!";
+                    message += " to non-op " + var3.getCommandSenderName() + "!";
                     notifyAdmins(par1ICommandSender, message);
                     return;
                 }
@@ -78,33 +75,20 @@ public class CommandXP extends CommandBase
                 if (var7)
                 {
                     var3.addExperienceLevel(-var6);
-                    notifyAdmins(
-                            par1ICommandSender,
-                            "commands.xp.success.negative.levels",
-                            new Object[] {Integer.valueOf(var6),
-                                    var3.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.xp.success.negative.levels", new Object[] {Integer.valueOf(var6), var3.getCommandSenderName()});
                 }
                 else
                 {
                     var3.addExperienceLevel(var6);
-                    notifyAdmins(
-                            par1ICommandSender,
-                            "commands.xp.success.levels",
-                            new Object[] {Integer.valueOf(var6),
-                                    var3.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.xp.success.levels", new Object[] {Integer.valueOf(var6), var3.getCommandSenderName()});
                 }
             }
             else
             {
-                if (var7) { throw new WrongUsageException(
-                        "commands.xp.failure.widthdrawXp", new Object[0]); }
+                if (var7) { throw new WrongUsageException("commands.xp.failure.widthdrawXp", new Object[0]); }
 
                 var3.addExperience(var6);
-                notifyAdmins(
-                        par1ICommandSender,
-                        "commands.xp.success",
-                        new Object[] {Integer.valueOf(var6),
-                                var3.getCommandSenderName()});
+                notifyAdmins(par1ICommandSender, "commands.xp.success", new Object[] {Integer.valueOf(var6), var3.getCommandSenderName()});
             }
         }
     }
@@ -113,11 +97,9 @@ public class CommandXP extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(
-                par2ArrayOfStr, this.getAllUsernames()) : null;
+        return par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getAllUsernames()) : null;
     }
 
     protected String[] getAllUsernames()

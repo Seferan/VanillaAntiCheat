@@ -19,8 +19,7 @@ public class S01PacketEncryptionRequest extends Packet
     {
     }
 
-    public S01PacketEncryptionRequest(String p_i45268_1_,
-            PublicKey p_i45268_2_, byte[] p_i45268_3_)
+    public S01PacketEncryptionRequest(String p_i45268_1_, PublicKey p_i45268_2_, byte[] p_i45268_3_)
     {
         this.field_149612_a = p_i45268_1_;
         this.field_149610_b = p_i45268_2_;
@@ -33,8 +32,7 @@ public class S01PacketEncryptionRequest extends Packet
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
         this.field_149612_a = p_148837_1_.readStringFromBuffer(20);
-        this.field_149610_b = CryptManager
-                .decodePublicKey(readBlob(p_148837_1_));
+        this.field_149610_b = CryptManager.decodePublicKey(readBlob(p_148837_1_));
         this.field_149611_c = readBlob(p_148837_1_);
     }
 

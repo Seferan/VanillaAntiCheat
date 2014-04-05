@@ -35,8 +35,7 @@ public class GenLayerAddIsland extends GenLayer
                 int var17 = var9[var12 + 1 + (var11 + 1) * var7];
                 this.initChunkSeed((long)(var12 + par1), (long)(var11 + par2));
 
-                if (var17 == 0
-                        && (var13 != 0 || var14 != 0 || var15 != 0 || var16 != 0))
+                if (var17 == 0 && (var13 != 0 || var14 != 0 || var15 != 0 || var16 != 0))
                 {
                     int var18 = 1;
                     int var19 = 1;
@@ -74,8 +73,7 @@ public class GenLayerAddIsland extends GenLayer
                         var10[var12 + var11 * par3] = 0;
                     }
                 }
-                else if (var17 > 0
-                        && (var13 == 0 || var14 == 0 || var15 == 0 || var16 == 0))
+                else if (var17 > 0 && (var13 == 0 || var14 == 0 || var15 == 0 || var16 == 0))
                 {
                     if (this.nextInt(5) == 0)
                     {

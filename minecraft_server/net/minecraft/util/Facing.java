@@ -22,7 +22,6 @@ public class Facing
      * gives the offset required for this axis to get the block at that side.
      */
     public static final int[] offsetsZForSide = new int[] {0, 0, -1, 1, 0, 0};
-    public static final String[] facings = new String[] {"DOWN", "UP", "NORTH",
-            "SOUTH", "WEST", "EAST"};
+    public static final String[] facings = new String[] {"DOWN", "UP", "NORTH", "SOUTH", "WEST", "EAST"};
     private static final String __OBFID = "CL_00001532";
 }

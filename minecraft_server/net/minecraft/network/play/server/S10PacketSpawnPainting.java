@@ -37,8 +37,7 @@ public class S10PacketSpawnPainting extends Packet
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
         this.field_148973_a = p_148837_1_.readVarIntFromBuffer();
-        this.field_148968_f = p_148837_1_
-                .readStringFromBuffer(EntityPainting.EnumArt.maxArtTitleLength);
+        this.field_148968_f = p_148837_1_.readStringFromBuffer(EntityPainting.EnumArt.maxArtTitleLength);
         this.field_148971_b = p_148837_1_.readInt();
         this.field_148972_c = p_148837_1_.readInt();
         this.field_148969_d = p_148837_1_.readInt();
@@ -69,13 +68,7 @@ public class S10PacketSpawnPainting extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "id=%d, type=%s, x=%d, y=%d, z=%d",
-                new Object[] {Integer.valueOf(this.field_148973_a),
-                        this.field_148968_f,
-                        Integer.valueOf(this.field_148971_b),
-                        Integer.valueOf(this.field_148972_c),
-                        Integer.valueOf(this.field_148969_d)});
+        return String.format("id=%d, type=%s, x=%d, y=%d, z=%d", new Object[] {Integer.valueOf(this.field_148973_a), this.field_148968_f, Integer.valueOf(this.field_148971_b), Integer.valueOf(this.field_148972_c), Integer.valueOf(this.field_148969_d)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

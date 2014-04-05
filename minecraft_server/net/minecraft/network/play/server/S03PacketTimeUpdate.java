@@ -16,8 +16,7 @@ public class S03PacketTimeUpdate extends Packet
     {
     }
 
-    public S03PacketTimeUpdate(long p_i45230_1_, long p_i45230_3_,
-            boolean p_i45230_5_)
+    public S03PacketTimeUpdate(long p_i45230_1_, long p_i45230_3_, boolean p_i45230_5_)
     {
         this.field_149369_a = p_i45230_1_;
         this.field_149368_b = p_i45230_3_;
@@ -62,10 +61,7 @@ public class S03PacketTimeUpdate extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "time=%d,dtime=%d",
-                new Object[] {Long.valueOf(this.field_149369_a),
-                        Long.valueOf(this.field_149368_b)});
+        return String.format("time=%d,dtime=%d", new Object[] {Long.valueOf(this.field_149369_a), Long.valueOf(this.field_149368_b)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

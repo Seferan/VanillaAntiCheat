@@ -9,10 +9,8 @@ import net.minecraft.world.World;
 
 public class BlockQuartz extends Block
 {
-    public static final String[] field_150191_a = new String[] {"default",
-            "chiseled", "lines"};
-    private static final String[] field_150189_b = new String[] {"side",
-            "chiseled", "lines", null, null};
+    public static final String[] field_150191_a = new String[] {"default", "chiseled", "lines"};
+    private static final String[] field_150189_b = new String[] {"side", "chiseled", "lines", null, null};
     private static final String __OBFID = "CL_00000292";
 
     public BlockQuartz()
@@ -21,10 +19,7 @@ public class BlockQuartz extends Block
         this.setcreativeTab(CreativeTabs.tabBlock);
     }
 
-    public int onBlockPlaced(World p_149660_1_, int p_149660_2_,
-            int p_149660_3_, int p_149660_4_, int p_149660_5_,
-            float p_149660_6_, float p_149660_7_, float p_149660_8_,
-            int p_149660_9_)
+    public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
     {
         if (p_149660_9_ == 2)
         {
@@ -66,9 +61,7 @@ public class BlockQuartz extends Block
      */
     protected ItemStack createStackedBlock(int p_149644_1_)
     {
-        return p_149644_1_ != 3 && p_149644_1_ != 4 ? super
-                .createStackedBlock(p_149644_1_) : new ItemStack(
-                Item.getItemFromBlock(this), 1, 2);
+        return p_149644_1_ != 3 && p_149644_1_ != 4 ? super.createStackedBlock(p_149644_1_) : new ItemStack(Item.getItemFromBlock(this), 1, 2);
     }
 
     /**

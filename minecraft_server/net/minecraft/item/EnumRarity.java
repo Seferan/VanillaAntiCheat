@@ -4,10 +4,7 @@ import net.minecraft.util.EnumChatFormatting;
 
 public enum EnumRarity
 {
-    common(EnumChatFormatting.WHITE, "Common"), uncommon(
-            EnumChatFormatting.YELLOW, "Uncommon"), rare(
-            EnumChatFormatting.AQUA, "Rare"), epic(
-            EnumChatFormatting.LIGHT_PURPLE, "Epic");
+    common(EnumChatFormatting.WHITE, "Common"), uncommon(EnumChatFormatting.YELLOW, "Uncommon"), rare(EnumChatFormatting.AQUA, "Rare"), epic(EnumChatFormatting.LIGHT_PURPLE, "Epic");
     public final EnumChatFormatting field_77937_e;
     public final String field_77934_f;
     private static final String __OBFID = "CL_00000056";

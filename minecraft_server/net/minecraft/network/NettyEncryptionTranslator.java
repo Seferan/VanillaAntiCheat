@@ -30,20 +30,16 @@ public class NettyEncryptionTranslator
         return this.field_150505_b;
     }
 
-    protected ByteBuf func_150503_a(ChannelHandlerContext p_150503_1_,
-            ByteBuf p_150503_2_) throws ShortBufferException
+    protected ByteBuf func_150503_a(ChannelHandlerContext p_150503_1_, ByteBuf p_150503_2_) throws ShortBufferException
     {
         int var3 = p_150503_2_.readableBytes();
         byte[] var4 = this.func_150502_a(p_150503_2_);
-        ByteBuf var5 = p_150503_1_.alloc().heapBuffer(
-                this.field_150507_a.getOutputSize(var3));
-        var5.writerIndex(this.field_150507_a.update(var4, 0, var3,
-                var5.array(), var5.arrayOffset()));
+        ByteBuf var5 = p_150503_1_.alloc().heapBuffer(this.field_150507_a.getOutputSize(var3));
+        var5.writerIndex(this.field_150507_a.update(var4, 0, var3, var5.array(), var5.arrayOffset()));
         return var5;
     }
 
-    protected void func_150504_a(ByteBuf p_150504_1_, ByteBuf p_150504_2_)
-            throws ShortBufferException
+    protected void func_150504_a(ByteBuf p_150504_1_, ByteBuf p_150504_2_) throws ShortBufferException
     {
         int var3 = p_150504_1_.readableBytes();
         byte[] var4 = this.func_150502_a(p_150504_1_);
@@ -54,7 +50,6 @@ public class NettyEncryptionTranslator
             this.field_150506_c = new byte[var5];
         }
 
-        p_150504_2_.writeBytes(this.field_150506_c, 0,
-                this.field_150507_a.update(var4, 0, var3, this.field_150506_c));
+        p_150504_2_.writeBytes(this.field_150506_c, 0, this.field_150507_a.update(var4, 0, var3, this.field_150506_c));
     }
 }

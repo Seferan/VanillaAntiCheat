@@ -45,8 +45,7 @@ public class AABBPool
      * should only be used for one frame or tick, as after that they will be
      * reused.
      */
-    public AxisAlignedBB getAABB(double par1, double par3, double par5,
-            double par7, double par9, double par11)
+    public AxisAlignedBB getAABB(double par1, double par3, double par5, double par7, double par9, double par11)
     {
         AxisAlignedBB var13;
 
@@ -78,8 +77,7 @@ public class AABBPool
 
         if (this.numCleans++ == this.maxNumCleans)
         {
-            int var1 = Math.max(this.maxPoolIndex, this.listAABB.size()
-                    - this.numEntriesToRemove);
+            int var1 = Math.max(this.maxPoolIndex, this.listAABB.size() - this.numEntriesToRemove);
 
             while (this.listAABB.size() > var1)
             {

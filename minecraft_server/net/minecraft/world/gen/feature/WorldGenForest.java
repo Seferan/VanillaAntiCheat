@@ -17,8 +17,7 @@ public class WorldGenForest extends WorldGenAbstractTree
         this.field_150531_a = p_i45449_2_;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3,
-            int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         int var6 = par2Random.nextInt(3) + 5;
 
@@ -54,8 +53,7 @@ public class WorldGenForest extends WorldGenAbstractTree
                     {
                         if (var8 >= 0 && var8 < 256)
                         {
-                            Block var12 = par1World
-                                    .getBlock(var10, var8, var11);
+                            Block var12 = par1World.getBlock(var10, var8, var11);
 
                             if (!this.func_150523_a(var12))
                             {
@@ -78,11 +76,9 @@ public class WorldGenForest extends WorldGenAbstractTree
             {
                 Block var17 = par1World.getBlock(par3, par4 - 1, par5);
 
-                if ((var17 == Blocks.grass || var17 == Blocks.dirt || var17 == Blocks.farmland)
-                        && par4 < 256 - var6 - 1)
+                if ((var17 == Blocks.grass || var17 == Blocks.dirt || var17 == Blocks.farmland) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5,
-                            Blocks.dirt);
+                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
                     int var19;
 
                     for (var19 = par4 - 3 + var6; var19 <= par4 + var6; ++var19)
@@ -94,24 +90,17 @@ public class WorldGenForest extends WorldGenAbstractTree
                         {
                             int var13 = var20 - par3;
 
-                            for (int var14 = par5 - var11; var14 <= par5
-                                    + var11; ++var14)
+                            for (int var14 = par5 - var11; var14 <= par5 + var11; ++var14)
                             {
                                 int var15 = var14 - par5;
 
-                                if (Math.abs(var13) != var11
-                                        || Math.abs(var15) != var11
-                                        || par2Random.nextInt(2) != 0
-                                        && var10 != 0)
+                                if (Math.abs(var13) != var11 || Math.abs(var15) != var11 || par2Random.nextInt(2) != 0 && var10 != 0)
                                 {
-                                    Block var16 = par1World.getBlock(var20,
-                                            var19, var14);
+                                    Block var16 = par1World.getBlock(var20, var19, var14);
 
-                                    if (var16.getMaterial() == Material.air
-                                            || var16.getMaterial() == Material.field_151584_j)
+                                    if (var16.getMaterial() == Material.air || var16.getMaterial() == Material.field_151584_j)
                                     {
-                                        this.func_150516_a(par1World, var20,
-                                                var19, var14, Blocks.leaves, 2);
+                                        this.func_150516_a(par1World, var20, var19, var14, Blocks.leaves, 2);
                                     }
                                 }
                             }
@@ -120,14 +109,11 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                     for (var19 = 0; var19 < var6; ++var19)
                     {
-                        Block var18 = par1World.getBlock(par3, par4 + var19,
-                                par5);
+                        Block var18 = par1World.getBlock(par3, par4 + var19, par5);
 
-                        if (var18.getMaterial() == Material.air
-                                || var18.getMaterial() == Material.field_151584_j)
+                        if (var18.getMaterial() == Material.air || var18.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, par3, par4 + var19,
-                                    par5, Blocks.log, 2);
+                            this.func_150516_a(par1World, par3, par4 + var19, par5, Blocks.log, 2);
                         }
                     }
 

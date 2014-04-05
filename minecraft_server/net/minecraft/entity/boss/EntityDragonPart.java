@@ -12,8 +12,7 @@ public class EntityDragonPart extends Entity
     public final String field_146032_b;
     private static final String __OBFID = "CL_00001657";
 
-    public EntityDragonPart(IEntityMultiPart par1IEntityMultiPart,
-            String par2Str, float par3, float par4)
+    public EntityDragonPart(IEntityMultiPart par1IEntityMultiPart, String par2Str, float par3, float par4)
     {
         super(par1IEntityMultiPart.func_82194_d());
         this.setSize(par3, par4);
@@ -53,8 +52,7 @@ public class EntityDragonPart extends Entity
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        return this.isEntityInvulnerable() ? false : this.entityDragonObj
-                .attackEntityFromPart(this, par1DamageSource, par2);
+        return this.isEntityInvulnerable() ? false : this.entityDragonObj.attackEntityFromPart(this, par1DamageSource, par2);
     }
 
     /**

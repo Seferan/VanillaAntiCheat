@@ -108,8 +108,7 @@ public class InventoryBasic implements IInventory
     {
         this.inventoryContents[par1] = par2ItemStack;
 
-        if (par2ItemStack != null
-                && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -165,8 +164,7 @@ public class InventoryBasic implements IInventory
         {
             for (int var1 = 0; var1 < this.field_70480_d.size(); ++var1)
             {
-                ((IInvBasic)this.field_70480_d.get(var1))
-                        .onInventoryChanged(this);
+                ((IInvBasic)this.field_70480_d.get(var1)).onInventoryChanged(this);
             }
         }
     }

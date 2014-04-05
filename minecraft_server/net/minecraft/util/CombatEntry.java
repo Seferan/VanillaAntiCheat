@@ -12,8 +12,7 @@ public class CombatEntry
     private final float field_94564_f;
     private static final String __OBFID = "CL_00001519";
 
-    public CombatEntry(DamageSource par1DamageSource, int par2, float par3,
-            float par4, String par5Str, float par6)
+    public CombatEntry(DamageSource par1DamageSource, int par2, float par3, float par4, String par5Str, float par6)
     {
         this.damageSrc = par1DamageSource;
         this.field_94567_b = par2;
@@ -48,13 +47,11 @@ public class CombatEntry
 
     public IChatComponent func_151522_h()
     {
-        return this.getDamageSrc().getEntity() == null ? null : this
-                .getDamageSrc().getEntity().getUsernameAsIChatComponent();
+        return this.getDamageSrc().getEntity() == null ? null : this.getDamageSrc().getEntity().getUsernameAsIChatComponent();
     }
 
     public float func_94561_i()
     {
-        return this.damageSrc == DamageSource.outOfWorld ? Float.MAX_VALUE
-                : this.field_94564_f;
+        return this.damageSrc == DamageSource.outOfWorld ? Float.MAX_VALUE : this.field_94564_f;
     }
 }

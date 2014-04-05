@@ -29,13 +29,11 @@ public class TileEntitySign extends TileEntity
 
         for (int var2 = 0; var2 < 4; ++var2)
         {
-            this.field_145915_a[var2] = p_145839_1_.getString("Text"
-                    + (var2 + 1));
+            this.field_145915_a[var2] = p_145839_1_.getString("Text" + (var2 + 1));
 
             if (this.field_145915_a[var2].length() > 15)
             {
-                this.field_145915_a[var2] = this.field_145915_a[var2]
-                        .substring(0, 15);
+                this.field_145915_a[var2] = this.field_145915_a[var2].substring(0, 15);
             }
         }
     }
@@ -47,8 +45,7 @@ public class TileEntitySign extends TileEntity
     {
         String[] var1 = new String[4];
         System.arraycopy(this.field_145915_a, 0, var1, 0, 4);
-        return new S33PacketUpdateSign(this.xCoord, this.yCoord, this.zCoord,
-                var1);
+        return new S33PacketUpdateSign(this.xCoord, this.yCoord, this.zCoord, var1);
     }
 
     public boolean func_145914_a()

@@ -22,23 +22,18 @@ public class ItemEnchantedBook extends Item
 
     public EnumRarity func_77613_e(ItemStack p_77613_1_)
     {
-        return this.func_92110_g(p_77613_1_).tagCount() > 0 ? EnumRarity.uncommon
-                : super.func_77613_e(p_77613_1_);
+        return this.func_92110_g(p_77613_1_).tagCount() > 0 ? EnumRarity.uncommon : super.func_77613_e(p_77613_1_);
     }
 
     public NBTTagList func_92110_g(ItemStack par1ItemStack)
     {
-        return par1ItemStack.stackTagCompound != null
-                && par1ItemStack.stackTagCompound.func_150297_b(
-                        "StoredEnchantments", 9) ? (NBTTagList)par1ItemStack.stackTagCompound
-                .getTag("StoredEnchantments") : new NBTTagList();
+        return par1ItemStack.stackTagCompound != null && par1ItemStack.stackTagCompound.func_150297_b("StoredEnchantments", 9) ? (NBTTagList)par1ItemStack.stackTagCompound.getTag("StoredEnchantments") : new NBTTagList();
     }
 
     /**
      * Adds an stored enchantment to an enchanted book ItemStack
      */
-    public void addEnchantment(ItemStack par1ItemStack,
-            EnchantmentData par2EnchantmentData)
+    public void addEnchantment(ItemStack par1ItemStack, EnchantmentData par2EnchantmentData)
     {
         NBTTagList var3 = this.func_92110_g(par1ItemStack);
         boolean var4 = true;
@@ -51,8 +46,7 @@ public class ItemEnchantedBook extends Item
             {
                 if (var6.getShort("lvl") < par2EnchantmentData.enchantmentLevel)
                 {
-                    var6.setShort("lvl",
-                            (short)par2EnchantmentData.enchantmentLevel);
+                    var6.setShort("lvl", (short)par2EnchantmentData.enchantmentLevel);
                 }
 
                 var4 = false;
@@ -63,8 +57,7 @@ public class ItemEnchantedBook extends Item
         if (var4)
         {
             NBTTagCompound var7 = new NBTTagCompound();
-            var7.setShort("id",
-                    (short)par2EnchantmentData.enchantmentobj.effectId);
+            var7.setShort("id", (short)par2EnchantmentData.enchantmentobj.effectId);
             var7.setShort("lvl", (short)par2EnchantmentData.enchantmentLevel);
             var3.appendTag(var7);
         }
@@ -92,8 +85,7 @@ public class ItemEnchantedBook extends Item
         return this.func_92112_a(par1Random, 1, 1, 1);
     }
 
-    public WeightedRandomChestContent func_92112_a(Random par1Random, int par2,
-            int par3, int par4)
+    public WeightedRandomChestContent func_92112_a(Random par1Random, int par2, int par3, int par4)
     {
         ItemStack var5 = new ItemStack(Items.book, 1, 0);
         EnchantmentHelper.addRandomEnchantment(par1Random, var5, 30);

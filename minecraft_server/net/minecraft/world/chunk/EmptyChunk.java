@@ -53,8 +53,7 @@ public class EmptyChunk extends Chunk
         return 255;
     }
 
-    public boolean func_150807_a(int p_150807_1_, int p_150807_2_,
-            int p_150807_3_, Block p_150807_4_, int p_150807_5_)
+    public boolean func_150807_a(int p_150807_1_, int p_150807_2_, int p_150807_3_, Block p_150807_4_, int p_150807_5_)
     {
         return true;
     }
@@ -80,8 +79,7 @@ public class EmptyChunk extends Chunk
      * Gets the amount of light saved in this block (doesn't adjust for
      * daylight)
      */
-    public int getSavedLightValue(EnumSkyBlock par1EnumSkyBlock, int par2,
-            int par3, int par4)
+    public int getSavedLightValue(EnumSkyBlock par1EnumSkyBlock, int par2, int par3, int par4)
     {
         return 0;
     }
@@ -91,8 +89,7 @@ public class EmptyChunk extends Chunk
      * sets it in the skylightmap and if its a block then into the
      * blocklightmap. Args enumSkyBlock, x, y, z, lightValue
      */
-    public void setLightValue(EnumSkyBlock par1EnumSkyBlock, int par2,
-            int par3, int par4, int par5)
+    public void setLightValue(EnumSkyBlock par1EnumSkyBlock, int par2, int par3, int par4, int par5)
     {
     }
 
@@ -134,8 +131,7 @@ public class EmptyChunk extends Chunk
         return false;
     }
 
-    public TileEntity func_150806_e(int p_150806_1_, int p_150806_2_,
-            int p_150806_3_)
+    public TileEntity func_150806_e(int p_150806_1_, int p_150806_2_, int p_150806_3_)
     {
         return null;
     }
@@ -144,13 +140,11 @@ public class EmptyChunk extends Chunk
     {
     }
 
-    public void func_150812_a(int p_150812_1_, int p_150812_2_,
-            int p_150812_3_, TileEntity p_150812_4_)
+    public void func_150812_a(int p_150812_1_, int p_150812_2_, int p_150812_3_, TileEntity p_150812_4_)
     {
     }
 
-    public void removeTileEntity(int p_150805_1_, int p_150805_2_,
-            int p_150805_3_)
+    public void removeTileEntity(int p_150805_1_, int p_150805_2_, int p_150805_3_)
     {
     }
 
@@ -179,9 +173,7 @@ public class EmptyChunk extends Chunk
      * Fills the given list of all entities that intersect within the given
      * bounding box that aren't the passed entity Args: entity, aabb, listToFill
      */
-    public void getEntitiesWithinAABBForEntity(Entity par1Entity,
-            AxisAlignedBB par2AxisAlignedBB, List par3List,
-            IEntitySelector par4IEntitySelector)
+    public void getEntitiesWithinAABBForEntity(Entity par1Entity, AxisAlignedBB par2AxisAlignedBB, List par3List, IEntitySelector par4IEntitySelector)
     {
     }
 
@@ -189,9 +181,7 @@ public class EmptyChunk extends Chunk
      * Gets all entities that can be assigned to the specified class. Args:
      * entityClass, aabb, listToFill
      */
-    public void getEntitiesOfTypeWithinAAAB(Class par1Class,
-            AxisAlignedBB par2AxisAlignedBB, List par3List,
-            IEntitySelector par4IEntitySelector)
+    public void getEntitiesOfTypeWithinAAAB(Class par1Class, AxisAlignedBB par2AxisAlignedBB, List par3List, IEntitySelector par4IEntitySelector)
     {
     }
 
@@ -205,11 +195,7 @@ public class EmptyChunk extends Chunk
 
     public Random getRandomWithSeed(long par1)
     {
-        return new Random(this.worldObj.getSeed()
-                + (long)(this.xPosition * this.xPosition * 4987142)
-                + (long)(this.xPosition * 5947611)
-                + (long)(this.zPosition * this.zPosition) * 4392871L
-                + (long)(this.zPosition * 389711) ^ par1);
+        return new Random(this.worldObj.getSeed() + (long)(this.xPosition * this.xPosition * 4987142) + (long)(this.xPosition * 5947611) + (long)(this.zPosition * this.zPosition) * 4392871L + (long)(this.zPosition * 389711) ^ par1);
     }
 
     public boolean isEmpty()

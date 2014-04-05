@@ -30,8 +30,7 @@ public abstract class BlockSlab extends Block
         this.setLightOpacity(255);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         if (this.field_150004_a)
         {
@@ -39,8 +38,7 @@ public abstract class BlockSlab extends Block
         }
         else
         {
-            boolean var5 = (p_149719_1_.getBlockMetadata(p_149719_2_,
-                    p_149719_3_, p_149719_4_) & 8) != 0;
+            boolean var5 = (p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_) & 8) != 0;
 
             if (var5)
             {
@@ -68,14 +66,10 @@ public abstract class BlockSlab extends Block
         }
     }
 
-    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_,
-            int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_,
-            List p_149743_6_, Entity p_149743_7_)
+    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        this.setBlockBoundsBasedOnState(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        this.setBlockBoundsBasedOnState(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
     }
 
     public boolean isOpaqueCube()
@@ -83,15 +77,9 @@ public abstract class BlockSlab extends Block
         return this.field_150004_a;
     }
 
-    public int onBlockPlaced(World p_149660_1_, int p_149660_2_,
-            int p_149660_3_, int p_149660_4_, int p_149660_5_,
-            float p_149660_6_, float p_149660_7_, float p_149660_8_,
-            int p_149660_9_)
+    public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
     {
-        return this.field_150004_a ? p_149660_9_
-                : (p_149660_5_ != 0
-                        && (p_149660_5_ == 1 || (double)p_149660_7_ <= 0.5D) ? p_149660_9_
-                        : p_149660_9_ | 8);
+        return this.field_150004_a ? p_149660_9_ : (p_149660_5_ != 0 && (p_149660_5_ == 1 || (double)p_149660_7_ <= 0.5D) ? p_149660_9_ : p_149660_9_ | 8);
     }
 
     /**
@@ -121,10 +109,8 @@ public abstract class BlockSlab extends Block
     /**
      * Get the block's damage value (for use with pick block).
      */
-    public int getDamageValue(World p_149643_1_, int p_149643_2_,
-            int p_149643_3_, int p_149643_4_)
+    public int getDamageValue(World p_149643_1_, int p_149643_2_, int p_149643_3_, int p_149643_4_)
     {
-        return super.getDamageValue(p_149643_1_, p_149643_2_, p_149643_3_,
-                p_149643_4_) & 7;
+        return super.getDamageValue(p_149643_1_, p_149643_2_, p_149643_3_, p_149643_4_) & 7;
     }
 }

@@ -19,8 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class HttpUtil
 {
     /** The number of download threads that we have started so far. */
-    private static final AtomicInteger downloadThreadsStarted = new AtomicInteger(
-            0);
+    private static final AtomicInteger downloadThreadsStarted = new AtomicInteger(0);
     private static final Logger logger = LogManager.getLogger();
     private static final String __OBFID = "CL_00001485";
 
@@ -56,8 +55,7 @@ public class HttpUtil
 
                 try
                 {
-                    var1.append(URLEncoder.encode(var3.getValue().toString(),
-                            "UTF-8"));
+                    var1.append(URLEncoder.encode(var3.getValue().toString(), "UTF-8"));
                 }
                 catch (UnsupportedEncodingException var5)
                 {
@@ -69,33 +67,26 @@ public class HttpUtil
         return var1.toString();
     }
 
-    public static String func_151226_a(URL p_151226_0_, Map p_151226_1_,
-            boolean p_151226_2_)
+    public static String func_151226_a(URL p_151226_0_, Map p_151226_1_, boolean p_151226_2_)
     {
-        return func_151225_a(p_151226_0_, buildPostString(p_151226_1_),
-                p_151226_2_);
+        return func_151225_a(p_151226_0_, buildPostString(p_151226_1_), p_151226_2_);
     }
 
-    private static String func_151225_a(URL p_151225_0_, String p_151225_1_,
-            boolean p_151225_2_)
+    private static String func_151225_a(URL p_151225_0_, String p_151225_1_, boolean p_151225_2_)
     {
         try
         {
-            Proxy var3 = MinecraftServer.getServer() == null ? null
-                    : MinecraftServer.getServer().getServerProxy();
+            Proxy var3 = MinecraftServer.getServer() == null ? null : MinecraftServer.getServer().getServerProxy();
 
             if (var3 == null)
             {
                 var3 = Proxy.NO_PROXY;
             }
 
-            HttpURLConnection var4 = (HttpURLConnection)p_151225_0_
-                    .openConnection(var3);
+            HttpURLConnection var4 = (HttpURLConnection)p_151225_0_.openConnection(var3);
             var4.setRequestMethod("POST");
-            var4.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded");
-            var4.setRequestProperty("Content-Length",
-                    "" + p_151225_1_.getBytes().length);
+            var4.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            var4.setRequestProperty("Content-Length", "" + p_151225_1_.getBytes().length);
             var4.setRequestProperty("Content-Language", "en-US");
             var4.setUseCaches(false);
             var4.setDoInput(true);
@@ -104,8 +95,7 @@ public class HttpUtil
             var5.writeBytes(p_151225_1_);
             var5.flush();
             var5.close();
-            BufferedReader var6 = new BufferedReader(new InputStreamReader(
-                    var4.getInputStream()));
+            BufferedReader var6 = new BufferedReader(new InputStreamReader(var4.getInputStream()));
             StringBuffer var8 = new StringBuffer();
             String var7;
 

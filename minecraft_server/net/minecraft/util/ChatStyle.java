@@ -149,8 +149,7 @@ public class ChatStyle
      */
     public boolean getBold()
     {
-        return this.bold == null ? this.getParent().getBold() : this.bold
-                .booleanValue();
+        return this.bold == null ? this.getParent().getBold() : this.bold.booleanValue();
     }
 
     /**
@@ -158,8 +157,7 @@ public class ChatStyle
      */
     public boolean getItalic()
     {
-        return this.italic == null ? this.getParent().getItalic() : this.italic
-                .booleanValue();
+        return this.italic == null ? this.getParent().getItalic() : this.italic.booleanValue();
     }
 
     /**
@@ -167,8 +165,7 @@ public class ChatStyle
      */
     public boolean getStrikethrough()
     {
-        return this.strikethrough == null ? this.getParent().getStrikethrough()
-                : this.strikethrough.booleanValue();
+        return this.strikethrough == null ? this.getParent().getStrikethrough() : this.strikethrough.booleanValue();
     }
 
     /**
@@ -176,8 +173,7 @@ public class ChatStyle
      */
     public boolean getUnderlined()
     {
-        return this.underlined == null ? this.getParent().getUnderlined()
-                : this.underlined.booleanValue();
+        return this.underlined == null ? this.getParent().getUnderlined() : this.underlined.booleanValue();
     }
 
     /**
@@ -185,8 +181,7 @@ public class ChatStyle
      */
     public boolean getObfuscated()
     {
-        return this.obfuscated == null ? this.getParent().getObfuscated()
-                : this.obfuscated.booleanValue();
+        return this.obfuscated == null ? this.getParent().getObfuscated() : this.obfuscated.booleanValue();
     }
 
     /**
@@ -194,10 +189,7 @@ public class ChatStyle
      */
     public boolean isEmpty()
     {
-        return this.bold == null && this.italic == null
-                && this.strikethrough == null && this.underlined == null
-                && this.obfuscated == null && this.color == null
-                && this.chatClickEvent == null && this.chatHoverEvent == null;
+        return this.bold == null && this.italic == null && this.strikethrough == null && this.underlined == null && this.obfuscated == null && this.color == null && this.chatClickEvent == null && this.chatHoverEvent == null;
     }
 
     /**
@@ -205,8 +197,7 @@ public class ChatStyle
      */
     public ClickEvent getChatClickEvent()
     {
-        return this.chatClickEvent == null ? this.getParent()
-                .getChatClickEvent() : this.chatClickEvent;
+        return this.chatClickEvent == null ? this.getParent().getChatClickEvent() : this.chatClickEvent;
     }
 
     /**
@@ -214,8 +205,7 @@ public class ChatStyle
      */
     public HoverEvent getChatHoverEvent()
     {
-        return this.chatHoverEvent == null ? this.getParent()
-                .getChatHoverEvent() : this.chatHoverEvent;
+        return this.chatHoverEvent == null ? this.getParent().getChatHoverEvent() : this.chatHoverEvent;
     }
 
     /**
@@ -324,12 +314,7 @@ public class ChatStyle
 
     public String toString()
     {
-        return "Style{hasParent=" + (this.parentStyle != null) + ", color="
-                + this.color + ", bold=" + this.bold + ", italic="
-                + this.italic + ", underlined=" + this.underlined
-                + ", obfuscated=" + this.obfuscated + ", clickEvent="
-                + this.getChatClickEvent() + ", hoverEvent="
-                + this.getChatHoverEvent() + '}';
+        return "Style{hasParent=" + (this.parentStyle != null) + ", color=" + this.color + ", bold=" + this.bold + ", italic=" + this.italic + ", underlined=" + this.underlined + ", obfuscated=" + this.obfuscated + ", clickEvent=" + this.getChatClickEvent() + ", hoverEvent=" + this.getChatHoverEvent() + '}';
     }
 
     public boolean equals(Object par1Obj)
@@ -347,19 +332,13 @@ public class ChatStyle
             ChatStyle var2 = (ChatStyle)par1Obj;
             boolean var10000;
 
-            if (this.getBold() == var2.getBold()
-                    && this.getColor() == var2.getColor()
-                    && this.getItalic() == var2.getItalic()
-                    && this.getObfuscated() == var2.getObfuscated()
-                    && this.getStrikethrough() == var2.getStrikethrough()
-                    && this.getUnderlined() == var2.getUnderlined())
+            if (this.getBold() == var2.getBold() && this.getColor() == var2.getColor() && this.getItalic() == var2.getItalic() && this.getObfuscated() == var2.getObfuscated() && this.getStrikethrough() == var2.getStrikethrough() && this.getUnderlined() == var2.getUnderlined())
             {
                 label56:
                 {
                     if (this.getChatClickEvent() != null)
                     {
-                        if (!this.getChatClickEvent().equals(
-                                var2.getChatClickEvent()))
+                        if (!this.getChatClickEvent().equals(var2.getChatClickEvent()))
                         {
                             break label56;
                         }
@@ -371,8 +350,7 @@ public class ChatStyle
 
                     if (this.getChatHoverEvent() != null)
                     {
-                        if (!this.getChatHoverEvent().equals(
-                                var2.getChatHoverEvent()))
+                        if (!this.getChatHoverEvent().equals(var2.getChatHoverEvent()))
                         {
                             break label56;
                         }
@@ -448,8 +426,7 @@ public class ChatStyle
     {
         private static final String __OBFID = "CL_00001268";
 
-        public ChatStyle deserialize(JsonElement p_150204_1_, Type p_150204_2_,
-                JsonDeserializationContext p_150204_3_)
+        public ChatStyle deserialize(JsonElement p_150204_1_, Type p_150204_2_, JsonDeserializationContext p_150204_3_)
         {
             if (p_150204_1_.isJsonObject())
             {
@@ -458,38 +435,32 @@ public class ChatStyle
 
                 if (var5.has("bold"))
                 {
-                    var4.bold = Boolean
-                            .valueOf(var5.get("bold").getAsBoolean());
+                    var4.bold = Boolean.valueOf(var5.get("bold").getAsBoolean());
                 }
 
                 if (var5.has("italic"))
                 {
-                    var4.italic = Boolean.valueOf(var5.get("italic")
-                            .getAsBoolean());
+                    var4.italic = Boolean.valueOf(var5.get("italic").getAsBoolean());
                 }
 
                 if (var5.has("underlined"))
                 {
-                    var4.underlined = Boolean.valueOf(var5.get("underlined")
-                            .getAsBoolean());
+                    var4.underlined = Boolean.valueOf(var5.get("underlined").getAsBoolean());
                 }
 
                 if (var5.has("strikethrough"))
                 {
-                    var4.strikethrough = Boolean.valueOf(var5.get(
-                            "strikethrough").getAsBoolean());
+                    var4.strikethrough = Boolean.valueOf(var5.get("strikethrough").getAsBoolean());
                 }
 
                 if (var5.has("obfuscated"))
                 {
-                    var4.obfuscated = Boolean.valueOf(var5.get("obfuscated")
-                            .getAsBoolean());
+                    var4.obfuscated = Boolean.valueOf(var5.get("obfuscated").getAsBoolean());
                 }
 
                 if (var5.has("color"))
                 {
-                    var4.color = (EnumChatFormatting)p_150204_3_.deserialize(
-                            var5.get("color"), EnumChatFormatting.class);
+                    var4.color = (EnumChatFormatting)p_150204_3_.deserialize(var5.get("color"), EnumChatFormatting.class);
                 }
 
                 JsonObject var6;
@@ -497,14 +468,10 @@ public class ChatStyle
                 if (var5.has("clickEvent"))
                 {
                     var6 = var5.getAsJsonObject("clickEvent");
-                    ClickEvent.Action var7 = ClickEvent.Action
-                            .getValueByCanonicalName(var6.getAsJsonPrimitive(
-                                    "action").getAsString());
-                    String var8 = var6.getAsJsonPrimitive("value")
-                            .getAsString();
+                    ClickEvent.Action var7 = ClickEvent.Action.getValueByCanonicalName(var6.getAsJsonPrimitive("action").getAsString());
+                    String var8 = var6.getAsJsonPrimitive("value").getAsString();
 
-                    if (var7 != null && var8 != null
-                            && var7.shouldAllowInChat())
+                    if (var7 != null && var8 != null && var7.shouldAllowInChat())
                     {
                         var4.chatClickEvent = new ClickEvent(var7, var8);
                     }
@@ -513,15 +480,10 @@ public class ChatStyle
                 if (var5.has("hoverEvent"))
                 {
                     var6 = var5.getAsJsonObject("hoverEvent");
-                    HoverEvent.Action var9 = HoverEvent.Action
-                            .getValueByCanonicalName(var6.getAsJsonPrimitive(
-                                    "action").getAsString());
-                    IChatComponent var10 = (IChatComponent)p_150204_3_
-                            .deserialize(var6.get("value"),
-                                    IChatComponent.class);
+                    HoverEvent.Action var9 = HoverEvent.Action.getValueByCanonicalName(var6.getAsJsonPrimitive("action").getAsString());
+                    IChatComponent var10 = (IChatComponent)p_150204_3_.deserialize(var6.get("value"), IChatComponent.class);
 
-                    if (var9 != null && var10 != null
-                            && var9.shouldAllowInChat())
+                    if (var9 != null && var10 != null && var9.shouldAllowInChat())
                     {
                         var4.chatHoverEvent = new HoverEvent(var9, var10);
                     }
@@ -535,8 +497,7 @@ public class ChatStyle
             }
         }
 
-        public JsonElement serialize(ChatStyle p_150203_1_, Type p_150203_2_,
-                JsonSerializationContext p_150203_3_)
+        public JsonElement serialize(ChatStyle p_150203_1_, Type p_150203_2_, JsonSerializationContext p_150203_3_)
         {
             if (p_150203_1_.isEmpty())
             {
@@ -581,20 +542,16 @@ public class ChatStyle
                 if (p_150203_1_.chatClickEvent != null)
                 {
                     var5 = new JsonObject();
-                    var5.addProperty("action", p_150203_1_.chatClickEvent
-                            .getAction().getCanonicalName());
-                    var5.addProperty("value",
-                            p_150203_1_.chatClickEvent.getValue());
+                    var5.addProperty("action", p_150203_1_.chatClickEvent.getAction().getCanonicalName());
+                    var5.addProperty("value", p_150203_1_.chatClickEvent.getValue());
                     var4.add("clickEvent", var5);
                 }
 
                 if (p_150203_1_.chatHoverEvent != null)
                 {
                     var5 = new JsonObject();
-                    var5.addProperty("action", p_150203_1_.chatHoverEvent
-                            .getAction().getCanonicalName());
-                    var5.add("value", p_150203_3_
-                            .serialize(p_150203_1_.chatHoverEvent.getValue()));
+                    var5.addProperty("action", p_150203_1_.chatHoverEvent.getAction().getCanonicalName());
+                    var5.add("value", p_150203_3_.serialize(p_150203_1_.chatHoverEvent.getValue()));
                     var4.add("hoverEvent", var5);
                 }
 
@@ -602,11 +559,9 @@ public class ChatStyle
             }
         }
 
-        public JsonElement serialize(Object par1Obj, Type par2Type,
-                JsonSerializationContext par3JsonSerializationContext)
+        public JsonElement serialize(Object par1Obj, Type par2Type, JsonSerializationContext par3JsonSerializationContext)
         {
-            return this.serialize((ChatStyle)par1Obj, par2Type,
-                    par3JsonSerializationContext);
+            return this.serialize((ChatStyle)par1Obj, par2Type, par3JsonSerializationContext);
         }
     }
 }

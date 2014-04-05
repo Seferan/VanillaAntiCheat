@@ -20,8 +20,7 @@ public class ItemFishingRod extends Item
      * Called whenever this item is equipped and the right mouse button is
      * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         if (par3EntityPlayer.fishEntity != null)
         {
@@ -31,13 +30,11 @@ public class ItemFishingRod extends Item
         }
         else
         {
-            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F,
-                    0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
             if (!par2World.isClient)
             {
-                par2World.spawnEntityInWorld(new EntityFishHook(par2World,
-                        par3EntityPlayer));
+                par2World.spawnEntityInWorld(new EntityFishHook(par2World, par3EntityPlayer));
             }
 
             par3EntityPlayer.swingItem();

@@ -54,8 +54,7 @@ public class EntityMoveHelper
         if (this.update)
         {
             this.update = false;
-            int var1 = MathHelper
-                    .floor_double(this.entity.boundingBox.minY + 0.5D);
+            int var1 = MathHelper.floor_double(this.entity.boundingBox.minY + 0.5D);
             double var2 = this.posX - this.entity.posX;
             double var4 = this.posZ - this.entity.posZ;
             double var6 = this.posY - (double)var1;
@@ -64,12 +63,8 @@ public class EntityMoveHelper
             if (var8 >= 2.500000277905201E-7D)
             {
                 float var10 = (float)(Math.atan2(var4, var2) * 180.0D / Math.PI) - 90.0F;
-                this.entity.rotationYaw = this.limitAngle(
-                        this.entity.rotationYaw, var10, 30.0F);
-                this.entity.setAIMoveSpeed((float)(this.speed * this.entity
-                        .getEntityAttribute(
-                                SharedMonsterAttributes.movementSpeed)
-                        .getAttributeValue()));
+                this.entity.rotationYaw = this.limitAngle(this.entity.rotationYaw, var10, 30.0F);
+                this.entity.setAIMoveSpeed((float)(this.speed * this.entity.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue()));
 
                 if (var6 > 0.0D && var2 * var2 + var4 * var4 < 1.0D)
                 {

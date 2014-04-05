@@ -17,11 +17,8 @@ import net.minecraft.world.World;
 
 public class EntityPigZombie extends EntityZombie
 {
-    private static final UUID field_110189_bq = UUID
-            .fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
-    private static final AttributeModifier field_110190_br = (new AttributeModifier(
-            field_110189_bq, "Attacking speed boost", 0.45D, 0))
-            .setSaved(false);
+    private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+    private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 0.45D, 0)).setSaved(false);
 
     /** Above zero if this PigZombie is Angry. */
     private int angerLevel;
@@ -41,10 +38,8 @@ public class EntityPigZombie extends EntityZombie
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(field_110186_bp).setBaseValue(0.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
-                .setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage)
-                .setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
     }
 
     /**
@@ -60,11 +55,9 @@ public class EntityPigZombie extends EntityZombie
      */
     public void onUpdate()
     {
-        if (this.field_110191_bu != this.entityToAttack
-                && !this.worldObj.isClient)
+        if (this.field_110191_bu != this.entityToAttack && !this.worldObj.isClient)
         {
-            IAttributeInstance var1 = this
-                    .getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+            IAttributeInstance var1 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
             var1.removeModifier(field_110190_br);
 
             if (this.entityToAttack != null)
@@ -77,10 +70,7 @@ public class EntityPigZombie extends EntityZombie
 
         if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
         {
-            this.playSound(
-                    "mob.zombiepig.zpigangry",
-                    this.getSoundVolume() * 2.0F,
-                    ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+            this.playSound("mob.zombiepig.zpigangry", this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
         }
 
         super.onUpdate();
@@ -92,11 +82,7 @@ public class EntityPigZombie extends EntityZombie
      */
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL
-                && this.worldObj.checkNoEntityCollision(this.boundingBox)
-                && this.worldObj.getCollidingBoundingBoxes(this,
-                        this.boundingBox).isEmpty()
-                && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 
     /**
@@ -142,8 +128,7 @@ public class EntityPigZombie extends EntityZombie
 
             if (var3 instanceof EntityPlayer)
             {
-                List var4 = this.worldObj.getEntitiesWithinAABBExcludingEntity(
-                        this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+                List var4 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
 
                 for (int var5 = 0; var5 < var4.size(); ++var5)
                 {
@@ -241,8 +226,7 @@ public class EntityPigZombie extends EntityZombie
         this.setCurrentItemOrArmor(0, new ItemStack(Items.golden_sword));
     }
 
-    public IEntityLivingData onSpawnWithEgg(
-            IEntityLivingData par1EntityLivingData)
+    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData)
     {
         super.onSpawnWithEgg(par1EntityLivingData);
         this.setVillager(false);

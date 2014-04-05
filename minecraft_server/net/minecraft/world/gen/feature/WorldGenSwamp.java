@@ -15,13 +15,11 @@ public class WorldGenSwamp extends WorldGenAbstractTree
         super(false);
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3,
-            int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         int var6;
 
-        for (var6 = par2Random.nextInt(4) + 5; par1World.getBlock(par3,
-                par4 - 1, par5).getMaterial() == Material.field_151586_h; --par4)
+        for (var6 = par2Random.nextInt(4) + 5; par1World.getBlock(par3, par4 - 1, par5).getMaterial() == Material.field_151586_h; --par4)
         {
             ;
         }
@@ -53,14 +51,11 @@ public class WorldGenSwamp extends WorldGenAbstractTree
                     {
                         if (var8 >= 0 && var8 < 256)
                         {
-                            Block var12 = par1World
-                                    .getBlock(var10, var8, var11);
+                            Block var12 = par1World.getBlock(var10, var8, var11);
 
-                            if (var12.getMaterial() != Material.air
-                                    && var12.getMaterial() != Material.field_151584_j)
+                            if (var12.getMaterial() != Material.air && var12.getMaterial() != Material.field_151584_j)
                             {
-                                if (var12 != Blocks.water
-                                        && var12 != Blocks.flowing_water)
+                                if (var12 != Blocks.water && var12 != Blocks.flowing_water)
                                 {
                                     var7 = false;
                                 }
@@ -86,11 +81,9 @@ public class WorldGenSwamp extends WorldGenAbstractTree
             {
                 Block var16 = par1World.getBlock(par3, par4 - 1, par5);
 
-                if ((var16 == Blocks.grass || var16 == Blocks.dirt)
-                        && par4 < 256 - var6 - 1)
+                if ((var16 == Blocks.grass || var16 == Blocks.dirt) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5,
-                            Blocks.dirt);
+                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
                     int var13;
                     int var19;
                     int var18;
@@ -104,19 +97,13 @@ public class WorldGenSwamp extends WorldGenAbstractTree
                         {
                             var13 = var19 - par3;
 
-                            for (int var14 = par5 - var11; var14 <= par5
-                                    + var11; ++var14)
+                            for (int var14 = par5 - var11; var14 <= par5 + var11; ++var14)
                             {
                                 int var15 = var14 - par5;
 
-                                if ((Math.abs(var13) != var11
-                                        || Math.abs(var15) != var11 || par2Random
-                                        .nextInt(2) != 0 && var10 != 0)
-                                        && !par1World.getBlock(var19, var18,
-                                                var14).func_149730_j())
+                                if ((Math.abs(var13) != var11 || Math.abs(var15) != var11 || par2Random.nextInt(2) != 0 && var10 != 0) && !par1World.getBlock(var19, var18, var14).func_149730_j())
                                 {
-                                    this.func_150515_a(par1World, var19, var18,
-                                            var14, Blocks.leaves);
+                                    this.func_150515_a(par1World, var19, var18, var14, Blocks.leaves);
                                 }
                             }
                         }
@@ -124,16 +111,11 @@ public class WorldGenSwamp extends WorldGenAbstractTree
 
                     for (var18 = 0; var18 < var6; ++var18)
                     {
-                        Block var17 = par1World.getBlock(par3, par4 + var18,
-                                par5);
+                        Block var17 = par1World.getBlock(par3, par4 + var18, par5);
 
-                        if (var17.getMaterial() == Material.air
-                                || var17.getMaterial() == Material.field_151584_j
-                                || var17 == Blocks.flowing_water
-                                || var17 == Blocks.water)
+                        if (var17.getMaterial() == Material.air || var17.getMaterial() == Material.field_151584_j || var17 == Blocks.flowing_water || var17 == Blocks.water)
                         {
-                            this.func_150515_a(par1World, par3, par4 + var18,
-                                    par5, Blocks.log);
+                            this.func_150515_a(par1World, par3, par4 + var18, par5, Blocks.log);
                         }
                     }
 
@@ -146,39 +128,26 @@ public class WorldGenSwamp extends WorldGenAbstractTree
                         {
                             for (var13 = par5 - var11; var13 <= par5 + var11; ++var13)
                             {
-                                if (par1World.getBlock(var19, var18, var13)
-                                        .getMaterial() == Material.field_151584_j)
+                                if (par1World.getBlock(var19, var18, var13).getMaterial() == Material.field_151584_j)
                                 {
-                                    if (par2Random.nextInt(4) == 0
-                                            && par1World.getBlock(var19 - 1,
-                                                    var18, var13).getMaterial() == Material.air)
+                                    if (par2Random.nextInt(4) == 0 && par1World.getBlock(var19 - 1, var18, var13).getMaterial() == Material.air)
                                     {
-                                        this.generateVines(par1World,
-                                                var19 - 1, var18, var13, 8);
+                                        this.generateVines(par1World, var19 - 1, var18, var13, 8);
                                     }
 
-                                    if (par2Random.nextInt(4) == 0
-                                            && par1World.getBlock(var19 + 1,
-                                                    var18, var13).getMaterial() == Material.air)
+                                    if (par2Random.nextInt(4) == 0 && par1World.getBlock(var19 + 1, var18, var13).getMaterial() == Material.air)
                                     {
-                                        this.generateVines(par1World,
-                                                var19 + 1, var18, var13, 2);
+                                        this.generateVines(par1World, var19 + 1, var18, var13, 2);
                                     }
 
-                                    if (par2Random.nextInt(4) == 0
-                                            && par1World.getBlock(var19, var18,
-                                                    var13 - 1).getMaterial() == Material.air)
+                                    if (par2Random.nextInt(4) == 0 && par1World.getBlock(var19, var18, var13 - 1).getMaterial() == Material.air)
                                     {
-                                        this.generateVines(par1World, var19,
-                                                var18, var13 - 1, 1);
+                                        this.generateVines(par1World, var19, var18, var13 - 1, 1);
                                     }
 
-                                    if (par2Random.nextInt(4) == 0
-                                            && par1World.getBlock(var19, var18,
-                                                    var13 + 1).getMaterial() == Material.air)
+                                    if (par2Random.nextInt(4) == 0 && par1World.getBlock(var19, var18, var13 + 1).getMaterial() == Material.air)
                                     {
-                                        this.generateVines(par1World, var19,
-                                                var18, var13 + 1, 4);
+                                        this.generateVines(par1World, var19, var18, var13 + 1, 4);
                                     }
                                 }
                             }
@@ -202,8 +171,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
     /**
      * Generates vines at the given position until it hits a block.
      */
-    private void generateVines(World par1World, int par2, int par3, int par4,
-            int par5)
+    private void generateVines(World par1World, int par2, int par3, int par4, int par5)
     {
         this.func_150516_a(par1World, par2, par3, par4, Blocks.vine, par5);
         int var6 = 4;
@@ -212,8 +180,7 @@ public class WorldGenSwamp extends WorldGenAbstractTree
         {
             --par3;
 
-            if (par1World.getBlock(par2, par3, par4).getMaterial() != Material.air
-                    || var6 <= 0) { return; }
+            if (par1World.getBlock(par2, par3, par4).getMaterial() != Material.air || var6 <= 0) { return; }
 
             this.func_150516_a(par1World, par2, par3, par4, Blocks.vine, par5);
             --var6;

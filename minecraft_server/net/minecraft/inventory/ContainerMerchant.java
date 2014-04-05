@@ -16,33 +16,27 @@ public class ContainerMerchant extends Container
     private final World theWorld;
     private static final String __OBFID = "CL_00001757";
 
-    public ContainerMerchant(InventoryPlayer par1InventoryPlayer,
-            IMerchant par2IMerchant, World par3World)
+    public ContainerMerchant(InventoryPlayer par1InventoryPlayer, IMerchant par2IMerchant, World par3World)
     {
         this.theMerchant = par2IMerchant;
         this.theWorld = par3World;
-        this.merchantInventory = new InventoryMerchant(
-                par1InventoryPlayer.player, par2IMerchant);
+        this.merchantInventory = new InventoryMerchant(par1InventoryPlayer.player, par2IMerchant);
         this.addSlotToContainer(new Slot(this.merchantInventory, 0, 36, 53));
         this.addSlotToContainer(new Slot(this.merchantInventory, 1, 62, 53));
-        this.addSlotToContainer(new SlotMerchantResult(
-                par1InventoryPlayer.player, par2IMerchant,
-                this.merchantInventory, 2, 120, 53));
+        this.addSlotToContainer(new SlotMerchantResult(par1InventoryPlayer.player, par2IMerchant, this.merchantInventory, 2, 120, 53));
         int var4;
 
         for (var4 = 0; var4 < 3; ++var4)
         {
             for (int var5 = 0; var5 < 9; ++var5)
             {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var5
-                        + var4 * 9 + 9, 8 + var5 * 18, 84 + var4 * 18));
+                this.addSlotToContainer(new Slot(par1InventoryPlayer, var5 + var4 * 9 + 9, 8 + var5 * 18, 84 + var4 * 18));
             }
         }
 
         for (var4 = 0; var4 < 9; ++var4)
         {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var4,
-                    8 + var4 * 18, 142));
+            this.addSlotToContainer(new Slot(par1InventoryPlayer, var4, 8 + var4 * 18, 142));
         }
     }
 
@@ -108,8 +102,7 @@ public class ContainerMerchant extends Container
                 {
                     if (!this.mergeItemStack(var5, 30, 39, false)) { return null; }
                 }
-                else if (par2 >= 30 && par2 < 39
-                        && !this.mergeItemStack(var5, 3, 30, false)) { return null; }
+                else if (par2 >= 30 && par2 < 39 && !this.mergeItemStack(var5, 3, 30, false)) { return null; }
             }
             else if (!this.mergeItemStack(var5, 3, 39, false)) { return null; }
 

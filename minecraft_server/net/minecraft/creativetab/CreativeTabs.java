@@ -5,23 +5,19 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 public abstract class CreativeTabs
 {
     public static final CreativeTabs[] creativeTabArray = new CreativeTabs[12];
-    public static final CreativeTabs tabBlock = new CreativeTabs(0,
-            "buildingBlocks")
+    public static final CreativeTabs tabBlock = new CreativeTabs(0, "buildingBlocks")
     {
         private static final String __OBFID = "CL_00000010";
     };
-    public static final CreativeTabs tabDecorations = new CreativeTabs(1,
-            "decorations")
+    public static final CreativeTabs tabDecorations = new CreativeTabs(1, "decorations")
     {
         private static final String __OBFID = "CL_00000011";
     };
-    public static final CreativeTabs tabRedstone = new CreativeTabs(2,
-            "redstone")
+    public static final CreativeTabs tabRedstone = new CreativeTabs(2, "redstone")
     {
         private static final String __OBFID = "CL_00000012";
     };
-    public static final CreativeTabs tabTransport = new CreativeTabs(3,
-            "transportation")
+    public static final CreativeTabs tabTransport = new CreativeTabs(3, "transportation")
     {
         private static final String __OBFID = "CL_00000014";
     };
@@ -29,8 +25,7 @@ public abstract class CreativeTabs
     {
         private static final String __OBFID = "CL_00000015";
     }).func_111229_a(new EnumEnchantmentType[] {EnumEnchantmentType.all});
-    public static final CreativeTabs tabAllSearch = (new CreativeTabs(5,
-            "search")
+    public static final CreativeTabs tabAllSearch = (new CreativeTabs(5, "search")
     {
         private static final String __OBFID = "CL_00000016";
     }).setBackgroundImageName("item_search.png");
@@ -41,26 +36,20 @@ public abstract class CreativeTabs
     public static final CreativeTabs tabTools = (new CreativeTabs(7, "tools")
     {
         private static final String __OBFID = "CL_00000018";
-    }).func_111229_a(new EnumEnchantmentType[] {EnumEnchantmentType.digger,
-            EnumEnchantmentType.fishing_rod, EnumEnchantmentType.breakable});
+    }).func_111229_a(new EnumEnchantmentType[] {EnumEnchantmentType.digger, EnumEnchantmentType.fishing_rod, EnumEnchantmentType.breakable});
     public static final CreativeTabs tabCombat = (new CreativeTabs(8, "combat")
     {
         private static final String __OBFID = "CL_00000007";
-    }).func_111229_a(new EnumEnchantmentType[] {EnumEnchantmentType.armor,
-            EnumEnchantmentType.armor_feet, EnumEnchantmentType.armor_head,
-            EnumEnchantmentType.armor_legs, EnumEnchantmentType.armor_torso,
-            EnumEnchantmentType.bow, EnumEnchantmentType.weapon});
+    }).func_111229_a(new EnumEnchantmentType[] {EnumEnchantmentType.armor, EnumEnchantmentType.armor_feet, EnumEnchantmentType.armor_head, EnumEnchantmentType.armor_legs, EnumEnchantmentType.armor_torso, EnumEnchantmentType.bow, EnumEnchantmentType.weapon});
     public static final CreativeTabs tabBrewing = new CreativeTabs(9, "brewing")
     {
         private static final String __OBFID = "CL_00000008";
     };
-    public static final CreativeTabs tabMaterials = new CreativeTabs(10,
-            "materials")
+    public static final CreativeTabs tabMaterials = new CreativeTabs(10, "materials")
     {
         private static final String __OBFID = "CL_00000009";
     };
-    public static final CreativeTabs tabInventory = (new CreativeTabs(11,
-            "inventory")
+    public static final CreativeTabs tabInventory = (new CreativeTabs(11, "inventory")
     {
         private static final String __OBFID = "CL_00000006";
     }).setBackgroundImageName("inventory.png").setNoScrollbar().setNoTitle();
@@ -101,8 +90,7 @@ public abstract class CreativeTabs
         return this;
     }
 
-    public CreativeTabs func_111229_a(
-            EnumEnchantmentType... par1ArrayOfEnumEnchantmentType)
+    public CreativeTabs func_111229_a(EnumEnchantmentType... par1ArrayOfEnumEnchantmentType)
     {
         this.field_111230_s = par1ArrayOfEnumEnchantmentType;
         return this;

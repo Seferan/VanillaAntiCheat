@@ -17,8 +17,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
 
         public void func_98267_a(int par1)
         {
-            EntityMinecartMobSpawner.this.worldObj.setEntityState(
-                    EntityMinecartMobSpawner.this, (byte)par1);
+            EntityMinecartMobSpawner.this.worldObj.setEntityState(EntityMinecartMobSpawner.this, (byte)par1);
         }
 
         public World getSpawnerWorld()
@@ -48,8 +47,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
         super(par1World);
     }
 
-    public EntityMinecartMobSpawner(World par1World, double par2, double par4,
-            double par6)
+    public EntityMinecartMobSpawner(World par1World, double par2, double par4, double par6)
     {
         super(par1World, par2, par4, par6);
     }

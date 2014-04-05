@@ -116,8 +116,7 @@ public class C03PacketPlayer extends Packet
             super.readPacketData(p_148837_1_);
         }
 
-        public void writePacketData(PacketBuffer p_148840_1_)
-                throws IOException
+        public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
             p_148840_1_.writeDouble(this.field_149479_a);
             p_148840_1_.writeDouble(this.field_149477_b);
@@ -150,8 +149,7 @@ public class C03PacketPlayer extends Packet
             super.readPacketData(p_148837_1_);
         }
 
-        public void writePacketData(PacketBuffer p_148840_1_)
-                throws IOException
+        public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
             p_148840_1_.writeFloat(this.field_149476_e);
             p_148840_1_.writeFloat(this.field_149473_f);
@@ -182,8 +180,7 @@ public class C03PacketPlayer extends Packet
             super.readPacketData(p_148837_1_);
         }
 
-        public void writePacketData(PacketBuffer p_148840_1_)
-                throws IOException
+        public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
             p_148840_1_.writeDouble(this.field_149479_a);
             p_148840_1_.writeDouble(this.field_149477_b);

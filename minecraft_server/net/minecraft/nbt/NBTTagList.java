@@ -51,8 +51,7 @@ public class NBTTagList extends NBTBase
     {
         if (par2 > 512)
         {
-            throw new RuntimeException(
-                    "Tried to read NBT tag with too high complexity, depth > 512");
+            throw new RuntimeException("Tried to read NBT tag with too high complexity, depth > 512");
         }
         else
         {
@@ -103,8 +102,7 @@ public class NBTTagList extends NBTBase
         }
         else if (this.tagType != par1NBTBase.getId())
         {
-            System.err
-                    .println("WARNING: Adding mismatching tag types to tag list");
+            System.err.println("WARNING: Adding mismatching tag types to tag list");
             return;
         }
 
@@ -119,8 +117,7 @@ public class NBTTagList extends NBTBase
         if (p_150305_1_ >= 0 && p_150305_1_ < this.tagList.size())
         {
             NBTBase var2 = (NBTBase)this.tagList.get(p_150305_1_);
-            return var2.getId() == 10 ? (NBTTagCompound)var2
-                    : new NBTTagCompound();
+            return var2.getId() == 10 ? (NBTTagCompound)var2 : new NBTTagCompound();
         }
         else
         {
@@ -133,8 +130,7 @@ public class NBTTagList extends NBTBase
         if (p_150306_1_ >= 0 && p_150306_1_ < this.tagList.size())
         {
             NBTBase var2 = (NBTBase)this.tagList.get(p_150306_1_);
-            return var2.getId() == 11 ? ((NBTTagIntArray)var2).func_150302_c()
-                    : new int[0];
+            return var2.getId() == 11 ? ((NBTTagIntArray)var2).func_150302_c() : new int[0];
         }
         else
         {
@@ -147,8 +143,7 @@ public class NBTTagList extends NBTBase
         if (p_150309_1_ >= 0 && p_150309_1_ < this.tagList.size())
         {
             NBTBase var2 = (NBTBase)this.tagList.get(p_150309_1_);
-            return var2.getId() == 6 ? ((NBTTagDouble)var2).func_150286_g()
-                    : 0.0D;
+            return var2.getId() == 6 ? ((NBTTagDouble)var2).func_150286_g() : 0.0D;
         }
         else
         {
@@ -161,8 +156,7 @@ public class NBTTagList extends NBTBase
         if (p_150308_1_ >= 0 && p_150308_1_ < this.tagList.size())
         {
             NBTBase var2 = (NBTBase)this.tagList.get(p_150308_1_);
-            return var2.getId() == 5 ? ((NBTTagFloat)var2).func_150288_h()
-                    : 0.0F;
+            return var2.getId() == 5 ? ((NBTTagFloat)var2).func_150288_h() : 0.0F;
         }
         else
         {
@@ -219,8 +213,7 @@ public class NBTTagList extends NBTBase
         {
             NBTTagList var2 = (NBTTagList)par1Obj;
 
-            if (this.tagType == var2.tagType) { return this.tagList
-                    .equals(var2.tagList); }
+            if (this.tagType == var2.tagType) { return this.tagList.equals(var2.tagList); }
         }
 
         return false;

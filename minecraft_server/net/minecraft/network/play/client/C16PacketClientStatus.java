@@ -25,9 +25,7 @@ public class C16PacketClientStatus extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149437_a = C16PacketClientStatus.EnumState.field_151404_e[p_148837_1_
-                .readByte()
-                % C16PacketClientStatus.EnumState.field_151404_e.length];
+        this.field_149437_a = C16PacketClientStatus.EnumState.field_151404_e[p_148837_1_.readByte() % C16PacketClientStatus.EnumState.field_151404_e.length];
     }
 
     /**
@@ -55,14 +53,11 @@ public class C16PacketClientStatus extends Packet
 
     public static enum EnumState
     {
-        PERFORM_RESPAWN("PERFORM_RESPAWN", 0, 0), REQUEST_STATS(
-                "REQUEST_STATS", 1, 1), OPEN_INVENTORY_ACHIEVEMENT(
-                "OPEN_INVENTORY_ACHIEVEMENT", 2, 2);
+        PERFORM_RESPAWN("PERFORM_RESPAWN", 0, 0), REQUEST_STATS("REQUEST_STATS", 1, 1), OPEN_INVENTORY_ACHIEVEMENT("OPEN_INVENTORY_ACHIEVEMENT", 2, 2);
         private final int field_151403_d;
         private static final C16PacketClientStatus.EnumState[] field_151404_e = new C16PacketClientStatus.EnumState[values().length];
 
-        private static final C16PacketClientStatus.EnumState[] $VALUES = new C16PacketClientStatus.EnumState[] {
-                PERFORM_RESPAWN, REQUEST_STATS, OPEN_INVENTORY_ACHIEVEMENT};
+        private static final C16PacketClientStatus.EnumState[] $VALUES = new C16PacketClientStatus.EnumState[] {PERFORM_RESPAWN, REQUEST_STATS, OPEN_INVENTORY_ACHIEVEMENT};
         private static final String __OBFID = "CL_00001349";
 
         private EnumState(String p_i45241_1_, int p_i45241_2_, int p_i45241_3_)

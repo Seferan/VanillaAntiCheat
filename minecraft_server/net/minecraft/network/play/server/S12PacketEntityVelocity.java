@@ -21,12 +21,10 @@ public class S12PacketEntityVelocity extends Packet
 
     public S12PacketEntityVelocity(Entity p_i45219_1_)
     {
-        this(p_i45219_1_.getEntityId(), p_i45219_1_.motionX,
-                p_i45219_1_.motionY, p_i45219_1_.motionZ);
+        this(p_i45219_1_.getEntityId(), p_i45219_1_.motionX, p_i45219_1_.motionY, p_i45219_1_.motionZ);
     }
 
-    public S12PacketEntityVelocity(int p_i45220_1_, double p_i45220_2_,
-            double p_i45220_4_, double p_i45220_6_)
+    public S12PacketEntityVelocity(int p_i45220_1_, double p_i45220_2_, double p_i45220_4_, double p_i45220_6_)
     {
         this.field_149417_a = p_i45220_1_;
         double var8 = 3.9D;
@@ -99,12 +97,7 @@ public class S12PacketEntityVelocity extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "id=%d, x=%.2f, y=%.2f, z=%.2f",
-                new Object[] {Integer.valueOf(this.field_149417_a),
-                        Float.valueOf((float)this.field_149415_b / 8000.0F),
-                        Float.valueOf((float)this.field_149416_c / 8000.0F),
-                        Float.valueOf((float)this.field_149414_d / 8000.0F)});
+        return String.format("id=%d, x=%.2f, y=%.2f, z=%.2f", new Object[] {Integer.valueOf(this.field_149417_a), Float.valueOf((float)this.field_149415_b / 8000.0F), Float.valueOf((float)this.field_149416_c / 8000.0F), Float.valueOf((float)this.field_149414_d / 8000.0F)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

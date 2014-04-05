@@ -29,25 +29,19 @@ public class EntityAIMoveIndoors extends EntityAIBase
         int var2 = MathHelper.floor_double(this.entityObj.posY);
         int var3 = MathHelper.floor_double(this.entityObj.posZ);
 
-        if ((!this.entityObj.worldObj.isDaytime()
-                || this.entityObj.worldObj.isRaining() || !this.entityObj.worldObj
-                .getBiomeGenForCoords(var1, var3).canSpawnLightningBolt())
-                && !this.entityObj.worldObj.provider.hasNoSky)
+        if ((!this.entityObj.worldObj.isDaytime() || this.entityObj.worldObj.isRaining() || !this.entityObj.worldObj.getBiomeGenForCoords(var1, var3).canSpawnLightningBolt()) && !this.entityObj.worldObj.provider.hasNoSky)
         {
             if (this.entityObj.getRNG().nextInt(50) != 0)
             {
                 return false;
             }
-            else if (this.insidePosX != -1
-                    && this.entityObj.getDistanceSq((double)this.insidePosX,
-                            this.entityObj.posY, (double)this.insidePosZ) < 4.0D)
+            else if (this.insidePosX != -1 && this.entityObj.getDistanceSq((double)this.insidePosX, this.entityObj.posY, (double)this.insidePosZ) < 4.0D)
             {
                 return false;
             }
             else
             {
-                Village var4 = this.entityObj.worldObj.villageCollectionObj
-                        .findNearestVillage(var1, var2, var3, 14);
+                Village var4 = this.entityObj.worldObj.villageCollectionObj.findNearestVillage(var1, var2, var3, 14);
 
                 if (var4 == null)
                 {
@@ -55,8 +49,7 @@ public class EntityAIMoveIndoors extends EntityAIBase
                 }
                 else
                 {
-                    this.doorInfo = var4.findNearestDoorUnrestricted(var1,
-                            var2, var3);
+                    this.doorInfo = var4.findNearestDoorUnrestricted(var1, var2, var3);
                     return this.doorInfo != null;
                 }
             }
@@ -82,31 +75,18 @@ public class EntityAIMoveIndoors extends EntityAIBase
     {
         this.insidePosX = -1;
 
-        if (this.entityObj.getDistanceSq((double)this.doorInfo.getInsidePosX(),
-                (double)this.doorInfo.posY,
-                (double)this.doorInfo.getInsidePosZ()) > 256.0D)
+        if (this.entityObj.getDistanceSq((double)this.doorInfo.getInsidePosX(), (double)this.doorInfo.posY, (double)this.doorInfo.getInsidePosZ()) > 256.0D)
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTargetBlockTowards(
-                    this.entityObj,
-                    14,
-                    3,
-                    this.entityObj.worldObj.getWorldVec3Pool().getVecFromPool(
-                            (double)this.doorInfo.getInsidePosX() + 0.5D,
-                            (double)this.doorInfo.getInsidePosY(),
-                            (double)this.doorInfo.getInsidePosZ() + 0.5D));
+            Vec3 var1 = RandomPositionGenerator.findRandomTargetBlockTowards(this.entityObj, 14, 3, this.entityObj.worldObj.getWorldVec3Pool().getVecFromPool((double)this.doorInfo.getInsidePosX() + 0.5D, (double)this.doorInfo.getInsidePosY(), (double)this.doorInfo.getInsidePosZ() + 0.5D));
 
             if (var1 != null)
             {
-                this.entityObj.getNavigator().tryMoveToXYZ(var1.xCoord,
-                        var1.yCoord, var1.zCoord, 1.0D);
+                this.entityObj.getNavigator().tryMoveToXYZ(var1.xCoord, var1.yCoord, var1.zCoord, 1.0D);
             }
         }
         else
         {
-            this.entityObj.getNavigator().tryMoveToXYZ(
-                    (double)this.doorInfo.getInsidePosX() + 0.5D,
-                    (double)this.doorInfo.getInsidePosY(),
-                    (double)this.doorInfo.getInsidePosZ() + 0.5D, 1.0D);
+            this.entityObj.getNavigator().tryMoveToXYZ((double)this.doorInfo.getInsidePosX() + 0.5D, (double)this.doorInfo.getInsidePosY(), (double)this.doorInfo.getInsidePosZ() + 0.5D, 1.0D);
         }
     }
 

@@ -23,46 +23,32 @@ public class BlockRedstoneLight extends Block
         }
     }
 
-    public void onBlockAdded(World p_149726_1_, int p_149726_2_,
-            int p_149726_3_, int p_149726_4_)
+    public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         if (!p_149726_1_.isClient)
         {
-            if (this.field_150171_a
-                    && !p_149726_1_.isBlockIndirectlyGettingPowered(
-                            p_149726_2_, p_149726_3_, p_149726_4_))
+            if (this.field_150171_a && !p_149726_1_.isBlockIndirectlyGettingPowered(p_149726_2_, p_149726_3_, p_149726_4_))
             {
-                p_149726_1_.scheduleBlockUpdate(p_149726_2_, p_149726_3_,
-                        p_149726_4_, this, 4);
+                p_149726_1_.scheduleBlockUpdate(p_149726_2_, p_149726_3_, p_149726_4_, this, 4);
             }
-            else if (!this.field_150171_a
-                    && p_149726_1_.isBlockIndirectlyGettingPowered(p_149726_2_,
-                            p_149726_3_, p_149726_4_))
+            else if (!this.field_150171_a && p_149726_1_.isBlockIndirectlyGettingPowered(p_149726_2_, p_149726_3_, p_149726_4_))
             {
-                p_149726_1_.setBlock(p_149726_2_, p_149726_3_, p_149726_4_,
-                        Blocks.lit_redstone_lamp, 0, 2);
+                p_149726_1_.setBlock(p_149726_2_, p_149726_3_, p_149726_4_, Blocks.lit_redstone_lamp, 0, 2);
             }
         }
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         if (!p_149695_1_.isClient)
         {
-            if (this.field_150171_a
-                    && !p_149695_1_.isBlockIndirectlyGettingPowered(
-                            p_149695_2_, p_149695_3_, p_149695_4_))
+            if (this.field_150171_a && !p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_))
             {
-                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_,
-                        p_149695_4_, this, 4);
+                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, 4);
             }
-            else if (!this.field_150171_a
-                    && p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_,
-                            p_149695_3_, p_149695_4_))
+            else if (!this.field_150171_a && p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_))
             {
-                p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_,
-                        Blocks.lit_redstone_lamp, 0, 2);
+                p_149695_1_.setBlock(p_149695_2_, p_149695_3_, p_149695_4_, Blocks.lit_redstone_lamp, 0, 2);
             }
         }
     }
@@ -70,21 +56,15 @@ public class BlockRedstoneLight extends Block
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
-            int p_149674_4_, Random p_149674_5_)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        if (!p_149674_1_.isClient
-                && this.field_150171_a
-                && !p_149674_1_.isBlockIndirectlyGettingPowered(p_149674_2_,
-                        p_149674_3_, p_149674_4_))
+        if (!p_149674_1_.isClient && this.field_150171_a && !p_149674_1_.isBlockIndirectlyGettingPowered(p_149674_2_, p_149674_3_, p_149674_4_))
         {
-            p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_,
-                    Blocks.redstone_lamp, 0, 2);
+            p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, Blocks.redstone_lamp, 0, 2);
         }
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return Item.getItemFromBlock(Blocks.redstone_lamp);
     }

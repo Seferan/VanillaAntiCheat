@@ -29,10 +29,7 @@ public class CommandListBans extends CommandBase
      */
     public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
     {
-        return (MinecraftServer.getServer().getConfigurationManager()
-                .getBannedIPs().isListActive() || MinecraftServer.getServer()
-                .getConfigurationManager().getBannedPlayers().isListActive())
-                && super.canCommandSenderUseCommand(par1ICommandSender);
+        return (MinecraftServer.getServer().getConfigurationManager().getBannedIPs().isListActive() || MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().isListActive()) && super.canCommandSenderUseCommand(par1ICommandSender);
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)
@@ -40,33 +37,17 @@ public class CommandListBans extends CommandBase
         return "commands.banlist.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        if (par2ArrayOfStr.length >= 1
-                && par2ArrayOfStr[0].equalsIgnoreCase("ips"))
+        if (par2ArrayOfStr.length >= 1 && par2ArrayOfStr[0].equalsIgnoreCase("ips"))
         {
-            par1ICommandSender.addChatMessage(new ChatComponentTranslation(
-                    "commands.banlist.ips", new Object[] {Integer
-                            .valueOf(MinecraftServer.getServer()
-                                    .getConfigurationManager().getBannedIPs()
-                                    .getBannedList().size())}));
-            par1ICommandSender.addChatMessage(new ChatComponentText(
-                    joinNiceString(MinecraftServer.getServer()
-                            .getConfigurationManager().getBannedIPs()
-                            .getBannedList().keySet().toArray())));
+            par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.banlist.ips", new Object[] {Integer.valueOf(MinecraftServer.getServer().getConfigurationManager().getBannedIPs().getBannedList().size())}));
+            par1ICommandSender.addChatMessage(new ChatComponentText(joinNiceString(MinecraftServer.getServer().getConfigurationManager().getBannedIPs().getBannedList().keySet().toArray())));
         }
         else
         {
-            par1ICommandSender.addChatMessage(new ChatComponentTranslation(
-                    "commands.banlist.players",
-                    new Object[] {Integer.valueOf(MinecraftServer.getServer()
-                            .getConfigurationManager().getBannedPlayers()
-                            .getBannedList().size())}));
-            par1ICommandSender.addChatMessage(new ChatComponentText(
-                    joinNiceString(MinecraftServer.getServer()
-                            .getConfigurationManager().getBannedPlayers()
-                            .getBannedList().keySet().toArray())));
+            par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.banlist.players", new Object[] {Integer.valueOf(MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().getBannedList().size())}));
+            par1ICommandSender.addChatMessage(new ChatComponentText(joinNiceString(MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().getBannedList().keySet().toArray())));
         }
     }
 
@@ -74,10 +55,8 @@ public class CommandListBans extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(
-                par2ArrayOfStr, new String[] {"players", "ips"}) : null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"players", "ips"}) : null;
     }
 }

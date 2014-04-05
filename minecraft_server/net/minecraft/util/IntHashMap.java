@@ -48,8 +48,7 @@ public class IntHashMap
     {
         int var2 = computeHash(par1);
 
-        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2,
-                this.slots.length)]; var3 != null; var3 = var3.nextEntry)
+        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2, this.slots.length)]; var3 != null; var3 = var3.nextEntry)
         {
             if (var3.hashEntry == par1) { return var3.valueEntry; }
         }
@@ -72,8 +71,7 @@ public class IntHashMap
     {
         int var2 = computeHash(par1);
 
-        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2,
-                this.slots.length)]; var3 != null; var3 = var3.nextEntry)
+        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2, this.slots.length)]; var3 != null; var3 = var3.nextEntry)
         {
             if (var3.hashEntry == par1) { return var3; }
         }
@@ -239,8 +237,7 @@ public class IntHashMap
         final int slotHash;
         private static final String __OBFID = "CL_00001491";
 
-        Entry(int par1, int par2, Object par3Obj,
-                IntHashMap.Entry par4IntHashMapEntry)
+        Entry(int par1, int par2, Object par3Obj, IntHashMap.Entry par4IntHashMapEntry)
         {
             this.valueEntry = par3Obj;
             this.nextEntry = par4IntHashMapEntry;

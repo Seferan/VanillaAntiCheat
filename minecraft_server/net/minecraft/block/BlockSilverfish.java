@@ -11,8 +11,7 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public class BlockSilverfish extends Block
 {
-    public static final String[] field_150198_a = new String[] {"stone",
-            "cobble", "brick", "mossybrick", "crackedbrick", "chiseledbrick"};
+    public static final String[] field_150198_a = new String[] {"stone", "cobble", "brick", "mossybrick", "crackedbrick", "chiseledbrick"};
     private static final String __OBFID = "CL_00000271";
 
     public BlockSilverfish()
@@ -22,20 +21,17 @@ public class BlockSilverfish extends Block
         this.setcreativeTab(CreativeTabs.tabDecorations);
     }
 
-    public void onBlockDestroyedByPlayer(World p_149664_1_, int p_149664_2_,
-            int p_149664_3_, int p_149664_4_, int p_149664_5_)
+    public void onBlockDestroyedByPlayer(World p_149664_1_, int p_149664_2_, int p_149664_3_, int p_149664_4_, int p_149664_5_)
     {
         if (!p_149664_1_.isClient)
         {
             EntitySilverfish var6 = new EntitySilverfish(p_149664_1_);
-            var6.setLocationAndAngles((double)p_149664_2_ + 0.5D,
-                    (double)p_149664_3_, (double)p_149664_4_ + 0.5D, 0.0F, 0.0F);
+            var6.setLocationAndAngles((double)p_149664_2_ + 0.5D, (double)p_149664_3_, (double)p_149664_4_ + 0.5D, 0.0F, 0.0F);
             p_149664_1_.spawnEntityInWorld(var6);
             var6.spawnExplosionParticle();
         }
 
-        super.onBlockDestroyedByPlayer(p_149664_1_, p_149664_2_, p_149664_3_,
-                p_149664_4_, p_149664_5_);
+        super.onBlockDestroyedByPlayer(p_149664_1_, p_149664_2_, p_149664_3_, p_149664_4_, p_149664_5_);
     }
 
     /**
@@ -48,8 +44,7 @@ public class BlockSilverfish extends Block
 
     public static boolean func_150196_a(Block p_150196_0_)
     {
-        return p_150196_0_ == Blocks.stone || p_150196_0_ == Blocks.cobblestone
-                || p_150196_0_ == Blocks.stonebrick;
+        return p_150196_0_ == Blocks.stone || p_150196_0_ == Blocks.cobblestone || p_150196_0_ == Blocks.stonebrick;
     }
 
     public static int func_150195_a(Block p_150195_0_, int p_150195_1_)
@@ -136,15 +131,12 @@ public class BlockSilverfish extends Block
      * Drops the block items with a specified chance of dropping the specified
      * items
      */
-    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_,
-            int p_149690_3_, int p_149690_4_, int p_149690_5_,
-            float p_149690_6_, int p_149690_7_)
+    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
     {
         if (!p_149690_1_.isClient)
         {
             EntitySilverfish var8 = new EntitySilverfish(p_149690_1_);
-            var8.setLocationAndAngles((double)p_149690_2_ + 0.5D,
-                    (double)p_149690_3_, (double)p_149690_4_ + 0.5D, 0.0F, 0.0F);
+            var8.setLocationAndAngles((double)p_149690_2_ + 0.5D, (double)p_149690_3_, (double)p_149690_4_ + 0.5D, 0.0F, 0.0F);
             p_149690_1_.spawnEntityInWorld(var8);
             var8.spawnExplosionParticle();
         }
@@ -153,10 +145,8 @@ public class BlockSilverfish extends Block
     /**
      * Get the block's damage value (for use with pick block).
      */
-    public int getDamageValue(World p_149643_1_, int p_149643_2_,
-            int p_149643_3_, int p_149643_4_)
+    public int getDamageValue(World p_149643_1_, int p_149643_2_, int p_149643_3_, int p_149643_4_)
     {
-        return p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_,
-                p_149643_4_);
+        return p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_, p_149643_4_);
     }
 }

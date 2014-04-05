@@ -20,7 +20,6 @@ public class ItemCoal extends Item
      */
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
-        return par1ItemStack.getItemDamage() == 1 ? "item.charcoal"
-                : "item.coal";
+        return par1ItemStack.getItemDamage() == 1 ? "item.charcoal" : "item.coal";
     }
 }

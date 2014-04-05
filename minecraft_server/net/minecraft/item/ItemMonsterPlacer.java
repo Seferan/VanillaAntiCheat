@@ -27,16 +27,12 @@ public class ItemMonsterPlacer extends Item
 
     public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
-        String var2 = ("" + StatCollector.translateToLocal(this
-                .getUnlocalizedName() + ".name")).trim();
+        String var2 = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
         String var3 = EntityList.getStringFromID(par1ItemStack.getItemDamage());
 
         if (var3 != null)
         {
-            var2 = var2
-                    + " "
-                    + StatCollector
-                            .translateToLocal("entity." + var3 + ".name");
+            var2 = var2 + " " + StatCollector.translateToLocal("entity." + var3 + ".name");
         }
 
         return var2;
@@ -47,9 +43,7 @@ public class ItemMonsterPlacer extends Item
      * clicking, he will have one of those. Return True if something happen and
      * false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack par1ItemStack,
-            EntityPlayer par2EntityPlayer, World par3World, int par4, int par5,
-            int par6, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
         if (par3World.isClient)
         {
@@ -68,17 +62,13 @@ public class ItemMonsterPlacer extends Item
                 var12 = 0.5D;
             }
 
-            Entity var14 = spawnCreature(par3World,
-                    par1ItemStack.getItemDamage(), (double)par4 + 0.5D,
-                    (double)par5 + var12, (double)par6 + 0.5D);
+            Entity var14 = spawnCreature(par3World, par1ItemStack.getItemDamage(), (double)par4 + 0.5D, (double)par5 + var12, (double)par6 + 0.5D);
 
             if (var14 != null)
             {
-                if (var14 instanceof EntityLivingBase
-                        && par1ItemStack.hasDisplayName())
+                if (var14 instanceof EntityLivingBase && par1ItemStack.hasDisplayName())
                 {
-                    ((EntityLiving)var14).setCustomNameTag(par1ItemStack
-                            .getDisplayName());
+                    ((EntityLiving)var14).setCustomNameTag(par1ItemStack.getDisplayName());
                 }
 
                 if (!par2EntityPlayer.capabilities.isCreativeMode)
@@ -95,8 +85,7 @@ public class ItemMonsterPlacer extends Item
      * Called whenever this item is equipped and the right mouse button is
      * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         if (par2World.isClient)
         {
@@ -104,8 +93,7 @@ public class ItemMonsterPlacer extends Item
         }
         else
         {
-            MovingObjectPosition var4 = this.getMovingObjectPositionFromPlayer(
-                    par2World, par3EntityPlayer, true);
+            MovingObjectPosition var4 = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
 
             if (var4 == null)
             {
@@ -119,26 +107,19 @@ public class ItemMonsterPlacer extends Item
                     int var6 = var4.blockY;
                     int var7 = var4.blockZ;
 
-                    if (!par2World.canMineBlock(par3EntityPlayer, var5, var6,
-                            var7)) { return par1ItemStack; }
+                    if (!par2World.canMineBlock(par3EntityPlayer, var5, var6, var7)) { return par1ItemStack; }
 
-                    if (!par3EntityPlayer.canPlayerEdit(var5, var6, var7,
-                            var4.sideHit, par1ItemStack)) { return par1ItemStack; }
+                    if (!par3EntityPlayer.canPlayerEdit(var5, var6, var7, var4.sideHit, par1ItemStack)) { return par1ItemStack; }
 
                     if (par2World.getBlock(var5, var6, var7) instanceof BlockLiquid)
                     {
-                        Entity var8 = spawnCreature(par2World,
-                                par1ItemStack.getItemDamage(), (double)var5,
-                                (double)var6, (double)var7);
+                        Entity var8 = spawnCreature(par2World, par1ItemStack.getItemDamage(), (double)var5, (double)var6, (double)var7);
 
                         if (var8 != null)
                         {
-                            if (var8 instanceof EntityLivingBase
-                                    && par1ItemStack.hasDisplayName())
+                            if (var8 instanceof EntityLivingBase && par1ItemStack.hasDisplayName())
                             {
-                                ((EntityLiving)var8)
-                                        .setCustomNameTag(par1ItemStack
-                                                .getDisplayName());
+                                ((EntityLiving)var8).setCustomNameTag(par1ItemStack.getDisplayName());
                             }
 
                             if (!par3EntityPlayer.capabilities.isCreativeMode)
@@ -158,8 +139,7 @@ public class ItemMonsterPlacer extends Item
      * Spawns the creature specified by the egg's type in the location specified
      * by the last three parameters. Parameters: world, entityID, x, y, z.
      */
-    public static Entity spawnCreature(World par0World, int par1, double par2,
-            double par4, double par6)
+    public static Entity spawnCreature(World par0World, int par1, double par2, double par4, double par6)
     {
         if (!EntityList.entityEggs.containsKey(Integer.valueOf(par1)))
         {
@@ -176,9 +156,7 @@ public class ItemMonsterPlacer extends Item
                 if (var8 != null && var8 instanceof EntityLivingBase)
                 {
                     EntityLiving var10 = (EntityLiving)var8;
-                    var8.setLocationAndAngles(par2, par4, par6,
-                            MathHelper.wrapAngleTo180_float(par0World.rand
-                                    .nextFloat() * 360.0F), 0.0F);
+                    var8.setLocationAndAngles(par2, par4, par6, MathHelper.wrapAngleTo180_float(par0World.rand.nextFloat() * 360.0F), 0.0F);
                     var10.rotationYawHead = var10.rotationYaw;
                     var10.renderYawOffset = var10.rotationYaw;
                     var10.onSpawnWithEgg((IEntityLivingData)null);

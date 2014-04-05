@@ -43,10 +43,7 @@ public class BlockEnchantmentTable extends BlockContainer
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
-            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
-            int p_149727_6_, float p_149727_7_, float p_149727_8_,
-            float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         if (p_149727_1_.isClient)
         {
@@ -54,11 +51,8 @@ public class BlockEnchantmentTable extends BlockContainer
         }
         else
         {
-            TileEntityEnchantmentTable var10 = (TileEntityEnchantmentTable)p_149727_1_
-                    .getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
-            p_149727_5_.displayGUIEnchantment(p_149727_2_, p_149727_3_,
-                    p_149727_4_, var10.func_145921_b() ? var10.func_145919_a()
-                            : null);
+            TileEntityEnchantmentTable var10 = (TileEntityEnchantmentTable)p_149727_1_.getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
+            p_149727_5_.displayGUIEnchantment(p_149727_2_, p_149727_3_, p_149727_4_, var10.func_145921_b() ? var10.func_145919_a() : null);
             return true;
         }
     }
@@ -66,18 +60,13 @@ public class BlockEnchantmentTable extends BlockContainer
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
-            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
-            ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        super.onBlockPlacedBy(p_149689_1_, p_149689_2_, p_149689_3_,
-                p_149689_4_, p_149689_5_, p_149689_6_);
+        super.onBlockPlacedBy(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_, p_149689_5_, p_149689_6_);
 
         if (p_149689_6_.hasDisplayName())
         {
-            ((TileEntityEnchantmentTable)p_149689_1_.getTileEntity(p_149689_2_,
-                    p_149689_3_, p_149689_4_)).func_145920_a(p_149689_6_
-                    .getDisplayName());
+            ((TileEntityEnchantmentTable)p_149689_1_.getTileEntity(p_149689_2_, p_149689_3_, p_149689_4_)).func_145920_a(p_149689_6_.getDisplayName());
         }
     }
 }

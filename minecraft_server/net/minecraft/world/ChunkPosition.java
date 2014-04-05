@@ -19,9 +19,7 @@ public class ChunkPosition
 
     public ChunkPosition(Vec3 p_i45364_1_)
     {
-        this(MathHelper.floor_double(p_i45364_1_.xCoord), MathHelper
-                .floor_double(p_i45364_1_.yCoord), MathHelper
-                .floor_double(p_i45364_1_.zCoord));
+        this(MathHelper.floor_double(p_i45364_1_.xCoord), MathHelper.floor_double(p_i45364_1_.yCoord), MathHelper.floor_double(p_i45364_1_.zCoord));
     }
 
     public boolean equals(Object par1Obj)
@@ -33,15 +31,12 @@ public class ChunkPosition
         else
         {
             ChunkPosition var2 = (ChunkPosition)par1Obj;
-            return var2.chunkPosX == this.chunkPosX
-                    && var2.chunkPosY == this.chunkPosY
-                    && var2.chunkPosZ == this.chunkPosZ;
+            return var2.chunkPosX == this.chunkPosX && var2.chunkPosY == this.chunkPosY && var2.chunkPosZ == this.chunkPosZ;
         }
     }
 
     public int hashCode()
     {
-        return this.chunkPosX * 8976890 + this.chunkPosY * 981131
-                + this.chunkPosZ;
+        return this.chunkPosX * 8976890 + this.chunkPosY * 981131 + this.chunkPosZ;
     }
 }

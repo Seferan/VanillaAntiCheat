@@ -12,8 +12,7 @@ public class RecipesMapCloning implements IRecipe
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(InventoryCrafting par1InventoryCrafting,
-            World par2World)
+    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
     {
         int var3 = 0;
         ItemStack var4 = null;
@@ -73,8 +72,7 @@ public class RecipesMapCloning implements IRecipe
 
         if (var3 != null && var2 >= 1)
         {
-            ItemStack var6 = new ItemStack(Items.filled_map, var2 + 1,
-                    var3.getItemDamage());
+            ItemStack var6 = new ItemStack(Items.filled_map, var2 + 1, var3.getItemDamage());
 
             if (var3.hasDisplayName())
             {

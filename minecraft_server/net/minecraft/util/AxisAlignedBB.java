@@ -24,8 +24,7 @@ public class AxisAlignedBB
      * Returns a bounding box with the specified bounds. Args: minX, minY, minZ,
      * maxX, maxY, maxZ
      */
-    public static AxisAlignedBB getBoundingBox(double par0, double par2,
-            double par4, double par6, double par8, double par10)
+    public static AxisAlignedBB getBoundingBox(double par0, double par2, double par4, double par6, double par8, double par10)
     {
         return new AxisAlignedBB(par0, par2, par4, par6, par8, par10);
     }
@@ -38,8 +37,7 @@ public class AxisAlignedBB
         return (AABBPool)theAABBLocalPool.get();
     }
 
-    protected AxisAlignedBB(double par1, double par3, double par5, double par7,
-            double par9, double par11)
+    protected AxisAlignedBB(double par1, double par3, double par5, double par7, double par9, double par11)
     {
         this.minX = par1;
         this.minY = par3;
@@ -53,8 +51,7 @@ public class AxisAlignedBB
      * Sets the bounds of the bounding box. Args: minX, minY, minZ, maxX, maxY,
      * maxZ
      */
-    public AxisAlignedBB setBounds(double par1, double par3, double par5,
-            double par7, double par9, double par11)
+    public AxisAlignedBB setBounds(double par1, double par3, double par5, double par7, double par9, double par11)
     {
         this.minX = par1;
         this.minY = par3;
@@ -141,12 +138,9 @@ public class AxisAlignedBB
      * Returns a bounding box offseted by the specified vector (if negative
      * numbers are given it will shrink). Args: x, y, z
      */
-    public AxisAlignedBB getOffsetBoundingBox(double par1, double par3,
-            double par5)
+    public AxisAlignedBB getOffsetBoundingBox(double par1, double par3, double par5)
     {
-        return getAABBPool().getAABB(this.minX + par1, this.minY + par3,
-                this.minZ + par5, this.maxX + par1, this.maxY + par3,
-                this.maxZ + par5);
+        return getAABBPool().getAABB(this.minX + par1, this.minY + par3, this.minZ + par5, this.maxX + par1, this.maxY + par3, this.maxZ + par5);
     }
 
     /**
@@ -157,11 +151,9 @@ public class AxisAlignedBB
      */
     public double calculateXOffset(AxisAlignedBB par1AxisAlignedBB, double par2)
     {
-        if (par1AxisAlignedBB.maxY > this.minY
-                && par1AxisAlignedBB.minY < this.maxY)
+        if (par1AxisAlignedBB.maxY > this.minY && par1AxisAlignedBB.minY < this.maxY)
         {
-            if (par1AxisAlignedBB.maxZ > this.minZ
-                    && par1AxisAlignedBB.minZ < this.maxZ)
+            if (par1AxisAlignedBB.maxZ > this.minZ && par1AxisAlignedBB.minZ < this.maxZ)
             {
                 double var4;
 
@@ -206,11 +198,9 @@ public class AxisAlignedBB
      */
     public double calculateYOffset(AxisAlignedBB par1AxisAlignedBB, double par2)
     {
-        if (par1AxisAlignedBB.maxX > this.minX
-                && par1AxisAlignedBB.minX < this.maxX)
+        if (par1AxisAlignedBB.maxX > this.minX && par1AxisAlignedBB.minX < this.maxX)
         {
-            if (par1AxisAlignedBB.maxZ > this.minZ
-                    && par1AxisAlignedBB.minZ < this.maxZ)
+            if (par1AxisAlignedBB.maxZ > this.minZ && par1AxisAlignedBB.minZ < this.maxZ)
             {
                 double var4;
 
@@ -255,11 +245,9 @@ public class AxisAlignedBB
      */
     public double calculateZOffset(AxisAlignedBB par1AxisAlignedBB, double par2)
     {
-        if (par1AxisAlignedBB.maxX > this.minX
-                && par1AxisAlignedBB.minX < this.maxX)
+        if (par1AxisAlignedBB.maxX > this.minX && par1AxisAlignedBB.minX < this.maxX)
         {
-            if (par1AxisAlignedBB.maxY > this.minY
-                    && par1AxisAlignedBB.minY < this.maxY)
+            if (par1AxisAlignedBB.maxY > this.minY && par1AxisAlignedBB.minY < this.maxY)
             {
                 double var4;
 
@@ -302,12 +290,7 @@ public class AxisAlignedBB
      */
     public boolean intersectsWith(AxisAlignedBB par1AxisAlignedBB)
     {
-        return par1AxisAlignedBB.maxX > this.minX
-                && par1AxisAlignedBB.minX < this.maxX ? (par1AxisAlignedBB.maxY > this.minY
-                && par1AxisAlignedBB.minY < this.maxY ? par1AxisAlignedBB.maxZ > this.minZ
-                && par1AxisAlignedBB.minZ < this.maxZ
-                : false)
-                : false;
+        return par1AxisAlignedBB.maxX > this.minX && par1AxisAlignedBB.minX < this.maxX ? (par1AxisAlignedBB.maxY > this.minY && par1AxisAlignedBB.minY < this.maxY ? par1AxisAlignedBB.maxZ > this.minZ && par1AxisAlignedBB.minZ < this.maxZ : false) : false;
     }
 
     /**
@@ -330,10 +313,7 @@ public class AxisAlignedBB
      */
     public boolean isVecInside(Vec3 par1Vec3)
     {
-        return par1Vec3.xCoord > this.minX && par1Vec3.xCoord < this.maxX ? (par1Vec3.yCoord > this.minY
-                && par1Vec3.yCoord < this.maxY ? par1Vec3.zCoord > this.minZ
-                && par1Vec3.zCoord < this.maxZ : false)
-                : false;
+        return par1Vec3.xCoord > this.minX && par1Vec3.xCoord < this.maxX ? (par1Vec3.yCoord > this.minY && par1Vec3.yCoord < this.maxY ? par1Vec3.zCoord > this.minZ && par1Vec3.zCoord < this.maxZ : false) : false;
     }
 
     /**
@@ -366,8 +346,7 @@ public class AxisAlignedBB
      */
     public AxisAlignedBB copy()
     {
-        return getAABBPool().getAABB(this.minX, this.minY, this.minZ,
-                this.maxX, this.maxY, this.maxZ);
+        return getAABBPool().getAABB(this.minX, this.minY, this.minZ, this.maxX, this.maxY, this.maxZ);
     }
 
     public MovingObjectPosition calculateIntercept(Vec3 par1Vec3, Vec3 par2Vec3)
@@ -411,44 +390,32 @@ public class AxisAlignedBB
 
         Vec3 var9 = null;
 
-        if (var3 != null
-                && (var9 == null || par1Vec3.squareDistanceTo(var3) < par1Vec3
-                        .squareDistanceTo(var9)))
+        if (var3 != null && (var9 == null || par1Vec3.squareDistanceTo(var3) < par1Vec3.squareDistanceTo(var9)))
         {
             var9 = var3;
         }
 
-        if (var4 != null
-                && (var9 == null || par1Vec3.squareDistanceTo(var4) < par1Vec3
-                        .squareDistanceTo(var9)))
+        if (var4 != null && (var9 == null || par1Vec3.squareDistanceTo(var4) < par1Vec3.squareDistanceTo(var9)))
         {
             var9 = var4;
         }
 
-        if (var5 != null
-                && (var9 == null || par1Vec3.squareDistanceTo(var5) < par1Vec3
-                        .squareDistanceTo(var9)))
+        if (var5 != null && (var9 == null || par1Vec3.squareDistanceTo(var5) < par1Vec3.squareDistanceTo(var9)))
         {
             var9 = var5;
         }
 
-        if (var6 != null
-                && (var9 == null || par1Vec3.squareDistanceTo(var6) < par1Vec3
-                        .squareDistanceTo(var9)))
+        if (var6 != null && (var9 == null || par1Vec3.squareDistanceTo(var6) < par1Vec3.squareDistanceTo(var9)))
         {
             var9 = var6;
         }
 
-        if (var7 != null
-                && (var9 == null || par1Vec3.squareDistanceTo(var7) < par1Vec3
-                        .squareDistanceTo(var9)))
+        if (var7 != null && (var9 == null || par1Vec3.squareDistanceTo(var7) < par1Vec3.squareDistanceTo(var9)))
         {
             var9 = var7;
         }
 
-        if (var8 != null
-                && (var9 == null || par1Vec3.squareDistanceTo(var8) < par1Vec3
-                        .squareDistanceTo(var9)))
+        if (var8 != null && (var9 == null || par1Vec3.squareDistanceTo(var8) < par1Vec3.squareDistanceTo(var9)))
         {
             var9 = var8;
         }
@@ -501,9 +468,7 @@ public class AxisAlignedBB
      */
     private boolean isVecInYZ(Vec3 par1Vec3)
     {
-        return par1Vec3 == null ? false : par1Vec3.yCoord >= this.minY
-                && par1Vec3.yCoord <= this.maxY && par1Vec3.zCoord >= this.minZ
-                && par1Vec3.zCoord <= this.maxZ;
+        return par1Vec3 == null ? false : par1Vec3.yCoord >= this.minY && par1Vec3.yCoord <= this.maxY && par1Vec3.zCoord >= this.minZ && par1Vec3.zCoord <= this.maxZ;
     }
 
     /**
@@ -512,9 +477,7 @@ public class AxisAlignedBB
      */
     private boolean isVecInXZ(Vec3 par1Vec3)
     {
-        return par1Vec3 == null ? false : par1Vec3.xCoord >= this.minX
-                && par1Vec3.xCoord <= this.maxX && par1Vec3.zCoord >= this.minZ
-                && par1Vec3.zCoord <= this.maxZ;
+        return par1Vec3 == null ? false : par1Vec3.xCoord >= this.minX && par1Vec3.xCoord <= this.maxX && par1Vec3.zCoord >= this.minZ && par1Vec3.zCoord <= this.maxZ;
     }
 
     /**
@@ -523,9 +486,7 @@ public class AxisAlignedBB
      */
     private boolean isVecInXY(Vec3 par1Vec3)
     {
-        return par1Vec3 == null ? false : par1Vec3.xCoord >= this.minX
-                && par1Vec3.xCoord <= this.maxX && par1Vec3.yCoord >= this.minY
-                && par1Vec3.yCoord <= this.maxY;
+        return par1Vec3 == null ? false : par1Vec3.xCoord >= this.minX && par1Vec3.xCoord <= this.maxX && par1Vec3.yCoord >= this.minY && par1Vec3.yCoord <= this.maxY;
     }
 
     /**
@@ -544,8 +505,6 @@ public class AxisAlignedBB
 
     public String toString()
     {
-        return "box[" + this.minX + ", " + this.minY + ", " + this.minZ
-                + " -> " + this.maxX + ", " + this.maxY + ", " + this.maxZ
-                + "]";
+        return "box[" + this.minX + ", " + this.minY + ", " + this.minZ + " -> " + this.maxX + ", " + this.maxY + ", " + this.maxZ + "]";
     }
 }

@@ -27,8 +27,7 @@ public class S3FPacketCustomPayload extends Packet
         this.field_149172_a = p_i45190_1_;
         this.field_149171_b = p_i45190_2_;
 
-        if (p_i45190_2_.length >= 32767) { throw new IllegalArgumentException(
-                "Payload may not be larger than 32767 bytes"); }
+        if (p_i45190_2_.length >= 32767) { throw new IllegalArgumentException("Payload may not be larger than 32767 bytes"); }
     }
 
     /**

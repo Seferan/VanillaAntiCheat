@@ -14,16 +14,9 @@ import net.minecraft.world.World;
 
 public class ItemDye extends Item
 {
-    public static final String[] field_150923_a = new String[] {"black", "red",
-            "green", "brown", "blue", "purple", "cyan", "silver", "gray",
-            "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"};
-    public static final String[] field_150921_b = new String[] {"black", "red",
-            "green", "brown", "blue", "purple", "cyan", "silver", "gray",
-            "pink", "lime", "yellow", "light_blue", "magenta", "orange",
-            "white"};
-    public static final int[] field_150922_c = new int[] {1973019, 11743532,
-            3887386, 5320730, 2437522, 8073150, 2651799, 11250603, 4408131,
-            14188952, 4312372, 14602026, 6719955, 12801229, 15435844, 15790320};
+    public static final String[] field_150923_a = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "lightBlue", "magenta", "orange", "white"};
+    public static final String[] field_150921_b = new String[] {"black", "red", "green", "brown", "blue", "purple", "cyan", "silver", "gray", "pink", "lime", "yellow", "light_blue", "magenta", "orange", "white"};
+    public static final int[] field_150922_c = new int[] {1973019, 11743532, 3887386, 5320730, 2437522, 8073150, 2651799, 11250603, 4408131, 14188952, 4312372, 14602026, 6719955, 12801229, 15435844, 15790320};
     private static final String __OBFID = "CL_00000022";
 
     public ItemDye()
@@ -49,12 +42,9 @@ public class ItemDye extends Item
      * clicking, he will have one of those. Return True if something happen and
      * false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack par1ItemStack,
-            EntityPlayer par2EntityPlayer, World par3World, int par4, int par5,
-            int par6, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
-        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7,
-                par1ItemStack))
+        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
         {
             return false;
         }
@@ -105,10 +95,8 @@ public class ItemDye extends Item
 
                     if (par3World.isAirBlock(par4, par5, par6))
                     {
-                        int var13 = Blocks.cocoa.onBlockPlaced(par3World, par4,
-                                par5, par6, par7, par8, par9, par10, 0);
-                        par3World.setBlock(par4, par5, par6, Blocks.cocoa,
-                                var13, 2);
+                        int var13 = Blocks.cocoa.onBlockPlaced(par3World, par4, par5, par6, par7, par8, par9, par10, 0);
+                        par3World.setBlock(par4, par5, par6, Blocks.cocoa, var13, 2);
 
                         if (!par2EntityPlayer.capabilities.isCreativeMode)
                         {
@@ -124,26 +112,21 @@ public class ItemDye extends Item
         }
     }
 
-    public static boolean func_150919_a(ItemStack p_150919_0_,
-            World p_150919_1_, int p_150919_2_, int p_150919_3_, int p_150919_4_)
+    public static boolean func_150919_a(ItemStack p_150919_0_, World p_150919_1_, int p_150919_2_, int p_150919_3_, int p_150919_4_)
     {
-        Block var5 = p_150919_1_
-                .getBlock(p_150919_2_, p_150919_3_, p_150919_4_);
+        Block var5 = p_150919_1_.getBlock(p_150919_2_, p_150919_3_, p_150919_4_);
 
         if (var5 instanceof IGrowable)
         {
             IGrowable var6 = (IGrowable)var5;
 
-            if (var6.func_149851_a(p_150919_1_, p_150919_2_, p_150919_3_,
-                    p_150919_4_, p_150919_1_.isClient))
+            if (var6.func_149851_a(p_150919_1_, p_150919_2_, p_150919_3_, p_150919_4_, p_150919_1_.isClient))
             {
                 if (!p_150919_1_.isClient)
                 {
-                    if (var6.func_149852_a(p_150919_1_, p_150919_1_.rand,
-                            p_150919_2_, p_150919_3_, p_150919_4_))
+                    if (var6.func_149852_a(p_150919_1_, p_150919_1_.rand, p_150919_2_, p_150919_3_, p_150919_4_))
                     {
-                        var6.func_149853_b(p_150919_1_, p_150919_1_.rand,
-                                p_150919_2_, p_150919_3_, p_150919_4_);
+                        var6.func_149853_b(p_150919_1_, p_150919_1_.rand, p_150919_2_, p_150919_3_, p_150919_4_);
                     }
 
                     --p_150919_0_.stackSize;
@@ -160,14 +143,12 @@ public class ItemDye extends Item
      * Returns true if the item can be used on the given entity, e.g. shears on
      * sheep.
      */
-    public boolean itemInteractionForEntity(ItemStack par1ItemStack,
-            EntityPlayer par2EntityPlayer, EntityLivingBase par3EntityLivingBase)
+    public boolean itemInteractionForEntity(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, EntityLivingBase par3EntityLivingBase)
     {
         if (par3EntityLivingBase instanceof EntitySheep)
         {
             EntitySheep var4 = (EntitySheep)par3EntityLivingBase;
-            int var5 = BlockColored
-                    .func_150032_b(par1ItemStack.getItemDamage());
+            int var5 = BlockColored.func_150032_b(par1ItemStack.getItemDamage());
 
             if (!var4.getSheared() && var4.getFleeceColor() != var5)
             {

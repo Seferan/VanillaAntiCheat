@@ -19,13 +19,11 @@ public class WorldGenShrub extends WorldGenTrees
         this.field_150528_a = par2;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3,
-            int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         Block var6;
 
-        while (((var6 = par1World.getBlock(par3, par4, par5)).getMaterial() == Material.air || var6
-                .getMaterial() == Material.field_151584_j) && par4 > 0)
+        while (((var6 = par1World.getBlock(par3, par4, par5)).getMaterial() == Material.air || var6.getMaterial() == Material.field_151584_j) && par4 > 0)
         {
             --par4;
         }
@@ -35,8 +33,7 @@ public class WorldGenShrub extends WorldGenTrees
         if (var7 == Blocks.dirt || var7 == Blocks.grass)
         {
             ++par4;
-            this.func_150516_a(par1World, par3, par4, par5, Blocks.log,
-                    this.field_150527_b);
+            this.func_150516_a(par1World, par3, par4, par5, Blocks.log, this.field_150527_b);
 
             for (int var8 = par4; var8 <= par4 + 2; ++var8)
             {
@@ -51,14 +48,9 @@ public class WorldGenShrub extends WorldGenTrees
                     {
                         int var14 = var13 - par5;
 
-                        if ((Math.abs(var12) != var10
-                                || Math.abs(var14) != var10 || par2Random
-                                .nextInt(2) != 0)
-                                && !par1World.getBlock(var11, var8, var13)
-                                        .func_149730_j())
+                        if ((Math.abs(var12) != var10 || Math.abs(var14) != var10 || par2Random.nextInt(2) != 0) && !par1World.getBlock(var11, var8, var13).func_149730_j())
                         {
-                            this.func_150516_a(par1World, var11, var8, var13,
-                                    Blocks.leaves, this.field_150528_a);
+                            this.func_150516_a(par1World, var11, var8, var13, Blocks.leaves, this.field_150528_a);
                         }
                     }
                 }

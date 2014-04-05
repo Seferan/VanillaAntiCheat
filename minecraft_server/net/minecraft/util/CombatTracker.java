@@ -34,10 +34,7 @@ public class CombatTracker
 
         if (this.fighter.isOnLadder())
         {
-            Block var1 = this.fighter.worldObj.getBlock(
-                    MathHelper.floor_double(this.fighter.posX),
-                    MathHelper.floor_double(this.fighter.boundingBox.minY),
-                    MathHelper.floor_double(this.fighter.posZ));
+            Block var1 = this.fighter.worldObj.getBlock(MathHelper.floor_double(this.fighter.posX), MathHelper.floor_double(this.fighter.boundingBox.minY), MathHelper.floor_double(this.fighter.posZ));
 
             if (var1 == Blocks.ladder)
             {
@@ -54,14 +51,11 @@ public class CombatTracker
         }
     }
 
-    public void func_94547_a(DamageSource par1DamageSource, float par2,
-            float par3)
+    public void func_94547_a(DamageSource par1DamageSource, float par2, float par3)
     {
         this.func_94549_h();
         this.func_94545_a();
-        CombatEntry var4 = new CombatEntry(par1DamageSource,
-                this.fighter.ticksExisted, par2, par3, this.field_94551_f,
-                this.fighter.fallDistance);
+        CombatEntry var4 = new CombatEntry(par1DamageSource, this.fighter.ticksExisted, par2, par3, this.field_94551_f, this.fighter.fallDistance);
         this.combatEntries.add(var4);
         this.field_94555_c = this.fighter.ticksExisted;
         this.field_94553_e = true;
@@ -72,14 +66,12 @@ public class CombatTracker
     {
         if (this.combatEntries.size() == 0)
         {
-            return new ChatComponentTranslation("death.attack.generic",
-                    new Object[] {this.fighter.getUsernameAsIChatComponent()});
+            return new ChatComponentTranslation("death.attack.generic", new Object[] {this.fighter.getUsernameAsIChatComponent()});
         }
         else
         {
             CombatEntry var1 = this.func_94544_f();
-            CombatEntry var2 = (CombatEntry)this.combatEntries
-                    .get(this.combatEntries.size() - 1);
+            CombatEntry var2 = (CombatEntry)this.combatEntries.get(this.combatEntries.size() - 1);
             IChatComponent var4 = var2.func_151522_h();
             Entity var5 = var2.getDamageSrc().getEntity();
             Object var3;
@@ -88,72 +80,43 @@ public class CombatTracker
             {
                 IChatComponent var6 = var1.func_151522_h();
 
-                if (var1.getDamageSrc() != DamageSource.fall
-                        && var1.getDamageSrc() != DamageSource.outOfWorld)
+                if (var1.getDamageSrc() != DamageSource.fall && var1.getDamageSrc() != DamageSource.outOfWorld)
                 {
                     if (var6 != null && (var4 == null || !var6.equals(var4)))
                     {
                         Entity var9 = var1.getDamageSrc().getEntity();
-                        ItemStack var8 = var9 instanceof EntityLivingBase ? ((EntityLivingBase)var9)
-                                .getHeldItem() : null;
+                        ItemStack var8 = var9 instanceof EntityLivingBase ? ((EntityLivingBase)var9).getHeldItem() : null;
 
                         if (var8 != null && var8.hasDisplayName())
                         {
-                            var3 = new ChatComponentTranslation(
-                                    "death.fell.assist.item",
-                                    new Object[] {
-                                            this.fighter
-                                                    .getUsernameAsIChatComponent(),
-                                            var6, var8.func_151000_E()});
+                            var3 = new ChatComponentTranslation("death.fell.assist.item", new Object[] {this.fighter.getUsernameAsIChatComponent(), var6, var8.func_151000_E()});
                         }
                         else
                         {
-                            var3 = new ChatComponentTranslation(
-                                    "death.fell.assist",
-                                    new Object[] {
-                                            this.fighter
-                                                    .getUsernameAsIChatComponent(),
-                                            var6});
+                            var3 = new ChatComponentTranslation("death.fell.assist", new Object[] {this.fighter.getUsernameAsIChatComponent(), var6});
                         }
                     }
                     else if (var4 != null)
                     {
-                        ItemStack var7 = var5 instanceof EntityLivingBase ? ((EntityLivingBase)var5)
-                                .getHeldItem() : null;
+                        ItemStack var7 = var5 instanceof EntityLivingBase ? ((EntityLivingBase)var5).getHeldItem() : null;
 
                         if (var7 != null && var7.hasDisplayName())
                         {
-                            var3 = new ChatComponentTranslation(
-                                    "death.fell.finish.item",
-                                    new Object[] {
-                                            this.fighter
-                                                    .getUsernameAsIChatComponent(),
-                                            var4, var7.func_151000_E()});
+                            var3 = new ChatComponentTranslation("death.fell.finish.item", new Object[] {this.fighter.getUsernameAsIChatComponent(), var4, var7.func_151000_E()});
                         }
                         else
                         {
-                            var3 = new ChatComponentTranslation(
-                                    "death.fell.finish",
-                                    new Object[] {
-                                            this.fighter
-                                                    .getUsernameAsIChatComponent(),
-                                            var4});
+                            var3 = new ChatComponentTranslation("death.fell.finish", new Object[] {this.fighter.getUsernameAsIChatComponent(), var4});
                         }
                     }
                     else
                     {
-                        var3 = new ChatComponentTranslation(
-                                "death.fell.killer",
-                                new Object[] {this.fighter
-                                        .getUsernameAsIChatComponent()});
+                        var3 = new ChatComponentTranslation("death.fell.killer", new Object[] {this.fighter.getUsernameAsIChatComponent()});
                     }
                 }
                 else
                 {
-                    var3 = new ChatComponentTranslation("death.fell.accident."
-                            + this.func_94548_b(var1),
-                            new Object[] {this.fighter
-                                    .getUsernameAsIChatComponent()});
+                    var3 = new ChatComponentTranslation("death.fell.accident." + this.func_94548_b(var1), new Object[] {this.fighter.getUsernameAsIChatComponent()});
                 }
             }
             else
@@ -177,15 +140,13 @@ public class CombatTracker
         {
             CombatEntry var6 = (CombatEntry)var5.next();
 
-            if (var6.getDamageSrc().getEntity() instanceof EntityPlayer
-                    && (var2 == null || var6.func_94563_c() > var4))
+            if (var6.getDamageSrc().getEntity() instanceof EntityPlayer && (var2 == null || var6.func_94563_c() > var4))
             {
                 var4 = var6.func_94563_c();
                 var2 = (EntityPlayer)var6.getDamageSrc().getEntity();
             }
 
-            if (var6.getDamageSrc().getEntity() instanceof EntityLivingBase
-                    && (var1 == null || var6.func_94563_c() > var3))
+            if (var6.getDamageSrc().getEntity() instanceof EntityLivingBase && (var1 == null || var6.func_94563_c() > var3))
             {
                 var3 = var6.func_94563_c();
                 var1 = (EntityLivingBase)var6.getDamageSrc().getEntity();
@@ -212,13 +173,9 @@ public class CombatTracker
         for (int var5 = 0; var5 < this.combatEntries.size(); ++var5)
         {
             CombatEntry var6 = (CombatEntry)this.combatEntries.get(var5);
-            CombatEntry var7 = var5 > 0 ? (CombatEntry)this.combatEntries
-                    .get(var5 - 1) : null;
+            CombatEntry var7 = var5 > 0 ? (CombatEntry)this.combatEntries.get(var5 - 1) : null;
 
-            if ((var6.getDamageSrc() == DamageSource.fall || var6
-                    .getDamageSrc() == DamageSource.outOfWorld)
-                    && var6.func_94561_i() > 0.0F
-                    && (var1 == null || var6.func_94561_i() > var4))
+            if ((var6.getDamageSrc() == DamageSource.fall || var6.getDamageSrc() == DamageSource.outOfWorld) && var6.func_94561_i() > 0.0F && (var1 == null || var6.func_94561_i() > var4))
             {
                 if (var5 > 0)
                 {
@@ -232,8 +189,7 @@ public class CombatTracker
                 var4 = var6.func_94561_i();
             }
 
-            if (var6.func_94562_g() != null
-                    && (var2 == null || var6.func_94563_c() > (float)var3))
+            if (var6.func_94562_g() != null && (var2 == null || var6.func_94563_c() > (float)var3))
             {
                 var2 = var6;
             }
@@ -255,8 +211,7 @@ public class CombatTracker
 
     private String func_94548_b(CombatEntry par1CombatEntry)
     {
-        return par1CombatEntry.func_94562_g() == null ? "generic"
-                : par1CombatEntry.func_94562_g();
+        return par1CombatEntry.func_94562_g() == null ? "generic" : par1CombatEntry.func_94562_g();
     }
 
     private void func_94542_g()
@@ -268,8 +223,7 @@ public class CombatTracker
     {
         int var1 = this.field_94552_d ? 300 : 100;
 
-        if (this.field_94553_e
-                && this.fighter.ticksExisted - this.field_94555_c > var1)
+        if (this.field_94553_e && this.fighter.ticksExisted - this.field_94555_c > var1)
         {
             this.combatEntries.clear();
             this.field_94553_e = false;

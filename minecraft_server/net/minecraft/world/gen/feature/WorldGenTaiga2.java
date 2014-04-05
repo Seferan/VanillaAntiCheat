@@ -15,8 +15,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
         super(par1);
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3,
-            int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         int var6 = par2Random.nextInt(4) + 6;
         int var7 = 1 + par2Random.nextInt(2);
@@ -44,16 +43,13 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                 for (var13 = par3 - var21; var13 <= par3 + var21 && var10; ++var13)
                 {
-                    for (int var14 = par5 - var21; var14 <= par5 + var21
-                            && var10; ++var14)
+                    for (int var14 = par5 - var21; var14 <= par5 + var21 && var10; ++var14)
                     {
                         if (var11 >= 0 && var11 < 256)
                         {
-                            Block var15 = par1World.getBlock(var13, var11,
-                                    var14);
+                            Block var15 = par1World.getBlock(var13, var11, var14);
 
-                            if (var15.getMaterial() != Material.air
-                                    && var15.getMaterial() != Material.field_151584_j)
+                            if (var15.getMaterial() != Material.air && var15.getMaterial() != Material.field_151584_j)
                             {
                                 var10 = false;
                             }
@@ -74,11 +70,9 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
             {
                 Block var22 = par1World.getBlock(par3, par4 - 1, par5);
 
-                if ((var22 == Blocks.grass || var22 == Blocks.dirt || var22 == Blocks.farmland)
-                        && par4 < 256 - var6 - 1)
+                if ((var22 == Blocks.grass || var22 == Blocks.dirt || var22 == Blocks.farmland) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5,
-                            Blocks.dirt);
+                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
                     var21 = par2Random.nextInt(2);
                     var13 = 1;
                     byte var24 = 0;
@@ -93,18 +87,13 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
                         {
                             int var18 = var17 - par3;
 
-                            for (int var19 = par5 - var21; var19 <= par5
-                                    + var21; ++var19)
+                            for (int var19 = par5 - var21; var19 <= par5 + var21; ++var19)
                             {
                                 int var20 = var19 - par5;
 
-                                if ((Math.abs(var18) != var21
-                                        || Math.abs(var20) != var21 || var21 <= 0)
-                                        && !par1World.getBlock(var17, var16,
-                                                var19).func_149730_j())
+                                if ((Math.abs(var18) != var21 || Math.abs(var20) != var21 || var21 <= 0) && !par1World.getBlock(var17, var16, var19).func_149730_j())
                                 {
-                                    this.func_150516_a(par1World, var17, var16,
-                                            var19, Blocks.leaves, 1);
+                                    this.func_150516_a(par1World, var17, var16, var19, Blocks.leaves, 1);
                                 }
                             }
                         }
@@ -130,14 +119,11 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                     for (var16 = 0; var16 < var6 - var23; ++var16)
                     {
-                        Block var25 = par1World.getBlock(par3, par4 + var16,
-                                par5);
+                        Block var25 = par1World.getBlock(par3, par4 + var16, par5);
 
-                        if (var25.getMaterial() == Material.air
-                                || var25.getMaterial() == Material.field_151584_j)
+                        if (var25.getMaterial() == Material.air || var25.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, par3, par4 + var16,
-                                    par5, Blocks.log, 1);
+                            this.func_150516_a(par1World, par3, par4 + var16, par5, Blocks.log, 1);
                         }
                     }
 

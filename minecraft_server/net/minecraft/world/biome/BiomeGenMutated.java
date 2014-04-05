@@ -27,14 +27,10 @@ public class BiomeGenMutated extends BiomeGenBase
         this.waterColorMultiplier = p_i45381_2_.waterColorMultiplier;
         this.enableSnow = p_i45381_2_.enableSnow;
         this.enableRain = p_i45381_2_.enableRain;
-        this.spawnableCreatureList = new ArrayList(
-                p_i45381_2_.spawnableCreatureList);
-        this.spawnableMonsterList = new ArrayList(
-                p_i45381_2_.spawnableMonsterList);
-        this.spawnableCaveCreatureList = new ArrayList(
-                p_i45381_2_.spawnableCaveCreatureList);
-        this.spawnableWaterCreatureList = new ArrayList(
-                p_i45381_2_.spawnableWaterCreatureList);
+        this.spawnableCreatureList = new ArrayList(p_i45381_2_.spawnableCreatureList);
+        this.spawnableMonsterList = new ArrayList(p_i45381_2_.spawnableMonsterList);
+        this.spawnableCaveCreatureList = new ArrayList(p_i45381_2_.spawnableCaveCreatureList);
+        this.spawnableWaterCreatureList = new ArrayList(p_i45381_2_.spawnableWaterCreatureList);
         this.temperature = p_i45381_2_.temperature;
         this.rainfall = p_i45381_2_.rainfall;
         this.minHeight = p_i45381_2_.minHeight + 0.1F;
@@ -43,17 +39,12 @@ public class BiomeGenMutated extends BiomeGenBase
 
     public void decorate(World par1World, Random par2Random, int par3, int par4)
     {
-        this.field_150611_aD.theBiomeDecorator.func_150512_a(par1World,
-                par2Random, this, par3, par4);
+        this.field_150611_aD.theBiomeDecorator.func_150512_a(par1World, par2Random, this, par3, par4);
     }
 
-    public void func_150573_a(World p_150573_1_, Random p_150573_2_,
-            Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_,
-            int p_150573_6_, double p_150573_7_)
+    public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
     {
-        this.field_150611_aD
-                .func_150573_a(p_150573_1_, p_150573_2_, p_150573_3_,
-                        p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        this.field_150611_aD.func_150573_a(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
     }
 
     /**

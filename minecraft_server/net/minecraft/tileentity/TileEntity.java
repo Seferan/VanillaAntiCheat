@@ -91,8 +91,7 @@ public class TileEntity
 
         if (var2 == null)
         {
-            throw new RuntimeException(this.getClass()
-                    + " is missing a mapping! This is a bug!");
+            throw new RuntimeException(this.getClass() + " is missing a mapping! This is a bug!");
         }
         else
         {
@@ -134,8 +133,7 @@ public class TileEntity
         }
         else
         {
-            logger.warn("Skipping BlockEntity with id "
-                    + p_145827_0_.getString("id"));
+            logger.warn("Skipping BlockEntity with id " + p_145827_0_.getString("id"));
         }
 
         return var1;
@@ -145,8 +143,7 @@ public class TileEntity
     {
         if (this.blockMetadata == -1)
         {
-            this.blockMetadata = this.worldObj.getBlockMetadata(this.xCoord,
-                    this.yCoord, this.zCoord);
+            this.blockMetadata = this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
         }
 
         return this.blockMetadata;
@@ -159,15 +156,12 @@ public class TileEntity
     {
         if (this.worldObj != null)
         {
-            this.blockMetadata = this.worldObj.getBlockMetadata(this.xCoord,
-                    this.yCoord, this.zCoord);
-            this.worldObj.func_147476_b(this.xCoord, this.yCoord, this.zCoord,
-                    this);
+            this.blockMetadata = this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
+            this.worldObj.func_147476_b(this.xCoord, this.yCoord, this.zCoord, this);
 
             if (this.getBlockType() != Blocks.air)
             {
-                this.worldObj.func_147453_f(this.xCoord, this.yCoord,
-                        this.zCoord, this.getBlockType());
+                this.worldObj.func_147453_f(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
             }
         }
     }
@@ -179,8 +173,7 @@ public class TileEntity
     {
         if (this.blockType == null)
         {
-            this.blockType = this.worldObj.getBlock(this.xCoord, this.yCoord,
-                    this.zCoord);
+            this.blockType = this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord);
         }
 
         return this.blockType;
@@ -234,32 +227,21 @@ public class TileEntity
 
             public String call()
             {
-                return (String)TileEntity.classToNameMap.get(TileEntity.this
-                        .getClass())
-                        + " // "
-                        + TileEntity.this.getClass().getCanonicalName();
+                return (String)TileEntity.classToNameMap.get(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
             }
         });
-        CrashReportCategory.func_147153_a(p_145828_1_, this.xCoord,
-                this.yCoord, this.zCoord, this.getBlockType(),
-                this.getBlockMetadata());
+        CrashReportCategory.func_147153_a(p_145828_1_, this.xCoord, this.yCoord, this.zCoord, this.getBlockType(), this.getBlockMetadata());
         p_145828_1_.addCrashSectionCallable("Actual block type", new Callable()
         {
             private static final String __OBFID = "CL_00000343";
 
             public String call()
             {
-                int var1 = Block.getIdFromBlock(TileEntity.this.worldObj
-                        .getBlock(TileEntity.this.xCoord,
-                                TileEntity.this.yCoord, TileEntity.this.zCoord));
+                int var1 = Block.getIdFromBlock(TileEntity.this.worldObj.getBlock(TileEntity.this.xCoord, TileEntity.this.yCoord, TileEntity.this.zCoord));
 
                 try
                 {
-                    return String.format("ID #%d (%s // %s)", new Object[] {
-                            Integer.valueOf(var1),
-                            Block.getBlockById(var1).getUnlocalizedName(),
-                            Block.getBlockById(var1).getClass()
-                                    .getCanonicalName()});
+                    return String.format("ID #%d (%s // %s)", new Object[] {Integer.valueOf(var1), Block.getBlockById(var1).getUnlocalizedName(), Block.getBlockById(var1).getClass().getCanonicalName()});
                 }
                 catch (Throwable var3)
                 {
@@ -267,33 +249,25 @@ public class TileEntity
                 }
             }
         });
-        p_145828_1_.addCrashSectionCallable("Actual block data value",
-                new Callable()
+        p_145828_1_.addCrashSectionCallable("Actual block data value", new Callable()
+        {
+            private static final String __OBFID = "CL_00000344";
+
+            public String call()
+            {
+                int var1 = TileEntity.this.worldObj.getBlockMetadata(TileEntity.this.xCoord, TileEntity.this.yCoord, TileEntity.this.zCoord);
+
+                if (var1 < 0)
                 {
-                    private static final String __OBFID = "CL_00000344";
-
-                    public String call()
-                    {
-                        int var1 = TileEntity.this.worldObj.getBlockMetadata(
-                                TileEntity.this.xCoord, TileEntity.this.yCoord,
-                                TileEntity.this.zCoord);
-
-                        if (var1 < 0)
-                        {
-                            return "Unknown? (Got " + var1 + ")";
-                        }
-                        else
-                        {
-                            String var2 = String
-                                    .format("%4s",
-                                            new Object[] {Integer
-                                                    .toBinaryString(var1)})
-                                    .replace(" ", "0");
-                            return String.format("%1$d / 0x%1$X / 0b%2$s",
-                                    new Object[] {Integer.valueOf(var1), var2});
-                        }
-                    }
-                });
+                    return "Unknown? (Got " + var1 + ")";
+                }
+                else
+                {
+                    String var2 = String.format("%4s", new Object[] {Integer.toBinaryString(var1)}).replace(" ", "0");
+                    return String.format("%1$d / 0x%1$X / 0b%2$s", new Object[] {Integer.valueOf(var1), var2});
+                }
+            }
+        });
     }
 
     static

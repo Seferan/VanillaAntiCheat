@@ -18,18 +18,14 @@ public abstract class BlockRailBase extends Block
     protected final boolean field_150053_a;
     private static final String __OBFID = "CL_00000195";
 
-    public static final boolean func_150049_b_(World p_150049_0_,
-            int p_150049_1_, int p_150049_2_, int p_150049_3_)
+    public static final boolean func_150049_b_(World p_150049_0_, int p_150049_1_, int p_150049_2_, int p_150049_3_)
     {
-        return func_150051_a(p_150049_0_.getBlock(p_150049_1_, p_150049_2_,
-                p_150049_3_));
+        return func_150051_a(p_150049_0_.getBlock(p_150049_1_, p_150049_2_, p_150049_3_));
     }
 
     public static final boolean func_150051_a(Block p_150051_0_)
     {
-        return p_150051_0_ == Blocks.rail || p_150051_0_ == Blocks.golden_rail
-                || p_150051_0_ == Blocks.detector_rail
-                || p_150051_0_ == Blocks.activator_rail;
+        return p_150051_0_ == Blocks.rail || p_150051_0_ == Blocks.golden_rail || p_150051_0_ == Blocks.detector_rail || p_150051_0_ == Blocks.activator_rail;
     }
 
     protected BlockRailBase(boolean p_i45389_1_)
@@ -49,8 +45,7 @@ public abstract class BlockRailBase extends Block
      * Returns a bounding box from the pool of bounding boxes (this means this
      * box can change after the pool has been cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_,
-            int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
         return null;
     }
@@ -60,21 +55,15 @@ public abstract class BlockRailBase extends Block
         return false;
     }
 
-    public MovingObjectPosition collisionRayTrace(World p_149731_1_,
-            int p_149731_2_, int p_149731_3_, int p_149731_4_,
-            Vec3 p_149731_5_, Vec3 p_149731_6_)
+    public MovingObjectPosition collisionRayTrace(World p_149731_1_, int p_149731_2_, int p_149731_3_, int p_149731_4_, Vec3 p_149731_5_, Vec3 p_149731_6_)
     {
-        this.setBlockBoundsBasedOnState(p_149731_1_, p_149731_2_, p_149731_3_,
-                p_149731_4_);
-        return super.collisionRayTrace(p_149731_1_, p_149731_2_, p_149731_3_,
-                p_149731_4_, p_149731_5_, p_149731_6_);
+        this.setBlockBoundsBasedOnState(p_149731_1_, p_149731_2_, p_149731_3_, p_149731_4_);
+        return super.collisionRayTrace(p_149731_1_, p_149731_2_, p_149731_3_, p_149731_4_, p_149731_5_, p_149731_6_);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_,
-                p_149719_4_);
+        int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_);
 
         if (var5 >= 2 && var5 <= 5)
         {
@@ -107,36 +96,29 @@ public abstract class BlockRailBase extends Block
         return 1;
     }
 
-    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_,
-            int p_149742_3_, int p_149742_4_)
+    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_,
-                p_149742_3_ - 1, p_149742_4_);
+        return World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_, p_149742_3_ - 1, p_149742_4_);
     }
 
-    public void onBlockAdded(World p_149726_1_, int p_149726_2_,
-            int p_149726_3_, int p_149726_4_)
+    public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         if (!p_149726_1_.isClient)
         {
-            this.func_150052_a(p_149726_1_, p_149726_2_, p_149726_3_,
-                    p_149726_4_, true);
+            this.func_150052_a(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_, true);
 
             if (this.field_150053_a)
             {
-                this.onNeighborBlockChange(p_149726_1_, p_149726_2_,
-                        p_149726_3_, p_149726_4_, this);
+                this.onNeighborBlockChange(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_, this);
             }
         }
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         if (!p_149695_1_.isClient)
         {
-            int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_,
-                    p_149695_4_);
+            int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
             int var7 = var6;
 
             if (this.field_150053_a)
@@ -146,71 +128,52 @@ public abstract class BlockRailBase extends Block
 
             boolean var8 = false;
 
-            if (!World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_,
-                    p_149695_3_ - 1, p_149695_4_))
+            if (!World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_, p_149695_3_ - 1, p_149695_4_))
             {
                 var8 = true;
             }
 
-            if (var7 == 2
-                    && !World.doesBlockHaveSolidTopSurface(p_149695_1_,
-                            p_149695_2_ + 1, p_149695_3_, p_149695_4_))
+            if (var7 == 2 && !World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_ + 1, p_149695_3_, p_149695_4_))
             {
                 var8 = true;
             }
 
-            if (var7 == 3
-                    && !World.doesBlockHaveSolidTopSurface(p_149695_1_,
-                            p_149695_2_ - 1, p_149695_3_, p_149695_4_))
+            if (var7 == 3 && !World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_ - 1, p_149695_3_, p_149695_4_))
             {
                 var8 = true;
             }
 
-            if (var7 == 4
-                    && !World.doesBlockHaveSolidTopSurface(p_149695_1_,
-                            p_149695_2_, p_149695_3_, p_149695_4_ - 1))
+            if (var7 == 4 && !World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_ - 1))
             {
                 var8 = true;
             }
 
-            if (var7 == 5
-                    && !World.doesBlockHaveSolidTopSurface(p_149695_1_,
-                            p_149695_2_, p_149695_3_, p_149695_4_ + 1))
+            if (var7 == 5 && !World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_ + 1))
             {
                 var8 = true;
             }
 
             if (var8)
             {
-                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_,
-                        p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_,
-                                p_149695_3_, p_149695_4_), 0);
-                p_149695_1_
-                        .setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
+                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
+                p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
             }
             else
             {
-                this.func_150048_a(p_149695_1_, p_149695_2_, p_149695_3_,
-                        p_149695_4_, var6, var7, p_149695_5_);
+                this.func_150048_a(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, var7, p_149695_5_);
             }
         }
     }
 
-    protected void func_150048_a(World p_150048_1_, int p_150048_2_,
-            int p_150048_3_, int p_150048_4_, int p_150048_5_, int p_150048_6_,
-            Block p_150048_7_)
+    protected void func_150048_a(World p_150048_1_, int p_150048_2_, int p_150048_3_, int p_150048_4_, int p_150048_5_, int p_150048_6_, Block p_150048_7_)
     {
     }
 
-    protected void func_150052_a(World p_150052_1_, int p_150052_2_,
-            int p_150052_3_, int p_150052_4_, boolean p_150052_5_)
+    protected void func_150052_a(World p_150052_1_, int p_150052_2_, int p_150052_3_, int p_150052_4_, boolean p_150052_5_)
     {
         if (!p_150052_1_.isClient)
         {
-            (new BlockRailBase.Rail(p_150052_1_, p_150052_2_, p_150052_3_,
-                    p_150052_4_)).func_150655_a(p_150052_1_
-                    .isBlockIndirectlyGettingPowered(p_150052_2_, p_150052_3_,
-                            p_150052_4_), p_150052_5_);
+            (new BlockRailBase.Rail(p_150052_1_, p_150052_2_, p_150052_3_, p_150052_4_)).func_150655_a(p_150052_1_.isBlockIndirectlyGettingPowered(p_150052_2_, p_150052_3_, p_150052_4_), p_150052_5_);
         }
     }
 
@@ -219,8 +182,7 @@ public abstract class BlockRailBase extends Block
         return 0;
     }
 
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_,
-            int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
         int var7 = p_149749_6_;
 
@@ -229,21 +191,17 @@ public abstract class BlockRailBase extends Block
             var7 = p_149749_6_ & 7;
         }
 
-        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_,
-                p_149749_5_, p_149749_6_);
+        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
 
         if (var7 == 2 || var7 == 3 || var7 == 4 || var7 == 5)
         {
-            p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_,
-                    p_149749_3_ + 1, p_149749_4_, p_149749_5_);
+            p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_ + 1, p_149749_4_, p_149749_5_);
         }
 
         if (this.field_150053_a)
         {
-            p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_,
-                    p_149749_4_, p_149749_5_);
-            p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_,
-                    p_149749_3_ - 1, p_149749_4_, p_149749_5_);
+            p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_);
+            p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_ - 1, p_149749_4_, p_149749_5_);
         }
     }
 
@@ -257,17 +215,14 @@ public abstract class BlockRailBase extends Block
         private List field_150657_g = new ArrayList();
         private static final String __OBFID = "CL_00000196";
 
-        public Rail(World p_i45388_2_, int p_i45388_3_, int p_i45388_4_,
-                int p_i45388_5_)
+        public Rail(World p_i45388_2_, int p_i45388_3_, int p_i45388_4_, int p_i45388_5_)
         {
             this.field_150660_b = p_i45388_2_;
             this.field_150661_c = p_i45388_3_;
             this.field_150658_d = p_i45388_4_;
             this.field_150659_e = p_i45388_5_;
-            Block var6 = p_i45388_2_.getBlock(p_i45388_3_, p_i45388_4_,
-                    p_i45388_5_);
-            int var7 = p_i45388_2_.getBlockMetadata(p_i45388_3_, p_i45388_4_,
-                    p_i45388_5_);
+            Block var6 = p_i45388_2_.getBlock(p_i45388_3_, p_i45388_4_, p_i45388_5_);
+            int var7 = p_i45388_2_.getBlockMetadata(p_i45388_3_, p_i45388_4_, p_i45388_5_);
 
             if (((BlockRailBase)var6).field_150053_a)
             {
@@ -288,83 +243,53 @@ public abstract class BlockRailBase extends Block
 
             if (p_150648_1_ == 0)
             {
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e - 1));
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e + 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e - 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e + 1));
             }
             else if (p_150648_1_ == 1)
             {
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c - 1, this.field_150658_d,
-                        this.field_150659_e));
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c + 1, this.field_150658_d,
-                        this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c - 1, this.field_150658_d, this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c + 1, this.field_150658_d, this.field_150659_e));
             }
             else if (p_150648_1_ == 2)
             {
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c - 1, this.field_150658_d,
-                        this.field_150659_e));
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c + 1, this.field_150658_d + 1,
-                        this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c - 1, this.field_150658_d, this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c + 1, this.field_150658_d + 1, this.field_150659_e));
             }
             else if (p_150648_1_ == 3)
             {
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c - 1, this.field_150658_d + 1,
-                        this.field_150659_e));
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c + 1, this.field_150658_d,
-                        this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c - 1, this.field_150658_d + 1, this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c + 1, this.field_150658_d, this.field_150659_e));
             }
             else if (p_150648_1_ == 4)
             {
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d + 1, this.field_150659_e - 1));
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e + 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d + 1, this.field_150659_e - 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e + 1));
             }
             else if (p_150648_1_ == 5)
             {
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e - 1));
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d + 1, this.field_150659_e + 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e - 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d + 1, this.field_150659_e + 1));
             }
             else if (p_150648_1_ == 6)
             {
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c + 1, this.field_150658_d,
-                        this.field_150659_e));
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e + 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c + 1, this.field_150658_d, this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e + 1));
             }
             else if (p_150648_1_ == 7)
             {
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c - 1, this.field_150658_d,
-                        this.field_150659_e));
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e + 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c - 1, this.field_150658_d, this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e + 1));
             }
             else if (p_150648_1_ == 8)
             {
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c - 1, this.field_150658_d,
-                        this.field_150659_e));
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e - 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c - 1, this.field_150658_d, this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e - 1));
             }
             else if (p_150648_1_ == 9)
             {
-                this.field_150657_g.add(new ChunkPosition(
-                        this.field_150661_c + 1, this.field_150658_d,
-                        this.field_150659_e));
-                this.field_150657_g.add(new ChunkPosition(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e - 1));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c + 1, this.field_150658_d, this.field_150659_e));
+                this.field_150657_g.add(new ChunkPosition(this.field_150661_c, this.field_150658_d, this.field_150659_e - 1));
             }
         }
 
@@ -372,15 +297,11 @@ public abstract class BlockRailBase extends Block
         {
             for (int var1 = 0; var1 < this.field_150657_g.size(); ++var1)
             {
-                BlockRailBase.Rail var2 = this
-                        .func_150654_a((ChunkPosition)this.field_150657_g
-                                .get(var1));
+                BlockRailBase.Rail var2 = this.func_150654_a((ChunkPosition)this.field_150657_g.get(var1));
 
                 if (var2 != null && var2.func_150653_a(this))
                 {
-                    this.field_150657_g.set(var1, new ChunkPosition(
-                            var2.field_150661_c, var2.field_150658_d,
-                            var2.field_150659_e));
+                    this.field_150657_g.set(var1, new ChunkPosition(var2.field_150661_c, var2.field_150658_d, var2.field_150659_e));
                 }
                 else
                 {
@@ -389,62 +310,35 @@ public abstract class BlockRailBase extends Block
             }
         }
 
-        private boolean func_150646_a(int p_150646_1_, int p_150646_2_,
-                int p_150646_3_)
+        private boolean func_150646_a(int p_150646_1_, int p_150646_2_, int p_150646_3_)
         {
-            return BlockRailBase.func_150049_b_(this.field_150660_b,
-                    p_150646_1_, p_150646_2_, p_150646_3_) ? true
-                    : (BlockRailBase.func_150049_b_(this.field_150660_b,
-                            p_150646_1_, p_150646_2_ + 1, p_150646_3_) ? true
-                            : BlockRailBase.func_150049_b_(this.field_150660_b,
-                                    p_150646_1_, p_150646_2_ - 1, p_150646_3_));
+            return BlockRailBase.func_150049_b_(this.field_150660_b, p_150646_1_, p_150646_2_, p_150646_3_) ? true : (BlockRailBase.func_150049_b_(this.field_150660_b, p_150646_1_, p_150646_2_ + 1, p_150646_3_) ? true : BlockRailBase.func_150049_b_(this.field_150660_b, p_150646_1_, p_150646_2_ - 1, p_150646_3_));
         }
 
         private BlockRailBase.Rail func_150654_a(ChunkPosition p_150654_1_)
         {
-            return BlockRailBase.func_150049_b_(this.field_150660_b,
-                    p_150654_1_.chunkPosX, p_150654_1_.chunkPosY,
-                    p_150654_1_.chunkPosZ) ? BlockRailBase.this.new Rail(
-                    this.field_150660_b, p_150654_1_.chunkPosX,
-                    p_150654_1_.chunkPosY, p_150654_1_.chunkPosZ)
-                    : (BlockRailBase.func_150049_b_(this.field_150660_b,
-                            p_150654_1_.chunkPosX, p_150654_1_.chunkPosY + 1,
-                            p_150654_1_.chunkPosZ) ? BlockRailBase.this.new Rail(
-                            this.field_150660_b, p_150654_1_.chunkPosX,
-                            p_150654_1_.chunkPosY + 1, p_150654_1_.chunkPosZ)
-                            : (BlockRailBase.func_150049_b_(
-                                    this.field_150660_b, p_150654_1_.chunkPosX,
-                                    p_150654_1_.chunkPosY - 1,
-                                    p_150654_1_.chunkPosZ) ? BlockRailBase.this.new Rail(
-                                    this.field_150660_b, p_150654_1_.chunkPosX,
-                                    p_150654_1_.chunkPosY - 1,
-                                    p_150654_1_.chunkPosZ) : null));
+            return BlockRailBase.func_150049_b_(this.field_150660_b, p_150654_1_.chunkPosX, p_150654_1_.chunkPosY, p_150654_1_.chunkPosZ) ? BlockRailBase.this.new Rail(this.field_150660_b, p_150654_1_.chunkPosX, p_150654_1_.chunkPosY, p_150654_1_.chunkPosZ) : (BlockRailBase.func_150049_b_(this.field_150660_b, p_150654_1_.chunkPosX, p_150654_1_.chunkPosY + 1, p_150654_1_.chunkPosZ) ? BlockRailBase.this.new Rail(this.field_150660_b, p_150654_1_.chunkPosX, p_150654_1_.chunkPosY + 1, p_150654_1_.chunkPosZ) : (BlockRailBase.func_150049_b_(this.field_150660_b, p_150654_1_.chunkPosX, p_150654_1_.chunkPosY - 1, p_150654_1_.chunkPosZ) ? BlockRailBase.this.new Rail(this.field_150660_b, p_150654_1_.chunkPosX, p_150654_1_.chunkPosY - 1, p_150654_1_.chunkPosZ) : null));
         }
 
         private boolean func_150653_a(BlockRailBase.Rail p_150653_1_)
         {
             for (int var2 = 0; var2 < this.field_150657_g.size(); ++var2)
             {
-                ChunkPosition var3 = (ChunkPosition)this.field_150657_g
-                        .get(var2);
+                ChunkPosition var3 = (ChunkPosition)this.field_150657_g.get(var2);
 
-                if (var3.chunkPosX == p_150653_1_.field_150661_c
-                        && var3.chunkPosZ == p_150653_1_.field_150659_e) { return true; }
+                if (var3.chunkPosX == p_150653_1_.field_150661_c && var3.chunkPosZ == p_150653_1_.field_150659_e) { return true; }
             }
 
             return false;
         }
 
-        private boolean func_150652_b(int p_150652_1_, int p_150652_2_,
-                int p_150652_3_)
+        private boolean func_150652_b(int p_150652_1_, int p_150652_2_, int p_150652_3_)
         {
             for (int var4 = 0; var4 < this.field_150657_g.size(); ++var4)
             {
-                ChunkPosition var5 = (ChunkPosition)this.field_150657_g
-                        .get(var4);
+                ChunkPosition var5 = (ChunkPosition)this.field_150657_g.get(var4);
 
-                if (var5.chunkPosX == p_150652_1_
-                        && var5.chunkPosZ == p_150652_3_) { return true; }
+                if (var5.chunkPosX == p_150652_1_ && var5.chunkPosZ == p_150652_3_) { return true; }
             }
 
             return false;
@@ -454,26 +348,22 @@ public abstract class BlockRailBase extends Block
         {
             int var1 = 0;
 
-            if (this.func_150646_a(this.field_150661_c, this.field_150658_d,
-                    this.field_150659_e - 1))
+            if (this.func_150646_a(this.field_150661_c, this.field_150658_d, this.field_150659_e - 1))
             {
                 ++var1;
             }
 
-            if (this.func_150646_a(this.field_150661_c, this.field_150658_d,
-                    this.field_150659_e + 1))
+            if (this.func_150646_a(this.field_150661_c, this.field_150658_d, this.field_150659_e + 1))
             {
                 ++var1;
             }
 
-            if (this.func_150646_a(this.field_150661_c - 1,
-                    this.field_150658_d, this.field_150659_e))
+            if (this.func_150646_a(this.field_150661_c - 1, this.field_150658_d, this.field_150659_e))
             {
                 ++var1;
             }
 
-            if (this.func_150646_a(this.field_150661_c + 1,
-                    this.field_150658_d, this.field_150659_e))
+            if (this.func_150646_a(this.field_150661_c + 1, this.field_150658_d, this.field_150659_e))
             {
                 ++var1;
             }
@@ -483,24 +373,16 @@ public abstract class BlockRailBase extends Block
 
         private boolean func_150649_b(BlockRailBase.Rail p_150649_1_)
         {
-            return this.func_150653_a(p_150649_1_) ? true
-                    : (this.field_150657_g.size() == 2 ? false
-                            : (this.field_150657_g.isEmpty() ? true : true));
+            return this.func_150653_a(p_150649_1_) ? true : (this.field_150657_g.size() == 2 ? false : (this.field_150657_g.isEmpty() ? true : true));
         }
 
         private void func_150645_c(BlockRailBase.Rail p_150645_1_)
         {
-            this.field_150657_g.add(new ChunkPosition(
-                    p_150645_1_.field_150661_c, p_150645_1_.field_150658_d,
-                    p_150645_1_.field_150659_e));
-            boolean var2 = this.func_150652_b(this.field_150661_c,
-                    this.field_150658_d, this.field_150659_e - 1);
-            boolean var3 = this.func_150652_b(this.field_150661_c,
-                    this.field_150658_d, this.field_150659_e + 1);
-            boolean var4 = this.func_150652_b(this.field_150661_c - 1,
-                    this.field_150658_d, this.field_150659_e);
-            boolean var5 = this.func_150652_b(this.field_150661_c + 1,
-                    this.field_150658_d, this.field_150659_e);
+            this.field_150657_g.add(new ChunkPosition(p_150645_1_.field_150661_c, p_150645_1_.field_150658_d, p_150645_1_.field_150659_e));
+            boolean var2 = this.func_150652_b(this.field_150661_c, this.field_150658_d, this.field_150659_e - 1);
+            boolean var3 = this.func_150652_b(this.field_150661_c, this.field_150658_d, this.field_150659_e + 1);
+            boolean var4 = this.func_150652_b(this.field_150661_c - 1, this.field_150658_d, this.field_150659_e);
+            boolean var5 = this.func_150652_b(this.field_150661_c + 1, this.field_150658_d, this.field_150659_e);
             byte var6 = -1;
 
             if (var2 || var3)
@@ -538,16 +420,12 @@ public abstract class BlockRailBase extends Block
 
             if (var6 == 0)
             {
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c, this.field_150658_d + 1,
-                        this.field_150659_e - 1))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c, this.field_150658_d + 1, this.field_150659_e - 1))
                 {
                     var6 = 4;
                 }
 
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c, this.field_150658_d + 1,
-                        this.field_150659_e + 1))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c, this.field_150658_d + 1, this.field_150659_e + 1))
                 {
                     var6 = 5;
                 }
@@ -555,16 +433,12 @@ public abstract class BlockRailBase extends Block
 
             if (var6 == 1)
             {
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c + 1, this.field_150658_d + 1,
-                        this.field_150659_e))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c + 1, this.field_150658_d + 1, this.field_150659_e))
                 {
                     var6 = 2;
                 }
 
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c - 1, this.field_150658_d + 1,
-                        this.field_150659_e))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c - 1, this.field_150658_d + 1, this.field_150659_e))
                 {
                     var6 = 3;
                 }
@@ -579,21 +453,15 @@ public abstract class BlockRailBase extends Block
 
             if (this.field_150656_f)
             {
-                var7 = this.field_150660_b.getBlockMetadata(
-                        this.field_150661_c, this.field_150658_d,
-                        this.field_150659_e)
-                        & 8 | var6;
+                var7 = this.field_150660_b.getBlockMetadata(this.field_150661_c, this.field_150658_d, this.field_150659_e) & 8 | var6;
             }
 
-            this.field_150660_b.setBlockMetadata(this.field_150661_c,
-                    this.field_150658_d, this.field_150659_e, var7, 3);
+            this.field_150660_b.setBlockMetadata(this.field_150661_c, this.field_150658_d, this.field_150659_e, var7, 3);
         }
 
-        private boolean func_150647_c(int p_150647_1_, int p_150647_2_,
-                int p_150647_3_)
+        private boolean func_150647_c(int p_150647_1_, int p_150647_2_, int p_150647_3_)
         {
-            BlockRailBase.Rail var4 = this.func_150654_a(new ChunkPosition(
-                    p_150647_1_, p_150647_2_, p_150647_3_));
+            BlockRailBase.Rail var4 = this.func_150654_a(new ChunkPosition(p_150647_1_, p_150647_2_, p_150647_3_));
 
             if (var4 == null)
             {
@@ -608,14 +476,10 @@ public abstract class BlockRailBase extends Block
 
         public void func_150655_a(boolean p_150655_1_, boolean p_150655_2_)
         {
-            boolean var3 = this.func_150647_c(this.field_150661_c,
-                    this.field_150658_d, this.field_150659_e - 1);
-            boolean var4 = this.func_150647_c(this.field_150661_c,
-                    this.field_150658_d, this.field_150659_e + 1);
-            boolean var5 = this.func_150647_c(this.field_150661_c - 1,
-                    this.field_150658_d, this.field_150659_e);
-            boolean var6 = this.func_150647_c(this.field_150661_c + 1,
-                    this.field_150658_d, this.field_150659_e);
+            boolean var3 = this.func_150647_c(this.field_150661_c, this.field_150658_d, this.field_150659_e - 1);
+            boolean var4 = this.func_150647_c(this.field_150661_c, this.field_150658_d, this.field_150659_e + 1);
+            boolean var5 = this.func_150647_c(this.field_150661_c - 1, this.field_150658_d, this.field_150659_e);
+            boolean var6 = this.func_150647_c(this.field_150661_c + 1, this.field_150658_d, this.field_150659_e);
             byte var7 = -1;
 
             if ((var3 || var4) && !var5 && !var6)
@@ -714,16 +578,12 @@ public abstract class BlockRailBase extends Block
 
             if (var7 == 0)
             {
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c, this.field_150658_d + 1,
-                        this.field_150659_e - 1))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c, this.field_150658_d + 1, this.field_150659_e - 1))
                 {
                     var7 = 4;
                 }
 
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c, this.field_150658_d + 1,
-                        this.field_150659_e + 1))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c, this.field_150658_d + 1, this.field_150659_e + 1))
                 {
                     var7 = 5;
                 }
@@ -731,16 +591,12 @@ public abstract class BlockRailBase extends Block
 
             if (var7 == 1)
             {
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c + 1, this.field_150658_d + 1,
-                        this.field_150659_e))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c + 1, this.field_150658_d + 1, this.field_150659_e))
                 {
                     var7 = 2;
                 }
 
-                if (BlockRailBase.func_150049_b_(this.field_150660_b,
-                        this.field_150661_c - 1, this.field_150658_d + 1,
-                        this.field_150659_e))
+                if (BlockRailBase.func_150049_b_(this.field_150660_b, this.field_150661_c - 1, this.field_150658_d + 1, this.field_150659_e))
                 {
                     var7 = 3;
                 }
@@ -756,25 +612,16 @@ public abstract class BlockRailBase extends Block
 
             if (this.field_150656_f)
             {
-                var8 = this.field_150660_b.getBlockMetadata(
-                        this.field_150661_c, this.field_150658_d,
-                        this.field_150659_e)
-                        & 8 | var7;
+                var8 = this.field_150660_b.getBlockMetadata(this.field_150661_c, this.field_150658_d, this.field_150659_e) & 8 | var7;
             }
 
-            if (p_150655_2_
-                    || this.field_150660_b.getBlockMetadata(
-                            this.field_150661_c, this.field_150658_d,
-                            this.field_150659_e) != var8)
+            if (p_150655_2_ || this.field_150660_b.getBlockMetadata(this.field_150661_c, this.field_150658_d, this.field_150659_e) != var8)
             {
-                this.field_150660_b.setBlockMetadata(this.field_150661_c,
-                        this.field_150658_d, this.field_150659_e, var8, 3);
+                this.field_150660_b.setBlockMetadata(this.field_150661_c, this.field_150658_d, this.field_150659_e, var8, 3);
 
                 for (int var9 = 0; var9 < this.field_150657_g.size(); ++var9)
                 {
-                    BlockRailBase.Rail var10 = this
-                            .func_150654_a((ChunkPosition)this.field_150657_g
-                                    .get(var9));
+                    BlockRailBase.Rail var10 = this.func_150654_a((ChunkPosition)this.field_150657_g.get(var9));
 
                     if (var10 != null)
                     {

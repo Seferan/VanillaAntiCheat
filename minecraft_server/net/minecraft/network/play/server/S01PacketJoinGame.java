@@ -24,10 +24,7 @@ public class S01PacketJoinGame extends Packet
     {
     }
 
-    public S01PacketJoinGame(int p_i45201_1_,
-            WorldSettings.GameType p_i45201_2_, boolean p_i45201_3_,
-            int p_i45201_4_, EnumDifficulty p_i45201_5_, int p_i45201_6_,
-            WorldType p_i45201_7_)
+    public S01PacketJoinGame(int p_i45201_1_, WorldSettings.GameType p_i45201_2_, boolean p_i45201_3_, int p_i45201_4_, EnumDifficulty p_i45201_5_, int p_i45201_6_, WorldType p_i45201_7_)
     {
         this.field_149206_a = p_i45201_1_;
         this.field_149202_d = p_i45201_4_;
@@ -49,11 +46,9 @@ public class S01PacketJoinGame extends Packet
         int var3 = var2 & -9;
         this.field_149205_c = WorldSettings.GameType.getByID(var3);
         this.field_149202_d = p_148837_1_.readByte();
-        this.field_149203_e = EnumDifficulty.func_151523_a(p_148837_1_
-                .readUnsignedByte());
+        this.field_149203_e = EnumDifficulty.func_151523_a(p_148837_1_.readUnsignedByte());
         this.field_149200_f = p_148837_1_.readUnsignedByte();
-        this.field_149201_g = WorldType.parseWorldType(p_148837_1_
-                .readStringFromBuffer(16));
+        this.field_149201_g = WorldType.parseWorldType(p_148837_1_.readStringFromBuffer(16));
 
         if (this.field_149201_g == null)
         {
@@ -92,14 +87,7 @@ public class S01PacketJoinGame extends Packet
      */
     public String serialize()
     {
-        return String
-                .format("eid=%d, gameType=%d, hardcore=%b, dimension=%d, difficulty=%s, maxplayers=%d",
-                        new Object[] {Integer.valueOf(this.field_149206_a),
-                                Integer.valueOf(this.field_149205_c.getID()),
-                                Boolean.valueOf(this.field_149204_b),
-                                Integer.valueOf(this.field_149202_d),
-                                this.field_149203_e,
-                                Integer.valueOf(this.field_149200_f)});
+        return String.format("eid=%d, gameType=%d, hardcore=%b, dimension=%d, difficulty=%s, maxplayers=%d", new Object[] {Integer.valueOf(this.field_149206_a), Integer.valueOf(this.field_149205_c.getID()), Boolean.valueOf(this.field_149204_b), Integer.valueOf(this.field_149202_d), this.field_149203_e, Integer.valueOf(this.field_149200_f)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

@@ -20,8 +20,7 @@ public class S28PacketEffect extends Packet
     {
     }
 
-    public S28PacketEffect(int p_i45198_1_, int p_i45198_2_, int p_i45198_3_,
-            int p_i45198_4_, int p_i45198_5_, boolean p_i45198_6_)
+    public S28PacketEffect(int p_i45198_1_, int p_i45198_2_, int p_i45198_3_, int p_i45198_4_, int p_i45198_5_, boolean p_i45198_6_)
     {
         this.field_149251_a = p_i45198_1_;
         this.field_149250_c = p_i45198_2_;

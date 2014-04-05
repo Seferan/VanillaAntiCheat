@@ -10,8 +10,7 @@ public class GenLayerHills extends GenLayer
     private GenLayer field_151628_d;
     private static final String __OBFID = "CL_00000563";
 
-    public GenLayerHills(long p_i45479_1_, GenLayer p_i45479_3_,
-            GenLayer p_i45479_4_)
+    public GenLayerHills(long p_i45479_1_, GenLayer p_i45479_3_, GenLayer p_i45479_4_)
     {
         super(p_i45479_1_);
         this.parent = p_i45479_3_;
@@ -25,10 +24,8 @@ public class GenLayerHills extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        int[] var5 = this.parent
-                .getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
-        int[] var6 = this.field_151628_d.getInts(par1 - 1, par2 - 1, par3 + 2,
-                par4 + 2);
+        int[] var5 = this.parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
+        int[] var6 = this.field_151628_d.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
         int[] var7 = IntCache.getIntCache(par3 * par4);
 
         for (int var8 = 0; var8 < par4; ++var8)
@@ -45,8 +42,7 @@ public class GenLayerHills extends GenLayer
                     logger.debug("old! " + var10);
                 }
 
-                if (var10 != 0 && var11 >= 2 && (var11 - 2) % 29 == 1
-                        && var10 < 128)
+                if (var10 != 0 && var11 >= 2 && (var11 - 2) % 29 == 1 && var10 < 128)
                 {
                     if (BiomeGenBase.func_150568_d(var10 + 128) != null)
                     {
@@ -125,13 +121,11 @@ public class GenLayerHills extends GenLayer
                     {
                         var13 = BiomeGenBase.field_150587_Y.biomeID;
                     }
-                    else if (func_151616_a(var10,
-                            BiomeGenBase.field_150607_aa.biomeID))
+                    else if (func_151616_a(var10, BiomeGenBase.field_150607_aa.biomeID))
                     {
                         var13 = BiomeGenBase.field_150589_Z.biomeID;
                     }
-                    else if (var10 == BiomeGenBase.field_150575_M.biomeID
-                            && this.nextInt(3) == 0)
+                    else if (var10 == BiomeGenBase.field_150575_M.biomeID && this.nextInt(3) == 0)
                     {
                         var14 = this.nextInt(2);
 

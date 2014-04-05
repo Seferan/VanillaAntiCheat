@@ -33,32 +33,25 @@ public class CommandMessageRaw extends CommandBase
         return "commands.tellraw.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length < 2)
         {
-            throw new WrongUsageException("commands.tellraw.usage",
-                    new Object[0]);
+            throw new WrongUsageException("commands.tellraw.usage", new Object[0]);
         }
         else
         {
-            EntityPlayerMP var3 = getPlayer(par1ICommandSender,
-                    par2ArrayOfStr[0]);
+            EntityPlayerMP var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
             String var4 = func_82360_a(par1ICommandSender, par2ArrayOfStr, 1);
 
             try
             {
-                IChatComponent var5 = IChatComponent.Serializer
-                        .func_150699_a(var4);
+                IChatComponent var5 = IChatComponent.Serializer.func_150699_a(var4);
                 var3.addChatMessage(var5);
             }
             catch (JsonParseException var6)
             {
-                throw new SyntaxErrorException(
-                        "commands.tellraw.jsonException",
-                        new Object[] {ExceptionUtils.getRootCause(var6)
-                                .getMessage()});
+                throw new SyntaxErrorException("commands.tellraw.jsonException", new Object[] {ExceptionUtils.getRootCause(var6).getMessage()});
             }
         }
     }
@@ -67,12 +60,9 @@ public class CommandMessageRaw extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(
-                par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames())
-                : null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames()) : null;
     }
 
     /**

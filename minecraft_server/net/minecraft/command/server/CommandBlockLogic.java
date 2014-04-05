@@ -13,8 +13,7 @@ import net.minecraft.world.World;
 
 public abstract class CommandBlockLogic implements ICommandSender
 {
-    private static final SimpleDateFormat field_145766_a = new SimpleDateFormat(
-            "HH:mm:ss");
+    private static final SimpleDateFormat field_145766_a = new SimpleDateFormat("HH:mm:ss");
     private int field_145764_b;
     private boolean field_145765_c = true;
     private IChatComponent field_145762_d = null;
@@ -40,8 +39,7 @@ public abstract class CommandBlockLogic implements ICommandSender
 
         if (this.field_145762_d != null)
         {
-            p_145758_1_.setString("LastOutput", IChatComponent.Serializer
-                    .func_150696_a(this.field_145762_d));
+            p_145758_1_.setString("LastOutput", IChatComponent.Serializer.func_150696_a(this.field_145762_d));
         }
 
         p_145758_1_.setBoolean("TrackOutput", this.field_145765_c);
@@ -59,8 +57,7 @@ public abstract class CommandBlockLogic implements ICommandSender
 
         if (p_145759_1_.func_150297_b("LastOutput", 8))
         {
-            this.field_145762_d = IChatComponent.Serializer
-                    .func_150699_a(p_145759_1_.getString("LastOutput"));
+            this.field_145762_d = IChatComponent.Serializer.func_150699_a(p_145759_1_.getString("LastOutput"));
         }
 
         if (p_145759_1_.func_150297_b("TrackOutput", 1))
@@ -99,8 +96,7 @@ public abstract class CommandBlockLogic implements ICommandSender
         if (var2 != null && var2.isCommandBlockEnabled())
         {
             ICommandManager var3 = var2.getCommandManager();
-            this.field_145764_b = var3
-                    .executeCommand(this, this.field_145763_e);
+            this.field_145764_b = var3.executeCommand(this, this.field_145763_e);
         }
         else
         {
@@ -137,12 +133,9 @@ public abstract class CommandBlockLogic implements ICommandSender
      */
     public void addChatMessage(IChatComponent p_145747_1_)
     {
-        if (this.field_145765_c && this.getEntityWorld() != null
-                && !this.getEntityWorld().isClient)
+        if (this.field_145765_c && this.getEntityWorld() != null && !this.getEntityWorld().isClient)
         {
-            this.field_145762_d = (new ChatComponentText("["
-                    + field_145766_a.format(new Date()) + "] "))
-                    .appendSibling(p_145747_1_);
+            this.field_145762_d = (new ChatComponentText("[" + field_145766_a.format(new Date()) + "] ")).appendSibling(p_145747_1_);
             this.func_145756_e();
         }
     }

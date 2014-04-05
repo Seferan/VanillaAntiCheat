@@ -57,11 +57,9 @@ public interface IChunkProvider
      * Returns a list of creatures of the specified type that can spawn at the
      * given location.
      */
-    List getPossibleCreatures(EnumCreatureType var1, int var2, int var3,
-            int var4);
+    List getPossibleCreatures(EnumCreatureType var1, int var2, int var3, int var4);
 
-    ChunkPosition func_147416_a(World var1, String var2, int var3, int var4,
-            int var5);
+    ChunkPosition func_147416_a(World var1, String var2, int var3, int var4, int var5);
 
     int getLoadedChunkCount();
 

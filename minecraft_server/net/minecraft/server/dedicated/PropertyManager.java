@@ -82,8 +82,7 @@ public class PropertyManager
         }
         catch (Exception var11)
         {
-            field_164440_a.warn("Failed to save " + this.serverPropertiesFile,
-                    var11);
+            field_164440_a.warn("Failed to save " + this.serverPropertiesFile, var11);
             this.generateNewProperties();
         }
         finally
@@ -152,8 +151,7 @@ public class PropertyManager
     {
         try
         {
-            return Double.parseDouble(this.getStringProperty(propertyName, ""
-                    + defaultValue));
+            return Double.parseDouble(this.getStringProperty(propertyName, "" + defaultValue));
         }
         catch (Exception ex)
         {
@@ -171,8 +169,7 @@ public class PropertyManager
     {
         try
         {
-            return Boolean.parseBoolean(this.getStringProperty(par1Str, ""
-                    + par2));
+            return Boolean.parseBoolean(this.getStringProperty(par1Str, "" + par2));
         }
         catch (Exception var4)
         {

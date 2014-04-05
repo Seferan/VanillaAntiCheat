@@ -20,8 +20,7 @@ public class CommandSaveOff extends CommandBase
         return "commands.save-off.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         MinecraftServer var3 = MinecraftServer.getServer();
         boolean var4 = false;
@@ -42,13 +41,11 @@ public class CommandSaveOff extends CommandBase
 
         if (var4)
         {
-            notifyAdmins(par1ICommandSender, "commands.save.disabled",
-                    new Object[0]);
+            notifyAdmins(par1ICommandSender, "commands.save.disabled", new Object[0]);
         }
         else
         {
-            throw new CommandException("commands.save-off.alreadyOff",
-                    new Object[0]);
+            throw new CommandException("commands.save-off.alreadyOff", new Object[0]);
         }
     }
 }

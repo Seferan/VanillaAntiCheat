@@ -12,8 +12,7 @@ import net.minecraft.world.gen.FlatGeneratorInfo;
 
 public abstract class WorldProvider
 {
-    public static final float[] moonPhaseFactors = new float[] {1.0F, 0.75F,
-            0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F};
+    public static final float[] moonPhaseFactors = new float[] {1.0F, 0.75F, 0.5F, 0.25F, 0.0F, 0.25F, 0.5F, 0.75F};
 
     /** world object being used */
     public World worldObj;
@@ -68,8 +67,7 @@ public abstract class WorldProvider
         for (int var2 = 0; var2 <= 15; ++var2)
         {
             float var3 = 1.0F - (float)var2 / 15.0F;
-            this.lightBrightnessTable[var2] = (1.0F - var3)
-                    / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
+            this.lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
         }
     }
 
@@ -80,11 +78,8 @@ public abstract class WorldProvider
     {
         if (this.worldObj.getWorldInfo().getTerrainType() == WorldType.FLAT)
         {
-            FlatGeneratorInfo var1 = FlatGeneratorInfo
-                    .createFlatGeneratorFromString(this.worldObj.getWorldInfo()
-                            .getGeneratorOptions());
-            this.worldChunkMgr = new WorldChunkManagerHell(
-                    BiomeGenBase.func_150568_d(var1.getBiome()), 0.5F);
+            FlatGeneratorInfo var1 = FlatGeneratorInfo.createFlatGeneratorFromString(this.worldObj.getWorldInfo().getGeneratorOptions());
+            this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.func_150568_d(var1.getBiome()), 0.5F);
         }
         else
         {
@@ -97,12 +92,7 @@ public abstract class WorldProvider
      */
     public IChunkProvider createChunkGenerator()
     {
-        return (IChunkProvider)(this.terrainType == WorldType.FLAT ? new ChunkProviderFlat(
-                this.worldObj, this.worldObj.getSeed(), this.worldObj
-                        .getWorldInfo().isMapFeaturesEnabled(),
-                this.field_82913_c) : new ChunkProviderGenerate(this.worldObj,
-                this.worldObj.getSeed(), this.worldObj.getWorldInfo()
-                        .isMapFeaturesEnabled()));
+        return (IChunkProvider)(this.terrainType == WorldType.FLAT ? new ChunkProviderFlat(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.field_82913_c) : new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled()));
     }
 
     /**
@@ -164,9 +154,7 @@ public abstract class WorldProvider
 
     public static WorldProvider getProviderForDimension(int par0)
     {
-        return (WorldProvider)(par0 == -1 ? new WorldProviderHell()
-                : (par0 == 0 ? new WorldProviderSurface()
-                        : (par0 == 1 ? new WorldProviderEnd() : null)));
+        return (WorldProvider)(par0 == -1 ? new WorldProviderHell() : (par0 == 0 ? new WorldProviderSurface() : (par0 == 1 ? new WorldProviderEnd() : null)));
     }
 
     /**

@@ -107,10 +107,7 @@ public abstract class EntityHanging extends Entity
         var6 += this.func_70517_b(this.getHeightPixels());
         this.setPosition((double)var5, (double)var6, (double)var7);
         float var9 = -0.03125F;
-        this.boundingBox.setBounds((double)(var5 - var2 - var9), (double)(var6
-                - var3 - var9), (double)(var7 - var4 - var9), (double)(var5
-                + var2 + var9), (double)(var6 + var3 + var9), (double)(var7
-                + var4 + var9));
+        this.boundingBox.setBounds((double)(var5 - var2 - var9), (double)(var6 - var3 - var9), (double)(var7 - var4 - var9), (double)(var5 + var2 + var9), (double)(var6 + var3 + var9), (double)(var7 + var4 + var9));
     }
 
     private float func_70517_b(int par1)
@@ -144,8 +141,7 @@ public abstract class EntityHanging extends Entity
      */
     public boolean onValidSurface()
     {
-        if (!this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox)
-                .isEmpty())
+        if (!this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty())
         {
             return false;
         }
@@ -159,30 +155,25 @@ public abstract class EntityHanging extends Entity
 
             if (this.hangingDirection == 2)
             {
-                var3 = MathHelper.floor_double(this.posX
-                        - (double)((float)this.getWidthPixels() / 32.0F));
+                var3 = MathHelper.floor_double(this.posX - (double)((float)this.getWidthPixels() / 32.0F));
             }
 
             if (this.hangingDirection == 1)
             {
-                var5 = MathHelper.floor_double(this.posZ
-                        - (double)((float)this.getWidthPixels() / 32.0F));
+                var5 = MathHelper.floor_double(this.posZ - (double)((float)this.getWidthPixels() / 32.0F));
             }
 
             if (this.hangingDirection == 0)
             {
-                var3 = MathHelper.floor_double(this.posX
-                        - (double)((float)this.getWidthPixels() / 32.0F));
+                var3 = MathHelper.floor_double(this.posX - (double)((float)this.getWidthPixels() / 32.0F));
             }
 
             if (this.hangingDirection == 3)
             {
-                var5 = MathHelper.floor_double(this.posZ
-                        - (double)((float)this.getWidthPixels() / 32.0F));
+                var5 = MathHelper.floor_double(this.posZ - (double)((float)this.getWidthPixels() / 32.0F));
             }
 
-            var4 = MathHelper.floor_double(this.posY
-                    - (double)((float)this.getHeightPixels() / 32.0F));
+            var4 = MathHelper.floor_double(this.posY - (double)((float)this.getHeightPixels() / 32.0F));
 
             for (int var6 = 0; var6 < var1; ++var6)
             {
@@ -190,24 +181,20 @@ public abstract class EntityHanging extends Entity
                 {
                     Material var8;
 
-                    if (this.hangingDirection != 2
-                            && this.hangingDirection != 0)
+                    if (this.hangingDirection != 2 && this.hangingDirection != 0)
                     {
-                        var8 = this.worldObj.getBlock(this.field_146063_b,
-                                var4 + var7, var5 + var6).getMaterial();
+                        var8 = this.worldObj.getBlock(this.field_146063_b, var4 + var7, var5 + var6).getMaterial();
                     }
                     else
                     {
-                        var8 = this.worldObj.getBlock(var3 + var6, var4 + var7,
-                                this.field_146062_d).getMaterial();
+                        var8 = this.worldObj.getBlock(var3 + var6, var4 + var7, this.field_146062_d).getMaterial();
                     }
 
                     if (!var8.isSolid()) { return false; }
                 }
             }
 
-            List var9 = this.worldObj.getEntitiesWithinAABBExcludingEntity(
-                    this, this.boundingBox);
+            List var9 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox);
             Iterator var10 = var9.iterator();
             Entity var11;
 
@@ -237,9 +224,7 @@ public abstract class EntityHanging extends Entity
      */
     public boolean hitByEntity(Entity par1Entity)
     {
-        return par1Entity instanceof EntityPlayer ? this.attackEntityFrom(
-                DamageSource.causePlayerDamage((EntityPlayer)par1Entity), 0.0F)
-                : false;
+        return par1Entity instanceof EntityPlayer ? this.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)par1Entity), 0.0F) : false;
     }
 
     public void func_145781_i(int p_145781_1_)
@@ -274,8 +259,7 @@ public abstract class EntityHanging extends Entity
      */
     public void moveEntity(double par1, double par3, double par5)
     {
-        if (!this.worldObj.isClient && !this.isDead
-                && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D)
+        if (!this.worldObj.isClient && !this.isDead && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D)
         {
             this.setDead();
             this.onBroken((Entity)null);
@@ -287,8 +271,7 @@ public abstract class EntityHanging extends Entity
      */
     public void addVelocity(double par1, double par3, double par5)
     {
-        if (!this.worldObj.isClient && !this.isDead
-                && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D)
+        if (!this.worldObj.isClient && !this.isDead && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D)
         {
             this.setDead();
             this.onBroken((Entity)null);

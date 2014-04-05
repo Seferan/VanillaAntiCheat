@@ -61,8 +61,7 @@ public class WorldProviderEnd extends WorldProvider
      */
     public boolean canCoordinateBeSpawn(int par1, int par2)
     {
-        return this.worldObj.getTopBlock(par1, par2).getMaterial()
-                .blocksMovement();
+        return this.worldObj.getTopBlock(par1, par2).getMaterial().blocksMovement();
     }
 
     /**

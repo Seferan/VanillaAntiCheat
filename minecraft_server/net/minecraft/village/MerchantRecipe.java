@@ -29,8 +29,7 @@ public class MerchantRecipe
         this.readFromTags(par1NBTTagCompound);
     }
 
-    public MerchantRecipe(ItemStack par1ItemStack, ItemStack par2ItemStack,
-            ItemStack par3ItemStack)
+    public MerchantRecipe(ItemStack par1ItemStack, ItemStack par2ItemStack, ItemStack par3ItemStack)
     {
         this.itemToBuy = par1ItemStack;
         this.secondItemToBuy = par2ItemStack;
@@ -85,16 +84,7 @@ public class MerchantRecipe
      */
     public boolean hasSameIDsAs(MerchantRecipe par1MerchantRecipe)
     {
-        return this.itemToBuy.getItem() == par1MerchantRecipe.itemToBuy
-                .getItem()
-                && this.itemToSell.getItem() == par1MerchantRecipe.itemToSell
-                        .getItem() ? this.secondItemToBuy == null
-                && par1MerchantRecipe.secondItemToBuy == null
-                || this.secondItemToBuy != null
-                && par1MerchantRecipe.secondItemToBuy != null
-                && this.secondItemToBuy.getItem() == par1MerchantRecipe.secondItemToBuy
-                        .getItem()
-                : false;
+        return this.itemToBuy.getItem() == par1MerchantRecipe.itemToBuy.getItem() && this.itemToSell.getItem() == par1MerchantRecipe.itemToSell.getItem() ? this.secondItemToBuy == null && par1MerchantRecipe.secondItemToBuy == null || this.secondItemToBuy != null && par1MerchantRecipe.secondItemToBuy != null && this.secondItemToBuy.getItem() == par1MerchantRecipe.secondItemToBuy.getItem() : false;
     }
 
     /**
@@ -102,9 +92,7 @@ public class MerchantRecipe
      */
     public boolean hasSameItemsAs(MerchantRecipe par1MerchantRecipe)
     {
-        return this.hasSameIDsAs(par1MerchantRecipe)
-                && (this.itemToBuy.stackSize < par1MerchantRecipe.itemToBuy.stackSize || this.secondItemToBuy != null
-                        && this.secondItemToBuy.stackSize < par1MerchantRecipe.secondItemToBuy.stackSize);
+        return this.hasSameIDsAs(par1MerchantRecipe) && (this.itemToBuy.stackSize < par1MerchantRecipe.itemToBuy.stackSize || this.secondItemToBuy != null && this.secondItemToBuy.stackSize < par1MerchantRecipe.secondItemToBuy.stackSize);
     }
 
     public void incrementToolUses()
@@ -131,9 +119,7 @@ public class MerchantRecipe
 
         if (par1NBTTagCompound.func_150297_b("buyB", 10))
         {
-            this.secondItemToBuy = ItemStack
-                    .loadItemStackFromNBT(par1NBTTagCompound
-                            .getCompoundTag("buyB"));
+            this.secondItemToBuy = ItemStack.loadItemStackFromNBT(par1NBTTagCompound.getCompoundTag("buyB"));
         }
 
         if (par1NBTTagCompound.func_150297_b("uses", 99))
@@ -159,8 +145,7 @@ public class MerchantRecipe
 
         if (this.secondItemToBuy != null)
         {
-            var1.setTag("buyB",
-                    this.secondItemToBuy.writeToNBT(new NBTTagCompound()));
+            var1.setTag("buyB", this.secondItemToBuy.writeToNBT(new NBTTagCompound()));
         }
 
         var1.setInteger("uses", this.toolUses);

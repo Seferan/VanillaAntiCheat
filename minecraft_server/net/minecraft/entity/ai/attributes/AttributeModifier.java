@@ -22,18 +22,15 @@ public class AttributeModifier
         this(UUID.randomUUID(), par1Str, par2, par4);
     }
 
-    public AttributeModifier(UUID par1UUID, String par2Str, double par3,
-            int par5)
+    public AttributeModifier(UUID par1UUID, String par2Str, double par3, int par5)
     {
         this.isSaved = true;
         this.id = par1UUID;
         this.name = par2Str;
         this.amount = par3;
         this.operation = par5;
-        Validate.notEmpty(par2Str, "Modifier name cannot be empty",
-                new Object[0]);
-        Validate.inclusiveBetween(Integer.valueOf(0), Integer.valueOf(2),
-                Integer.valueOf(par5), "Invalid operation", new Object[0]);
+        Validate.notEmpty(par2Str, "Modifier name cannot be empty", new Object[0]);
+        Validate.inclusiveBetween(Integer.valueOf(0), Integer.valueOf(2), Integer.valueOf(par5), "Invalid operation", new Object[0]);
     }
 
     public UUID getID()
@@ -104,8 +101,6 @@ public class AttributeModifier
 
     public String toString()
     {
-        return "AttributeModifier{amount=" + this.amount + ", operation="
-                + this.operation + ", name=\'" + this.name + '\'' + ", id="
-                + this.id + ", serialize=" + this.isSaved + '}';
+        return "AttributeModifier{amount=" + this.amount + ", operation=" + this.operation + ", name=\'" + this.name + '\'' + ", id=" + this.id + ", serialize=" + this.isSaved + '}';
     }
 }

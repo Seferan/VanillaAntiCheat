@@ -40,8 +40,7 @@ public abstract class StructureStart
      * Keeps iterating Structure Pieces and spawning them until the checks tell
      * it to stop
      */
-    public void generateStructure(World par1World, Random par2Random,
-            StructureBoundingBox par3StructureBoundingBox)
+    public void generateStructure(World par1World, Random par2Random, StructureBoundingBox par3StructureBoundingBox)
     {
         Iterator var4 = this.components.iterator();
 
@@ -49,9 +48,7 @@ public abstract class StructureStart
         {
             StructureComponent var5 = (StructureComponent)var4.next();
 
-            if (var5.getBoundingBox().intersectsWith(par3StructureBoundingBox)
-                    && !var5.addComponentParts(par1World, par2Random,
-                            par3StructureBoundingBox))
+            if (var5.getBoundingBox().intersectsWith(par3StructureBoundingBox) && !var5.addComponentParts(par1World, par2Random, par3StructureBoundingBox))
             {
                 var4.remove();
             }
@@ -106,16 +103,14 @@ public abstract class StructureStart
 
         if (par2NBTTagCompound.hasKey("BB"))
         {
-            this.boundingBox = new StructureBoundingBox(
-                    par2NBTTagCompound.getIntArray("BB"));
+            this.boundingBox = new StructureBoundingBox(par2NBTTagCompound.getIntArray("BB"));
         }
 
         NBTTagList var3 = par2NBTTagCompound.getTagList("Children", 10);
 
         for (int var4 = 0; var4 < var3.tagCount(); ++var4)
         {
-            this.components.add(MapGenStructureIO.func_143032_b(
-                    var3.getCompoundTagAt(var4), par1World));
+            this.components.add(MapGenStructureIO.func_143032_b(var3.getCompoundTagAt(var4), par1World));
         }
 
         this.func_143017_b(par2NBTTagCompound);
@@ -129,8 +124,7 @@ public abstract class StructureStart
      * offsets the structure Bounding Boxes up to a certain height, typically 63
      * - 10
      */
-    protected void markAvailableHeight(World par1World, Random par2Random,
-            int par3)
+    protected void markAvailableHeight(World par1World, Random par2Random, int par3)
     {
         int var4 = 63 - par3;
         int var5 = this.boundingBox.getYSize() + 1;
@@ -151,8 +145,7 @@ public abstract class StructureStart
         }
     }
 
-    protected void setRandomHeight(World par1World, Random par2Random,
-            int par3, int par4)
+    protected void setRandomHeight(World par1World, Random par2Random, int par3, int par4)
     {
         int var5 = par4 - par3 + 1 - this.boundingBox.getYSize();
         boolean var6 = true;

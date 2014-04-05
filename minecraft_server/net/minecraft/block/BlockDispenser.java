@@ -24,8 +24,7 @@ import net.minecraft.world.World;
 
 public class BlockDispenser extends BlockContainer
 {
-    public static final IRegistry field_149943_a = new RegistryDefaulted(
-            new BehaviorDefaultDispenseItem());
+    public static final IRegistry field_149943_a = new RegistryDefaulted(new BehaviorDefaultDispenseItem());
     protected Random field_149942_b = new Random();
     private static final String __OBFID = "CL_00000229";
 
@@ -40,26 +39,20 @@ public class BlockDispenser extends BlockContainer
         return 4;
     }
 
-    public void onBlockAdded(World p_149726_1_, int p_149726_2_,
-            int p_149726_3_, int p_149726_4_)
+    public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
         this.func_149938_m(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
     }
 
-    private void func_149938_m(World p_149938_1_, int p_149938_2_,
-            int p_149938_3_, int p_149938_4_)
+    private void func_149938_m(World p_149938_1_, int p_149938_2_, int p_149938_3_, int p_149938_4_)
     {
         if (!p_149938_1_.isClient)
         {
-            Block var5 = p_149938_1_.getBlock(p_149938_2_, p_149938_3_,
-                    p_149938_4_ - 1);
-            Block var6 = p_149938_1_.getBlock(p_149938_2_, p_149938_3_,
-                    p_149938_4_ + 1);
-            Block var7 = p_149938_1_.getBlock(p_149938_2_ - 1, p_149938_3_,
-                    p_149938_4_);
-            Block var8 = p_149938_1_.getBlock(p_149938_2_ + 1, p_149938_3_,
-                    p_149938_4_);
+            Block var5 = p_149938_1_.getBlock(p_149938_2_, p_149938_3_, p_149938_4_ - 1);
+            Block var6 = p_149938_1_.getBlock(p_149938_2_, p_149938_3_, p_149938_4_ + 1);
+            Block var7 = p_149938_1_.getBlock(p_149938_2_ - 1, p_149938_3_, p_149938_4_);
+            Block var8 = p_149938_1_.getBlock(p_149938_2_ + 1, p_149938_3_, p_149938_4_);
             byte var9 = 3;
 
             if (var5.func_149730_j() && !var6.func_149730_j())
@@ -82,18 +75,14 @@ public class BlockDispenser extends BlockContainer
                 var9 = 4;
             }
 
-            p_149938_1_.setBlockMetadata(p_149938_2_, p_149938_3_, p_149938_4_,
-                    var9, 2);
+            p_149938_1_.setBlockMetadata(p_149938_2_, p_149938_3_, p_149938_4_, var9, 2);
         }
     }
 
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
-            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
-            int p_149727_6_, float p_149727_7_, float p_149727_8_,
-            float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         if (p_149727_1_.isClient)
         {
@@ -101,8 +90,7 @@ public class BlockDispenser extends BlockContainer
         }
         else
         {
-            TileEntityDispenser var10 = (TileEntityDispenser)p_149727_1_
-                    .getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
+            TileEntityDispenser var10 = (TileEntityDispenser)p_149727_1_.getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
 
             if (var10 != null)
             {
@@ -113,13 +101,10 @@ public class BlockDispenser extends BlockContainer
         }
     }
 
-    protected void func_149941_e(World p_149941_1_, int p_149941_2_,
-            int p_149941_3_, int p_149941_4_)
+    protected void func_149941_e(World p_149941_1_, int p_149941_2_, int p_149941_3_, int p_149941_4_)
     {
-        BlockSourceImpl var5 = new BlockSourceImpl(p_149941_1_, p_149941_2_,
-                p_149941_3_, p_149941_4_);
-        TileEntityDispenser var6 = (TileEntityDispenser)var5
-                .getBlockTileEntity();
+        BlockSourceImpl var5 = new BlockSourceImpl(p_149941_1_, p_149941_2_, p_149941_3_, p_149941_4_);
+        TileEntityDispenser var6 = (TileEntityDispenser)var5.getBlockTileEntity();
 
         if (var6 != null)
         {
@@ -127,8 +112,7 @@ public class BlockDispenser extends BlockContainer
 
             if (var7 < 0)
             {
-                p_149941_1_.playAuxSFX(1001, p_149941_2_, p_149941_3_,
-                        p_149941_4_, 0);
+                p_149941_1_.playAuxSFX(1001, p_149941_2_, p_149941_3_, p_149941_4_, 0);
             }
             else
             {
@@ -138,8 +122,7 @@ public class BlockDispenser extends BlockContainer
                 if (var9 != IBehaviorDispenseItem.itemDispenseBehaviorProvider)
                 {
                     ItemStack var10 = var9.dispense(var5, var8);
-                    var6.setInventorySlotContents(var7,
-                            var10.stackSize == 0 ? null : var10);
+                    var6.setInventorySlotContents(var7, var10.stackSize == 0 ? null : var10);
                 }
             }
         }
@@ -147,45 +130,34 @@ public class BlockDispenser extends BlockContainer
 
     protected IBehaviorDispenseItem func_149940_a(ItemStack p_149940_1_)
     {
-        return (IBehaviorDispenseItem)field_149943_a.getObject(p_149940_1_
-                .getItem());
+        return (IBehaviorDispenseItem)field_149943_a.getObject(p_149940_1_.getItem());
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        boolean var6 = p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_,
-                p_149695_3_, p_149695_4_)
-                || p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_,
-                        p_149695_3_ + 1, p_149695_4_);
-        int var7 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_,
-                p_149695_4_);
+        boolean var6 = p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_) || p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_ + 1, p_149695_4_);
+        int var7 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
         boolean var8 = (var7 & 8) != 0;
 
         if (var6 && !var8)
         {
-            p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_,
-                    p_149695_4_, this, this.func_149738_a(p_149695_1_));
-            p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_,
-                    var7 | 8, 4);
+            p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, this.func_149738_a(p_149695_1_));
+            p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var7 | 8, 4);
         }
         else if (!var6 && var8)
         {
-            p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_,
-                    var7 & -9, 4);
+            p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var7 & -9, 4);
         }
     }
 
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_,
-            int p_149674_4_, Random p_149674_5_)
+    public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
         if (!p_149674_1_.isClient)
         {
-            this.func_149941_e(p_149674_1_, p_149674_2_, p_149674_3_,
-                    p_149674_4_);
+            this.func_149941_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
         }
     }
 
@@ -201,28 +173,20 @@ public class BlockDispenser extends BlockContainer
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
-            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
-            ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = BlockPistonBase.func_150071_a(p_149689_1_, p_149689_2_,
-                p_149689_3_, p_149689_4_, p_149689_5_);
-        p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_,
-                var7, 2);
+        int var7 = BlockPistonBase.func_150071_a(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_, p_149689_5_);
+        p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_, var7, 2);
 
         if (p_149689_6_.hasDisplayName())
         {
-            ((TileEntityDispenser)p_149689_1_.getTileEntity(p_149689_2_,
-                    p_149689_3_, p_149689_4_)).func_146018_a(p_149689_6_
-                    .getDisplayName());
+            ((TileEntityDispenser)p_149689_1_.getTileEntity(p_149689_2_, p_149689_3_, p_149689_4_)).func_146018_a(p_149689_6_.getDisplayName());
         }
     }
 
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_,
-            int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        TileEntityDispenser var7 = (TileEntityDispenser)p_149749_1_
-                .getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
+        TileEntityDispenser var7 = (TileEntityDispenser)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
 
         if (var7 != null)
         {
@@ -246,49 +210,34 @@ public class BlockDispenser extends BlockContainer
                         }
 
                         var9.stackSize -= var13;
-                        EntityItem var14 = new EntityItem(p_149749_1_,
-                                (double)((float)p_149749_2_ + var10),
-                                (double)((float)p_149749_3_ + var11),
-                                (double)((float)p_149749_4_ + var12),
-                                new ItemStack(var9.getItem(), var13,
-                                        var9.getItemDamage()));
+                        EntityItem var14 = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + var10), (double)((float)p_149749_3_ + var11), (double)((float)p_149749_4_ + var12), new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
 
                         if (var9.hasTagCompound())
                         {
-                            var14.getEntityItem().setTagCompound(
-                                    (NBTTagCompound)var9.getTagCompound()
-                                            .copy());
+                            var14.getEntityItem().setTagCompound((NBTTagCompound)var9.getTagCompound().copy());
                         }
 
                         float var15 = 0.05F;
-                        var14.motionX = (double)((float)this.field_149942_b
-                                .nextGaussian() * var15);
-                        var14.motionY = (double)((float)this.field_149942_b
-                                .nextGaussian() * var15 + 0.2F);
-                        var14.motionZ = (double)((float)this.field_149942_b
-                                .nextGaussian() * var15);
+                        var14.motionX = (double)((float)this.field_149942_b.nextGaussian() * var15);
+                        var14.motionY = (double)((float)this.field_149942_b.nextGaussian() * var15 + 0.2F);
+                        var14.motionZ = (double)((float)this.field_149942_b.nextGaussian() * var15);
                         p_149749_1_.spawnEntityInWorld(var14);
                     }
                 }
             }
 
-            p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_,
-                    p_149749_5_);
+            p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_);
         }
 
-        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_,
-                p_149749_5_, p_149749_6_);
+        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
 
     public static IPosition func_149939_a(IBlockSource p_149939_0_)
     {
         EnumFacing var1 = func_149937_b(p_149939_0_.getBlockMetadata());
-        double var2 = p_149939_0_.getX() + 0.7D
-                * (double)var1.getFrontOffsetX();
-        double var4 = p_149939_0_.getY() + 0.7D
-                * (double)var1.getFrontOffsetY();
-        double var6 = p_149939_0_.getZ() + 0.7D
-                * (double)var1.getFrontOffsetZ();
+        double var2 = p_149939_0_.getX() + 0.7D * (double)var1.getFrontOffsetX();
+        double var4 = p_149939_0_.getY() + 0.7D * (double)var1.getFrontOffsetY();
+        double var6 = p_149939_0_.getZ() + 0.7D * (double)var1.getFrontOffsetZ();
         return new PositionImpl(var2, var4, var6);
     }
 
@@ -302,10 +251,8 @@ public class BlockDispenser extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_,
-            int p_149736_3_, int p_149736_4_, int p_149736_5_)
+    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_, int p_149736_3_, int p_149736_4_, int p_149736_5_)
     {
-        return Container.calcRedstoneFromInventory((IInventory)p_149736_1_
-                .getTileEntity(p_149736_2_, p_149736_3_, p_149736_4_));
+        return Container.calcRedstoneFromInventory((IInventory)p_149736_1_.getTileEntity(p_149736_2_, p_149736_3_, p_149736_4_));
     }
 }

@@ -57,8 +57,7 @@ public class EntityAIMate extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return this.targetMate.isEntityAlive() && this.targetMate.isInLove()
-                && this.spawnBabyDelay < 60;
+        return this.targetMate.isEntityAlive() && this.targetMate.isInLove() && this.spawnBabyDelay < 60;
     }
 
     /**
@@ -75,15 +74,11 @@ public class EntityAIMate extends EntityAIBase
      */
     public void updateTask()
     {
-        this.theAnimal.getLookHelper().setLookPositionWithEntity(
-                this.targetMate, 10.0F,
-                (float)this.theAnimal.getVerticalFaceSpeed());
-        this.theAnimal.getNavigator().tryMoveToEntityLiving(this.targetMate,
-                this.moveSpeed);
+        this.theAnimal.getLookHelper().setLookPositionWithEntity(this.targetMate, 10.0F, (float)this.theAnimal.getVerticalFaceSpeed());
+        this.theAnimal.getNavigator().tryMoveToEntityLiving(this.targetMate, this.moveSpeed);
         ++this.spawnBabyDelay;
 
-        if (this.spawnBabyDelay >= 60
-                && this.theAnimal.getDistanceSqToEntity(this.targetMate) < 9.0D)
+        if (this.spawnBabyDelay >= 60 && this.theAnimal.getDistanceSqToEntity(this.targetMate) < 9.0D)
         {
             this.spawnBaby();
         }
@@ -96,9 +91,7 @@ public class EntityAIMate extends EntityAIBase
     private EntityAnimal getNearbyMate()
     {
         float var1 = 8.0F;
-        List var2 = this.theWorld.getEntitiesWithinAABB(this.theAnimal
-                .getClass(), this.theAnimal.boundingBox.expand((double)var1,
-                (double)var1, (double)var1));
+        List var2 = this.theWorld.getEntitiesWithinAABB(this.theAnimal.getClass(), this.theAnimal.boundingBox.expand((double)var1, (double)var1, (double)var1));
         double var3 = Double.MAX_VALUE;
         EntityAnimal var5 = null;
         Iterator var6 = var2.iterator();
@@ -107,8 +100,7 @@ public class EntityAIMate extends EntityAIBase
         {
             EntityAnimal var7 = (EntityAnimal)var6.next();
 
-            if (this.theAnimal.canMateWith(var7)
-                    && this.theAnimal.getDistanceSqToEntity(var7) < var3)
+            if (this.theAnimal.canMateWith(var7) && this.theAnimal.getDistanceSqToEntity(var7) < var3)
             {
                 var5 = var7;
                 var3 = this.theAnimal.getDistanceSqToEntity(var7);
@@ -149,8 +141,7 @@ public class EntityAIMate extends EntityAIBase
             this.theAnimal.resetInLove();
             this.targetMate.resetInLove();
             var1.setGrowingAge(-24000);
-            var1.setLocationAndAngles(this.theAnimal.posX, this.theAnimal.posY,
-                    this.theAnimal.posZ, 0.0F, 0.0F);
+            var1.setLocationAndAngles(this.theAnimal.posX, this.theAnimal.posY, this.theAnimal.posZ, 0.0F, 0.0F);
             this.theWorld.spawnEntityInWorld(var1);
             Random var3 = this.theAnimal.getRNG();
 
@@ -159,29 +150,12 @@ public class EntityAIMate extends EntityAIBase
                 double var5 = var3.nextGaussian() * 0.02D;
                 double var7 = var3.nextGaussian() * 0.02D;
                 double var9 = var3.nextGaussian() * 0.02D;
-                this.theWorld
-                        .spawnParticle(
-                                "heart",
-                                this.theAnimal.posX
-                                        + (double)(var3.nextFloat()
-                                                * this.theAnimal.width * 2.0F)
-                                        - (double)this.theAnimal.width,
-                                this.theAnimal.posY
-                                        + 0.5D
-                                        + (double)(var3.nextFloat() * this.theAnimal.height),
-                                this.theAnimal.posZ
-                                        + (double)(var3.nextFloat()
-                                                * this.theAnimal.width * 2.0F)
-                                        - (double)this.theAnimal.width, var5,
-                                var7, var9);
+                this.theWorld.spawnParticle("heart", this.theAnimal.posX + (double)(var3.nextFloat() * this.theAnimal.width * 2.0F) - (double)this.theAnimal.width, this.theAnimal.posY + 0.5D + (double)(var3.nextFloat() * this.theAnimal.height), this.theAnimal.posZ + (double)(var3.nextFloat() * this.theAnimal.width * 2.0F) - (double)this.theAnimal.width, var5, var7, var9);
             }
 
-            if (this.theWorld.getGameRules().getGameRuleBooleanValue(
-                    "doMobLoot"))
+            if (this.theWorld.getGameRules().getGameRuleBooleanValue("doMobLoot"))
             {
-                this.theWorld.spawnEntityInWorld(new EntityXPOrb(this.theWorld,
-                        this.theAnimal.posX, this.theAnimal.posY,
-                        this.theAnimal.posZ, var3.nextInt(7) + 1));
+                this.theWorld.spawnEntityInWorld(new EntityXPOrb(this.theWorld, this.theAnimal.posX, this.theAnimal.posY, this.theAnimal.posZ, var3.nextInt(7) + 1));
             }
         }
     }

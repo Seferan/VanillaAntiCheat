@@ -38,21 +38,15 @@ public class BiomeGenJungle extends BiomeGenBase
 
         if (!p_i45379_2_)
         {
-            this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(
-                    EntityOcelot.class, 2, 1, 1));
+            this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityOcelot.class, 2, 1, 1));
         }
 
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(
-                EntityChicken.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityChicken.class, 10, 4, 4));
     }
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(p_150567_1_.nextInt(10) == 0 ? this.worldGeneratorBigTree
-                : (p_150567_1_.nextInt(2) == 0 ? new WorldGenShrub(3, 0)
-                        : (!this.field_150614_aC && p_150567_1_.nextInt(3) == 0 ? new WorldGenMegaJungle(
-                                false, 10, 20, 3, 3) : new WorldGenTrees(false,
-                                4 + p_150567_1_.nextInt(7), 3, 3, true))));
+        return (WorldGenAbstractTree)(p_150567_1_.nextInt(10) == 0 ? this.worldGeneratorBigTree : (p_150567_1_.nextInt(2) == 0 ? new WorldGenShrub(3, 0) : (!this.field_150614_aC && p_150567_1_.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, 3, 3) : new WorldGenTrees(false, 4 + p_150567_1_.nextInt(7), 3, 3, true))));
     }
 
     /**
@@ -60,9 +54,7 @@ public class BiomeGenJungle extends BiomeGenBase
      */
     public WorldGenerator getRandomWorldGenForGrass(Random par1Random)
     {
-        return par1Random.nextInt(4) == 0 ? new WorldGenTallGrass(
-                Blocks.tallgrass, 2) : new WorldGenTallGrass(Blocks.tallgrass,
-                1);
+        return par1Random.nextInt(4) == 0 ? new WorldGenTallGrass(Blocks.tallgrass, 2) : new WorldGenTallGrass(Blocks.tallgrass, 1);
     }
 
     public void decorate(World par1World, Random par2Random, int par3, int par4)

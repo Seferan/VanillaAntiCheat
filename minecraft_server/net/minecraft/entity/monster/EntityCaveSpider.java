@@ -22,8 +22,7 @@ public class EntityCaveSpider extends EntitySpider
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
-                .setBaseValue(12.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
     }
 
     public boolean attackEntityAsMob(Entity par1Entity)
@@ -45,9 +44,7 @@ public class EntityCaveSpider extends EntitySpider
 
                 if (var2 > 0)
                 {
-                    ((EntityLivingBase)par1Entity)
-                            .addPotionEffect(new PotionEffect(Potion.poison.id,
-                                    var2 * 20, 0));
+                    ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Potion.poison.id, var2 * 20, 0));
                 }
             }
 
@@ -59,8 +56,7 @@ public class EntityCaveSpider extends EntitySpider
         }
     }
 
-    public IEntityLivingData onSpawnWithEgg(
-            IEntityLivingData par1EntityLivingData)
+    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData)
     {
         return par1EntityLivingData;
     }

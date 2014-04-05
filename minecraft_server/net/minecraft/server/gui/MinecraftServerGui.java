@@ -140,8 +140,7 @@ public class MinecraftServerGui extends JComponent
 
                 if (var2.length() > 0)
                 {
-                    MinecraftServerGui.this.field_120021_b.addPendingCommand(
-                            var2, MinecraftServer.getServer());
+                    MinecraftServerGui.this.field_120021_b.addPendingCommand(var2, MinecraftServer.getServer());
                 }
 
                 var4.setText("");
@@ -166,8 +165,7 @@ public class MinecraftServerGui extends JComponent
             {
                 String var1;
 
-                while ((var1 = QueueLogAppender
-                        .getNextLogEvent("ServerGuiConsole")) != null)
+                while ((var1 = QueueLogAppender.getNextLogEvent("ServerGuiConsole")) != null)
                 {
                     MinecraftServerGui.this.func_164247_a(var2, var3, var1);
                 }
@@ -178,8 +176,7 @@ public class MinecraftServerGui extends JComponent
         return var1;
     }
 
-    public void func_164247_a(final JTextArea p_164247_1_,
-            final JScrollPane p_164247_2_, final String p_164247_3_)
+    public void func_164247_a(final JTextArea p_164247_1_, final JScrollPane p_164247_2_, final String p_164247_3_)
     {
         if (!SwingUtilities.isEventDispatchThread())
         {
@@ -189,8 +186,7 @@ public class MinecraftServerGui extends JComponent
 
                 public void run()
                 {
-                    MinecraftServerGui.this.func_164247_a(p_164247_1_,
-                            p_164247_2_, p_164247_3_);
+                    MinecraftServerGui.this.func_164247_a(p_164247_1_, p_164247_2_, p_164247_3_);
                 }
             });
         }
@@ -202,15 +198,12 @@ public class MinecraftServerGui extends JComponent
 
             if (p_164247_2_.getViewport().getView() == p_164247_1_)
             {
-                var6 = (double)var5.getValue() + var5.getSize().getHeight()
-                        + (double)(field_164249_a.getSize() * 4) > (double)var5
-                        .getMaximum();
+                var6 = (double)var5.getValue() + var5.getSize().getHeight() + (double)(field_164249_a.getSize() * 4) > (double)var5.getMaximum();
             }
 
             try
             {
-                var4.insertString(var4.getLength(), p_164247_3_,
-                        (AttributeSet)null);
+                var4.insertString(var4.getLength(), p_164247_3_, (AttributeSet)null);
             }
             catch (BadLocationException var8)
             {

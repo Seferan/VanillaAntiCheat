@@ -48,8 +48,7 @@ public class IntCache
             }
             else
             {
-                var1 = (int[])freeSmallArrays
-                        .remove(freeSmallArrays.size() - 1);
+                var1 = (int[])freeSmallArrays.remove(freeSmallArrays.size() - 1);
                 inUseSmallArrays.add(var1);
                 return var1;
             }
@@ -105,9 +104,6 @@ public class IntCache
      */
     public static synchronized String getCacheSizes()
     {
-        return "cache: " + freeLargeArrays.size() + ", tcache: "
-                + freeSmallArrays.size() + ", allocated: "
-                + inUseLargeArrays.size() + ", tallocated: "
-                + inUseSmallArrays.size();
+        return "cache: " + freeLargeArrays.size() + ", tcache: " + freeSmallArrays.size() + ", allocated: " + inUseLargeArrays.size() + ", tallocated: " + inUseSmallArrays.size();
     }
 }

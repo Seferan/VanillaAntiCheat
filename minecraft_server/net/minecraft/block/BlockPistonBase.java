@@ -46,10 +46,7 @@ public class BlockPistonBase extends Block
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
-            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
-            int p_149727_6_, float p_149727_7_, float p_149727_8_,
-            float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         return false;
     }
@@ -57,155 +54,71 @@ public class BlockPistonBase extends Block
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
-            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
-            ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = func_150071_a(p_149689_1_, p_149689_2_, p_149689_3_,
-                p_149689_4_, p_149689_5_);
-        p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_,
-                var7, 2);
+        int var7 = func_150071_a(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_, p_149689_5_);
+        p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_, var7, 2);
 
         if (!p_149689_1_.isClient)
         {
-            this.func_150078_e(p_149689_1_, p_149689_2_, p_149689_3_,
-                    p_149689_4_);
+            this.func_150078_e(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_);
         }
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         if (!p_149695_1_.isClient)
         {
-            this.func_150078_e(p_149695_1_, p_149695_2_, p_149695_3_,
-                    p_149695_4_);
+            this.func_150078_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
         }
     }
 
-    public void onBlockAdded(World p_149726_1_, int p_149726_2_,
-            int p_149726_3_, int p_149726_4_)
+    public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
-        if (!p_149726_1_.isClient
-                && p_149726_1_.getTileEntity(p_149726_2_, p_149726_3_,
-                        p_149726_4_) == null)
+        if (!p_149726_1_.isClient && p_149726_1_.getTileEntity(p_149726_2_, p_149726_3_, p_149726_4_) == null)
         {
-            this.func_150078_e(p_149726_1_, p_149726_2_, p_149726_3_,
-                    p_149726_4_);
+            this.func_150078_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
         }
     }
 
-    private void func_150078_e(World p_150078_1_, int p_150078_2_,
-            int p_150078_3_, int p_150078_4_)
+    private void func_150078_e(World p_150078_1_, int p_150078_2_, int p_150078_3_, int p_150078_4_)
     {
-        int var5 = p_150078_1_.getBlockMetadata(p_150078_2_, p_150078_3_,
-                p_150078_4_);
+        int var5 = p_150078_1_.getBlockMetadata(p_150078_2_, p_150078_3_, p_150078_4_);
         int var6 = func_150076_b(var5);
 
         if (var6 != 7)
         {
-            boolean var7 = this.func_150072_a(p_150078_1_, p_150078_2_,
-                    p_150078_3_, p_150078_4_, var6);
+            boolean var7 = this.func_150072_a(p_150078_1_, p_150078_2_, p_150078_3_, p_150078_4_, var6);
 
             if (var7 && !func_150075_c(var5))
             {
-                if (func_150077_h(p_150078_1_, p_150078_2_, p_150078_3_,
-                        p_150078_4_, var6))
+                if (func_150077_h(p_150078_1_, p_150078_2_, p_150078_3_, p_150078_4_, var6))
                 {
-                    p_150078_1_.func_147452_c(p_150078_2_, p_150078_3_,
-                            p_150078_4_, this, 0, var6);
+                    p_150078_1_.func_147452_c(p_150078_2_, p_150078_3_, p_150078_4_, this, 0, var6);
                 }
             }
             else if (!var7 && func_150075_c(var5))
             {
-                p_150078_1_.setBlockMetadata(p_150078_2_, p_150078_3_,
-                        p_150078_4_, var6, 2);
-                p_150078_1_.func_147452_c(p_150078_2_, p_150078_3_,
-                        p_150078_4_, this, 1, var6);
+                p_150078_1_.setBlockMetadata(p_150078_2_, p_150078_3_, p_150078_4_, var6, 2);
+                p_150078_1_.func_147452_c(p_150078_2_, p_150078_3_, p_150078_4_, this, 1, var6);
             }
         }
     }
 
-    private boolean func_150072_a(World p_150072_1_, int p_150072_2_,
-            int p_150072_3_, int p_150072_4_, int p_150072_5_)
+    private boolean func_150072_a(World p_150072_1_, int p_150072_2_, int p_150072_3_, int p_150072_4_, int p_150072_5_)
     {
-        return p_150072_5_ != 0
-                && p_150072_1_.getIndirectPowerOutput(p_150072_2_,
-                        p_150072_3_ - 1, p_150072_4_, 0) ? true
-                : (p_150072_5_ != 1
-                        && p_150072_1_.getIndirectPowerOutput(p_150072_2_,
-                                p_150072_3_ + 1, p_150072_4_, 1) ? true
-                        : (p_150072_5_ != 2
-                                && p_150072_1_.getIndirectPowerOutput(
-                                        p_150072_2_, p_150072_3_,
-                                        p_150072_4_ - 1, 2) ? true
-                                : (p_150072_5_ != 3
-                                        && p_150072_1_.getIndirectPowerOutput(
-                                                p_150072_2_, p_150072_3_,
-                                                p_150072_4_ + 1, 3) ? true
-                                        : (p_150072_5_ != 5
-                                                && p_150072_1_
-                                                        .getIndirectPowerOutput(
-                                                                p_150072_2_ + 1,
-                                                                p_150072_3_,
-                                                                p_150072_4_, 5) ? true
-                                                : (p_150072_5_ != 4
-                                                        && p_150072_1_
-                                                                .getIndirectPowerOutput(
-                                                                        p_150072_2_ - 1,
-                                                                        p_150072_3_,
-                                                                        p_150072_4_,
-                                                                        4) ? true
-                                                        : (p_150072_1_
-                                                                .getIndirectPowerOutput(
-                                                                        p_150072_2_,
-                                                                        p_150072_3_,
-                                                                        p_150072_4_,
-                                                                        0) ? true
-                                                                : (p_150072_1_
-                                                                        .getIndirectPowerOutput(
-                                                                                p_150072_2_,
-                                                                                p_150072_3_ + 2,
-                                                                                p_150072_4_,
-                                                                                1) ? true
-                                                                        : (p_150072_1_
-                                                                                .getIndirectPowerOutput(
-                                                                                        p_150072_2_,
-                                                                                        p_150072_3_ + 1,
-                                                                                        p_150072_4_ - 1,
-                                                                                        2) ? true
-                                                                                : (p_150072_1_
-                                                                                        .getIndirectPowerOutput(
-                                                                                                p_150072_2_,
-                                                                                                p_150072_3_ + 1,
-                                                                                                p_150072_4_ + 1,
-                                                                                                3) ? true
-                                                                                        : (p_150072_1_
-                                                                                                .getIndirectPowerOutput(
-                                                                                                        p_150072_2_ - 1,
-                                                                                                        p_150072_3_ + 1,
-                                                                                                        p_150072_4_,
-                                                                                                        4) ? true
-                                                                                                : p_150072_1_
-                                                                                                        .getIndirectPowerOutput(
-                                                                                                                p_150072_2_ + 1,
-                                                                                                                p_150072_3_ + 1,
-                                                                                                                p_150072_4_,
-                                                                                                                5)))))))))));
+        return p_150072_5_ != 0 && p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_ - 1, p_150072_4_, 0) ? true : (p_150072_5_ != 1 && p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_ + 1, p_150072_4_, 1) ? true : (p_150072_5_ != 2 && p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_, p_150072_4_ - 1, 2) ? true : (p_150072_5_ != 3 && p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_, p_150072_4_ + 1, 3) ? true : (p_150072_5_ != 5 && p_150072_1_.getIndirectPowerOutput(p_150072_2_ + 1, p_150072_3_, p_150072_4_, 5) ? true : (p_150072_5_ != 4 && p_150072_1_.getIndirectPowerOutput(p_150072_2_ - 1, p_150072_3_, p_150072_4_, 4) ? true : (p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_, p_150072_4_, 0) ? true : (p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_ + 2, p_150072_4_, 1) ? true : (p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_ + 1, p_150072_4_ - 1, 2) ? true : (p_150072_1_.getIndirectPowerOutput(p_150072_2_, p_150072_3_ + 1, p_150072_4_ + 1, 3) ? true : (p_150072_1_.getIndirectPowerOutput(p_150072_2_ - 1, p_150072_3_ + 1, p_150072_4_, 4) ? true : p_150072_1_.getIndirectPowerOutput(p_150072_2_ + 1, p_150072_3_ + 1, p_150072_4_, 5)))))))))));
     }
 
-    public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_,
-            int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_)
+    public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_)
     {
         if (!p_149696_1_.isClient)
         {
-            boolean var7 = this.func_150072_a(p_149696_1_, p_149696_2_,
-                    p_149696_3_, p_149696_4_, p_149696_6_);
+            boolean var7 = this.func_150072_a(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_);
 
             if (var7 && p_149696_5_ == 1)
             {
-                p_149696_1_.setBlockMetadata(p_149696_2_, p_149696_3_,
-                        p_149696_4_, p_149696_6_ | 8, 2);
+                p_149696_1_.setBlockMetadata(p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_ | 8, 2);
                 return false;
             }
 
@@ -214,57 +127,41 @@ public class BlockPistonBase extends Block
 
         if (p_149696_5_ == 0)
         {
-            if (!this.func_150079_i(p_149696_1_, p_149696_2_, p_149696_3_,
-                    p_149696_4_, p_149696_6_)) { return false; }
+            if (!this.func_150079_i(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_)) { return false; }
 
-            p_149696_1_.setBlockMetadata(p_149696_2_, p_149696_3_, p_149696_4_,
-                    p_149696_6_ | 8, 2);
-            p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D,
-                    (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D,
-                    "tile.piston.out", 0.5F,
-                    p_149696_1_.rand.nextFloat() * 0.25F + 0.6F);
+            p_149696_1_.setBlockMetadata(p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_ | 8, 2);
+            p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D, (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D, "tile.piston.out", 0.5F, p_149696_1_.rand.nextFloat() * 0.25F + 0.6F);
         }
         else if (p_149696_5_ == 1)
         {
-            TileEntity var16 = p_149696_1_.getTileEntity(p_149696_2_
-                    + Facing.offsetsXForSide[p_149696_6_], p_149696_3_
-                    + Facing.offsetsYForSide[p_149696_6_], p_149696_4_
-                    + Facing.offsetsZForSide[p_149696_6_]);
+            TileEntity var16 = p_149696_1_.getTileEntity(p_149696_2_ + Facing.offsetsXForSide[p_149696_6_], p_149696_3_ + Facing.offsetsYForSide[p_149696_6_], p_149696_4_ + Facing.offsetsZForSide[p_149696_6_]);
 
             if (var16 instanceof TileEntityPiston)
             {
                 ((TileEntityPiston)var16).func_145866_f();
             }
 
-            p_149696_1_.setBlock(p_149696_2_, p_149696_3_, p_149696_4_,
-                    Blocks.piston_extension, p_149696_6_, 3);
-            p_149696_1_.setTileEntity(p_149696_2_, p_149696_3_, p_149696_4_,
-                    BlockPistonMoving.func_149962_a(this, p_149696_6_,
-                            p_149696_6_, false, true));
+            p_149696_1_.setBlock(p_149696_2_, p_149696_3_, p_149696_4_, Blocks.piston_extension, p_149696_6_, 3);
+            p_149696_1_.setTileEntity(p_149696_2_, p_149696_3_, p_149696_4_, BlockPistonMoving.func_149962_a(this, p_149696_6_, p_149696_6_, false, true));
 
             if (this.field_150082_a)
             {
-                int var8 = p_149696_2_ + Facing.offsetsXForSide[p_149696_6_]
-                        * 2;
-                int var9 = p_149696_3_ + Facing.offsetsYForSide[p_149696_6_]
-                        * 2;
-                int var10 = p_149696_4_ + Facing.offsetsZForSide[p_149696_6_]
-                        * 2;
+                int var8 = p_149696_2_ + Facing.offsetsXForSide[p_149696_6_] * 2;
+                int var9 = p_149696_3_ + Facing.offsetsYForSide[p_149696_6_] * 2;
+                int var10 = p_149696_4_ + Facing.offsetsZForSide[p_149696_6_] * 2;
                 Block var11 = p_149696_1_.getBlock(var8, var9, var10);
                 int var12 = p_149696_1_.getBlockMetadata(var8, var9, var10);
                 boolean var13 = false;
 
                 if (var11 == Blocks.piston_extension)
                 {
-                    TileEntity var14 = p_149696_1_.getTileEntity(var8, var9,
-                            var10);
+                    TileEntity var14 = p_149696_1_.getTileEntity(var8, var9, var10);
 
                     if (var14 instanceof TileEntityPiston)
                     {
                         TileEntityPiston var15 = (TileEntityPiston)var14;
 
-                        if (var15.func_145864_c() == p_149696_6_
-                                && var15.func_145868_b())
+                        if (var15.func_145864_c() == p_149696_6_ && var15.func_145868_b())
                         {
                             var15.func_145866_f();
                             var11 = var15.func_145861_a();
@@ -274,53 +171,34 @@ public class BlockPistonBase extends Block
                     }
                 }
 
-                if (!var13
-                        && var11.getMaterial() != Material.air
-                        && func_150080_a(var11, p_149696_1_, var8, var9, var10,
-                                false)
-                        && (var11.getMobilityFlag() == 0
-                                || var11 == Blocks.piston || var11 == Blocks.sticky_piston))
+                if (!var13 && var11.getMaterial() != Material.air && func_150080_a(var11, p_149696_1_, var8, var9, var10, false) && (var11.getMobilityFlag() == 0 || var11 == Blocks.piston || var11 == Blocks.sticky_piston))
                 {
                     p_149696_2_ += Facing.offsetsXForSide[p_149696_6_];
                     p_149696_3_ += Facing.offsetsYForSide[p_149696_6_];
                     p_149696_4_ += Facing.offsetsZForSide[p_149696_6_];
-                    p_149696_1_.setBlock(p_149696_2_, p_149696_3_, p_149696_4_,
-                            Blocks.piston_extension, var12, 3);
-                    p_149696_1_.setTileEntity(p_149696_2_, p_149696_3_,
-                            p_149696_4_, BlockPistonMoving.func_149962_a(var11,
-                                    var12, p_149696_6_, false, false));
+                    p_149696_1_.setBlock(p_149696_2_, p_149696_3_, p_149696_4_, Blocks.piston_extension, var12, 3);
+                    p_149696_1_.setTileEntity(p_149696_2_, p_149696_3_, p_149696_4_, BlockPistonMoving.func_149962_a(var11, var12, p_149696_6_, false, false));
                     p_149696_1_.setBlockToAir(var8, var9, var10);
                 }
                 else if (!var13)
                 {
-                    p_149696_1_.setBlockToAir(p_149696_2_
-                            + Facing.offsetsXForSide[p_149696_6_], p_149696_3_
-                            + Facing.offsetsYForSide[p_149696_6_], p_149696_4_
-                            + Facing.offsetsZForSide[p_149696_6_]);
+                    p_149696_1_.setBlockToAir(p_149696_2_ + Facing.offsetsXForSide[p_149696_6_], p_149696_3_ + Facing.offsetsYForSide[p_149696_6_], p_149696_4_ + Facing.offsetsZForSide[p_149696_6_]);
                 }
             }
             else
             {
-                p_149696_1_.setBlockToAir(p_149696_2_
-                        + Facing.offsetsXForSide[p_149696_6_], p_149696_3_
-                        + Facing.offsetsYForSide[p_149696_6_], p_149696_4_
-                        + Facing.offsetsZForSide[p_149696_6_]);
+                p_149696_1_.setBlockToAir(p_149696_2_ + Facing.offsetsXForSide[p_149696_6_], p_149696_3_ + Facing.offsetsYForSide[p_149696_6_], p_149696_4_ + Facing.offsetsZForSide[p_149696_6_]);
             }
 
-            p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D,
-                    (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D,
-                    "tile.piston.in", 0.5F,
-                    p_149696_1_.rand.nextFloat() * 0.15F + 0.6F);
+            p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D, (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D, "tile.piston.in", 0.5F, p_149696_1_.rand.nextFloat() * 0.15F + 0.6F);
         }
 
         return true;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_,
-                p_149719_4_);
+        int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_);
 
         if (func_150075_c(var5))
         {
@@ -366,26 +244,20 @@ public class BlockPistonBase extends Block
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_,
-            int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_,
-            List p_149743_6_, Entity p_149743_7_)
+    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
     }
 
     /**
      * Returns a bounding box from the pool of bounding boxes (this means this
      * box can change after the pool has been cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_,
-            int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_,
-                p_149668_4_);
-        return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_,
-                p_149668_3_, p_149668_4_);
+        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 
     public boolean renderAsNormalBlock()
@@ -403,29 +275,22 @@ public class BlockPistonBase extends Block
         return (p_150075_0_ & 8) != 0;
     }
 
-    public static int func_150071_a(World p_150071_0_, int p_150071_1_,
-            int p_150071_2_, int p_150071_3_, EntityLivingBase p_150071_4_)
+    public static int func_150071_a(World p_150071_0_, int p_150071_1_, int p_150071_2_, int p_150071_3_, EntityLivingBase p_150071_4_)
     {
-        if (MathHelper.abs((float)p_150071_4_.posX - (float)p_150071_1_) < 2.0F
-                && MathHelper.abs((float)p_150071_4_.posZ - (float)p_150071_3_) < 2.0F)
+        if (MathHelper.abs((float)p_150071_4_.posX - (float)p_150071_1_) < 2.0F && MathHelper.abs((float)p_150071_4_.posZ - (float)p_150071_3_) < 2.0F)
         {
-            double var5 = p_150071_4_.posY + 1.82D
-                    - (double)p_150071_4_.yOffset;
+            double var5 = p_150071_4_.posY + 1.82D - (double)p_150071_4_.yOffset;
 
             if (var5 - (double)p_150071_2_ > 2.0D) { return 1; }
 
             if ((double)p_150071_2_ - var5 > 0.0D) { return 0; }
         }
 
-        int var7 = MathHelper
-                .floor_double((double)(p_150071_4_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        return var7 == 0 ? 2 : (var7 == 1 ? 5 : (var7 == 2 ? 3 : (var7 == 3 ? 4
-                : 0)));
+        int var7 = MathHelper.floor_double((double)(p_150071_4_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        return var7 == 0 ? 2 : (var7 == 1 ? 5 : (var7 == 2 ? 3 : (var7 == 3 ? 4 : 0)));
     }
 
-    private static boolean func_150080_a(Block p_150080_0_, World p_150080_1_,
-            int p_150080_2_, int p_150080_3_, int p_150080_4_,
-            boolean p_150080_5_)
+    private static boolean func_150080_a(Block p_150080_0_, World p_150080_1_, int p_150080_2_, int p_150080_3_, int p_150080_4_, boolean p_150080_5_)
     {
         if (p_150080_0_ == Blocks.obsidian)
         {
@@ -433,11 +298,9 @@ public class BlockPistonBase extends Block
         }
         else
         {
-            if (p_150080_0_ != Blocks.piston
-                    && p_150080_0_ != Blocks.sticky_piston)
+            if (p_150080_0_ != Blocks.piston && p_150080_0_ != Blocks.sticky_piston)
             {
-                if (p_150080_0_.getBlockHardness(p_150080_1_, p_150080_2_,
-                        p_150080_3_, p_150080_4_) == -1.0F) { return false; }
+                if (p_150080_0_.getBlockHardness(p_150080_1_, p_150080_2_, p_150080_3_, p_150080_4_) == -1.0F) { return false; }
 
                 if (p_150080_0_.getMobilityFlag() == 2) { return false; }
 
@@ -448,15 +311,13 @@ public class BlockPistonBase extends Block
                     return true;
                 }
             }
-            else if (func_150075_c(p_150080_1_.getBlockMetadata(p_150080_2_,
-                    p_150080_3_, p_150080_4_))) { return false; }
+            else if (func_150075_c(p_150080_1_.getBlockMetadata(p_150080_2_, p_150080_3_, p_150080_4_))) { return false; }
 
             return !(p_150080_0_ instanceof ITileEntityProvider);
         }
     }
 
-    private static boolean func_150077_h(World p_150077_0_, int p_150077_1_,
-            int p_150077_2_, int p_150077_3_, int p_150077_4_)
+    private static boolean func_150077_h(World p_150077_0_, int p_150077_1_, int p_150077_2_, int p_150077_3_, int p_150077_4_)
     {
         int var5 = p_150077_1_ + Facing.offsetsXForSide[p_150077_4_];
         int var6 = p_150077_2_ + Facing.offsetsYForSide[p_150077_4_];
@@ -473,8 +334,7 @@ public class BlockPistonBase extends Block
 
                 if (var9.getMaterial() != Material.air)
                 {
-                    if (!func_150080_a(var9, p_150077_0_, var5, var6, var7,
-                            true)) { return false; }
+                    if (!func_150080_a(var9, p_150077_0_, var5, var6, var7, true)) { return false; }
 
                     if (var9.getMobilityFlag() != 1)
                     {
@@ -493,8 +353,7 @@ public class BlockPistonBase extends Block
         }
     }
 
-    private boolean func_150079_i(World p_150079_1_, int p_150079_2_,
-            int p_150079_3_, int p_150079_4_, int p_150079_5_)
+    private boolean func_150079_i(World p_150079_1_, int p_150079_2_, int p_150079_3_, int p_150079_4_, int p_150079_5_)
     {
         int var6 = p_150079_2_ + Facing.offsetsXForSide[p_150079_5_];
         int var7 = p_150079_3_ + Facing.offsetsYForSide[p_150079_5_];
@@ -511,8 +370,7 @@ public class BlockPistonBase extends Block
 
                 if (var10.getMaterial() != Material.air)
                 {
-                    if (!func_150080_a(var10, p_150079_1_, var6, var7, var8,
-                            true)) { return false; }
+                    if (!func_150080_a(var10, p_150079_1_, var6, var7, var8, true)) { return false; }
 
                     if (var10.getMobilityFlag() != 1)
                     {
@@ -525,8 +383,7 @@ public class BlockPistonBase extends Block
                         continue;
                     }
 
-                    var10.dropBlockAsItem(p_150079_1_, var6, var7, var8,
-                            p_150079_1_.getBlockMetadata(var6, var7, var8), 0);
+                    var10.dropBlockAsItem(p_150079_1_, var6, var7, var8, p_150079_1_.getBlockMetadata(var6, var7, var8), 0);
                     p_150079_1_.setBlockToAir(var6, var7, var8);
                 }
             }
@@ -540,8 +397,7 @@ public class BlockPistonBase extends Block
             int var15;
             int var16;
 
-            for (var13 = new Block[13]; var6 != p_150079_2_
-                    || var7 != p_150079_3_ || var8 != p_150079_4_; var8 = var16)
+            for (var13 = new Block[13]; var6 != p_150079_2_ || var7 != p_150079_3_ || var8 != p_150079_4_; var8 = var16)
             {
                 var14 = var6 - Facing.offsetsXForSide[p_150079_5_];
                 var15 = var7 - Facing.offsetsYForSide[p_150079_5_];
@@ -549,27 +405,15 @@ public class BlockPistonBase extends Block
                 Block var17 = p_150079_1_.getBlock(var14, var15, var16);
                 int var18 = p_150079_1_.getBlockMetadata(var14, var15, var16);
 
-                if (var17 == this && var14 == p_150079_2_
-                        && var15 == p_150079_3_ && var16 == p_150079_4_)
+                if (var17 == this && var14 == p_150079_2_ && var15 == p_150079_3_ && var16 == p_150079_4_)
                 {
-                    p_150079_1_.setBlock(var6, var7, var8,
-                            Blocks.piston_extension, p_150079_5_
-                                    | (this.field_150082_a ? 8 : 0), 4);
-                    p_150079_1_.setTileEntity(var6, var7, var8,
-                            BlockPistonMoving
-                                    .func_149962_a(Blocks.piston_head,
-                                            p_150079_5_
-                                                    | (this.field_150082_a ? 8
-                                                            : 0), p_150079_5_,
-                                            true, false));
+                    p_150079_1_.setBlock(var6, var7, var8, Blocks.piston_extension, p_150079_5_ | (this.field_150082_a ? 8 : 0), 4);
+                    p_150079_1_.setTileEntity(var6, var7, var8, BlockPistonMoving.func_149962_a(Blocks.piston_head, p_150079_5_ | (this.field_150082_a ? 8 : 0), p_150079_5_, true, false));
                 }
                 else
                 {
-                    p_150079_1_.setBlock(var6, var7, var8,
-                            Blocks.piston_extension, var18, 4);
-                    p_150079_1_.setTileEntity(var6, var7, var8,
-                            BlockPistonMoving.func_149962_a(var17, var18,
-                                    p_150079_5_, true, false));
+                    p_150079_1_.setBlock(var6, var7, var8, Blocks.piston_extension, var18, 4);
+                    p_150079_1_.setTileEntity(var6, var7, var8, BlockPistonMoving.func_149962_a(var17, var18, p_150079_5_, true, false));
                 }
 
                 var13[var12++] = var17;
@@ -581,14 +425,12 @@ public class BlockPistonBase extends Block
             var7 = var19;
             var8 = var11;
 
-            for (var12 = 0; var6 != p_150079_2_ || var7 != p_150079_3_
-                    || var8 != p_150079_4_; var8 = var16)
+            for (var12 = 0; var6 != p_150079_2_ || var7 != p_150079_3_ || var8 != p_150079_4_; var8 = var16)
             {
                 var14 = var6 - Facing.offsetsXForSide[p_150079_5_];
                 var15 = var7 - Facing.offsetsYForSide[p_150079_5_];
                 var16 = var8 - Facing.offsetsZForSide[p_150079_5_];
-                p_150079_1_.notifyBlocksOfNeighborChange(var14, var15, var16,
-                        var13[var12++]);
+                p_150079_1_.notifyBlocksOfNeighborChange(var14, var15, var16, var13[var12++]);
                 var6 = var14;
                 var7 = var15;
             }

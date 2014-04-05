@@ -53,25 +53,20 @@ public class ItemFood extends Item
         this(p_i45340_1_, 0.6F, p_i45340_2_);
     }
 
-    public ItemStack onEaten(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         --par1ItemStack.stackSize;
         par3EntityPlayer.getFoodStats().func_151686_a(this, par1ItemStack);
-        par2World.playSoundAtEntity(par3EntityPlayer, "random.burp", 0.5F,
-                par2World.rand.nextFloat() * 0.1F + 0.9F);
+        par2World.playSoundAtEntity(par3EntityPlayer, "random.burp", 0.5F, par2World.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
         return par1ItemStack;
     }
 
-    protected void onFoodEaten(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        if (!par2World.isClient && this.potionId > 0
-                && par2World.rand.nextFloat() < this.potionEffectProbability)
+        if (!par2World.isClient && this.potionId > 0 && par2World.rand.nextFloat() < this.potionEffectProbability)
         {
-            par3EntityPlayer.addPotionEffect(new PotionEffect(this.potionId,
-                    this.potionDuration * 20, this.potionAmplifier));
+            par3EntityPlayer.addPotionEffect(new PotionEffect(this.potionId, this.potionDuration * 20, this.potionAmplifier));
         }
     }
 
@@ -96,13 +91,11 @@ public class ItemFood extends Item
      * Called whenever this item is equipped and the right mouse button is
      * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         if (par3EntityPlayer.canEat(this.alwaysEdible))
         {
-            par3EntityPlayer.setItemInUse(par1ItemStack,
-                    this.getMaxItemUseDuration(par1ItemStack));
+            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         }
 
         return par1ItemStack;

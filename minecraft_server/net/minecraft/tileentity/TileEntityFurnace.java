@@ -106,8 +106,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     {
         this.field_145957_n[par1] = par2ItemStack;
 
-        if (par2ItemStack != null
-                && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -118,8 +117,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.field_145958_o
-                : "container.furnace";
+        return this.isInventoryNameLocalized() ? this.field_145958_o : "container.furnace";
     }
 
     /**
@@ -148,8 +146,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
 
             if (var5 >= 0 && var5 < this.field_145957_n.length)
             {
-                this.field_145957_n[var5] = ItemStack
-                        .loadItemStackFromNBT(var4);
+                this.field_145957_n[var5] = ItemStack.loadItemStackFromNBT(var4);
             }
         }
 
@@ -229,10 +226,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
 
                         if (this.field_145957_n[1].stackSize == 0)
                         {
-                            Item var3 = this.field_145957_n[1].getItem()
-                                    .getContainerItem();
-                            this.field_145957_n[1] = var3 != null ? new ItemStack(
-                                    var3) : null;
+                            Item var3 = this.field_145957_n[1].getItem().getContainerItem();
+                            this.field_145957_n[1] = var3 != null ? new ItemStack(var3) : null;
                         }
                     }
                 }
@@ -257,8 +252,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
             if (var1 != this.field_145956_a > 0)
             {
                 var2 = true;
-                BlockFurnace.func_149931_a(this.field_145956_a > 0,
-                        this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                BlockFurnace.func_149931_a(this.field_145956_a > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
@@ -276,17 +270,8 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
         }
         else
         {
-            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(
-                    this.field_145957_n[0]);
-            return var1 == null ? false
-                    : (this.field_145957_n[2] == null ? true
-                            : (!this.field_145957_n[2].isItemEqual(var1) ? false
-                                    : (this.field_145957_n[2].stackSize < this
-                                            .getInventoryStackLimit()
-                                            && this.field_145957_n[2].stackSize < this.field_145957_n[2]
-                                                    .getMaxStackSize() ? true
-                                            : this.field_145957_n[2].stackSize < var1
-                                                    .getMaxStackSize())));
+            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(this.field_145957_n[0]);
+            return var1 == null ? false : (this.field_145957_n[2] == null ? true : (!this.field_145957_n[2].isItemEqual(var1) ? false : (this.field_145957_n[2].stackSize < this.getInventoryStackLimit() && this.field_145957_n[2].stackSize < this.field_145957_n[2].getMaxStackSize() ? true : this.field_145957_n[2].stackSize < var1.getMaxStackSize())));
         }
     }
 
@@ -294,8 +279,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
     {
         if (this.func_145948_k())
         {
-            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(
-                    this.field_145957_n[0]);
+            ItemStack var1 = FurnaceRecipes.smelting().func_151395_a(this.field_145957_n[0]);
 
             if (this.field_145957_n[2] == null)
             {
@@ -325,8 +309,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
         {
             Item var1 = p_145952_0_.getItem();
 
-            if (var1 instanceof ItemBlock
-                    && Block.getBlockFromItem(var1) != Blocks.air)
+            if (var1 instanceof ItemBlock && Block.getBlockFromItem(var1) != Blocks.air)
             {
                 Block var2 = Block.getBlockFromItem(var1);
 
@@ -337,20 +320,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
                 if (var2 == Blocks.coal_block) { return 16000; }
             }
 
-            return var1 instanceof ItemTool
-                    && ((ItemTool)var1).getToolMaterialName().equals("WOOD") ? 200
-                    : (var1 instanceof ItemSword
-                            && ((ItemSword)var1).func_150932_j().equals("WOOD") ? 200
-                            : (var1 instanceof ItemHoe
-                                    && ((ItemHoe)var1).getMaterialName()
-                                            .equals("WOOD") ? 200
-                                    : (var1 == Items.stick ? 100
-                                            : (var1 == Items.coal ? 1600
-                                                    : (var1 == Items.lava_bucket ? 20000
-                                                            : (var1 == Item
-                                                                    .getItemFromBlock(Blocks.sapling) ? 100
-                                                                    : (var1 == Items.blaze_rod ? 2400
-                                                                            : 0)))))));
+            return var1 instanceof ItemTool && ((ItemTool)var1).getToolMaterialName().equals("WOOD") ? 200 : (var1 instanceof ItemSword && ((ItemSword)var1).func_150932_j().equals("WOOD") ? 200 : (var1 instanceof ItemHoe && ((ItemHoe)var1).getMaterialName().equals("WOOD") ? 200 : (var1 == Items.stick ? 100 : (var1 == Items.coal ? 1600 : (var1 == Items.lava_bucket ? 20000 : (var1 == Item.getItemFromBlock(Blocks.sapling) ? 100 : (var1 == Items.blaze_rod ? 2400 : 0)))))));
         }
     }
 
@@ -365,10 +335,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord,
-                this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(
-                (double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D,
-                (double)this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
     }
 
     public void openChest()
@@ -385,8 +352,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
      */
     public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
     {
-        return par1 == 2 ? false : (par1 == 1 ? func_145954_b(par2ItemStack)
-                : true);
+        return par1 == 2 ? false : (par1 == 1 ? func_145954_b(par2ItemStack) : true);
     }
 
     /**
@@ -394,8 +360,7 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
      */
     public int[] getSlotsForFace(int par1)
     {
-        return par1 == 0 ? field_145959_l : (par1 == 1 ? field_145962_k
-                : field_145960_m);
+        return par1 == 0 ? field_145959_l : (par1 == 1 ? field_145962_k : field_145960_m);
     }
 
     /**
@@ -413,7 +378,6 @@ public class TileEntityFurnace extends TileEntity implements ISidedInventory
      */
     public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3)
     {
-        return par3 != 0 || par1 != 1
-                || par2ItemStack.getItem() == Items.bucket;
+        return par3 != 0 || par1 != 1 || par2ItemStack.getItem() == Items.bucket;
     }
 }

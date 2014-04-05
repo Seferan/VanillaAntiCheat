@@ -19,8 +19,7 @@ public class S0APacketUseBed extends Packet
     {
     }
 
-    public S0APacketUseBed(EntityPlayer p_i45210_1_, int p_i45210_2_,
-            int p_i45210_3_, int p_i45210_4_)
+    public S0APacketUseBed(EntityPlayer p_i45210_1_, int p_i45210_2_, int p_i45210_3_, int p_i45210_4_)
     {
         this.field_149095_b = p_i45210_2_;
         this.field_149096_c = p_i45210_3_;

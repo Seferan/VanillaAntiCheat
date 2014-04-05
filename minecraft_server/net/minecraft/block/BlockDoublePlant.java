@@ -15,8 +15,7 @@ import net.minecraft.world.World;
 
 public class BlockDoublePlant extends BlockBush implements IGrowable
 {
-    public static final String[] field_149892_a = new String[] {"sunflower",
-            "syringa", "grass", "fern", "rose", "paeonia"};
+    public static final String[] field_149892_a = new String[] {"sunflower", "syringa", "grass", "fern", "rose", "paeonia"};
     private static final String __OBFID = "CL_00000231";
 
     public BlockDoublePlant()
@@ -35,54 +34,39 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         return 40;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public int func_149885_e(IBlockAccess p_149885_1_, int p_149885_2_,
-            int p_149885_3_, int p_149885_4_)
+    public int func_149885_e(IBlockAccess p_149885_1_, int p_149885_2_, int p_149885_3_, int p_149885_4_)
     {
-        int var5 = p_149885_1_.getBlockMetadata(p_149885_2_, p_149885_3_,
-                p_149885_4_);
-        return !func_149887_c(var5) ? var5 & 7 : p_149885_1_.getBlockMetadata(
-                p_149885_2_, p_149885_3_ - 1, p_149885_4_) & 7;
+        int var5 = p_149885_1_.getBlockMetadata(p_149885_2_, p_149885_3_, p_149885_4_);
+        return !func_149887_c(var5) ? var5 & 7 : p_149885_1_.getBlockMetadata(p_149885_2_, p_149885_3_ - 1, p_149885_4_) & 7;
     }
 
-    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_,
-            int p_149742_3_, int p_149742_4_)
+    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_,
-                p_149742_4_)
-                && p_149742_1_.isAirBlock(p_149742_2_, p_149742_3_ + 1,
-                        p_149742_4_);
+        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) && p_149742_1_.isAirBlock(p_149742_2_, p_149742_3_ + 1, p_149742_4_);
     }
 
-    protected void func_149855_e(World p_149855_1_, int p_149855_2_,
-            int p_149855_3_, int p_149855_4_)
+    protected void func_149855_e(World p_149855_1_, int p_149855_2_, int p_149855_3_, int p_149855_4_)
     {
-        if (!this.canBlockStay(p_149855_1_, p_149855_2_, p_149855_3_,
-                p_149855_4_))
+        if (!this.canBlockStay(p_149855_1_, p_149855_2_, p_149855_3_, p_149855_4_))
         {
-            int var5 = p_149855_1_.getBlockMetadata(p_149855_2_, p_149855_3_,
-                    p_149855_4_);
+            int var5 = p_149855_1_.getBlockMetadata(p_149855_2_, p_149855_3_, p_149855_4_);
 
             if (!func_149887_c(var5))
             {
-                this.dropBlockAsItem(p_149855_1_, p_149855_2_, p_149855_3_,
-                        p_149855_4_, var5, 0);
+                this.dropBlockAsItem(p_149855_1_, p_149855_2_, p_149855_3_, p_149855_4_, var5, 0);
 
-                if (p_149855_1_.getBlock(p_149855_2_, p_149855_3_ + 1,
-                        p_149855_4_) == this)
+                if (p_149855_1_.getBlock(p_149855_2_, p_149855_3_ + 1, p_149855_4_) == this)
                 {
-                    p_149855_1_.setBlock(p_149855_2_, p_149855_3_ + 1,
-                            p_149855_4_, Blocks.air, 0, 2);
+                    p_149855_1_.setBlock(p_149855_2_, p_149855_3_ + 1, p_149855_4_, Blocks.air, 0, 2);
                 }
             }
 
-            p_149855_1_.setBlock(p_149855_2_, p_149855_3_, p_149855_4_,
-                    Blocks.air, 0, 2);
+            p_149855_1_.setBlock(p_149855_2_, p_149855_3_, p_149855_4_, Blocks.air, 0, 2);
         }
     }
 
@@ -90,20 +74,13 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
      * Can this block stay at this position. Similar to canPlaceBlockAt except
      * gets checked often with plants.
      */
-    public boolean canBlockStay(World p_149718_1_, int p_149718_2_,
-            int p_149718_3_, int p_149718_4_)
+    public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
     {
-        int var5 = p_149718_1_.getBlockMetadata(p_149718_2_, p_149718_3_,
-                p_149718_4_);
-        return func_149887_c(var5) ? p_149718_1_.getBlock(p_149718_2_,
-                p_149718_3_ - 1, p_149718_4_) == this : p_149718_1_.getBlock(
-                p_149718_2_, p_149718_3_ + 1, p_149718_4_) == this
-                && super.canBlockStay(p_149718_1_, p_149718_2_, p_149718_3_,
-                        p_149718_4_);
+        int var5 = p_149718_1_.getBlockMetadata(p_149718_2_, p_149718_3_, p_149718_4_);
+        return func_149887_c(var5) ? p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_) == this : p_149718_1_.getBlock(p_149718_2_, p_149718_3_ + 1, p_149718_4_) == this && super.canBlockStay(p_149718_1_, p_149718_2_, p_149718_3_, p_149718_4_);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         if (func_149887_c(p_149650_1_))
         {
@@ -135,49 +112,33 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         return p_149890_0_ & 7;
     }
 
-    public void func_149889_c(World p_149889_1_, int p_149889_2_,
-            int p_149889_3_, int p_149889_4_, int p_149889_5_, int p_149889_6_)
+    public void func_149889_c(World p_149889_1_, int p_149889_2_, int p_149889_3_, int p_149889_4_, int p_149889_5_, int p_149889_6_)
     {
-        p_149889_1_.setBlock(p_149889_2_, p_149889_3_, p_149889_4_, this,
-                p_149889_5_, p_149889_6_);
-        p_149889_1_.setBlock(p_149889_2_, p_149889_3_ + 1, p_149889_4_, this,
-                8, p_149889_6_);
+        p_149889_1_.setBlock(p_149889_2_, p_149889_3_, p_149889_4_, this, p_149889_5_, p_149889_6_);
+        p_149889_1_.setBlock(p_149889_2_, p_149889_3_ + 1, p_149889_4_, this, 8, p_149889_6_);
     }
 
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
-            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
-            ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = ((MathHelper
-                .floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
-        p_149689_1_.setBlock(p_149689_2_, p_149689_3_ + 1, p_149689_4_, this,
-                8 | var7, 2);
+        int var7 = ((MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
+        p_149689_1_.setBlock(p_149689_2_, p_149689_3_ + 1, p_149689_4_, this, 8 | var7, 2);
     }
 
-    public void harvestBlock(World p_149636_1_, EntityPlayer p_149636_2_,
-            int p_149636_3_, int p_149636_4_, int p_149636_5_, int p_149636_6_)
+    public void harvestBlock(World p_149636_1_, EntityPlayer p_149636_2_, int p_149636_3_, int p_149636_4_, int p_149636_5_, int p_149636_6_)
     {
-        if (p_149636_1_.isClient
-                || p_149636_2_.getCurrentEquippedItem() == null
-                || p_149636_2_.getCurrentEquippedItem().getItem() != Items.shears
-                || func_149887_c(p_149636_6_)
-                || !this.func_149886_b(p_149636_1_, p_149636_3_, p_149636_4_,
-                        p_149636_5_, p_149636_6_, p_149636_2_))
+        if (p_149636_1_.isClient || p_149636_2_.getCurrentEquippedItem() == null || p_149636_2_.getCurrentEquippedItem().getItem() != Items.shears || func_149887_c(p_149636_6_) || !this.func_149886_b(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_, p_149636_2_))
         {
-            super.harvestBlock(p_149636_1_, p_149636_2_, p_149636_3_,
-                    p_149636_4_, p_149636_5_, p_149636_6_);
+            super.harvestBlock(p_149636_1_, p_149636_2_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_);
         }
     }
 
     /**
      * Called when the block is attempted to be harvested
      */
-    public void onBlockHarvested(World p_149681_1_, int p_149681_2_,
-            int p_149681_3_, int p_149681_4_, int p_149681_5_,
-            EntityPlayer p_149681_6_)
+    public void onBlockHarvested(World p_149681_1_, int p_149681_2_, int p_149681_3_, int p_149681_4_, int p_149681_5_, EntityPlayer p_149681_6_)
     {
         if (func_149887_c(p_149681_5_))
         {
@@ -185,52 +146,38 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
             {
                 if (!p_149681_6_.capabilities.isCreativeMode)
                 {
-                    int var7 = p_149681_1_.getBlockMetadata(p_149681_2_,
-                            p_149681_3_ - 1, p_149681_4_);
+                    int var7 = p_149681_1_.getBlockMetadata(p_149681_2_, p_149681_3_ - 1, p_149681_4_);
                     int var8 = func_149890_d(var7);
 
                     if (var8 != 3 && var8 != 2)
                     {
-                        p_149681_1_.func_147480_a(p_149681_2_, p_149681_3_ - 1,
-                                p_149681_4_, true);
+                        p_149681_1_.func_147480_a(p_149681_2_, p_149681_3_ - 1, p_149681_4_, true);
                     }
                     else
                     {
-                        if (!p_149681_1_.isClient
-                                && p_149681_6_.getCurrentEquippedItem() != null
-                                && p_149681_6_.getCurrentEquippedItem()
-                                        .getItem() == Items.shears)
+                        if (!p_149681_1_.isClient && p_149681_6_.getCurrentEquippedItem() != null && p_149681_6_.getCurrentEquippedItem().getItem() == Items.shears)
                         {
-                            this.func_149886_b(p_149681_1_, p_149681_2_,
-                                    p_149681_3_, p_149681_4_, var7, p_149681_6_);
+                            this.func_149886_b(p_149681_1_, p_149681_2_, p_149681_3_, p_149681_4_, var7, p_149681_6_);
                         }
 
-                        p_149681_1_.setBlockToAir(p_149681_2_, p_149681_3_ - 1,
-                                p_149681_4_);
+                        p_149681_1_.setBlockToAir(p_149681_2_, p_149681_3_ - 1, p_149681_4_);
                     }
                 }
                 else
                 {
-                    p_149681_1_.setBlockToAir(p_149681_2_, p_149681_3_ - 1,
-                            p_149681_4_);
+                    p_149681_1_.setBlockToAir(p_149681_2_, p_149681_3_ - 1, p_149681_4_);
                 }
             }
         }
-        else if (p_149681_6_.capabilities.isCreativeMode
-                && p_149681_1_.getBlock(p_149681_2_, p_149681_3_ + 1,
-                        p_149681_4_) == this)
+        else if (p_149681_6_.capabilities.isCreativeMode && p_149681_1_.getBlock(p_149681_2_, p_149681_3_ + 1, p_149681_4_) == this)
         {
-            p_149681_1_.setBlock(p_149681_2_, p_149681_3_ + 1, p_149681_4_,
-                    Blocks.air, 0, 2);
+            p_149681_1_.setBlock(p_149681_2_, p_149681_3_ + 1, p_149681_4_, Blocks.air, 0, 2);
         }
 
-        super.onBlockHarvested(p_149681_1_, p_149681_2_, p_149681_3_,
-                p_149681_4_, p_149681_5_, p_149681_6_);
+        super.onBlockHarvested(p_149681_1_, p_149681_2_, p_149681_3_, p_149681_4_, p_149681_5_, p_149681_6_);
     }
 
-    private boolean func_149886_b(World p_149886_1_, int p_149886_2_,
-            int p_149886_3_, int p_149886_4_, int p_149886_5_,
-            EntityPlayer p_149886_6_)
+    private boolean func_149886_b(World p_149886_1_, int p_149886_2_, int p_149886_3_, int p_149886_4_, int p_149886_5_, EntityPlayer p_149886_6_)
     {
         int var7 = func_149890_d(p_149886_5_);
 
@@ -240,8 +187,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
         }
         else
         {
-            p_149886_6_.addStat(
-                    StatList.mineBlockStatArray[Block.getIdFromBlock(this)], 1);
+            p_149886_6_.addStat(StatList.mineBlockStatArray[Block.getIdFromBlock(this)], 1);
             byte var8 = 1;
 
             if (var7 == 3)
@@ -249,8 +195,7 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
                 var8 = 2;
             }
 
-            this.dropBlockAsItem_do(p_149886_1_, p_149886_2_, p_149886_3_,
-                    p_149886_4_, new ItemStack(Blocks.tallgrass, 2, var8));
+            this.dropBlockAsItem_do(p_149886_1_, p_149886_2_, p_149886_3_, p_149886_4_, new ItemStack(Blocks.tallgrass, 2, var8));
             return true;
         }
     }
@@ -258,36 +203,26 @@ public class BlockDoublePlant extends BlockBush implements IGrowable
     /**
      * Get the block's damage value (for use with pick block).
      */
-    public int getDamageValue(World p_149643_1_, int p_149643_2_,
-            int p_149643_3_, int p_149643_4_)
+    public int getDamageValue(World p_149643_1_, int p_149643_2_, int p_149643_3_, int p_149643_4_)
     {
-        int var5 = p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_,
-                p_149643_4_);
-        return func_149887_c(var5) ? func_149890_d(p_149643_1_
-                .getBlockMetadata(p_149643_2_, p_149643_3_ - 1, p_149643_4_))
-                : func_149890_d(var5);
+        int var5 = p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_, p_149643_4_);
+        return func_149887_c(var5) ? func_149890_d(p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_ - 1, p_149643_4_)) : func_149890_d(var5);
     }
 
-    public boolean func_149851_a(World p_149851_1_, int p_149851_2_,
-            int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
+    public boolean func_149851_a(World p_149851_1_, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
     {
-        int var6 = this.func_149885_e(p_149851_1_, p_149851_2_, p_149851_3_,
-                p_149851_4_);
+        int var6 = this.func_149885_e(p_149851_1_, p_149851_2_, p_149851_3_, p_149851_4_);
         return var6 != 2 && var6 != 3;
     }
 
-    public boolean func_149852_a(World p_149852_1_, Random p_149852_2_,
-            int p_149852_3_, int p_149852_4_, int p_149852_5_)
+    public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_)
     {
         return true;
     }
 
-    public void func_149853_b(World p_149853_1_, Random p_149853_2_,
-            int p_149853_3_, int p_149853_4_, int p_149853_5_)
+    public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
     {
-        int var6 = this.func_149885_e(p_149853_1_, p_149853_3_, p_149853_4_,
-                p_149853_5_);
-        this.dropBlockAsItem_do(p_149853_1_, p_149853_3_, p_149853_4_,
-                p_149853_5_, new ItemStack(this, 1, var6));
+        int var6 = this.func_149885_e(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_);
+        this.dropBlockAsItem_do(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, new ItemStack(this, 1, var6));
     }
 }

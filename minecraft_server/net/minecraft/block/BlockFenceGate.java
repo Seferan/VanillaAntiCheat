@@ -20,43 +20,24 @@ public class BlockFenceGate extends BlockDirectional
         this.setcreativeTab(CreativeTabs.tabRedstone);
     }
 
-    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_,
-            int p_149742_3_, int p_149742_4_)
+    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return !p_149742_1_.getBlock(p_149742_2_, p_149742_3_ - 1, p_149742_4_)
-                .getMaterial().isSolid() ? false : super.canPlaceBlockAt(
-                p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
+        return !p_149742_1_.getBlock(p_149742_2_, p_149742_3_ - 1, p_149742_4_).getMaterial().isSolid() ? false : super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
     }
 
     /**
      * Returns a bounding box from the pool of bounding boxes (this means this
      * box can change after the pool has been cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_,
-            int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        int var5 = p_149668_1_.getBlockMetadata(p_149668_2_, p_149668_3_,
-                p_149668_4_);
-        return isFenceGateOpen(var5) ? null
-                : (var5 != 2 && var5 != 0 ? AxisAlignedBB.getAABBPool()
-                        .getAABB((double)((float)p_149668_2_ + 0.375F),
-                                (double)p_149668_3_, (double)p_149668_4_,
-                                (double)((float)p_149668_2_ + 0.625F),
-                                (double)((float)p_149668_3_ + 1.5F),
-                                (double)(p_149668_4_ + 1)) : AxisAlignedBB
-                        .getAABBPool().getAABB((double)p_149668_2_,
-                                (double)p_149668_3_,
-                                (double)((float)p_149668_4_ + 0.375F),
-                                (double)(p_149668_2_ + 1),
-                                (double)((float)p_149668_3_ + 1.5F),
-                                (double)((float)p_149668_4_ + 0.625F)));
+        int var5 = p_149668_1_.getBlockMetadata(p_149668_2_, p_149668_3_, p_149668_4_);
+        return isFenceGateOpen(var5) ? null : (var5 != 2 && var5 != 0 ? AxisAlignedBB.getAABBPool().getAABB((double)((float)p_149668_2_ + 0.375F), (double)p_149668_3_, (double)p_149668_4_, (double)((float)p_149668_2_ + 0.625F), (double)((float)p_149668_3_ + 1.5F), (double)(p_149668_4_ + 1)) : AxisAlignedBB.getAABBPool().getAABB((double)p_149668_2_, (double)p_149668_3_, (double)((float)p_149668_4_ + 0.375F), (double)(p_149668_2_ + 1), (double)((float)p_149668_3_ + 1.5F), (double)((float)p_149668_4_ + 0.625F)));
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        int var5 = func_149895_l(p_149719_1_.getBlockMetadata(p_149719_2_,
-                p_149719_3_, p_149719_4_));
+        int var5 = func_149895_l(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
 
         if (var5 != 2 && var5 != 0)
         {
@@ -78,11 +59,9 @@ public class BlockFenceGate extends BlockDirectional
         return false;
     }
 
-    public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_,
-            int p_149655_3_, int p_149655_4_)
+    public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_, int p_149655_3_, int p_149655_4_)
     {
-        return isFenceGateOpen(p_149655_1_.getBlockMetadata(p_149655_2_,
-                p_149655_3_, p_149655_4_));
+        return isFenceGateOpen(p_149655_1_.getBlockMetadata(p_149655_2_, p_149655_3_, p_149655_4_));
     }
 
     /**
@@ -96,36 +75,26 @@ public class BlockFenceGate extends BlockDirectional
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
-            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
-            ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = (MathHelper
-                .floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) % 4;
-        p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_,
-                var7, 2);
+        int var7 = (MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) % 4;
+        p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_, var7, 2);
     }
 
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
-            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
-            int p_149727_6_, float p_149727_7_, float p_149727_8_,
-            float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-        int var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_,
-                p_149727_4_);
+        int var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_);
 
         if (isFenceGateOpen(var10))
         {
-            p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_,
-                    var10 & -5, 2);
+            p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_, var10 & -5, 2);
         }
         else
         {
-            int var11 = (MathHelper
-                    .floor_double((double)(p_149727_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) % 4;
+            int var11 = (MathHelper.floor_double((double)(p_149727_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) % 4;
             int var12 = func_149895_l(var10);
 
             if (var12 == (var11 + 2) % 4)
@@ -133,40 +102,31 @@ public class BlockFenceGate extends BlockDirectional
                 var10 = var11;
             }
 
-            p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_,
-                    var10 | 4, 2);
+            p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_, var10 | 4, 2);
         }
 
-        p_149727_1_.playAuxSFXAtEntity(p_149727_5_, 1003, p_149727_2_,
-                p_149727_3_, p_149727_4_, 0);
+        p_149727_1_.playAuxSFXAtEntity(p_149727_5_, 1003, p_149727_2_, p_149727_3_, p_149727_4_, 0);
         return true;
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         if (!p_149695_1_.isClient)
         {
-            int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_,
-                    p_149695_4_);
-            boolean var7 = p_149695_1_.isBlockIndirectlyGettingPowered(
-                    p_149695_2_, p_149695_3_, p_149695_4_);
+            int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
+            boolean var7 = p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_);
 
             if (var7 || p_149695_5_.canProvidePower())
             {
                 if (var7 && !isFenceGateOpen(var6))
                 {
-                    p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_,
-                            p_149695_4_, var6 | 4, 2);
-                    p_149695_1_.playAuxSFXAtEntity((EntityPlayer)null, 1003,
-                            p_149695_2_, p_149695_3_, p_149695_4_, 0);
+                    p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var6 | 4, 2);
+                    p_149695_1_.playAuxSFXAtEntity((EntityPlayer)null, 1003, p_149695_2_, p_149695_3_, p_149695_4_, 0);
                 }
                 else if (!var7 && isFenceGateOpen(var6))
                 {
-                    p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_,
-                            p_149695_4_, var6 & -5, 2);
-                    p_149695_1_.playAuxSFXAtEntity((EntityPlayer)null, 1003,
-                            p_149695_2_, p_149695_3_, p_149695_4_, 0);
+                    p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var6 & -5, 2);
+                    p_149695_1_.playAuxSFXAtEntity((EntityPlayer)null, 1003, p_149695_2_, p_149695_3_, p_149695_4_, 0);
                 }
             }
         }

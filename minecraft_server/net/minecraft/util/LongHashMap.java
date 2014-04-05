@@ -60,8 +60,7 @@ public class LongHashMap
     {
         int var3 = getHashedKey(par1);
 
-        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3,
-                this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
+        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3, this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
         {
             if (var4.key == par1) { return var4.value; }
         }
@@ -78,8 +77,7 @@ public class LongHashMap
     {
         int var3 = getHashedKey(par1);
 
-        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3,
-                this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
+        for (LongHashMap.Entry var4 = this.hashArray[getHashIndex(var3, this.hashArray.length)]; var4 != null; var4 = var4.nextEntry)
         {
             if (var4.key == par1) { return var4; }
         }
@@ -227,8 +225,7 @@ public class LongHashMap
         final int hash;
         private static final String __OBFID = "CL_00001493";
 
-        Entry(int par1, long par2, Object par4Obj,
-                LongHashMap.Entry par5LongHashMapEntry)
+        Entry(int par1, long par2, Object par4Obj, LongHashMap.Entry par5LongHashMapEntry)
         {
             this.value = par4Obj;
             this.nextEntry = par5LongHashMapEntry;

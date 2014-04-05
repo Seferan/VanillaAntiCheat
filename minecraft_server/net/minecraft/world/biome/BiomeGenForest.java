@@ -13,12 +13,9 @@ import net.minecraft.world.gen.feature.WorldGenForest;
 public class BiomeGenForest extends BiomeGenBase
 {
     private int field_150632_aF;
-    protected static final WorldGenForest field_150629_aC = new WorldGenForest(
-            false, true);
-    protected static final WorldGenForest field_150630_aD = new WorldGenForest(
-            false, false);
-    protected static final WorldGenCanopyTree field_150631_aE = new WorldGenCanopyTree(
-            false);
+    protected static final WorldGenForest field_150629_aC = new WorldGenForest(false, true);
+    protected static final WorldGenForest field_150630_aD = new WorldGenForest(false, false);
+    protected static final WorldGenCanopyTree field_150631_aE = new WorldGenCanopyTree(false);
     private static final String __OBFID = "CL_00000170";
 
     public BiomeGenForest(int p_i45377_1_, int p_i45377_2_)
@@ -47,8 +44,7 @@ public class BiomeGenForest extends BiomeGenBase
 
         if (this.field_150632_aF == 0)
         {
-            this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(
-                    EntityWolf.class, 5, 4, 4));
+            this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 5, 4, 4));
         }
 
         if (this.field_150632_aF == 3)
@@ -79,21 +75,14 @@ public class BiomeGenForest extends BiomeGenBase
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(this.field_150632_aF == 3
-                && p_150567_1_.nextInt(3) > 0 ? field_150631_aE
-                : (this.field_150632_aF != 2 && p_150567_1_.nextInt(5) != 0 ? this.worldGeneratorTrees
-                        : field_150630_aD));
+        return (WorldGenAbstractTree)(this.field_150632_aF == 3 && p_150567_1_.nextInt(3) > 0 ? field_150631_aE : (this.field_150632_aF != 2 && p_150567_1_.nextInt(5) != 0 ? this.worldGeneratorTrees : field_150630_aD));
     }
 
-    public String func_150572_a(Random p_150572_1_, int p_150572_2_,
-            int p_150572_3_, int p_150572_4_)
+    public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
     {
         if (this.field_150632_aF == 1)
         {
-            double var5 = MathHelper
-                    .func_151237_a((1.0D + field_150606_ad.func_151601_a(
-                            (double)p_150572_2_ / 48.0D,
-                            (double)p_150572_4_ / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+            double var5 = MathHelper.func_151237_a((1.0D + field_150606_ad.func_151601_a((double)p_150572_2_ / 48.0D, (double)p_150572_4_ / 48.0D)) / 2.0D, 0.0D, 0.9999D);
             int var7 = (int)(var5 * (double)BlockFlower.field_149859_a.length);
 
             if (var7 == 1)
@@ -105,8 +94,7 @@ public class BiomeGenForest extends BiomeGenBase
         }
         else
         {
-            return super.func_150572_a(p_150572_1_, p_150572_2_, p_150572_3_,
-                    p_150572_4_);
+            return super.func_150572_a(p_150572_1_, p_150572_2_, p_150572_3_, p_150572_4_);
         }
     }
 
@@ -135,15 +123,12 @@ public class BiomeGenForest extends BiomeGenBase
                     }
                     else
                     {
-                        WorldGenAbstractTree var12 = this
-                                .func_150567_a(par2Random);
+                        WorldGenAbstractTree var12 = this.func_150567_a(par2Random);
                         var12.setScale(1.0D, 1.0D, 1.0D);
 
-                        if (var12.generate(par1World, par2Random, var7, var9,
-                                var8))
+                        if (var12.generate(par1World, par2Random, var7, var9, var8))
                         {
-                            var12.func_150524_b(par1World, par2Random, var7,
-                                    var9, var8);
+                            var12.func_150524_b(par1World, par2Random, var7, var9, var8);
                         }
                     }
                 }
@@ -184,11 +169,9 @@ public class BiomeGenForest extends BiomeGenBase
                 {
                     var9 = par3 + par2Random.nextInt(16) + 8;
                     int var13 = par4 + par2Random.nextInt(16) + 8;
-                    int var11 = par2Random.nextInt(par1World.getHeightValue(
-                            var9, var13) + 32);
+                    int var11 = par2Random.nextInt(par1World.getHeightValue(var9, var13) + 32);
 
-                    if (!field_150610_ae.generate(par1World, par2Random, var9,
-                            var11, var13))
+                    if (!field_150610_ae.generate(par1World, par2Random, var9, var11, var13))
                     {
                         ++var8;
                         continue;
@@ -208,8 +191,7 @@ public class BiomeGenForest extends BiomeGenBase
         if (this.biomeID == BiomeGenBase.forest.biomeID)
         {
             BiomeGenForest var1 = new BiomeGenForest(this.biomeID + 128, 1);
-            var1.func_150570_a(new BiomeGenBase.Height(this.minHeight,
-                    this.maxHeight + 0.2F));
+            var1.func_150570_a(new BiomeGenBase.Height(this.minHeight, this.maxHeight + 0.2F));
             var1.setBiomeName("Flower Forest");
             var1.func_150557_a(6976549, true);
             var1.func_76733_a(8233509);
@@ -217,25 +199,21 @@ public class BiomeGenForest extends BiomeGenBase
         }
         else
         {
-            return this.biomeID != BiomeGenBase.field_150583_P.biomeID
-                    && this.biomeID != BiomeGenBase.field_150582_Q.biomeID ? new BiomeGenMutated(
-                    this.biomeID + 128, this)
+            return this.biomeID != BiomeGenBase.field_150583_P.biomeID && this.biomeID != BiomeGenBase.field_150582_Q.biomeID ? new BiomeGenMutated(this.biomeID + 128, this)
             {
                 public void decorate(World var1, Random var2, int var3, int var4)
                 {
                     this.field_150611_aD.decorate(var1, var2, var3, var4);
                 }
-            }
-                    : new BiomeGenMutated(this.biomeID + 128, this)
-                    {
-                        private static final String __OBFID = "CL_00000172";
+            } : new BiomeGenMutated(this.biomeID + 128, this)
+            {
+                private static final String __OBFID = "CL_00000172";
 
-                        public WorldGenAbstractTree func_150567_a(Random var1)
-                        {
-                            return var1.nextBoolean() ? BiomeGenForest.field_150629_aC
-                                    : BiomeGenForest.field_150630_aD;
-                        }
-                    };
+                public WorldGenAbstractTree func_150567_a(Random var1)
+                {
+                    return var1.nextBoolean() ? BiomeGenForest.field_150629_aC : BiomeGenForest.field_150630_aD;
+                }
+            };
         }
     }
 }

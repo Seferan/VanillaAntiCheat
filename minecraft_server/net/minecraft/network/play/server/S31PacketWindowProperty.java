@@ -17,8 +17,7 @@ public class S31PacketWindowProperty extends Packet
     {
     }
 
-    public S31PacketWindowProperty(int p_i45187_1_, int p_i45187_2_,
-            int p_i45187_3_)
+    public S31PacketWindowProperty(int p_i45187_1_, int p_i45187_2_, int p_i45187_3_)
     {
         this.field_149186_a = p_i45187_1_;
         this.field_149184_b = p_i45187_2_;

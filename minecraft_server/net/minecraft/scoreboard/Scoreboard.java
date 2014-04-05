@@ -31,27 +31,23 @@ public class Scoreboard
         return (ScoreObjective)this.scoreObjectives.get(par1Str);
     }
 
-    public ScoreObjective addScoreObjective(String par1Str,
-            IScoreObjectiveCriteria par2ScoreObjectiveCriteria)
+    public ScoreObjective addScoreObjective(String par1Str, IScoreObjectiveCriteria par2ScoreObjectiveCriteria)
     {
         ScoreObjective var3 = this.getObjective(par1Str);
 
         if (var3 != null)
         {
-            throw new IllegalArgumentException("An objective with the name \'"
-                    + par1Str + "\' already exists!");
+            throw new IllegalArgumentException("An objective with the name \'" + par1Str + "\' already exists!");
         }
         else
         {
             var3 = new ScoreObjective(this, par1Str, par2ScoreObjectiveCriteria);
-            Object var4 = (List)this.scoreObjectiveCriterias
-                    .get(par2ScoreObjectiveCriteria);
+            Object var4 = (List)this.scoreObjectiveCriterias.get(par2ScoreObjectiveCriteria);
 
             if (var4 == null)
             {
                 var4 = new ArrayList();
-                this.scoreObjectiveCriterias.put(par2ScoreObjectiveCriteria,
-                        var4);
+                this.scoreObjectiveCriterias.put(par2ScoreObjectiveCriteria, var4);
             }
 
             ((List)var4).add(var3);
@@ -61,11 +57,9 @@ public class Scoreboard
         }
     }
 
-    public Collection func_96520_a(
-            IScoreObjectiveCriteria par1ScoreObjectiveCriteria)
+    public Collection func_96520_a(IScoreObjectiveCriteria par1ScoreObjectiveCriteria)
     {
-        Collection var2 = (Collection)this.scoreObjectiveCriterias
-                .get(par1ScoreObjectiveCriteria);
+        Collection var2 = (Collection)this.scoreObjectiveCriterias.get(par1ScoreObjectiveCriteria);
         return var2 == null ? new ArrayList() : new ArrayList(var2);
     }
 
@@ -169,8 +163,7 @@ public class Scoreboard
             }
         }
 
-        List var5 = (List)this.scoreObjectiveCriterias.get(par1ScoreObjective
-                .getCriteria());
+        List var5 = (List)this.scoreObjectiveCriterias.get(par1ScoreObjective.getCriteria());
 
         if (var5 != null)
         {
@@ -212,8 +205,7 @@ public class Scoreboard
 
         if (var2 != null)
         {
-            throw new IllegalArgumentException("A team with the name \'"
-                    + par1Str + "\' already exists!");
+            throw new IllegalArgumentException("A team with the name \'" + par1Str + "\' already exists!");
         }
         else
         {
@@ -231,8 +223,7 @@ public class Scoreboard
     public void removeTeam(ScorePlayerTeam par1ScorePlayerTeam)
     {
         this.teams.remove(par1ScorePlayerTeam.getRegisteredName());
-        Iterator var2 = par1ScorePlayerTeam.getMembershipCollection()
-                .iterator();
+        Iterator var2 = par1ScorePlayerTeam.getMembershipCollection().iterator();
 
         while (var2.hasNext())
         {
@@ -283,14 +274,11 @@ public class Scoreboard
      * Removes the given username from the given ScorePlayerTeam. If the player
      * is not on the team then an IllegalStateException is thrown.
      */
-    public void removePlayerFromTeam(String par1Str,
-            ScorePlayerTeam par2ScorePlayerTeam)
+    public void removePlayerFromTeam(String par1Str, ScorePlayerTeam par2ScorePlayerTeam)
     {
         if (this.getPlayersTeam(par1Str) != par2ScorePlayerTeam)
         {
-            throw new IllegalStateException(
-                    "Player is either on another team or not on any team. Cannot remove from team \'"
-                            + par2ScorePlayerTeam.getRegisteredName() + "\'.");
+            throw new IllegalStateException("Player is either on another team or not on any team. Cannot remove from team \'" + par2ScorePlayerTeam.getRegisteredName() + "\'.");
         }
         else
         {
@@ -389,8 +377,6 @@ public class Scoreboard
      */
     public static int getObjectiveDisplaySlotNumber(String par0Str)
     {
-        return par0Str.equalsIgnoreCase("list") ? 0 : (par0Str
-                .equalsIgnoreCase("sidebar") ? 1 : (par0Str
-                .equalsIgnoreCase("belowName") ? 2 : -1));
+        return par0Str.equalsIgnoreCase("list") ? 0 : (par0Str.equalsIgnoreCase("sidebar") ? 1 : (par0Str.equalsIgnoreCase("belowName") ? 2 : -1));
     }
 }

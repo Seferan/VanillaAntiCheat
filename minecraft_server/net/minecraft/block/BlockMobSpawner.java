@@ -25,8 +25,7 @@ public class BlockMobSpawner extends BlockContainer
         return new TileEntityMobSpawner();
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return null;
     }
@@ -43,16 +42,11 @@ public class BlockMobSpawner extends BlockContainer
      * Drops the block items with a specified chance of dropping the specified
      * items
      */
-    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_,
-            int p_149690_3_, int p_149690_4_, int p_149690_5_,
-            float p_149690_6_, int p_149690_7_)
+    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
     {
-        super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_,
-                p_149690_4_, p_149690_5_, p_149690_6_, p_149690_7_);
-        int var8 = 15 + p_149690_1_.rand.nextInt(15)
-                + p_149690_1_.rand.nextInt(15);
-        this.dropXpOnBlockBreak(p_149690_1_, p_149690_2_, p_149690_3_,
-                p_149690_4_, var8);
+        super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, p_149690_6_, p_149690_7_);
+        int var8 = 15 + p_149690_1_.rand.nextInt(15) + p_149690_1_.rand.nextInt(15);
+        this.dropXpOnBlockBreak(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, var8);
     }
 
     public boolean isOpaqueCube()

@@ -54,8 +54,7 @@ public class SaveFormatOld implements ISaveFormat
             {
                 try
                 {
-                    var4 = CompressedStreamTools
-                            .readCompressed(new FileInputStream(var3));
+                    var4 = CompressedStreamTools.readCompressed(new FileInputStream(var3));
                     var5 = var4.getCompoundTag("Data");
                     return new WorldInfo(var5);
                 }
@@ -71,8 +70,7 @@ public class SaveFormatOld implements ISaveFormat
             {
                 try
                 {
-                    var4 = CompressedStreamTools
-                            .readCompressed(new FileInputStream(var3));
+                    var4 = CompressedStreamTools.readCompressed(new FileInputStream(var3));
                     var5 = var4.getCompoundTag("Data");
                     return new WorldInfo(var5);
                 }
@@ -133,8 +131,7 @@ public class SaveFormatOld implements ISaveFormat
 
     /**
      * @args: Takes one argument - the list of files and directories to delete.
-     *        @desc: Deletes the files and directory listed in the list
-     *        recursively.
+     * @desc: Deletes the files and directory listed in the list recursively.
      */
     protected static boolean deleteFiles(File[] par0ArrayOfFile)
     {
@@ -178,8 +175,7 @@ public class SaveFormatOld implements ISaveFormat
     /**
      * converts the map to mcRegion
      */
-    public boolean convertMapFormat(String par1Str,
-            IProgressUpdate par2IProgressUpdate)
+    public boolean convertMapFormat(String par1Str, IProgressUpdate par2IProgressUpdate)
     {
         return false;
     }

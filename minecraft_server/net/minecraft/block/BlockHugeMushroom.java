@@ -7,8 +7,7 @@ import net.minecraft.item.Item;
 
 public class BlockHugeMushroom extends Block
 {
-    private static final String[] field_149793_a = new String[] {"skin_brown",
-            "skin_red"};
+    private static final String[] field_149793_a = new String[] {"skin_brown", "skin_red"};
     private final int field_149792_b;
     private static final String __OBFID = "CL_00000258";
 
@@ -33,10 +32,8 @@ public class BlockHugeMushroom extends Block
         return var2;
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return Item.getItemById(Block.getIdFromBlock(Blocks.brown_mushroom)
-                + this.field_149792_b);
+        return Item.getItemById(Block.getIdFromBlock(Blocks.brown_mushroom) + this.field_149792_b);
     }
 }

@@ -46,8 +46,7 @@ public abstract class RConThreadBase implements Runnable
      */
     public synchronized void startThread()
     {
-        this.rconThread = new Thread(this, this.field_164003_c + " #"
-                + field_164004_h.incrementAndGet());
+        this.rconThread = new Thread(this, this.field_164003_c + " #" + field_164004_h.incrementAndGet());
         this.rconThread.start();
         this.running = true;
     }
@@ -112,8 +111,7 @@ public abstract class RConThreadBase implements Runnable
     /**
      * Closes the specified DatagramSocket
      */
-    protected boolean closeSocket(DatagramSocket par1DatagramSocket,
-            boolean par2)
+    protected boolean closeSocket(DatagramSocket par1DatagramSocket, boolean par2)
     {
         this.logDebug("closeSocket: " + par1DatagramSocket);
 
@@ -151,8 +149,7 @@ public abstract class RConThreadBase implements Runnable
     /**
      * Closes the specified ServerSocket
      */
-    protected boolean closeServerSocket_do(ServerSocket par1ServerSocket,
-            boolean par2)
+    protected boolean closeServerSocket_do(ServerSocket par1ServerSocket, boolean par2)
     {
         this.logDebug("closeSocket: " + par1ServerSocket);
 

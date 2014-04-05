@@ -32,9 +32,7 @@ public class ServerScoreboard extends Scoreboard
 
         if (this.field_96553_b.contains(par1Score.func_96645_d()))
         {
-            this.scoreboardMCServer.getConfigurationManager()
-                    .sendPacketToAllPlayers(
-                            new S3CPacketUpdateScore(par1Score, 0));
+            this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3CPacketUpdateScore(par1Score, 0));
         }
 
         this.func_96551_b();
@@ -43,8 +41,7 @@ public class ServerScoreboard extends Scoreboard
     public void func_96516_a(String par1Str)
     {
         super.func_96516_a(par1Str);
-        this.scoreboardMCServer.getConfigurationManager()
-                .sendPacketToAllPlayers(new S3CPacketUpdateScore(par1Str));
+        this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3CPacketUpdateScore(par1Str));
         this.func_96551_b();
     }
 
@@ -57,10 +54,7 @@ public class ServerScoreboard extends Scoreboard
         {
             if (this.func_96552_h(var3) > 0)
             {
-                this.scoreboardMCServer.getConfigurationManager()
-                        .sendPacketToAllPlayers(
-                                new S3DPacketDisplayScoreboard(par1,
-                                        par2ScoreObjective));
+                this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3DPacketDisplayScoreboard(par1, par2ScoreObjective));
             }
             else
             {
@@ -72,10 +66,7 @@ public class ServerScoreboard extends Scoreboard
         {
             if (this.field_96553_b.contains(par2ScoreObjective))
             {
-                this.scoreboardMCServer.getConfigurationManager()
-                        .sendPacketToAllPlayers(
-                                new S3DPacketDisplayScoreboard(par1,
-                                        par2ScoreObjective));
+                this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3DPacketDisplayScoreboard(par1, par2ScoreObjective));
             }
             else
             {
@@ -91,10 +82,7 @@ public class ServerScoreboard extends Scoreboard
         if (super.func_151392_a(p_151392_1_, p_151392_2_))
         {
             ScorePlayerTeam var3 = this.getTeam(p_151392_2_);
-            this.scoreboardMCServer.getConfigurationManager()
-                    .sendPacketToAllPlayers(
-                            new S3EPacketTeams(var3, Arrays
-                                    .asList(new String[] {p_151392_1_}), 3));
+            this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3EPacketTeams(var3, Arrays.asList(new String[] {p_151392_1_}), 3));
             this.func_96551_b();
             return true;
         }
@@ -108,14 +96,10 @@ public class ServerScoreboard extends Scoreboard
      * Removes the given username from the given ScorePlayerTeam. If the player
      * is not on the team then an IllegalStateException is thrown.
      */
-    public void removePlayerFromTeam(String par1Str,
-            ScorePlayerTeam par2ScorePlayerTeam)
+    public void removePlayerFromTeam(String par1Str, ScorePlayerTeam par2ScorePlayerTeam)
     {
         super.removePlayerFromTeam(par1Str, par2ScorePlayerTeam);
-        this.scoreboardMCServer.getConfigurationManager()
-                .sendPacketToAllPlayers(
-                        new S3EPacketTeams(par2ScorePlayerTeam, Arrays
-                                .asList(new String[] {par1Str}), 4));
+        this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3EPacketTeams(par2ScorePlayerTeam, Arrays.asList(new String[] {par1Str}), 4));
         this.func_96551_b();
     }
 
@@ -131,10 +115,7 @@ public class ServerScoreboard extends Scoreboard
 
         if (this.field_96553_b.contains(par1ScoreObjective))
         {
-            this.scoreboardMCServer.getConfigurationManager()
-                    .sendPacketToAllPlayers(
-                            new S3BPacketScoreboardObjective(
-                                    par1ScoreObjective, 2));
+            this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3BPacketScoreboardObjective(par1ScoreObjective, 2));
         }
 
         this.func_96551_b();
@@ -159,9 +140,7 @@ public class ServerScoreboard extends Scoreboard
     public void broadcastTeamCreated(ScorePlayerTeam par1ScorePlayerTeam)
     {
         super.broadcastTeamCreated(par1ScorePlayerTeam);
-        this.scoreboardMCServer.getConfigurationManager()
-                .sendPacketToAllPlayers(
-                        new S3EPacketTeams(par1ScorePlayerTeam, 0));
+        this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3EPacketTeams(par1ScorePlayerTeam, 0));
         this.func_96551_b();
     }
 
@@ -171,18 +150,14 @@ public class ServerScoreboard extends Scoreboard
     public void broadcastTeamRemoved(ScorePlayerTeam par1ScorePlayerTeam)
     {
         super.broadcastTeamRemoved(par1ScorePlayerTeam);
-        this.scoreboardMCServer.getConfigurationManager()
-                .sendPacketToAllPlayers(
-                        new S3EPacketTeams(par1ScorePlayerTeam, 2));
+        this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3EPacketTeams(par1ScorePlayerTeam, 2));
         this.func_96551_b();
     }
 
     public void func_96513_c(ScorePlayerTeam par1ScorePlayerTeam)
     {
         super.func_96513_c(par1ScorePlayerTeam);
-        this.scoreboardMCServer.getConfigurationManager()
-                .sendPacketToAllPlayers(
-                        new S3EPacketTeams(par1ScorePlayerTeam, 1));
+        this.scoreboardMCServer.getConfigurationManager().sendPacketToAllPlayers(new S3EPacketTeams(par1ScorePlayerTeam, 1));
         this.func_96551_b();
     }
 
@@ -208,8 +183,7 @@ public class ServerScoreboard extends Scoreboard
         {
             if (this.func_96539_a(var3) == par1ScoreObjective)
             {
-                var2.add(new S3DPacketDisplayScoreboard(var3,
-                        par1ScoreObjective));
+                var2.add(new S3DPacketDisplayScoreboard(var3, par1ScoreObjective));
             }
         }
 
@@ -227,8 +201,7 @@ public class ServerScoreboard extends Scoreboard
     public void func_96549_e(ScoreObjective par1ScoreObjective)
     {
         List var2 = this.func_96550_d(par1ScoreObjective);
-        Iterator var3 = this.scoreboardMCServer.getConfigurationManager().playerEntityList
-                .iterator();
+        Iterator var3 = this.scoreboardMCServer.getConfigurationManager().playerEntityList.iterator();
 
         while (var3.hasNext())
         {
@@ -254,8 +227,7 @@ public class ServerScoreboard extends Scoreboard
         {
             if (this.func_96539_a(var3) == par1ScoreObjective)
             {
-                var2.add(new S3DPacketDisplayScoreboard(var3,
-                        par1ScoreObjective));
+                var2.add(new S3DPacketDisplayScoreboard(var3, par1ScoreObjective));
             }
         }
 
@@ -265,8 +237,7 @@ public class ServerScoreboard extends Scoreboard
     public void func_96546_g(ScoreObjective par1ScoreObjective)
     {
         List var2 = this.func_96548_f(par1ScoreObjective);
-        Iterator var3 = this.scoreboardMCServer.getConfigurationManager().playerEntityList
-                .iterator();
+        Iterator var3 = this.scoreboardMCServer.getConfigurationManager().playerEntityList.iterator();
 
         while (var3.hasNext())
         {

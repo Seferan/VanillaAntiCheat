@@ -12,8 +12,7 @@ public class EntityMinecartEmpty extends EntityMinecart
         super(par1World);
     }
 
-    public EntityMinecartEmpty(World par1World, double par2, double par4,
-            double par6)
+    public EntityMinecartEmpty(World par1World, double par2, double par4, double par6)
     {
         super(par1World, par2, par4, par6);
     }
@@ -23,14 +22,11 @@ public class EntityMinecartEmpty extends EntityMinecart
      */
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
-        if (this.riddenByEntity != null
-                && this.riddenByEntity instanceof EntityPlayer
-                && this.riddenByEntity != par1EntityPlayer)
+        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != par1EntityPlayer)
         {
             return true;
         }
-        else if (this.riddenByEntity != null
-                && this.riddenByEntity != par1EntityPlayer)
+        else if (this.riddenByEntity != null && this.riddenByEntity != par1EntityPlayer)
         {
             return false;
         }

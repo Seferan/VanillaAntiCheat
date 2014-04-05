@@ -42,8 +42,7 @@ public class EnchantmentDurability extends Enchantment
 
     public boolean canApply(ItemStack par1ItemStack)
     {
-        return par1ItemStack.isItemStackDamageable() ? true : super
-                .canApply(par1ItemStack);
+        return par1ItemStack.isItemStackDamageable() ? true : super.canApply(par1ItemStack);
     }
 
     /**
@@ -53,11 +52,8 @@ public class EnchantmentDurability extends Enchantment
      * negated no matter the enchantment level, otherwise there is a 1-(par/1)
      * chance for damage to be negated.
      */
-    public static boolean negateDamage(ItemStack par0ItemStack, int par1,
-            Random par2Random)
+    public static boolean negateDamage(ItemStack par0ItemStack, int par1, Random par2Random)
     {
-        return par0ItemStack.getItem() instanceof ItemArmor
-                && par2Random.nextFloat() < 0.6F ? false : par2Random
-                .nextInt(par1 + 1) > 0;
+        return par0ItemStack.getItem() instanceof ItemArmor && par2Random.nextFloat() < 0.6F ? false : par2Random.nextInt(par1 + 1) > 0;
     }
 }

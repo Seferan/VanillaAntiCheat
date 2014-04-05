@@ -20,8 +20,7 @@ public class WorldGenSand extends WorldGenerator
         this.radius = p_i45462_2_;
     }
 
-    public boolean generate(World par1World, Random par2Random, int par3,
-            int par4, int par5)
+    public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         if (par1World.getBlock(par3, par4, par5).getMaterial() != Material.field_151586_h)
         {
@@ -47,8 +46,7 @@ public class WorldGenSand extends WorldGenerator
 
                             if (var13 == Blocks.dirt || var13 == Blocks.grass)
                             {
-                                par1World.setBlock(var8, var12, var9,
-                                        this.field_150517_a, 0, 2);
+                                par1World.setBlock(var8, var12, var9, this.field_150517_a, 0, 2);
                             }
                         }
                     }

@@ -68,17 +68,13 @@ public class Vec3
      */
     public Vec3 normalize()
     {
-        double var1 = (double)MathHelper.sqrt_double(this.xCoord * this.xCoord
-                + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
-        return var1 < 1.0E-4D ? this.myVec3LocalPool.getVecFromPool(0.0D, 0.0D,
-                0.0D) : this.myVec3LocalPool.getVecFromPool(this.xCoord / var1,
-                this.yCoord / var1, this.zCoord / var1);
+        double var1 = (double)MathHelper.sqrt_double(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
+        return var1 < 1.0E-4D ? this.myVec3LocalPool.getVecFromPool(0.0D, 0.0D, 0.0D) : this.myVec3LocalPool.getVecFromPool(this.xCoord / var1, this.yCoord / var1, this.zCoord / var1);
     }
 
     public double dotProduct(Vec3 par1Vec3)
     {
-        return this.xCoord * par1Vec3.xCoord + this.yCoord * par1Vec3.yCoord
-                + this.zCoord * par1Vec3.zCoord;
+        return this.xCoord * par1Vec3.xCoord + this.yCoord * par1Vec3.yCoord + this.zCoord * par1Vec3.zCoord;
     }
 
     /**
@@ -87,8 +83,7 @@ public class Vec3
      */
     public Vec3 addVector(double par1, double par3, double par5)
     {
-        return this.myVec3LocalPool.getVecFromPool(this.xCoord + par1,
-                this.yCoord + par3, this.zCoord + par5);
+        return this.myVec3LocalPool.getVecFromPool(this.xCoord + par1, this.yCoord + par3, this.zCoord + par5);
     }
 
     /**
@@ -100,8 +95,7 @@ public class Vec3
         double var2 = par1Vec3.xCoord - this.xCoord;
         double var4 = par1Vec3.yCoord - this.yCoord;
         double var6 = par1Vec3.zCoord - this.zCoord;
-        return (double)MathHelper.sqrt_double(var2 * var2 + var4 * var4 + var6
-                * var6);
+        return (double)MathHelper.sqrt_double(var2 * var2 + var4 * var4 + var6 * var6);
     }
 
     /**
@@ -133,8 +127,7 @@ public class Vec3
      */
     public double lengthVector()
     {
-        return (double)MathHelper.sqrt_double(this.xCoord * this.xCoord
-                + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
+        return (double)MathHelper.sqrt_double(this.xCoord * this.xCoord + this.yCoord * this.yCoord + this.zCoord * this.zCoord);
     }
 
     /**
@@ -155,9 +148,7 @@ public class Vec3
         else
         {
             double var10 = (par2 - this.xCoord) / var4;
-            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool
-                    .getVecFromPool(this.xCoord + var4 * var10, this.yCoord
-                            + var6 * var10, this.zCoord + var8 * var10) : null;
+            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool.getVecFromPool(this.xCoord + var4 * var10, this.yCoord + var6 * var10, this.zCoord + var8 * var10) : null;
         }
     }
 
@@ -179,9 +170,7 @@ public class Vec3
         else
         {
             double var10 = (par2 - this.yCoord) / var6;
-            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool
-                    .getVecFromPool(this.xCoord + var4 * var10, this.yCoord
-                            + var6 * var10, this.zCoord + var8 * var10) : null;
+            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool.getVecFromPool(this.xCoord + var4 * var10, this.yCoord + var6 * var10, this.zCoord + var8 * var10) : null;
         }
     }
 
@@ -203,16 +192,13 @@ public class Vec3
         else
         {
             double var10 = (par2 - this.zCoord) / var8;
-            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool
-                    .getVecFromPool(this.xCoord + var4 * var10, this.yCoord
-                            + var6 * var10, this.zCoord + var8 * var10) : null;
+            return var10 >= 0.0D && var10 <= 1.0D ? this.myVec3LocalPool.getVecFromPool(this.xCoord + var4 * var10, this.yCoord + var6 * var10, this.zCoord + var8 * var10) : null;
         }
     }
 
     public String toString()
     {
-        return "(" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord
-                + ")";
+        return "(" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + ")";
     }
 
     /**

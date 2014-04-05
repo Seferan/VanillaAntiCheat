@@ -42,8 +42,7 @@ public class WorldChunkManager
     public WorldChunkManager(long par1, WorldType par3WorldType)
     {
         this();
-        GenLayer[] var4 = GenLayer.initializeAllBiomeGenerators(par1,
-                par3WorldType);
+        GenLayer[] var4 = GenLayer.initializeAllBiomeGenerators(par1, par3WorldType);
         this.genBiomes = var4[0];
         this.biomeIndexLayer = var4[1];
     }
@@ -73,8 +72,7 @@ public class WorldChunkManager
      * Returns a list of rainfall values for the specified blocks. Args:
      * listToReuse, x, z, width, length.
      */
-    public float[] getRainfall(float[] par1ArrayOfFloat, int par2, int par3,
-            int par4, int par5)
+    public float[] getRainfall(float[] par1ArrayOfFloat, int par2, int par3, int par4, int par5)
     {
         IntCache.resetIntCache();
 
@@ -89,8 +87,7 @@ public class WorldChunkManager
         {
             try
             {
-                float var8 = (float)BiomeGenBase.func_150568_d(var6[var7])
-                        .getIntRainfall() / 65536.0F;
+                float var8 = (float)BiomeGenBase.func_150568_d(var6[var7]).getIntRainfall() / 65536.0F;
 
                 if (var8 > 1.0F)
                 {
@@ -101,12 +98,10 @@ public class WorldChunkManager
             }
             catch (Throwable var11)
             {
-                CrashReport var9 = CrashReport.makeCrashReport(var11,
-                        "Invalid Biome id");
+                CrashReport var9 = CrashReport.makeCrashReport(var11, "Invalid Biome id");
                 CrashReportCategory var10 = var9.makeCategory("DownfallBlock");
                 var10.addCrashSection("biome id", Integer.valueOf(var7));
-                var10.addCrashSection("downfalls[] size",
-                        Integer.valueOf(par1ArrayOfFloat.length));
+                var10.addCrashSection("downfalls[] size", Integer.valueOf(par1ArrayOfFloat.length));
                 var10.addCrashSection("x", Integer.valueOf(par2));
                 var10.addCrashSection("z", Integer.valueOf(par3));
                 var10.addCrashSection("w", Integer.valueOf(par4));
@@ -121,14 +116,11 @@ public class WorldChunkManager
     /**
      * Returns an array of biomes for the location input.
      */
-    public BiomeGenBase[] getBiomesForGeneration(
-            BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3,
-            int par4, int par5)
+    public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5)
     {
         IntCache.resetIntCache();
 
-        if (par1ArrayOfBiomeGenBase == null
-                || par1ArrayOfBiomeGenBase.length < par4 * par5)
+        if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < par4 * par5)
         {
             par1ArrayOfBiomeGenBase = new BiomeGenBase[par4 * par5];
         }
@@ -139,19 +131,16 @@ public class WorldChunkManager
         {
             for (int var7 = 0; var7 < par4 * par5; ++var7)
             {
-                par1ArrayOfBiomeGenBase[var7] = BiomeGenBase
-                        .func_150568_d(var6[var7]);
+                par1ArrayOfBiomeGenBase[var7] = BiomeGenBase.func_150568_d(var6[var7]);
             }
 
             return par1ArrayOfBiomeGenBase;
         }
         catch (Throwable var10)
         {
-            CrashReport var8 = CrashReport.makeCrashReport(var10,
-                    "Invalid Biome id");
+            CrashReport var8 = CrashReport.makeCrashReport(var10, "Invalid Biome id");
             CrashReportCategory var9 = var8.makeCategory("RawBiomeBlock");
-            var9.addCrashSection("biomes[] size",
-                    Integer.valueOf(par1ArrayOfBiomeGenBase.length));
+            var9.addCrashSection("biomes[] size", Integer.valueOf(par1ArrayOfBiomeGenBase.length));
             var9.addCrashSection("x", Integer.valueOf(par2));
             var9.addCrashSection("z", Integer.valueOf(par3));
             var9.addCrashSection("w", Integer.valueOf(par4));
@@ -165,12 +154,9 @@ public class WorldChunkManager
      * temperature and humidity onto the WorldChunkManager Args: oldBiomeList,
      * x, z, width, depth
      */
-    public BiomeGenBase[] loadBlockGeneratorData(
-            BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3,
-            int par4, int par5)
+    public BiomeGenBase[] loadBlockGeneratorData(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5)
     {
-        return this.getBiomeGenAt(par1ArrayOfBiomeGenBase, par2, par3, par4,
-                par5, true);
+        return this.getBiomeGenAt(par1ArrayOfBiomeGenBase, par2, par3, par4, par5, true);
     }
 
     /**
@@ -178,19 +164,16 @@ public class WorldChunkManager
      * y, width, length, cacheFlag (if false, don't check biomeCache to avoid
      * infinite loop in BiomeCacheBlock)
      */
-    public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] par1ArrayOfBiomeGenBase,
-            int par2, int par3, int par4, int par5, boolean par6)
+    public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5, boolean par6)
     {
         IntCache.resetIntCache();
 
-        if (par1ArrayOfBiomeGenBase == null
-                || par1ArrayOfBiomeGenBase.length < par4 * par5)
+        if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < par4 * par5)
         {
             par1ArrayOfBiomeGenBase = new BiomeGenBase[par4 * par5];
         }
 
-        if (par6 && par4 == 16 && par5 == 16 && (par2 & 15) == 0
-                && (par3 & 15) == 0)
+        if (par6 && par4 == 16 && par5 == 16 && (par2 & 15) == 0 && (par3 & 15) == 0)
         {
             BiomeGenBase[] var9 = this.biomeCache.getCachedBiomes(par2, par3);
             System.arraycopy(var9, 0, par1ArrayOfBiomeGenBase, 0, par4 * par5);
@@ -202,8 +185,7 @@ public class WorldChunkManager
 
             for (int var8 = 0; var8 < par4 * par5; ++var8)
             {
-                par1ArrayOfBiomeGenBase[var8] = BiomeGenBase
-                        .func_150568_d(var7[var8]);
+                par1ArrayOfBiomeGenBase[var8] = BiomeGenBase.func_150568_d(var7[var8]);
             }
 
             return par1ArrayOfBiomeGenBase;
@@ -237,8 +219,7 @@ public class WorldChunkManager
         }
         catch (Throwable var15)
         {
-            CrashReport var13 = CrashReport.makeCrashReport(var15,
-                    "Invalid Biome id");
+            CrashReport var13 = CrashReport.makeCrashReport(var15, "Invalid Biome id");
             CrashReportCategory var14 = var13.makeCategory("Layer");
             var14.addCrashSection("Layer", this.genBiomes.toString());
             var14.addCrashSection("x", Integer.valueOf(par1));
@@ -249,8 +230,7 @@ public class WorldChunkManager
         }
     }
 
-    public ChunkPosition findBiomePosition(int p_150795_1_, int p_150795_2_,
-            int p_150795_3_, List p_150795_4_, Random p_150795_5_)
+    public ChunkPosition findBiomePosition(int p_150795_1_, int p_150795_2_, int p_150795_3_, List p_150795_4_, Random p_150795_5_)
     {
         IntCache.resetIntCache();
         int var6 = p_150795_1_ - p_150795_3_ >> 2;
@@ -269,8 +249,7 @@ public class WorldChunkManager
             int var17 = var7 + var15 / var10 << 2;
             BiomeGenBase var18 = BiomeGenBase.func_150568_d(var12[var15]);
 
-            if (p_150795_4_.contains(var18)
-                    && (var13 == null || p_150795_5_.nextInt(var14 + 1) == 0))
+            if (p_150795_4_.contains(var18) && (var13 == null || p_150795_5_.nextInt(var14 + 1) == 0))
             {
                 var13 = new ChunkPosition(var16, 0, var17);
                 ++var14;

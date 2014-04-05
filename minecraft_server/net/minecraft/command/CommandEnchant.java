@@ -29,27 +29,22 @@ public class CommandEnchant extends CommandBase
         return "commands.enchant.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length < 2)
         {
-            throw new WrongUsageException("commands.enchant.usage",
-                    new Object[0]);
+            throw new WrongUsageException("commands.enchant.usage", new Object[0]);
         }
         else
         {
-            EntityPlayerMP var3 = getPlayer(par1ICommandSender,
-                    par2ArrayOfStr[0]);
-            int var4 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[1],
-                    0, Enchantment.enchantmentsList.length - 1);
+            EntityPlayerMP var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
+            int var4 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[1], 0, Enchantment.enchantmentsList.length - 1);
             int var5 = 1;
             ItemStack var6 = var3.getCurrentEquippedItem();
 
             if (var6 == null)
             {
-                throw new CommandException("commands.enchant.noItem",
-                        new Object[0]);
+                throw new CommandException("commands.enchant.noItem", new Object[0]);
             }
             else
             {
@@ -57,22 +52,17 @@ public class CommandEnchant extends CommandBase
 
                 if (var7 == null)
                 {
-                    throw new NumberInvalidException(
-                            "commands.enchant.notFound",
-                            new Object[] {Integer.valueOf(var4)});
+                    throw new NumberInvalidException("commands.enchant.notFound", new Object[] {Integer.valueOf(var4)});
                 }
                 else if (!var7.canApply(var6))
                 {
-                    throw new CommandException("commands.enchant.cantEnchant",
-                            new Object[0]);
+                    throw new CommandException("commands.enchant.cantEnchant", new Object[0]);
                 }
                 else
                 {
                     if (par2ArrayOfStr.length >= 3)
                     {
-                        var5 = parseIntBounded(par1ICommandSender,
-                                par2ArrayOfStr[2], var7.getMinLevel(),
-                                var7.getMaxLevel());
+                        var5 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[2], var7.getMinLevel(), var7.getMaxLevel());
                     }
 
                     if (var6.hasTagCompound())
@@ -83,29 +73,20 @@ public class CommandEnchant extends CommandBase
                         {
                             for (int var9 = 0; var9 < var8.tagCount(); ++var9)
                             {
-                                short var10 = var8.getCompoundTagAt(var9)
-                                        .getShort("id");
+                                short var10 = var8.getCompoundTagAt(var9).getShort("id");
 
                                 if (Enchantment.enchantmentsList[var10] != null)
                                 {
                                     Enchantment var11 = Enchantment.enchantmentsList[var10];
 
-                                    if (!var11.canApplyTogether(var7)) { throw new CommandException(
-                                            "commands.enchant.cantCombine",
-                                            new Object[] {
-                                                    var7.getTranslatedName(var5),
-                                                    var11.getTranslatedName(var8
-                                                            .getCompoundTagAt(
-                                                                    var9)
-                                                            .getShort("lvl"))}); }
+                                    if (!var11.canApplyTogether(var7)) { throw new CommandException("commands.enchant.cantCombine", new Object[] {var7.getTranslatedName(var5), var11.getTranslatedName(var8.getCompoundTagAt(var9).getShort("lvl"))}); }
                                 }
                             }
                         }
                     }
 
                     var6.addEnchantment(var7, var5);
-                    notifyAdmins(par1ICommandSender,
-                            "commands.enchant.success", new Object[0]);
+                    notifyAdmins(par1ICommandSender, "commands.enchant.success", new Object[0]);
                 }
             }
         }
@@ -115,11 +96,9 @@ public class CommandEnchant extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(
-                par2ArrayOfStr, this.getListOfPlayers()) : null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getListOfPlayers()) : null;
     }
 
     protected String[] getListOfPlayers()

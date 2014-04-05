@@ -22,27 +22,23 @@ public class BlockSign extends BlockContainer
         this.field_149968_a = p_i45426_1_;
         float var3 = 0.25F;
         float var4 = 1.0F;
-        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var4,
-                0.5F + var3);
+        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var4, 0.5F + var3);
     }
 
     /**
      * Returns a bounding box from the pool of bounding boxes (this means this
      * box can change after the pool has been cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_,
-            int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
         return null;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         if (!this.field_149967_b)
         {
-            int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_,
-                    p_149719_4_);
+            int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_);
             float var6 = 0.28125F;
             float var7 = 0.78125F;
             float var8 = 0.0F;
@@ -85,8 +81,7 @@ public class BlockSign extends BlockContainer
         return false;
     }
 
-    public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_,
-            int p_149655_3_, int p_149655_4_)
+    public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_, int p_149655_3_, int p_149655_4_)
     {
         return true;
     }
@@ -112,60 +107,43 @@ public class BlockSign extends BlockContainer
         }
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return Items.sign;
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         boolean var6 = false;
 
         if (this.field_149967_b)
         {
-            if (!p_149695_1_
-                    .getBlock(p_149695_2_, p_149695_3_ - 1, p_149695_4_)
-                    .getMaterial().isSolid())
+            if (!p_149695_1_.getBlock(p_149695_2_, p_149695_3_ - 1, p_149695_4_).getMaterial().isSolid())
             {
                 var6 = true;
             }
         }
         else
         {
-            int var7 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_,
-                    p_149695_4_);
+            int var7 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
             var6 = true;
 
-            if (var7 == 2
-                    && p_149695_1_
-                            .getBlock(p_149695_2_, p_149695_3_, p_149695_4_ + 1)
-                            .getMaterial().isSolid())
+            if (var7 == 2 && p_149695_1_.getBlock(p_149695_2_, p_149695_3_, p_149695_4_ + 1).getMaterial().isSolid())
             {
                 var6 = false;
             }
 
-            if (var7 == 3
-                    && p_149695_1_
-                            .getBlock(p_149695_2_, p_149695_3_, p_149695_4_ - 1)
-                            .getMaterial().isSolid())
+            if (var7 == 3 && p_149695_1_.getBlock(p_149695_2_, p_149695_3_, p_149695_4_ - 1).getMaterial().isSolid())
             {
                 var6 = false;
             }
 
-            if (var7 == 4
-                    && p_149695_1_
-                            .getBlock(p_149695_2_ + 1, p_149695_3_, p_149695_4_)
-                            .getMaterial().isSolid())
+            if (var7 == 4 && p_149695_1_.getBlock(p_149695_2_ + 1, p_149695_3_, p_149695_4_).getMaterial().isSolid())
             {
                 var6 = false;
             }
 
-            if (var7 == 5
-                    && p_149695_1_
-                            .getBlock(p_149695_2_ - 1, p_149695_3_, p_149695_4_)
-                            .getMaterial().isSolid())
+            if (var7 == 5 && p_149695_1_.getBlock(p_149695_2_ - 1, p_149695_3_, p_149695_4_).getMaterial().isSolid())
             {
                 var6 = false;
             }
@@ -173,13 +151,10 @@ public class BlockSign extends BlockContainer
 
         if (var6)
         {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_,
-                    p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_,
-                            p_149695_3_, p_149695_4_), 0);
+            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
 
-        super.onNeighborBlockChange(p_149695_1_, p_149695_2_, p_149695_3_,
-                p_149695_4_, p_149695_5_);
+        super.onNeighborBlockChange(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_);
     }
 }

@@ -49,18 +49,15 @@ public class StatisticsFile extends StatFileWriter
             try
             {
                 this.field_150875_a.clear();
-                this.field_150875_a.putAll(this.func_150881_a(FileUtils
-                        .readFileToString(this.field_150887_d)));
+                this.field_150875_a.putAll(this.func_150881_a(FileUtils.readFileToString(this.field_150887_d)));
             }
             catch (IOException var2)
             {
-                logger.error("Couldn\'t read statistics file "
-                        + this.field_150887_d, var2);
+                logger.error("Couldn\'t read statistics file " + this.field_150887_d, var2);
             }
             catch (JsonParseException var3)
             {
-                logger.error("Couldn\'t parse statistics file "
-                        + this.field_150887_d, var3);
+                logger.error("Couldn\'t parse statistics file " + this.field_150887_d, var3);
             }
         }
     }
@@ -69,8 +66,7 @@ public class StatisticsFile extends StatFileWriter
     {
         try
         {
-            FileUtils.writeStringToFile(this.field_150887_d,
-                    func_150880_a(this.field_150875_a));
+            FileUtils.writeStringToFile(this.field_150887_d, func_150880_a(this.field_150875_a));
         }
         catch (IOException var2)
         {
@@ -78,11 +74,9 @@ public class StatisticsFile extends StatFileWriter
         }
     }
 
-    public void func_150873_a(EntityPlayer p_150873_1_, StatBase p_150873_2_,
-            int p_150873_3_)
+    public void func_150873_a(EntityPlayer p_150873_1_, StatBase p_150873_2_, int p_150873_3_)
     {
-        int var4 = p_150873_2_.func_75967_d() ? this.func_77444_a(p_150873_2_)
-                : 0;
+        int var4 = p_150873_2_.func_75967_d() ? this.func_77444_a(p_150873_2_) : 0;
         super.func_150873_a(p_150873_1_, p_150873_2_, p_150873_3_);
         this.field_150888_e.add(p_150873_2_);
 
@@ -92,12 +86,7 @@ public class StatisticsFile extends StatFileWriter
 
             if (this.field_150890_c.func_147136_ar())
             {
-                this.field_150890_c.getConfigurationManager().func_148539_a(
-                        new ChatComponentTranslation("chat.type.achievement",
-                                new Object[] {
-                                        p_150873_1_
-                                                .getUsernameAsIChatComponent(),
-                                        p_150873_2_.func_150955_j()}));
+                this.field_150890_c.getConfigurationManager().func_148539_a(new ChatComponentTranslation("chat.type.achievement", new Object[] {p_150873_1_.getUsernameAsIChatComponent(), p_150873_2_.func_150955_j()}));
             }
         }
     }
@@ -133,42 +122,30 @@ public class StatisticsFile extends StatFileWriter
                 {
                     TupleIntJsonSerializable var8 = new TupleIntJsonSerializable();
 
-                    if (((JsonElement)var6.getValue()).isJsonPrimitive()
-                            && ((JsonElement)var6.getValue())
-                                    .getAsJsonPrimitive().isNumber())
+                    if (((JsonElement)var6.getValue()).isJsonPrimitive() && ((JsonElement)var6.getValue()).getAsJsonPrimitive().isNumber())
                     {
-                        var8.setIntegerValue(((JsonElement)var6.getValue())
-                                .getAsInt());
+                        var8.setIntegerValue(((JsonElement)var6.getValue()).getAsInt());
                     }
                     else if (((JsonElement)var6.getValue()).isJsonObject())
                     {
-                        JsonObject var9 = ((JsonElement)var6.getValue())
-                                .getAsJsonObject();
+                        JsonObject var9 = ((JsonElement)var6.getValue()).getAsJsonObject();
 
-                        if (var9.has("value")
-                                && var9.get("value").isJsonPrimitive()
-                                && var9.get("value").getAsJsonPrimitive()
-                                        .isNumber())
+                        if (var9.has("value") && var9.get("value").isJsonPrimitive() && var9.get("value").getAsJsonPrimitive().isNumber())
                         {
-                            var8.setIntegerValue(var9.getAsJsonPrimitive(
-                                    "value").getAsInt());
+                            var8.setIntegerValue(var9.getAsJsonPrimitive("value").getAsInt());
                         }
 
-                        if (var9.has("progress")
-                                && var7.func_150954_l() != null)
+                        if (var9.has("progress") && var7.func_150954_l() != null)
                         {
                             try
                             {
-                                Constructor var10 = var7.func_150954_l()
-                                        .getConstructor(new Class[0]);
-                                IJsonSerializable var11 = (IJsonSerializable)var10
-                                        .newInstance(new Object[0]);
+                                Constructor var10 = var7.func_150954_l().getConstructor(new Class[0]);
+                                IJsonSerializable var11 = (IJsonSerializable)var10.newInstance(new Object[0]);
                                 var8.setJsonSerializableValue(var11);
                             }
                             catch (Throwable var12)
                             {
-                                logger.warn("Invalid statistic progress in "
-                                        + this.field_150887_d, var12);
+                                logger.warn("Invalid statistic progress in " + this.field_150887_d, var12);
                             }
                         }
                     }
@@ -177,9 +154,7 @@ public class StatisticsFile extends StatFileWriter
                 }
                 else
                 {
-                    logger.warn("Invalid statistic in " + this.field_150887_d
-                            + ": Don\'t know what " + (String)var6.getKey()
-                            + " is");
+                    logger.warn("Invalid statistic in " + this.field_150887_d + ": Don\'t know what " + (String)var6.getKey() + " is");
                 }
             }
 
@@ -196,35 +171,25 @@ public class StatisticsFile extends StatFileWriter
         {
             Entry var3 = (Entry)var2.next();
 
-            if (((TupleIntJsonSerializable)var3.getValue())
-                    .getJsonSerializableValue() != null)
+            if (((TupleIntJsonSerializable)var3.getValue()).getJsonSerializableValue() != null)
             {
                 JsonObject var4 = new JsonObject();
-                var4.addProperty("value", Integer
-                        .valueOf(((TupleIntJsonSerializable)var3.getValue())
-                                .getIntegerValue()));
+                var4.addProperty("value", Integer.valueOf(((TupleIntJsonSerializable)var3.getValue()).getIntegerValue()));
 
                 try
                 {
-                    var4.add("progress", ((TupleIntJsonSerializable)var3
-                            .getValue()).getJsonSerializableValue()
-                            .getSerializableElement());
+                    var4.add("progress", ((TupleIntJsonSerializable)var3.getValue()).getJsonSerializableValue().getSerializableElement());
                 }
                 catch (Throwable var6)
                 {
-                    logger.warn(
-                            "Couldn\'t save statistic "
-                                    + ((StatBase)var3.getKey()).func_150951_e()
-                                    + ": error serializing progress", var6);
+                    logger.warn("Couldn\'t save statistic " + ((StatBase)var3.getKey()).func_150951_e() + ": error serializing progress", var6);
                 }
 
                 var1.add(((StatBase)var3.getKey()).statId, var4);
             }
             else
             {
-                var1.addProperty(((StatBase)var3.getKey()).statId, Integer
-                        .valueOf(((TupleIntJsonSerializable)var3.getValue())
-                                .getIntegerValue()));
+                var1.addProperty(((StatBase)var3.getKey()).statId, Integer.valueOf(((TupleIntJsonSerializable)var3.getValue()).getIntegerValue()));
             }
         }
 
@@ -259,8 +224,7 @@ public class StatisticsFile extends StatFileWriter
             }
         }
 
-        p_150876_1_.playerNetServerHandler.sendPacket(new S37PacketStatistics(
-                var3));
+        p_150876_1_.playerNetServerHandler.sendPacket(new S37PacketStatistics(var3));
     }
 
     public void func_150884_b(EntityPlayerMP p_150884_1_)
@@ -279,8 +243,7 @@ public class StatisticsFile extends StatFileWriter
             }
         }
 
-        p_150884_1_.playerNetServerHandler.sendPacket(new S37PacketStatistics(
-                var2));
+        p_150884_1_.playerNetServerHandler.sendPacket(new S37PacketStatistics(var2));
     }
 
     public boolean func_150879_e()

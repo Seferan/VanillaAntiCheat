@@ -18,8 +18,7 @@ public class S2FPacketSetSlot extends Packet
     {
     }
 
-    public S2FPacketSetSlot(int p_i45188_1_, int p_i45188_2_,
-            ItemStack p_i45188_3_)
+    public S2FPacketSetSlot(int p_i45188_1_, int p_i45188_2_, ItemStack p_i45188_3_)
     {
         this.field_149179_a = p_i45188_1_;
         this.field_149177_b = p_i45188_2_;

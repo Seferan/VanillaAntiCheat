@@ -25,9 +25,7 @@ public class SlotCrafting extends Slot
     private int amountCrafted;
     private static final String __OBFID = "CL_00001761";
 
-    public SlotCrafting(EntityPlayer par1EntityPlayer,
-            IInventory par2IInventory, IInventory par3IInventory, int par4,
-            int par5, int par6)
+    public SlotCrafting(EntityPlayer par1EntityPlayer, IInventory par2IInventory, IInventory par3IInventory, int par4, int par5, int par6)
     {
         super(par3IInventory, par4, par5, par6);
         this.thePlayer = par1EntityPlayer;
@@ -74,12 +72,10 @@ public class SlotCrafting extends Slot
      */
     protected void onCrafting(ItemStack par1ItemStack)
     {
-        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer,
-                this.amountCrafted);
+        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amountCrafted);
         this.amountCrafted = 0;
 
-        if (par1ItemStack.getItem() == Item
-                .getItemFromBlock(Blocks.crafting_table))
+        if (par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.crafting_table))
         {
             this.thePlayer.addStat(AchievementList.buildWorkBench, 1);
         }
@@ -109,8 +105,7 @@ public class SlotCrafting extends Slot
             this.thePlayer.addStat(AchievementList.bakeCake, 1);
         }
 
-        if (par1ItemStack.getItem() instanceof ItemPickaxe
-                && ((ItemPickaxe)par1ItemStack.getItem()).func_150913_i() != Item.ToolMaterial.WOOD)
+        if (par1ItemStack.getItem() instanceof ItemPickaxe && ((ItemPickaxe)par1ItemStack.getItem()).func_150913_i() != Item.ToolMaterial.WOOD)
         {
             this.thePlayer.addStat(AchievementList.buildBetterPickaxe, 1);
         }
@@ -120,8 +115,7 @@ public class SlotCrafting extends Slot
             this.thePlayer.addStat(AchievementList.buildSword, 1);
         }
 
-        if (par1ItemStack.getItem() == Item
-                .getItemFromBlock(Blocks.enchanting_table))
+        if (par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.enchanting_table))
         {
             this.thePlayer.addStat(AchievementList.enchantments, 1);
         }
@@ -132,8 +126,7 @@ public class SlotCrafting extends Slot
         }
     }
 
-    public void onPickupFromSlot(EntityPlayer par1EntityPlayer,
-            ItemStack par2ItemStack)
+    public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
     {
         this.onCrafting(par2ItemStack);
 
@@ -147,23 +140,17 @@ public class SlotCrafting extends Slot
 
                 if (var4.getItem().hasContainerItem())
                 {
-                    ItemStack var5 = new ItemStack(var4.getItem()
-                            .getContainerItem());
+                    ItemStack var5 = new ItemStack(var4.getItem().getContainerItem());
 
-                    if (!var4.getItem()
-                            .doesContainerItemLeaveCraftingGrid(var4)
-                            || !this.thePlayer.inventory
-                                    .addItemStackToInventory(var5))
+                    if (!var4.getItem().doesContainerItemLeaveCraftingGrid(var4) || !this.thePlayer.inventory.addItemStackToInventory(var5))
                     {
                         if (this.craftMatrix.getStackInSlot(var3) == null)
                         {
-                            this.craftMatrix.setInventorySlotContents(var3,
-                                    var5);
+                            this.craftMatrix.setInventorySlotContents(var3, var5);
                         }
                         else
                         {
-                            this.thePlayer.dropPlayerItemWithRandomChoice(var5,
-                                    false);
+                            this.thePlayer.dropPlayerItemWithRandomChoice(var5, false);
                         }
                     }
                 }

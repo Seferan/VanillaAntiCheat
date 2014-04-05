@@ -15,8 +15,7 @@ public interface INetHandler
      * to (connection state). Typically throws IllegalStateException or
      * UnsupportedOperationException if validation fails
      */
-    void onConnectionStateTransition(EnumConnectionState var1,
-            EnumConnectionState var2);
+    void onConnectionStateTransition(EnumConnectionState var1, EnumConnectionState var2);
 
     /**
      * For scheduled network tasks. Used in NetHandlerPlayServer to send

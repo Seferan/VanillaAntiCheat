@@ -86,8 +86,7 @@ public class MapData extends WorldSavedData
 
                         if (var10 >= 0 || var10 < 128)
                         {
-                            this.colors[var10 + var8 * 128] = var4[var9 + var7
-                                    * var2];
+                            this.colors[var10 + var8 * 128] = var4[var9 + var7 * var2];
                         }
                     }
                 }
@@ -114,8 +113,7 @@ public class MapData extends WorldSavedData
      * Adds the player passed to the list of visible players and checks to see
      * which players are visible
      */
-    public void updateVisiblePlayers(EntityPlayer par1EntityPlayer,
-            ItemStack par2ItemStack)
+    public void updateVisiblePlayers(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
     {
         if (!this.playersHashMap.containsKey(par1EntityPlayer))
         {
@@ -126,28 +124,18 @@ public class MapData extends WorldSavedData
 
         if (!par1EntityPlayer.inventory.hasItemStack(par2ItemStack))
         {
-            this.playersVisibleOnMap.remove(par1EntityPlayer
-                    .getCommandSenderName());
+            this.playersVisibleOnMap.remove(par1EntityPlayer.getCommandSenderName());
         }
 
         for (int var5 = 0; var5 < this.playersArrayList.size(); ++var5)
         {
-            MapData.MapInfo var4 = (MapData.MapInfo)this.playersArrayList
-                    .get(var5);
+            MapData.MapInfo var4 = (MapData.MapInfo)this.playersArrayList.get(var5);
 
-            if (!var4.entityplayerObj.isDead
-                    && (var4.entityplayerObj.inventory
-                            .hasItemStack(par2ItemStack) || par2ItemStack
-                            .isOnItemFrame()))
+            if (!var4.entityplayerObj.isDead && (var4.entityplayerObj.inventory.hasItemStack(par2ItemStack) || par2ItemStack.isOnItemFrame()))
             {
-                if (!par2ItemStack.isOnItemFrame()
-                        && var4.entityplayerObj.dimension == this.dimension)
+                if (!par2ItemStack.isOnItemFrame() && var4.entityplayerObj.dimension == this.dimension)
                 {
-                    this.func_82567_a(0, var4.entityplayerObj.worldObj,
-                            var4.entityplayerObj.getCommandSenderName(),
-                            var4.entityplayerObj.posX,
-                            var4.entityplayerObj.posZ,
-                            (double)var4.entityplayerObj.rotationYaw);
+                    this.func_82567_a(0, var4.entityplayerObj.worldObj, var4.entityplayerObj.getCommandSenderName(), var4.entityplayerObj.posX, var4.entityplayerObj.posZ, (double)var4.entityplayerObj.rotationYaw);
                 }
             }
             else
@@ -159,18 +147,11 @@ public class MapData extends WorldSavedData
 
         if (par2ItemStack.isOnItemFrame())
         {
-            this.func_82567_a(
-                    1,
-                    par1EntityPlayer.worldObj,
-                    "frame-" + par2ItemStack.getItemFrame().getEntityId(),
-                    (double)par2ItemStack.getItemFrame().field_146063_b,
-                    (double)par2ItemStack.getItemFrame().field_146062_d,
-                    (double)(par2ItemStack.getItemFrame().hangingDirection * 90));
+            this.func_82567_a(1, par1EntityPlayer.worldObj, "frame-" + par2ItemStack.getItemFrame().getEntityId(), (double)par2ItemStack.getItemFrame().field_146063_b, (double)par2ItemStack.getItemFrame().field_146062_d, (double)(par2ItemStack.getItemFrame().hangingDirection * 90));
         }
     }
 
-    private void func_82567_a(int par1, World par2World, String par3Str,
-            double par4, double par6, double par8)
+    private void func_82567_a(int par1, World par2World, String par3Str, double par4, double par6, double par8)
     {
         int var10 = 1 << this.scale;
         float var11 = (float)(par4 - (double)this.xCenter) / (float)var10;
@@ -180,8 +161,7 @@ public class MapData extends WorldSavedData
         byte var16 = 63;
         byte var15;
 
-        if (var11 >= (float)(-var16) && var12 >= (float)(-var16)
-                && var11 <= (float)var16 && var12 <= (float)var16)
+        if (var11 >= (float)(-var16) && var12 >= (float)(-var16) && var11 <= (float)var16 && var12 <= (float)var16)
         {
             par8 += par8 < 0.0D ? -8.0D : 8.0D;
             var15 = (byte)((int)(par8 * 16.0D / 360.0D));
@@ -224,19 +204,16 @@ public class MapData extends WorldSavedData
             }
         }
 
-        this.playersVisibleOnMap.put(par3Str, new MapData.MapCoord((byte)par1,
-                var13, var14, var15));
+        this.playersVisibleOnMap.put(par3Str, new MapData.MapCoord((byte)par1, var13, var14, var15));
     }
 
     /**
      * Get byte array of packet data to send to players on map for updating map
      * data
      */
-    public byte[] getUpdatePacketData(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    public byte[] getUpdatePacketData(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        MapData.MapInfo var4 = (MapData.MapInfo)this.playersHashMap
-                .get(par3EntityPlayer);
+        MapData.MapInfo var4 = (MapData.MapInfo)this.playersHashMap.get(par3EntityPlayer);
         return var4 == null ? null : var4.getPlayersOnMap(par1ItemStack);
     }
 
@@ -250,8 +227,7 @@ public class MapData extends WorldSavedData
 
         for (int var4 = 0; var4 < this.playersArrayList.size(); ++var4)
         {
-            MapData.MapInfo var5 = (MapData.MapInfo)this.playersArrayList
-                    .get(var4);
+            MapData.MapInfo var5 = (MapData.MapInfo)this.playersArrayList.get(var4);
 
             if (var5.field_76209_b[par1] < 0 || var5.field_76209_b[par1] > par2)
             {
@@ -267,8 +243,7 @@ public class MapData extends WorldSavedData
 
     public MapData.MapInfo func_82568_a(EntityPlayer par1EntityPlayer)
     {
-        MapData.MapInfo var2 = (MapData.MapInfo)this.playersHashMap
-                .get(par1EntityPlayer);
+        MapData.MapInfo var2 = (MapData.MapInfo)this.playersHashMap.get(par1EntityPlayer);
 
         if (var2 == null)
         {
@@ -342,8 +317,7 @@ public class MapData extends WorldSavedData
                     var2[0] = 1;
                     var3 = 0;
 
-                    for (Iterator var4 = MapData.this.playersVisibleOnMap
-                            .values().iterator(); var4.hasNext(); ++var3)
+                    for (Iterator var4 = MapData.this.playersVisibleOnMap.values().iterator(); var4.hasNext(); ++var3)
                     {
                         MapData.MapCoord var5 = (MapData.MapCoord)var4.next();
                         var2[var3 * 3 + 1] = (byte)(var5.iconSize << 4 | var5.iconRotation & 15);
@@ -353,8 +327,7 @@ public class MapData extends WorldSavedData
 
                     boolean var9 = !par1ItemStack.isOnItemFrame();
 
-                    if (this.lastPlayerLocationOnMap != null
-                            && this.lastPlayerLocationOnMap.length == var2.length)
+                    if (this.lastPlayerLocationOnMap != null && this.lastPlayerLocationOnMap.length == var2.length)
                     {
                         for (var10 = 0; var10 < var2.length; ++var10)
                         {
@@ -383,8 +356,7 @@ public class MapData extends WorldSavedData
 
                     if (this.field_76209_b[var3] >= 0)
                     {
-                        int var11 = this.field_76210_c[var3]
-                                - this.field_76209_b[var3] + 1;
+                        int var11 = this.field_76210_c[var3] - this.field_76209_b[var3] + 1;
                         var10 = this.field_76209_b[var3];
                         byte[] var6 = new byte[var11 + 3];
                         var6[0] = 0;
@@ -393,8 +365,7 @@ public class MapData extends WorldSavedData
 
                         for (int var7 = 0; var7 < var6.length - 3; ++var7)
                         {
-                            var6[var7 + 3] = MapData.this.colors[(var7 + var10)
-                                    * 128 + var3];
+                            var6[var7 + 3] = MapData.this.colors[(var7 + var10) * 128 + var3];
                         }
 
                         this.field_76210_c[var3] = -1;

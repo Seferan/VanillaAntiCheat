@@ -24,8 +24,7 @@ public class BlockGlowstone extends Block
      */
     public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
     {
-        return MathHelper.clamp_int(this.quantityDropped(p_149679_2_)
-                + p_149679_2_.nextInt(p_149679_1_ + 1), 1, 4);
+        return MathHelper.clamp_int(this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(p_149679_1_ + 1), 1, 4);
     }
 
     /**
@@ -36,8 +35,7 @@ public class BlockGlowstone extends Block
         return 2 + p_149745_1_.nextInt(3);
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return Items.glowstone_dust;
     }

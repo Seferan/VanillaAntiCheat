@@ -20,8 +20,7 @@ public class BiomeGenMesa extends BiomeGenBase
     private boolean field_150620_aI;
     private static final String __OBFID = "CL_00000176";
 
-    public BiomeGenMesa(int p_i45380_1_, boolean p_i45380_2_,
-            boolean p_i45380_3_)
+    public BiomeGenMesa(int p_i45380_1_, boolean p_i45380_2_, boolean p_i45380_3_)
     {
         super(p_i45380_1_);
         this.field_150626_aH = p_i45380_2_;
@@ -55,18 +54,14 @@ public class BiomeGenMesa extends BiomeGenBase
         super.decorate(par1World, par2Random, par3, par4);
     }
 
-    public void func_150573_a(World p_150573_1_, Random p_150573_2_,
-            Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_,
-            int p_150573_6_, double p_150573_7_)
+    public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
     {
-        if (this.field_150621_aC == null
-                || this.field_150622_aD != p_150573_1_.getSeed())
+        if (this.field_150621_aC == null || this.field_150622_aD != p_150573_1_.getSeed())
         {
             this.func_150619_a(p_150573_1_.getSeed());
         }
 
-        if (this.field_150623_aE == null || this.field_150624_aF == null
-                || this.field_150622_aD != p_150573_1_.getSeed())
+        if (this.field_150623_aE == null || this.field_150624_aF == null || this.field_150622_aD != p_150573_1_.getSeed())
         {
             Random var9 = new Random(this.field_150622_aD);
             this.field_150623_aE = new NoiseGeneratorPerlin(var9, 4);
@@ -82,15 +77,12 @@ public class BiomeGenMesa extends BiomeGenBase
         {
             var11 = (p_150573_5_ & -16) + (p_150573_6_ & 15);
             var12 = (p_150573_6_ & -16) + (p_150573_5_ & 15);
-            double var13 = Math.min(Math.abs(p_150573_7_),
-                    this.field_150623_aE.func_151601_a((double)var11 * 0.25D,
-                            (double)var12 * 0.25D));
+            double var13 = Math.min(Math.abs(p_150573_7_), this.field_150623_aE.func_151601_a((double)var11 * 0.25D, (double)var12 * 0.25D));
 
             if (var13 > 0.0D)
             {
                 double var15 = 0.001953125D;
-                double var17 = Math.abs(this.field_150624_aF.func_151601_a(
-                        (double)var11 * var15, (double)var12 * var15));
+                double var17 = Math.abs(this.field_150624_aF.func_151601_a((double)var11 * var15, (double)var12 * var15));
                 var25 = var13 * var13 * 2.5D;
                 double var19 = Math.ceil(var17 * 50.0D) + 14.0D;
 
@@ -118,8 +110,7 @@ public class BiomeGenMesa extends BiomeGenBase
         {
             int var22 = (var12 * 16 + var11) * var20 + var21;
 
-            if ((p_150573_3_[var22] == null || p_150573_3_[var22].getMaterial() == Material.air)
-                    && var21 < (int)var25)
+            if ((p_150573_3_[var22] == null || p_150573_3_[var22].getMaterial() == Material.air) && var21 < (int)var25)
             {
                 p_150573_3_[var22] = Blocks.stone;
             }
@@ -153,8 +144,7 @@ public class BiomeGenMesa extends BiomeGenBase
                                 var27 = this.fillerBlock;
                             }
 
-                            if (var21 < 63
-                                    && (var14 == null || var14.getMaterial() == Material.air))
+                            if (var21 < 63 && (var14 == null || var14.getMaterial() == Material.air))
                             {
                                 var14 = Blocks.water;
                             }
@@ -163,8 +153,7 @@ public class BiomeGenMesa extends BiomeGenBase
 
                             if (var21 >= 62)
                             {
-                                if (this.field_150620_aI
-                                        && var21 > 86 + var16 * 2)
+                                if (this.field_150620_aI && var21 > 86 + var16 * 2)
                                 {
                                     if (var28)
                                     {
@@ -184,9 +173,7 @@ public class BiomeGenMesa extends BiomeGenBase
                                     {
                                         if (!var28)
                                         {
-                                            var24 = this.func_150618_d(
-                                                    p_150573_5_, var21,
-                                                    p_150573_6_);
+                                            var24 = this.func_150618_d(p_150573_5_, var21, p_150573_6_);
                                         }
                                     }
                                     else
@@ -232,8 +219,7 @@ public class BiomeGenMesa extends BiomeGenBase
                             }
                             else
                             {
-                                var24 = this.func_150618_d(p_150573_5_, var21,
-                                        p_150573_6_);
+                                var24 = this.func_150618_d(p_150573_5_, var21, p_150573_6_);
 
                                 if (var24 < 16)
                                 {
@@ -345,17 +331,14 @@ public class BiomeGenMesa extends BiomeGenBase
 
     private byte func_150618_d(int p_150618_1_, int p_150618_2_, int p_150618_3_)
     {
-        int var4 = (int)Math.round(this.field_150625_aG.func_151601_a(
-                (double)p_150618_1_ * 1.0D / 512.0D,
-                (double)p_150618_1_ * 1.0D / 512.0D) * 2.0D);
+        int var4 = (int)Math.round(this.field_150625_aG.func_151601_a((double)p_150618_1_ * 1.0D / 512.0D, (double)p_150618_1_ * 1.0D / 512.0D) * 2.0D);
         return this.field_150621_aC[(p_150618_2_ + var4 + 64) % 64];
     }
 
     protected BiomeGenBase func_150566_k()
     {
         boolean var1 = this.biomeID == BiomeGenBase.field_150589_Z.biomeID;
-        BiomeGenMesa var2 = new BiomeGenMesa(this.biomeID + 128, var1,
-                this.field_150620_aI);
+        BiomeGenMesa var2 = new BiomeGenMesa(this.biomeID + 128, var1, this.field_150620_aI);
 
         if (!var1)
         {

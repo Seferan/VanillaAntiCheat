@@ -35,39 +35,30 @@ public class CommandBanPlayer extends CommandBase
      */
     public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
     {
-        return MinecraftServer.getServer().getConfigurationManager()
-                .getBannedPlayers().isListActive()
-                && super.canCommandSenderUseCommand(par1ICommandSender);
+        return MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().isListActive() && super.canCommandSenderUseCommand(par1ICommandSender);
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length >= 1 && par2ArrayOfStr[0].length() > 0)
         {
-            EntityPlayerMP var3 = MinecraftServer.getServer()
-                    .getConfigurationManager()
-                    .getPlayerEntity(par2ArrayOfStr[0]);
+            EntityPlayerMP var3 = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(par2ArrayOfStr[0]);
             BanEntry var4 = new BanEntry(par2ArrayOfStr[0]);
             var4.setBannedBy(par1ICommandSender.getCommandSenderName());
 
             if (par2ArrayOfStr.length >= 2)
             {
-                var4.setBanReason(func_147178_a(par1ICommandSender,
-                        par2ArrayOfStr, 1).getUnformattedText());
+                var4.setBanReason(func_147178_a(par1ICommandSender, par2ArrayOfStr, 1).getUnformattedText());
             }
 
-            MinecraftServer.getServer().getConfigurationManager()
-                    .getBannedPlayers().put(var4);
+            MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(var4);
 
             if (var3 != null)
             {
-                var3.playerNetServerHandler
-                        .kickPlayerFromServer("You are banned from this server.");
+                var3.playerNetServerHandler.kickPlayerFromServer("You are banned from this server.");
             }
 
-            notifyAdmins(par1ICommandSender, "commands.ban.success",
-                    new Object[] {par2ArrayOfStr[0]});
+            notifyAdmins(par1ICommandSender, "commands.ban.success", new Object[] {par2ArrayOfStr[0]});
         }
         else
         {
@@ -79,11 +70,8 @@ public class CommandBanPlayer extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(
-                par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames())
-                : null;
+        return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames()) : null;
     }
 }

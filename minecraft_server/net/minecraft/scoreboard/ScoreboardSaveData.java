@@ -52,8 +52,7 @@ public class ScoreboardSaveData extends WorldSavedData
 
             if (par1NBTTagCompound.func_150297_b("DisplaySlots", 10))
             {
-                this.func_96504_c(par1NBTTagCompound
-                        .getCompoundTag("DisplaySlots"));
+                this.func_96504_c(par1NBTTagCompound.getCompoundTag("DisplaySlots"));
             }
 
             if (par1NBTTagCompound.func_150297_b("Teams", 9))
@@ -68,8 +67,7 @@ public class ScoreboardSaveData extends WorldSavedData
         for (int var2 = 0; var2 < par1NBTTagList.tagCount(); ++var2)
         {
             NBTTagCompound var3 = par1NBTTagList.getCompoundTagAt(var2);
-            ScorePlayerTeam var4 = this.theScoreboard.createTeam(var3
-                    .getString("Name"));
+            ScorePlayerTeam var4 = this.theScoreboard.createTeam(var3.getString("Name"));
             var4.setTeamName(var3.getString("DisplayName"));
             var4.setNamePrefix(var3.getString("Prefix"));
             var4.setNameSuffix(var3.getString("Suffix"));
@@ -81,22 +79,18 @@ public class ScoreboardSaveData extends WorldSavedData
 
             if (var3.func_150297_b("SeeFriendlyInvisibles", 99))
             {
-                var4.setSeeFriendlyInvisiblesEnabled(var3
-                        .getBoolean("SeeFriendlyInvisibles"));
+                var4.setSeeFriendlyInvisiblesEnabled(var3.getBoolean("SeeFriendlyInvisibles"));
             }
 
             this.func_96502_a(var4, var3.getTagList("Players", 8));
         }
     }
 
-    protected void func_96502_a(ScorePlayerTeam par1ScorePlayerTeam,
-            NBTTagList par2NBTTagList)
+    protected void func_96502_a(ScorePlayerTeam par1ScorePlayerTeam, NBTTagList par2NBTTagList)
     {
         for (int var3 = 0; var3 < par2NBTTagList.tagCount(); ++var3)
         {
-            this.theScoreboard.func_151392_a(
-                    par2NBTTagList.getStringTagAt(var3),
-                    par1ScorePlayerTeam.getRegisteredName());
+            this.theScoreboard.func_151392_a(par2NBTTagList.getStringTagAt(var3), par1ScorePlayerTeam.getRegisteredName());
         }
     }
 
@@ -118,10 +112,8 @@ public class ScoreboardSaveData extends WorldSavedData
         for (int var2 = 0; var2 < par1NBTTagList.tagCount(); ++var2)
         {
             NBTTagCompound var3 = par1NBTTagList.getCompoundTagAt(var2);
-            IScoreObjectiveCriteria var4 = (IScoreObjectiveCriteria)IScoreObjectiveCriteria.field_96643_a
-                    .get(var3.getString("CriteriaName"));
-            ScoreObjective var5 = this.theScoreboard.addScoreObjective(
-                    var3.getString("Name"), var4);
+            IScoreObjectiveCriteria var4 = (IScoreObjectiveCriteria)IScoreObjectiveCriteria.field_96643_a.get(var3.getString("CriteriaName"));
+            ScoreObjective var5 = this.theScoreboard.addScoreObjective(var3.getString("Name"), var4);
             var5.setDisplayName(var3.getString("DisplayName"));
         }
     }
@@ -131,10 +123,8 @@ public class ScoreboardSaveData extends WorldSavedData
         for (int var2 = 0; var2 < par1NBTTagList.tagCount(); ++var2)
         {
             NBTTagCompound var3 = par1NBTTagList.getCompoundTagAt(var2);
-            ScoreObjective var4 = this.theScoreboard.getObjective(var3
-                    .getString("Objective"));
-            Score var5 = this.theScoreboard.func_96529_a(
-                    var3.getString("Name"), var4);
+            ScoreObjective var4 = this.theScoreboard.getObjective(var3.getString("Objective"));
+            Score var5 = this.theScoreboard.func_96529_a(var3.getString("Name"), var4);
             var5.setScorePoints(var3.getInteger("Score"));
         }
     }

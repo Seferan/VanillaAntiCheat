@@ -45,22 +45,17 @@ public class EnchantmentThorns extends Enchantment
 
     public boolean canApply(ItemStack par1ItemStack)
     {
-        return par1ItemStack.getItem() instanceof ItemArmor ? true : super
-                .canApply(par1ItemStack);
+        return par1ItemStack.getItem() instanceof ItemArmor ? true : super.canApply(par1ItemStack);
     }
 
-    public void func_151367_b(EntityLivingBase p_151367_1_, Entity p_151367_2_,
-            int p_151367_3_)
+    public void func_151367_b(EntityLivingBase p_151367_1_, Entity p_151367_2_, int p_151367_3_)
     {
         Random var4 = p_151367_1_.getRNG();
-        ItemStack var5 = EnchantmentHelper.func_92099_a(Enchantment.thorns,
-                p_151367_1_);
+        ItemStack var5 = EnchantmentHelper.func_92099_a(Enchantment.thorns, p_151367_1_);
 
         if (func_92094_a(p_151367_3_, var4))
         {
-            p_151367_2_.attackEntityFrom(
-                    DamageSource.causeThornsDamage(p_151367_1_),
-                    (float)func_92095_b(p_151367_3_, var4));
+            p_151367_2_.attackEntityFrom(DamageSource.causeThornsDamage(p_151367_1_), (float)func_92095_b(p_151367_3_, var4));
             p_151367_2_.playSound("damage.thorns", 0.5F, 1.0F);
 
             if (var5 != null)

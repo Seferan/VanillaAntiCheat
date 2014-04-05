@@ -23,10 +23,8 @@ public class WeightedRandomFishable extends WeightedRandom.Item
 
         if (this.field_150712_c > 0.0F)
         {
-            int var3 = (int)(this.field_150712_c * (float)this.field_150711_b
-                    .getMaxDamage());
-            int var4 = var2.getMaxDamage()
-                    - p_150708_1_.nextInt(p_150708_1_.nextInt(var3) + 1);
+            int var3 = (int)(this.field_150712_c * (float)this.field_150711_b.getMaxDamage());
+            int var4 = var2.getMaxDamage() - p_150708_1_.nextInt(p_150708_1_.nextInt(var3) + 1);
 
             if (var4 > var3)
             {

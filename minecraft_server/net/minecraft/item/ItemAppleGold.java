@@ -17,29 +17,23 @@ public class ItemAppleGold extends ItemFood
 
     public EnumRarity func_77613_e(ItemStack p_77613_1_)
     {
-        return p_77613_1_.getItemDamage() == 0 ? EnumRarity.rare
-                : EnumRarity.epic;
+        return p_77613_1_.getItemDamage() == 0 ? EnumRarity.rare : EnumRarity.epic;
     }
 
-    protected void onFoodEaten(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    protected void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         if (!par2World.isClient)
         {
-            par3EntityPlayer.addPotionEffect(new PotionEffect(
-                    Potion.field_76444_x.id, 2400, 0));
+            par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.field_76444_x.id, 2400, 0));
         }
 
         if (par1ItemStack.getItemDamage() > 0)
         {
             if (!par2World.isClient)
             {
-                par3EntityPlayer.addPotionEffect(new PotionEffect(
-                        Potion.regeneration.id, 600, 4));
-                par3EntityPlayer.addPotionEffect(new PotionEffect(
-                        Potion.resistance.id, 6000, 0));
-                par3EntityPlayer.addPotionEffect(new PotionEffect(
-                        Potion.fireResistance.id, 6000, 0));
+                par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.id, 600, 4));
+                par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id, 6000, 0));
+                par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 6000, 0));
             }
         }
         else

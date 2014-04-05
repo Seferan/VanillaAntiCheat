@@ -53,8 +53,7 @@ public class EntityEnderCrystal extends Entity
         int var2 = MathHelper.floor_double(this.posY);
         int var3 = MathHelper.floor_double(this.posZ);
 
-        if (this.worldObj.provider instanceof WorldProviderEnd
-                && this.worldObj.getBlock(var1, var2, var3) != Blocks.fire)
+        if (this.worldObj.provider instanceof WorldProviderEnd && this.worldObj.getBlock(var1, var2, var3) != Blocks.fire)
         {
             this.worldObj.setBlock(var1, var2, var3, Blocks.fire);
         }
@@ -104,8 +103,7 @@ public class EntityEnderCrystal extends Entity
 
                     if (!this.worldObj.isClient)
                     {
-                        this.worldObj.createExplosion((Entity)null, this.posX,
-                                this.posY, this.posZ, 6.0F, true);
+                        this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 6.0F, true);
                     }
                 }
             }

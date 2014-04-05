@@ -64,14 +64,12 @@ public class ChatComponentText extends ChatComponentStyle
         else
         {
             ChatComponentText var2 = (ChatComponentText)par1Obj;
-            return this.text.equals(var2.getChatComponentText_TextValue())
-                    && super.equals(par1Obj);
+            return this.text.equals(var2.getChatComponentText_TextValue()) && super.equals(par1Obj);
         }
     }
 
     public String toString()
     {
-        return "TextComponent{text=\'" + this.text + '\'' + ", siblings="
-                + this.siblings + ", style=" + this.getChatStyle() + '}';
+        return "TextComponent{text=\'" + this.text + '\'' + ", siblings=" + this.siblings + ", style=" + this.getChatStyle() + '}';
     }
 }

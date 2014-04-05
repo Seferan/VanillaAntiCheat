@@ -9,8 +9,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-public class JsonSerializableSet extends ForwardingSet implements
-        IJsonSerializable
+public class JsonSerializableSet extends ForwardingSet implements IJsonSerializable
 {
     /** The set for this ForwardingSet to forward methods to. */
     private final Set underlyingSet = Sets.newHashSet();

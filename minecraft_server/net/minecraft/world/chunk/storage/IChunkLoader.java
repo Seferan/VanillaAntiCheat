@@ -12,8 +12,7 @@ public interface IChunkLoader
      */
     Chunk loadChunk(World var1, int var2, int var3) throws IOException;
 
-    void saveChunk(World var1, Chunk var2) throws MinecraftException,
-            IOException;
+    void saveChunk(World var1, Chunk var2) throws MinecraftException, IOException;
 
     /**
      * Save extra data associated with this Chunk not normally saved during

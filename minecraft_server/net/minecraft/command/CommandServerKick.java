@@ -26,14 +26,11 @@ public class CommandServerKick extends CommandBase
         return "commands.kick.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length > 0 && par2ArrayOfStr[0].length() > 1)
         {
-            EntityPlayerMP var3 = MinecraftServer.getServer()
-                    .getConfigurationManager()
-                    .getPlayerEntity(par2ArrayOfStr[0]);
+            EntityPlayerMP var3 = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(par2ArrayOfStr[0]);
             String var4 = "Kicked by an operator.";
             boolean var5 = false;
 
@@ -45,8 +42,7 @@ public class CommandServerKick extends CommandBase
             {
                 if (par2ArrayOfStr.length >= 2)
                 {
-                    var4 = func_147178_a(par1ICommandSender, par2ArrayOfStr, 1)
-                            .getUnformattedText();
+                    var4 = func_147178_a(par1ICommandSender, par2ArrayOfStr, 1).getUnformattedText();
                     var5 = true;
                 }
 
@@ -54,14 +50,11 @@ public class CommandServerKick extends CommandBase
 
                 if (var5)
                 {
-                    notifyAdmins(par1ICommandSender,
-                            "commands.kick.success.reason",
-                            new Object[] {var3.getCommandSenderName(), var4});
+                    notifyAdmins(par1ICommandSender, "commands.kick.success.reason", new Object[] {var3.getCommandSenderName(), var4});
                 }
                 else
                 {
-                    notifyAdmins(par1ICommandSender, "commands.kick.success",
-                            new Object[] {var3.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.kick.success", new Object[] {var3.getCommandSenderName()});
                 }
             }
         }
@@ -75,11 +68,8 @@ public class CommandServerKick extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(
-                par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames())
-                : null;
+        return par2ArrayOfStr.length >= 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames()) : null;
     }
 }

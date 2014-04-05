@@ -27,8 +27,7 @@ public class EntityAICreeperSwell extends EntityAIBase
     public boolean shouldExecute()
     {
         EntityLivingBase var1 = this.swellingCreeper.getAttackTarget();
-        return this.swellingCreeper.getCreeperState() > 0 || var1 != null
-                && this.swellingCreeper.getDistanceSqToEntity(var1) < 9.0D;
+        return this.swellingCreeper.getCreeperState() > 0 || var1 != null && this.swellingCreeper.getDistanceSqToEntity(var1) < 9.0D;
     }
 
     /**
@@ -57,13 +56,11 @@ public class EntityAICreeperSwell extends EntityAIBase
         {
             this.swellingCreeper.setCreeperState(-1);
         }
-        else if (this.swellingCreeper
-                .getDistanceSqToEntity(this.creeperAttackTarget) > 49.0D)
+        else if (this.swellingCreeper.getDistanceSqToEntity(this.creeperAttackTarget) > 49.0D)
         {
             this.swellingCreeper.setCreeperState(-1);
         }
-        else if (!this.swellingCreeper.getEntitySenses().canSee(
-                this.creeperAttackTarget))
+        else if (!this.swellingCreeper.getEntitySenses().canSee(this.creeperAttackTarget))
         {
             this.swellingCreeper.setCreeperState(-1);
         }

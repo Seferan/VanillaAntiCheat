@@ -41,8 +41,7 @@ public class S0CPacketSpawnPlayer extends Packet
         this.field_148951_f = (byte)((int)(p_i45171_1_.rotationYaw * 256.0F / 360.0F));
         this.field_148952_g = (byte)((int)(p_i45171_1_.rotationPitch * 256.0F / 360.0F));
         ItemStack var2 = p_i45171_1_.inventory.getCurrentItem();
-        this.field_148959_h = var2 == null ? 0 : Item.getIdFromItem(var2
-                .getItem());
+        this.field_148959_h = var2 == null ? 0 : Item.getIdFromItem(var2.getItem());
         this.field_148960_i = p_i45171_1_.getDataWatcher();
     }
 
@@ -52,17 +51,14 @@ public class S0CPacketSpawnPlayer extends Packet
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
         this.field_148957_a = p_148837_1_.readVarIntFromBuffer();
-        this.field_148955_b = new GameProfile(
-                p_148837_1_.readStringFromBuffer(36),
-                p_148837_1_.readStringFromBuffer(16));
+        this.field_148955_b = new GameProfile(p_148837_1_.readStringFromBuffer(36), p_148837_1_.readStringFromBuffer(16));
         this.field_148956_c = p_148837_1_.readInt();
         this.field_148953_d = p_148837_1_.readInt();
         this.field_148954_e = p_148837_1_.readInt();
         this.field_148951_f = p_148837_1_.readByte();
         this.field_148952_g = p_148837_1_.readByte();
         this.field_148959_h = p_148837_1_.readShort();
-        this.field_148958_j = DataWatcher
-                .readWatchedListFromPacketBuffer(p_148837_1_);
+        this.field_148958_j = DataWatcher.readWatchedListFromPacketBuffer(p_148837_1_);
     }
 
     /**
@@ -93,15 +89,7 @@ public class S0CPacketSpawnPlayer extends Packet
      */
     public String serialize()
     {
-        return String
-                .format("id=%d, gameProfile=\'%s\', x=%.2f, y=%.2f, z=%.2f, carried=%d",
-                        new Object[] {
-                                Integer.valueOf(this.field_148957_a),
-                                this.field_148955_b,
-                                Float.valueOf((float)this.field_148956_c / 32.0F),
-                                Float.valueOf((float)this.field_148953_d / 32.0F),
-                                Float.valueOf((float)this.field_148954_e / 32.0F),
-                                Integer.valueOf(this.field_148959_h)});
+        return String.format("id=%d, gameProfile=\'%s\', x=%.2f, y=%.2f, z=%.2f, carried=%d", new Object[] {Integer.valueOf(this.field_148957_a), this.field_148955_b, Float.valueOf((float)this.field_148956_c / 32.0F), Float.valueOf((float)this.field_148953_d / 32.0F), Float.valueOf((float)this.field_148954_e / 32.0F), Integer.valueOf(this.field_148959_h)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

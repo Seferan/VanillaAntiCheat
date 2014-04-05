@@ -15,8 +15,7 @@ public class InventoryMerchant implements IInventory
     private int currentRecipeIndex;
     private static final String __OBFID = "CL_00001756";
 
-    public InventoryMerchant(EntityPlayer par1EntityPlayer,
-            IMerchant par2IMerchant)
+    public InventoryMerchant(EntityPlayer par1EntityPlayer, IMerchant par2IMerchant)
     {
         this.thePlayer = par1EntityPlayer;
         this.theMerchant = par2IMerchant;
@@ -124,8 +123,7 @@ public class InventoryMerchant implements IInventory
     {
         this.theInventory[par1] = par2ItemStack;
 
-        if (par2ItemStack != null
-                && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
         {
             par2ItemStack.stackSize = this.getInventoryStackLimit();
         }
@@ -213,30 +211,25 @@ public class InventoryMerchant implements IInventory
         }
         else
         {
-            MerchantRecipeList var3 = this.theMerchant
-                    .getRecipes(this.thePlayer);
+            MerchantRecipeList var3 = this.theMerchant.getRecipes(this.thePlayer);
 
             if (var3 != null)
             {
-                MerchantRecipe var4 = var3.canRecipeBeUsed(var1, var2,
-                        this.currentRecipeIndex);
+                MerchantRecipe var4 = var3.canRecipeBeUsed(var1, var2, this.currentRecipeIndex);
 
                 if (var4 != null && !var4.func_82784_g())
                 {
                     this.currentRecipe = var4;
-                    this.setInventorySlotContents(2, var4.getItemToSell()
-                            .copy());
+                    this.setInventorySlotContents(2, var4.getItemToSell().copy());
                 }
                 else if (var2 != null)
                 {
-                    var4 = var3.canRecipeBeUsed(var2, var1,
-                            this.currentRecipeIndex);
+                    var4 = var3.canRecipeBeUsed(var2, var1, this.currentRecipeIndex);
 
                     if (var4 != null && !var4.func_82784_g())
                     {
                         this.currentRecipe = var4;
-                        this.setInventorySlotContents(2, var4.getItemToSell()
-                                .copy());
+                        this.setInventorySlotContents(2, var4.getItemToSell().copy());
                     }
                     else
                     {

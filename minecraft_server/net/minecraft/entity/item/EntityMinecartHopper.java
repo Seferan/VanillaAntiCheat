@@ -12,8 +12,7 @@ import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityMinecartHopper extends EntityMinecartContainer implements
-        IHopper
+public class EntityMinecartHopper extends EntityMinecartContainer implements IHopper
 {
     /** Whether this hopper minecart is being blocked by an activator rail. */
     private boolean isBlocked = true;
@@ -25,8 +24,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements
         super(par1World);
     }
 
-    public EntityMinecartHopper(World par1World, double par2, double par4,
-            double par6)
+    public EntityMinecartHopper(World par1World, double par2, double par4, double par6)
     {
         super(par1World, par2, par4, par6);
     }
@@ -136,8 +134,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements
     {
         super.onUpdate();
 
-        if (!this.worldObj.isClient && this.isEntityAlive()
-                && this.getBlocked())
+        if (!this.worldObj.isClient && this.isEntityAlive() && this.getBlocked())
         {
             --this.transferTicker;
 
@@ -162,10 +159,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements
         }
         else
         {
-            List var1 = this.worldObj.selectEntitiesWithinAABB(
-                    EntityItem.class,
-                    this.boundingBox.expand(0.25D, 0.0D, 0.25D),
-                    IEntitySelector.selectAnything);
+            List var1 = this.worldObj.selectEntitiesWithinAABB(EntityItem.class, this.boundingBox.expand(0.25D, 0.0D, 0.25D), IEntitySelector.selectAnything);
 
             if (var1.size() > 0)
             {

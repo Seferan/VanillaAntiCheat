@@ -76,9 +76,7 @@ public abstract class ChatComponentStyle implements IChatComponent
 
     public Iterator iterator()
     {
-        return Iterators.concat(
-                Iterators.forArray(new ChatComponentStyle[] {this}),
-                createDeepCopyIterator(this.siblings));
+        return Iterators.concat(Iterators.forArray(new ChatComponentStyle[] {this}), createDeepCopyIterator(this.siblings));
     }
 
     /**
@@ -106,21 +104,20 @@ public abstract class ChatComponentStyle implements IChatComponent
      */
     public static Iterator createDeepCopyIterator(Iterable p_150262_0_)
     {
-        Iterator var1 = Iterators.concat(Iterators.transform(
-                p_150262_0_.iterator(), new Function()
-                {
-                    private static final String __OBFID = "CL_00001258";
+        Iterator var1 = Iterators.concat(Iterators.transform(p_150262_0_.iterator(), new Function()
+        {
+            private static final String __OBFID = "CL_00001258";
 
-                    public Iterator apply(IChatComponent p_150665_1_)
-                    {
-                        return p_150665_1_.iterator();
-                    }
+            public Iterator apply(IChatComponent p_150665_1_)
+            {
+                return p_150665_1_.iterator();
+            }
 
-                    public Object apply(Object p_apply_1_)
-                    {
-                        return this.apply((IChatComponent)p_apply_1_);
-                    }
-                }));
+            public Object apply(Object p_apply_1_)
+            {
+                return this.apply((IChatComponent)p_apply_1_);
+            }
+        }));
         var1 = Iterators.transform(var1, new Function()
         {
             private static final String __OBFID = "CL_00001259";
@@ -153,8 +150,7 @@ public abstract class ChatComponentStyle implements IChatComponent
         else
         {
             ChatComponentStyle var2 = (ChatComponentStyle)par1Obj;
-            return this.siblings.equals(var2.siblings)
-                    && this.getChatStyle().equals(var2.getChatStyle());
+            return this.siblings.equals(var2.siblings) && this.getChatStyle().equals(var2.getChatStyle());
         }
     }
 
@@ -165,7 +161,6 @@ public abstract class ChatComponentStyle implements IChatComponent
 
     public String toString()
     {
-        return "BaseComponent{style=" + this.style + ", siblings="
-                + this.siblings + '}';
+        return "BaseComponent{style=" + this.style + ", siblings=" + this.siblings + '}';
     }
 }

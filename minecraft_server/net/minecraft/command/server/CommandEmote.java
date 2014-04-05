@@ -30,24 +30,12 @@ public class CommandEmote extends CommandBase
         return "commands.me.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length > 0)
         {
-            IChatComponent var3 = func_147176_a(par1ICommandSender,
-                    par2ArrayOfStr, 0,
-                    par1ICommandSender.canCommandSenderUseCommand(1, "me"));
-            MinecraftServer
-                    .getServer()
-                    .getConfigurationManager()
-                    .func_148539_a(
-                            new ChatComponentTranslation(
-                                    "chat.type.emote",
-                                    new Object[] {
-                                            par1ICommandSender
-                                                    .getUsernameAsIChatComponent(),
-                                            var3}));
+            IChatComponent var3 = func_147176_a(par1ICommandSender, par2ArrayOfStr, 0, par1ICommandSender.canCommandSenderUseCommand(1, "me"));
+            MinecraftServer.getServer().getConfigurationManager().func_148539_a(new ChatComponentTranslation("chat.type.emote", new Object[] {par1ICommandSender.getUsernameAsIChatComponent(), var3}));
         }
         else
         {
@@ -59,10 +47,8 @@ public class CommandEmote extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer
-                .getServer().getAllUsernames());
+        return getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames());
     }
 }

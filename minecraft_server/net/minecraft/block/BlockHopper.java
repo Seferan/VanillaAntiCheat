@@ -30,39 +30,28 @@ public class BlockHopper extends BlockContainer
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_,
-            int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_,
-            List p_149743_6_, Entity p_149743_7_)
+    public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         float var8 = 0.125F;
         this.setBlockBounds(0.0F, 0.0F, 0.0F, var8, 1.0F, 1.0F);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var8);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         this.setBlockBounds(1.0F - var8, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         this.setBlockBounds(0.0F, 0.0F, 1.0F - var8, 1.0F, 1.0F, 1.0F);
-        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_,
-                p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
+        super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public int onBlockPlaced(World p_149660_1_, int p_149660_2_,
-            int p_149660_3_, int p_149660_4_, int p_149660_5_,
-            float p_149660_6_, float p_149660_7_, float p_149660_8_,
-            int p_149660_9_)
+    public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
     {
         int var10 = Facing.oppositeSide[p_149660_5_];
 
@@ -86,23 +75,18 @@ public class BlockHopper extends BlockContainer
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_,
-            int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_,
-            ItemStack p_149689_6_)
+    public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        super.onBlockPlacedBy(p_149689_1_, p_149689_2_, p_149689_3_,
-                p_149689_4_, p_149689_5_, p_149689_6_);
+        super.onBlockPlacedBy(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_, p_149689_5_, p_149689_6_);
 
         if (p_149689_6_.hasDisplayName())
         {
-            TileEntityHopper var7 = func_149920_e(p_149689_1_, p_149689_2_,
-                    p_149689_3_, p_149689_4_);
+            TileEntityHopper var7 = func_149920_e(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_);
             var7.func_145886_a(p_149689_6_.getDisplayName());
         }
     }
 
-    public void onBlockAdded(World p_149726_1_, int p_149726_2_,
-            int p_149726_3_, int p_149726_4_)
+    public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
         this.func_149919_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
@@ -111,10 +95,7 @@ public class BlockHopper extends BlockContainer
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
-            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
-            int p_149727_6_, float p_149727_7_, float p_149727_8_,
-            float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         if (p_149727_1_.isClient)
         {
@@ -122,8 +103,7 @@ public class BlockHopper extends BlockContainer
         }
         else
         {
-            TileEntityHopper var10 = func_149920_e(p_149727_1_, p_149727_2_,
-                    p_149727_3_, p_149727_4_);
+            TileEntityHopper var10 = func_149920_e(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
 
             if (var10 != null)
             {
@@ -134,34 +114,27 @@ public class BlockHopper extends BlockContainer
         }
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         this.func_149919_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
     }
 
-    private void func_149919_e(World p_149919_1_, int p_149919_2_,
-            int p_149919_3_, int p_149919_4_)
+    private void func_149919_e(World p_149919_1_, int p_149919_2_, int p_149919_3_, int p_149919_4_)
     {
-        int var5 = p_149919_1_.getBlockMetadata(p_149919_2_, p_149919_3_,
-                p_149919_4_);
+        int var5 = p_149919_1_.getBlockMetadata(p_149919_2_, p_149919_3_, p_149919_4_);
         int var6 = func_149918_b(var5);
-        boolean var7 = !p_149919_1_.isBlockIndirectlyGettingPowered(
-                p_149919_2_, p_149919_3_, p_149919_4_);
+        boolean var7 = !p_149919_1_.isBlockIndirectlyGettingPowered(p_149919_2_, p_149919_3_, p_149919_4_);
         boolean var8 = func_149917_c(var5);
 
         if (var7 != var8)
         {
-            p_149919_1_.setBlockMetadata(p_149919_2_, p_149919_3_, p_149919_4_,
-                    var6 | (var7 ? 0 : 8), 4);
+            p_149919_1_.setBlockMetadata(p_149919_2_, p_149919_3_, p_149919_4_, var6 | (var7 ? 0 : 8), 4);
         }
     }
 
-    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_,
-            int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+    public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        TileEntityHopper var7 = (TileEntityHopper)p_149749_1_.getTileEntity(
-                p_149749_2_, p_149749_3_, p_149749_4_);
+        TileEntityHopper var7 = (TileEntityHopper)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
 
         if (var7 != null)
         {
@@ -185,38 +158,26 @@ public class BlockHopper extends BlockContainer
                         }
 
                         var9.stackSize -= var13;
-                        EntityItem var14 = new EntityItem(p_149749_1_,
-                                (double)((float)p_149749_2_ + var10),
-                                (double)((float)p_149749_3_ + var11),
-                                (double)((float)p_149749_4_ + var12),
-                                new ItemStack(var9.getItem(), var13,
-                                        var9.getItemDamage()));
+                        EntityItem var14 = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + var10), (double)((float)p_149749_3_ + var11), (double)((float)p_149749_4_ + var12), new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
 
                         if (var9.hasTagCompound())
                         {
-                            var14.getEntityItem().setTagCompound(
-                                    (NBTTagCompound)var9.getTagCompound()
-                                            .copy());
+                            var14.getEntityItem().setTagCompound((NBTTagCompound)var9.getTagCompound().copy());
                         }
 
                         float var15 = 0.05F;
-                        var14.motionX = (double)((float)this.field_149922_a
-                                .nextGaussian() * var15);
-                        var14.motionY = (double)((float)this.field_149922_a
-                                .nextGaussian() * var15 + 0.2F);
-                        var14.motionZ = (double)((float)this.field_149922_a
-                                .nextGaussian() * var15);
+                        var14.motionX = (double)((float)this.field_149922_a.nextGaussian() * var15);
+                        var14.motionY = (double)((float)this.field_149922_a.nextGaussian() * var15 + 0.2F);
+                        var14.motionZ = (double)((float)this.field_149922_a.nextGaussian() * var15);
                         p_149749_1_.spawnEntityInWorld(var14);
                     }
                 }
             }
 
-            p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_,
-                    p_149749_5_);
+            p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_);
         }
 
-        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_,
-                p_149749_5_, p_149749_6_);
+        super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
 
     /**
@@ -252,17 +213,13 @@ public class BlockHopper extends BlockContainer
         return true;
     }
 
-    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_,
-            int p_149736_3_, int p_149736_4_, int p_149736_5_)
+    public int getComparatorInputOverride(World p_149736_1_, int p_149736_2_, int p_149736_3_, int p_149736_4_, int p_149736_5_)
     {
-        return Container.calcRedstoneFromInventory(func_149920_e(p_149736_1_,
-                p_149736_2_, p_149736_3_, p_149736_4_));
+        return Container.calcRedstoneFromInventory(func_149920_e(p_149736_1_, p_149736_2_, p_149736_3_, p_149736_4_));
     }
 
-    public static TileEntityHopper func_149920_e(IBlockAccess p_149920_0_,
-            int p_149920_1_, int p_149920_2_, int p_149920_3_)
+    public static TileEntityHopper func_149920_e(IBlockAccess p_149920_0_, int p_149920_1_, int p_149920_2_, int p_149920_3_)
     {
-        return (TileEntityHopper)p_149920_0_.getTileEntity(p_149920_1_,
-                p_149920_2_, p_149920_3_);
+        return (TileEntityHopper)p_149920_0_.getTileEntity(p_149920_1_, p_149920_2_, p_149920_3_);
     }
 }

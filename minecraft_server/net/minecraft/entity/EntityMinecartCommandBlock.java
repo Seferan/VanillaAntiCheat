@@ -19,23 +19,13 @@ public class EntityMinecartCommandBlock extends EntityMinecart
 
         public void func_145756_e()
         {
-            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(23,
-                    this.func_145753_i());
-            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(
-                    24,
-                    IChatComponent.Serializer.func_150696_a(this
-                            .func_145749_h()));
+            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(23, this.func_145753_i());
+            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(this.func_145749_h()));
         }
 
         public ChunkCoordinates getCommandSenderPosition()
         {
-            return new ChunkCoordinates(
-                    MathHelper
-                            .floor_double(EntityMinecartCommandBlock.this.posX),
-                    MathHelper
-                            .floor_double(EntityMinecartCommandBlock.this.posY + 0.5D),
-                    MathHelper
-                            .floor_double(EntityMinecartCommandBlock.this.posZ));
+            return new ChunkCoordinates(MathHelper.floor_double(EntityMinecartCommandBlock.this.posX), MathHelper.floor_double(EntityMinecartCommandBlock.this.posY + 0.5D), MathHelper.floor_double(EntityMinecartCommandBlock.this.posZ));
         }
 
         public World getEntityWorld()
@@ -51,8 +41,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
         super(p_i45321_1_);
     }
 
-    public EntityMinecartCommandBlock(World p_i45322_1_, double p_i45322_2_,
-            double p_i45322_4_, double p_i45322_6_)
+    public EntityMinecartCommandBlock(World p_i45322_1_, double p_i45322_2_, double p_i45322_4_, double p_i45322_6_)
     {
         super(p_i45322_1_, p_i45322_2_, p_i45322_4_, p_i45322_6_);
     }
@@ -71,12 +60,8 @@ public class EntityMinecartCommandBlock extends EntityMinecart
     {
         super.readEntityFromNBT(par1NBTTagCompound);
         this.field_145824_a.func_145759_b(par1NBTTagCompound);
-        this.getDataWatcher().updateObject(23,
-                this.func_145822_e().func_145753_i());
-        this.getDataWatcher().updateObject(
-                24,
-                IChatComponent.Serializer.func_150696_a(this.func_145822_e()
-                        .func_145749_h()));
+        this.getDataWatcher().updateObject(23, this.func_145822_e().func_145753_i());
+        this.getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(this.func_145822_e().func_145749_h()));
     }
 
     /**
@@ -137,9 +122,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
         {
             try
             {
-                this.field_145824_a.func_145750_b(IChatComponent.Serializer
-                        .func_150699_a(this.getDataWatcher()
-                                .getWatchableObjectString(24)));
+                this.field_145824_a.func_145750_b(IChatComponent.Serializer.func_150699_a(this.getDataWatcher().getWatchableObjectString(24)));
             }
             catch (Throwable var3)
             {
@@ -148,8 +131,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
         }
         else if (p_145781_1_ == 23)
         {
-            this.field_145824_a.func_145752_a(this.getDataWatcher()
-                    .getWatchableObjectString(23));
+            this.field_145824_a.func_145752_a(this.getDataWatcher().getWatchableObjectString(23));
         }
     }
 }

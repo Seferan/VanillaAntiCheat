@@ -42,8 +42,7 @@ public class PlayerCapabilities
     {
         if (par1NBTTagCompound.func_150297_b("abilities", 10))
         {
-            NBTTagCompound var2 = par1NBTTagCompound
-                    .getCompoundTag("abilities");
+            NBTTagCompound var2 = par1NBTTagCompound.getCompoundTag("abilities");
             this.disableDamage = var2.getBoolean("invulnerable");
             this.isFlying = var2.getBoolean("flying");
             this.allowFlying = var2.getBoolean("mayfly");

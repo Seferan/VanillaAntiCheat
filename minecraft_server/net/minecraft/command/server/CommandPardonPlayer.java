@@ -33,20 +33,15 @@ public class CommandPardonPlayer extends CommandBase
      */
     public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
     {
-        return MinecraftServer.getServer().getConfigurationManager()
-                .getBannedPlayers().isListActive()
-                && super.canCommandSenderUseCommand(par1ICommandSender);
+        return MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().isListActive() && super.canCommandSenderUseCommand(par1ICommandSender);
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 0)
         {
-            MinecraftServer.getServer().getConfigurationManager()
-                    .getBannedPlayers().remove(par2ArrayOfStr[0]);
-            notifyAdmins(par1ICommandSender, "commands.unban.success",
-                    new Object[] {par2ArrayOfStr[0]});
+            MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().remove(par2ArrayOfStr[0]);
+            notifyAdmins(par1ICommandSender, "commands.unban.success", new Object[] {par2ArrayOfStr[0]});
         }
         else
         {
@@ -58,12 +53,8 @@ public class CommandPardonPlayer extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsFromIterableMatchingLastWord(
-                par2ArrayOfStr, MinecraftServer.getServer()
-                        .getConfigurationManager().getBannedPlayers()
-                        .getBannedList().keySet()) : null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().getBannedList().keySet()) : null;
     }
 }

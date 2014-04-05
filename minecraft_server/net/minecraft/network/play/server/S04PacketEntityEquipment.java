@@ -18,8 +18,7 @@ public class S04PacketEntityEquipment extends Packet
     {
     }
 
-    public S04PacketEntityEquipment(int p_i45221_1_, int p_i45221_2_,
-            ItemStack p_i45221_3_)
+    public S04PacketEntityEquipment(int p_i45221_1_, int p_i45221_2_, ItemStack p_i45221_3_)
     {
         this.field_149394_a = p_i45221_1_;
         this.field_149392_b = p_i45221_2_;
@@ -57,11 +56,7 @@ public class S04PacketEntityEquipment extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "entity=%d, slot=%d, item=%s",
-                new Object[] {Integer.valueOf(this.field_149394_a),
-                        Integer.valueOf(this.field_149392_b),
-                        this.field_149393_c});
+        return String.format("entity=%d, slot=%d, item=%s", new Object[] {Integer.valueOf(this.field_149394_a), Integer.valueOf(this.field_149392_b), this.field_149393_c});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

@@ -36,9 +36,7 @@ import org.apache.logging.log4j.Logger;
 public class NetworkSystem
 {
     private static final Logger logger = LogManager.getLogger();
-    private static final NioEventLoopGroup eventLoops = new NioEventLoopGroup(
-            0, (new ThreadFactoryBuilder()).setNameFormat("Netty IO #%d")
-                    .setDaemon(true).build());
+    private static final NioEventLoopGroup eventLoops = new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty IO #%d").setDaemon(true).build());
 
     /** Reference to the MinecraftServer object. */
     private final MinecraftServer mcServer;
@@ -47,12 +45,10 @@ public class NetworkSystem
     public volatile boolean isAlive;
 
     /** Contains all endpoints added to this NetworkSystem */
-    private final List endpoints = Collections
-            .synchronizedList(new ArrayList());
+    private final List endpoints = Collections.synchronizedList(new ArrayList());
 
     /** A list containing all NetworkManager instances of all endpoints */
-    private final List networkManagers = Collections
-            .synchronizedList(new ArrayList());
+    private final List networkManagers = Collections.synchronizedList(new ArrayList());
     private static final String __OBFID = "CL_00001447";
 
     public NetworkSystem(MinecraftServer p_i45292_1_)
@@ -64,73 +60,43 @@ public class NetworkSystem
     /**
      * Adds a channel that listens on publicly accessible network ports
      */
-    public void addLanEndpoint(InetAddress p_151265_1_, int p_151265_2_)
-            throws IOException
+    public void addLanEndpoint(InetAddress p_151265_1_, int p_151265_2_) throws IOException
     {
         List var3 = this.endpoints;
 
         synchronized (this.endpoints)
         {
-            this.endpoints
-                    .add(((ServerBootstrap)((ServerBootstrap)(new ServerBootstrap())
-                            .channel(NioServerSocketChannel.class))
-                            .childHandler(new ChannelInitializer()
-                            {
-                                private static final String __OBFID = "CL_00001448";
+            this.endpoints.add(((ServerBootstrap)((ServerBootstrap)(new ServerBootstrap()).channel(NioServerSocketChannel.class)).childHandler(new ChannelInitializer()
+            {
+                private static final String __OBFID = "CL_00001448";
 
-                                protected void initChannel(
-                                        Channel p_initChannel_1_)
-                                {
-                                    try
-                                    {
-                                        p_initChannel_1_.config().setOption(
-                                                ChannelOption.IP_TOS,
-                                                Integer.valueOf(24));
-                                    }
-                                    catch (ChannelException var4)
-                                    {
-                                        ;
-                                    }
+                protected void initChannel(Channel p_initChannel_1_)
+                {
+                    try
+                    {
+                        p_initChannel_1_.config().setOption(ChannelOption.IP_TOS, Integer.valueOf(24));
+                    }
+                    catch (ChannelException var4)
+                    {
+                        ;
+                    }
 
-                                    try
-                                    {
-                                        p_initChannel_1_.config().setOption(
-                                                ChannelOption.TCP_NODELAY,
-                                                Boolean.valueOf(false));
-                                    }
-                                    catch (ChannelException var3)
-                                    {
-                                        ;
-                                    }
+                    try
+                    {
+                        p_initChannel_1_.config().setOption(ChannelOption.TCP_NODELAY, Boolean.valueOf(false));
+                    }
+                    catch (ChannelException var3)
+                    {
+                        ;
+                    }
 
-                                    p_initChannel_1_
-                                            .pipeline()
-                                            .addLast("timeout",
-                                                    new ReadTimeoutHandler(30))
-                                            .addLast(
-                                                    "legacy_query",
-                                                    new PingResponseHandler(
-                                                            NetworkSystem.this))
-                                            .addLast("splitter",
-                                                    new MessageDeserializer2())
-                                            .addLast("decoder",
-                                                    new MessageDeserializer())
-                                            .addLast("prepender",
-                                                    new MessageSerializer2())
-                                            .addLast("encoder",
-                                                    new MessageSerializer());
-                                    NetworkManager var2 = new NetworkManager(
-                                            false);
-                                    NetworkSystem.this.networkManagers
-                                            .add(var2);
-                                    p_initChannel_1_.pipeline().addLast(
-                                            "packet_handler", var2);
-                                    var2.setNetHandler(new NetHandlerHandshakeTCP(
-                                            NetworkSystem.this.mcServer, var2));
-                                }
-                            }).group(eventLoops)
-                            .localAddress(p_151265_1_, p_151265_2_)).bind()
-                            .syncUninterruptibly());
+                    p_initChannel_1_.pipeline().addLast("timeout", new ReadTimeoutHandler(30)).addLast("legacy_query", new PingResponseHandler(NetworkSystem.this)).addLast("splitter", new MessageDeserializer2()).addLast("decoder", new MessageDeserializer()).addLast("prepender", new MessageSerializer2()).addLast("encoder", new MessageSerializer());
+                    NetworkManager var2 = new NetworkManager(false);
+                    NetworkSystem.this.networkManagers.add(var2);
+                    p_initChannel_1_.pipeline().addLast("packet_handler", var2);
+                    var2.setNetHandler(new NetHandlerHandshakeTCP(NetworkSystem.this.mcServer, var2));
+                }
+            }).group(eventLoops).localAddress(p_151265_1_, p_151265_2_)).bind().syncUninterruptibly());
         }
     }
 
@@ -171,13 +137,11 @@ public class NetworkSystem
 
                     if (var3.getExitMessage() != null)
                     {
-                        var3.getNetHandler()
-                                .onDisconnect(var3.getExitMessage());
+                        var3.getNetHandler().onDisconnect(var3.getExitMessage());
                     }
                     else if (var3.getNetHandler() != null)
                     {
-                        var3.getNetHandler().onDisconnect(
-                                new ChatComponentText("Disconnected"));
+                        var3.getNetHandler().onDisconnect(new ChatComponentText("Disconnected"));
                     }
                 }
                 else
@@ -190,40 +154,31 @@ public class NetworkSystem
                     {
                         if (var3.isLocalChannel())
                         {
-                            CrashReport var10 = CrashReport.makeCrashReport(
-                                    var8, "Ticking memory connection");
-                            CrashReportCategory var6 = var10
-                                    .makeCategory("Ticking connection");
-                            var6.addCrashSectionCallable("Connection",
-                                    new Callable()
-                                    {
-                                        private static final String __OBFID = "CL_00001450";
+                            CrashReport var10 = CrashReport.makeCrashReport(var8, "Ticking memory connection");
+                            CrashReportCategory var6 = var10.makeCategory("Ticking connection");
+                            var6.addCrashSectionCallable("Connection", new Callable()
+                            {
+                                private static final String __OBFID = "CL_00001450";
 
-                                        public String call()
-                                        {
-                                            return var3.toString();
-                                        }
-                                    });
+                                public String call()
+                                {
+                                    return var3.toString();
+                                }
+                            });
                             throw new ReportedException(var10);
                         }
 
-                        logger.warn(
-                                "Failed to handle packet for "
-                                        + var3.getRemoteAddress(), var8);
-                        final ChatComponentText var5 = new ChatComponentText(
-                                "Internal server error");
-                        var3.scheduleOutboundPacket(
-                                new S40PacketDisconnect(var5),
-                                new GenericFutureListener[] {new GenericFutureListener()
-                                {
-                                    private static final String __OBFID = "CL_00001451";
+                        logger.warn("Failed to handle packet for " + var3.getRemoteAddress(), var8);
+                        final ChatComponentText var5 = new ChatComponentText("Internal server error");
+                        var3.scheduleOutboundPacket(new S40PacketDisconnect(var5), new GenericFutureListener[] {new GenericFutureListener()
+                        {
+                            private static final String __OBFID = "CL_00001451";
 
-                                    public void operationComplete(
-                                            Future p_operationComplete_1_)
-                                    {
-                                        var3.closeChannel(var5);
-                                    }
-                                }});
+                            public void operationComplete(Future p_operationComplete_1_)
+                            {
+                                var3.closeChannel(var5);
+                            }
+                        }});
                         var3.disableAutoRead();
                     }
                 }

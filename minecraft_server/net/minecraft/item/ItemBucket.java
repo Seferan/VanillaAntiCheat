@@ -26,12 +26,10 @@ public class ItemBucket extends Item
      * Called whenever this item is equipped and the right mouse button is
      * pressed. Args: itemStack, world, entityPlayer
      */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-            EntityPlayer par3EntityPlayer)
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         boolean var4 = this.isFull == Blocks.air;
-        MovingObjectPosition var5 = this.getMovingObjectPositionFromPlayer(
-                par2World, par3EntityPlayer, var4);
+        MovingObjectPosition var5 = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, var4);
 
         if (var5 == null)
         {
@@ -49,31 +47,26 @@ public class ItemBucket extends Item
 
                 if (var4)
                 {
-                    if (!par3EntityPlayer.canPlayerEdit(var6, var7, var8,
-                            var5.sideHit, par1ItemStack)) { return par1ItemStack; }
+                    if (!par3EntityPlayer.canPlayerEdit(var6, var7, var8, var5.sideHit, par1ItemStack)) { return par1ItemStack; }
 
-                    Material var9 = par2World.getBlock(var6, var7, var8)
-                            .getMaterial();
+                    Material var9 = par2World.getBlock(var6, var7, var8).getMaterial();
                     int var10 = par2World.getBlockMetadata(var6, var7, var8);
 
                     if (var9 == Material.field_151586_h && var10 == 0)
                     {
                         par2World.setBlockToAir(var6, var7, var8);
-                        return this.func_150910_a(par1ItemStack,
-                                par3EntityPlayer, Items.water_bucket);
+                        return this.func_150910_a(par1ItemStack, par3EntityPlayer, Items.water_bucket);
                     }
 
                     if (var9 == Material.field_151587_i && var10 == 0)
                     {
                         par2World.setBlockToAir(var6, var7, var8);
-                        return this.func_150910_a(par1ItemStack,
-                                par3EntityPlayer, Items.lava_bucket);
+                        return this.func_150910_a(par1ItemStack, par3EntityPlayer, Items.lava_bucket);
                     }
                 }
                 else
                 {
-                    if (this.isFull == Blocks.air) { return new ItemStack(
-                            Items.bucket); }
+                    if (this.isFull == Blocks.air) { return new ItemStack(Items.bucket); }
 
                     if (var5.sideHit == 0)
                     {
@@ -105,13 +98,9 @@ public class ItemBucket extends Item
                         ++var6;
                     }
 
-                    if (!par3EntityPlayer.canPlayerEdit(var6, var7, var8,
-                            var5.sideHit, par1ItemStack)) { return par1ItemStack; }
+                    if (!par3EntityPlayer.canPlayerEdit(var6, var7, var8, var5.sideHit, par1ItemStack)) { return par1ItemStack; }
 
-                    if (this.tryPlaceContainedLiquid(par2World, var6, var7,
-                            var8)
-                            && !par3EntityPlayer.capabilities.isCreativeMode) { return new ItemStack(
-                            Items.bucket); }
+                    if (this.tryPlaceContainedLiquid(par2World, var6, var7, var8) && !par3EntityPlayer.capabilities.isCreativeMode) { return new ItemStack(Items.bucket); }
                 }
             }
 
@@ -119,8 +108,7 @@ public class ItemBucket extends Item
         }
     }
 
-    private ItemStack func_150910_a(ItemStack p_150910_1_,
-            EntityPlayer p_150910_2_, Item p_150910_3_)
+    private ItemStack func_150910_a(ItemStack p_150910_1_, EntityPlayer p_150910_2_, Item p_150910_3_)
     {
         if (p_150910_2_.capabilities.isCreativeMode)
         {
@@ -132,11 +120,9 @@ public class ItemBucket extends Item
         }
         else
         {
-            if (!p_150910_2_.inventory.addItemStackToInventory(new ItemStack(
-                    p_150910_3_)))
+            if (!p_150910_2_.inventory.addItemStackToInventory(new ItemStack(p_150910_3_)))
             {
-                p_150910_2_.dropPlayerItemWithRandomChoice(new ItemStack(
-                        p_150910_3_, 1, 0), false);
+                p_150910_2_.dropPlayerItemWithRandomChoice(new ItemStack(p_150910_3_, 1, 0), false);
             }
 
             return p_150910_1_;
@@ -146,8 +132,7 @@ public class ItemBucket extends Item
     /**
      * Attempts to place the liquid contained inside the bucket.
      */
-    public boolean tryPlaceContainedLiquid(World par1World, int par2, int par3,
-            int par4)
+    public boolean tryPlaceContainedLiquid(World par1World, int par2, int par3, int par4)
     {
         if (this.isFull == Blocks.air)
         {
@@ -164,20 +149,13 @@ public class ItemBucket extends Item
             }
             else
             {
-                if (par1World.provider.isHellWorld
-                        && this.isFull == Blocks.flowing_water)
+                if (par1World.provider.isHellWorld && this.isFull == Blocks.flowing_water)
                 {
-                    par1World.playSoundEffect((double)((float)par2 + 0.5F),
-                            (double)((float)par3 + 0.5F),
-                            (double)((float)par4 + 0.5F), "random.fizz", 0.5F,
-                            2.6F + (par1World.rand.nextFloat() - par1World.rand
-                                    .nextFloat()) * 0.8F);
+                    par1World.playSoundEffect((double)((float)par2 + 0.5F), (double)((float)par3 + 0.5F), (double)((float)par4 + 0.5F), "random.fizz", 0.5F, 2.6F + (par1World.rand.nextFloat() - par1World.rand.nextFloat()) * 0.8F);
 
                     for (int var7 = 0; var7 < 8; ++var7)
                     {
-                        par1World.spawnParticle("largesmoke", (double)par2
-                                + Math.random(), (double)par3 + Math.random(),
-                                (double)par4 + Math.random(), 0.0D, 0.0D, 0.0D);
+                        par1World.spawnParticle("largesmoke", (double)par2 + Math.random(), (double)par3 + Math.random(), (double)par4 + Math.random(), 0.0D, 0.0D, 0.0D);
                     }
                 }
                 else

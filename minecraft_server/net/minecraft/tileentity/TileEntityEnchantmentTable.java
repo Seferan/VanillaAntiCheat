@@ -45,10 +45,7 @@ public class TileEntityEnchantmentTable extends TileEntity
         super.updateEntity();
         this.field_145927_n = this.field_145930_m;
         this.field_145925_p = this.field_145928_o;
-        EntityPlayer var1 = this.worldObj.getClosestPlayer(
-                (double)((float)this.xCoord + 0.5F),
-                (double)((float)this.yCoord + 0.5F),
-                (double)((float)this.zCoord + 0.5F), 3.0D);
+        EntityPlayer var1 = this.worldObj.getClosestPlayer((double)((float)this.xCoord + 0.5F), (double)((float)this.yCoord + 0.5F), (double)((float)this.zCoord + 0.5F), 3.0D);
 
         if (var1 != null)
         {
@@ -63,8 +60,7 @@ public class TileEntityEnchantmentTable extends TileEntity
 
                 do
                 {
-                    this.field_145932_k += (float)(field_145923_r.nextInt(4) - field_145923_r
-                            .nextInt(4));
+                    this.field_145932_k += (float)(field_145923_r.nextInt(4) - field_145923_r.nextInt(4));
                 } while (var6 == this.field_145932_k);
             }
         }

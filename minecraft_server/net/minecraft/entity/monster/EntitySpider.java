@@ -46,10 +46,8 @@ public class EntitySpider extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
-                .setBaseValue(16.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
-                .setBaseValue(0.800000011920929D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.800000011920929D);
     }
 
     /**
@@ -96,8 +94,7 @@ public class EntitySpider extends EntityMob
         return "mob.spider.death";
     }
 
-    protected void func_145780_a(int p_145780_1_, int p_145780_2_,
-            int p_145780_3_, Block p_145780_4_)
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
     {
         this.playSound("mob.spider.step", 0.15F, 1.0F);
     }
@@ -122,14 +119,9 @@ public class EntitySpider extends EntityMob
                 {
                     double var4 = par1Entity.posX - this.posX;
                     double var6 = par1Entity.posZ - this.posZ;
-                    float var8 = MathHelper.sqrt_double(var4 * var4 + var6
-                            * var6);
-                    this.motionX = var4 / (double)var8 * 0.5D
-                            * 0.800000011920929D + this.motionX
-                            * 0.20000000298023224D;
-                    this.motionZ = var6 / (double)var8 * 0.5D
-                            * 0.800000011920929D + this.motionZ
-                            * 0.20000000298023224D;
+                    float var8 = MathHelper.sqrt_double(var4 * var4 + var6 * var6);
+                    this.motionX = var4 / (double)var8 * 0.5D * 0.800000011920929D + this.motionX * 0.20000000298023224D;
+                    this.motionZ = var6 / (double)var8 * 0.5D * 0.800000011920929D + this.motionZ * 0.20000000298023224D;
                     this.motionY = 0.4000000059604645D;
                 }
             }
@@ -152,8 +144,7 @@ public class EntitySpider extends EntityMob
     {
         super.dropFewItems(par1, par2);
 
-        if (par1
-                && (this.rand.nextInt(3) == 0 || this.rand.nextInt(1 + par2) > 0))
+        if (par1 && (this.rand.nextInt(3) == 0 || this.rand.nextInt(1 + par2) > 0))
         {
             this.func_145779_a(Items.spider_eye, 1);
         }
@@ -184,8 +175,7 @@ public class EntitySpider extends EntityMob
 
     public boolean isPotionApplicable(PotionEffect par1PotionEffect)
     {
-        return par1PotionEffect.getPotionID() == Potion.poison.id ? false
-                : super.isPotionApplicable(par1PotionEffect);
+        return par1PotionEffect.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(par1PotionEffect);
     }
 
     /**
@@ -217,17 +207,14 @@ public class EntitySpider extends EntityMob
         this.dataWatcher.updateObject(16, Byte.valueOf(var2));
     }
 
-    public IEntityLivingData onSpawnWithEgg(
-            IEntityLivingData par1EntityLivingData)
+    public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData)
     {
-        Object par1EntityLivingData1 = super
-                .onSpawnWithEgg(par1EntityLivingData);
+        Object par1EntityLivingData1 = super.onSpawnWithEgg(par1EntityLivingData);
 
         if (this.worldObj.rand.nextInt(100) == 0)
         {
             EntitySkeleton var2 = new EntitySkeleton(this.worldObj);
-            var2.setLocationAndAngles(this.posX, this.posY, this.posZ,
-                    this.rotationYaw, 0.0F);
+            var2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
             var2.onSpawnWithEgg((IEntityLivingData)null);
             this.worldObj.spawnEntityInWorld(var2);
             var2.mountEntity(this);
@@ -237,12 +224,9 @@ public class EntitySpider extends EntityMob
         {
             par1EntityLivingData1 = new EntitySpider.GroupData();
 
-            if (this.worldObj.difficultySetting == EnumDifficulty.HARD
-                    && this.worldObj.rand.nextFloat() < 0.1F * this.worldObj
-                            .func_147462_b(this.posX, this.posY, this.posZ))
+            if (this.worldObj.difficultySetting == EnumDifficulty.HARD && this.worldObj.rand.nextFloat() < 0.1F * this.worldObj.func_147462_b(this.posX, this.posY, this.posZ))
             {
-                ((EntitySpider.GroupData)par1EntityLivingData1)
-                        .func_111104_a(this.worldObj.rand);
+                ((EntitySpider.GroupData)par1EntityLivingData1).func_111104_a(this.worldObj.rand);
             }
         }
 

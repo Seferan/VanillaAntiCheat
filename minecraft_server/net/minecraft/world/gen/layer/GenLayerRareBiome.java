@@ -19,8 +19,7 @@ public class GenLayerRareBiome extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        int[] var5 = this.parent
-                .getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
+        int[] var5 = this.parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
         int[] var6 = IntCache.getIntCache(par3 * par4);
 
         for (int var7 = 0; var7 < par4; ++var7)

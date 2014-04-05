@@ -2,8 +2,7 @@ package net.minecraft.util;
 
 public class StatCollector
 {
-    private static StringTranslate localizedName = StringTranslate
-            .getInstance();
+    private static StringTranslate localizedName = StringTranslate.getInstance();
 
     /**
      * A StringTranslate instance using the hardcoded default locale (en_US).
@@ -24,8 +23,7 @@ public class StatCollector
     /**
      * Translates a Stat name with format args
      */
-    public static String translateToLocalFormatted(String par0Str,
-            Object... par1ArrayOfObj)
+    public static String translateToLocalFormatted(String par0Str, Object... par1ArrayOfObj)
     {
         return localizedName.translateKeyFormat(par0Str, par1ArrayOfObj);
     }

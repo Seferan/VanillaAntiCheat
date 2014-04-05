@@ -29,28 +29,24 @@ public class CommandDeOwner extends CommandBase
         return "/deowner <player>";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 0)
         {
             String name = par2ArrayOfStr[0];
             if (MinecraftServer.isPlayerOwner(par1ICommandSender))
             {
-                MinecraftServer.getServer().getConfigurationManager()
-                        .removeOwner(name);
+                MinecraftServer.getServer().getConfigurationManager().removeOwner(name);
                 notifyAdmins(par1ICommandSender, "De-ownered " + name);
             }
             else
             {
-                notifyAdmins(par1ICommandSender, "Tried to de-owner " + name
-                        + "!");
+                notifyAdmins(par1ICommandSender, "Tried to de-owner " + name + "!");
             }
         }
         else
         {
-            throw new WrongUsageException(getCommandUsage(par1ICommandSender),
-                    new Object[0]);
+            throw new WrongUsageException(getCommandUsage(par1ICommandSender), new Object[0]);
         }
     }
 
@@ -58,11 +54,8 @@ public class CommandDeOwner extends CommandBase
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsFromIterableMatchingLastWord(
-                par2ArrayOfStr, MinecraftServer.getServer()
-                        .getConfigurationManager().getOwners()) : null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getConfigurationManager().getOwners()) : null;
     }
 }

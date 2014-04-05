@@ -18,8 +18,7 @@ public class ItemNameTag extends Item
      * Returns true if the item can be used on the given entity, e.g. shears on
      * sheep.
      */
-    public boolean itemInteractionForEntity(ItemStack par1ItemStack,
-            EntityPlayer par2EntityPlayer, EntityLivingBase par3EntityLivingBase)
+    public boolean itemInteractionForEntity(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, EntityLivingBase par3EntityLivingBase)
     {
         if (!par1ItemStack.hasDisplayName())
         {
@@ -35,8 +34,7 @@ public class ItemNameTag extends Item
         }
         else
         {
-            return super.itemInteractionForEntity(par1ItemStack,
-                    par2EntityPlayer, par3EntityLivingBase);
+            return super.itemInteractionForEntity(par1ItemStack, par2EntityPlayer, par3EntityLivingBase);
         }
     }
 }

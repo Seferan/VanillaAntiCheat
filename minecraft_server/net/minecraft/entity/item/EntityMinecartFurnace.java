@@ -22,8 +22,7 @@ public class EntityMinecartFurnace extends EntityMinecart
         super(par1World);
     }
 
-    public EntityMinecartFurnace(World par1World, double par2, double par4,
-            double par6)
+    public EntityMinecartFurnace(World par1World, double par2, double par4, double par6)
     {
         super(par1World, par2, par4, par6);
     }
@@ -60,8 +59,7 @@ public class EntityMinecartFurnace extends EntityMinecart
 
         if (this.isMinecartPowered() && this.rand.nextInt(4) == 0)
         {
-            this.worldObj.spawnParticle("largesmoke", this.posX,
-                    this.posY + 0.8D, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("largesmoke", this.posX, this.posY + 0.8D, this.posZ, 0.0D, 0.0D, 0.0D);
         }
     }
 
@@ -75,16 +73,12 @@ public class EntityMinecartFurnace extends EntityMinecart
         }
     }
 
-    protected void func_145821_a(int p_145821_1_, int p_145821_2_,
-            int p_145821_3_, double p_145821_4_, double p_145821_6_,
-            Block p_145821_8_, int p_145821_9_)
+    protected void func_145821_a(int p_145821_1_, int p_145821_2_, int p_145821_3_, double p_145821_4_, double p_145821_6_, Block p_145821_8_, int p_145821_9_)
     {
-        super.func_145821_a(p_145821_1_, p_145821_2_, p_145821_3_, p_145821_4_,
-                p_145821_6_, p_145821_8_, p_145821_9_);
+        super.func_145821_a(p_145821_1_, p_145821_2_, p_145821_3_, p_145821_4_, p_145821_6_, p_145821_8_, p_145821_9_);
         double var10 = this.pushX * this.pushX + this.pushZ * this.pushZ;
 
-        if (var10 > 1.0E-4D
-                && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D)
+        if (var10 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D)
         {
             var10 = (double)MathHelper.sqrt_double(var10);
             this.pushX /= var10;
@@ -138,13 +132,9 @@ public class EntityMinecartFurnace extends EntityMinecart
 
         if (var2 != null && var2.getItem() == Items.coal)
         {
-            if (!par1EntityPlayer.capabilities.isCreativeMode
-                    && --var2.stackSize == 0)
+            if (!par1EntityPlayer.capabilities.isCreativeMode && --var2.stackSize == 0)
             {
-                par1EntityPlayer.inventory
-                        .setInventorySlotContents(
-                                par1EntityPlayer.inventory.currentItem,
-                                (ItemStack)null);
+                par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack)null);
             }
 
             this.fuel += 3600;
@@ -186,15 +176,11 @@ public class EntityMinecartFurnace extends EntityMinecart
     {
         if (par1)
         {
-            this.dataWatcher.updateObject(16,
-                    Byte.valueOf((byte)(this.dataWatcher
-                            .getWatchableObjectByte(16) | 1)));
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(this.dataWatcher.getWatchableObjectByte(16) | 1)));
         }
         else
         {
-            this.dataWatcher.updateObject(16,
-                    Byte.valueOf((byte)(this.dataWatcher
-                            .getWatchableObjectByte(16) & -2)));
+            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(this.dataWatcher.getWatchableObjectByte(16) & -2)));
         }
     }
 

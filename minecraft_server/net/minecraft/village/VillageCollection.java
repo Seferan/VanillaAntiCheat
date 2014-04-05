@@ -61,8 +61,7 @@ public class VillageCollection extends WorldSavedData
         {
             if (!this.isVillagerPositionPresent(par1, par2, par3))
             {
-                this.villagerPositionsList.add(new ChunkCoordinates(par1, par2,
-                        par3));
+                this.villagerPositionsList.add(new ChunkCoordinates(par1, par2, par3));
             }
         }
     }
@@ -149,8 +148,7 @@ public class VillageCollection extends WorldSavedData
     {
         if (!this.villagerPositionsList.isEmpty())
         {
-            this.addUnassignedWoodenDoorsAroundToNewDoorsList((ChunkCoordinates)this.villagerPositionsList
-                    .remove(0));
+            this.addUnassignedWoodenDoorsAroundToNewDoorsList((ChunkCoordinates)this.villagerPositionsList.remove(0));
         }
     }
 
@@ -169,8 +167,7 @@ public class VillageCollection extends WorldSavedData
                 if (var4.hasNext())
                 {
                     Village var5 = (Village)var4.next();
-                    int var6 = (int)var5.getCenter().getDistanceSquared(
-                            var2.posX, var2.posY, var2.posZ);
+                    int var6 = (int)var5.getCenter().getDistanceSquared(var2.posX, var2.posY, var2.posZ);
                     int var7 = 32 + var5.getVillageRadius();
 
                     if (var6 > var7 * var7)
@@ -198,26 +195,21 @@ public class VillageCollection extends WorldSavedData
         this.newDoors.clear();
     }
 
-    private void addUnassignedWoodenDoorsAroundToNewDoorsList(
-            ChunkCoordinates par1ChunkCoordinates)
+    private void addUnassignedWoodenDoorsAroundToNewDoorsList(ChunkCoordinates par1ChunkCoordinates)
     {
         byte var2 = 16;
         byte var3 = 4;
         byte var4 = 16;
 
-        for (int var5 = par1ChunkCoordinates.posX - var2; var5 < par1ChunkCoordinates.posX
-                + var2; ++var5)
+        for (int var5 = par1ChunkCoordinates.posX - var2; var5 < par1ChunkCoordinates.posX + var2; ++var5)
         {
-            for (int var6 = par1ChunkCoordinates.posY - var3; var6 < par1ChunkCoordinates.posY
-                    + var3; ++var6)
+            for (int var6 = par1ChunkCoordinates.posY - var3; var6 < par1ChunkCoordinates.posY + var3; ++var6)
             {
-                for (int var7 = par1ChunkCoordinates.posZ - var4; var7 < par1ChunkCoordinates.posZ
-                        + var4; ++var7)
+                for (int var7 = par1ChunkCoordinates.posZ - var4; var7 < par1ChunkCoordinates.posZ + var4; ++var7)
                 {
                     if (this.isWoodenDoorAt(var5, var6, var7))
                     {
-                        VillageDoorInfo var8 = this.getVillageDoorAt(var5,
-                                var6, var7);
+                        VillageDoorInfo var8 = this.getVillageDoorAt(var5, var6, var7);
 
                         if (var8 == null)
                         {
@@ -257,16 +249,14 @@ public class VillageCollection extends WorldSavedData
             }
 
             var5 = (VillageDoorInfo)var4.next();
-        } while (var5.posX != par1 || var5.posZ != par3
-                || Math.abs(var5.posY - par2) > 1);
+        } while (var5.posX != par1 || var5.posZ != par3 || Math.abs(var5.posY - par2) > 1);
 
         return var5;
     }
 
     private void addDoorToNewListIfAppropriate(int par1, int par2, int par3)
     {
-        int var4 = ((BlockDoor)Blocks.wooden_door).func_150013_e(this.worldObj,
-                par1, par2, par3);
+        int var4 = ((BlockDoor)Blocks.wooden_door).func_150013_e(this.worldObj, par1, par2, par3);
         int var5;
         int var6;
 
@@ -292,8 +282,7 @@ public class VillageCollection extends WorldSavedData
 
             if (var5 != 0)
             {
-                this.newDoors.add(new VillageDoorInfo(par1, par2, par3, 0,
-                        var5 > 0 ? -2 : 2, this.tickCounter));
+                this.newDoors.add(new VillageDoorInfo(par1, par2, par3, 0, var5 > 0 ? -2 : 2, this.tickCounter));
             }
         }
         else
@@ -318,8 +307,7 @@ public class VillageCollection extends WorldSavedData
 
             if (var5 != 0)
             {
-                this.newDoors.add(new VillageDoorInfo(par1, par2, par3,
-                        var5 > 0 ? -2 : 2, 0, this.tickCounter));
+                this.newDoors.add(new VillageDoorInfo(par1, par2, par3, var5 > 0 ? -2 : 2, 0, this.tickCounter));
             }
         }
     }

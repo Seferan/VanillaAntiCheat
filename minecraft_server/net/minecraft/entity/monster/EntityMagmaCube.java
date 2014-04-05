@@ -19,8 +19,7 @@ public class EntityMagmaCube extends EntitySlime
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
-                .setBaseValue(0.20000000298023224D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
     }
 
     /**
@@ -29,11 +28,7 @@ public class EntityMagmaCube extends EntitySlime
      */
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL
-                && this.worldObj.checkNoEntityCollision(this.boundingBox)
-                && this.worldObj.getCollidingBoundingBoxes(this,
-                        this.boundingBox).isEmpty()
-                && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 
     /**
@@ -156,8 +151,7 @@ public class EntityMagmaCube extends EntitySlime
      */
     protected String getJumpSound()
     {
-        return this.getSlimeSize() > 1 ? "mob.magmacube.big"
-                : "mob.magmacube.small";
+        return this.getSlimeSize() > 1 ? "mob.magmacube.big" : "mob.magmacube.small";
     }
 
     /**

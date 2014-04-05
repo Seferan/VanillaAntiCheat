@@ -36,11 +36,9 @@ public class S0FPacketSpawnMob extends Packet
     {
         this.field_149042_a = p_i45192_1_.getEntityId();
         this.field_149040_b = (byte)EntityList.getEntityID(p_i45192_1_);
-        this.field_149041_c = p_i45192_1_.myEntitySize
-                .multiplyBy32AndRound(p_i45192_1_.posX);
+        this.field_149041_c = p_i45192_1_.myEntitySize.multiplyBy32AndRound(p_i45192_1_.posX);
         this.field_149038_d = MathHelper.floor_double(p_i45192_1_.posY * 32.0D);
-        this.field_149039_e = p_i45192_1_.myEntitySize
-                .multiplyBy32AndRound(p_i45192_1_.posZ);
+        this.field_149039_e = p_i45192_1_.myEntitySize.multiplyBy32AndRound(p_i45192_1_.posZ);
         this.field_149048_i = (byte)((int)(p_i45192_1_.rotationYaw * 256.0F / 360.0F));
         this.field_149045_j = (byte)((int)(p_i45192_1_.rotationPitch * 256.0F / 360.0F));
         this.field_149046_k = (byte)((int)(p_i45192_1_.rotationYawHead * 256.0F / 360.0F));
@@ -101,8 +99,7 @@ public class S0FPacketSpawnMob extends Packet
         this.field_149036_f = p_148837_1_.readShort();
         this.field_149037_g = p_148837_1_.readShort();
         this.field_149047_h = p_148837_1_.readShort();
-        this.field_149044_m = DataWatcher
-                .readWatchedListFromPacketBuffer(p_148837_1_);
+        this.field_149044_m = DataWatcher.readWatchedListFromPacketBuffer(p_148837_1_);
     }
 
     /**
@@ -135,17 +132,7 @@ public class S0FPacketSpawnMob extends Packet
      */
     public String serialize()
     {
-        return String
-                .format("id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f, xd=%.2f, yd=%.2f, zd=%.2f",
-                        new Object[] {
-                                Integer.valueOf(this.field_149042_a),
-                                Integer.valueOf(this.field_149040_b),
-                                Float.valueOf((float)this.field_149041_c / 32.0F),
-                                Float.valueOf((float)this.field_149038_d / 32.0F),
-                                Float.valueOf((float)this.field_149039_e / 32.0F),
-                                Float.valueOf((float)this.field_149036_f / 8000.0F),
-                                Float.valueOf((float)this.field_149037_g / 8000.0F),
-                                Float.valueOf((float)this.field_149047_h / 8000.0F)});
+        return String.format("id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f, xd=%.2f, yd=%.2f, zd=%.2f", new Object[] {Integer.valueOf(this.field_149042_a), Integer.valueOf(this.field_149040_b), Float.valueOf((float)this.field_149041_c / 32.0F), Float.valueOf((float)this.field_149038_d / 32.0F), Float.valueOf((float)this.field_149039_e / 32.0F), Float.valueOf((float)this.field_149036_f / 8000.0F), Float.valueOf((float)this.field_149037_g / 8000.0F), Float.valueOf((float)this.field_149047_h / 8000.0F)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

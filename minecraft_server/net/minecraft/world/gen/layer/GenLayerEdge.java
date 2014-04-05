@@ -5,8 +5,7 @@ public class GenLayerEdge extends GenLayer
     private final GenLayerEdge.Mode field_151627_c;
     private static final String __OBFID = "CL_00000547";
 
-    public GenLayerEdge(long p_i45474_1_, GenLayer p_i45474_3_,
-            GenLayerEdge.Mode p_i45474_4_)
+    public GenLayerEdge(long p_i45474_1_, GenLayer p_i45474_3_, GenLayerEdge.Mode p_i45474_4_)
     {
         super(p_i45474_1_);
         this.parent = p_i45474_3_;
@@ -20,8 +19,7 @@ public class GenLayerEdge extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        switch (GenLayerEdge.SwitchMode.field_151642_a[this.field_151627_c
-                .ordinal()])
+        switch (GenLayerEdge.SwitchMode.field_151642_a[this.field_151627_c.ordinal()])
         {
         case 1:
         default:
@@ -35,8 +33,7 @@ public class GenLayerEdge extends GenLayer
         }
     }
 
-    private int[] func_151626_c(int p_151626_1_, int p_151626_2_,
-            int p_151626_3_, int p_151626_4_)
+    private int[] func_151626_c(int p_151626_1_, int p_151626_2_, int p_151626_3_, int p_151626_4_)
     {
         int var5 = p_151626_1_ - 1;
         int var6 = p_151626_2_ - 1;
@@ -49,8 +46,7 @@ public class GenLayerEdge extends GenLayer
         {
             for (int var12 = 0; var12 < p_151626_3_; ++var12)
             {
-                this.initChunkSeed((long)(var12 + p_151626_1_),
-                        (long)(var11 + p_151626_2_));
+                this.initChunkSeed((long)(var12 + p_151626_1_), (long)(var11 + p_151626_2_));
                 int var13 = var9[var12 + 1 + (var11 + 1) * var7];
 
                 if (var13 == 1)
@@ -59,10 +55,8 @@ public class GenLayerEdge extends GenLayer
                     int var15 = var9[var12 + 1 + 1 + (var11 + 1) * var7];
                     int var16 = var9[var12 + 1 - 1 + (var11 + 1) * var7];
                     int var17 = var9[var12 + 1 + (var11 + 1 + 1) * var7];
-                    boolean var18 = var14 == 3 || var15 == 3 || var16 == 3
-                            || var17 == 3;
-                    boolean var19 = var14 == 4 || var15 == 4 || var16 == 4
-                            || var17 == 4;
+                    boolean var18 = var14 == 3 || var15 == 3 || var16 == 3 || var17 == 3;
+                    boolean var19 = var14 == 4 || var15 == 4 || var16 == 4 || var17 == 4;
 
                     if (var18 || var19)
                     {
@@ -77,8 +71,7 @@ public class GenLayerEdge extends GenLayer
         return var10;
     }
 
-    private int[] func_151624_d(int p_151624_1_, int p_151624_2_,
-            int p_151624_3_, int p_151624_4_)
+    private int[] func_151624_d(int p_151624_1_, int p_151624_2_, int p_151624_3_, int p_151624_4_)
     {
         int var5 = p_151624_1_ - 1;
         int var6 = p_151624_2_ - 1;
@@ -99,10 +92,8 @@ public class GenLayerEdge extends GenLayer
                     int var15 = var9[var12 + 1 + 1 + (var11 + 1) * var7];
                     int var16 = var9[var12 + 1 - 1 + (var11 + 1) * var7];
                     int var17 = var9[var12 + 1 + (var11 + 1 + 1) * var7];
-                    boolean var18 = var14 == 2 || var15 == 2 || var16 == 2
-                            || var17 == 2;
-                    boolean var19 = var14 == 1 || var15 == 1 || var16 == 1
-                            || var17 == 1;
+                    boolean var18 = var14 == 2 || var15 == 2 || var16 == 2 || var17 == 2;
+                    boolean var19 = var14 == 1 || var15 == 1 || var16 == 1 || var17 == 1;
 
                     if (var19 || var18)
                     {
@@ -117,19 +108,16 @@ public class GenLayerEdge extends GenLayer
         return var10;
     }
 
-    private int[] func_151625_e(int p_151625_1_, int p_151625_2_,
-            int p_151625_3_, int p_151625_4_)
+    private int[] func_151625_e(int p_151625_1_, int p_151625_2_, int p_151625_3_, int p_151625_4_)
     {
-        int[] var5 = this.parent.getInts(p_151625_1_, p_151625_2_, p_151625_3_,
-                p_151625_4_);
+        int[] var5 = this.parent.getInts(p_151625_1_, p_151625_2_, p_151625_3_, p_151625_4_);
         int[] var6 = IntCache.getIntCache(p_151625_3_ * p_151625_4_);
 
         for (int var7 = 0; var7 < p_151625_4_; ++var7)
         {
             for (int var8 = 0; var8 < p_151625_3_; ++var8)
             {
-                this.initChunkSeed((long)(var8 + p_151625_1_),
-                        (long)(var7 + p_151625_2_));
+                this.initChunkSeed((long)(var8 + p_151625_1_), (long)(var7 + p_151625_2_));
                 int var9 = var5[var8 + var7 * p_151625_3_];
 
                 if (var9 != 0 && this.nextInt(13) == 0)
@@ -182,11 +170,9 @@ public class GenLayerEdge extends GenLayer
 
     public static enum Mode
     {
-        COOL_WARM("COOL_WARM", 0), HEAT_ICE("HEAT_ICE", 1), SPECIAL("SPECIAL",
-                2);
+        COOL_WARM("COOL_WARM", 0), HEAT_ICE("HEAT_ICE", 1), SPECIAL("SPECIAL", 2);
 
-        private static final GenLayerEdge.Mode[] $VALUES = new GenLayerEdge.Mode[] {
-                COOL_WARM, HEAT_ICE, SPECIAL};
+        private static final GenLayerEdge.Mode[] $VALUES = new GenLayerEdge.Mode[] {COOL_WARM, HEAT_ICE, SPECIAL};
         private static final String __OBFID = "CL_00000549";
 
         private Mode(String p_i45473_1_, int p_i45473_2_)

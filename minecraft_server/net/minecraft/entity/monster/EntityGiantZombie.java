@@ -17,12 +17,9 @@ public class EntityGiantZombie extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
-                .setBaseValue(100.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed)
-                .setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage)
-                .setBaseValue(50.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(100.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(50.0D);
     }
 
     /**

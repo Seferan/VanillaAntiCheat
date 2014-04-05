@@ -16,8 +16,7 @@ public class RecipesArmorDyes implements IRecipe
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(InventoryCrafting par1InventoryCrafting,
-            World par2World)
+    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
     {
         ItemStack var3 = null;
         ArrayList var4 = new ArrayList();
@@ -32,8 +31,7 @@ public class RecipesArmorDyes implements IRecipe
                 {
                     ItemArmor var7 = (ItemArmor)var6.getItem();
 
-                    if (var7.getArmorMaterial() != ItemArmor.ArmorMaterial.CLOTH
-                            || var3 != null) { return false; }
+                    if (var7.getArmorMaterial() != ItemArmor.ArmorMaterial.CLOTH || var3 != null) { return false; }
 
                     var3 = var6;
                 }
@@ -75,8 +73,7 @@ public class RecipesArmorDyes implements IRecipe
                 {
                     var6 = (ItemArmor)var8.getItem();
 
-                    if (var6.getArmorMaterial() != ItemArmor.ArmorMaterial.CLOTH
-                            || var2 != null) { return null; }
+                    if (var6.getArmorMaterial() != ItemArmor.ArmorMaterial.CLOTH || var2 != null) { return null; }
 
                     var2 = var8.copy();
                     var2.stackSize = 1;
@@ -87,8 +84,7 @@ public class RecipesArmorDyes implements IRecipe
                         var10 = (float)(var9 >> 16 & 255) / 255.0F;
                         var11 = (float)(var9 >> 8 & 255) / 255.0F;
                         float var12 = (float)(var9 & 255) / 255.0F;
-                        var4 = (int)((float)var4 + Math.max(var10,
-                                Math.max(var11, var12)) * 255.0F);
+                        var4 = (int)((float)var4 + Math.max(var10, Math.max(var11, var12)) * 255.0F);
                         var3[0] = (int)((float)var3[0] + var10 * 255.0F);
                         var3[1] = (int)((float)var3[1] + var11 * 255.0F);
                         var3[2] = (int)((float)var3[2] + var12 * 255.0F);
@@ -99,8 +95,7 @@ public class RecipesArmorDyes implements IRecipe
                 {
                     if (var8.getItem() != Items.dye) { return null; }
 
-                    float[] var14 = EntitySheep.fleeceColorTable[BlockColored
-                            .func_150032_b(var8.getItemDamage())];
+                    float[] var14 = EntitySheep.fleeceColorTable[BlockColored.func_150032_b(var8.getItemDamage())];
                     int var16 = (int)(var14[0] * 255.0F);
                     int var15 = (int)(var14[1] * 255.0F);
                     var17 = (int)(var14[2] * 255.0F);

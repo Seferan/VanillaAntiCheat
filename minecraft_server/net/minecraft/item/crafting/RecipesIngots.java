@@ -12,15 +12,7 @@ public class RecipesIngots
 
     public RecipesIngots()
     {
-        this.recipeItems = new Object[][] {
-                {Blocks.gold_block, new ItemStack(Items.gold_ingot, 9)},
-                {Blocks.iron_block, new ItemStack(Items.iron_ingot, 9)},
-                {Blocks.diamond_block, new ItemStack(Items.diamond, 9)},
-                {Blocks.emerald_block, new ItemStack(Items.emerald, 9)},
-                {Blocks.lapis_block, new ItemStack(Items.dye, 9, 4)},
-                {Blocks.redstone_block, new ItemStack(Items.redstone, 9)},
-                {Blocks.coal_block, new ItemStack(Items.coal, 9, 0)},
-                {Blocks.hay_block, new ItemStack(Items.wheat, 9)}};
+        this.recipeItems = new Object[][] { {Blocks.gold_block, new ItemStack(Items.gold_ingot, 9)}, {Blocks.iron_block, new ItemStack(Items.iron_ingot, 9)}, {Blocks.diamond_block, new ItemStack(Items.diamond, 9)}, {Blocks.emerald_block, new ItemStack(Items.emerald, 9)}, {Blocks.lapis_block, new ItemStack(Items.dye, 9, 4)}, {Blocks.redstone_block, new ItemStack(Items.redstone, 9)}, {Blocks.coal_block, new ItemStack(Items.coal, 9, 0)}, {Blocks.hay_block, new ItemStack(Items.wheat, 9)}};
     }
 
     /**
@@ -32,14 +24,11 @@ public class RecipesIngots
         {
             Block var3 = (Block)this.recipeItems[var2][0];
             ItemStack var4 = (ItemStack)this.recipeItems[var2][1];
-            par1CraftingManager.addRecipe(new ItemStack(var3), new Object[] {
-                    "###", "###", "###", '#', var4});
+            par1CraftingManager.addRecipe(new ItemStack(var3), new Object[] {"###", "###", "###", '#', var4});
             par1CraftingManager.addRecipe(var4, new Object[] {"#", '#', var3});
         }
 
-        par1CraftingManager.addRecipe(new ItemStack(Items.gold_ingot),
-                new Object[] {"###", "###", "###", '#', Items.gold_nugget});
-        par1CraftingManager.addRecipe(new ItemStack(Items.gold_nugget, 9),
-                new Object[] {"#", '#', Items.gold_ingot});
+        par1CraftingManager.addRecipe(new ItemStack(Items.gold_ingot), new Object[] {"###", "###", "###", '#', Items.gold_nugget});
+        par1CraftingManager.addRecipe(new ItemStack(Items.gold_nugget, 9), new Object[] {"#", '#', Items.gold_ingot});
     }
 }

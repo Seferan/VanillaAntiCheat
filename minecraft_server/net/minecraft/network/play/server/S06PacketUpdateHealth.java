@@ -17,8 +17,7 @@ public class S06PacketUpdateHealth extends Packet
     {
     }
 
-    public S06PacketUpdateHealth(float p_i45223_1_, int p_i45223_2_,
-            float p_i45223_3_)
+    public S06PacketUpdateHealth(float p_i45223_1_, int p_i45223_2_, float p_i45223_3_)
     {
         this.field_149336_a = p_i45223_1_;
         this.field_149334_b = p_i45223_2_;

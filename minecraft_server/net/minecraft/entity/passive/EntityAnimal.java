@@ -70,20 +70,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
                 double var2 = this.rand.nextGaussian() * 0.02D;
                 double var4 = this.rand.nextGaussian() * 0.02D;
                 double var6 = this.rand.nextGaussian() * 0.02D;
-                this.worldObj
-                        .spawnParticle(
-                                var1,
-                                this.posX
-                                        + (double)(this.rand.nextFloat()
-                                                * this.width * 2.0F)
-                                        - (double)this.width,
-                                this.posY
-                                        + 0.5D
-                                        + (double)(this.rand.nextFloat() * this.height),
-                                this.posZ
-                                        + (double)(this.rand.nextFloat()
-                                                * this.width * 2.0F)
-                                        - (double)this.width, var2, var4, var6);
+                this.worldObj.spawnParticle(var1, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, var2, var4, var6);
             }
         }
         else
@@ -110,8 +97,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 
             EntityPlayer var7 = (EntityPlayer)par1Entity;
 
-            if (var7.getCurrentEquippedItem() == null
-                    || !this.isBreedingItem(var7.getCurrentEquippedItem()))
+            if (var7.getCurrentEquippedItem() == null || !this.isBreedingItem(var7.getCurrentEquippedItem()))
             {
                 this.entityToAttack = null;
             }
@@ -142,24 +128,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 
                     if (this.breeding % 4 == 0)
                     {
-                        this.worldObj
-                                .spawnParticle(
-                                        "heart",
-                                        this.posX
-                                                + (double)(this.rand
-                                                        .nextFloat()
-                                                        * this.width * 2.0F)
-                                                - (double)this.width,
-                                        this.posY
-                                                + 0.5D
-                                                + (double)(this.rand
-                                                        .nextFloat() * this.height),
-                                        this.posZ
-                                                + (double)(this.rand
-                                                        .nextFloat()
-                                                        * this.width * 2.0F)
-                                                - (double)this.width, 0.0D,
-                                        0.0D, 0.0D);
+                        this.worldObj.spawnParticle("heart", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.0D, 0.0D, 0.0D);
                     }
 
                     if (this.breeding == 60)
@@ -190,21 +159,18 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 
         if (var2 != null)
         {
-            if (this.field_146084_br == null
-                    && par1EntityAnimal.func_146083_cb() != null)
+            if (this.field_146084_br == null && par1EntityAnimal.func_146083_cb() != null)
             {
                 this.field_146084_br = par1EntityAnimal.func_146083_cb();
             }
 
             if (this.field_146084_br != null)
             {
-                this.field_146084_br
-                        .triggerAchievement(StatList.field_151186_x);
+                this.field_146084_br.triggerAchievement(StatList.field_151186_x);
 
                 if (this instanceof EntityCow)
                 {
-                    this.field_146084_br
-                            .triggerAchievement(AchievementList.field_150962_H);
+                    this.field_146084_br.triggerAchievement(AchievementList.field_150962_H);
                 }
             }
 
@@ -217,28 +183,14 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
             par1EntityAnimal.breeding = 0;
             par1EntityAnimal.inLove = 0;
             var2.setGrowingAge(-24000);
-            var2.setLocationAndAngles(this.posX, this.posY, this.posZ,
-                    this.rotationYaw, this.rotationPitch);
+            var2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
 
             for (int var3 = 0; var3 < 7; ++var3)
             {
                 double var4 = this.rand.nextGaussian() * 0.02D;
                 double var6 = this.rand.nextGaussian() * 0.02D;
                 double var8 = this.rand.nextGaussian() * 0.02D;
-                this.worldObj
-                        .spawnParticle(
-                                "heart",
-                                this.posX
-                                        + (double)(this.rand.nextFloat()
-                                                * this.width * 2.0F)
-                                        - (double)this.width,
-                                this.posY
-                                        + 0.5D
-                                        + (double)(this.rand.nextFloat() * this.height),
-                                this.posZ
-                                        + (double)(this.rand.nextFloat()
-                                                * this.width * 2.0F)
-                                        - (double)this.width, var4, var6, var8);
+                this.worldObj.spawnParticle("heart", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, var4, var6, var8);
             }
 
             this.worldObj.spawnEntityInWorld(var2);
@@ -260,8 +212,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 
             if (!this.isAIEnabled())
             {
-                IAttributeInstance var3 = this
-                        .getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+                IAttributeInstance var3 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 
                 if (var3.getModifier(field_110179_h) == null)
                 {
@@ -281,8 +232,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
      */
     public float getBlockPathWeight(int par1, int par2, int par3)
     {
-        return this.worldObj.getBlock(par1, par2 - 1, par3) == Blocks.grass ? 10.0F
-                : this.worldObj.getLightBrightness(par1, par2, par3) - 0.5F;
+        return this.worldObj.getBlock(par1, par2 - 1, par3) == Blocks.grass ? 10.0F : this.worldObj.getLightBrightness(par1, par2, par3) - 0.5F;
     }
 
     /**
@@ -323,9 +273,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 
             if (this.inLove > 0)
             {
-                var2 = this.worldObj.getEntitiesWithinAABB(this.getClass(),
-                        this.boundingBox.expand((double)var1, (double)var1,
-                                (double)var1));
+                var2 = this.worldObj.getEntitiesWithinAABB(this.getClass(), this.boundingBox.expand((double)var1, (double)var1, (double)var1));
 
                 for (var3 = 0; var3 < var2.size(); ++var3)
                 {
@@ -336,24 +284,18 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
             }
             else if (this.getGrowingAge() == 0)
             {
-                var2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class,
-                        this.boundingBox.expand((double)var1, (double)var1,
-                                (double)var1));
+                var2 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand((double)var1, (double)var1, (double)var1));
 
                 for (var3 = 0; var3 < var2.size(); ++var3)
                 {
                     EntityPlayer var5 = (EntityPlayer)var2.get(var3);
 
-                    if (var5.getCurrentEquippedItem() != null
-                            && this.isBreedingItem(var5
-                                    .getCurrentEquippedItem())) { return var5; }
+                    if (var5.getCurrentEquippedItem() != null && this.isBreedingItem(var5.getCurrentEquippedItem())) { return var5; }
                 }
             }
             else if (this.getGrowingAge() > 0)
             {
-                var2 = this.worldObj.getEntitiesWithinAABB(this.getClass(),
-                        this.boundingBox.expand((double)var1, (double)var1,
-                                (double)var1));
+                var2 = this.worldObj.getEntitiesWithinAABB(this.getClass(), this.boundingBox.expand((double)var1, (double)var1, (double)var1));
 
                 for (var3 = 0; var3 < var2.size(); ++var3)
                 {
@@ -376,9 +318,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
         int var1 = MathHelper.floor_double(this.posX);
         int var2 = MathHelper.floor_double(this.boundingBox.minY);
         int var3 = MathHelper.floor_double(this.posZ);
-        return this.worldObj.getBlock(var1, var2 - 1, var3) == Blocks.grass
-                && this.worldObj.getFullBlockLightValue(var1, var2, var3) > 8
-                && super.getCanSpawnHere();
+        return this.worldObj.getBlock(var1, var2 - 1, var3) == Blocks.grass && this.worldObj.getFullBlockLightValue(var1, var2, var3) > 8 && super.getCanSpawnHere();
     }
 
     /**
@@ -423,8 +363,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
     {
         ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
 
-        if (var2 != null && this.isBreedingItem(var2)
-                && this.getGrowingAge() == 0 && this.inLove <= 0)
+        if (var2 != null && this.isBreedingItem(var2) && this.getGrowingAge() == 0 && this.inLove <= 0)
         {
             if (!par1EntityPlayer.capabilities.isCreativeMode)
             {
@@ -432,9 +371,7 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
 
                 if (var2.stackSize <= 0)
                 {
-                    par1EntityPlayer.inventory.setInventorySlotContents(
-                            par1EntityPlayer.inventory.currentItem,
-                            (ItemStack)null);
+                    par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, (ItemStack)null);
                 }
             }
 
@@ -478,8 +415,6 @@ public abstract class EntityAnimal extends EntityAgeable implements IAnimals
      */
     public boolean canMateWith(EntityAnimal par1EntityAnimal)
     {
-        return par1EntityAnimal == this ? false
-                : (par1EntityAnimal.getClass() != this.getClass() ? false
-                        : this.isInLove() && par1EntityAnimal.isInLove());
+        return par1EntityAnimal == this ? false : (par1EntityAnimal.getClass() != this.getClass() ? false : this.isInLove() && par1EntityAnimal.isInLove());
     }
 }

@@ -37,16 +37,14 @@ public abstract class CommandBase implements ICommand
      */
     public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
     {
-        return par1ICommandSender.canCommandSenderUseCommand(
-                this.getRequiredPermissionLevel(), this.getCommandName());
+        return par1ICommandSender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
     }
 
     /**
      * Adds the strings available in this command to the given list of tab
      * completion options.
      */
-    public List addTabCompletionOptions(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         return null;
     }
@@ -62,38 +60,32 @@ public abstract class CommandBase implements ICommand
         }
         catch (NumberFormatException var3)
         {
-            throw new NumberInvalidException("commands.generic.num.invalid",
-                    new Object[] {par1Str});
+            throw new NumberInvalidException("commands.generic.num.invalid", new Object[] {par1Str});
         }
     }
 
     /**
      * Parses an int from the given sring with a specified minimum.
      */
-    public static int parseIntWithMin(ICommandSender par0ICommandSender,
-            String par1Str, int par2)
+    public static int parseIntWithMin(ICommandSender par0ICommandSender, String par1Str, int par2)
     {
-        return parseIntBounded(par0ICommandSender, par1Str, par2,
-                Integer.MAX_VALUE);
+        return parseIntBounded(par0ICommandSender, par1Str, par2, Integer.MAX_VALUE);
     }
 
     /**
      * Parses an int from the given string within a specified bound.
      */
-    public static int parseIntBounded(ICommandSender par0ICommandSender,
-            String par1Str, int par2, int par3)
+    public static int parseIntBounded(ICommandSender par0ICommandSender, String par1Str, int par2, int par3)
     {
         int var4 = parseInt(par0ICommandSender, par1Str);
 
         if (var4 < par2)
         {
-            throw new NumberInvalidException("commands.generic.num.tooSmall",
-                    new Object[] {Integer.valueOf(var4), Integer.valueOf(par2)});
+            throw new NumberInvalidException("commands.generic.num.tooSmall", new Object[] {Integer.valueOf(var4), Integer.valueOf(par2)});
         }
         else if (var4 > par3)
         {
-            throw new NumberInvalidException("commands.generic.num.tooBig",
-                    new Object[] {Integer.valueOf(var4), Integer.valueOf(par3)});
+            throw new NumberInvalidException("commands.generic.num.tooBig", new Object[] {Integer.valueOf(var4), Integer.valueOf(par3)});
         }
         else
         {
@@ -105,8 +97,7 @@ public abstract class CommandBase implements ICommand
      * Parses a double from the given string or throws an exception if it's not
      * a double.
      */
-    public static double parseDouble(ICommandSender par0ICommandSender,
-            String par1Str)
+    public static double parseDouble(ICommandSender par0ICommandSender, String par1Str)
     {
         try
         {
@@ -114,8 +105,7 @@ public abstract class CommandBase implements ICommand
 
             if (!Doubles.isFinite(var2))
             {
-                throw new NumberInvalidException(
-                        "commands.generic.num.invalid", new Object[] {par1Str});
+                throw new NumberInvalidException("commands.generic.num.invalid", new Object[] {par1Str});
             }
             else
             {
@@ -124,8 +114,7 @@ public abstract class CommandBase implements ICommand
         }
         catch (NumberFormatException var4)
         {
-            throw new NumberInvalidException("commands.generic.num.invalid",
-                    new Object[] {par1Str});
+            throw new NumberInvalidException("commands.generic.num.invalid", new Object[] {par1Str});
         }
     }
 
@@ -133,32 +122,26 @@ public abstract class CommandBase implements ICommand
      * Parses a double from the given string. Throws if the string could not be
      * parsed as a double, or if it's less than the given minimum value.
      */
-    public static double parseDoubleWithMin(ICommandSender par0ICommandSender,
-            String par1Str, double par2)
+    public static double parseDoubleWithMin(ICommandSender par0ICommandSender, String par1Str, double par2)
     {
-        return parseDoubleBounded(par0ICommandSender, par1Str, par2,
-                Double.MAX_VALUE);
+        return parseDoubleBounded(par0ICommandSender, par1Str, par2, Double.MAX_VALUE);
     }
 
     /**
      * Parses a double from the given string. Throws if the string could not be
      * parsed as a double, or if it's not between the given min and max values.
      */
-    public static double parseDoubleBounded(ICommandSender par0ICommandSender,
-            String par1Str, double par2, double par4)
+    public static double parseDoubleBounded(ICommandSender par0ICommandSender, String par1Str, double par2, double par4)
     {
         double var6 = parseDouble(par0ICommandSender, par1Str);
 
         if (var6 < par2)
         {
-            throw new NumberInvalidException(
-                    "commands.generic.double.tooSmall", new Object[] {
-                            Double.valueOf(var6), Double.valueOf(par2)});
+            throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[] {Double.valueOf(var6), Double.valueOf(par2)});
         }
         else if (var6 > par4)
         {
-            throw new NumberInvalidException("commands.generic.double.tooBig",
-                    new Object[] {Double.valueOf(var6), Double.valueOf(par4)});
+            throw new NumberInvalidException("commands.generic.double.tooBig", new Object[] {Double.valueOf(var6), Double.valueOf(par4)});
         }
         else
         {
@@ -171,15 +154,13 @@ public abstract class CommandBase implements ICommand
      * not contain a boolean value. Accepted values are (case-sensitive):
      * "true", "false", "0", "1".
      */
-    public static boolean parseBoolean(ICommandSender par0ICommandSender,
-            String par1Str)
+    public static boolean parseBoolean(ICommandSender par0ICommandSender, String par1Str)
     {
         if (!par1Str.equals("true") && !par1Str.equals("1"))
         {
             if (!par1Str.equals("false") && !par1Str.equals("0"))
             {
-                throw new CommandException("commands.generic.boolean.invalid",
-                        new Object[] {par1Str});
+                throw new CommandException("commands.generic.boolean.invalid", new Object[] {par1Str});
             }
             else
             {
@@ -195,8 +176,7 @@ public abstract class CommandBase implements ICommand
     /**
      * Returns the given ICommandSender as a EntityPlayer or throw an exception.
      */
-    public static EntityPlayerMP getCommandSenderAsPlayer(
-            ICommandSender par0ICommandSender)
+    public static EntityPlayerMP getCommandSenderAsPlayer(ICommandSender par0ICommandSender)
     {
         if (par0ICommandSender instanceof EntityPlayerMP)
         {
@@ -204,17 +184,13 @@ public abstract class CommandBase implements ICommand
         }
         else
         {
-            throw new PlayerNotFoundException(
-                    "You must specify which player you wish to perform this action on.",
-                    new Object[0]);
+            throw new PlayerNotFoundException("You must specify which player you wish to perform this action on.", new Object[0]);
         }
     }
 
-    public static EntityPlayerMP getPlayer(ICommandSender par0ICommandSender,
-            String par1Str)
+    public static EntityPlayerMP getPlayer(ICommandSender par0ICommandSender, String par1Str)
     {
-        EntityPlayerMP var2 = PlayerSelector.matchOnePlayer(par0ICommandSender,
-                par1Str);
+        EntityPlayerMP var2 = PlayerSelector.matchOnePlayer(par0ICommandSender, par1Str);
 
         if (var2 != null)
         {
@@ -222,8 +198,7 @@ public abstract class CommandBase implements ICommand
         }
         else
         {
-            var2 = MinecraftServer.getServer().getConfigurationManager()
-                    .getPlayerEntity(par1Str);
+            var2 = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(par1Str);
 
             if (var2 == null)
             {
@@ -236,11 +211,9 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static String func_96332_d(ICommandSender par0ICommandSender,
-            String par1Str)
+    public static String func_96332_d(ICommandSender par0ICommandSender, String par1Str)
     {
-        EntityPlayerMP var2 = PlayerSelector.matchOnePlayer(par0ICommandSender,
-                par1Str);
+        EntityPlayerMP var2 = PlayerSelector.matchOnePlayer(par0ICommandSender, par1Str);
 
         if (var2 != null)
         {
@@ -256,14 +229,12 @@ public abstract class CommandBase implements ICommand
         }
     }
 
-    public static IChatComponent func_147178_a(ICommandSender p_147178_0_,
-            String[] p_147178_1_, int p_147178_2_)
+    public static IChatComponent func_147178_a(ICommandSender p_147178_0_, String[] p_147178_1_, int p_147178_2_)
     {
         return func_147176_a(p_147178_0_, p_147178_1_, p_147178_2_, false);
     }
 
-    public static IChatComponent func_147176_a(ICommandSender p_147176_0_,
-            String[] p_147176_1_, int p_147176_2_, boolean p_147176_3_)
+    public static IChatComponent func_147176_a(ICommandSender p_147176_0_, String[] p_147176_1_, int p_147176_2_, boolean p_147176_3_)
     {
         ChatComponentText var4 = new ChatComponentText("");
 
@@ -278,8 +249,7 @@ public abstract class CommandBase implements ICommand
 
             if (p_147176_3_)
             {
-                IChatComponent var7 = PlayerSelector.func_150869_b(p_147176_0_,
-                        p_147176_1_[var5]);
+                IChatComponent var7 = PlayerSelector.func_150869_b(p_147176_0_, p_147176_1_[var5]);
 
                 if (var7 != null)
                 {
@@ -294,8 +264,7 @@ public abstract class CommandBase implements ICommand
         return var4;
     }
 
-    public static String func_82360_a(ICommandSender par0ICommandSender,
-            String[] par1ArrayOfStr, int par2)
+    public static String func_82360_a(ICommandSender par0ICommandSender, String[] par1ArrayOfStr, int par2)
     {
         StringBuilder var3 = new StringBuilder();
 
@@ -313,22 +282,18 @@ public abstract class CommandBase implements ICommand
         return var3.toString();
     }
 
-    public static double func_110666_a(ICommandSender par0ICommandSender,
-            double par1, String par3Str)
+    public static double func_110666_a(ICommandSender par0ICommandSender, double par1, String par3Str)
     {
-        return func_110665_a(par0ICommandSender, par1, par3Str, -30000000,
-                30000000);
+        return func_110665_a(par0ICommandSender, par1, par3Str, -30000000, 30000000);
     }
 
-    public static double func_110665_a(ICommandSender par0ICommandSender,
-            double par1, String par3Str, int par4, int par5)
+    public static double func_110665_a(ICommandSender par0ICommandSender, double par1, String par3Str, int par4, int par5)
     {
         boolean var6 = par3Str.startsWith("~");
 
         if (var6 && Double.isNaN(par1))
         {
-            throw new NumberInvalidException("commands.generic.num.invalid",
-                    new Object[] {Double.valueOf(par1)});
+            throw new NumberInvalidException("commands.generic.num.invalid", new Object[] {Double.valueOf(par1)});
         }
         else
         {
@@ -353,13 +318,9 @@ public abstract class CommandBase implements ICommand
 
             if (par4 != 0 || par5 != 0)
             {
-                if (var7 < (double)par4) { throw new NumberInvalidException(
-                        "commands.generic.double.tooSmall", new Object[] {
-                                Double.valueOf(var7), Integer.valueOf(par4)}); }
+                if (var7 < (double)par4) { throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[] {Double.valueOf(var7), Integer.valueOf(par4)}); }
 
-                if (var7 > (double)par5) { throw new NumberInvalidException(
-                        "commands.generic.double.tooBig", new Object[] {
-                                Double.valueOf(var7), Integer.valueOf(par5)}); }
+                if (var7 > (double)par5) { throw new NumberInvalidException("commands.generic.double.tooBig", new Object[] {Double.valueOf(var7), Integer.valueOf(par5)}); }
             }
 
             return var7;
@@ -372,8 +333,7 @@ public abstract class CommandBase implements ICommand
      * Warns the sender if we matched by parsing the ID. Throws if the item
      * wasn't found. Returns the item if it was found.
      */
-    public static Item getItemByText(ICommandSender p_147179_0_,
-            String p_147179_1_)
+    public static Item getItemByText(ICommandSender p_147179_0_, String p_147179_1_)
     {
         Item var2 = (Item)Item.itemRegistry.getObject(p_147179_1_);
 
@@ -385,10 +345,7 @@ public abstract class CommandBase implements ICommand
 
                 if (var3 != null)
                 {
-                    ChatComponentTranslation var4 = new ChatComponentTranslation(
-                            "commands.generic.deprecatedId",
-                            new Object[] {Item.itemRegistry
-                                    .getNameForObject(var3)});
+                    ChatComponentTranslation var4 = new ChatComponentTranslation("commands.generic.deprecatedId", new Object[] {Item.itemRegistry.getNameForObject(var3)});
                     var4.getChatStyle().setColor(EnumChatFormatting.GRAY);
                     p_147179_0_.addChatMessage(var4);
                 }
@@ -403,8 +360,7 @@ public abstract class CommandBase implements ICommand
 
         if (var2 == null)
         {
-            throw new NumberInvalidException("commands.give.notFound",
-                    new Object[] {p_147179_1_});
+            throw new NumberInvalidException("commands.give.notFound", new Object[] {p_147179_1_});
         }
         else
         {
@@ -418,8 +374,7 @@ public abstract class CommandBase implements ICommand
      * Warns the sender if we matched by parsing the ID. Throws if the block
      * wasn't found. Returns the block if it was found.
      */
-    public static Block getBlockByText(ICommandSender p_147180_0_,
-            String p_147180_1_)
+    public static Block getBlockByText(ICommandSender p_147180_0_, String p_147180_1_)
     {
         if (Block.blockRegistry.containsKey(p_147180_1_))
         {
@@ -434,10 +389,7 @@ public abstract class CommandBase implements ICommand
                 if (Block.blockRegistry.containsID(var2))
                 {
                     Block var3 = Block.getBlockById(var2);
-                    ChatComponentTranslation var4 = new ChatComponentTranslation(
-                            "commands.generic.deprecatedId",
-                            new Object[] {Block.blockRegistry
-                                    .getNameForObject(var3)});
+                    ChatComponentTranslation var4 = new ChatComponentTranslation("commands.generic.deprecatedId", new Object[] {Block.blockRegistry.getNameForObject(var3)});
                     var4.getChatStyle().setColor(EnumChatFormatting.GRAY);
                     p_147180_0_.addChatMessage(var4);
                     return var3;
@@ -448,8 +400,7 @@ public abstract class CommandBase implements ICommand
                 ;
             }
 
-            throw new NumberInvalidException("commands.give.notFound",
-                    new Object[] {p_147180_1_});
+            throw new NumberInvalidException("commands.give.notFound", new Object[] {p_147180_1_});
         }
     }
 
@@ -521,8 +472,7 @@ public abstract class CommandBase implements ICommand
      */
     public static String joinNiceStringFromCollection(Collection par0Collection)
     {
-        return joinNiceString(par0Collection.toArray(new String[par0Collection
-                .size()]));
+        return joinNiceString(par0Collection.toArray(new String[par0Collection.size()]));
     }
 
     /**
@@ -539,8 +489,7 @@ public abstract class CommandBase implements ICommand
      * word in the given string array is a beginning-match for. (Tab
      * completion).
      */
-    public static List getListOfStringsMatchingLastWord(
-            String[] par0ArrayOfStr, String... par1ArrayOfStr)
+    public static List getListOfStringsMatchingLastWord(String[] par0ArrayOfStr, String... par1ArrayOfStr)
     {
         String var2 = par0ArrayOfStr[par0ArrayOfStr.length - 1];
         ArrayList var3 = new ArrayList();
@@ -565,8 +514,7 @@ public abstract class CommandBase implements ICommand
      * the last word in the given string array is a beginning-match for. (Tab
      * completion).
      */
-    public static List getListOfStringsFromIterableMatchingLastWord(
-            String[] par0ArrayOfStr, Iterable par1Iterable)
+    public static List getListOfStringsFromIterableMatchingLastWord(String[] par0ArrayOfStr, Iterable par1Iterable)
     {
         String var2 = par0ArrayOfStr[par0ArrayOfStr.length - 1];
         ArrayList var3 = new ArrayList();
@@ -594,19 +542,16 @@ public abstract class CommandBase implements ICommand
         return false;
     }
 
-    public static void notifyAdmins(ICommandSender par0ICommandSender,
-            String par1Str, Object... par2ArrayOfObj)
+    public static void notifyAdmins(ICommandSender par0ICommandSender, String par1Str, Object... par2ArrayOfObj)
     {
         notifyAdmins(par0ICommandSender, 0, par1Str, par2ArrayOfObj);
     }
 
-    public static void notifyAdmins(ICommandSender par0ICommandSender,
-            int par1, String par2Str, Object... par3ArrayOfObj)
+    public static void notifyAdmins(ICommandSender par0ICommandSender, int par1, String par2Str, Object... par3ArrayOfObj)
     {
         if (theAdmin != null)
         {
-            theAdmin.notifyAdmins(par0ICommandSender, par1, par2Str,
-                    par3ArrayOfObj);
+            theAdmin.notifyAdmins(par0ICommandSender, par1, par2Str, par3ArrayOfObj);
         }
     }
 
@@ -635,8 +580,6 @@ public abstract class CommandBase implements ICommand
 
     public boolean isTargetOp(EntityPlayerMP target, ICommandSender sender)
     {
-        return !target.canCommandSenderUseCommand(
-                this.getRequiredPermissionLevel(), this.getCommandName())
-                && !MinecraftServer.isPlayerOwner(sender);
+        return !target.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()) && !MinecraftServer.isPlayerOwner(sender);
     }
 }

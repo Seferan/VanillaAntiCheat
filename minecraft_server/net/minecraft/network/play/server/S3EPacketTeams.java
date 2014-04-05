@@ -44,13 +44,11 @@ public class S3EPacketTeams extends Packet
         }
     }
 
-    public S3EPacketTeams(ScorePlayerTeam p_i45226_1_, Collection p_i45226_2_,
-            int p_i45226_3_)
+    public S3EPacketTeams(ScorePlayerTeam p_i45226_1_, Collection p_i45226_2_, int p_i45226_3_)
     {
         if (p_i45226_3_ != 3 && p_i45226_3_ != 4)
         {
-            throw new IllegalArgumentException(
-                    "Method must be join or leave for player constructor");
+            throw new IllegalArgumentException("Method must be join or leave for player constructor");
         }
         else if (p_i45226_2_ != null && !p_i45226_2_.isEmpty())
         {
@@ -80,8 +78,7 @@ public class S3EPacketTeams extends Packet
             this.field_149315_g = p_148837_1_.readByte();
         }
 
-        if (this.field_149314_f == 0 || this.field_149314_f == 3
-                || this.field_149314_f == 4)
+        if (this.field_149314_f == 0 || this.field_149314_f == 3 || this.field_149314_f == 4)
         {
             short var2 = p_148837_1_.readShort();
 
@@ -108,8 +105,7 @@ public class S3EPacketTeams extends Packet
             p_148840_1_.writeByte(this.field_149315_g);
         }
 
-        if (this.field_149314_f == 0 || this.field_149314_f == 3
-                || this.field_149314_f == 4)
+        if (this.field_149314_f == 0 || this.field_149314_f == 3 || this.field_149314_f == 4)
         {
             p_148840_1_.writeShort(this.field_149317_e.size());
             Iterator var2 = this.field_149317_e.iterator();

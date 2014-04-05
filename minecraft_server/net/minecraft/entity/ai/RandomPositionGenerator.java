@@ -12,15 +12,13 @@ public class RandomPositionGenerator
      * away from. WARNING: NEVER THREAD SAFE. MULTIPLE findTowards and findAway
      * calls, will share this var
      */
-    private static Vec3 staticVector = Vec3
-            .createVectorHelper(0.0D, 0.0D, 0.0D);
+    private static Vec3 staticVector = Vec3.createVectorHelper(0.0D, 0.0D, 0.0D);
     private static final String __OBFID = "CL_00001629";
 
     /**
      * finds a random target within par1(x,z) and par2 (y) blocks
      */
-    public static Vec3 findRandomTarget(EntityCreature par0EntityCreature,
-            int par1, int par2)
+    public static Vec3 findRandomTarget(EntityCreature par0EntityCreature, int par1, int par2)
     {
         return findRandomTargetBlock(par0EntityCreature, par1, par2, (Vec3)null);
     }
@@ -29,28 +27,24 @@ public class RandomPositionGenerator
      * finds a random target within par1(x,z) and par2 (y) blocks in the
      * direction of the point par3
      */
-    public static Vec3 findRandomTargetBlockTowards(
-            EntityCreature par0EntityCreature, int par1, int par2, Vec3 par3Vec3)
+    public static Vec3 findRandomTargetBlockTowards(EntityCreature par0EntityCreature, int par1, int par2, Vec3 par3Vec3)
     {
         staticVector.xCoord = par3Vec3.xCoord - par0EntityCreature.posX;
         staticVector.yCoord = par3Vec3.yCoord - par0EntityCreature.posY;
         staticVector.zCoord = par3Vec3.zCoord - par0EntityCreature.posZ;
-        return findRandomTargetBlock(par0EntityCreature, par1, par2,
-                staticVector);
+        return findRandomTargetBlock(par0EntityCreature, par1, par2, staticVector);
     }
 
     /**
      * finds a random target within par1(x,z) and par2 (y) blocks in the reverse
      * direction of the point par3
      */
-    public static Vec3 findRandomTargetBlockAwayFrom(
-            EntityCreature par0EntityCreature, int par1, int par2, Vec3 par3Vec3)
+    public static Vec3 findRandomTargetBlockAwayFrom(EntityCreature par0EntityCreature, int par1, int par2, Vec3 par3Vec3)
     {
         staticVector.xCoord = par0EntityCreature.posX - par3Vec3.xCoord;
         staticVector.yCoord = par0EntityCreature.posY - par3Vec3.yCoord;
         staticVector.zCoord = par0EntityCreature.posZ - par3Vec3.zCoord;
-        return findRandomTargetBlock(par0EntityCreature, par1, par2,
-                staticVector);
+        return findRandomTargetBlock(par0EntityCreature, par1, par2, staticVector);
     }
 
     /**
@@ -58,8 +52,7 @@ public class RandomPositionGenerator
      * ignores those not in the direction of par3Vec3, then points to the tile
      * for which creature.getBlockPathWeight returns the highest number
      */
-    private static Vec3 findRandomTargetBlock(
-            EntityCreature par0EntityCreature, int par1, int par2, Vec3 par3Vec3)
+    private static Vec3 findRandomTargetBlock(EntityCreature par0EntityCreature, int par1, int par2, Vec3 par3Vec3)
     {
         Random var4 = par0EntityCreature.getRNG();
         boolean var5 = false;
@@ -71,11 +64,7 @@ public class RandomPositionGenerator
 
         if (par0EntityCreature.hasHome())
         {
-            double var11 = (double)(par0EntityCreature.getHomePosition()
-                    .getDistanceSquared(
-                            MathHelper.floor_double(par0EntityCreature.posX),
-                            MathHelper.floor_double(par0EntityCreature.posY),
-                            MathHelper.floor_double(par0EntityCreature.posZ)) + 4.0F);
+            double var11 = (double)(par0EntityCreature.getHomePosition().getDistanceSquared(MathHelper.floor_double(par0EntityCreature.posX), MathHelper.floor_double(par0EntityCreature.posY), MathHelper.floor_double(par0EntityCreature.posZ)) + 4.0F);
             double var13 = (double)(par0EntityCreature.func_110174_bM() + (float)par1);
             var10 = var11 < var13 * var13;
         }
@@ -90,20 +79,15 @@ public class RandomPositionGenerator
             int var17 = var4.nextInt(2 * par2) - par2;
             int var14 = var4.nextInt(2 * par1) - par1;
 
-            if (par3Vec3 == null
-                    || (double)var12 * par3Vec3.xCoord + (double)var14
-                            * par3Vec3.zCoord >= 0.0D)
+            if (par3Vec3 == null || (double)var12 * par3Vec3.xCoord + (double)var14 * par3Vec3.zCoord >= 0.0D)
             {
                 var12 += MathHelper.floor_double(par0EntityCreature.posX);
                 var17 += MathHelper.floor_double(par0EntityCreature.posY);
                 var14 += MathHelper.floor_double(par0EntityCreature.posZ);
 
-                if (!var10
-                        || par0EntityCreature.isWithinHomeDistance(var12,
-                                var17, var14))
+                if (!var10 || par0EntityCreature.isWithinHomeDistance(var12, var17, var14))
                 {
-                    float var15 = par0EntityCreature.getBlockPathWeight(var12,
-                            var17, var14);
+                    float var15 = par0EntityCreature.getBlockPathWeight(var12, var17, var14);
 
                     if (var15 > var9)
                     {
@@ -119,8 +103,7 @@ public class RandomPositionGenerator
 
         if (var5)
         {
-            return par0EntityCreature.worldObj.getWorldVec3Pool()
-                    .getVecFromPool((double)var6, (double)var7, (double)var8);
+            return par0EntityCreature.worldObj.getWorldVec3Pool().getVecFromPool((double)var6, (double)var7, (double)var8);
         }
         else
         {

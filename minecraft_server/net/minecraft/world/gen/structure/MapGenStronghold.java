@@ -57,19 +57,15 @@ public class MapGenStronghold extends MapGenStructure
 
             if (((String)var3.getKey()).equals("distance"))
             {
-                this.field_82671_h = MathHelper.func_82713_a(
-                        (String)var3.getValue(), this.field_82671_h, 1.0D);
+                this.field_82671_h = MathHelper.func_82713_a((String)var3.getValue(), this.field_82671_h, 1.0D);
             }
             else if (((String)var3.getKey()).equals("count"))
             {
-                this.structureCoords = new ChunkCoordIntPair[MathHelper
-                        .parseIntWithDefaultAndMax((String)var3.getValue(),
-                                this.structureCoords.length, 1)];
+                this.structureCoords = new ChunkCoordIntPair[MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), this.structureCoords.length, 1)];
             }
             else if (((String)var3.getKey()).equals("spread"))
             {
-                this.field_82672_i = MathHelper.parseIntWithDefaultAndMax(
-                        (String)var3.getValue(), this.field_82672_i, 1);
+                this.field_82672_i = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), this.field_82672_i, 1);
             }
         }
     }
@@ -90,13 +86,10 @@ public class MapGenStronghold extends MapGenStructure
 
             for (int var7 = 0; var7 < this.structureCoords.length; ++var7)
             {
-                double var8 = (1.25D * (double)var6 + var3.nextDouble())
-                        * this.field_82671_h * (double)var6;
+                double var8 = (1.25D * (double)var6 + var3.nextDouble()) * this.field_82671_h * (double)var6;
                 int var10 = (int)Math.round(Math.cos(var4) * var8);
                 int var11 = (int)Math.round(Math.sin(var4) * var8);
-                ChunkPosition var12 = this.worldObj.getWorldChunkManager()
-                        .findBiomePosition((var10 << 4) + 8, (var11 << 4) + 8,
-                                112, this.field_151546_e, var3);
+                ChunkPosition var12 = this.worldObj.getWorldChunkManager().findBiomePosition((var10 << 4) + 8, (var11 << 4) + 8, 112, this.field_151546_e, var3);
 
                 if (var12 != null)
                 {
@@ -105,8 +98,7 @@ public class MapGenStronghold extends MapGenStructure
                 }
 
                 this.structureCoords[var7] = new ChunkCoordIntPair(var10, var11);
-                var4 += (Math.PI * 2D) * (double)var6
-                        / (double)this.field_82672_i;
+                var4 += (Math.PI * 2D) * (double)var6 / (double)this.field_82672_i;
 
                 if (var7 == this.field_82672_i)
                 {
@@ -158,11 +150,7 @@ public class MapGenStronghold extends MapGenStructure
     {
         MapGenStronghold.Start var3;
 
-        for (var3 = new MapGenStronghold.Start(this.worldObj, this.rand, par1,
-                par2); var3.getComponents().isEmpty()
-                || ((StructureStrongholdPieces.Stairs2)var3.getComponents()
-                        .get(0)).strongholdPortalRoom == null; var3 = new MapGenStronghold.Start(
-                this.worldObj, this.rand, par1, par2))
+        for (var3 = new MapGenStronghold.Start(this.worldObj, this.rand, par1, par2); var3.getComponents().isEmpty() || ((StructureStrongholdPieces.Stairs2)var3.getComponents().get(0)).strongholdPortalRoom == null; var3 = new MapGenStronghold.Start(this.worldObj, this.rand, par1, par2))
         {
             ;
         }
@@ -182,8 +170,7 @@ public class MapGenStronghold extends MapGenStructure
         {
             super(par3, par4);
             StructureStrongholdPieces.prepareStructurePieces();
-            StructureStrongholdPieces.Stairs2 var5 = new StructureStrongholdPieces.Stairs2(
-                    0, par2Random, (par3 << 4) + 2, (par4 << 4) + 2);
+            StructureStrongholdPieces.Stairs2 var5 = new StructureStrongholdPieces.Stairs2(0, par2Random, (par3 << 4) + 2, (par4 << 4) + 2);
             this.components.add(var5);
             var5.buildComponent(var5, this.components, par2Random);
             List var6 = var5.field_75026_c;

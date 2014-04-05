@@ -31,9 +31,7 @@ public class S20PacketEntityProperties extends Packet
         while (var3.hasNext())
         {
             IAttributeInstance var4 = (IAttributeInstance)var3.next();
-            this.field_149444_b.add(new S20PacketEntityProperties.Snapshot(var4
-                    .getAttribute().getAttributeUnlocalizedName(), var4
-                    .getBaseValue(), var4.func_111122_c()));
+            this.field_149444_b.add(new S20PacketEntityProperties.Snapshot(var4.getAttribute().getAttributeUnlocalizedName(), var4.getBaseValue(), var4.func_111122_c()));
         }
     }
 
@@ -54,15 +52,11 @@ public class S20PacketEntityProperties extends Packet
 
             for (int var9 = 0; var9 < var8; ++var9)
             {
-                UUID var10 = new UUID(p_148837_1_.readLong(),
-                        p_148837_1_.readLong());
-                var7.add(new AttributeModifier(var10,
-                        "Unknown synced attribute modifier", p_148837_1_
-                                .readDouble(), p_148837_1_.readByte()));
+                UUID var10 = new UUID(p_148837_1_.readLong(), p_148837_1_.readLong());
+                var7.add(new AttributeModifier(var10, "Unknown synced attribute modifier", p_148837_1_.readDouble(), p_148837_1_.readByte()));
             }
 
-            this.field_149444_b.add(new S20PacketEntityProperties.Snapshot(
-                    var4, var5, var7));
+            this.field_149444_b.add(new S20PacketEntityProperties.Snapshot(var4, var5, var7));
         }
     }
 
@@ -77,8 +71,7 @@ public class S20PacketEntityProperties extends Packet
 
         while (var2.hasNext())
         {
-            S20PacketEntityProperties.Snapshot var3 = (S20PacketEntityProperties.Snapshot)var2
-                    .next();
+            S20PacketEntityProperties.Snapshot var3 = (S20PacketEntityProperties.Snapshot)var2.next();
             p_148840_1_.writeStringToBuffer(var3.func_151409_a());
             p_148840_1_.writeDouble(var3.func_151410_b());
             p_148840_1_.writeShort(var3.func_151408_c().size());
@@ -112,8 +105,7 @@ public class S20PacketEntityProperties extends Packet
         private final Collection field_151411_d;
         private static final String __OBFID = "CL_00001342";
 
-        public Snapshot(String p_i45235_2_, double p_i45235_3_,
-                Collection p_i45235_5_)
+        public Snapshot(String p_i45235_2_, double p_i45235_3_, Collection p_i45235_5_)
         {
             this.field_151412_b = p_i45235_2_;
             this.field_151413_c = p_i45235_3_;

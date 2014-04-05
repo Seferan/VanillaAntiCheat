@@ -49,8 +49,7 @@ public class EntitySquid extends EntityWaterMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth)
-                .setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
     }
 
     /**
@@ -118,9 +117,7 @@ public class EntitySquid extends EntityWaterMob
      */
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(
-                this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D),
-                Material.field_151586_h, this);
+        return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.field_151586_h, this);
     }
 
     /**
@@ -154,9 +151,7 @@ public class EntitySquid extends EntityWaterMob
             if (this.squidRotation < (float)Math.PI)
             {
                 var1 = this.squidRotation / (float)Math.PI;
-                this.tentacleAngle = MathHelper.sin(var1 * var1
-                        * (float)Math.PI)
-                        * (float)Math.PI * 0.25F;
+                this.tentacleAngle = MathHelper.sin(var1 * var1 * (float)Math.PI) * (float)Math.PI * 0.25F;
 
                 if ((double)var1 > 0.75D)
                 {
@@ -182,19 +177,15 @@ public class EntitySquid extends EntityWaterMob
                 this.motionZ = (double)(this.randomMotionVecZ * this.randomMotionSpeed);
             }
 
-            var1 = MathHelper.sqrt_double(this.motionX * this.motionX
-                    + this.motionZ * this.motionZ);
-            this.renderYawOffset += (-((float)Math.atan2(this.motionX,
-                    this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
+            var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            this.renderYawOffset += (-((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
             this.rotationYaw = this.renderYawOffset;
             this.squidYaw += (float)Math.PI * this.field_70871_bB * 1.5F;
-            this.squidPitch += (-((float)Math.atan2((double)var1, this.motionY))
-                    * 180.0F / (float)Math.PI - this.squidPitch) * 0.1F;
+            this.squidPitch += (-((float)Math.atan2((double)var1, this.motionY)) * 180.0F / (float)Math.PI - this.squidPitch) * 0.1F;
         }
         else
         {
-            this.tentacleAngle = MathHelper.abs(MathHelper
-                    .sin(this.squidRotation)) * (float)Math.PI * 0.25F;
+            this.tentacleAngle = MathHelper.abs(MathHelper.sin(this.squidRotation)) * (float)Math.PI * 0.25F;
 
             if (!this.worldObj.isClient)
             {
@@ -224,10 +215,7 @@ public class EntitySquid extends EntityWaterMob
         {
             this.randomMotionVecX = this.randomMotionVecY = this.randomMotionVecZ = 0.0F;
         }
-        else if (this.rand.nextInt(50) == 0 || !this.inWater
-                || this.randomMotionVecX == 0.0F
-                && this.randomMotionVecY == 0.0F
-                && this.randomMotionVecZ == 0.0F)
+        else if (this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F)
         {
             float var1 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
             this.randomMotionVecX = MathHelper.cos(var1) * 0.2F;
@@ -244,7 +232,6 @@ public class EntitySquid extends EntityWaterMob
      */
     public boolean getCanSpawnHere()
     {
-        return this.posY > 45.0D && this.posY < 63.0D
-                && super.getCanSpawnHere();
+        return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
     }
 }

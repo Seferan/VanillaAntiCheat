@@ -21,37 +21,32 @@ public class PlayerSelector
      * This matches the at-tokens introduced for command blocks, including their
      * arguments, if any.
      */
-    private static final Pattern tokenPattern = Pattern
-            .compile("^@([parf])(?:\\[([\\w=,!-]*)\\])?$");
+    private static final Pattern tokenPattern = Pattern.compile("^@([parf])(?:\\[([\\w=,!-]*)\\])?$");
 
     /**
      * This matches things like "-1,,4", and is used for getting x,y,z,range
      * from the token's argument list.
      */
-    private static final Pattern intListPattern = Pattern
-            .compile("\\G([-!]?[\\w-]*)(?:$|,)");
+    private static final Pattern intListPattern = Pattern.compile("\\G([-!]?[\\w-]*)(?:$|,)");
 
     /**
      * This matches things like "rm=4,c=2" and is used for handling named token
      * arguments.
      */
-    private static final Pattern keyValueListPattern = Pattern
-            .compile("\\G(\\w+)=([-!]?[\\w-]*)(?:$|,)");
+    private static final Pattern keyValueListPattern = Pattern.compile("\\G(\\w+)=([-!]?[\\w-]*)(?:$|,)");
     private static final String __OBFID = "CL_00000086";
 
     /**
      * Returns the one player that matches the given at-token. Returns null if
      * more than one player matches.
      */
-    public static EntityPlayerMP matchOnePlayer(
-            ICommandSender par0ICommandSender, String par1Str)
+    public static EntityPlayerMP matchOnePlayer(ICommandSender par0ICommandSender, String par1Str)
     {
         EntityPlayerMP[] var2 = matchPlayers(par0ICommandSender, par1Str);
         return var2 != null && var2.length == 1 ? var2[0] : null;
     }
 
-    public static IChatComponent func_150869_b(ICommandSender p_150869_0_,
-            String p_150869_1_)
+    public static IChatComponent func_150869_b(ICommandSender p_150869_0_, String p_150869_1_)
     {
         EntityPlayerMP[] var2 = matchPlayers(p_150869_0_, p_150869_1_);
 
@@ -75,8 +70,7 @@ public class PlayerSelector
     /**
      * Returns an array of all players matched by the given at-token.
      */
-    public static EntityPlayerMP[] matchPlayers(
-            ICommandSender par0ICommandSender, String par1Str)
+    public static EntityPlayerMP[] matchPlayers(ICommandSender par0ICommandSender, String par1Str)
     {
         Matcher var2 = tokenPattern.matcher(par1Str);
 
@@ -94,8 +88,7 @@ public class PlayerSelector
             int var8 = getDefaultMaximumLevel(var4);
             int var9 = getDefaultCount(var4);
             int var10 = WorldSettings.GameType.NOT_SET.getID();
-            ChunkCoordinates var11 = par0ICommandSender
-                    .getCommandSenderPosition();
+            ChunkCoordinates var11 = par0ICommandSender.getCommandSenderPosition();
             Map var12 = func_96560_a(var3);
             String var13 = null;
             String var14 = null;
@@ -103,61 +96,52 @@ public class PlayerSelector
 
             if (var3.containsKey("rm"))
             {
-                var5 = MathHelper.parseIntWithDefault((String)var3.get("rm"),
-                        var5);
+                var5 = MathHelper.parseIntWithDefault((String)var3.get("rm"), var5);
                 var15 = true;
             }
 
             if (var3.containsKey("r"))
             {
-                var6 = MathHelper.parseIntWithDefault((String)var3.get("r"),
-                        var6);
+                var6 = MathHelper.parseIntWithDefault((String)var3.get("r"), var6);
                 var15 = true;
             }
 
             if (var3.containsKey("lm"))
             {
-                var7 = MathHelper.parseIntWithDefault((String)var3.get("lm"),
-                        var7);
+                var7 = MathHelper.parseIntWithDefault((String)var3.get("lm"), var7);
             }
 
             if (var3.containsKey("l"))
             {
-                var8 = MathHelper.parseIntWithDefault((String)var3.get("l"),
-                        var8);
+                var8 = MathHelper.parseIntWithDefault((String)var3.get("l"), var8);
             }
 
             if (var3.containsKey("x"))
             {
-                var11.posX = MathHelper.parseIntWithDefault(
-                        (String)var3.get("x"), var11.posX);
+                var11.posX = MathHelper.parseIntWithDefault((String)var3.get("x"), var11.posX);
                 var15 = true;
             }
 
             if (var3.containsKey("y"))
             {
-                var11.posY = MathHelper.parseIntWithDefault(
-                        (String)var3.get("y"), var11.posY);
+                var11.posY = MathHelper.parseIntWithDefault((String)var3.get("y"), var11.posY);
                 var15 = true;
             }
 
             if (var3.containsKey("z"))
             {
-                var11.posZ = MathHelper.parseIntWithDefault(
-                        (String)var3.get("z"), var11.posZ);
+                var11.posZ = MathHelper.parseIntWithDefault((String)var3.get("z"), var11.posZ);
                 var15 = true;
             }
 
             if (var3.containsKey("m"))
             {
-                var10 = MathHelper.parseIntWithDefault((String)var3.get("m"),
-                        var10);
+                var10 = MathHelper.parseIntWithDefault((String)var3.get("m"), var10);
             }
 
             if (var3.containsKey("c"))
             {
-                var9 = MathHelper.parseIntWithDefault((String)var3.get("c"),
-                        var9);
+                var9 = MathHelper.parseIntWithDefault((String)var3.get("c"), var9);
             }
 
             if (var3.containsKey("team"))
@@ -181,27 +165,16 @@ public class PlayerSelector
                 }
                 else
                 {
-                    var17 = MinecraftServer
-                            .getServer()
-                            .getConfigurationManager()
-                            .findPlayers(var11, var5, var6, 0, var10, var7,
-                                    var8, var12, var13, var14, var16);
+                    var17 = MinecraftServer.getServer().getConfigurationManager().findPlayers(var11, var5, var6, 0, var10, var7, var8, var12, var13, var14, var16);
                     Collections.shuffle(var17);
                     var17 = var17.subList(0, Math.min(var9, var17.size()));
-                    return var17 != null && !var17.isEmpty() ? (EntityPlayerMP[])var17
-                            .toArray(new EntityPlayerMP[0])
-                            : new EntityPlayerMP[0];
+                    return var17 != null && !var17.isEmpty() ? (EntityPlayerMP[])var17.toArray(new EntityPlayerMP[0]) : new EntityPlayerMP[0];
                 }
             }
             else
             {
-                var17 = MinecraftServer
-                        .getServer()
-                        .getConfigurationManager()
-                        .findPlayers(var11, var5, var6, var9, var10, var7,
-                                var8, var12, var13, var14, var16);
-                return var17 != null && !var17.isEmpty() ? (EntityPlayerMP[])var17
-                        .toArray(new EntityPlayerMP[0]) : new EntityPlayerMP[0];
+                var17 = MinecraftServer.getServer().getConfigurationManager().findPlayers(var11, var5, var6, var9, var10, var7, var8, var12, var13, var14, var16);
+                return var17 != null && !var17.isEmpty() ? (EntityPlayerMP[])var17.toArray(new EntityPlayerMP[0]) : new EntityPlayerMP[0];
             }
         }
     }
@@ -218,8 +191,7 @@ public class PlayerSelector
             if (var3.startsWith("score_") && var3.length() > "score_".length())
             {
                 String var4 = var3.substring("score_".length());
-                var1.put(var4, Integer.valueOf(MathHelper.parseIntWithDefault(
-                        (String)par0Map.get(var3), 1)));
+                var1.put(var4, Integer.valueOf(MathHelper.parseIntWithDefault((String)par0Map.get(var3), 1)));
             }
         }
 
@@ -241,8 +213,7 @@ public class PlayerSelector
 
             if (var2.containsKey("c"))
             {
-                var4 = MathHelper.parseIntWithDefault((String)var2.get("c"),
-                        var4);
+                var4 = MathHelper.parseIntWithDefault((String)var2.get("c"), var4);
             }
 
             return var4 != 1;
@@ -368,8 +339,7 @@ public class PlayerSelector
 
             if (var4 < par0Str.length())
             {
-                var2 = keyValueListPattern.matcher(var4 == -1 ? par0Str
-                        : par0Str.substring(var4));
+                var2 = keyValueListPattern.matcher(var4 == -1 ? par0Str : par0Str.substring(var4));
 
                 while (var2.find())
                 {

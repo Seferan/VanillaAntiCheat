@@ -8,8 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.world.World;
 
-public abstract class EntityTameable extends EntityAnimal implements
-        IEntityOwnable
+public abstract class EntityTameable extends EntityAnimal implements IEntityOwnable
 {
     protected EntityAISit aiSit = new EntityAISit(this);
     private static final String __OBFID = "CL_00001561";
@@ -81,20 +80,7 @@ public abstract class EntityTameable extends EntityAnimal implements
             double var4 = this.rand.nextGaussian() * 0.02D;
             double var6 = this.rand.nextGaussian() * 0.02D;
             double var8 = this.rand.nextGaussian() * 0.02D;
-            this.worldObj
-                    .spawnParticle(
-                            var2,
-                            this.posX
-                                    + (double)(this.rand.nextFloat()
-                                            * this.width * 2.0F)
-                                    - (double)this.width,
-                            this.posY
-                                    + 0.5D
-                                    + (double)(this.rand.nextFloat() * this.height),
-                            this.posZ
-                                    + (double)(this.rand.nextFloat()
-                                            * this.width * 2.0F)
-                                    - (double)this.width, var4, var6, var8);
+            this.worldObj.spawnParticle(var2, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, var4, var6, var8);
         }
     }
 
@@ -156,8 +142,7 @@ public abstract class EntityTameable extends EntityAnimal implements
         return this.aiSit;
     }
 
-    public boolean func_142018_a(EntityLivingBase par1EntityLivingBase,
-            EntityLivingBase par2EntityLivingBase)
+    public boolean func_142018_a(EntityLivingBase par1EntityLivingBase, EntityLivingBase par2EntityLivingBase)
     {
         return true;
     }

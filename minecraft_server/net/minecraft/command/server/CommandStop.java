@@ -18,13 +18,11 @@ public class CommandStop extends CommandBase
         return "commands.stop.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender,
-            String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
         if (MinecraftServer.isPlayerOwner(par1ICommandSender))
         {
-            notifyAdmins(par1ICommandSender, "commands.stop.start",
-                    new Object[0]);
+            notifyAdmins(par1ICommandSender, "commands.stop.start", new Object[0]);
             MinecraftServer.getServer().initiateShutdown();
         }
         else

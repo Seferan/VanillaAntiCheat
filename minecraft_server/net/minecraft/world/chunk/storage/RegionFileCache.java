@@ -14,12 +14,10 @@ public class RegionFileCache
     private static final Map regionsByFilename = new HashMap();
     private static final String __OBFID = "CL_00000383";
 
-    public static synchronized RegionFile createOrLoadRegionFile(File par0File,
-            int par1, int par2)
+    public static synchronized RegionFile createOrLoadRegionFile(File par0File, int par1, int par2)
     {
         File var3 = new File(par0File, "region");
-        File var4 = new File(var3, "r." + (par1 >> 5) + "." + (par2 >> 5)
-                + ".mca");
+        File var4 = new File(var3, "r." + (par1 >> 5) + "." + (par2 >> 5) + ".mca");
         RegionFile var5 = (RegionFile)regionsByFilename.get(var4);
 
         if (var5 != null)
@@ -75,8 +73,7 @@ public class RegionFileCache
      * Returns an input stream for the specified chunk. Args: worldDir, chunkX,
      * chunkZ
      */
-    public static DataInputStream getChunkInputStream(File par0File, int par1,
-            int par2)
+    public static DataInputStream getChunkInputStream(File par0File, int par1, int par2)
     {
         RegionFile var3 = createOrLoadRegionFile(par0File, par1, par2);
         return var3.getChunkDataInputStream(par1 & 31, par2 & 31);
@@ -86,8 +83,7 @@ public class RegionFileCache
      * Returns an output stream for the specified chunk. Args: worldDir, chunkX,
      * chunkZ
      */
-    public static DataOutputStream getChunkOutputStream(File par0File,
-            int par1, int par2)
+    public static DataOutputStream getChunkOutputStream(File par0File, int par1, int par2)
     {
         RegionFile var3 = createOrLoadRegionFile(par0File, par1, par2);
         return var3.getChunkDataOutputStream(par1 & 31, par2 & 31);

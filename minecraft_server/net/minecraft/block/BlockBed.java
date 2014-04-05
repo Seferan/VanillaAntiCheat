@@ -15,8 +15,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class BlockBed extends BlockDirectional
 {
-    public static final int[][] field_149981_a = new int[][] { {0, 1}, {-1, 0},
-            {0, -1}, {1, 0}};
+    public static final int[][] field_149981_a = new int[][] { {0, 1}, {-1, 0}, {0, -1}, {1, 0}};
     private static final String __OBFID = "CL_00000198";
 
     public BlockBed()
@@ -28,10 +27,7 @@ public class BlockBed extends BlockDirectional
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_,
-            int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_,
-            int p_149727_6_, float p_149727_7_, float p_149727_8_,
-            float p_149727_9_)
+    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         if (p_149727_1_.isClient)
         {
@@ -39,8 +35,7 @@ public class BlockBed extends BlockDirectional
         }
         else
         {
-            int var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_,
-                    p_149727_4_);
+            int var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_);
 
             if (!func_149975_b(var10))
             {
@@ -50,13 +45,10 @@ public class BlockBed extends BlockDirectional
 
                 if (p_149727_1_.getBlock(p_149727_2_, p_149727_3_, p_149727_4_) != this) { return true; }
 
-                var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_,
-                        p_149727_4_);
+                var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_);
             }
 
-            if (p_149727_1_.provider.canRespawnHere()
-                    && p_149727_1_.getBiomeGenForCoords(p_149727_2_,
-                            p_149727_4_) != BiomeGenBase.hell)
+            if (p_149727_1_.provider.canRespawnHere() && p_149727_1_.getBiomeGenForCoords(p_149727_2_, p_149727_4_) != BiomeGenBase.hell)
             {
                 if (func_149976_c(var10))
                 {
@@ -71,9 +63,7 @@ public class BlockBed extends BlockDirectional
                         {
                             ChunkCoordinates var14 = var21.playerLocation;
 
-                            if (var14.posX == p_149727_2_
-                                    && var14.posY == p_149727_3_
-                                    && var14.posZ == p_149727_4_)
+                            if (var14.posX == p_149727_2_ && var14.posY == p_149727_3_ && var14.posZ == p_149727_4_)
                             {
                                 var20 = var21;
                             }
@@ -82,38 +72,29 @@ public class BlockBed extends BlockDirectional
 
                     if (var20 != null)
                     {
-                        p_149727_5_
-                                .addChatComponentMessage(new ChatComponentTranslation(
-                                        "tile.bed.occupied", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
                         return true;
                     }
 
-                    func_149979_a(p_149727_1_, p_149727_2_, p_149727_3_,
-                            p_149727_4_, false);
+                    func_149979_a(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, false);
                 }
 
-                EntityPlayer.EnumStatus var19 = p_149727_5_.sleepInBedAt(
-                        p_149727_2_, p_149727_3_, p_149727_4_);
+                EntityPlayer.EnumStatus var19 = p_149727_5_.sleepInBedAt(p_149727_2_, p_149727_3_, p_149727_4_);
 
                 if (var19 == EntityPlayer.EnumStatus.OK)
                 {
-                    func_149979_a(p_149727_1_, p_149727_2_, p_149727_3_,
-                            p_149727_4_, true);
+                    func_149979_a(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, true);
                     return true;
                 }
                 else
                 {
                     if (var19 == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
                     {
-                        p_149727_5_
-                                .addChatComponentMessage(new ChatComponentTranslation(
-                                        "tile.bed.noSleep", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
                     }
                     else if (var19 == EntityPlayer.EnumStatus.NOT_SAFE)
                     {
-                        p_149727_5_
-                                .addChatComponentMessage(new ChatComponentTranslation(
-                                        "tile.bed.notSafe", new Object[0]));
+                        p_149727_5_.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
                     }
 
                     return true;
@@ -124,25 +105,20 @@ public class BlockBed extends BlockDirectional
                 double var18 = (double)p_149727_2_ + 0.5D;
                 double var13 = (double)p_149727_3_ + 0.5D;
                 double var15 = (double)p_149727_4_ + 0.5D;
-                p_149727_1_
-                        .setBlockToAir(p_149727_2_, p_149727_3_, p_149727_4_);
+                p_149727_1_.setBlockToAir(p_149727_2_, p_149727_3_, p_149727_4_);
                 int var17 = func_149895_l(var10);
                 p_149727_2_ += field_149981_a[var17][0];
                 p_149727_4_ += field_149981_a[var17][1];
 
                 if (p_149727_1_.getBlock(p_149727_2_, p_149727_3_, p_149727_4_) == this)
                 {
-                    p_149727_1_.setBlockToAir(p_149727_2_, p_149727_3_,
-                            p_149727_4_);
+                    p_149727_1_.setBlockToAir(p_149727_2_, p_149727_3_, p_149727_4_);
                     var18 = (var18 + (double)p_149727_2_ + 0.5D) / 2.0D;
                     var13 = (var13 + (double)p_149727_3_ + 0.5D) / 2.0D;
                     var15 = (var15 + (double)p_149727_4_ + 0.5D) / 2.0D;
                 }
 
-                p_149727_1_.newExplosion((Entity)null,
-                        (double)((float)p_149727_2_ + 0.5F),
-                        (double)((float)p_149727_3_ + 0.5F),
-                        (double)((float)p_149727_4_ + 0.5F), 5.0F, true, true);
+                p_149727_1_.newExplosion((Entity)null, (double)((float)p_149727_2_ + 0.5F), (double)((float)p_149727_3_ + 0.5F), (double)((float)p_149727_4_ + 0.5F), 5.0F, true, true);
                 return true;
             }
         }
@@ -166,43 +142,35 @@ public class BlockBed extends BlockDirectional
         return false;
     }
 
-    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_,
-            int p_149719_2_, int p_149719_3_, int p_149719_4_)
+    public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         this.func_149978_e();
     }
 
-    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_,
-            int p_149695_3_, int p_149695_4_, Block p_149695_5_)
+    public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_,
-                p_149695_4_);
+        int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
         int var7 = func_149895_l(var6);
 
         if (func_149975_b(var6))
         {
-            if (p_149695_1_.getBlock(p_149695_2_ - field_149981_a[var7][0],
-                    p_149695_3_, p_149695_4_ - field_149981_a[var7][1]) != this)
+            if (p_149695_1_.getBlock(p_149695_2_ - field_149981_a[var7][0], p_149695_3_, p_149695_4_ - field_149981_a[var7][1]) != this)
             {
-                p_149695_1_
-                        .setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
+                p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
             }
         }
-        else if (p_149695_1_.getBlock(p_149695_2_ + field_149981_a[var7][0],
-                p_149695_3_, p_149695_4_ + field_149981_a[var7][1]) != this)
+        else if (p_149695_1_.getBlock(p_149695_2_ + field_149981_a[var7][0], p_149695_3_, p_149695_4_ + field_149981_a[var7][1]) != this)
         {
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
 
             if (!p_149695_1_.isClient)
             {
-                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_,
-                        p_149695_4_, var6, 0);
+                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
             }
         }
     }
 
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_,
-            int p_149650_3_)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return func_149975_b(p_149650_1_) ? Item.getItemById(0) : Items.bed;
     }
@@ -222,11 +190,9 @@ public class BlockBed extends BlockDirectional
         return (p_149976_0_ & 4) != 0;
     }
 
-    public static void func_149979_a(World p_149979_0_, int p_149979_1_,
-            int p_149979_2_, int p_149979_3_, boolean p_149979_4_)
+    public static void func_149979_a(World p_149979_0_, int p_149979_1_, int p_149979_2_, int p_149979_3_, boolean p_149979_4_)
     {
-        int var5 = p_149979_0_.getBlockMetadata(p_149979_1_, p_149979_2_,
-                p_149979_3_);
+        int var5 = p_149979_0_.getBlockMetadata(p_149979_1_, p_149979_2_, p_149979_3_);
 
         if (p_149979_4_)
         {
@@ -237,15 +203,12 @@ public class BlockBed extends BlockDirectional
             var5 &= -5;
         }
 
-        p_149979_0_.setBlockMetadata(p_149979_1_, p_149979_2_, p_149979_3_,
-                var5, 4);
+        p_149979_0_.setBlockMetadata(p_149979_1_, p_149979_2_, p_149979_3_, var5, 4);
     }
 
-    public static ChunkCoordinates func_149977_a(World p_149977_0_,
-            int p_149977_1_, int p_149977_2_, int p_149977_3_, int p_149977_4_)
+    public static ChunkCoordinates func_149977_a(World p_149977_0_, int p_149977_1_, int p_149977_2_, int p_149977_3_, int p_149977_4_)
     {
-        int var5 = p_149977_0_.getBlockMetadata(p_149977_1_, p_149977_2_,
-                p_149977_3_);
+        int var5 = p_149977_0_.getBlockMetadata(p_149977_1_, p_149977_2_, p_149977_3_);
         int var6 = BlockDirectional.func_149895_l(var5);
 
         for (int var7 = 0; var7 <= 1; ++var7)
@@ -259,16 +222,9 @@ public class BlockBed extends BlockDirectional
             {
                 for (int var13 = var9; var13 <= var11; ++var13)
                 {
-                    if (World.doesBlockHaveSolidTopSurface(p_149977_0_, var12,
-                            p_149977_2_ - 1, var13)
-                            && !p_149977_0_.getBlock(var12, p_149977_2_, var13)
-                                    .getMaterial().isOpaque()
-                            && !p_149977_0_
-                                    .getBlock(var12, p_149977_2_ + 1, var13)
-                                    .getMaterial().isOpaque())
+                    if (World.doesBlockHaveSolidTopSurface(p_149977_0_, var12, p_149977_2_ - 1, var13) && !p_149977_0_.getBlock(var12, p_149977_2_, var13).getMaterial().isOpaque() && !p_149977_0_.getBlock(var12, p_149977_2_ + 1, var13).getMaterial().isOpaque())
                     {
-                        if (p_149977_4_ <= 0) { return new ChunkCoordinates(
-                                var12, p_149977_2_, var13); }
+                        if (p_149977_4_ <= 0) { return new ChunkCoordinates(var12, p_149977_2_, var13); }
 
                         --p_149977_4_;
                     }
@@ -283,14 +239,11 @@ public class BlockBed extends BlockDirectional
      * Drops the block items with a specified chance of dropping the specified
      * items
      */
-    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_,
-            int p_149690_3_, int p_149690_4_, int p_149690_5_,
-            float p_149690_6_, int p_149690_7_)
+    public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
     {
         if (!func_149975_b(p_149690_5_))
         {
-            super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_,
-                    p_149690_3_, p_149690_4_, p_149690_5_, p_149690_6_, 0);
+            super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, p_149690_6_, 0);
         }
     }
 
@@ -302,12 +255,9 @@ public class BlockBed extends BlockDirectional
     /**
      * Called when the block is attempted to be harvested
      */
-    public void onBlockHarvested(World p_149681_1_, int p_149681_2_,
-            int p_149681_3_, int p_149681_4_, int p_149681_5_,
-            EntityPlayer p_149681_6_)
+    public void onBlockHarvested(World p_149681_1_, int p_149681_2_, int p_149681_3_, int p_149681_4_, int p_149681_5_, EntityPlayer p_149681_6_)
     {
-        if (p_149681_6_.capabilities.isCreativeMode
-                && func_149975_b(p_149681_5_))
+        if (p_149681_6_.capabilities.isCreativeMode && func_149975_b(p_149681_5_))
         {
             int var7 = func_149895_l(p_149681_5_);
             p_149681_2_ -= field_149981_a[var7][0];
@@ -315,8 +265,7 @@ public class BlockBed extends BlockDirectional
 
             if (p_149681_1_.getBlock(p_149681_2_, p_149681_3_, p_149681_4_) == this)
             {
-                p_149681_1_
-                        .setBlockToAir(p_149681_2_, p_149681_3_, p_149681_4_);
+                p_149681_1_.setBlockToAir(p_149681_2_, p_149681_3_, p_149681_4_);
             }
         }
     }

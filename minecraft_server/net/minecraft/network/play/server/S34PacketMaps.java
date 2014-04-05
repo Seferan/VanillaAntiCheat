@@ -53,10 +53,7 @@ public class S34PacketMaps extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "id=%d, length=%d",
-                new Object[] {Integer.valueOf(this.field_149191_a),
-                        Integer.valueOf(this.field_149190_b.length)});
+        return String.format("id=%d, length=%d", new Object[] {Integer.valueOf(this.field_149191_a), Integer.valueOf(this.field_149190_b.length)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

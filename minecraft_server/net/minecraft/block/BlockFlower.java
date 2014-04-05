@@ -5,15 +5,8 @@ import net.minecraft.init.Blocks;
 
 public class BlockFlower extends BlockBush
 {
-    private static final String[][] field_149860_M = new String[][] {
-            {"flower_dandelion"},
-            {"flower_rose", "flower_blue_orchid", "flower_allium",
-                    "flower_houstonia", "flower_tulip_red",
-                    "flower_tulip_orange", "flower_tulip_white",
-                    "flower_tulip_pink", "flower_oxeye_daisy"}};
-    public static final String[] field_149859_a = new String[] {"poppy",
-            "blueOrchid", "allium", "houstonia", "tulipRed", "tulipOrange",
-            "tulipWhite", "tulipPink", "oxeyeDaisy"};
+    private static final String[][] field_149860_M = new String[][] { {"flower_dandelion"}, {"flower_rose", "flower_blue_orchid", "flower_allium", "flower_houstonia", "flower_tulip_red", "flower_tulip_orange", "flower_tulip_white", "flower_tulip_pink", "flower_oxeye_daisy"}};
+    public static final String[] field_149859_a = new String[] {"poppy", "blueOrchid", "allium", "houstonia", "tulipRed", "tulipOrange", "tulipWhite", "tulipPink", "oxeyeDaisy"};
     public static final String[] field_149858_b = new String[] {"dandelion"};
     private int field_149862_O;
     private static final String __OBFID = "CL_00000246";

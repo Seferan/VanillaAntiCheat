@@ -18,9 +18,7 @@ public class EntityAIAvoidEntity extends EntityAIBase
 
         public boolean isEntityApplicable(Entity par1Entity)
         {
-            return par1Entity.isEntityAlive()
-                    && EntityAIAvoidEntity.this.theEntity.getEntitySenses()
-                            .canSee(par1Entity);
+            return par1Entity.isEntityAlive() && EntityAIAvoidEntity.this.theEntity.getEntitySenses().canSee(par1Entity);
         }
     };
 
@@ -41,8 +39,7 @@ public class EntityAIAvoidEntity extends EntityAIBase
     private Class targetEntityClass;
     private static final String __OBFID = "CL_00001574";
 
-    public EntityAIAvoidEntity(EntityCreature par1EntityCreature,
-            Class par2Class, float par3, double par4, double par6)
+    public EntityAIAvoidEntity(EntityCreature par1EntityCreature, Class par2Class, float par3, double par4, double par6)
     {
         this.theEntity = par1EntityCreature;
         this.targetEntityClass = par2Class;
@@ -60,53 +57,35 @@ public class EntityAIAvoidEntity extends EntityAIBase
     {
         if (this.targetEntityClass == EntityPlayer.class)
         {
-            if (this.theEntity instanceof EntityTameable
-                    && ((EntityTameable)this.theEntity).isTamed()) { return false; }
+            if (this.theEntity instanceof EntityTameable && ((EntityTameable)this.theEntity).isTamed()) { return false; }
 
-            this.closestLivingEntity = this.theEntity.worldObj
-                    .getClosestPlayerToEntity(this.theEntity,
-                            (double)this.distanceFromEntity);
+            this.closestLivingEntity = this.theEntity.worldObj.getClosestPlayerToEntity(this.theEntity, (double)this.distanceFromEntity);
 
             if (this.closestLivingEntity == null) { return false; }
         }
         else
         {
-            List var1 = this.theEntity.worldObj.selectEntitiesWithinAABB(
-                    this.targetEntityClass, this.theEntity.boundingBox.expand(
-                            (double)this.distanceFromEntity, 3.0D,
-                            (double)this.distanceFromEntity),
-                    this.field_98218_a);
+            List var1 = this.theEntity.worldObj.selectEntitiesWithinAABB(this.targetEntityClass, this.theEntity.boundingBox.expand((double)this.distanceFromEntity, 3.0D, (double)this.distanceFromEntity), this.field_98218_a);
 
             if (var1.isEmpty()) { return false; }
 
             this.closestLivingEntity = (Entity)var1.get(0);
         }
 
-        Vec3 var2 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(
-                this.theEntity,
-                16,
-                7,
-                this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool(
-                        this.closestLivingEntity.posX,
-                        this.closestLivingEntity.posY,
-                        this.closestLivingEntity.posZ));
+        Vec3 var2 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.theEntity, 16, 7, this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool(this.closestLivingEntity.posX, this.closestLivingEntity.posY, this.closestLivingEntity.posZ));
 
         if (var2 == null)
         {
             return false;
         }
-        else if (this.closestLivingEntity.getDistanceSq(var2.xCoord,
-                var2.yCoord, var2.zCoord) < this.closestLivingEntity
-                .getDistanceSqToEntity(this.theEntity))
+        else if (this.closestLivingEntity.getDistanceSq(var2.xCoord, var2.yCoord, var2.zCoord) < this.closestLivingEntity.getDistanceSqToEntity(this.theEntity))
         {
             return false;
         }
         else
         {
-            this.entityPathEntity = this.entityPathNavigate.getPathToXYZ(
-                    var2.xCoord, var2.yCoord, var2.zCoord);
-            return this.entityPathEntity == null ? false
-                    : this.entityPathEntity.isDestinationSame(var2);
+            this.entityPathEntity = this.entityPathNavigate.getPathToXYZ(var2.xCoord, var2.yCoord, var2.zCoord);
+            return this.entityPathEntity == null ? false : this.entityPathEntity.isDestinationSame(var2);
         }
     }
 

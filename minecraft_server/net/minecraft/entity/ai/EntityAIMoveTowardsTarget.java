@@ -20,8 +20,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
     private float maxTargetDistance;
     private static final String __OBFID = "CL_00001599";
 
-    public EntityAIMoveTowardsTarget(EntityCreature par1EntityCreature,
-            double par2, float par4)
+    public EntityAIMoveTowardsTarget(EntityCreature par1EntityCreature, double par2, float par4)
     {
         this.theEntity = par1EntityCreature;
         this.speed = par2;
@@ -46,13 +45,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
         }
         else
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTargetBlockTowards(
-                    this.theEntity,
-                    16,
-                    7,
-                    this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool(
-                            this.targetEntity.posX, this.targetEntity.posY,
-                            this.targetEntity.posZ));
+            Vec3 var1 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool(this.targetEntity.posX, this.targetEntity.posY, this.targetEntity.posZ));
 
             if (var1 == null)
             {
@@ -73,9 +66,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.theEntity.getNavigator().noPath()
-                && this.targetEntity.isEntityAlive()
-                && this.targetEntity.getDistanceSqToEntity(this.theEntity) < (double)(this.maxTargetDistance * this.maxTargetDistance);
+        return !this.theEntity.getNavigator().noPath() && this.targetEntity.isEntityAlive() && this.targetEntity.getDistanceSqToEntity(this.theEntity) < (double)(this.maxTargetDistance * this.maxTargetDistance);
     }
 
     /**
@@ -91,7 +82,6 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX,
-                this.movePosY, this.movePosZ, this.speed);
+        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.speed);
     }
 }

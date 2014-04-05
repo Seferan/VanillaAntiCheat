@@ -5,8 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockWood extends Block
 {
-    public static final String[] field_150096_a = new String[] {"oak",
-            "spruce", "birch", "jungle", "acacia", "big_oak"};
+    public static final String[] field_150096_a = new String[] {"oak", "spruce", "birch", "jungle", "acacia", "big_oak"};
     private static final String __OBFID = "CL_00000335";
 
     public BlockWood()

@@ -35,16 +35,13 @@ public class GenLayerZoom extends GenLayer
 
             for (int var17 = var9[var15 + 0 + (var13 + 1) * var7]; var15 < var7 - 1; ++var15)
             {
-                this.initChunkSeed((long)(var15 + var5 << 1), (long)(var13
-                        + var6 << 1));
+                this.initChunkSeed((long)(var15 + var5 << 1), (long)(var13 + var6 << 1));
                 int var18 = var9[var15 + 1 + (var13 + 0) * var7];
                 int var19 = var9[var15 + 1 + (var13 + 1) * var7];
                 var12[var14] = var16;
-                var12[var14++ + var10] = this.func_151619_a(new int[] {var16,
-                        var17});
+                var12[var14++ + var10] = this.func_151619_a(new int[] {var16, var17});
                 var12[var14] = this.func_151619_a(new int[] {var16, var18});
-                var12[var14++ + var10] = this.func_151617_b(var16, var18,
-                        var17, var19);
+                var12[var14++ + var10] = this.func_151617_b(var16, var18, var17, var19);
                 var16 = var18;
                 var17 = var19;
             }
@@ -54,8 +51,7 @@ public class GenLayerZoom extends GenLayer
 
         for (var14 = 0; var14 < par4; ++var14)
         {
-            System.arraycopy(var12, (var14 + (par2 & 1)) * var10 + (par1 & 1),
-                    var20, var14 * par3, par3);
+            System.arraycopy(var12, (var14 + (par2 & 1)) * var10 + (par1 & 1), var20, var14 * par3, par3);
         }
 
         return var20;

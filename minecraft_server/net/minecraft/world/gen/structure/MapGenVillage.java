@@ -14,9 +14,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class MapGenVillage extends MapGenStructure
 {
     /** A list of all the biomes villages can spawn in. */
-    public static final List villageSpawnBiomes = Arrays
-            .asList(new BiomeGenBase[] {BiomeGenBase.plains,
-                    BiomeGenBase.desert, BiomeGenBase.field_150588_X});
+    public static final List villageSpawnBiomes = Arrays.asList(new BiomeGenBase[] {BiomeGenBase.plains, BiomeGenBase.desert, BiomeGenBase.field_150588_X});
 
     /** World terrain type, 0 for normal, 1 for flat map */
     private int terrainType;
@@ -41,14 +39,11 @@ public class MapGenVillage extends MapGenStructure
 
             if (((String)var3.getKey()).equals("size"))
             {
-                this.terrainType = MathHelper.parseIntWithDefaultAndMax(
-                        (String)var3.getValue(), this.terrainType, 0);
+                this.terrainType = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), this.terrainType, 0);
             }
             else if (((String)var3.getKey()).equals("distance"))
             {
-                this.field_82665_g = MathHelper.parseIntWithDefaultAndMax(
-                        (String)var3.getValue(), this.field_82665_g,
-                        this.field_82666_h + 1);
+                this.field_82665_g = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), this.field_82665_g, this.field_82666_h + 1);
             }
         }
     }
@@ -83,9 +78,7 @@ public class MapGenVillage extends MapGenStructure
 
         if (var3 == var5 && var4 == var6)
         {
-            boolean var8 = this.worldObj.getWorldChunkManager()
-                    .areBiomesViable(var3 * 16 + 8, var4 * 16 + 8, 0,
-                            villageSpawnBiomes);
+            boolean var8 = this.worldObj.getWorldChunkManager().areBiomesViable(var3 * 16 + 8, var4 * 16 + 8, 0, villageSpawnBiomes);
 
             if (var8) { return true; }
         }
@@ -95,8 +88,7 @@ public class MapGenVillage extends MapGenStructure
 
     protected StructureStart getStructureStart(int par1, int par2)
     {
-        return new MapGenVillage.Start(this.worldObj, this.rand, par1, par2,
-                this.terrainType);
+        return new MapGenVillage.Start(this.worldObj, this.rand, par1, par2, this.terrainType);
     }
 
     public static class Start extends StructureStart
@@ -108,15 +100,11 @@ public class MapGenVillage extends MapGenStructure
         {
         }
 
-        public Start(World par1World, Random par2Random, int par3, int par4,
-                int par5)
+        public Start(World par1World, Random par2Random, int par3, int par4, int par5)
         {
             super(par3, par4);
-            List var6 = StructureVillagePieces
-                    .getStructureVillageWeightedPieceList(par2Random, par5);
-            StructureVillagePieces.Start var7 = new StructureVillagePieces.Start(
-                    par1World.getWorldChunkManager(), 0, par2Random,
-                    (par3 << 4) + 2, (par4 << 4) + 2, var6, par5);
+            List var6 = StructureVillagePieces.getStructureVillageWeightedPieceList(par2Random, par5);
+            StructureVillagePieces.Start var7 = new StructureVillagePieces.Start(par1World.getWorldChunkManager(), 0, par2Random, (par3 << 4) + 2, (par4 << 4) + 2, var6, par5);
             this.components.add(var7);
             var7.buildComponent(var7, this.components, par2Random);
             List var8 = var7.field_74930_j;
@@ -166,15 +154,13 @@ public class MapGenVillage extends MapGenStructure
         public void func_143022_a(NBTTagCompound par1NBTTagCompound)
         {
             super.func_143022_a(par1NBTTagCompound);
-            par1NBTTagCompound.setBoolean("Valid",
-                    this.hasMoreThanTwoComponents);
+            par1NBTTagCompound.setBoolean("Valid", this.hasMoreThanTwoComponents);
         }
 
         public void func_143017_b(NBTTagCompound par1NBTTagCompound)
         {
             super.func_143017_b(par1NBTTagCompound);
-            this.hasMoreThanTwoComponents = par1NBTTagCompound
-                    .getBoolean("Valid");
+            this.hasMoreThanTwoComponents = par1NBTTagCompound.getBoolean("Valid");
         }
     }
 }

@@ -38,8 +38,7 @@ public class ChunkCoordinates implements Comparable
         else
         {
             ChunkCoordinates var2 = (ChunkCoordinates)par1Obj;
-            return this.posX == var2.posX && this.posY == var2.posY
-                    && this.posZ == var2.posZ;
+            return this.posX == var2.posX && this.posY == var2.posY && this.posZ == var2.posZ;
         }
     }
 
@@ -50,10 +49,7 @@ public class ChunkCoordinates implements Comparable
 
     public int compareTo(ChunkCoordinates par1ChunkCoordinates)
     {
-        return this.posY == par1ChunkCoordinates.posY ? (this.posZ == par1ChunkCoordinates.posZ ? this.posX
-                - par1ChunkCoordinates.posX
-                : this.posZ - par1ChunkCoordinates.posZ)
-                : this.posY - par1ChunkCoordinates.posY;
+        return this.posY == par1ChunkCoordinates.posY ? (this.posZ == par1ChunkCoordinates.posZ ? this.posX - par1ChunkCoordinates.posX : this.posZ - par1ChunkCoordinates.posZ) : this.posY - par1ChunkCoordinates.posY;
     }
 
     public void set(int par1, int par2, int par3)
@@ -79,17 +75,14 @@ public class ChunkCoordinates implements Comparable
      * Return the squared distance between this coordinates and the
      * ChunkCoordinates given as argument.
      */
-    public float getDistanceSquaredToChunkCoordinates(
-            ChunkCoordinates par1ChunkCoordinates)
+    public float getDistanceSquaredToChunkCoordinates(ChunkCoordinates par1ChunkCoordinates)
     {
-        return this.getDistanceSquared(par1ChunkCoordinates.posX,
-                par1ChunkCoordinates.posY, par1ChunkCoordinates.posZ);
+        return this.getDistanceSquared(par1ChunkCoordinates.posX, par1ChunkCoordinates.posY, par1ChunkCoordinates.posZ);
     }
 
     public String toString()
     {
-        return "Pos{x=" + this.posX + ", y=" + this.posY + ", z=" + this.posZ
-                + '}';
+        return "Pos{x=" + this.posX + ", y=" + this.posY + ", z=" + this.posZ + '}';
     }
 
     public int compareTo(Object par1Obj)

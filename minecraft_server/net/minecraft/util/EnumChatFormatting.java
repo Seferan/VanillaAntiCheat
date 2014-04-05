@@ -8,11 +8,7 @@ import java.util.regex.Pattern;
 
 public enum EnumChatFormatting
 {
-    BLACK('0'), DARK_BLUE('1'), DARK_GREEN('2'), DARK_AQUA('3'), DARK_RED('4'), DARK_PURPLE(
-            '5'), GOLD('6'), GRAY('7'), DARK_GRAY('8'), BLUE('9'), GREEN('a'), AQUA(
-            'b'), RED('c'), LIGHT_PURPLE('d'), YELLOW('e'), WHITE('f'), OBFUSCATED(
-            'k', true), BOLD('l', true), STRIKETHROUGH('m', true), UNDERLINE(
-            'n', true), ITALIC('o', true), RESET('r');
+    BLACK('0'), DARK_BLUE('1'), DARK_GREEN('2'), DARK_AQUA('3'), DARK_RED('4'), DARK_PURPLE('5'), GOLD('6'), GRAY('7'), DARK_GRAY('8'), BLUE('9'), GREEN('a'), AQUA('b'), RED('c'), LIGHT_PURPLE('d'), YELLOW('e'), WHITE('f'), OBFUSCATED('k', true), BOLD('l', true), STRIKETHROUGH('m', true), UNDERLINE('n', true), ITALIC('o', true), RESET('r');
 
     /**
      * Maps a formatting code (e.g., 'f') to its corresponding enum value (e.g.,
@@ -30,8 +26,7 @@ public enum EnumChatFormatting
      * Matches formatting codes that indicate that the client should treat the
      * following text as bold, recolored, obfuscated, etc.
      */
-    private static final Pattern formattingCodePattern = Pattern.compile("(?i)"
-            + String.valueOf('\u00a7') + "[0-9A-FK-OR]");
+    private static final Pattern formattingCodePattern = Pattern.compile("(?i)" + String.valueOf('\u00a7') + "[0-9A-FK-OR]");
 
     /** The formatting code that produces this format. */
     private final char formattingCode;
@@ -99,8 +94,7 @@ public enum EnumChatFormatting
      */
     public static EnumChatFormatting getValueByName(String par0Str)
     {
-        return par0Str == null ? null : (EnumChatFormatting)nameMapping
-                .get(par0Str.toLowerCase());
+        return par0Str == null ? null : (EnumChatFormatting)nameMapping.get(par0Str.toLowerCase());
     }
 
     /**
@@ -135,8 +129,7 @@ public enum EnumChatFormatting
         for (int var2 = 0; var2 < var1; ++var2)
         {
             EnumChatFormatting var3 = var0[var2];
-            formattingCodeMapping.put(
-                    Character.valueOf(var3.getFormattingCode()), var3);
+            formattingCodeMapping.put(Character.valueOf(var3.getFormattingCode()), var3);
             nameMapping.put(var3.getFriendlyName(), var3);
         }
     }

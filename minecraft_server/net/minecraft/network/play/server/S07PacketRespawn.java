@@ -21,8 +21,7 @@ public class S07PacketRespawn extends Packet
     {
     }
 
-    public S07PacketRespawn(int p_i45213_1_, EnumDifficulty p_i45213_2_,
-            WorldType p_i45213_3_, WorldSettings.GameType p_i45213_4_)
+    public S07PacketRespawn(int p_i45213_1_, EnumDifficulty p_i45213_2_, WorldType p_i45213_3_, WorldSettings.GameType p_i45213_4_)
     {
         this.field_149088_a = p_i45213_1_;
         this.field_149086_b = p_i45213_2_;
@@ -41,12 +40,9 @@ public class S07PacketRespawn extends Packet
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
         this.field_149088_a = p_148837_1_.readInt();
-        this.field_149086_b = EnumDifficulty.func_151523_a(p_148837_1_
-                .readUnsignedByte());
-        this.field_149087_c = WorldSettings.GameType.getByID(p_148837_1_
-                .readUnsignedByte());
-        this.field_149085_d = WorldType.parseWorldType(p_148837_1_
-                .readStringFromBuffer(16));
+        this.field_149086_b = EnumDifficulty.func_151523_a(p_148837_1_.readUnsignedByte());
+        this.field_149087_c = WorldSettings.GameType.getByID(p_148837_1_.readUnsignedByte());
+        this.field_149085_d = WorldType.parseWorldType(p_148837_1_.readStringFromBuffer(16));
 
         if (this.field_149085_d == null)
         {

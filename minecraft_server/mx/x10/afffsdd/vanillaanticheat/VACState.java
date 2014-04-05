@@ -10,7 +10,7 @@ public class VACState
         isBreakingBlock = false;
         totalDeviations = 0;
         totalMined = 0;
-        
+
         builtBlockCount = 0;
         kickedForBuildhack = false;
 
@@ -19,7 +19,7 @@ public class VACState
         antiFlyX = 0.0;
         antiFlyZ = 0.0;
     }
-    
+
     // ANTI-FASTBREAK
     // ===============================================================================
 
@@ -110,38 +110,38 @@ public class VACState
     private boolean afHasBeenLogged;
     private double antiFlyX;
     private double antiFlyZ;
-    
+
     public void setAntiFlyPosition(EntityPlayerMP player)
     {
         antiFlyX = player.posX;
         antiFlyZ = player.posZ;
     }
-    
+
     public double getAntiFlyX()
     {
         return antiFlyX;
     }
-    
+
     public double getAntiFlyZ()
     {
         return antiFlyZ;
     }
-    
+
     public void incrementFlyResetCount()
     {
         afResetCount++;
     }
-    
+
     public int getFlyResetCount()
     {
         return afResetCount;
     }
-    
+
     public boolean hasFlyResetBeenLogged()
     {
         return afHasBeenLogged;
     }
-    
+
     public void logFlyReset()
     {
         afHasBeenLogged = true;

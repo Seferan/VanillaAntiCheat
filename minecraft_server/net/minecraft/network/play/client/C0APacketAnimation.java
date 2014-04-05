@@ -41,10 +41,7 @@ public class C0APacketAnimation extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "id=%d, type=%d",
-                new Object[] {Integer.valueOf(this.field_149424_a),
-                        Integer.valueOf(this.field_149423_b)});
+        return String.format("id=%d, type=%d", new Object[] {Integer.valueOf(this.field_149424_a), Integer.valueOf(this.field_149423_b)});
     }
 
     public int func_149421_d()

@@ -26,8 +26,7 @@ public class C00PacketLoginStart extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149305_a = new GameProfile((String)null,
-                p_148837_1_.readStringFromBuffer(16));
+        this.field_149305_a = new GameProfile((String)null, p_148837_1_.readStringFromBuffer(16));
     }
 
     /**

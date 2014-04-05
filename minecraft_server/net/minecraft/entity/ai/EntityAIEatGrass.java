@@ -25,8 +25,7 @@ public class EntityAIEatGrass extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.field_151500_b.getRNG().nextInt(
-                this.field_151500_b.isChild() ? 50 : 1000) != 0)
+        if (this.field_151500_b.getRNG().nextInt(this.field_151500_b.isChild() ? 50 : 1000) != 0)
         {
             return false;
         }
@@ -35,9 +34,7 @@ public class EntityAIEatGrass extends EntityAIBase
             int var1 = MathHelper.floor_double(this.field_151500_b.posX);
             int var2 = MathHelper.floor_double(this.field_151500_b.posY);
             int var3 = MathHelper.floor_double(this.field_151500_b.posZ);
-            return this.field_151501_c.getBlock(var1, var2, var3) == Blocks.tallgrass
-                    && this.field_151501_c.getBlockMetadata(var1, var2, var3) == 1 ? true
-                    : this.field_151501_c.getBlock(var1, var2 - 1, var3) == Blocks.grass;
+            return this.field_151501_c.getBlock(var1, var2, var3) == Blocks.tallgrass && this.field_151501_c.getBlockMetadata(var1, var2, var3) == 1 ? true : this.field_151501_c.getBlock(var1, var2 - 1, var3) == Blocks.grass;
         }
     }
 
@@ -87,8 +84,7 @@ public class EntityAIEatGrass extends EntityAIBase
 
             if (this.field_151501_c.getBlock(var1, var2, var3) == Blocks.tallgrass)
             {
-                if (this.field_151501_c.getGameRules().getGameRuleBooleanValue(
-                        "mobGriefing"))
+                if (this.field_151501_c.getGameRules().getGameRuleBooleanValue("mobGriefing"))
                 {
                     this.field_151501_c.func_147480_a(var1, var2, var3, false);
                 }
@@ -97,13 +93,10 @@ public class EntityAIEatGrass extends EntityAIBase
             }
             else if (this.field_151501_c.getBlock(var1, var2 - 1, var3) == Blocks.grass)
             {
-                if (this.field_151501_c.getGameRules().getGameRuleBooleanValue(
-                        "mobGriefing"))
+                if (this.field_151501_c.getGameRules().getGameRuleBooleanValue("mobGriefing"))
                 {
-                    this.field_151501_c.playAuxSFX(2001, var1, var2 - 1, var3,
-                            Block.getIdFromBlock(Blocks.grass));
-                    this.field_151501_c.setBlock(var1, var2 - 1, var3,
-                            Blocks.dirt, 0, 2);
+                    this.field_151501_c.playAuxSFX(2001, var1, var2 - 1, var3, Block.getIdFromBlock(Blocks.grass));
+                    this.field_151501_c.setBlock(var1, var2 - 1, var3, Blocks.dirt, 0, 2);
                 }
 
                 this.field_151500_b.eatGrassBonus();

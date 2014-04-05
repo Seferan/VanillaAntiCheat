@@ -20,8 +20,7 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
 
         for (int var3 = 0; var3 < par2; ++var3)
         {
-            this.generatorCollection[var3] = new NoiseGeneratorImproved(
-                    par1Random);
+            this.generatorCollection[var3] = new NoiseGeneratorImproved(par1Random);
         }
     }
 
@@ -29,9 +28,7 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
      * pars:(par2,3,4=noiseOffset ; so that adjacent noise segments connect)
      * (pars5,6,7=x,y,zArraySize),(pars8,10,12 = x,y,z noiseScale)
      */
-    public double[] generateNoiseOctaves(double[] par1ArrayOfDouble, int par2,
-            int par3, int par4, int par5, int par6, int par7, double par8,
-            double par10, double par12)
+    public double[] generateNoiseOctaves(double[] par1ArrayOfDouble, int par2, int par3, int par4, int par5, int par6, int par7, double par8, double par10, double par12)
     {
         if (par1ArrayOfDouble == null)
         {
@@ -60,9 +57,7 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
             var25 %= 16777216L;
             var17 += (double)var23;
             var21 += (double)var25;
-            this.generatorCollection[var16].populateNoiseArray(
-                    par1ArrayOfDouble, var17, var19, var21, par5, par6, par7,
-                    par8 * var27, par10 * var27, par12 * var27, var27);
+            this.generatorCollection[var16].populateNoiseArray(par1ArrayOfDouble, var17, var19, var21, par5, par6, par7, par8 * var27, par10 * var27, par12 * var27, var27);
             var27 /= 2.0D;
         }
 
@@ -72,10 +67,8 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
     /**
      * Bouncer function to the main one with some default arguments.
      */
-    public double[] generateNoiseOctaves(double[] par1ArrayOfDouble, int par2,
-            int par3, int par4, int par5, double par6, double par8, double par10)
+    public double[] generateNoiseOctaves(double[] par1ArrayOfDouble, int par2, int par3, int par4, int par5, double par6, double par8, double par10)
     {
-        return this.generateNoiseOctaves(par1ArrayOfDouble, par2, 10, par3,
-                par4, 1, par5, par6, 1.0D, par8);
+        return this.generateNoiseOctaves(par1ArrayOfDouble, par2, 10, par3, par4, 1, par5, par6, 1.0D, par8);
     }
 }

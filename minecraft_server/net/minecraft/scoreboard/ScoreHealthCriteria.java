@@ -19,8 +19,7 @@ public class ScoreHealthCriteria extends ScoreDummyCriteria
         float var2 = 0.0F;
         EntityPlayer var4;
 
-        for (Iterator var3 = par1List.iterator(); var3.hasNext(); var2 += var4
-                .getHealth() + var4.getAbsorptionAmount())
+        for (Iterator var3 = par1List.iterator(); var3.hasNext(); var2 += var4.getHealth() + var4.getAbsorptionAmount())
         {
             var4 = (EntityPlayer)var3.next();
         }

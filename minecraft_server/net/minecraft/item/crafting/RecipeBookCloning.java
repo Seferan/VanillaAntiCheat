@@ -13,8 +13,7 @@ public class RecipeBookCloning implements IRecipe
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(InventoryCrafting par1InventoryCrafting,
-            World par2World)
+    public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
     {
         int var3 = 0;
         ItemStack var4 = null;

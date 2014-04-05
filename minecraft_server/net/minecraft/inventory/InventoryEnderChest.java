@@ -37,8 +37,7 @@ public class InventoryEnderChest extends InventoryBasic
 
             if (var4 >= 0 && var4 < this.getSizeInventory())
             {
-                this.setInventorySlotContents(var4,
-                        ItemStack.loadItemStackFromNBT(var3));
+                this.setInventorySlotContents(var4, ItemStack.loadItemStackFromNBT(var3));
             }
         }
     }
@@ -69,9 +68,7 @@ public class InventoryEnderChest extends InventoryBasic
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.associatedChest != null
-                && !this.associatedChest.func_145971_a(par1EntityPlayer) ? false
-                : super.isUseableByPlayer(par1EntityPlayer);
+        return this.associatedChest != null && !this.associatedChest.func_145971_a(par1EntityPlayer) ? false : super.isUseableByPlayer(par1EntityPlayer);
     }
 
     public void openChest()

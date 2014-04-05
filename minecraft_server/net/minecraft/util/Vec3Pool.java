@@ -74,8 +74,7 @@ public class Vec3Pool
 
             if (this.resetCount++ == this.truncateArrayResetThreshold)
             {
-                int var1 = Math.max(this.maximumSizeSinceLastTruncation,
-                        this.vec3Cache.size() - this.minimumSize);
+                int var1 = Math.max(this.maximumSizeSinceLastTruncation, this.vec3Cache.size() - this.minimumSize);
 
                 while (this.vec3Cache.size() > var1)
                 {

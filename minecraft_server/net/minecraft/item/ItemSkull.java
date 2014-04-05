@@ -12,10 +12,8 @@ import net.minecraft.world.World;
 
 public class ItemSkull extends Item
 {
-    private static final String[] skullTypes = new String[] {"skeleton",
-            "wither", "zombie", "char", "creeper"};
-    public static final String[] field_94587_a = new String[] {"skeleton",
-            "wither", "zombie", "steve", "creeper"};
+    private static final String[] skullTypes = new String[] {"skeleton", "wither", "zombie", "char", "creeper"};
+    public static final String[] field_94587_a = new String[] {"skeleton", "wither", "zombie", "steve", "creeper"};
     private static final String __OBFID = "CL_00000067";
 
     public ItemSkull()
@@ -30,9 +28,7 @@ public class ItemSkull extends Item
      * clicking, he will have one of those. Return True if something happen and
      * false if it don't. This is for ITEMS, not BLOCKS
      */
-    public boolean onItemUse(ItemStack par1ItemStack,
-            EntityPlayer par2EntityPlayer, World par3World, int par4, int par5,
-            int par6, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
         if (par7 == 0)
         {
@@ -69,8 +65,7 @@ public class ItemSkull extends Item
                 ++par4;
             }
 
-            if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7,
-                    par1ItemStack))
+            if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
             {
                 return false;
             }
@@ -85,8 +80,7 @@ public class ItemSkull extends Item
 
                 if (par7 == 1)
                 {
-                    var11 = MathHelper
-                            .floor_double((double)(par2EntityPlayer.rotationYaw * 16.0F / 360.0F) + 0.5D) & 15;
+                    var11 = MathHelper.floor_double((double)(par2EntityPlayer.rotationYaw * 16.0F / 360.0F) + 0.5D) & 15;
                 }
 
                 TileEntity var12 = par3World.getTileEntity(par4, par5, par6);
@@ -95,19 +89,14 @@ public class ItemSkull extends Item
                 {
                     String var13 = "";
 
-                    if (par1ItemStack.hasTagCompound()
-                            && par1ItemStack.getTagCompound().func_150297_b(
-                                    "SkullOwner", 8))
+                    if (par1ItemStack.hasTagCompound() && par1ItemStack.getTagCompound().func_150297_b("SkullOwner", 8))
                     {
-                        var13 = par1ItemStack.getTagCompound().getString(
-                                "SkullOwner");
+                        var13 = par1ItemStack.getTagCompound().getString("SkullOwner");
                     }
 
-                    ((TileEntitySkull)var12).func_145905_a(
-                            par1ItemStack.getItemDamage(), var13);
+                    ((TileEntitySkull)var12).func_145905_a(par1ItemStack.getItemDamage(), var13);
                     ((TileEntitySkull)var12).func_145903_a(var11);
-                    ((BlockSkull)Blocks.skull).func_149965_a(par3World, par4,
-                            par5, par6, (TileEntitySkull)var12);
+                    ((BlockSkull)Blocks.skull).func_149965_a(par3World, par4, par5, par6, (TileEntitySkull)var12);
                 }
 
                 --par1ItemStack.stackSize;
@@ -143,14 +132,6 @@ public class ItemSkull extends Item
 
     public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
-        return par1ItemStack.getItemDamage() == 3
-                && par1ItemStack.hasTagCompound()
-                && par1ItemStack.getTagCompound()
-                        .func_150297_b("SkullOwner", 8) ? StatCollector
-                .translateToLocalFormatted(
-                        "item.skull.player.name",
-                        new Object[] {par1ItemStack.getTagCompound().getString(
-                                "SkullOwner")}) : super
-                .getItemStackDisplayName(par1ItemStack);
+        return par1ItemStack.getItemDamage() == 3 && par1ItemStack.hasTagCompound() && par1ItemStack.getTagCompound().func_150297_b("SkullOwner", 8) ? StatCollector.translateToLocalFormatted("item.skull.player.name", new Object[] {par1ItemStack.getTagCompound().getString("SkullOwner")}) : super.getItemStackDisplayName(par1ItemStack);
     }
 }

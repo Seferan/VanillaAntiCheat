@@ -30,8 +30,7 @@ public class EntityBlaze extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage)
-                .setBaseValue(6.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
     }
 
     protected void entityInit()
@@ -94,11 +93,7 @@ public class EntityBlaze extends EntityMob
                 this.heightOffset = 0.5F + (float)this.rand.nextGaussian() * 3.0F;
             }
 
-            if (this.getEntityToAttack() != null
-                    && this.getEntityToAttack().posY
-                            + (double)this.getEntityToAttack().getEyeHeight() > this.posY
-                            + (double)this.getEyeHeight()
-                            + (double)this.heightOffset)
+            if (this.getEntityToAttack() != null && this.getEntityToAttack().posY + (double)this.getEntityToAttack().getEyeHeight() > this.posY + (double)this.getEyeHeight() + (double)this.heightOffset)
             {
                 this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
             }
@@ -106,10 +101,7 @@ public class EntityBlaze extends EntityMob
 
         if (this.rand.nextInt(24) == 0)
         {
-            this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D,
-                    this.posZ + 0.5D, "fire.fire",
-                    1.0F + this.rand.nextFloat(),
-                    this.rand.nextFloat() * 0.7F + 0.3F);
+            this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F);
         }
 
         if (!this.onGround && this.motionY < 0.0D)
@@ -119,12 +111,7 @@ public class EntityBlaze extends EntityMob
 
         for (int var1 = 0; var1 < 2; ++var1)
         {
-            this.worldObj.spawnParticle("largesmoke",
-                    this.posX + (this.rand.nextDouble() - 0.5D)
-                            * (double)this.width,
-                    this.posY + this.rand.nextDouble() * (double)this.height,
-                    this.posZ + (this.rand.nextDouble() - 0.5D)
-                            * (double)this.width, 0.0D, 0.0D, 0.0D);
+            this.worldObj.spawnParticle("largesmoke", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
         }
 
         super.onLivingUpdate();
@@ -136,9 +123,7 @@ public class EntityBlaze extends EntityMob
      */
     protected void attackEntity(Entity par1Entity, float par2)
     {
-        if (this.attackTime <= 0 && par2 < 2.0F
-                && par1Entity.boundingBox.maxY > this.boundingBox.minY
-                && par1Entity.boundingBox.minY < this.boundingBox.maxY)
+        if (this.attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > this.boundingBox.minY && par1Entity.boundingBox.minY < this.boundingBox.maxY)
         {
             this.attackTime = 20;
             this.attackEntityAsMob(par1Entity);
@@ -146,9 +131,7 @@ public class EntityBlaze extends EntityMob
         else if (par2 < 30.0F)
         {
             double var3 = par1Entity.posX - this.posX;
-            double var5 = par1Entity.boundingBox.minY
-                    + (double)(par1Entity.height / 2.0F)
-                    - (this.posY + (double)(this.height / 2.0F));
+            double var5 = par1Entity.boundingBox.minY + (double)(par1Entity.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
             double var7 = par1Entity.posZ - this.posZ;
 
             if (this.attackTime == 0)
@@ -174,19 +157,12 @@ public class EntityBlaze extends EntityMob
                 if (this.field_70846_g > 1)
                 {
                     float var9 = MathHelper.sqrt_float(par2) * 0.5F;
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009,
-                            (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
 
                     for (int var10 = 0; var10 < 1; ++var10)
                     {
-                        EntitySmallFireball var11 = new EntitySmallFireball(
-                                this.worldObj, this, var3
-                                        + this.rand.nextGaussian()
-                                        * (double)var9, var5, var7
-                                        + this.rand.nextGaussian()
-                                        * (double)var9);
-                        var11.posY = this.posY + (double)(this.height / 2.0F)
-                                + 0.5D;
+                        EntitySmallFireball var11 = new EntitySmallFireball(this.worldObj, this, var3 + this.rand.nextGaussian() * (double)var9, var5, var7 + this.rand.nextGaussian() * (double)var9);
+                        var11.posY = this.posY + (double)(this.height / 2.0F) + 0.5D;
                         this.worldObj.spawnEntityInWorld(var11);
                     }
                 }

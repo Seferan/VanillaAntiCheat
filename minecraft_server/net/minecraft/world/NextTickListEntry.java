@@ -25,8 +25,7 @@ public class NextTickListEntry implements Comparable
     private long tickEntryID;
     private static final String __OBFID = "CL_00000156";
 
-    public NextTickListEntry(int p_i45370_1_, int p_i45370_2_, int p_i45370_3_,
-            Block p_i45370_4_)
+    public NextTickListEntry(int p_i45370_1_, int p_i45370_2_, int p_i45370_3_, Block p_i45370_4_)
     {
         this.tickEntryID = (long)(nextTickEntryID++);
         this.xCoord = p_i45370_1_;
@@ -44,10 +43,7 @@ public class NextTickListEntry implements Comparable
         else
         {
             NextTickListEntry var2 = (NextTickListEntry)par1Obj;
-            return this.xCoord == var2.xCoord
-                    && this.yCoord == var2.yCoord
-                    && this.zCoord == var2.zCoord
-                    && Block.isEqualTo(this.field_151352_g, var2.field_151352_g);
+            return this.xCoord == var2.xCoord && this.yCoord == var2.yCoord && this.zCoord == var2.zCoord && Block.isEqualTo(this.field_151352_g, var2.field_151352_g);
         }
     }
 
@@ -72,21 +68,12 @@ public class NextTickListEntry implements Comparable
 
     public int compareTo(NextTickListEntry par1NextTickListEntry)
     {
-        return this.scheduledTime < par1NextTickListEntry.scheduledTime ? -1
-                : (this.scheduledTime > par1NextTickListEntry.scheduledTime ? 1
-                        : (this.priority != par1NextTickListEntry.priority ? this.priority
-                                - par1NextTickListEntry.priority
-                                : (this.tickEntryID < par1NextTickListEntry.tickEntryID ? -1
-                                        : (this.tickEntryID > par1NextTickListEntry.tickEntryID ? 1
-                                                : 0))));
+        return this.scheduledTime < par1NextTickListEntry.scheduledTime ? -1 : (this.scheduledTime > par1NextTickListEntry.scheduledTime ? 1 : (this.priority != par1NextTickListEntry.priority ? this.priority - par1NextTickListEntry.priority : (this.tickEntryID < par1NextTickListEntry.tickEntryID ? -1 : (this.tickEntryID > par1NextTickListEntry.tickEntryID ? 1 : 0))));
     }
 
     public String toString()
     {
-        return Block.getIdFromBlock(this.field_151352_g) + ": (" + this.xCoord
-                + ", " + this.yCoord + ", " + this.zCoord + "), "
-                + this.scheduledTime + ", " + this.priority + ", "
-                + this.tickEntryID;
+        return Block.getIdFromBlock(this.field_151352_g) + ": (" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + "), " + this.scheduledTime + ", " + this.priority + ", " + this.tickEntryID;
     }
 
     public Block func_151351_a()

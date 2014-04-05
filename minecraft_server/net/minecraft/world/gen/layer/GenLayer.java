@@ -29,8 +29,7 @@ public abstract class GenLayer
      * the first array item is a linked list of the bioms, the second is the
      * zoom function, the third is the same as the first.
      */
-    public static GenLayer[] initializeAllBiomeGenerators(long par0,
-            WorldType par2WorldType)
+    public static GenLayer[] initializeAllBiomeGenerators(long par0, WorldType par2WorldType)
     {
         boolean var3 = false;
         GenLayerIsland var4 = new GenLayerIsland(1L);
@@ -40,19 +39,16 @@ public abstract class GenLayer
         var12 = new GenLayerAddIsland(2L, var13);
         var12 = new GenLayerAddIsland(50L, var12);
         var12 = new GenLayerAddIsland(70L, var12);
-        GenLayerRemoveTooMuchOcean var16 = new GenLayerRemoveTooMuchOcean(2L,
-                var12);
+        GenLayerRemoveTooMuchOcean var16 = new GenLayerRemoveTooMuchOcean(2L, var12);
         GenLayerAddSnow var14 = new GenLayerAddSnow(2L, var16);
         var12 = new GenLayerAddIsland(3L, var14);
-        GenLayerEdge var19 = new GenLayerEdge(2L, var12,
-                GenLayerEdge.Mode.COOL_WARM);
+        GenLayerEdge var19 = new GenLayerEdge(2L, var12, GenLayerEdge.Mode.COOL_WARM);
         var19 = new GenLayerEdge(2L, var19, GenLayerEdge.Mode.HEAT_ICE);
         var19 = new GenLayerEdge(3L, var19, GenLayerEdge.Mode.SPECIAL);
         var13 = new GenLayerZoom(2002L, var19);
         var13 = new GenLayerZoom(2003L, var13);
         var12 = new GenLayerAddIsland(4L, var13);
-        GenLayerAddMushroomIsland var22 = new GenLayerAddMushroomIsland(5L,
-                var12);
+        GenLayerAddMushroomIsland var22 = new GenLayerAddMushroomIsland(5L, var12);
         GenLayerDeepOcean var24 = new GenLayerDeepOcean(4L, var22);
         GenLayer var23 = GenLayerZoom.magnify(1000L, var24, 0);
         byte var5 = 4;
@@ -181,30 +177,22 @@ public abstract class GenLayer
      */
     public abstract int[] getInts(int var1, int var2, int var3, int var4);
 
-    protected static boolean func_151616_a(final int p_151616_0_,
-            final int p_151616_1_)
+    protected static boolean func_151616_a(final int p_151616_0_, final int p_151616_1_)
     {
         if (p_151616_0_ == p_151616_1_)
         {
             return true;
         }
-        else if (p_151616_0_ != BiomeGenBase.field_150607_aa.biomeID
-                && p_151616_0_ != BiomeGenBase.field_150608_ab.biomeID)
+        else if (p_151616_0_ != BiomeGenBase.field_150607_aa.biomeID && p_151616_0_ != BiomeGenBase.field_150608_ab.biomeID)
         {
             try
             {
-                return BiomeGenBase.func_150568_d(p_151616_0_) != null
-                        && BiomeGenBase.func_150568_d(p_151616_1_) != null ? BiomeGenBase
-                        .func_150568_d(p_151616_0_).func_150569_a(
-                                BiomeGenBase.func_150568_d(p_151616_1_))
-                        : false;
+                return BiomeGenBase.func_150568_d(p_151616_0_) != null && BiomeGenBase.func_150568_d(p_151616_1_) != null ? BiomeGenBase.func_150568_d(p_151616_0_).func_150569_a(BiomeGenBase.func_150568_d(p_151616_1_)) : false;
             }
             catch (Throwable var5)
             {
-                CrashReport var3 = CrashReport.makeCrashReport(var5,
-                        "Comparing biomes");
-                CrashReportCategory var4 = var3
-                        .makeCategory("Biomes being compared");
+                CrashReport var3 = CrashReport.makeCrashReport(var5, "Comparing biomes");
+                CrashReportCategory var4 = var3.makeCategory("Biomes being compared");
                 var4.addCrashSection("Biome A ID", Integer.valueOf(p_151616_0_));
                 var4.addCrashSection("Biome B ID", Integer.valueOf(p_151616_1_));
                 var4.addCrashSectionCallable("Biome A", new Callable()
@@ -213,8 +201,7 @@ public abstract class GenLayer
 
                     public String call()
                     {
-                        return String.valueOf(BiomeGenBase
-                                .func_150568_d(p_151616_0_));
+                        return String.valueOf(BiomeGenBase.func_150568_d(p_151616_0_));
                     }
                 });
                 var4.addCrashSectionCallable("Biome B", new Callable()
@@ -223,8 +210,7 @@ public abstract class GenLayer
 
                     public String call()
                     {
-                        return String.valueOf(BiomeGenBase
-                                .func_150568_d(p_151616_1_));
+                        return String.valueOf(BiomeGenBase.func_150568_d(p_151616_1_));
                     }
                 });
                 throw new ReportedException(var3);
@@ -232,16 +218,13 @@ public abstract class GenLayer
         }
         else
         {
-            return p_151616_1_ == BiomeGenBase.field_150607_aa.biomeID
-                    || p_151616_1_ == BiomeGenBase.field_150608_ab.biomeID;
+            return p_151616_1_ == BiomeGenBase.field_150607_aa.biomeID || p_151616_1_ == BiomeGenBase.field_150608_ab.biomeID;
         }
     }
 
     protected static boolean func_151618_b(int p_151618_0_)
     {
-        return p_151618_0_ == BiomeGenBase.ocean.biomeID
-                || p_151618_0_ == BiomeGenBase.field_150575_M.biomeID
-                || p_151618_0_ == BiomeGenBase.frozenOcean.biomeID;
+        return p_151618_0_ == BiomeGenBase.ocean.biomeID || p_151618_0_ == BiomeGenBase.field_150575_M.biomeID || p_151618_0_ == BiomeGenBase.frozenOcean.biomeID;
     }
 
     protected int func_151619_a(int... p_151619_1_)
@@ -249,31 +232,8 @@ public abstract class GenLayer
         return p_151619_1_[this.nextInt(p_151619_1_.length)];
     }
 
-    protected int func_151617_b(int p_151617_1_, int p_151617_2_,
-            int p_151617_3_, int p_151617_4_)
+    protected int func_151617_b(int p_151617_1_, int p_151617_2_, int p_151617_3_, int p_151617_4_)
     {
-        return p_151617_2_ == p_151617_3_ && p_151617_3_ == p_151617_4_ ? p_151617_2_
-                : (p_151617_1_ == p_151617_2_ && p_151617_1_ == p_151617_3_ ? p_151617_1_
-                        : (p_151617_1_ == p_151617_2_
-                                && p_151617_1_ == p_151617_4_ ? p_151617_1_
-                                : (p_151617_1_ == p_151617_3_
-                                        && p_151617_1_ == p_151617_4_ ? p_151617_1_
-                                        : (p_151617_1_ == p_151617_2_
-                                                && p_151617_3_ != p_151617_4_ ? p_151617_1_
-                                                : (p_151617_1_ == p_151617_3_
-                                                        && p_151617_2_ != p_151617_4_ ? p_151617_1_
-                                                        : (p_151617_1_ == p_151617_4_
-                                                                && p_151617_2_ != p_151617_3_ ? p_151617_1_
-                                                                : (p_151617_2_ == p_151617_3_
-                                                                        && p_151617_1_ != p_151617_4_ ? p_151617_2_
-                                                                        : (p_151617_2_ == p_151617_4_
-                                                                                && p_151617_1_ != p_151617_3_ ? p_151617_2_
-                                                                                : (p_151617_3_ == p_151617_4_
-                                                                                        && p_151617_1_ != p_151617_2_ ? p_151617_3_
-                                                                                        : this.func_151619_a(new int[] {
-                                                                                                p_151617_1_,
-                                                                                                p_151617_2_,
-                                                                                                p_151617_3_,
-                                                                                                p_151617_4_}))))))))));
+        return p_151617_2_ == p_151617_3_ && p_151617_3_ == p_151617_4_ ? p_151617_2_ : (p_151617_1_ == p_151617_2_ && p_151617_1_ == p_151617_3_ ? p_151617_1_ : (p_151617_1_ == p_151617_2_ && p_151617_1_ == p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_3_ && p_151617_1_ == p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_2_ && p_151617_3_ != p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_3_ && p_151617_2_ != p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_4_ && p_151617_2_ != p_151617_3_ ? p_151617_1_ : (p_151617_2_ == p_151617_3_ && p_151617_1_ != p_151617_4_ ? p_151617_2_ : (p_151617_2_ == p_151617_4_ && p_151617_1_ != p_151617_3_ ? p_151617_2_ : (p_151617_3_ == p_151617_4_ && p_151617_1_ != p_151617_2_ ? p_151617_3_ : this.func_151619_a(new int[] {p_151617_1_, p_151617_2_, p_151617_3_, p_151617_4_}))))))))));
     }
 }

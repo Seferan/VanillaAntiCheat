@@ -46,25 +46,19 @@ public class Achievement extends StatBase
     private boolean isSpecial;
     private static final String __OBFID = "CL_00001466";
 
-    public Achievement(String p_i45300_1_, String p_i45300_2_, int p_i45300_3_,
-            int p_i45300_4_, Item p_i45300_5_, Achievement p_i45300_6_)
+    public Achievement(String p_i45300_1_, String p_i45300_2_, int p_i45300_3_, int p_i45300_4_, Item p_i45300_5_, Achievement p_i45300_6_)
     {
-        this(p_i45300_1_, p_i45300_2_, p_i45300_3_, p_i45300_4_, new ItemStack(
-                p_i45300_5_), p_i45300_6_);
+        this(p_i45300_1_, p_i45300_2_, p_i45300_3_, p_i45300_4_, new ItemStack(p_i45300_5_), p_i45300_6_);
     }
 
-    public Achievement(String p_i45301_1_, String p_i45301_2_, int p_i45301_3_,
-            int p_i45301_4_, Block p_i45301_5_, Achievement p_i45301_6_)
+    public Achievement(String p_i45301_1_, String p_i45301_2_, int p_i45301_3_, int p_i45301_4_, Block p_i45301_5_, Achievement p_i45301_6_)
     {
-        this(p_i45301_1_, p_i45301_2_, p_i45301_3_, p_i45301_4_, new ItemStack(
-                p_i45301_5_), p_i45301_6_);
+        this(p_i45301_1_, p_i45301_2_, p_i45301_3_, p_i45301_4_, new ItemStack(p_i45301_5_), p_i45301_6_);
     }
 
-    public Achievement(String p_i45302_1_, String p_i45302_2_, int p_i45302_3_,
-            int p_i45302_4_, ItemStack p_i45302_5_, Achievement p_i45302_6_)
+    public Achievement(String p_i45302_1_, String p_i45302_2_, int p_i45302_3_, int p_i45302_4_, ItemStack p_i45302_5_, Achievement p_i45302_6_)
     {
-        super(p_i45302_1_, new ChatComponentTranslation("achievement."
-                + p_i45302_2_, new Object[0]));
+        super(p_i45302_1_, new ChatComponentTranslation("achievement." + p_i45302_2_, new Object[0]));
         this.theItemStack = p_i45302_5_;
         this.achievementDescription = "achievement." + p_i45302_2_ + ".desc";
         this.displayColumn = p_i45302_3_;
@@ -131,9 +125,7 @@ public class Achievement extends StatBase
     public IChatComponent func_150951_e()
     {
         IChatComponent var1 = super.func_150951_e();
-        var1.getChatStyle().setColor(
-                this.getSpecial() ? EnumChatFormatting.DARK_PURPLE
-                        : EnumChatFormatting.GREEN);
+        var1.getChatStyle().setColor(this.getSpecial() ? EnumChatFormatting.DARK_PURPLE : EnumChatFormatting.GREEN);
         return var1;
     }
 

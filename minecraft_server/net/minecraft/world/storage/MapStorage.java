@@ -64,19 +64,15 @@ public class MapStorage
                     {
                         try
                         {
-                            var3 = (WorldSavedData)par1Class.getConstructor(
-                                    new Class[] {String.class}).newInstance(
-                                    new Object[] {par2Str});
+                            var3 = (WorldSavedData)par1Class.getConstructor(new Class[] {String.class}).newInstance(new Object[] {par2Str});
                         }
                         catch (Exception var7)
                         {
-                            throw new RuntimeException("Failed to instantiate "
-                                    + par1Class.toString(), var7);
+                            throw new RuntimeException("Failed to instantiate " + par1Class.toString(), var7);
                         }
 
                         FileInputStream var5 = new FileInputStream(var4);
-                        NBTTagCompound var6 = CompressedStreamTools
-                                .readCompressed(var5);
+                        NBTTagCompound var6 = CompressedStreamTools.readCompressed(var5);
                         var5.close();
                         var3.readFromNBT(var6.getCompoundTag("data"));
                     }
@@ -145,8 +141,7 @@ public class MapStorage
         {
             try
             {
-                File var2 = this.saveHandler
-                        .getMapFileFromName(par1WorldSavedData.mapName);
+                File var2 = this.saveHandler.getMapFileFromName(par1WorldSavedData.mapName);
 
                 if (var2 != null)
                 {
@@ -181,8 +176,7 @@ public class MapStorage
 
             if (var1 != null && var1.exists())
             {
-                DataInputStream var2 = new DataInputStream(new FileInputStream(
-                        var1));
+                DataInputStream var2 = new DataInputStream(new FileInputStream(var1));
                 NBTTagCompound var3 = CompressedStreamTools.read(var2);
                 var2.close();
                 Iterator var4 = var3.func_150296_c().iterator();
@@ -244,13 +238,11 @@ public class MapStorage
                     while (var5.hasNext())
                     {
                         String var6 = (String)var5.next();
-                        short var7 = ((Short)this.idCounts.get(var6))
-                                .shortValue();
+                        short var7 = ((Short)this.idCounts.get(var6)).shortValue();
                         var4.setShort(var6, var7);
                     }
 
-                    DataOutputStream var9 = new DataOutputStream(
-                            new FileOutputStream(var3));
+                    DataOutputStream var9 = new DataOutputStream(new FileOutputStream(var3));
                     CompressedStreamTools.write(var4, var9);
                     var9.close();
                 }

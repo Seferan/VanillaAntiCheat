@@ -10,8 +10,7 @@ public class ScoreObjective
     private String displayName;
     private static final String __OBFID = "CL_00000614";
 
-    public ScoreObjective(Scoreboard par1Scoreboard, String par2Str,
-            IScoreObjectiveCriteria par3ScoreObjectiveCriteria)
+    public ScoreObjective(Scoreboard par1Scoreboard, String par2Str, IScoreObjectiveCriteria par3ScoreObjectiveCriteria)
     {
         this.theScoreboard = par1Scoreboard;
         this.name = par2Str;

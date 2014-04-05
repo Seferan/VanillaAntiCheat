@@ -14,11 +14,7 @@ public class TileEntityMobSpawner extends TileEntity
 
         public void func_98267_a(int par1)
         {
-            TileEntityMobSpawner.this.worldObj.func_147452_c(
-                    TileEntityMobSpawner.this.xCoord,
-                    TileEntityMobSpawner.this.yCoord,
-                    TileEntityMobSpawner.this.zCoord, Blocks.mob_spawner, par1,
-                    0);
+            TileEntityMobSpawner.this.worldObj.func_147452_c(TileEntityMobSpawner.this.xCoord, TileEntityMobSpawner.this.yCoord, TileEntityMobSpawner.this.zCoord, Blocks.mob_spawner, par1, 0);
         }
 
         public World getSpawnerWorld()
@@ -41,17 +37,13 @@ public class TileEntityMobSpawner extends TileEntity
             return TileEntityMobSpawner.this.zCoord;
         }
 
-        public void setRandomMinecart(
-                MobSpawnerBaseLogic.WeightedRandomMinecart par1WeightedRandomMinecart)
+        public void setRandomMinecart(MobSpawnerBaseLogic.WeightedRandomMinecart par1WeightedRandomMinecart)
         {
             super.setRandomMinecart(par1WeightedRandomMinecart);
 
             if (this.getSpawnerWorld() != null)
             {
-                this.getSpawnerWorld().markBlockForUpdate(
-                        TileEntityMobSpawner.this.xCoord,
-                        TileEntityMobSpawner.this.yCoord,
-                        TileEntityMobSpawner.this.zCoord);
+                this.getSpawnerWorld().markBlockForUpdate(TileEntityMobSpawner.this.xCoord, TileEntityMobSpawner.this.yCoord, TileEntityMobSpawner.this.zCoord);
             }
         }
     };
@@ -83,14 +75,12 @@ public class TileEntityMobSpawner extends TileEntity
         NBTTagCompound var1 = new NBTTagCompound();
         this.writeToNBT(var1);
         var1.removeTag("SpawnPotentials");
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord,
-                this.zCoord, 1, var1);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, var1);
     }
 
     public boolean receiveClientEvent(int p_145842_1_, int p_145842_2_)
     {
-        return this.field_145882_a.setDelayToMin(p_145842_1_) ? true : super
-                .receiveClientEvent(p_145842_1_, p_145842_2_);
+        return this.field_145882_a.setDelayToMin(p_145842_1_) ? true : super.receiveClientEvent(p_145842_1_, p_145842_2_);
     }
 
     public MobSpawnerBaseLogic func_145881_a()

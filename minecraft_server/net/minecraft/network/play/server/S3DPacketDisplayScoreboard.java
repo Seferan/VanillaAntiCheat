@@ -17,8 +17,7 @@ public class S3DPacketDisplayScoreboard extends Packet
     {
     }
 
-    public S3DPacketDisplayScoreboard(int p_i45216_1_,
-            ScoreObjective p_i45216_2_)
+    public S3DPacketDisplayScoreboard(int p_i45216_1_, ScoreObjective p_i45216_2_)
     {
         this.field_149374_a = p_i45216_1_;
 

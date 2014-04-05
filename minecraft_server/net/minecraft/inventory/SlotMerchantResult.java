@@ -18,9 +18,7 @@ public class SlotMerchantResult extends Slot
     private final IMerchant theMerchant;
     private static final String __OBFID = "CL_00001758";
 
-    public SlotMerchantResult(EntityPlayer par1EntityPlayer,
-            IMerchant par2IMerchant, InventoryMerchant par3InventoryMerchant,
-            int par4, int par5, int par6)
+    public SlotMerchantResult(EntityPlayer par1EntityPlayer, IMerchant par2IMerchant, InventoryMerchant par3InventoryMerchant, int par4, int par5, int par6)
     {
         super(par3InventoryMerchant, par4, par5, par6);
         this.thePlayer = par1EntityPlayer;
@@ -68,13 +66,11 @@ public class SlotMerchantResult extends Slot
      */
     protected void onCrafting(ItemStack par1ItemStack)
     {
-        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer,
-                this.field_75231_g);
+        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.field_75231_g);
         this.field_75231_g = 0;
     }
 
-    public void onPickupFromSlot(EntityPlayer par1EntityPlayer,
-            ItemStack par2ItemStack)
+    public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
     {
         this.onCrafting(par2ItemStack);
         MerchantRecipe var3 = this.theMerchantInventory.getCurrentRecipe();
@@ -84,8 +80,7 @@ public class SlotMerchantResult extends Slot
             ItemStack var4 = this.theMerchantInventory.getStackInSlot(0);
             ItemStack var5 = this.theMerchantInventory.getStackInSlot(1);
 
-            if (this.func_75230_a(var3, var4, var5)
-                    || this.func_75230_a(var3, var5, var4))
+            if (this.func_75230_a(var3, var4, var5) || this.func_75230_a(var3, var5, var4))
             {
                 this.theMerchant.useRecipe(var3);
 
@@ -105,16 +100,14 @@ public class SlotMerchantResult extends Slot
         }
     }
 
-    private boolean func_75230_a(MerchantRecipe par1MerchantRecipe,
-            ItemStack par2ItemStack, ItemStack par3ItemStack)
+    private boolean func_75230_a(MerchantRecipe par1MerchantRecipe, ItemStack par2ItemStack, ItemStack par3ItemStack)
     {
         ItemStack var4 = par1MerchantRecipe.getItemToBuy();
         ItemStack var5 = par1MerchantRecipe.getSecondItemToBuy();
 
         if (par2ItemStack != null && par2ItemStack.getItem() == var4.getItem())
         {
-            if (var5 != null && par3ItemStack != null
-                    && var5.getItem() == par3ItemStack.getItem())
+            if (var5 != null && par3ItemStack != null && var5.getItem() == par3ItemStack.getItem())
             {
                 par2ItemStack.stackSize -= var4.stackSize;
                 par3ItemStack.stackSize -= var5.stackSize;

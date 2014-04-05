@@ -65,8 +65,7 @@ public class ClickEvent
 
     public String toString()
     {
-        return "ClickEvent{action=" + this.action + ", value=\'" + this.value
-                + '\'' + '}';
+        return "ClickEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
     }
 
     public int hashCode()
@@ -78,20 +77,15 @@ public class ClickEvent
 
     public static enum Action
     {
-        OPEN_URL("OPEN_URL", 0, "open_url", true), OPEN_FILE("OPEN_FILE", 1,
-                "open_file", false), RUN_COMMAND("RUN_COMMAND", 2,
-                "run_command", true), SUGGEST_COMMAND("SUGGEST_COMMAND", 3,
-                "suggest_command", true);
+        OPEN_URL("OPEN_URL", 0, "open_url", true), OPEN_FILE("OPEN_FILE", 1, "open_file", false), RUN_COMMAND("RUN_COMMAND", 2, "run_command", true), SUGGEST_COMMAND("SUGGEST_COMMAND", 3, "suggest_command", true);
         private static final Map nameMapping = Maps.newHashMap();
         private final boolean allowedInChat;
         private final String canonicalName;
 
-        private static final ClickEvent.Action[] $VALUES = new ClickEvent.Action[] {
-                OPEN_URL, OPEN_FILE, RUN_COMMAND, SUGGEST_COMMAND};
+        private static final ClickEvent.Action[] $VALUES = new ClickEvent.Action[] {OPEN_URL, OPEN_FILE, RUN_COMMAND, SUGGEST_COMMAND};
         private static final String __OBFID = "CL_00001261";
 
-        private Action(String p_i45155_1_, int p_i45155_2_, String p_i45155_3_,
-                boolean p_i45155_4_)
+        private Action(String p_i45155_1_, int p_i45155_2_, String p_i45155_3_, boolean p_i45155_4_)
         {
             this.canonicalName = p_i45155_3_;
             this.allowedInChat = p_i45155_4_;
@@ -107,8 +101,7 @@ public class ClickEvent
             return this.canonicalName;
         }
 
-        public static ClickEvent.Action getValueByCanonicalName(
-                String p_150672_0_)
+        public static ClickEvent.Action getValueByCanonicalName(String p_150672_0_)
         {
             return (ClickEvent.Action)nameMapping.get(p_150672_0_);
         }

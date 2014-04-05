@@ -29,14 +29,12 @@ public class S21PacketChunkData extends Packet
     {
     }
 
-    public S21PacketChunkData(Chunk p_i45196_1_, boolean p_i45196_2_,
-            int p_i45196_3_)
+    public S21PacketChunkData(Chunk p_i45196_1_, boolean p_i45196_2_, int p_i45196_3_)
     {
         this.field_149284_a = p_i45196_1_.xPosition;
         this.field_149282_b = p_i45196_1_.zPosition;
         this.field_149279_g = p_i45196_2_;
-        S21PacketChunkData.Extracted var4 = func_149269_a(p_i45196_1_,
-                p_i45196_2_, p_i45196_3_);
+        S21PacketChunkData.Extracted var4 = func_149269_a(p_i45196_1_, p_i45196_2_, p_i45196_3_);
         Deflater var5 = new Deflater(-1);
         this.field_149280_d = var4.field_150281_c;
         this.field_149283_c = var4.field_150280_b;
@@ -136,18 +134,10 @@ public class S21PacketChunkData extends Packet
      */
     public String serialize()
     {
-        return String.format(
-                "x=%d, z=%d, full=%b, sects=%d, add=%d, size=%d",
-                new Object[] {Integer.valueOf(this.field_149284_a),
-                        Integer.valueOf(this.field_149282_b),
-                        Boolean.valueOf(this.field_149279_g),
-                        Integer.valueOf(this.field_149283_c),
-                        Integer.valueOf(this.field_149280_d),
-                        Integer.valueOf(this.field_149285_h)});
+        return String.format("x=%d, z=%d, full=%b, sects=%d, add=%d, size=%d", new Object[] {Integer.valueOf(this.field_149284_a), Integer.valueOf(this.field_149282_b), Boolean.valueOf(this.field_149279_g), Integer.valueOf(this.field_149283_c), Integer.valueOf(this.field_149280_d), Integer.valueOf(this.field_149285_h)});
     }
 
-    public static S21PacketChunkData.Extracted func_149269_a(Chunk p_149269_0_,
-            boolean p_149269_1_, int p_149269_2_)
+    public static S21PacketChunkData.Extracted func_149269_a(Chunk p_149269_0_, boolean p_149269_1_, int p_149269_2_)
     {
         int var3 = 0;
         ExtendedBlockStorage[] var4 = p_149269_0_.getBlockStorageArray();
@@ -164,8 +154,7 @@ public class S21PacketChunkData extends Packet
 
         for (var8 = 0; var8 < var4.length; ++var8)
         {
-            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty())
-                    && (p_149269_2_ & 1 << var8) != 0)
+            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty()) && (p_149269_2_ & 1 << var8) != 0)
             {
                 var6.field_150280_b |= 1 << var8;
 
@@ -179,8 +168,7 @@ public class S21PacketChunkData extends Packet
 
         for (var8 = 0; var8 < var4.length; ++var8)
         {
-            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty())
-                    && (p_149269_2_ & 1 << var8) != 0)
+            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty()) && (p_149269_2_ & 1 << var8) != 0)
             {
                 byte[] var9 = var4[var8].getBlockLSBArray();
                 System.arraycopy(var9, 0, var7, var3, var9.length);
@@ -192,8 +180,7 @@ public class S21PacketChunkData extends Packet
 
         for (var8 = 0; var8 < var4.length; ++var8)
         {
-            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty())
-                    && (p_149269_2_ & 1 << var8) != 0)
+            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty()) && (p_149269_2_ & 1 << var8) != 0)
             {
                 var10 = var4[var8].getMetadataArray();
                 System.arraycopy(var10.data, 0, var7, var3, var10.data.length);
@@ -203,8 +190,7 @@ public class S21PacketChunkData extends Packet
 
         for (var8 = 0; var8 < var4.length; ++var8)
         {
-            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty())
-                    && (p_149269_2_ & 1 << var8) != 0)
+            if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty()) && (p_149269_2_ & 1 << var8) != 0)
             {
                 var10 = var4[var8].getBlocklightArray();
                 System.arraycopy(var10.data, 0, var7, var3, var10.data.length);
@@ -216,13 +202,10 @@ public class S21PacketChunkData extends Packet
         {
             for (var8 = 0; var8 < var4.length; ++var8)
             {
-                if (var4[var8] != null
-                        && (!p_149269_1_ || !var4[var8].isEmpty())
-                        && (p_149269_2_ & 1 << var8) != 0)
+                if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty()) && (p_149269_2_ & 1 << var8) != 0)
                 {
                     var10 = var4[var8].getSkylightArray();
-                    System.arraycopy(var10.data, 0, var7, var3,
-                            var10.data.length);
+                    System.arraycopy(var10.data, 0, var7, var3, var10.data.length);
                     var3 += var10.data.length;
                 }
             }
@@ -232,14 +215,10 @@ public class S21PacketChunkData extends Packet
         {
             for (var8 = 0; var8 < var4.length; ++var8)
             {
-                if (var4[var8] != null
-                        && (!p_149269_1_ || !var4[var8].isEmpty())
-                        && var4[var8].getBlockMSBArray() != null
-                        && (p_149269_2_ & 1 << var8) != 0)
+                if (var4[var8] != null && (!p_149269_1_ || !var4[var8].isEmpty()) && var4[var8].getBlockMSBArray() != null && (p_149269_2_ & 1 << var8) != 0)
                 {
                     var10 = var4[var8].getBlockMSBArray();
-                    System.arraycopy(var10.data, 0, var7, var3,
-                            var10.data.length);
+                    System.arraycopy(var10.data, 0, var7, var3, var10.data.length);
                     var3 += var10.data.length;
                 }
             }

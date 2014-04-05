@@ -64,28 +64,23 @@ public class ExtendedBlockStorage
 
     public Block func_150819_a(int p_150819_1_, int p_150819_2_, int p_150819_3_)
     {
-        int var4 = this.blockLSBArray[p_150819_2_ << 8 | p_150819_3_ << 4
-                | p_150819_1_] & 255;
+        int var4 = this.blockLSBArray[p_150819_2_ << 8 | p_150819_3_ << 4 | p_150819_1_] & 255;
 
         if (this.blockMSBArray != null)
         {
-            var4 |= this.blockMSBArray.get(p_150819_1_, p_150819_2_,
-                    p_150819_3_) << 8;
+            var4 |= this.blockMSBArray.get(p_150819_1_, p_150819_2_, p_150819_3_) << 8;
         }
 
         return Block.getBlockById(var4);
     }
 
-    public void func_150818_a(int p_150818_1_, int p_150818_2_,
-            int p_150818_3_, Block p_150818_4_)
+    public void func_150818_a(int p_150818_1_, int p_150818_2_, int p_150818_3_, Block p_150818_4_)
     {
-        int var5 = this.blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4
-                | p_150818_1_] & 255;
+        int var5 = this.blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4 | p_150818_1_] & 255;
 
         if (this.blockMSBArray != null)
         {
-            var5 |= this.blockMSBArray.get(p_150818_1_, p_150818_2_,
-                    p_150818_3_) << 8;
+            var5 |= this.blockMSBArray.get(p_150818_1_, p_150818_2_, p_150818_3_) << 8;
         }
 
         Block var6 = Block.getBlockById(var5);
@@ -117,12 +112,10 @@ public class ExtendedBlockStorage
         {
             if (this.blockMSBArray == null)
             {
-                this.blockMSBArray = new NibbleArray(this.blockLSBArray.length,
-                        4);
+                this.blockMSBArray = new NibbleArray(this.blockLSBArray.length, 4);
             }
 
-            this.blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_,
-                    (var7 & 3840) >> 8);
+            this.blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_, (var7 & 3840) >> 8);
         }
         else if (this.blockMSBArray != null)
         {
