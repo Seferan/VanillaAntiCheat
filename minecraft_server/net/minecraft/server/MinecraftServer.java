@@ -1541,6 +1541,11 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return the number of times you can be reset and not be kicked
      */
     public abstract int getFlyResetKickThreshold();
+    
+    /**
+     * Whether diamond notifications are enabled or not
+     */
+    public abstract boolean useDiamondNotifications();
 
     public String getMOTD()
     {

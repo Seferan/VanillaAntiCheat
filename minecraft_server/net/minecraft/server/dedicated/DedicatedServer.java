@@ -537,6 +537,14 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
         return this.settings.getIntProperty("vac-fly-reset-kick-threshold", 5);
     }
+    
+    /**
+     * Whether diamond notifications are enabled or not
+     */
+    public boolean useDiamondNotifications()
+    {
+        return this.settings.getBooleanProperty("vac-diamond-notifications", true);
+    }
 
     /**
      * Returns true if a player does not have permission to edit the block at

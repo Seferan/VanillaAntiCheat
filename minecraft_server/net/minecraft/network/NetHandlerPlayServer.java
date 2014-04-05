@@ -392,26 +392,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     {
                         this.floatingTickCount++;
 
-                        // System.out.println(this.floatingTickCount);
-                        if (this.floatingTickCount > MinecraftServer.getServer().getFloatingTicksThreshold())
-                        {
-                            resetPlayerForFlying();
-
-                            if (vacState.getFlyResetCount() == MinecraftServer.getServer().getFlyResetLogThreshold() && !vacState.hasFlyResetBeenLogged())
-                            {
-                                vacState.logFlyReset();
-                                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " has been reset for flying " + String.valueOf(MinecraftServer.getServer().getFlyResetLogThreshold()) + " times now.");
-                            }
-
-                            this.floatingTickCount = 0;
-                            return;
-                        }
-                        if (vacState.getFlyResetCount() > MinecraftServer.getServer().getFlyResetKickThreshold())
-                        {
-                            kickPlayerFromServer("Flying is not allowed on this server.");
-                            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for flying!");
-                            return;
-                        }
+                        processFloating();
                     }
                 }
                 else
@@ -428,6 +409,31 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 this.setPlayerLocation(this.lastPosX, this.lastPosY, this.lastPosZ, this.playerEntity.rotationYaw, this.playerEntity.rotationPitch);
             }
+        }
+    }
+    
+    // Where all our hooks will go for flying
+    private void processFloating()
+    {
+     // System.out.println(this.floatingTickCount);
+        if (this.floatingTickCount > MinecraftServer.getServer().getFloatingTicksThreshold())
+        {
+            resetPlayerForFlying();
+
+            if (vacState.getFlyResetCount() == MinecraftServer.getServer().getFlyResetLogThreshold() && !vacState.hasFlyResetBeenLogged())
+            {
+                vacState.logFlyReset();
+                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " has been reset for flying " + String.valueOf(MinecraftServer.getServer().getFlyResetLogThreshold()) + " times now.");
+            }
+
+            this.floatingTickCount = 0;
+            return;
+        }
+        if (vacState.getFlyResetCount() > MinecraftServer.getServer().getFlyResetKickThreshold())
+        {
+            kickPlayerFromServer("Flying is not allowed on this server.");
+            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for flying!");
+            return;
         }
     }
 
@@ -459,10 +465,6 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         int z = packetBlockDig.getZ();
 
         Block block = world.getBlock(x, y, z);
-        float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
-        // The number of ticks it SHOULD take for a player to break the block
-        // under ideal circumstances
-        int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
 
         if (packetBlockDig.getStatus() == 4)
         {
@@ -495,53 +497,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             }
 
             // Broke block (i think)
-            // yay lets shove all of our anticheat hooks into here because we're
-            // dumb
             if (packetBlockDig.getStatus() == 2)
             {
                 var3 = true;
 
-                // Diamond notification code
-                /*
-                 * if(block.getBlockId() == 56 &&
-                 * !MinecraftServer.isPlayerOpped(playerEntity)) {
-                 * if(ticksSinceLastOreMined > 100) { veinsMined++;
-                 * VanillaAntiCheatUtils.notifyAndLog(playerEntity.username +
-                 * " found diamonds. (" + String.valueOf(veinsMined) +
-                 * " veins found since login)"); } ticksSinceLastOreMined = 0; }
-                 */
-
-                // Did the player break this block too quickly?
-                if (vacState.getTicksTakenToBreakBlock() < ticksToBreakBlock && !MinecraftServer.isPlayerOppedOrCreative(playerEntity))
-                {
-                    // Give the player some leeway
-                    int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
-                    if (ticksToBreakBlock - vacState.getTicksTakenToBreakBlock() > leewayDifference)
-                    {
-                        // If broken so fast it was above the leeway, track it
-                        vacState.incrementTotalDeviations();
-                        if (vacState.isTotalMinedNonzero())
-                        {
-                            // Check if this guy is bullshit
-                            if (vacState.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
-                            {
-                                // If he's bullshit, update the client and tell
-                                // him that he didn't mine the block
-                                playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
-                                // Log it and notify admins
-                                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(vacState.getTicksTakenToBreakBlock()) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
-                                return;
-                            }
-                        }
-                    }
-                }
-                vacState.incrementTotalMined();
-
-                // System.out.println(String.valueOf(vacState.totalDeviations) +
-                // "/" + String.valueOf(vacState.totalMined) + " (" +
-                // String.valueOf(vacState.totalDeviations / Math.max((double)
-                // vacState.totalMined, 1.0)));
-                vacState.resetDigStatus();
+                processBlockDug(world, x, y, z, block);
             }
 
             if (var3)
@@ -588,6 +548,59 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
     }
 
+    // Where all our anticheat hooks shall go for a block being mined
+    private void processBlockDug(WorldServer world, int x, int y, int z, Block block)
+    {
+        // Diamond notification code
+        if (block.getBlockId() == 56 && !MinecraftServer.isPlayerOpped(playerEntity) && MinecraftServer.getServer().useDiamondNotifications())
+        {
+            // Assume any ores mined within 100 ticks of each other are from the same vein
+            if (vacState.isMiningNewVein())
+            {
+                vacState.incrementVeinsMined();
+                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " found diamonds. (" + String.valueOf(vacState.getNumberOfVeins()) + " veins found since login)");
+            }
+            vacState.resetTicksSinceLastOre();
+        }
+
+        float hardness = block.getPlayerRelativeBlockHardness(playerEntity, world, x, y, z);
+        // The number of ticks it SHOULD take for a player to break the block
+        // under ideal circumstances
+        int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
+        
+        // Did the player break this block too quickly?
+        if (vacState.getTicksTakenToBreakBlock() < ticksToBreakBlock && !MinecraftServer.isPlayerOppedOrCreative(playerEntity))
+        {
+            // Give the player some leeway
+            int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
+            if (ticksToBreakBlock - vacState.getTicksTakenToBreakBlock() > leewayDifference)
+            {
+                // If broken so fast it was above the leeway, track it
+                vacState.incrementTotalDeviations();
+                if (vacState.isTotalMinedNonzero())
+                {
+                    // Check if this guy is bullshit
+                    if (vacState.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
+                    {
+                        // If he's bullshit, update the client and tell
+                        // him that he didn't mine the block
+                        playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
+                        // Log it and notify admins
+                        VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(vacState.getTicksTakenToBreakBlock()) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
+                        return;
+                    }
+                }
+            }
+        }
+        vacState.incrementTotalMined();
+
+        // System.out.println(String.valueOf(vacState.totalDeviations) +
+        // "/" + String.valueOf(vacState.totalMined) + " (" +
+        // String.valueOf(vacState.totalDeviations / Math.max((double)
+        // vacState.totalMined, 1.0)));
+        vacState.resetDigStatus();   
+    }
+    
     public void handlePlace(C08PacketPlayerBlockPlacement packetPlace)
     {
         if (vacState.isAlreadyKicked()) return;
@@ -615,21 +628,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         else
         {
-            boolean isContainer = world.getBlock(x, y, z) instanceof BlockContainer;
-
-            // System.out.println(itemStack.getItemId() + " " +
-            // vacState.getBuildCount() + " " + isContainer);
-            if (itemStack.getItemId() < 256 && itemStack.getItemId() != 69 && !isContainer)
-            {
-                vacState.incrementBuildCount(2);
-            }
-            if (vacState.getBuildCount() > MinecraftServer.getServer().getBuildhackThreshold() && !MinecraftServer.isPlayerOpped(this.playerEntity))
-            {
-                kickPlayerFromServer("Build hacking detected.");
-                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for buildhacking!");
-                vacState.kickMe();
-                return;
-            }
+            processBlockPlaced(world.getBlock(x, y, z), itemStack);
 
             if (this.hasMoved && this.playerEntity.getDistanceSq((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D) < 64.0D && !this.serverController.isBlockProtected(world, x, y, z, this.playerEntity))
             {
@@ -699,6 +698,26 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
     }
 
+    // Where all our hooks will go for a block being placed
+    private void processBlockPlaced(Block block, ItemStack itemStack)
+    {
+        boolean isContainer = block instanceof BlockContainer;
+
+        // System.out.println(itemStack.getItemId() + " " +
+        // vacState.getBuildCount() + " " + isContainer);
+        if (itemStack.getItemId() < 256 && itemStack.getItemId() != 69 && !isContainer)
+        {
+            vacState.incrementBuildCount(2);
+        }
+        if (vacState.getBuildCount() > MinecraftServer.getServer().getBuildhackThreshold() && !MinecraftServer.isPlayerOpped(this.playerEntity))
+        {
+            kickPlayerFromServer("Build hacking detected.");
+            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for buildhacking!");
+            vacState.kickMe();
+            return;
+        }
+    }
+    
     /**
      * Invoked when disconnecting, the parameter is a ChatComponent describing
      * the reason for termination
