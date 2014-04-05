@@ -4,15 +4,24 @@ import net.minecraft.entity.player.EntityPlayerMP;
 
 public class VACModuleAntiFly implements IVacModule
 {
-    private int afResetCount;
-    private double antiFlyX;
-    private double antiFlyZ;
+    /**
+     * The number of times the player has been reset for flying
+     */
+    private int resetCount;
+    /**
+     * The x-coordinate to reset the player to
+     */
+    private double x;
+    /**
+     * The z-coordinate to reset the player to
+     */
+    private double z;
     
     public VACModuleAntiFly()
     {
-        afResetCount = 0;
-        antiFlyX = 0.0;
-        antiFlyZ = 0.0;
+        resetCount = 0;
+        x = 0.0;
+        z = 0.0;
     }
     
     public String getModuleName()
@@ -24,29 +33,33 @@ public class VACModuleAntiFly implements IVacModule
     {
     }
 
+    /**
+     * Sets the position to reset the player back to
+     * @param player the player to reset later
+     */
     public void setAntiFlyPosition(EntityPlayerMP player)
     {
-        antiFlyX = player.posX;
-        antiFlyZ = player.posZ;
+        x = player.posX;
+        z = player.posZ;
     }
 
-    public double getAntiFlyX()
+    public double getX()
     {
-        return antiFlyX;
+        return x;
     }
 
-    public double getAntiFlyZ()
+    public double getZ()
     {
-        return antiFlyZ;
+        return z;
     }
 
-    public void incrementFlyResetCount()
+    public void incrementResetCount()
     {
-        afResetCount++;
+        resetCount++;
     }
 
     public int getFlyResetCount()
     {
-        return afResetCount;
+        return resetCount;
     }
 }

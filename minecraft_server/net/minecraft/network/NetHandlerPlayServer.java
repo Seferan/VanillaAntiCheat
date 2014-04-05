@@ -424,7 +424,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
             if (vacState.aFly.getFlyResetCount() == logThreshold)
             {
-                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " has been reset for flying " + String.valueOf(logThreshold) + " times now.");
+                StringBuilder message = new StringBuilder();
+                message.append(playerEntity.getCommandSenderName());
+                message.append(" has been reset for flying ");
+                message.append(logThreshold).append(" times now.");
+                VACUtils.notifyAndLog(vacState.aFly, message.toString());
             }
 
             this.floatingTickCount = 0;
@@ -433,19 +437,20 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         if (vacState.aFly.getFlyResetCount() > kickThreshold)
         {
             kickPlayerFromServer("Flying is not allowed on this server.");
-            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for flying!");
+            String message = playerEntity.getCommandSenderName() + " was kicked for flying!";
+            VACUtils.notifyAndLog(vacState.aFly, message);
             return;
         }
     }
 
     private void resetPlayerForFlying()
     {
-        double setBackX = vacState.aFly.getAntiFlyX();
-        double setBackZ = vacState.aFly.getAntiFlyZ();
+        double setBackX = vacState.aFly.getX();
+        double setBackZ = vacState.aFly.getZ();
         double setBackY = playerEntity.worldObj.getTopSolidOrLiquidBlock((int)setBackX, (int)setBackZ);
         setPlayerLocation(setBackX, setBackY, setBackZ, playerEntity.rotationYaw, playerEntity.rotationPitch);
         playerEntity.attackEntityFrom(DamageSource.fall, 4);
-        vacState.aFly.incrementFlyResetCount();
+        vacState.aFly.incrementResetCount();
     }
 
     public void setPlayerLocation(double p_147364_1_, double p_147364_3_, double p_147364_5_, float p_147364_7_, float p_147364_8_)
@@ -564,7 +569,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 if (vacState.dNotifications.isMiningNewVein())
                 {
                     vacState.dNotifications.incrementVeinsMined();
-                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " found diamonds. (" + String.valueOf(vacState.dNotifications.getNumberOfVeins()) + " veins found since login)");
+                    StringBuilder message = new StringBuilder();
+                    message.append(playerEntity.getCommandSenderName());
+                    message.append(" found diamonds. (");
+                    message.append(vacState.dNotifications.getNumberOfVeins());
+                    message.append(" veins found since login)");
+                    VACUtils.notifyAndLog(vacState.dNotifications, message.toString());
                 }
                 vacState.dNotifications.resetTicksSinceLastOre();
             }
@@ -575,18 +585,18 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             int ticksToBreakBlock = (int)Math.ceil(1.0f / hardness);
 
             // Add this check for players with shitty internet connections
-            if (vacState.aFastBreak.getTicksTakenToBreakBlock() > 0)
+            if (vacState.aFastBreak.getTicksTaken() > 0)
             {
                 // Did the player break this block too quickly?
-                if (vacState.aFastBreak.getTicksTakenToBreakBlock() < ticksToBreakBlock)
+                if (vacState.aFastBreak.getTicksTaken() < ticksToBreakBlock)
                 {
                     // Give the player some leeway
                     int leewayDifference = (int)Math.ceil(ticksToBreakBlock * MinecraftServer.getServer().getFastbreakLeeway());
-                    if (ticksToBreakBlock - vacState.aFastBreak.getTicksTakenToBreakBlock() > leewayDifference)
+                    if (ticksToBreakBlock - vacState.aFastBreak.getTicksTaken() > leewayDifference)
                     {
                         // If broken so fast it was above the leeway, track it
-                        vacState.aFastBreak.incrementTotalDeviations();
-                        if (vacState.aFastBreak.isTotalMinedNonzero())
+                        vacState.aFastBreak.incrementDeviations();
+                        if (vacState.aFastBreak.isMinedNonzero())
                         {
                             // Check if this guy is bullshit
                             if (vacState.aFastBreak.getDeviationRatio() > MinecraftServer.getServer().getFastbreakRatioThreshold())
@@ -595,7 +605,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                                 // him that he didn't mine the block
                                 playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
                                 // Log it and notify admins
-                                VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " broke blocks too quickly! (" + String.valueOf(vacState.aFastBreak.getTicksTakenToBreakBlock()) + " ticks /" + String.valueOf(ticksToBreakBlock) + ")");
+                                StringBuilder message = new StringBuilder();
+                                message.append(playerEntity.getCommandSenderName());
+                                message.append(" broke blocks too quickly! (");
+                                message.append(vacState.aFastBreak.getTicksTaken());
+                                message.append(" ticks /");
+                                message.append(ticksToBreakBlock);
+                                message.append(")");
+                                VACUtils.notifyAndLog(vacState.aFastBreak, message.toString());
                                 return true;
                             }
                         }
@@ -604,7 +621,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             }
         }
         
-        vacState.aFastBreak.incrementTotalMined();
+        vacState.aFastBreak.incrementMined();
         vacState.aFastBreak.resetDigStatus();
         
         return false;
@@ -716,12 +733,13 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         // vacState.getBuildCount() + " " + isContainer);
         if (itemStack.getItemId() < 256 && itemStack.getItemId() != 69 && !isContainer)
         {
-            vacState.aFastBuild.incrementBuildCount(2);
+            vacState.aFastBuild.incrementBlockCount(2);
         }
         if (vacState.aFastBuild.getBuildCount() > MinecraftServer.getServer().getBuildhackThreshold() && !MinecraftServer.isPlayerOpped(this.playerEntity))
         {
             kickPlayerFromServer("Build hacking detected.");
-            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for buildhacking!");
+            String message = playerEntity.getCommandSenderName() + " was kicked for buildhacking!";
+            VACUtils.notifyAndLog(vacState.aFastBuild, message);
             vacState.aFastBuild.kickMe();
             return;
         }
