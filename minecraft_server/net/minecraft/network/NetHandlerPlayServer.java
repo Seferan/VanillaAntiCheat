@@ -236,6 +236,27 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Where all of our anticheat hooks for the player moving will go
     private void processPlayerMoved(C03PacketPlayer packet)
     {
+        checkForSpeedhack();
+        checkForVClip();
+        checkForSneakSprint();
+        
+        // Patch crash exploit
+        if (this.playerEntity.ridingEntity != null)
+        {
+            if (packet.getMoving() && packet.getX() == -999.0D && packet.getStance() == -999.0D)
+            {
+                if (Math.abs(packet.getX()) > 1.0D || Math.abs(packet.getZ()) > 1.0D)
+                {
+                    VACUtils.notifyAndLog(playerEntity.getUsername() + " was caught trying to crash the server with an invalid position!");
+                    kickPlayerFromServer("Nope!");
+                    return;
+                }
+            }
+        }
+    }
+    
+    private void checkForSneakSprint()
+    {
         if(MinecraftServer.isPlayerOpped(playerEntity)) return;
         
         // No sneaking and sprinting
@@ -245,7 +266,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             VACUtils.notifyAndLog(playerEntity.getUsername() + " was kicked for sneaking and sprinting!");
             return;
         }
-
+    }
+    
+    private void checkForVClip()
+    {
         // Anti-VClip
         if ((Double.valueOf(lastPosY) != null))
         {
@@ -266,21 +290,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 }
             }
         }
-        
-        // Patch crash exploit
-        if (this.playerEntity.ridingEntity != null)
-        {
-            if (packet.getMoving() && packet.getX() == -999.0D && packet.getStance() == -999.0D)
-            {
-                if (Math.abs(packet.getX()) > 1.0D || Math.abs(packet.getZ()) > 1.0D)
-                {
-                    VACUtils.notifyAndLog(playerEntity.getUsername() + " was caught trying to crash the server with an invalid position!");
-                    kickPlayerFromServer("Nope!");
-                    return;
-                }
-            }
-        }
-        
+    }
+    
+    private void checkForSpeedhack()
+    {
         // Anti speedhack
         if (MinecraftServer.isPlayerOppedOrCreative(playerEntity)) return;
         if (Double.valueOf(lastPosX) == null || Double.valueOf(lastPosZ) == null) return;
