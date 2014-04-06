@@ -1552,6 +1552,24 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      */
     public abstract int getHealthRegenTickCount();
     
+    /**
+     * Return the number of ticks a player should take to regenerate health
+     */
+    public abstract double getSpeedhackLeeway();
+    
+    /**
+     * Get the speed limit for a player with specific conditions.
+     * @param sprinting whether the player is sprinting or not
+     * @param jumping whether the player is jumping or not
+     * @param potion whether the player has a speed potion or not
+     * @return the speed limit for the player
+     */
+    public abstract double getSpeedLimit(boolean sprinting, boolean jumping, boolean potion);
+    
+    /**
+     * Return the speed limit for a sneaking player.
+     */
+    public abstract double getSneakSpeedLimit();
 
     public String getMOTD()
     {

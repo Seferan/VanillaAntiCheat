@@ -553,6 +553,54 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
         return this.settings.getIntProperty("vac-health-regen-tickcount", 70);
     }
+    
+    /**
+     * Return the number of ticks a player should take to regenerate health
+     */
+    public double getSpeedhackLeeway()
+    {
+        return settings.getDoubleProperty("vac-speedhack-leeway", 0.01);
+    }
+    
+    /**
+     * Get the speed limit for a player with specific conditions.
+     * @param sprinting whether the player is sprinting or not
+     * @param jumping whether the player is jumping or not
+     * @param potion whether the player has a speed potion or not
+     * @return the speed limit for the player
+     */
+    public double getSpeedLimit(boolean sprinting, boolean jumping, boolean potion)
+    {
+        String property = "vac-speed-limit-";
+        double defaultValue = 0.25;
+        if (sprinting)
+        {
+            defaultValue = 0.8;
+            property += "sprinting-";
+        }
+        if (jumping)
+        {
+            property += "jumping-";
+            defaultValue += 0.1;
+        }
+        if (potion)
+        {
+            property += "potion-";
+            defaultValue += 0.1;
+        }
+        if (property.substring(property.length() - 1) == "-")
+            property = property.substring(0, property.length() - 1);
+        return settings.getDoubleProperty(property, defaultValue);
+    }
+    
+    /**
+     * Return the speed limit for a sneaking player.
+     */
+    public double getSneakSpeedLimit()
+    {
+        return settings.getDoubleProperty("vac-speed-limit-sneak", 0.16);
+    }
+
 
     /**
      * Returns true if a player does not have permission to edit the block at

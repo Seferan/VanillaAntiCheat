@@ -280,6 +280,62 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 }
             }
         }
+        
+        // Anti speedhack
+        if (MinecraftServer.isPlayerOppedOrCreative(playerEntity)) return;
+        if (Double.valueOf(lastPosX) == null || Double.valueOf(lastPosZ) == null) return;
+
+        double speed = getHorizontalSpeed();
+        double speedLimit;
+
+        if (!playerEntity.onGround)
+        {
+            vacState.aSpeed.onBhop();
+        }
+        
+        if (playerEntity.isSneaking() && vacState.aSpeed.wasSneaking()) // sneaking
+        {
+            speedLimit = MinecraftServer.getServer().getSneakSpeedLimit();
+        }
+        else
+        {
+            boolean sprinting = false;
+            boolean jumping = false;
+            boolean potion = false;
+            if (playerEntity.isSprinting()) sprinting = true;
+            if (!playerEntity.onGround || vacState.aSpeed.getTimeSinceLastBhop() <= 5) jumping = true;
+            if (playerEntity.isPotionActive(1)) potion = true;
+            speedLimit = MinecraftServer.getServer().getSpeedLimit(sprinting, jumping, potion);
+        }
+        
+//        System.out.println(String.valueOf(playerEntity.isSprinting() + " and " + String.valueOf(!playerEntity.onGround)));
+//        System.out.println(String.valueOf(vacState.aSpeed.timeSinceLastBhop) + ", " + String.valueOf(speed) + "/" + String.valueOf(speedLimit));
+        
+        if (speed > speedLimit)
+        {
+            // Give the player some leeway
+            if (Math.abs(speedLimit - speed) > MinecraftServer.getServer().getSpeedhackLeeway())
+            {
+                vacState.aSpeed.onSpeeding();
+                // Check if this player is full of it
+                if (vacState.aSpeed.getSpeedingRatio() > 0.25)
+                {
+                    setBackPlayer();
+                    vacState.aSpeed.giveSpeedingTicket();
+                }
+            }
+        }
+        vacState.aSpeed.onMove();
+        
+//        System.out.println(playerEntity.getUsername() + ": " + vacState.aSpeed.totalSpeeded + "/" + vacState.aSpeed.totalMoved + " (" + (vacState.aSpeed.totalSpeeded / Math.max((double)vacState.aSpeed.totalMoved, 1.0)));
+
+        if (vacState.aSpeed.resets() > 5)
+        {
+            kickPlayerFromServer("Speed hack detected.");
+            VACUtils.notifyAndLog(playerEntity.getUsername() + " was kicked for moving too quickly (speed hacking)!");
+        }
+
+        vacState.aSpeed.setSneaking(playerEntity.isSneaking());
     }
     
     public void handleFlying(C03PacketPlayer packet)

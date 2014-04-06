@@ -28,6 +28,10 @@ public class VACState implements IVacModule
      * The anti-regen module.
      */
     public VACModuleAntiRegen aRegen;
+    /**
+     * The anti-speedhack module.
+     */
+    public VACModuleAntiSpeed aSpeed;
     
     public VACState()
     {
@@ -37,6 +41,7 @@ public class VACState implements IVacModule
         dNotifications = new VACModuleDiamondNotifications();
         aVClip = new VACModuleAntiVClip();
         aRegen = new VACModuleAntiRegen();
+        aSpeed = new VACModuleAntiSpeed();
     }
     
     public String getModuleName()
@@ -52,5 +57,6 @@ public class VACState implements IVacModule
         dNotifications.updateState();
         aVClip.updateState();
         aRegen.updateState();
+        aSpeed.updateState();
     }
 }
