@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.EnumDifficulty;
 
 public class FoodStats
@@ -42,9 +43,9 @@ public class FoodStats
     /**
      * Handles the food game logic.
      */
-    public void onUpdate(EntityPlayer par1EntityPlayer)
+    public void onUpdate(EntityPlayer entityPlayer)
     {
-        EnumDifficulty var2 = par1EntityPlayer.worldObj.difficultySetting;
+        EnumDifficulty var2 = entityPlayer.worldObj.difficultySetting;
         this.prevFoodLevel = this.foodLevel;
 
         if (this.foodExhaustionLevel > 4.0F)
@@ -61,7 +62,7 @@ public class FoodStats
             }
         }
 
-        if (par1EntityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.foodLevel >= 18 && par1EntityPlayer.shouldHeal())
+        if (entityPlayer.worldObj.getGameRules().getGameRuleBooleanValue("naturalRegeneration") && this.foodLevel >= 18 && entityPlayer.shouldHeal())
         {
             ++this.foodTimer;
 
@@ -69,14 +70,14 @@ public class FoodStats
             {
                 this.foodTimer = 0;
                 
-                VACState vacState = par1EntityPlayer.getVACState();
+                VACState vacState = entityPlayer.getVACState();
                 long ticksTaken = vacState.aRegen.getTicksSinceLastHeal();
-                if(ticksTaken < 80 - 10 && ticksTaken > -1)
+                if(ticksTaken < MinecraftServer.getServer().getHealthRegenTickCount() && ticksTaken > -1)
                 {
                     if(!vacState.aRegen.hasBeenLogged())
                     {
                         StringBuilder message = new StringBuilder();
-                        message.append(par1EntityPlayer.getCommandSenderName());
+                        message.append(entityPlayer.getCommandSenderName());
                         message.append(" regenerated health too quickly! ");
                         message.append(ticksTaken);
                         message.append(" ticks  / 80");
@@ -86,10 +87,10 @@ public class FoodStats
                 }
                 else
                 {
-                    par1EntityPlayer.heal(1.0F);
+                    entityPlayer.heal(1.0F);
                     this.addExhaustion(3.0F);
                 }
-                par1EntityPlayer.getVACState().aRegen.heal();
+                entityPlayer.getVACState().aRegen.heal();
             }
         }
         else if (this.foodLevel <= 0)
@@ -98,9 +99,9 @@ public class FoodStats
 
             if (this.foodTimer >= 80)
             {
-                if (par1EntityPlayer.getHealth() > 10.0F || var2 == EnumDifficulty.HARD || par1EntityPlayer.getHealth() > 1.0F && var2 == EnumDifficulty.NORMAL)
+                if (entityPlayer.getHealth() > 10.0F || var2 == EnumDifficulty.HARD || entityPlayer.getHealth() > 1.0F && var2 == EnumDifficulty.NORMAL)
                 {
-                    par1EntityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
+                    entityPlayer.attackEntityFrom(DamageSource.starve, 1.0F);
                 }
 
                 this.foodTimer = 0;

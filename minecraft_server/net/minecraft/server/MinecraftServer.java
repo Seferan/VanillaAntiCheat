@@ -1546,6 +1546,12 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Whether diamond notifications are enabled or not
      */
     public abstract boolean useDiamondNotifications();
+    
+    /**
+     * Return the number of ticks a player should take to regenerate health
+     */
+    public abstract int getHealthRegenTickCount();
+    
 
     public String getMOTD()
     {

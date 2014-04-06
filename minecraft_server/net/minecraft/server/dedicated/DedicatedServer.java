@@ -545,6 +545,14 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
         return this.settings.getBooleanProperty("vac-diamond-notifications", true);
     }
+    
+    /**
+     * Return the number of ticks a player should take to regenerate health
+     */
+    public int getHealthRegenTickCount()
+    {
+        return this.settings.getIntProperty("vac-health-regen-tickcount", 70);
+    }
 
     /**
      * Returns true if a player does not have permission to edit the block at
