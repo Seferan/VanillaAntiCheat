@@ -337,7 +337,7 @@ public class EntityItem extends Entity
             ItemStack var2 = this.getEntityItem();
             int var3 = var2.stackSize;
 
-            if (this.delayBeforeCanPickup == 0 && (this.field_145802_g == null || 6000 - this.age <= 200 || this.field_145802_g.equals(par1EntityPlayer.getCommandSenderName())) && par1EntityPlayer.inventory.addItemStackToInventory(var2))
+            if (this.delayBeforeCanPickup == 0 && (this.field_145802_g == null || 6000 - this.age <= 200 || this.field_145802_g.equals(par1EntityPlayer.getUsername())) && par1EntityPlayer.inventory.addItemStackToInventory(var2))
             {
                 if (var2.getItem() == Item.getItemFromBlock(Blocks.log))
                 {
@@ -389,7 +389,7 @@ public class EntityItem extends Entity
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
         return StatCollector.translateToLocal("item." + this.getEntityItem().getUnlocalizedName());
     }

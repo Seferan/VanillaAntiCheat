@@ -28,7 +28,7 @@ public class PlayerListComponent extends JList implements IUpdatePlayerListBox
 
             for (int var2 = 0; var2 < this.field_120015_a.getConfigurationManager().playerEntityList.size(); ++var2)
             {
-                var1.add(((EntityPlayerMP)this.field_120015_a.getConfigurationManager().playerEntityList.get(var2)).getCommandSenderName());
+                var1.add(((EntityPlayerMP)this.field_120015_a.getConfigurationManager().playerEntityList.get(var2)).getUsername());
             }
 
             this.setListData(var1);

@@ -427,7 +427,7 @@ public class CommandScoreboard extends CommandBase
 
         if (p_147190_1_ instanceof EntityPlayer && p_147190_3_ == p_147190_2_.length)
         {
-            var8 = getCommandSenderAsPlayer(p_147190_1_).getCommandSenderName();
+            var8 = getCommandSenderAsPlayer(p_147190_1_).getUsername();
 
             if (var4.func_151392_a(var8, var5))
             {
@@ -472,7 +472,7 @@ public class CommandScoreboard extends CommandBase
 
         if (p_147199_1_ instanceof EntityPlayer && p_147199_3_ == p_147199_2_.length)
         {
-            var7 = getCommandSenderAsPlayer(p_147199_1_).getCommandSenderName();
+            var7 = getCommandSenderAsPlayer(p_147199_1_).getUsername();
 
             if (var4.removePlayerFromTeams(var7))
             {

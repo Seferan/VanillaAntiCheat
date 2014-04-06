@@ -667,7 +667,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
         this.setPosition(this.posX, this.posY, this.posZ);
         this.motionY = 0.10000000149011612D;
 
-        if (this.getCommandSenderName().equals("Notch"))
+        if (this.getUsername().equals("Notch"))
         {
             this.func_146097_a(new ItemStack(Items.apple, 1), true, false);
         }
@@ -731,7 +731,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
         while (var4.hasNext())
         {
             ScoreObjective var5 = (ScoreObjective)var4.next();
-            Score var6 = this.getWorldScoreboard().func_96529_a(this.getCommandSenderName(), var5);
+            Score var6 = this.getWorldScoreboard().func_96529_a(this.getUsername(), var5);
             var6.func_96648_a();
         }
     }
@@ -769,7 +769,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
 
             if (p_146097_3_)
             {
-                var4.func_145799_b(this.getCommandSenderName());
+                var4.func_145799_b(this.getUsername());
             }
 
             float var5 = 0.1F;
@@ -2100,7 +2100,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
         return this.field_146106_i.getName();
     }
@@ -2164,13 +2164,13 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
 
     public Team getTeam()
     {
-        return this.getWorldScoreboard().getPlayersTeam(this.getCommandSenderName());
+        return this.getWorldScoreboard().getPlayersTeam(this.getUsername());
     }
 
     public IChatComponent getUsernameAsIChatComponent()
     {
-        ChatComponentText var1 = new ChatComponentText(ScorePlayerTeam.formatPlayerName(this.getTeam(), this.getCommandSenderName()));
-        var1.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + this.getCommandSenderName() + " "));
+        ChatComponentText var1 = new ChatComponentText(ScorePlayerTeam.formatPlayerName(this.getTeam(), this.getUsername()));
+        var1.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + this.getUsername() + " "));
         return var1;
     }
 

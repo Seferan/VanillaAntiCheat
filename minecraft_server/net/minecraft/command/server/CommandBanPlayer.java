@@ -44,7 +44,7 @@ public class CommandBanPlayer extends CommandBase
         {
             EntityPlayerMP var3 = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(par2ArrayOfStr[0]);
             BanEntry var4 = new BanEntry(par2ArrayOfStr[0]);
-            var4.setBannedBy(par1ICommandSender.getCommandSenderName());
+            var4.setBannedBy(par1ICommandSender.getUsername());
 
             if (par2ArrayOfStr.length >= 2)
             {

@@ -10,7 +10,7 @@ public interface ICommandSender
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    String getCommandSenderName();
+    String getUsername();
 
     IChatComponent getUsernameAsIChatComponent();
 

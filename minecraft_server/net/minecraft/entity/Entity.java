@@ -2106,7 +2106,7 @@ public abstract class Entity
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
         String var1 = EntityList.getEntityString(this);
 
@@ -2159,7 +2159,7 @@ public abstract class Entity
 
     public String toString()
     {
-        return String.format("%s[\'%s\'/%d, l=\'%s\', x=%.2f, y=%.2f, z=%.2f]", new Object[] {this.getClass().getSimpleName(), this.getCommandSenderName(), Integer.valueOf(this.field_145783_c), this.worldObj == null ? "~NULL~" : this.worldObj.getWorldInfo().getWorldName(), Double.valueOf(this.posX), Double.valueOf(this.posY), Double.valueOf(this.posZ)});
+        return String.format("%s[\'%s\'/%d, l=\'%s\', x=%.2f, y=%.2f, z=%.2f]", new Object[] {this.getClass().getSimpleName(), this.getUsername(), Integer.valueOf(this.field_145783_c), this.worldObj == null ? "~NULL~" : this.worldObj.getWorldInfo().getWorldName(), Double.valueOf(this.posX), Double.valueOf(this.posY), Double.valueOf(this.posZ)});
     }
 
     /**
@@ -2291,7 +2291,7 @@ public abstract class Entity
 
             public String call()
             {
-                return Entity.this.getCommandSenderName();
+                return Entity.this.getUsername();
             }
         });
         par1CrashReportCategory.addCrashSection("Entity\'s Exact location", String.format("%.2f, %.2f, %.2f", new Object[] {Double.valueOf(this.posX), Double.valueOf(this.posY), Double.valueOf(this.posZ)}));
@@ -2311,7 +2311,7 @@ public abstract class Entity
 
     public IChatComponent getUsernameAsIChatComponent()
     {
-        return new ChatComponentText(this.getCommandSenderName());
+        return new ChatComponentText(this.getUsername());
     }
 
     public void func_145781_i(int p_145781_1_)

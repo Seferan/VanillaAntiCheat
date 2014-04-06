@@ -1152,7 +1152,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
         return "Server";
     }
@@ -1184,7 +1184,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      */
     public static void tell(EntityPlayerMP player, String message)
     {
-        executeCommand("/tell " + player.getCommandSenderName() + " " + message);
+        executeCommand("/tell " + player.getUsername() + " " + message);
     }
 
     public static boolean isPlayerOpped(String playerName)
@@ -1194,7 +1194,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
 
     public static boolean isPlayerOpped(ICommandSender player)
     {
-        return isPlayerOpped(player.getCommandSenderName()) || player == getServer();
+        return isPlayerOpped(player.getUsername()) || player == getServer();
     }
 
     public static boolean isPlayerOwner(String playerName)
@@ -1204,7 +1204,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
 
     public static boolean isPlayerOwner(ICommandSender player)
     {
-        return isPlayerOwner(player.getCommandSenderName()) || player == getServer();
+        return isPlayerOwner(player.getUsername()) || player == getServer();
     }
 
     public static boolean isPlayerOppedOrCreative(EntityPlayerMP player)
@@ -1687,7 +1687,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
 
     public IChatComponent getUsernameAsIChatComponent()
     {
-        return new ChatComponentText(this.getCommandSenderName());
+        return new ChatComponentText(this.getUsername());
     }
 
     public boolean func_147136_ar()

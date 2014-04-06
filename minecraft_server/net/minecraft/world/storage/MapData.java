@@ -124,7 +124,7 @@ public class MapData extends WorldSavedData
 
         if (!par1EntityPlayer.inventory.hasItemStack(par2ItemStack))
         {
-            this.playersVisibleOnMap.remove(par1EntityPlayer.getCommandSenderName());
+            this.playersVisibleOnMap.remove(par1EntityPlayer.getUsername());
         }
 
         for (int var5 = 0; var5 < this.playersArrayList.size(); ++var5)
@@ -135,7 +135,7 @@ public class MapData extends WorldSavedData
             {
                 if (!par2ItemStack.isOnItemFrame() && var4.entityplayerObj.dimension == this.dimension)
                 {
-                    this.func_82567_a(0, var4.entityplayerObj.worldObj, var4.entityplayerObj.getCommandSenderName(), var4.entityplayerObj.posX, var4.entityplayerObj.posZ, (double)var4.entityplayerObj.rotationYaw);
+                    this.func_82567_a(0, var4.entityplayerObj.worldObj, var4.entityplayerObj.getUsername(), var4.entityplayerObj.posX, var4.entityplayerObj.posZ, (double)var4.entityplayerObj.rotationYaw);
                 }
             }
             else

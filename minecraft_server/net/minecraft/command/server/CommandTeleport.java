@@ -68,13 +68,13 @@ public class CommandTeleport extends CommandBase
                     }
                     if (this.isTargetOp(var3, par1ICommandSender))
                     {
-                        notifyAdmins(par1ICommandSender, "Tried to teleport non-op " + var3.getCommandSenderName() + " to " + var11.getCommandSenderName() + "!");
+                        notifyAdmins(par1ICommandSender, "Tried to teleport non-op " + var3.getUsername() + " to " + var11.getUsername() + "!");
                         return;
                     }
 
                     var3.mountEntity((Entity)null);
                     var3.playerNetServerHandler.setPlayerLocation(var11.posX, var11.posY, var11.posZ, var11.rotationYaw, var11.rotationPitch);
-                    notifyAdmins(par1ICommandSender, "commands.tp.success", new Object[] {var3.getCommandSenderName(), var11.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.tp.success", new Object[] {var3.getUsername(), var11.getUsername()});
                 }
             }
             else if (var3.worldObj != null)
@@ -87,7 +87,7 @@ public class CommandTeleport extends CommandBase
                 if (this.isTargetOp(var3, par1ICommandSender))
                 {
                     StringBuilder message = new StringBuilder();
-                    message.append("Tried to teleport non-op " + var3.getCommandSenderName() + " to ");
+                    message.append("Tried to teleport non-op " + var3.getUsername() + " to ");
                     message.append(var5).append(",").append(var7).append(",").append(var9).append("!");
                     notifyAdmins(par1ICommandSender, message.toString());
                     return;
@@ -95,7 +95,7 @@ public class CommandTeleport extends CommandBase
 
                 var3.mountEntity((Entity)null);
                 var3.setPositionAndUpdate(var5, var7, var9);
-                notifyAdmins(par1ICommandSender, "commands.tp.success.coordinates", new Object[] {var3.getCommandSenderName(), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9)});
+                notifyAdmins(par1ICommandSender, "commands.tp.success.coordinates", new Object[] {var3.getUsername(), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9)});
             }
         }
     }

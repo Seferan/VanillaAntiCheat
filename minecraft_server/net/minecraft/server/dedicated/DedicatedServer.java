@@ -568,7 +568,7 @@ public class DedicatedServer extends MinecraftServer implements IServer
         {
             return false;
         }
-        else if (this.getConfigurationManager().isPlayerOpped(par5EntityPlayer.getCommandSenderName()))
+        else if (this.getConfigurationManager().isPlayerOpped(par5EntityPlayer.getUsername()))
         {
             return false;
         }

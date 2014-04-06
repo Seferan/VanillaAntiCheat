@@ -278,7 +278,7 @@ public abstract class EntityThrowable extends Entity implements IProjectile
 
         if ((this.throwerName == null || this.throwerName.length() == 0) && this.thrower != null && this.thrower instanceof EntityPlayer)
         {
-            this.throwerName = this.thrower.getCommandSenderName();
+            this.throwerName = this.thrower.getUsername();
         }
 
         par1NBTTagCompound.setString("ownerName", this.throwerName == null ? "" : this.throwerName);

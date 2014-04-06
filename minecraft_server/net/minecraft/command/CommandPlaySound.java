@@ -79,7 +79,7 @@ public class CommandPlaySound extends CommandBase
 
             if (var20 > var18)
             {
-                if (var16 <= 0.0D) { throw new CommandException("commands.playsound.playerTooFar", new Object[] {var5.getCommandSenderName()}); }
+                if (var16 <= 0.0D) { throw new CommandException("commands.playsound.playerTooFar", new Object[] {var5.getUsername()}); }
 
                 double var22 = var6 - var5.posX;
                 double var24 = var8 - var5.posY;
@@ -103,7 +103,7 @@ public class CommandPlaySound extends CommandBase
                 var5.playerNetServerHandler.sendPacket(new S29PacketSoundEffect(var4, var6, var8, var10, (float)var12, (float)var14));
             }
 
-            notifyAdmins(par1ICommandSender, "commands.playsound.success", new Object[] {var4, var5.getCommandSenderName()});
+            notifyAdmins(par1ICommandSender, "commands.playsound.success", new Object[] {var4, var5.getUsername()});
         }
     }
 

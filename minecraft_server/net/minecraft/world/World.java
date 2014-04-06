@@ -3346,7 +3346,7 @@ public abstract class World implements IBlockAccess
     {
         for (int var2 = 0; var2 < this.playerEntities.size(); ++var2)
         {
-            if (par1Str.equals(((EntityPlayer)this.playerEntities.get(var2)).getCommandSenderName())) { return (EntityPlayer)this.playerEntities.get(var2); }
+            if (par1Str.equals(((EntityPlayer)this.playerEntities.get(var2)).getUsername())) { return (EntityPlayer)this.playerEntities.get(var2); }
         }
 
         return null;

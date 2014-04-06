@@ -58,7 +58,7 @@ public class CommandHandler implements ICommandManager
                     for (int var12 = 0; var12 < var11; ++var12)
                     {
                         EntityPlayerMP var13 = var10[var12];
-                        var3[var6] = var13.getCommandSenderName();
+                        var3[var6] = var13.getUsername();
 
                         try
                         {

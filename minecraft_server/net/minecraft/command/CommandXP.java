@@ -60,7 +60,7 @@ public class CommandXP extends CommandBase
                 {
                     String message = "Tried to give " + Integer.valueOf(var6) + " ";
                     message += var5 ? "levels" : "experience";
-                    message += " to non-op " + var3.getCommandSenderName() + "!";
+                    message += " to non-op " + var3.getUsername() + "!";
                     notifyAdmins(par1ICommandSender, message);
                     return;
                 }
@@ -75,12 +75,12 @@ public class CommandXP extends CommandBase
                 if (var7)
                 {
                     var3.addExperienceLevel(-var6);
-                    notifyAdmins(par1ICommandSender, "commands.xp.success.negative.levels", new Object[] {Integer.valueOf(var6), var3.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.xp.success.negative.levels", new Object[] {Integer.valueOf(var6), var3.getUsername()});
                 }
                 else
                 {
                     var3.addExperienceLevel(var6);
-                    notifyAdmins(par1ICommandSender, "commands.xp.success.levels", new Object[] {Integer.valueOf(var6), var3.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.xp.success.levels", new Object[] {Integer.valueOf(var6), var3.getUsername()});
                 }
             }
             else
@@ -88,7 +88,7 @@ public class CommandXP extends CommandBase
                 if (var7) { throw new WrongUsageException("commands.xp.failure.widthdrawXp", new Object[0]); }
 
                 var3.addExperience(var6);
-                notifyAdmins(par1ICommandSender, "commands.xp.success", new Object[] {Integer.valueOf(var6), var3.getCommandSenderName()});
+                notifyAdmins(par1ICommandSender, "commands.xp.success", new Object[] {Integer.valueOf(var6), var3.getUsername()});
             }
         }
     }

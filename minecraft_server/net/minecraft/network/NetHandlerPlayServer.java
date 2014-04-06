@@ -242,7 +242,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         if (playerEntity.isSneaking() && playerEntity.isSprinting())
         {
             kickPlayerFromServer("Silly hacker, this isn't Counterstrike! You can't sneak and sprint!");
-            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and sprinting!");
+            VACUtils.notifyAndLog(playerEntity.getUsername() + " was kicked for sneaking and sprinting!");
             return;
         }
 
@@ -256,13 +256,13 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 
                 if (vacState.aVClip.getDetections() == 1)
                 {
-                    VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " might be VClipping!");
+                    VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getUsername() + " might be VClipping!");
                 }
                 
                 if (vacState.aVClip.getDetections() == 3)
                 {
                     kickPlayerFromServer("Teleport hacking detected on the Y-Axis (VClipping).");
-                    VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getCommandSenderName() + " was kicked for teleport hacking (vclipping)!");
+                    VACUtils.notifyAndLog(vacState.aVClip, playerEntity.getUsername() + " was kicked for teleport hacking (vclipping)!");
                 }
             }
         }
@@ -274,7 +274,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 if (Math.abs(packet.getX()) > 1.0D || Math.abs(packet.getZ()) > 1.0D)
                 {
-                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was caught trying to crash the server with an invalid position!");
+                    VACUtils.notifyAndLog(playerEntity.getUsername() + " was caught trying to crash the server with an invalid position!");
                     kickPlayerFromServer("Nope!");
                     return;
                 }
@@ -328,7 +328,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     {
                         if (Math.abs(packet.getX()) > 1.0D || Math.abs(packet.getZ()) > 1.0D)
                         {
-                            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was caught trying to crash the server with an invalid position!");
+                            VACUtils.notifyAndLog(playerEntity.getUsername() + " was caught trying to crash the server with an invalid position!");
                             kickPlayerFromServer("Nope!");
                             return;
                         }
@@ -392,7 +392,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     if (!this.playerEntity.isPlayerSleeping() && (deltaXPacket > 1.65D || deltaXPacket < 0.1D))
                     {
                         this.kickPlayerFromServer("Illegal stance");
-                        logger.warn(this.playerEntity.getCommandSenderName() + " had an illegal stance: " + deltaXPacket);
+                        logger.warn(this.playerEntity.getUsername() + " had an illegal stance: " + deltaXPacket);
                         return;
                     }
 
@@ -423,12 +423,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 double deltaZ = Math.min(Math.abs(deltaZPacket), Math.abs(this.playerEntity.motionZ));
                 double velocitySquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
 
-                if (velocitySquared > 100.0D && (!this.serverController.isSinglePlayer() || !this.serverController.getServerOwner().equals(this.playerEntity.getCommandSenderName())))
+                if (velocitySquared > 100.0D && (!this.serverController.isSinglePlayer() || !this.serverController.getServerOwner().equals(this.playerEntity.getUsername())))
                 {
-                    logger.warn(this.playerEntity.getCommandSenderName() + " moved too quickly! " + deltaXPacket + "," + deltaYPacket + "," + deltaZPacket + " (" + deltaX + ", " + deltaY + ", " + deltaZ + ")");
+                    logger.warn(this.playerEntity.getUsername() + " moved too quickly! " + deltaXPacket + "," + deltaYPacket + "," + deltaZPacket + " (" + deltaX + ", " + deltaY + ", " + deltaZ + ")");
                     setBackPlayer();
                     kickPlayerFromServer("Moved too quickly. ICanHasTeleportHax?");
-                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " might be teleporting!");
+                    VACUtils.notifyAndLog(playerEntity.getUsername() + " might be teleporting!");
                     return;
                 }
 
@@ -460,7 +460,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 {
                     var31 = true;
                     kickPlayerFromServer("Moved wrongly. ICanHasMovementHax?");
-                    VACUtils.notifyAndLog(this.playerEntity.getCommandSenderName() + " was kicked for moving wrongly!");
+                    VACUtils.notifyAndLog(this.playerEntity.getUsername() + " was kicked for moving wrongly!");
                 }
 
                 this.playerEntity.setPositionAndRotation(x, y, z, var11, var12);
@@ -515,7 +515,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             if (vacState.aFly.getFlyResetCount() == logThreshold)
             {
                 StringBuilder message = new StringBuilder();
-                message.append(playerEntity.getCommandSenderName());
+                message.append(playerEntity.getUsername());
                 message.append(" has been reset for flying ");
                 message.append(logThreshold).append(" times now.");
                 VACUtils.notifyAndLog(vacState.aFly, message.toString());
@@ -527,7 +527,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         if (vacState.aFly.getFlyResetCount() > kickThreshold)
         {
             kickPlayerFromServer("Flying is not allowed on this server.");
-            String message = playerEntity.getCommandSenderName() + " was kicked for flying!";
+            String message = playerEntity.getUsername() + " was kicked for flying!";
             VACUtils.notifyAndLog(vacState.aFly, message);
             return;
         }
@@ -660,7 +660,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 vacState.dNotifications.incrementVeinsMined();
                 StringBuilder message = new StringBuilder();
-                message.append(playerEntity.getCommandSenderName());
+                message.append(playerEntity.getUsername());
                 message.append(" found diamonds. (");
                 message.append(vacState.dNotifications.getNumberOfVeins());
                 message.append(" veins found since login)");
@@ -696,7 +696,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                             playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
                             // Log it and notify admins
                             StringBuilder message = new StringBuilder();
-                            message.append(playerEntity.getCommandSenderName());
+                            message.append(playerEntity.getUsername());
                             message.append(" broke blocks too quickly! (");
                             message.append(vacState.aFastBreak.getTicksTaken());
                             message.append(" ticks /");
@@ -829,7 +829,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         if (vacState.aFastBuild.getBuildCount() > MinecraftServer.getServer().getBuildhackThreshold())
         {
             kickPlayerFromServer("Build hacking detected.");
-            String message = playerEntity.getCommandSenderName() + " was kicked for buildhacking!";
+            String message = playerEntity.getUsername() + " was kicked for buildhacking!";
             VACUtils.notifyAndLog(vacState.aFastBuild, message);
             vacState.aFastBuild.kickMe();
             return;
@@ -842,7 +842,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
      */
     public void onDisconnect(IChatComponent p_147231_1_)
     {
-        logger.info(this.playerEntity.getCommandSenderName() + " lost connection: " + p_147231_1_);
+        logger.info(this.playerEntity.getUsername() + " lost connection: " + p_147231_1_);
         this.serverController.func_147132_au();
         ChatComponentTranslation var2 = new ChatComponentTranslation("multiplayer.player.left", new Object[] {this.playerEntity.getUsernameAsIChatComponent()});
         var2.getChatStyle().setColor(EnumChatFormatting.YELLOW);
@@ -850,7 +850,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         this.playerEntity.mountEntityAndWakeUp();
         this.serverController.getConfigurationManager().playerLoggedOut(this.playerEntity);
 
-        if (this.serverController.isSinglePlayer() && this.playerEntity.getCommandSenderName().equals(this.serverController.getServerOwner()))
+        if (this.serverController.isSinglePlayer() && this.playerEntity.getUsername().equals(this.serverController.getServerOwner()))
         {
             logger.info("Stopping singleplayer server as player logged out");
             this.serverController.initiateShutdown();
@@ -900,7 +900,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         else
         {
             kickPlayerFromServer("Silly hacker, that slot isn't even in your hotbar!");
-            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " tried to set an invalid carried item (attempted durability hack)");
+            VACUtils.notifyAndLog(playerEntity.getUsername() + " tried to set an invalid carried item (attempted durability hack)");
         }
     }
 
@@ -924,7 +924,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 if (!ChatAllowedCharacters.isAllowedCharacter(message.charAt(var3)))
                 {
-                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " tried to send illegal characters in chat!");
+                    VACUtils.notifyAndLog(playerEntity.getUsername() + " tried to send illegal characters in chat!");
                     this.kickPlayerFromServer("Illegal characters in chat");
                     return;
                 }
@@ -942,7 +942,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
             this.chatSpamThresholdCount += 20;
 
-            if (this.chatSpamThresholdCount > 200 && !this.serverController.getConfigurationManager().isPlayerOpped(this.playerEntity.getCommandSenderName()))
+            if (this.chatSpamThresholdCount > 200 && !this.serverController.getConfigurationManager().isPlayerOpped(this.playerEntity.getUsername()))
             {
                 this.kickPlayerFromServer("disconnect.spam");
             }
@@ -955,7 +955,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         if (playerEntity.isSneaking() && !MinecraftServer.isPlayerOpped(playerEntity))
         {
             kickPlayerFromServer("Silly hacker, you can't sneak and chat!");
-            VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " was kicked for sneaking and chatting!");
+            VACUtils.notifyAndLog(playerEntity.getUsername() + " was kicked for sneaking and chatting!");
             return;
         }
     }
@@ -1043,7 +1043,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     if (var3 instanceof EntityItem || var3 instanceof EntityXPOrb || var3 instanceof EntityArrow || var3 == this.playerEntity)
                     {
                         this.kickPlayerFromServer("Attempting to attack an invalid entity");
-                        VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " tried to attack an invalid entity!");
+                        VACUtils.notifyAndLog(playerEntity.getUsername() + " tried to attack an invalid entity!");
                         return;
                     }
 
@@ -1067,14 +1067,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             }
             else if (this.playerEntity.getServerForPlayer().getWorldInfo().isHardcoreModeEnabled())
             {
-                if (this.serverController.isSinglePlayer() && this.playerEntity.getCommandSenderName().equals(this.serverController.getServerOwner()))
+                if (this.serverController.isSinglePlayer() && this.playerEntity.getUsername().equals(this.serverController.getServerOwner()))
                 {
                     this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it\'s game over!");
                     this.serverController.deleteWorldAndStopServer();
                 }
                 else
                 {
-                    BanEntry var3 = new BanEntry(this.playerEntity.getCommandSenderName());
+                    BanEntry var3 = new BanEntry(this.playerEntity.getUsername());
                     var3.setBanReason("Death in Hardcore");
                     this.serverController.getConfigurationManager().getBannedPlayers().put(var3);
                     this.playerEntity.playerNetServerHandler.kickPlayerFromServer("You have died. Game over, man, it\'s game over!");
@@ -1213,7 +1213,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 if (!var4.func_145914_a() || var4.func_145911_b() != this.playerEntity)
                 {
                     kickPlayerFromServer("Silly hacker, you can't change that sign!");
-                    VACUtils.notifyAndLog(this.playerEntity.getCommandSenderName() + " just tried to change non-editable sign!");
+                    VACUtils.notifyAndLog(this.playerEntity.getUsername() + " just tried to change non-editable sign!");
                     return;
                 }
             }
@@ -1334,7 +1334,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 if (var2.getItem() == Items.written_book && var3.getItem() == Items.writable_book)
                 {
-                    var3.setTagInfo("author", new NBTTagString(this.playerEntity.getCommandSenderName()));
+                    var3.setTagInfo("author", new NBTTagString(this.playerEntity.getUsername()));
                     var3.setTagInfo("title", new NBTTagString(var2.getTagCompound().getString("title")));
                     var3.setTagInfo("pages", var2.getTagCompound().getTagList("pages", 8));
                     var3.func_150996_a(Items.written_book);

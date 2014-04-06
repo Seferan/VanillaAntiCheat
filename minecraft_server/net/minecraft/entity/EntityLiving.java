@@ -1055,9 +1055,9 @@ public abstract class EntityLiving extends EntityLivingBase
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
-        return this.hasCustomNameTag() ? this.getCustomNameTag() : super.getCommandSenderName();
+        return this.hasCustomNameTag() ? this.getCustomNameTag() : super.getUsername();
     }
 
     public void func_110163_bv()
@@ -1133,7 +1133,7 @@ public abstract class EntityLiving extends EntityLivingBase
                     return true;
                 }
 
-                if (par1EntityPlayer.getCommandSenderName().equalsIgnoreCase(((EntityTameable)this).getOwnerName()))
+                if (par1EntityPlayer.getUsername().equalsIgnoreCase(((EntityTameable)this).getOwnerName()))
                 {
                     this.setLeashedToEntity(par1EntityPlayer, true);
                     --var2.stackSize;

@@ -108,14 +108,14 @@ public abstract class CommandBlockLogic implements ICommandSender
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
         return this.field_145761_f;
     }
 
     public IChatComponent getUsernameAsIChatComponent()
     {
-        return new ChatComponentText(this.getCommandSenderName());
+        return new ChatComponentText(this.getUsername());
     }
 
     public void func_145754_b(String p_145754_1_)

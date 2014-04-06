@@ -381,7 +381,7 @@ public class EntityWolf extends EntityTameable
                 }
             }
 
-            if (par1EntityPlayer.getCommandSenderName().equalsIgnoreCase(this.getOwnerName()) && !this.worldObj.isClient && !this.isBreedingItem(var2))
+            if (par1EntityPlayer.getUsername().equalsIgnoreCase(this.getOwnerName()) && !this.worldObj.isClient && !this.isBreedingItem(var2))
             {
                 this.aiSit.setSitting(!this.isSitting());
                 this.isJumping = false;
@@ -411,7 +411,7 @@ public class EntityWolf extends EntityTameable
                     this.setAttackTarget((EntityLivingBase)null);
                     this.aiSit.setSitting(true);
                     this.setHealth(20.0F);
-                    this.setOwner(par1EntityPlayer.getCommandSenderName());
+                    this.setOwner(par1EntityPlayer.getUsername());
                     this.playTameEffect(true);
                     this.worldObj.setEntityState(this, (byte)7);
                 }

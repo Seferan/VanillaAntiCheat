@@ -37,7 +37,7 @@ public class CommandMyIP extends CommandBase
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        EntityPlayerMP sender = getPlayer(par1ICommandSender, par1ICommandSender.getCommandSenderName());
+        EntityPlayerMP sender = getPlayer(par1ICommandSender, par1ICommandSender.getUsername());
 
         if (sender == par1ICommandSender) // safety precautions, just in case
         {

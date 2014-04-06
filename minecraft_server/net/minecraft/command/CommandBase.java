@@ -217,7 +217,7 @@ public abstract class CommandBase implements ICommand
 
         if (var2 != null)
         {
-            return var2.getCommandSenderName();
+            return var2.getUsername();
         }
         else if (PlayerSelector.hasArguments(par1Str))
         {

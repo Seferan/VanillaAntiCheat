@@ -195,7 +195,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         }
 
         this.mcServer = p_i45285_1_;
-        this.field_147103_bO = p_i45285_1_.getConfigurationManager().func_148538_i(this.getCommandSenderName());
+        this.field_147103_bO = p_i45285_1_.getConfigurationManager().func_148538_i(this.getUsername());
         this.stepHeight = 0.0F;
         this.yOffset = 0.0F;
         this.setLocationAndAngles((double)var6 + 0.5D, (double)var8, (double)var7 + 0.5D, 0.0F, 0.0F);
@@ -401,7 +401,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 while (var7.hasNext())
                 {
                     ScoreObjective var9 = (ScoreObjective)var7.next();
-                    this.getWorldScoreboard().func_96529_a(this.getCommandSenderName(), var9).func_96651_a(Arrays.asList(new EntityPlayer[] {this}));
+                    this.getWorldScoreboard().func_96529_a(this.getUsername(), var9).func_96651_a(Arrays.asList(new EntityPlayer[] {this}));
                 }
             }
 
@@ -493,7 +493,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         while (var3.hasNext())
         {
             ScoreObjective var4 = (ScoreObjective)var3.next();
-            Score var5 = this.getWorldScoreboard().func_96529_a(this.getCommandSenderName(), var4);
+            Score var5 = this.getWorldScoreboard().func_96529_a(this.getUsername(), var4);
             var5.func_96648_a();
         }
 
@@ -947,7 +947,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             while (var3.hasNext())
             {
                 ScoreObjective var4 = (ScoreObjective)var3.next();
-                this.getWorldScoreboard().func_96529_a(this.getCommandSenderName(), var4).func_96648_a();
+                this.getWorldScoreboard().func_96529_a(this.getUsername(), var4).func_96648_a();
             }
 
             if (this.field_147103_bO.func_150879_e())
@@ -1116,7 +1116,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         {
             if (!("tell".equals(commandName) || "help".equals(commandName) || "me".equals(commandName) || "myip".equals(commandName)))
             {
-                if (this.mcServer.getConfigurationManager().isPlayerOpped(this.getCommandSenderName()))
+                if (this.mcServer.getConfigurationManager().isPlayerOpped(this.getUsername()))
                 {
                     return this.mcServer.getOpPermissionLevel() >= commandpermissionLevel;
                 }
@@ -1161,7 +1161,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         this.chatVisibility = p_147100_1_.func_149523_e();
         this.chatColours = p_147100_1_.func_149520_f();
 
-        if (this.mcServer.isSinglePlayer() && this.mcServer.getServerOwner().equals(this.getCommandSenderName()))
+        if (this.mcServer.isSinglePlayer() && this.mcServer.getServerOwner().equals(this.getUsername()))
         {
             this.mcServer.func_147139_a(p_147100_1_.func_149518_g());
         }

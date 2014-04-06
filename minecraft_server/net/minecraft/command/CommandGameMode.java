@@ -41,7 +41,7 @@ public class CommandGameMode extends CommandBase
                 var4 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
                 if (this.isTargetOp(var4, par1ICommandSender))
                 {
-                    notifyAdmins(par1ICommandSender, "Tried to set non-op " + var4.getCommandSenderName() + "'s game mode to " + var5.getUnformattedText() + "!");
+                    notifyAdmins(par1ICommandSender, "Tried to set non-op " + var4.getUsername() + "'s game mode to " + var5.getUnformattedText() + "!");
                     return;
                 }
             }
@@ -54,7 +54,7 @@ public class CommandGameMode extends CommandBase
 
             if (var4 != par1ICommandSender)
             {
-                notifyAdmins(par1ICommandSender, 1, "commands.gamemode.success.other", new Object[] {var4.getCommandSenderName(), var5});
+                notifyAdmins(par1ICommandSender, 1, "commands.gamemode.success.other", new Object[] {var4.getUsername(), var5});
             }
             else
             {

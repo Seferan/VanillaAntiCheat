@@ -41,10 +41,10 @@ public class CommandEffect extends CommandBase
 
             if (par2ArrayOfStr[1].equals("clear"))
             {
-                if (var3.getActivePotionEffects().isEmpty()) { throw new CommandException("commands.effect.failure.notActive.all", new Object[] {var3.getCommandSenderName()}); }
+                if (var3.getActivePotionEffects().isEmpty()) { throw new CommandException("commands.effect.failure.notActive.all", new Object[] {var3.getUsername()}); }
 
                 var3.clearActivePotions();
-                notifyAdmins(par1ICommandSender, "commands.effect.success.removed.all", new Object[] {var3.getCommandSenderName()});
+                notifyAdmins(par1ICommandSender, "commands.effect.success.removed.all", new Object[] {var3.getUsername()});
             }
             else
             {
@@ -80,16 +80,16 @@ public class CommandEffect extends CommandBase
 
                 if (var6 == 0)
                 {
-                    if (!var3.isPotionActive(var4)) { throw new CommandException("commands.effect.failure.notActive", new Object[] {new ChatComponentTranslation(Potion.potionTypes[var4].getName(), new Object[0]), var3.getCommandSenderName()}); }
+                    if (!var3.isPotionActive(var4)) { throw new CommandException("commands.effect.failure.notActive", new Object[] {new ChatComponentTranslation(Potion.potionTypes[var4].getName(), new Object[0]), var3.getUsername()}); }
 
                     var3.removePotionEffect(var4);
-                    notifyAdmins(par1ICommandSender, "commands.effect.success.removed", new Object[] {new ChatComponentTranslation(Potion.potionTypes[var4].getName(), new Object[0]), var3.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.effect.success.removed", new Object[] {new ChatComponentTranslation(Potion.potionTypes[var4].getName(), new Object[0]), var3.getUsername()});
                 }
                 else
                 {
                     PotionEffect var8 = new PotionEffect(var4, var5, var7);
                     var3.addPotionEffect(var8);
-                    notifyAdmins(par1ICommandSender, "commands.effect.success", new Object[] {new ChatComponentTranslation(var8.getEffectName(), new Object[0]), Integer.valueOf(var4), Integer.valueOf(var7), var3.getCommandSenderName(), Integer.valueOf(var6)});
+                    notifyAdmins(par1ICommandSender, "commands.effect.success", new Object[] {new ChatComponentTranslation(var8.getEffectName(), new Object[0]), Integer.valueOf(var4), Integer.valueOf(var7), var3.getUsername(), Integer.valueOf(var6)});
                 }
             }
         }

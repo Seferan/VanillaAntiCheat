@@ -42,7 +42,7 @@ public class CommandSetSpawnpoint extends CommandBase
                 int var7 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[var10++], 0, 256);
                 int var8 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[var10++], -var5, var5);
                 var3.setSpawnChunk(new ChunkCoordinates(var6, var7, var8), true);
-                notifyAdmins(par1ICommandSender, "commands.spawnpoint.success", new Object[] {var3.getCommandSenderName(), Integer.valueOf(var6), Integer.valueOf(var7), Integer.valueOf(var8)});
+                notifyAdmins(par1ICommandSender, "commands.spawnpoint.success", new Object[] {var3.getUsername(), Integer.valueOf(var6), Integer.valueOf(var7), Integer.valueOf(var8)});
             }
         }
         else
@@ -51,7 +51,7 @@ public class CommandSetSpawnpoint extends CommandBase
 
             ChunkCoordinates var11 = var3.getCommandSenderPosition();
             var3.setSpawnChunk(var11, true);
-            notifyAdmins(par1ICommandSender, "commands.spawnpoint.success", new Object[] {var3.getCommandSenderName(), Integer.valueOf(var11.posX), Integer.valueOf(var11.posY), Integer.valueOf(var11.posZ)});
+            notifyAdmins(par1ICommandSender, "commands.spawnpoint.success", new Object[] {var3.getUsername(), Integer.valueOf(var11.posX), Integer.valueOf(var11.posY), Integer.valueOf(var11.posZ)});
         }
     }
 

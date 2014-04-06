@@ -36,14 +36,14 @@ public class RConConsoleSource implements ICommandSender
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
         return "Rcon";
     }
 
     public IChatComponent getUsernameAsIChatComponent()
     {
-        return new ChatComponentText(this.getCommandSenderName());
+        return new ChatComponentText(this.getUsername());
     }
 
     /**

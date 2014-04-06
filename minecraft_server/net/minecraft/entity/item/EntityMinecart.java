@@ -1044,9 +1044,9 @@ public abstract class EntityMinecart extends Entity
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
-        return this.entityName != null ? this.entityName : super.getCommandSenderName();
+        return this.entityName != null ? this.entityName : super.getUsername();
     }
 
     /**

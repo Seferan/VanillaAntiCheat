@@ -35,7 +35,7 @@ public class CommandClearInventory extends CommandBase
 
         if (par2ArrayOfStr.length >= 2 && var4 == null)
         {
-            throw new CommandException("commands.clear.failure", new Object[] {var3.getCommandSenderName()});
+            throw new CommandException("commands.clear.failure", new Object[] {var3.getUsername()});
         }
         else
         {
@@ -49,11 +49,11 @@ public class CommandClearInventory extends CommandBase
 
             if (var6 == 0)
             {
-                throw new CommandException("commands.clear.failure", new Object[] {var3.getCommandSenderName()});
+                throw new CommandException("commands.clear.failure", new Object[] {var3.getUsername()});
             }
             else
             {
-                notifyAdmins(par1ICommandSender, "commands.clear.success", new Object[] {var3.getCommandSenderName(), Integer.valueOf(var6)});
+                notifyAdmins(par1ICommandSender, "commands.clear.success", new Object[] {var3.getUsername(), Integer.valueOf(var6)});
             }
         }
     }

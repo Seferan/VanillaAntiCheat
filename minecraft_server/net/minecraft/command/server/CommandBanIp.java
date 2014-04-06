@@ -87,7 +87,7 @@ public class CommandBanIp extends CommandBase
     protected void func_147210_a(ICommandSender p_147210_1_, String p_147210_2_, String p_147210_3_)
     {
         BanEntry var4 = new BanEntry(p_147210_2_);
-        var4.setBannedBy(p_147210_1_.getCommandSenderName());
+        var4.setBannedBy(p_147210_1_.getUsername());
 
         if (p_147210_3_ != null)
         {
@@ -100,7 +100,7 @@ public class CommandBanIp extends CommandBase
         int var7 = 0;
         EntityPlayerMP var9;
 
-        for (Iterator var8 = var5.iterator(); var8.hasNext(); var6[var7++] = var9.getCommandSenderName())
+        for (Iterator var8 = var5.iterator(); var8.hasNext(); var6[var7++] = var9.getUsername())
         {
             var9 = (EntityPlayerMP)var8.next();
             var9.playerNetServerHandler.kickPlayerFromServer("You have been IP banned.");

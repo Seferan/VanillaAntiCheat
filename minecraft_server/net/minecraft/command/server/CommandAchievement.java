@@ -68,7 +68,7 @@ public class CommandAchievement extends CommandBase
                         var4.triggerAchievement(var6);
                     }
 
-                    notifyAdmins(par1ICommandSender, "commands.achievement.give.success.all", new Object[] {var4.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.achievement.give.success.all", new Object[] {var4.getUsername()});
                 }
                 else
                 {
@@ -92,7 +92,7 @@ public class CommandAchievement extends CommandBase
                     }
 
                     var4.triggerAchievement(var3);
-                    notifyAdmins(par1ICommandSender, "commands.achievement.give.success.one", new Object[] {var4.getCommandSenderName(), var3.func_150955_j()});
+                    notifyAdmins(par1ICommandSender, "commands.achievement.give.success.one", new Object[] {var4.getUsername(), var3.func_150955_j()});
                 }
 
                 return;

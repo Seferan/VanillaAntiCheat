@@ -217,7 +217,7 @@ public class EntityOcelot extends EntityTameable
 
         if (this.isTamed())
         {
-            if (par1EntityPlayer.getCommandSenderName().equalsIgnoreCase(this.getOwnerName()) && !this.worldObj.isClient && !this.isBreedingItem(var2))
+            if (par1EntityPlayer.getUsername().equalsIgnoreCase(this.getOwnerName()) && !this.worldObj.isClient && !this.isBreedingItem(var2))
             {
                 this.aiSit.setSitting(!this.isSitting());
             }
@@ -240,7 +240,7 @@ public class EntityOcelot extends EntityTameable
                 {
                     this.setTamed(true);
                     this.setTameSkin(1 + this.worldObj.rand.nextInt(3));
-                    this.setOwner(par1EntityPlayer.getCommandSenderName());
+                    this.setOwner(par1EntityPlayer.getUsername());
                     this.playTameEffect(true);
                     this.aiSit.setSitting(true);
                     this.worldObj.setEntityState(this, (byte)7);
@@ -348,9 +348,9 @@ public class EntityOcelot extends EntityTameable
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
-        return this.hasCustomNameTag() ? this.getCustomNameTag() : (this.isTamed() ? StatCollector.translateToLocal("entity.Cat.name") : super.getCommandSenderName());
+        return this.hasCustomNameTag() ? this.getCustomNameTag() : (this.isTamed() ? StatCollector.translateToLocal("entity.Cat.name") : super.getUsername());
     }
 
     public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData)

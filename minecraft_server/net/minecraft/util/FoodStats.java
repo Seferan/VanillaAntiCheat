@@ -77,7 +77,7 @@ public class FoodStats
                     if(!vacState.aRegen.hasBeenLogged())
                     {
                         StringBuilder message = new StringBuilder();
-                        message.append(entityPlayer.getCommandSenderName());
+                        message.append(entityPlayer.getUsername());
                         message.append(" regenerated health too quickly! ");
                         message.append(ticksTaken);
                         message.append(" ticks  / 80");

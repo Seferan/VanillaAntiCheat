@@ -140,7 +140,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
      * Gets the name of this command sender (usually username, but possibly
      * "Rcon")
      */
-    public String getCommandSenderName()
+    public String getUsername()
     {
         if (this.hasCustomNameTag())
         {
@@ -444,7 +444,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
     {
         AnimalChest var1 = this.horseChest;
         this.horseChest = new AnimalChest("HorseChest", this.func_110225_cC());
-        this.horseChest.func_110133_a(this.getCommandSenderName());
+        this.horseChest.func_110133_a(this.getUsername());
 
         if (var1 != null)
         {
@@ -697,7 +697,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
     {
         if (!this.worldObj.isClient && (this.riddenByEntity == null || this.riddenByEntity == par1EntityPlayer) && this.isTame())
         {
-            this.horseChest.func_110133_a(this.getCommandSenderName());
+            this.horseChest.func_110133_a(this.getUsername());
             par1EntityPlayer.displayGUIHorse(this, this.horseChest);
         }
     }
@@ -1198,7 +1198,7 @@ public class EntityHorse extends EntityAnimal implements IInvBasic
 
     public boolean setTamedBy(EntityPlayer par1EntityPlayer)
     {
-        this.setOwnerName(par1EntityPlayer.getCommandSenderName());
+        this.setOwnerName(par1EntityPlayer.getUsername());
         this.setHorseTamed(true);
         return true;
     }

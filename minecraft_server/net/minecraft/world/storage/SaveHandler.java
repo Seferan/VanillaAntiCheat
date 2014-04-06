@@ -254,8 +254,8 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
         {
             NBTTagCompound var2 = new NBTTagCompound();
             par1EntityPlayer.writeToNBT(var2);
-            File var3 = new File(this.playersDirectory, par1EntityPlayer.getCommandSenderName() + ".dat.tmp");
-            File var4 = new File(this.playersDirectory, par1EntityPlayer.getCommandSenderName() + ".dat");
+            File var3 = new File(this.playersDirectory, par1EntityPlayer.getUsername() + ".dat.tmp");
+            File var4 = new File(this.playersDirectory, par1EntityPlayer.getUsername() + ".dat");
             CompressedStreamTools.writeCompressed(var2, new FileOutputStream(var3));
 
             if (var4.exists())
@@ -267,7 +267,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
         }
         catch (Exception var5)
         {
-            logger.warn("Failed to save player data for " + par1EntityPlayer.getCommandSenderName());
+            logger.warn("Failed to save player data for " + par1EntityPlayer.getUsername());
         }
     }
 
@@ -276,7 +276,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
      */
     public NBTTagCompound readPlayerData(EntityPlayer par1EntityPlayer)
     {
-        NBTTagCompound var2 = this.getPlayerData(par1EntityPlayer.getCommandSenderName());
+        NBTTagCompound var2 = this.getPlayerData(par1EntityPlayer.getUsername());
 
         if (var2 != null)
         {

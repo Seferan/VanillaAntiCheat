@@ -50,11 +50,11 @@ public class CommandServerKick extends CommandBase
 
                 if (var5)
                 {
-                    notifyAdmins(par1ICommandSender, "commands.kick.success.reason", new Object[] {var3.getCommandSenderName(), var4});
+                    notifyAdmins(par1ICommandSender, "commands.kick.success.reason", new Object[] {var3.getUsername(), var4});
                 }
                 else
                 {
-                    notifyAdmins(par1ICommandSender, "commands.kick.success", new Object[] {var3.getCommandSenderName()});
+                    notifyAdmins(par1ICommandSender, "commands.kick.success", new Object[] {var3.getUsername()});
                 }
             }
         }
