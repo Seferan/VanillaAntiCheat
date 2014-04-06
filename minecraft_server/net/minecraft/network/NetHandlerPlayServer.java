@@ -380,19 +380,19 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     packet.setMoving(false);
                 }
 
-                double var13;
+                double deltaXPacket;
 
                 if (packet.getMoving())
                 {
                     x = packet.getX();
                     y = packet.getY();
                     z = packet.getZ();
-                    var13 = packet.getStance() - packet.getY();
+                    deltaXPacket = packet.getStance() - packet.getY();
 
-                    if (!this.playerEntity.isPlayerSleeping() && (var13 > 1.65D || var13 < 0.1D))
+                    if (!this.playerEntity.isPlayerSleeping() && (deltaXPacket > 1.65D || deltaXPacket < 0.1D))
                     {
                         this.kickPlayerFromServer("Illegal stance");
-                        logger.warn(this.playerEntity.getCommandSenderName() + " had an illegal stance: " + var13);
+                        logger.warn(this.playerEntity.getCommandSenderName() + " had an illegal stance: " + deltaXPacket);
                         return;
                     }
 
@@ -415,46 +415,48 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 if (!this.hasMoved) { return; }
 
-                var13 = x - this.playerEntity.posX;
-                double var15 = y - this.playerEntity.posY;
-                double var17 = z - this.playerEntity.posZ;
-                double var19 = Math.min(Math.abs(var13), Math.abs(this.playerEntity.motionX));
-                double var21 = Math.min(Math.abs(var15), Math.abs(this.playerEntity.motionY));
-                double var23 = Math.min(Math.abs(var17), Math.abs(this.playerEntity.motionZ));
-                double var25 = var19 * var19 + var21 * var21 + var23 * var23;
+                deltaXPacket = x - this.playerEntity.posX;
+                double deltaYPacket = y - this.playerEntity.posY;
+                double deltaZPacket = z - this.playerEntity.posZ;
+                double deltaX = Math.min(Math.abs(deltaXPacket), Math.abs(this.playerEntity.motionX));
+                double deltaY = Math.min(Math.abs(deltaYPacket), Math.abs(this.playerEntity.motionY));
+                double deltaZ = Math.min(Math.abs(deltaZPacket), Math.abs(this.playerEntity.motionZ));
+                double velocitySquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
 
-                if (var25 > 100.0D && (!this.serverController.isSinglePlayer() || !this.serverController.getServerOwner().equals(this.playerEntity.getCommandSenderName())))
+                if (velocitySquared > 100.0D && (!this.serverController.isSinglePlayer() || !this.serverController.getServerOwner().equals(this.playerEntity.getCommandSenderName())))
                 {
-                    logger.warn(this.playerEntity.getCommandSenderName() + " moved too quickly! " + var13 + "," + var15 + "," + var17 + " (" + var19 + ", " + var21 + ", " + var23 + ")");
-                    this.setPlayerLocation(this.lastPosX, this.lastPosY, this.lastPosZ, this.playerEntity.rotationYaw, this.playerEntity.rotationPitch);
+                    logger.warn(this.playerEntity.getCommandSenderName() + " moved too quickly! " + deltaXPacket + "," + deltaYPacket + "," + deltaZPacket + " (" + deltaX + ", " + deltaY + ", " + deltaZ + ")");
+                    setBackPlayer();
+                    kickPlayerFromServer("Moved too quickly. ICanHasTeleportHax?");
+                    VACUtils.notifyAndLog(playerEntity.getCommandSenderName() + " might be teleporting!");
                     return;
                 }
 
                 float var27 = 0.0625F;
                 boolean var28 = var2.getCollidingBoundingBoxes(this.playerEntity, this.playerEntity.boundingBox.copy().contract((double)var27, (double)var27, (double)var27)).isEmpty();
 
-                if (this.playerEntity.onGround && !packet.getOnGround() && var15 > 0.0D)
+                if (this.playerEntity.onGround && !packet.getOnGround() && deltaYPacket > 0.0D)
                 {
                     this.playerEntity.jump();
                 }
 
-                this.playerEntity.moveEntity(var13, var15, var17);
+                this.playerEntity.moveEntity(deltaXPacket, deltaYPacket, deltaZPacket);
                 this.playerEntity.onGround = packet.getOnGround();
-                this.playerEntity.addMovementStat(var13, var15, var17);
-                double var29 = var15;
-                var13 = x - this.playerEntity.posX;
-                var15 = y - this.playerEntity.posY;
+                this.playerEntity.addMovementStat(deltaXPacket, deltaYPacket, deltaZPacket);
+                double deltaYPacketRaw = deltaYPacket;
+                deltaXPacket = x - this.playerEntity.posX;
+                deltaYPacket = y - this.playerEntity.posY;
 
-                if (var15 > -0.5D || var15 < 0.5D)
+                if (deltaYPacket > -0.5D || deltaYPacket < 0.5D)
                 {
-                    var15 = 0.0D;
+                    deltaYPacket = 0.0D;
                 }
 
-                var17 = z - this.playerEntity.posZ;
-                var25 = var13 * var13 + var15 * var15 + var17 * var17;
+                deltaZPacket = z - this.playerEntity.posZ;
+                velocitySquared = deltaXPacket * deltaXPacket + deltaYPacket * deltaYPacket + deltaZPacket * deltaZPacket;
                 boolean var31 = false;
 
-                if (var25 > 0.0625D && !this.playerEntity.isPlayerSleeping() && !this.playerEntity.theItemInWorldManager.isCreative())
+                if (velocitySquared > 0.0625D && !this.playerEntity.isPlayerSleeping() && !this.playerEntity.theItemInWorldManager.isCreative())
                 {
                     var31 = true;
                     kickPlayerFromServer("Moved wrongly. ICanHasMovementHax?");
@@ -474,7 +476,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 if (!this.serverController.isFlightAllowed() && !this.playerEntity.theItemInWorldManager.isCreative() && !var2.checkBlockCollision(var33))
                 {
-                    if (var29 >= -0.03125D)
+                    if (deltaYPacketRaw >= -0.03125D)
                     {
                         this.floatingTickCount++;
 
