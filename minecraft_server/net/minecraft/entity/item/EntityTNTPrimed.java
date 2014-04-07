@@ -2,7 +2,9 @@ package net.minecraft.entity.item;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 
 public class EntityTNTPrimed extends Entity
@@ -95,8 +97,21 @@ public class EntityTNTPrimed extends Entity
 
     private void explode()
     {
-        float var1 = 4.0F;
-        worldObj.createExplosion(this, posX, posY, posZ, var1, true);
+        float strength = 4.0F;
+        if (worldObj.getGameRules().getGameRuleBooleanValue("doTNTExplosion"))
+        {
+            worldObj.createExplosion(this, posX, posY, posZ, strength, true);
+        }
+        else
+        {
+            if (getTntPlacedBy() instanceof EntityPlayerMP)
+            {
+                if (MinecraftServer.isPlayerOpped((EntityPlayerMP)getTntPlacedBy()))
+                {
+                    worldObj.createExplosion(this, posX, posY, posZ, strength, true);
+                }
+            }
+        }
     }
 
     /**

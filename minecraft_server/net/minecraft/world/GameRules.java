@@ -24,6 +24,7 @@ public class GameRules
         addGameRule("naturalRegeneration", "true");
         addGameRule("doDaylightCycle", "true");
         addGameRule("adminsKeepInventory", "false");
+        addGameRule("doTNTExplosion", "true");
     }
 
     /**

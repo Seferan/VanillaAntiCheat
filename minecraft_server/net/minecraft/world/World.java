@@ -2157,9 +2157,9 @@ public abstract class World implements IBlockAccess
     /**
      * Creates an explosion. Args: entity, x, y, z, strength
      */
-    public Explosion createExplosion(Entity par1Entity, double par2, double par4, double par6, float par8, boolean par9)
+    public Explosion createExplosion(Entity par1Entity, double x, double y, double z, float strength, boolean special)
     {
-        return newExplosion(par1Entity, par2, par4, par6, par8, false, par9);
+        return newExplosion(par1Entity, x, y, z, strength, false, special);
     }
 
     /**
