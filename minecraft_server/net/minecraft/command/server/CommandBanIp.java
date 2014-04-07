@@ -1,9 +1,11 @@
 package net.minecraft.command.server;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.PlayerNotFoundException;
@@ -21,6 +23,11 @@ public class CommandBanIp extends CommandBase
     public String getCommandName()
     {
         return "ban-ip";
+    }
+    
+    public List getCommandAliases()
+    {
+        return Arrays.asList(new String[] {"banip", "ipban"});
     }
 
     /**

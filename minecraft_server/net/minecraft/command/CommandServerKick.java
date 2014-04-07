@@ -1,8 +1,11 @@
 package net.minecraft.command;
 
+import java.util.Date;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.BanEntry;
 
 public class CommandServerKick extends CommandBase
 {
@@ -31,7 +34,7 @@ public class CommandServerKick extends CommandBase
         if (par2ArrayOfStr.length > 0 && par2ArrayOfStr[0].length() > 1)
         {
             EntityPlayerMP var3 = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(par2ArrayOfStr[0]);
-            String var4 = "Kicked by an operator.";
+            String var4 = "Kicked by an operator. You will be unbanned in 1 minute.";
             boolean var5 = false;
 
             if (var3 == null)
@@ -46,6 +49,10 @@ public class CommandServerKick extends CommandBase
                     var5 = true;
                 }
 
+                BanEntry banEntry = new BanEntry(par2ArrayOfStr[0]);
+                banEntry.setBannedBy(par1ICommandSender.getUsername());
+                banEntry.setBanEndDate(new Date(new Date().getTime() + 60000L));
+                MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(banEntry);
                 var3.playerNetServerHandler.kickPlayerFromServer(var4);
 
                 if (var5)

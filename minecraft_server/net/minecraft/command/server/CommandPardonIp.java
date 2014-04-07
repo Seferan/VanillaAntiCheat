@@ -1,7 +1,9 @@
 package net.minecraft.command.server;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.SyntaxErrorException;
@@ -15,6 +17,11 @@ public class CommandPardonIp extends CommandBase
     public String getCommandName()
     {
         return "pardon-ip";
+    }
+    
+    public List getCommandAliases()
+    {
+        return Arrays.asList(new String[] {"pardonip", "unbanip"});
     }
 
     /**

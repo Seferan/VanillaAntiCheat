@@ -1,6 +1,8 @@
 package net.minecraft.command.server;
 
+import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
@@ -13,6 +15,11 @@ public class CommandPardonPlayer extends CommandBase
     public String getCommandName()
     {
         return "pardon";
+    }
+    
+    public List getCommandAliases()
+    {
+        return Arrays.asList(new String[] {"unban"});
     }
 
     /**
