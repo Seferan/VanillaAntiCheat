@@ -3,14 +3,19 @@ package net.minecraft.server.network;
 import com.google.common.base.Charsets;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
+
 import io.netty.util.concurrent.GenericFutureListener;
+
 import java.math.BigInteger;
 import java.security.PrivateKey;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.crypto.SecretKey;
+
+import mx.x10.afffsdd.vanillaanticheat.VACProxyCheck;
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.login.INetHandlerLoginServer;
@@ -23,6 +28,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.CryptManager;
 import net.minecraft.util.IChatComponent;
+
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -96,13 +102,20 @@ public class NetHandlerLoginServer implements INetHandlerLoginServer
         if (var2 != null)
         {
             this.func_147322_a(var2);
+            return;
         }
-        else
+        if (MinecraftServer.getServer().shouldCheckProxies())
         {
-            this.field_147328_g = NetHandlerLoginServer.LoginState.ACCEPTED;
-            this.field_147333_a.scheduleOutboundPacket(new S02PacketLoginSuccess(this.field_147337_i), new GenericFutureListener[0]);
-            this.field_147327_f.getConfigurationManager().initializeConnectionToPlayer(this.field_147333_a, this.field_147327_f.getConfigurationManager().func_148545_a(this.field_147337_i));
+            if (VACProxyCheck.isProxy(field_147333_a.getRemoteAddress().toString(), MinecraftServer.getServer().getProxyCheckMode()))
+            {
+                this.func_147322_a("Known proxy");
+                return;
+            }
         }
+        
+        this.field_147328_g = NetHandlerLoginServer.LoginState.ACCEPTED;
+        this.field_147333_a.scheduleOutboundPacket(new S02PacketLoginSuccess(this.field_147337_i), new GenericFutureListener[0]);
+        this.field_147327_f.getConfigurationManager().initializeConnectionToPlayer(this.field_147333_a, this.field_147327_f.getConfigurationManager().func_148545_a(this.field_147337_i));
     }
 
     /**

@@ -563,6 +563,15 @@ public class DedicatedServer extends MinecraftServer implements IServer
     }
     
     /**
+     * Return the threshold for the ratio for number of times a playe moved too
+     * quickly will be set back for
+     */
+    public double getSpeedhackRatioThreshold()
+    {
+        return settings.getDoubleProperty("vac-speedhack-ratio-threshold", 0.1);
+    }
+    
+    /**
      * Get the speed limit for a player with specific conditions.
      * @param sprinting whether the player is sprinting or not
      * @param jumping whether the player is jumping or not
@@ -601,6 +610,21 @@ public class DedicatedServer extends MinecraftServer implements IServer
         return settings.getDoubleProperty("vac-speed-limit-sneak", 0.16);
     }
 
+    /**
+     * Return the mode to check proxies with.
+     */
+    public int getProxyCheckMode()
+    {
+        return settings.getIntProperty("vac-check-proxies-mode", 0);
+    }
+    
+    /**
+     * Return if we will check proxies or not.
+     */
+    public boolean shouldCheckProxies()
+    {
+        return settings.getBooleanProperty("vac-check-proxies", true);
+    }
 
     /**
      * Returns true if a player does not have permission to edit the block at

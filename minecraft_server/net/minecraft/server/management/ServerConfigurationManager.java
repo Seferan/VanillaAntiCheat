@@ -127,13 +127,9 @@ public abstract class ServerConfigurationManager
         {
             // Always uphold promise of not logging IPs regardless of config
             if (mcServer.shouldLogIps() || mcServer.shouldTellIp())
-            {
                 var4 = par1INetworkManager.getRemoteAddress().toString();
-            }
             else
-            {
                 var4 = "redacted";
-            }
         }
 
         logger.info(par2EntityPlayerMP.getUsername() + "[" + var4 + "] logged in with entity id " + par2EntityPlayerMP.getEntityId() + " at (" + par2EntityPlayerMP.posX + ", " + par2EntityPlayerMP.posY + ", " + par2EntityPlayerMP.posZ + ")");

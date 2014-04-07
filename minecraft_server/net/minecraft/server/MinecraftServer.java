@@ -1558,6 +1558,12 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
     public abstract double getSpeedhackLeeway();
     
     /**
+     * Return the threshold for the ratio for number of times a playe moved too
+     * quickly will be set back for
+     */
+    public abstract double getSpeedhackRatioThreshold();
+    
+    /**
      * Get the speed limit for a player with specific conditions.
      * @param sprinting whether the player is sprinting or not
      * @param jumping whether the player is jumping or not
@@ -1570,6 +1576,16 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return the speed limit for a sneaking player.
      */
     public abstract double getSneakSpeedLimit();
+    
+    /**
+     * Return the mode to check proxies with.
+     */
+    public abstract int getProxyCheckMode();
+    
+    /**
+     * Return if we will check proxies or not.
+     */
+    public abstract boolean shouldCheckProxies();
 
     public String getMOTD()
     {

@@ -331,7 +331,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 vacState.aSpeed.onSpeeding();
                 // Check if this player is full of it
-                if (vacState.aSpeed.getSpeedingRatio() > 0.25)
+                if (vacState.aSpeed.getSpeedingRatio() > MinecraftServer.getServer().getSpeedhackRatioThreshold())
                 {
                     setBackPlayer();
                     vacState.aSpeed.giveSpeedingTicket();
@@ -719,7 +719,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Returns false if not set back, returns true if set back
     private boolean processBlockDug(WorldServer world, int x, int y, int z, Block block)
     {
-        if (!MinecraftServer.isPlayerOppedOrCreative(playerEntity)) return false;
+        if (MinecraftServer.isPlayerOppedOrCreative(playerEntity)) return false;
         
         // Diamond notification code
         if (block.getBlockId() == 56 && MinecraftServer.getServer().useDiamondNotifications())
