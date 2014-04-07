@@ -126,7 +126,7 @@ public abstract class ServerConfigurationManager
         if (par1INetworkManager.getRemoteAddress() != null)
         {
             // Always uphold promise of not logging IPs regardless of config
-            if (mcServer.shouldLogIps() || mcServer.shouldTellIp())
+            if (mcServer.shouldLogIps() && !mcServer.shouldTellIp())
                 var4 = par1INetworkManager.getRemoteAddress().toString();
             else
                 var4 = "redacted";
