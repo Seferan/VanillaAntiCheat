@@ -139,7 +139,7 @@ public class BlockFire extends Block
                 {
                     p_149674_1_.setBlockToAir(p_149674_2_, p_149674_3_, p_149674_4_);
                 }
-                else
+                else if (p_149674_1_.getGameRules().getGameRuleBooleanValue("doFireSpread"))
                 {
                     boolean var8 = p_149674_1_.isBlockHighHumidity(p_149674_2_, p_149674_3_, p_149674_4_);
                     byte var9 = 0;

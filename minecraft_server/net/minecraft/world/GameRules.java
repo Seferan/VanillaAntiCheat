@@ -13,6 +13,7 @@ public class GameRules
     public GameRules()
     {
         this.addGameRule("doFireTick", "true");
+        this.addGameRule("doFireSpread", "true");
         this.addGameRule("mobGriefing", "true");
         this.addGameRule("keepInventory", "false");
         this.addGameRule("doMobSpawning", "true");
