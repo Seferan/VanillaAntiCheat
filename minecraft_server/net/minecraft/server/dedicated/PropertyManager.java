@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Properties;
+import java.util.TreeSet;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -77,8 +81,14 @@ public class PropertyManager
 
         try
         {
+            Properties sortedProperties = new Properties() {
+                public synchronized Enumeration<Object> keys() {
+                    return Collections.enumeration(new TreeSet<Object>(super.keySet()));
+                }
+            };
+            sortedProperties.putAll(serverProperties);
             var1 = new FileOutputStream(this.serverPropertiesFile);
-            this.serverProperties.store(var1, "Minecraft server properties");
+            sortedProperties.store(var1, "Minecraft server properties");
         }
         catch (Exception var11)
         {
