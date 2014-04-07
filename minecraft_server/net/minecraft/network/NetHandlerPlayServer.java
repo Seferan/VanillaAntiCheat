@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -986,8 +987,6 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
     public void handleChat(C01PacketChatMessage packetChat)
     {
-        processChat();
-
         if (playerEntity.func_147096_v() == EntityPlayer.EnumChatVisibility.HIDDEN)
         {
             ChatComponentTranslation var4 = new ChatComponentTranslation("chat.cannotSend", new Object[0]);
@@ -1009,6 +1008,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     return;
                 }
             }
+            
+            processChat(message);
 
             if (message.startsWith("/"))
             {
@@ -1030,13 +1031,40 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     }
 
     // Where the anticheat hooks for chat will go
-    private void processChat()
+    private void processChat(String message)
     {
+        // No sneaking and chatting
         if (playerEntity.isSneaking() && !MinecraftServer.isPlayerOpped(playerEntity))
         {
             kickPlayerFromServer("Silly hacker, you can't sneak and chat!");
             VACUtils.notifyAndLog(playerEntity.getUsername() + " was kicked for sneaking and chatting!");
             return;
+        }
+        
+        if (vacState.aSpam.messageEqualsLast(message) && !MinecraftServer.isPlayerOpped(playerEntity))
+        {
+            vacState.aSpam.incrementSpamCount();
+        } else {
+            vacState.aSpam.resetSpamCount();
+        }
+        
+        if (vacState.aSpam.getSpamCount() > 2 || vacState.aSpam.isInCooldown())
+        {
+            playerEntity.addChatMessage("Spamming will result in an automatic ban!");
+            playerEntity.addChatMessage("Please wait a few seconds before chatting again.");
+        }
+        
+        chatSpamThresholdCount += 20;
+
+        if (chatSpamThresholdCount > 200 && !MinecraftServer.isPlayerOpped(playerEntity))
+        {
+            BanEntry spamBan = new BanEntry(playerEntity.getUsername());
+            spamBan.setBannedBy("Server");
+            spamBan.setBanReason("Auto-banned for spamming.");
+            spamBan.setBanEndDate(new Date(new Date().getTime() + 60 * 60000L));
+            MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(spamBan);
+            kickPlayerFromServer("You have been auto-banned for spamming for 1 hour.");
+            VACUtils.notifyAndLog(vacState.aSpam, playerEntity.getUsername() + " was auto-banned for spamming.");
         }
     }
 

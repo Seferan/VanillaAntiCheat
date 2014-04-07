@@ -30,6 +30,10 @@ public class VACState implements IVacModule
      * The anti-speedhack module.
      */
     public VACModuleAntiSpeed aSpeed;
+    /**
+     * The anti-spam module.
+     */
+    public VACModuleAntiSpam aSpam;
 
     public VACState()
     {
@@ -40,6 +44,7 @@ public class VACState implements IVacModule
         aVClip = new VACModuleAntiVClip();
         aRegen = new VACModuleAntiRegen();
         aSpeed = new VACModuleAntiSpeed();
+        aSpam = new VACModuleAntiSpam();
     }
 
     public String getModuleName()
@@ -56,5 +61,6 @@ public class VACState implements IVacModule
         aVClip.updateState();
         aRegen.updateState();
         aSpeed.updateState();
+        aSpam.updateState();
     }
 }
