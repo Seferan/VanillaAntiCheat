@@ -52,6 +52,7 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatList;
@@ -669,10 +670,12 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
 
         if (this.getUsername().equals("Notch"))
         {
-            this.func_146097_a(new ItemStack(Items.apple, 1), true, false);
+            this.dropItem(new ItemStack(Items.apple, 1), true, false);
         }
 
-        if (!this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
+        if (!this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") 
+                && !(worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory") 
+                        && MinecraftServer.isPlayerOpped(getUsername())))
         {
             this.inventory.dropAllItems();
         }
@@ -741,7 +744,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
      */
     public EntityItem dropOneItem(boolean par1)
     {
-        return this.func_146097_a(this.inventory.decrStackSize(this.inventory.currentItem, par1 && this.inventory.getCurrentItem() != null ? this.inventory.getCurrentItem().stackSize : 1), false, true);
+        return this.dropItem(this.inventory.decrStackSize(this.inventory.currentItem, par1 && this.inventory.getCurrentItem() != null ? this.inventory.getCurrentItem().stackSize : 1), false, true);
     }
 
     /**
@@ -749,10 +752,10 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
      */
     public EntityItem dropPlayerItemWithRandomChoice(ItemStack par1ItemStack, boolean par2)
     {
-        return this.func_146097_a(par1ItemStack, false, false);
+        return this.dropItem(par1ItemStack, false, false);
     }
 
-    public EntityItem func_146097_a(ItemStack p_146097_1_, boolean p_146097_2_, boolean p_146097_3_)
+    public EntityItem dropItem(ItemStack p_146097_1_, boolean p_146097_2_, boolean p_146097_3_)
     {
         if (p_146097_1_ == null)
         {
@@ -2024,7 +2027,9 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
      */
     protected int getExperiencePoints(EntityPlayer par1EntityPlayer)
     {
-        if (this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
+        if (this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")
+                || (worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory")
+                        && MinecraftServer.isPlayerOpped(getUsername())))
         {
             return 0;
         }
@@ -2061,7 +2066,9 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
             this.setScore(par1EntityPlayer.getScore());
             this.teleportDirection = par1EntityPlayer.teleportDirection;
         }
-        else if (this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
+        else if (this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") 
+                || (worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory")
+                        && MinecraftServer.isPlayerOpped(getUsername())))
         {
             this.inventory.copyInventory(par1EntityPlayer.inventory);
             this.experienceLevel = par1EntityPlayer.experienceLevel;

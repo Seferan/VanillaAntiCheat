@@ -482,7 +482,9 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         this.mcServer.getConfigurationManager().func_148539_a(this.func_110142_aN().func_151521_b());
 
-        if (!this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory"))
+        if (!this.worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") 
+                && !(worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory") 
+                        && MinecraftServer.isPlayerOpped(getUsername())))
         {
             this.inventory.dropAllItems();
         }

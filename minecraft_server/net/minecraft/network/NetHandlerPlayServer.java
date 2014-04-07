@@ -270,6 +270,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     
     private void checkForVClip()
     {
+        if (MinecraftServer.isPlayerOppedOrCreative(playerEntity)) return;
+        
         // Anti-VClip
         if ((Double.valueOf(lastPosY) != null))
         {

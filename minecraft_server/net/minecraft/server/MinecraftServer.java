@@ -1558,7 +1558,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
     public abstract double getSpeedhackLeeway();
     
     /**
-     * Return the threshold for the ratio for number of times a playe moved too
+     * Return the threshold for the ratio for number of times a player moved too
      * quickly will be set back for
      */
     public abstract double getSpeedhackRatioKickThreshold();

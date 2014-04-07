@@ -623,7 +623,7 @@ public class InventoryPlayer implements IInventory
         {
             if (this.mainInventory[var1] != null)
             {
-                this.player.func_146097_a(this.mainInventory[var1], true, false);
+                this.player.dropItem(this.mainInventory[var1], true, false);
                 this.mainInventory[var1] = null;
             }
         }
@@ -632,7 +632,7 @@ public class InventoryPlayer implements IInventory
         {
             if (this.armorInventory[var1] != null)
             {
-                this.player.func_146097_a(this.armorInventory[var1], true, false);
+                this.player.dropItem(this.armorInventory[var1], true, false);
                 this.armorInventory[var1] = null;
             }
         }
