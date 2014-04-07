@@ -1,6 +1,7 @@
 package net.minecraft.command;
 
 import java.util.Iterator;
+
 import net.minecraft.command.server.CommandAchievement;
 import net.minecraft.command.server.CommandBanIp;
 import net.minecraft.command.server.CommandBanPlayer;
@@ -13,6 +14,7 @@ import net.minecraft.command.server.CommandListBans;
 import net.minecraft.command.server.CommandListPlayers;
 import net.minecraft.command.server.CommandMessage;
 import net.minecraft.command.server.CommandMessageRaw;
+import net.minecraft.command.server.CommandMotd;
 import net.minecraft.command.server.CommandOp;
 import net.minecraft.command.server.CommandOwner;
 import net.minecraft.command.server.CommandPardonIp;
@@ -93,6 +95,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             this.registerCommand(new CommandListPlayers());
             this.registerCommand(new CommandWhitelist());
             this.registerCommand(new CommandSetPlayerTimeout());
+            this.registerCommand(new CommandMotd());
         }
         else
         {

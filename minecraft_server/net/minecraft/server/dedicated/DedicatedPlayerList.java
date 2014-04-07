@@ -5,9 +5,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +22,12 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     private File ownersList;
     private File whiteList;
     private static final String __OBFID = "CL_00001783";
+    
+    /**
+     * The long MOTD message that is given by /motd.
+     */
+    private String[] longMotd;
+    private File motdFile;
 
     public DedicatedPlayerList(DedicatedServer par1DedicatedServer)
     {
@@ -25,6 +35,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         this.opsList = par1DedicatedServer.getFile("ops.txt");
         this.ownersList = par1DedicatedServer.getFile("owners.txt");
         this.whiteList = par1DedicatedServer.getFile("white-list.txt");
+        motdFile = par1DedicatedServer.getFile("motd.txt");
         this.viewDistance = par1DedicatedServer.getIntProperty("view-distance", 10);
         this.maxPlayers = par1DedicatedServer.getIntProperty("max-players", 20);
         this.setWhiteListEnabled(par1DedicatedServer.getBooleanProperty("white-list", false));
@@ -42,6 +53,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         this.loadOpsList();
         this.loadOwnersList();
         this.readWhiteList();
+        this.readMotd();
         this.saveOpsList();
 
         if (!this.whiteList.exists())
@@ -257,5 +269,48 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     public DedicatedServer getServerInstance()
     {
         return (DedicatedServer)super.getServerInstance();
+    }
+    
+    public void readMotd()
+    {
+        try
+        {
+            List<String> lines = new ArrayList<String>();
+            BufferedReader reader = new BufferedReader(new FileReader(motdFile));
+            String line = "";
+
+            while ((line = reader.readLine()) != null)
+            {
+                lines.add(line.trim());
+            }
+
+            reader.close();
+            
+            longMotd = lines.toArray(new String[lines.size()]);
+        }
+        catch (Exception e)
+        {
+            field_164439_d.warn("Failed to read motd: " + e);
+            longMotd = new String[0];
+            createMotdFile();
+        }
+    }
+    
+    private void createMotdFile()
+    {
+        try
+        {
+            PrintWriter writer = new PrintWriter(new FileWriter(this.motdFile, false));
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            field_164439_d.warn("Failed to create motd file: " + e);
+        }
+    }
+    
+    public String[] getMotd()
+    {
+        return longMotd;
     }
 }

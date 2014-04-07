@@ -4,7 +4,9 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.mojang.authlib.GameProfile;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.net.SocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -300,6 +302,8 @@ public abstract class ServerConfigurationManager
             MinecraftServer.anonymousTell(par1EntityPlayerMP, "This has not been logged, nor will anyone else recieve this message.");
             MinecraftServer.anonymousTell(par1EntityPlayerMP, "Have a good day!");
         }
+        if (mcServer.getConfigurationManager().getMotd().length > 0)
+            par1EntityPlayerMP.addChatMessage("Welcome! Please read the motd using /motd.");
     }
 
     /**
@@ -1090,9 +1094,7 @@ public abstract class ServerConfigurationManager
     public void sendChatMessageToAllPlayersAndLog(IChatComponent p_148544_1_, boolean p_148544_2_)
     {
         this.mcServer.addChatMessage(p_148544_1_); // log it
-        this.sendPacketToAllPlayers(new S02PacketChat(p_148544_1_, p_148544_2_)); // send
-                                                                                  // that
-                                                                                  // shit
+        this.sendPacketToAllPlayers(new S02PacketChat(p_148544_1_, p_148544_2_)); // send it
     }
 
     public void func_148539_a(IChatComponent p_148539_1_)
@@ -1113,4 +1115,6 @@ public abstract class ServerConfigurationManager
 
         return var2;
     }
+    
+    public abstract String[] getMotd();
 }
