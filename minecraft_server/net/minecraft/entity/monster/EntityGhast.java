@@ -36,9 +36,9 @@ public class EntityGhast extends EntityFlying implements IMob
     public EntityGhast(World par1World)
     {
         super(par1World);
-        this.setSize(4.0F, 4.0F);
-        this.isImmuneToFire = true;
-        this.experienceValue = 5;
+        setSize(4.0F, 4.0F);
+        isImmuneToFire = true;
+        experienceValue = 5;
     }
 
     /**
@@ -46,7 +46,7 @@ public class EntityGhast extends EntityFlying implements IMob
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.isEntityInvulnerable())
+        if (isEntityInvulnerable())
         {
             return false;
         }
@@ -65,125 +65,125 @@ public class EntityGhast extends EntityFlying implements IMob
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+        dataWatcher.addObject(16, Byte.valueOf((byte)0));
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
     }
 
     protected void updateEntityActionState()
     {
-        if (!this.worldObj.isClient && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
+        if (!worldObj.isClient && worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
         {
-            this.setDead();
+            setDead();
         }
 
-        this.despawnEntity();
-        this.prevAttackCounter = this.attackCounter;
-        double var1 = this.waypointX - this.posX;
-        double var3 = this.waypointY - this.posY;
-        double var5 = this.waypointZ - this.posZ;
+        despawnEntity();
+        prevAttackCounter = attackCounter;
+        double var1 = waypointX - posX;
+        double var3 = waypointY - posY;
+        double var5 = waypointZ - posZ;
         double var7 = var1 * var1 + var3 * var3 + var5 * var5;
 
         if (var7 < 1.0D || var7 > 3600.0D)
         {
-            this.waypointX = this.posX + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            this.waypointY = this.posY + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
-            this.waypointZ = this.posZ + (double)((this.rand.nextFloat() * 2.0F - 1.0F) * 16.0F);
+            waypointX = posX + (rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            waypointY = posY + (rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
+            waypointZ = posZ + (rand.nextFloat() * 2.0F - 1.0F) * 16.0F;
         }
 
-        if (this.courseChangeCooldown-- <= 0)
+        if (courseChangeCooldown-- <= 0)
         {
-            this.courseChangeCooldown += this.rand.nextInt(5) + 2;
-            var7 = (double)MathHelper.sqrt_double(var7);
+            courseChangeCooldown += rand.nextInt(5) + 2;
+            var7 = MathHelper.sqrt_double(var7);
 
-            if (this.isCourseTraversable(this.waypointX, this.waypointY, this.waypointZ, var7))
+            if (isCourseTraversable(waypointX, waypointY, waypointZ, var7))
             {
-                this.motionX += var1 / var7 * 0.1D;
-                this.motionY += var3 / var7 * 0.1D;
-                this.motionZ += var5 / var7 * 0.1D;
+                motionX += var1 / var7 * 0.1D;
+                motionY += var3 / var7 * 0.1D;
+                motionZ += var5 / var7 * 0.1D;
             }
             else
             {
-                this.waypointX = this.posX;
-                this.waypointY = this.posY;
-                this.waypointZ = this.posZ;
+                waypointX = posX;
+                waypointY = posY;
+                waypointZ = posZ;
             }
         }
 
-        if (this.targetedEntity != null && this.targetedEntity.isDead)
+        if (targetedEntity != null && targetedEntity.isDead)
         {
-            this.targetedEntity = null;
+            targetedEntity = null;
         }
 
-        if (this.targetedEntity == null || this.aggroCooldown-- <= 0)
+        if (targetedEntity == null || aggroCooldown-- <= 0)
         {
-            this.targetedEntity = this.worldObj.getClosestVulnerablePlayerToEntity(this, 100.0D);
+            targetedEntity = worldObj.getClosestVulnerablePlayerToEntity(this, 100.0D);
 
-            if (this.targetedEntity != null)
+            if (targetedEntity != null)
             {
-                this.aggroCooldown = 20;
+                aggroCooldown = 20;
             }
         }
 
         double var9 = 64.0D;
 
-        if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity(this) < var9 * var9)
+        if (targetedEntity != null && targetedEntity.getDistanceSqToEntity(this) < var9 * var9)
         {
-            double var11 = this.targetedEntity.posX - this.posX;
-            double var13 = this.targetedEntity.boundingBox.minY + (double)(this.targetedEntity.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
-            double var15 = this.targetedEntity.posZ - this.posZ;
-            this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(var11, var15)) * 180.0F / (float)Math.PI;
+            double var11 = targetedEntity.posX - posX;
+            double var13 = targetedEntity.boundingBox.minY + targetedEntity.height / 2.0F - (posY + height / 2.0F);
+            double var15 = targetedEntity.posZ - posZ;
+            renderYawOffset = rotationYaw = -((float)Math.atan2(var11, var15)) * 180.0F / (float)Math.PI;
 
-            if (this.canEntityBeSeen(this.targetedEntity))
+            if (canEntityBeSeen(targetedEntity))
             {
-                if (this.attackCounter == 10)
+                if (attackCounter == 10)
                 {
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1007, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1007, (int)posX, (int)posY, (int)posZ, 0);
                 }
 
-                ++this.attackCounter;
+                ++attackCounter;
 
-                if (this.attackCounter == 20)
+                if (attackCounter == 20)
                 {
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1008, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
-                    EntityLargeFireball var17 = new EntityLargeFireball(this.worldObj, this, var11, var13, var15);
-                    var17.field_92057_e = this.explosionStrength;
+                    worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1008, (int)posX, (int)posY, (int)posZ, 0);
+                    EntityLargeFireball var17 = new EntityLargeFireball(worldObj, this, var11, var13, var15);
+                    var17.field_92057_e = explosionStrength;
                     double var18 = 4.0D;
-                    Vec3 var20 = this.getLook(1.0F);
-                    var17.posX = this.posX + var20.xCoord * var18;
-                    var17.posY = this.posY + (double)(this.height / 2.0F) + 0.5D;
-                    var17.posZ = this.posZ + var20.zCoord * var18;
-                    this.worldObj.spawnEntityInWorld(var17);
-                    this.attackCounter = -40;
+                    Vec3 var20 = getLook(1.0F);
+                    var17.posX = posX + var20.xCoord * var18;
+                    var17.posY = posY + height / 2.0F + 0.5D;
+                    var17.posZ = posZ + var20.zCoord * var18;
+                    worldObj.spawnEntityInWorld(var17);
+                    attackCounter = -40;
                 }
             }
-            else if (this.attackCounter > 0)
+            else if (attackCounter > 0)
             {
-                --this.attackCounter;
+                --attackCounter;
             }
         }
         else
         {
-            this.renderYawOffset = this.rotationYaw = -((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI;
+            renderYawOffset = rotationYaw = -((float)Math.atan2(motionX, motionZ)) * 180.0F / (float)Math.PI;
 
-            if (this.attackCounter > 0)
+            if (attackCounter > 0)
             {
-                --this.attackCounter;
+                --attackCounter;
             }
         }
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            byte var21 = this.dataWatcher.getWatchableObjectByte(16);
-            byte var12 = (byte)(this.attackCounter > 10 ? 1 : 0);
+            byte var21 = dataWatcher.getWatchableObjectByte(16);
+            byte var12 = (byte)(attackCounter > 10 ? 1 : 0);
 
             if (var21 != var12)
             {
-                this.dataWatcher.updateObject(16, Byte.valueOf(var12));
+                dataWatcher.updateObject(16, Byte.valueOf(var12));
             }
         }
     }
@@ -193,16 +193,16 @@ public class EntityGhast extends EntityFlying implements IMob
      */
     private boolean isCourseTraversable(double par1, double par3, double par5, double par7)
     {
-        double var9 = (this.waypointX - this.posX) / par7;
-        double var11 = (this.waypointY - this.posY) / par7;
-        double var13 = (this.waypointZ - this.posZ) / par7;
-        AxisAlignedBB var15 = this.boundingBox.copy();
+        double var9 = (waypointX - posX) / par7;
+        double var11 = (waypointY - posY) / par7;
+        double var13 = (waypointZ - posZ) / par7;
+        AxisAlignedBB var15 = boundingBox.copy();
 
-        for (int var16 = 1; (double)var16 < par7; ++var16)
+        for (int var16 = 1; var16 < par7; ++var16)
         {
             var15.offset(var9, var11, var13);
 
-            if (!this.worldObj.getCollidingBoundingBoxes(this, var15).isEmpty()) { return false; }
+            if (!worldObj.getCollidingBoundingBoxes(this, var15).isEmpty()) { return false; }
         }
 
         return true;
@@ -242,19 +242,19 @@ public class EntityGhast extends EntityFlying implements IMob
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-        int var3 = this.rand.nextInt(2) + this.rand.nextInt(1 + par2);
+        int var3 = rand.nextInt(2) + rand.nextInt(1 + par2);
         int var4;
 
         for (var4 = 0; var4 < var3; ++var4)
         {
-            this.func_145779_a(Items.ghast_tear, 1);
+            func_145779_a(Items.ghast_tear, 1);
         }
 
-        var3 = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
+        var3 = rand.nextInt(3) + rand.nextInt(1 + par2);
 
         for (var4 = 0; var4 < var3; ++var4)
         {
-            this.func_145779_a(Items.gunpowder, 1);
+            func_145779_a(Items.gunpowder, 1);
         }
     }
 
@@ -272,7 +272,7 @@ public class EntityGhast extends EntityFlying implements IMob
      */
     public boolean getCanSpawnHere()
     {
-        return this.rand.nextInt(20) == 0 && super.getCanSpawnHere() && this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL;
+        return rand.nextInt(20) == 0 && super.getCanSpawnHere() && worldObj.difficultySetting != EnumDifficulty.PEACEFUL;
     }
 
     /**
@@ -289,7 +289,7 @@ public class EntityGhast extends EntityFlying implements IMob
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("ExplosionPower", this.explosionStrength);
+        par1NBTTagCompound.setInteger("ExplosionPower", explosionStrength);
     }
 
     /**
@@ -301,7 +301,7 @@ public class EntityGhast extends EntityFlying implements IMob
 
         if (par1NBTTagCompound.func_150297_b("ExplosionPower", 99))
         {
-            this.explosionStrength = par1NBTTagCompound.getInteger("ExplosionPower");
+            explosionStrength = par1NBTTagCompound.getInteger("ExplosionPower");
         }
     }
 }

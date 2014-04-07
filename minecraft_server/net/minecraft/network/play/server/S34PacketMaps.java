@@ -19,8 +19,8 @@ public class S34PacketMaps extends Packet
 
     public S34PacketMaps(int p_i45202_1_, byte[] p_i45202_2_)
     {
-        this.field_149191_a = p_i45202_1_;
-        this.field_149190_b = p_i45202_2_;
+        field_149191_a = p_i45202_1_;
+        field_149190_b = p_i45202_2_;
     }
 
     /**
@@ -28,9 +28,9 @@ public class S34PacketMaps extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149191_a = p_148837_1_.readVarIntFromBuffer();
-        this.field_149190_b = new byte[p_148837_1_.readUnsignedShort()];
-        p_148837_1_.readBytes(this.field_149190_b);
+        field_149191_a = p_148837_1_.readVarIntFromBuffer();
+        field_149190_b = new byte[p_148837_1_.readUnsignedShort()];
+        p_148837_1_.readBytes(field_149190_b);
     }
 
     /**
@@ -38,9 +38,9 @@ public class S34PacketMaps extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeVarIntToBuffer(this.field_149191_a);
-        p_148840_1_.writeShort(this.field_149190_b.length);
-        p_148840_1_.writeBytes(this.field_149190_b);
+        p_148840_1_.writeVarIntToBuffer(field_149191_a);
+        p_148840_1_.writeShort(field_149190_b.length);
+        p_148840_1_.writeBytes(field_149190_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149189_1_)
@@ -54,7 +54,7 @@ public class S34PacketMaps extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d, length=%d", new Object[] {Integer.valueOf(this.field_149191_a), Integer.valueOf(this.field_149190_b.length)});
+        return String.format("id=%d, length=%d", new Object[] {Integer.valueOf(field_149191_a), Integer.valueOf(field_149190_b.length)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

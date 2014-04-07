@@ -10,9 +10,9 @@ public class ItemBlockWithMetadata extends ItemBlock
     public ItemBlockWithMetadata(Block p_i45326_1_, Block p_i45326_2_)
     {
         super(p_i45326_1_);
-        this.field_150950_b = p_i45326_2_;
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
+        field_150950_b = p_i45326_2_;
+        setMaxDamage(0);
+        setHasSubtypes(true);
     }
 
     /**

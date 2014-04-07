@@ -41,7 +41,7 @@ public class CommandHelp extends CommandBase
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        List var3 = this.getSortedPossibleCommands(par1ICommandSender);
+        List var3 = getSortedPossibleCommands(par1ICommandSender);
         byte var4 = 7;
         int var5 = (var3.size() - 1) / var4;
         boolean var6 = false;
@@ -53,7 +53,7 @@ public class CommandHelp extends CommandBase
         }
         catch (NumberInvalidException var12)
         {
-            Map var8 = this.getCommands();
+            Map var8 = getCommands();
             ICommand var9 = (ICommand)var8.get(par2ArrayOfStr[0]);
 
             if (var9 != null) { throw new WrongUsageException(var9.getCommandUsage(par1ICommandSender), new Object[0]); }

@@ -30,10 +30,10 @@ public class EntityPainting extends EntityHanging
         for (int var9 = 0; var9 < var8; ++var9)
         {
             EntityPainting.EnumArt var10 = var7[var9];
-            this.art = var10;
-            this.setDirection(par5);
+            art = var10;
+            setDirection(par5);
 
-            if (this.onValidSurface())
+            if (onValidSurface())
             {
                 var6.add(var10);
             }
@@ -41,10 +41,10 @@ public class EntityPainting extends EntityHanging
 
         if (!var6.isEmpty())
         {
-            this.art = (EntityPainting.EnumArt)var6.get(this.rand.nextInt(var6.size()));
+            art = (EntityPainting.EnumArt)var6.get(rand.nextInt(var6.size()));
         }
 
-        this.setDirection(par5);
+        setDirection(par5);
     }
 
     /**
@@ -52,7 +52,7 @@ public class EntityPainting extends EntityHanging
      */
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        par1NBTTagCompound.setString("Motive", this.art.title);
+        par1NBTTagCompound.setString("Motive", art.title);
         super.writeEntityToNBT(par1NBTTagCompound);
     }
 
@@ -71,13 +71,13 @@ public class EntityPainting extends EntityHanging
 
             if (var6.title.equals(var2))
             {
-                this.art = var6;
+                art = var6;
             }
         }
 
-        if (this.art == null)
+        if (art == null)
         {
-            this.art = EntityPainting.EnumArt.Kebab;
+            art = EntityPainting.EnumArt.Kebab;
         }
 
         super.readEntityFromNBT(par1NBTTagCompound);
@@ -85,12 +85,12 @@ public class EntityPainting extends EntityHanging
 
     public int getWidthPixels()
     {
-        return this.art.sizeX;
+        return art.sizeX;
     }
 
     public int getHeightPixels()
     {
-        return this.art.sizeY;
+        return art.sizeY;
     }
 
     /**
@@ -105,7 +105,7 @@ public class EntityPainting extends EntityHanging
             if (var2.capabilities.isCreativeMode) { return; }
         }
 
-        this.entityDropItem(new ItemStack(Items.painting), 0.0F);
+        entityDropItem(new ItemStack(Items.painting), 0.0F);
     }
 
     public static enum EnumArt
@@ -123,11 +123,11 @@ public class EntityPainting extends EntityHanging
 
         private EnumArt(String par1Str, int par2, String par3Str, int par4, int par5, int par6, int par7)
         {
-            this.title = par3Str;
-            this.sizeX = par4;
-            this.sizeY = par5;
-            this.offsetX = par6;
-            this.offsetY = par7;
+            title = par3Str;
+            sizeX = par4;
+            sizeY = par5;
+            offsetX = par6;
+            offsetY = par7;
         }
     }
 }

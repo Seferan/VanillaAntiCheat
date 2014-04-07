@@ -19,11 +19,11 @@ public class BlockStem extends BlockBush implements IGrowable
 
     protected BlockStem(Block p_i45430_1_)
     {
-        this.field_149877_a = p_i45430_1_;
-        this.setTickRandomly(true);
+        field_149877_a = p_i45430_1_;
+        setTickRandomly(true);
         float var2 = 0.125F;
-        this.setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, 0.25F, 0.5F + var2);
-        this.setcreativeTab((CreativeTabs)null);
+        setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, 0.25F, 0.5F + var2);
+        setcreativeTab((CreativeTabs)null);
     }
 
     protected boolean func_149854_a(Block p_149854_1_)
@@ -40,7 +40,7 @@ public class BlockStem extends BlockBush implements IGrowable
 
         if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) >= 9)
         {
-            float var6 = this.func_149875_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+            float var6 = func_149875_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
 
             if (p_149674_5_.nextInt((int)(25.0F / var6) + 1) == 0)
             {
@@ -53,13 +53,13 @@ public class BlockStem extends BlockBush implements IGrowable
                 }
                 else
                 {
-                    if (p_149674_1_.getBlock(p_149674_2_ - 1, p_149674_3_, p_149674_4_) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_ - 1, p_149674_3_, p_149674_4_) == field_149877_a) { return; }
 
-                    if (p_149674_1_.getBlock(p_149674_2_ + 1, p_149674_3_, p_149674_4_) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_ + 1, p_149674_3_, p_149674_4_) == field_149877_a) { return; }
 
-                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ - 1) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ - 1) == field_149877_a) { return; }
 
-                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ + 1) == this.field_149877_a) { return; }
+                    if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_, p_149674_4_ + 1) == field_149877_a) { return; }
 
                     int var8 = p_149674_5_.nextInt(4);
                     int var9 = p_149674_2_;
@@ -89,7 +89,7 @@ public class BlockStem extends BlockBush implements IGrowable
 
                     if (p_149674_1_.getBlock(var9, p_149674_3_, var10).blockMaterial == Material.air && (var11 == Blocks.farmland || var11 == Blocks.dirt || var11 == Blocks.grass))
                     {
-                        p_149674_1_.setBlock(var9, p_149674_3_, var10, this.field_149877_a);
+                        p_149674_1_.setBlock(var9, p_149674_3_, var10, field_149877_a);
                     }
                 }
             }
@@ -163,14 +163,14 @@ public class BlockStem extends BlockBush implements IGrowable
     public void setBlockBoundsForItemRender()
     {
         float var1 = 0.125F;
-        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
+        setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.maxY = (double)((float)(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_) * 2 + 2) / 16.0F);
+        maxY = (p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_) * 2 + 2) / 16.0F;
         float var5 = 0.125F;
-        this.setBlockBounds(0.5F - var5, 0.0F, 0.5F - var5, 0.5F + var5, (float)this.maxY, 0.5F + var5);
+        setBlockBounds(0.5F - var5, 0.0F, 0.5F - var5, 0.5F + var5, (float)maxY, 0.5F + var5);
     }
 
     /**
@@ -193,12 +193,12 @@ public class BlockStem extends BlockBush implements IGrowable
         {
             Item var8 = null;
 
-            if (this.field_149877_a == Blocks.pumpkin)
+            if (field_149877_a == Blocks.pumpkin)
             {
                 var8 = Items.pumpkin_seeds;
             }
 
-            if (this.field_149877_a == Blocks.melon_block)
+            if (field_149877_a == Blocks.melon_block)
             {
                 var8 = Items.melon_seeds;
             }
@@ -207,7 +207,7 @@ public class BlockStem extends BlockBush implements IGrowable
             {
                 if (p_149690_1_.rand.nextInt(15) <= p_149690_5_)
                 {
-                    this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var8));
+                    dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var8));
                 }
             }
         }
@@ -238,6 +238,6 @@ public class BlockStem extends BlockBush implements IGrowable
 
     public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
     {
-        this.func_149874_m(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_);
+        func_149874_m(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_);
     }
 }

@@ -16,7 +16,7 @@ public class BlockGlowstone extends Block
     public BlockGlowstone(Material p_i45409_1_)
     {
         super(p_i45409_1_);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**
@@ -25,7 +25,7 @@ public class BlockGlowstone extends Block
      */
     public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
     {
-        return MathHelper.clamp_int(this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(p_149679_1_ + 1), 1, 4);
+        return MathHelper.clamp_int(quantityDropped(p_149679_2_) + p_149679_2_.nextInt(p_149679_1_ + 1), 1, 4);
     }
 
     /**

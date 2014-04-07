@@ -46,9 +46,9 @@ public class CrashReport
 
     public CrashReport(String par1Str, Throwable par2Throwable)
     {
-        this.description = par1Str;
-        this.cause = par2Throwable;
-        this.populateEnvironment();
+        description = par1Str;
+        cause = par2Throwable;
+        populateEnvironment();
     }
 
     /**
@@ -57,7 +57,7 @@ public class CrashReport
      */
     private void populateEnvironment()
     {
-        this.theReportCategory.addCrashSectionCallable("Minecraft Version", new Callable()
+        theReportCategory.addCrashSectionCallable("Minecraft Version", new Callable()
         {
             private static final String __OBFID = "CL_00001197";
 
@@ -66,7 +66,7 @@ public class CrashReport
                 return "1.7.2";
             }
         });
-        this.theReportCategory.addCrashSectionCallable("Operating System", new Callable()
+        theReportCategory.addCrashSectionCallable("Operating System", new Callable()
         {
             private static final String __OBFID = "CL_00001222";
 
@@ -75,7 +75,7 @@ public class CrashReport
                 return System.getProperty("os.name") + " (" + System.getProperty("os.arch") + ") version " + System.getProperty("os.version");
             }
         });
-        this.theReportCategory.addCrashSectionCallable("Java Version", new Callable()
+        theReportCategory.addCrashSectionCallable("Java Version", new Callable()
         {
             private static final String __OBFID = "CL_00001248";
 
@@ -84,7 +84,7 @@ public class CrashReport
                 return System.getProperty("java.version") + ", " + System.getProperty("java.vendor");
             }
         });
-        this.theReportCategory.addCrashSectionCallable("Java VM Version", new Callable()
+        theReportCategory.addCrashSectionCallable("Java VM Version", new Callable()
         {
             private static final String __OBFID = "CL_00001275";
 
@@ -93,7 +93,7 @@ public class CrashReport
                 return System.getProperty("java.vm.name") + " (" + System.getProperty("java.vm.info") + "), " + System.getProperty("java.vm.vendor");
             }
         });
-        this.theReportCategory.addCrashSectionCallable("Memory", new Callable()
+        theReportCategory.addCrashSectionCallable("Memory", new Callable()
         {
             private static final String __OBFID = "CL_00001302";
 
@@ -109,7 +109,7 @@ public class CrashReport
                 return var6 + " bytes (" + var12 + " MB) / " + var4 + " bytes (" + var10 + " MB) up to " + var2 + " bytes (" + var8 + " MB)";
             }
         });
-        this.theReportCategory.addCrashSectionCallable("JVM Flags", new Callable()
+        theReportCategory.addCrashSectionCallable("JVM Flags", new Callable()
         {
             private static final String __OBFID = "CL_00001329";
 
@@ -139,7 +139,7 @@ public class CrashReport
                 return String.format("%d total; %s", new Object[] {Integer.valueOf(var3), var4.toString()});
             }
         });
-        this.theReportCategory.addCrashSectionCallable("AABB Pool Size", new Callable()
+        theReportCategory.addCrashSectionCallable("AABB Pool Size", new Callable()
         {
             private static final String __OBFID = "CL_00001355";
 
@@ -154,7 +154,7 @@ public class CrashReport
                 return var1 + " (" + var2 + " bytes; " + var3 + " MB) allocated, " + var4 + " (" + var5 + " bytes; " + var6 + " MB) used";
             }
         });
-        this.theReportCategory.addCrashSectionCallable("IntCache", new Callable()
+        theReportCategory.addCrashSectionCallable("IntCache", new Callable()
         {
             private static final String __OBFID = "CL_00001382";
 
@@ -170,7 +170,7 @@ public class CrashReport
      */
     public String getDescription()
     {
-        return this.description;
+        return description;
     }
 
     /**
@@ -179,7 +179,7 @@ public class CrashReport
      */
     public Throwable getCrashCause()
     {
-        return this.cause;
+        return cause;
     }
 
     /**
@@ -188,16 +188,16 @@ public class CrashReport
      */
     public void getSectionsInStringBuilder(StringBuilder par1StringBuilder)
     {
-        if ((this.stacktrace == null || this.stacktrace.length <= 0) && this.crashReportSections.size() > 0)
+        if ((stacktrace == null || stacktrace.length <= 0) && crashReportSections.size() > 0)
         {
-            this.stacktrace = (StackTraceElement[])ArrayUtils.subarray(((CrashReportCategory)this.crashReportSections.get(0)).func_147152_a(), 0, 1);
+            stacktrace = ArrayUtils.subarray(((CrashReportCategory)crashReportSections.get(0)).func_147152_a(), 0, 1);
         }
 
-        if (this.stacktrace != null && this.stacktrace.length > 0)
+        if (stacktrace != null && stacktrace.length > 0)
         {
             par1StringBuilder.append("-- Head --\n");
             par1StringBuilder.append("Stacktrace:\n");
-            StackTraceElement[] var2 = this.stacktrace;
+            StackTraceElement[] var2 = stacktrace;
             int var3 = var2.length;
 
             for (int var4 = 0; var4 < var3; ++var4)
@@ -210,7 +210,7 @@ public class CrashReport
             par1StringBuilder.append("\n");
         }
 
-        Iterator var6 = this.crashReportSections.iterator();
+        Iterator var6 = crashReportSections.iterator();
 
         while (var6.hasNext())
         {
@@ -219,7 +219,7 @@ public class CrashReport
             par1StringBuilder.append("\n\n");
         }
 
-        this.theReportCategory.appendToStringBuilder(par1StringBuilder);
+        theReportCategory.appendToStringBuilder(par1StringBuilder);
     }
 
     /**
@@ -230,24 +230,24 @@ public class CrashReport
     {
         StringWriter var1 = null;
         PrintWriter var2 = null;
-        Object var3 = this.cause;
+        Object var3 = cause;
 
         if (((Throwable)var3).getMessage() == null)
         {
             if (var3 instanceof NullPointerException)
             {
-                var3 = new NullPointerException(this.description);
+                var3 = new NullPointerException(description);
             }
             else if (var3 instanceof StackOverflowError)
             {
-                var3 = new StackOverflowError(this.description);
+                var3 = new StackOverflowError(description);
             }
             else if (var3 instanceof OutOfMemoryError)
             {
-                var3 = new OutOfMemoryError(this.description);
+                var3 = new OutOfMemoryError(description);
             }
 
-            ((Throwable)var3).setStackTrace(this.cause.getStackTrace());
+            ((Throwable)var3).setStackTrace(cause.getStackTrace());
         }
 
         String var4 = ((Throwable)var3).toString();
@@ -283,9 +283,9 @@ public class CrashReport
         var1.append((new SimpleDateFormat()).format(new Date()));
         var1.append("\n");
         var1.append("Description: ");
-        var1.append(this.description);
+        var1.append(description);
         var1.append("\n\n");
-        var1.append(this.getCauseStackTraceOrString());
+        var1.append(getCauseStackTraceOrString());
         var1.append("\n\nA detailed walkthrough of the error, its code path and all known details is as follows:\n");
 
         for (int var2 = 0; var2 < 87; ++var2)
@@ -294,7 +294,7 @@ public class CrashReport
         }
 
         var1.append("\n\n");
-        this.getSectionsInStringBuilder(var1);
+        getSectionsInStringBuilder(var1);
         return var1.toString();
     }
 
@@ -304,7 +304,7 @@ public class CrashReport
      */
     public boolean saveToFile(File p_147149_1_)
     {
-        if (this.crashReportFile != null)
+        if (crashReportFile != null)
         {
             return false;
         }
@@ -318,9 +318,9 @@ public class CrashReport
             try
             {
                 FileWriter var2 = new FileWriter(p_147149_1_);
-                var2.write(this.getCompleteReport());
+                var2.write(getCompleteReport());
                 var2.close();
-                this.crashReportFile = p_147149_1_;
+                crashReportFile = p_147149_1_;
                 return true;
             }
             catch (Throwable var3)
@@ -333,7 +333,7 @@ public class CrashReport
 
     public CrashReportCategory getCategory()
     {
-        return this.theReportCategory;
+        return theReportCategory;
     }
 
     /**
@@ -341,7 +341,7 @@ public class CrashReport
      */
     public CrashReportCategory makeCategory(String par1Str)
     {
-        return this.makeCategoryDepth(par1Str, 1);
+        return makeCategoryDepth(par1Str, 1);
     }
 
     /**
@@ -351,10 +351,10 @@ public class CrashReport
     {
         CrashReportCategory var3 = new CrashReportCategory(this, par1Str);
 
-        if (this.field_85059_f)
+        if (field_85059_f)
         {
             int var4 = var3.getPrunedStackTrace(par2);
-            StackTraceElement[] var5 = this.cause.getStackTrace();
+            StackTraceElement[] var5 = cause.getStackTrace();
             StackTraceElement var6 = null;
             StackTraceElement var7 = null;
 
@@ -368,25 +368,25 @@ public class CrashReport
                 }
             }
 
-            this.field_85059_f = var3.firstTwoElementsOfStackTraceMatch(var6, var7);
+            field_85059_f = var3.firstTwoElementsOfStackTraceMatch(var6, var7);
 
-            if (var4 > 0 && !this.crashReportSections.isEmpty())
+            if (var4 > 0 && !crashReportSections.isEmpty())
             {
-                CrashReportCategory var8 = (CrashReportCategory)this.crashReportSections.get(this.crashReportSections.size() - 1);
+                CrashReportCategory var8 = (CrashReportCategory)crashReportSections.get(crashReportSections.size() - 1);
                 var8.trimStackTraceEntriesFromBottom(var4);
             }
             else if (var5 != null && var5.length >= var4)
             {
-                this.stacktrace = new StackTraceElement[var5.length - var4];
-                System.arraycopy(var5, 0, this.stacktrace, 0, this.stacktrace.length);
+                stacktrace = new StackTraceElement[var5.length - var4];
+                System.arraycopy(var5, 0, stacktrace, 0, stacktrace.length);
             }
             else
             {
-                this.field_85059_f = false;
+                field_85059_f = false;
             }
         }
 
-        this.crashReportSections.add(var3);
+        crashReportSections.add(var3);
         return var3;
     }
 
@@ -399,7 +399,7 @@ public class CrashReport
 
         try
         {
-            return var0[(int)(System.nanoTime() % (long)var0.length)];
+            return var0[(int)(System.nanoTime() % var0.length)];
         }
         catch (Throwable var2)
         {

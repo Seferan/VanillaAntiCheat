@@ -18,7 +18,7 @@ public class S01PacketPong extends Packet
 
     public S01PacketPong(long p_i45272_1_)
     {
-        this.field_149293_a = p_i45272_1_;
+        field_149293_a = p_i45272_1_;
     }
 
     /**
@@ -26,7 +26,7 @@ public class S01PacketPong extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149293_a = p_148837_1_.readLong();
+        field_149293_a = p_148837_1_.readLong();
     }
 
     /**
@@ -34,7 +34,7 @@ public class S01PacketPong extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeLong(this.field_149293_a);
+        p_148840_1_.writeLong(field_149293_a);
     }
 
     public void func_148833_a(INetHandlerStatusClient p_149291_1_)

@@ -83,9 +83,9 @@ public class PotionHelper
 
                 for (int var9 = 0; var9 <= var7.getAmplifier(); ++var9)
                 {
-                    var2 += (float)(var8 >> 16 & 255) / 255.0F;
-                    var3 += (float)(var8 >> 8 & 255) / 255.0F;
-                    var4 += (float)(var8 >> 0 & 255) / 255.0F;
+                    var2 += (var8 >> 16 & 255) / 255.0F;
+                    var3 += (var8 >> 8 & 255) / 255.0F;
+                    var4 += (var8 >> 0 & 255) / 255.0F;
                     ++var5;
                 }
             }
@@ -390,11 +390,11 @@ public class PotionHelper
                         {
                             var8 = 1200 * (var8 * 3 + (var8 - 1) * 2);
                             var8 >>= var9;
-                            var8 = (int)Math.round((double)var8 * var6.getEffectiveness());
+                            var8 = (int)Math.round(var8 * var6.getEffectiveness());
 
                             if ((par0 & 16384) != 0)
                             {
-                                var8 = (int)Math.round((double)var8 * 0.75D + 0.5D);
+                                var8 = (int)Math.round(var8 * 0.75D + 0.5D);
                             }
                         }
 

@@ -73,47 +73,47 @@ public class RConThreadQuery extends RConThreadBase
     public RConThreadQuery(IServer par1IServer)
     {
         super(par1IServer, "Query Listener");
-        this.queryPort = par1IServer.getIntProperty("query.port", 0);
-        this.serverHostname = par1IServer.getHostname();
-        this.serverPort = par1IServer.getPort();
-        this.serverMotd = par1IServer.getMotd();
-        this.maxPlayers = par1IServer.getMaxPlayers();
-        this.worldName = par1IServer.getFolderName();
-        this.lastQueryResponseTime = 0L;
-        this.queryHostname = "0.0.0.0";
+        queryPort = par1IServer.getIntProperty("query.port", 0);
+        serverHostname = par1IServer.getHostname();
+        serverPort = par1IServer.getPort();
+        serverMotd = par1IServer.getMotd();
+        maxPlayers = par1IServer.getMaxPlayers();
+        worldName = par1IServer.getFolderName();
+        lastQueryResponseTime = 0L;
+        queryHostname = "0.0.0.0";
 
-        if (0 != this.serverHostname.length() && !this.queryHostname.equals(this.serverHostname))
+        if (0 != serverHostname.length() && !queryHostname.equals(serverHostname))
         {
-            this.queryHostname = this.serverHostname;
+            queryHostname = serverHostname;
         }
         else
         {
-            this.serverHostname = "0.0.0.0";
+            serverHostname = "0.0.0.0";
 
             try
             {
                 InetAddress var2 = InetAddress.getLocalHost();
-                this.queryHostname = var2.getHostAddress();
+                queryHostname = var2.getHostAddress();
             }
             catch (UnknownHostException var3)
             {
-                this.logWarning("Unable to determine local host IP, please set server-ip in \'" + par1IServer.getSettingsFilename() + "\' : " + var3.getMessage());
+                logWarning("Unable to determine local host IP, please set server-ip in \'" + par1IServer.getSettingsFilename() + "\' : " + var3.getMessage());
             }
         }
 
-        if (0 == this.queryPort)
+        if (0 == queryPort)
         {
-            this.queryPort = this.serverPort;
-            this.logInfo("Setting default query port to " + this.queryPort);
-            par1IServer.setProperty("query.port", Integer.valueOf(this.queryPort));
+            queryPort = serverPort;
+            logInfo("Setting default query port to " + queryPort);
+            par1IServer.setProperty("query.port", Integer.valueOf(queryPort));
             par1IServer.setProperty("debug", Boolean.valueOf(false));
             par1IServer.saveProperties();
         }
 
-        this.field_72644_p = new HashMap();
-        this.output = new RConOutputStream(1460);
-        this.queryClients = new HashMap();
-        this.time = (new Date()).getTime();
+        field_72644_p = new HashMap();
+        output = new RConOutputStream(1460);
+        queryClients = new HashMap();
+        time = (new Date()).getTime();
     }
 
     /**
@@ -122,7 +122,7 @@ public class RConThreadQuery extends RConThreadBase
      */
     private void sendResponsePacket(byte[] par1ArrayOfByte, DatagramPacket par2DatagramPacket) throws IOException
     {
-        this.querySocket.send(new DatagramPacket(par1ArrayOfByte, par1ArrayOfByte.length, par2DatagramPacket.getSocketAddress()));
+        querySocket.send(new DatagramPacket(par1ArrayOfByte, par1ArrayOfByte.length, par2DatagramPacket.getSocketAddress()));
     }
 
     /**
@@ -133,44 +133,44 @@ public class RConThreadQuery extends RConThreadBase
         byte[] var2 = par1DatagramPacket.getData();
         int var3 = par1DatagramPacket.getLength();
         SocketAddress var4 = par1DatagramPacket.getSocketAddress();
-        this.logDebug("Packet len " + var3 + " [" + var4 + "]");
+        logDebug("Packet len " + var3 + " [" + var4 + "]");
 
         if (3 <= var3 && -2 == var2[0] && -3 == var2[1])
         {
-            this.logDebug("Packet \'" + RConUtils.getByteAsHexString(var2[2]) + "\' [" + var4 + "]");
+            logDebug("Packet \'" + RConUtils.getByteAsHexString(var2[2]) + "\' [" + var4 + "]");
 
             switch (var2[2])
             {
             case 0:
-                if (!this.verifyClientAuth(par1DatagramPacket).booleanValue())
+                if (!verifyClientAuth(par1DatagramPacket).booleanValue())
                 {
-                    this.logDebug("Invalid challenge [" + var4 + "]");
+                    logDebug("Invalid challenge [" + var4 + "]");
                     return false;
                 }
                 else if (15 == var3)
                 {
-                    this.sendResponsePacket(this.createQueryResponse(par1DatagramPacket), par1DatagramPacket);
-                    this.logDebug("Rules [" + var4 + "]");
+                    sendResponsePacket(createQueryResponse(par1DatagramPacket), par1DatagramPacket);
+                    logDebug("Rules [" + var4 + "]");
                 }
                 else
                 {
                     RConOutputStream var5 = new RConOutputStream(1460);
                     var5.writeInt(0);
-                    var5.writeByteArray(this.getRequestID(par1DatagramPacket.getSocketAddress()));
-                    var5.writeString(this.serverMotd);
+                    var5.writeByteArray(getRequestID(par1DatagramPacket.getSocketAddress()));
+                    var5.writeString(serverMotd);
                     var5.writeString("SMP");
-                    var5.writeString(this.worldName);
-                    var5.writeString(Integer.toString(this.getNumberOfPlayers()));
-                    var5.writeString(Integer.toString(this.maxPlayers));
-                    var5.writeShort((short)this.serverPort);
-                    var5.writeString(this.queryHostname);
-                    this.sendResponsePacket(var5.toByteArray(), par1DatagramPacket);
-                    this.logDebug("Status [" + var4 + "]");
+                    var5.writeString(worldName);
+                    var5.writeString(Integer.toString(getNumberOfPlayers()));
+                    var5.writeString(Integer.toString(maxPlayers));
+                    var5.writeShort((short)serverPort);
+                    var5.writeString(queryHostname);
+                    sendResponsePacket(var5.toByteArray(), par1DatagramPacket);
+                    logDebug("Status [" + var4 + "]");
                 }
 
             case 9:
-                this.sendAuthChallenge(par1DatagramPacket);
-                this.logDebug("Challenge [" + var4 + "]");
+                sendAuthChallenge(par1DatagramPacket);
+                logDebug("Challenge [" + var4 + "]");
                 return true;
 
             default:
@@ -179,7 +179,7 @@ public class RConThreadQuery extends RConThreadBase
         }
         else
         {
-            this.logDebug("Invalid packet [" + var4 + "]");
+            logDebug("Invalid packet [" + var4 + "]");
             return false;
         }
     }
@@ -192,10 +192,10 @@ public class RConThreadQuery extends RConThreadBase
     {
         long var2 = MinecraftServer.getCurrentTimeMillis();
 
-        if (var2 < this.lastQueryResponseTime + 5000L)
+        if (var2 < lastQueryResponseTime + 5000L)
         {
-            byte[] var9 = this.output.toByteArray();
-            byte[] var10 = this.getRequestID(par1DatagramPacket.getSocketAddress());
+            byte[] var9 = output.toByteArray();
+            byte[] var10 = getRequestID(par1DatagramPacket.getSocketAddress());
             var9[1] = var10[0];
             var9[2] = var10[1];
             var9[3] = var10[2];
@@ -204,49 +204,49 @@ public class RConThreadQuery extends RConThreadBase
         }
         else
         {
-            this.lastQueryResponseTime = var2;
-            this.output.reset();
-            this.output.writeInt(0);
-            this.output.writeByteArray(this.getRequestID(par1DatagramPacket.getSocketAddress()));
-            this.output.writeString("splitnum");
-            this.output.writeInt(128);
-            this.output.writeInt(0);
-            this.output.writeString("hostname");
-            this.output.writeString(this.serverMotd);
-            this.output.writeString("gametype");
-            this.output.writeString("SMP");
-            this.output.writeString("game_id");
-            this.output.writeString("MINECRAFT");
-            this.output.writeString("version");
-            this.output.writeString(this.server.getMinecraftVersion());
-            this.output.writeString("plugins");
-            this.output.writeString(this.server.getPlugins());
-            this.output.writeString("map");
-            this.output.writeString(this.worldName);
-            this.output.writeString("numplayers");
-            this.output.writeString("" + this.getNumberOfPlayers());
-            this.output.writeString("maxplayers");
-            this.output.writeString("" + this.maxPlayers);
-            this.output.writeString("hostport");
-            this.output.writeString("" + this.serverPort);
-            this.output.writeString("hostip");
-            this.output.writeString(this.queryHostname);
-            this.output.writeInt(0);
-            this.output.writeInt(1);
-            this.output.writeString("player_");
-            this.output.writeInt(0);
-            String[] var4 = this.server.getAllUsernames();
+            lastQueryResponseTime = var2;
+            output.reset();
+            output.writeInt(0);
+            output.writeByteArray(getRequestID(par1DatagramPacket.getSocketAddress()));
+            output.writeString("splitnum");
+            output.writeInt(128);
+            output.writeInt(0);
+            output.writeString("hostname");
+            output.writeString(serverMotd);
+            output.writeString("gametype");
+            output.writeString("SMP");
+            output.writeString("game_id");
+            output.writeString("MINECRAFT");
+            output.writeString("version");
+            output.writeString(server.getMinecraftVersion());
+            output.writeString("plugins");
+            output.writeString(server.getPlugins());
+            output.writeString("map");
+            output.writeString(worldName);
+            output.writeString("numplayers");
+            output.writeString("" + getNumberOfPlayers());
+            output.writeString("maxplayers");
+            output.writeString("" + maxPlayers);
+            output.writeString("hostport");
+            output.writeString("" + serverPort);
+            output.writeString("hostip");
+            output.writeString(queryHostname);
+            output.writeInt(0);
+            output.writeInt(1);
+            output.writeString("player_");
+            output.writeInt(0);
+            String[] var4 = server.getAllUsernames();
             String[] var5 = var4;
             int var6 = var4.length;
 
             for (int var7 = 0; var7 < var6; ++var7)
             {
                 String var8 = var5[var7];
-                this.output.writeString(var8);
+                output.writeString(var8);
             }
 
-            this.output.writeInt(0);
-            return this.output.toByteArray();
+            output.writeInt(0);
+            return output.toByteArray();
         }
     }
 
@@ -255,7 +255,7 @@ public class RConThreadQuery extends RConThreadBase
      */
     private byte[] getRequestID(SocketAddress par1SocketAddress)
     {
-        return ((RConThreadQuery.Auth)this.queryClients.get(par1SocketAddress)).getRequestId();
+        return ((RConThreadQuery.Auth)queryClients.get(par1SocketAddress)).getRequestId();
     }
 
     /**
@@ -265,14 +265,14 @@ public class RConThreadQuery extends RConThreadBase
     {
         SocketAddress var2 = par1DatagramPacket.getSocketAddress();
 
-        if (!this.queryClients.containsKey(var2))
+        if (!queryClients.containsKey(var2))
         {
             return Boolean.valueOf(false);
         }
         else
         {
             byte[] var3 = par1DatagramPacket.getData();
-            return ((RConThreadQuery.Auth)this.queryClients.get(var2)).getRandomChallenge() != RConUtils.getBytesAsBEint(var3, 7, par1DatagramPacket.getLength()) ? Boolean.valueOf(false) : Boolean.valueOf(true);
+            return ((RConThreadQuery.Auth)queryClients.get(var2)).getRandomChallenge() != RConUtils.getBytesAsBEint(var3, 7, par1DatagramPacket.getLength()) ? Boolean.valueOf(false) : Boolean.valueOf(true);
         }
     }
 
@@ -283,8 +283,8 @@ public class RConThreadQuery extends RConThreadBase
     private void sendAuthChallenge(DatagramPacket par1DatagramPacket) throws IOException
     {
         RConThreadQuery.Auth var2 = new RConThreadQuery.Auth(par1DatagramPacket);
-        this.queryClients.put(par1DatagramPacket.getSocketAddress(), var2);
-        this.sendResponsePacket(var2.getChallengeValue(), par1DatagramPacket);
+        queryClients.put(par1DatagramPacket.getSocketAddress(), var2);
+        sendResponsePacket(var2.getChallengeValue(), par1DatagramPacket);
     }
 
     /**
@@ -292,14 +292,14 @@ public class RConThreadQuery extends RConThreadBase
      */
     private void cleanQueryClientsMap()
     {
-        if (this.running)
+        if (running)
         {
             long var1 = MinecraftServer.getCurrentTimeMillis();
 
-            if (var1 >= this.lastAuthCheckTime + 30000L)
+            if (var1 >= lastAuthCheckTime + 30000L)
             {
-                this.lastAuthCheckTime = var1;
-                Iterator var3 = this.queryClients.entrySet().iterator();
+                lastAuthCheckTime = var1;
+                Iterator var3 = queryClients.entrySet().iterator();
 
                 while (var3.hasNext())
                 {
@@ -316,23 +316,23 @@ public class RConThreadQuery extends RConThreadBase
 
     public void run()
     {
-        this.logInfo("Query running on " + this.serverHostname + ":" + this.queryPort);
-        this.lastAuthCheckTime = MinecraftServer.getCurrentTimeMillis();
-        this.incomingPacket = new DatagramPacket(this.buffer, this.buffer.length);
+        logInfo("Query running on " + serverHostname + ":" + queryPort);
+        lastAuthCheckTime = MinecraftServer.getCurrentTimeMillis();
+        incomingPacket = new DatagramPacket(buffer, buffer.length);
 
         try
         {
-            while (this.running)
+            while (running)
             {
                 try
                 {
-                    this.querySocket.receive(this.incomingPacket);
-                    this.cleanQueryClientsMap();
-                    this.parseIncomingPacket(this.incomingPacket);
+                    querySocket.receive(incomingPacket);
+                    cleanQueryClientsMap();
+                    parseIncomingPacket(incomingPacket);
                 }
                 catch (SocketTimeoutException var7)
                 {
-                    this.cleanQueryClientsMap();
+                    cleanQueryClientsMap();
                 }
                 catch (PortUnreachableException var8)
                 {
@@ -340,13 +340,13 @@ public class RConThreadQuery extends RConThreadBase
                 }
                 catch (IOException var9)
                 {
-                    this.stopWithException(var9);
+                    stopWithException(var9);
                 }
             }
         }
         finally
         {
-            this.closeAllSockets();
+            closeAllSockets();
         }
     }
 
@@ -355,18 +355,18 @@ public class RConThreadQuery extends RConThreadBase
      */
     public void startThread()
     {
-        if (!this.running)
+        if (!running)
         {
-            if (0 < this.queryPort && 65535 >= this.queryPort)
+            if (0 < queryPort && 65535 >= queryPort)
             {
-                if (this.initQuerySystem())
+                if (initQuerySystem())
                 {
                     super.startThread();
                 }
             }
             else
             {
-                this.logWarning("Invalid query port " + this.queryPort + " found in \'" + this.server.getSettingsFilename() + "\' (queries disabled)");
+                logWarning("Invalid query port " + queryPort + " found in \'" + server.getSettingsFilename() + "\' (queries disabled)");
             }
         }
     }
@@ -376,14 +376,14 @@ public class RConThreadQuery extends RConThreadBase
      */
     private void stopWithException(Exception par1Exception)
     {
-        if (this.running)
+        if (running)
         {
-            this.logWarning("Unexpected exception, buggy JRE? (" + par1Exception.toString() + ")");
+            logWarning("Unexpected exception, buggy JRE? (" + par1Exception.toString() + ")");
 
-            if (!this.initQuerySystem())
+            if (!initQuerySystem())
             {
-                this.logSevere("Failed to recover from buggy JRE, shutting down!");
-                this.running = false;
+                logSevere("Failed to recover from buggy JRE, shutting down!");
+                running = false;
             }
         }
     }
@@ -395,22 +395,22 @@ public class RConThreadQuery extends RConThreadBase
     {
         try
         {
-            this.querySocket = new DatagramSocket(this.queryPort, InetAddress.getByName(this.serverHostname));
-            this.registerSocket(this.querySocket);
-            this.querySocket.setSoTimeout(500);
+            querySocket = new DatagramSocket(queryPort, InetAddress.getByName(serverHostname));
+            registerSocket(querySocket);
+            querySocket.setSoTimeout(500);
             return true;
         }
         catch (SocketException var2)
         {
-            this.logWarning("Unable to initialise query system on " + this.serverHostname + ":" + this.queryPort + " (Socket): " + var2.getMessage());
+            logWarning("Unable to initialise query system on " + serverHostname + ":" + queryPort + " (Socket): " + var2.getMessage());
         }
         catch (UnknownHostException var3)
         {
-            this.logWarning("Unable to initialise query system on " + this.serverHostname + ":" + this.queryPort + " (Unknown Host): " + var3.getMessage());
+            logWarning("Unable to initialise query system on " + serverHostname + ":" + queryPort + " (Unknown Host): " + var3.getMessage());
         }
         catch (Exception var4)
         {
-            this.logWarning("Unable to initialise query system on " + this.serverHostname + ":" + this.queryPort + " (E): " + var4.getMessage());
+            logWarning("Unable to initialise query system on " + serverHostname + ":" + queryPort + " (E): " + var4.getMessage());
         }
 
         return false;
@@ -428,34 +428,34 @@ public class RConThreadQuery extends RConThreadBase
         public Auth(DatagramPacket par2DatagramPacket)
         {
             byte[] var3 = par2DatagramPacket.getData();
-            this.requestId = new byte[4];
-            this.requestId[0] = var3[3];
-            this.requestId[1] = var3[4];
-            this.requestId[2] = var3[5];
-            this.requestId[3] = var3[6];
-            this.requestIdAsString = new String(this.requestId);
-            this.randomChallenge = (new Random()).nextInt(16777216);
-            this.challengeValue = String.format("\t%s%d\u0000", new Object[] {this.requestIdAsString, Integer.valueOf(this.randomChallenge)}).getBytes();
+            requestId = new byte[4];
+            requestId[0] = var3[3];
+            requestId[1] = var3[4];
+            requestId[2] = var3[5];
+            requestId[3] = var3[6];
+            requestIdAsString = new String(requestId);
+            randomChallenge = (new Random()).nextInt(16777216);
+            challengeValue = String.format("\t%s%d\u0000", new Object[] {requestIdAsString, Integer.valueOf(randomChallenge)}).getBytes();
         }
 
         public Boolean hasExpired(long par1)
         {
-            return Boolean.valueOf(this.timestamp < par1);
+            return Boolean.valueOf(timestamp < par1);
         }
 
         public int getRandomChallenge()
         {
-            return this.randomChallenge;
+            return randomChallenge;
         }
 
         public byte[] getChallengeValue()
         {
-            return this.challengeValue;
+            return challengeValue;
         }
 
         public byte[] getRequestId()
         {
-            return this.requestId;
+            return requestId;
         }
     }
 }

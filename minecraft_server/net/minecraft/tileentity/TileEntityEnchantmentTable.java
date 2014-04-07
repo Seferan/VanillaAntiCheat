@@ -25,9 +25,9 @@ public class TileEntityEnchantmentTable extends TileEntity
     {
         super.writeToNBT(p_145841_1_);
 
-        if (this.func_145921_b())
+        if (func_145921_b())
         {
-            p_145841_1_.setString("CustomName", this.field_145922_s);
+            p_145841_1_.setString("CustomName", field_145922_s);
         }
     }
 
@@ -37,63 +37,63 @@ public class TileEntityEnchantmentTable extends TileEntity
 
         if (p_145839_1_.func_150297_b("CustomName", 8))
         {
-            this.field_145922_s = p_145839_1_.getString("CustomName");
+            field_145922_s = p_145839_1_.getString("CustomName");
         }
     }
 
     public void updateEntity()
     {
         super.updateEntity();
-        this.field_145927_n = this.field_145930_m;
-        this.field_145925_p = this.field_145928_o;
-        EntityPlayer var1 = this.worldObj.getClosestPlayer((double)((float)this.xCoord + 0.5F), (double)((float)this.yCoord + 0.5F), (double)((float)this.zCoord + 0.5F), 3.0D);
+        field_145927_n = field_145930_m;
+        field_145925_p = field_145928_o;
+        EntityPlayer var1 = worldObj.getClosestPlayer(xCoord + 0.5F, yCoord + 0.5F, zCoord + 0.5F, 3.0D);
 
         if (var1 != null)
         {
-            double var2 = var1.posX - (double)((float)this.xCoord + 0.5F);
-            double var4 = var1.posZ - (double)((float)this.zCoord + 0.5F);
-            this.field_145924_q = (float)Math.atan2(var4, var2);
-            this.field_145930_m += 0.1F;
+            double var2 = var1.posX - (xCoord + 0.5F);
+            double var4 = var1.posZ - (zCoord + 0.5F);
+            field_145924_q = (float)Math.atan2(var4, var2);
+            field_145930_m += 0.1F;
 
-            if (this.field_145930_m < 0.5F || field_145923_r.nextInt(40) == 0)
+            if (field_145930_m < 0.5F || field_145923_r.nextInt(40) == 0)
             {
-                float var6 = this.field_145932_k;
+                float var6 = field_145932_k;
 
                 do
                 {
-                    this.field_145932_k += (float)(field_145923_r.nextInt(4) - field_145923_r.nextInt(4));
-                } while (var6 == this.field_145932_k);
+                    field_145932_k += field_145923_r.nextInt(4) - field_145923_r.nextInt(4);
+                } while (var6 == field_145932_k);
             }
         }
         else
         {
-            this.field_145924_q += 0.02F;
-            this.field_145930_m -= 0.1F;
+            field_145924_q += 0.02F;
+            field_145930_m -= 0.1F;
         }
 
-        while (this.field_145928_o >= (float)Math.PI)
+        while (field_145928_o >= (float)Math.PI)
         {
-            this.field_145928_o -= ((float)Math.PI * 2F);
+            field_145928_o -= ((float)Math.PI * 2F);
         }
 
-        while (this.field_145928_o < -(float)Math.PI)
+        while (field_145928_o < -(float)Math.PI)
         {
-            this.field_145928_o += ((float)Math.PI * 2F);
+            field_145928_o += ((float)Math.PI * 2F);
         }
 
-        while (this.field_145924_q >= (float)Math.PI)
+        while (field_145924_q >= (float)Math.PI)
         {
-            this.field_145924_q -= ((float)Math.PI * 2F);
+            field_145924_q -= ((float)Math.PI * 2F);
         }
 
-        while (this.field_145924_q < -(float)Math.PI)
+        while (field_145924_q < -(float)Math.PI)
         {
-            this.field_145924_q += ((float)Math.PI * 2F);
+            field_145924_q += ((float)Math.PI * 2F);
         }
 
         float var7;
 
-        for (var7 = this.field_145924_q - this.field_145928_o; var7 >= (float)Math.PI; var7 -= ((float)Math.PI * 2F))
+        for (var7 = field_145924_q - field_145928_o; var7 >= (float)Math.PI; var7 -= ((float)Math.PI * 2F))
         {
             ;
         }
@@ -103,21 +103,21 @@ public class TileEntityEnchantmentTable extends TileEntity
             var7 += ((float)Math.PI * 2F);
         }
 
-        this.field_145928_o += var7 * 0.4F;
+        field_145928_o += var7 * 0.4F;
 
-        if (this.field_145930_m < 0.0F)
+        if (field_145930_m < 0.0F)
         {
-            this.field_145930_m = 0.0F;
+            field_145930_m = 0.0F;
         }
 
-        if (this.field_145930_m > 1.0F)
+        if (field_145930_m > 1.0F)
         {
-            this.field_145930_m = 1.0F;
+            field_145930_m = 1.0F;
         }
 
-        ++this.field_145926_a;
-        this.field_145931_j = this.field_145933_i;
-        float var3 = (this.field_145932_k - this.field_145933_i) * 0.4F;
+        ++field_145926_a;
+        field_145931_j = field_145933_i;
+        float var3 = (field_145932_k - field_145933_i) * 0.4F;
         float var8 = 0.2F;
 
         if (var3 < -var8)
@@ -130,22 +130,22 @@ public class TileEntityEnchantmentTable extends TileEntity
             var3 = var8;
         }
 
-        this.field_145929_l += (var3 - this.field_145929_l) * 0.9F;
-        this.field_145933_i += this.field_145929_l;
+        field_145929_l += (var3 - field_145929_l) * 0.9F;
+        field_145933_i += field_145929_l;
     }
 
     public String func_145919_a()
     {
-        return this.func_145921_b() ? this.field_145922_s : "container.enchant";
+        return func_145921_b() ? field_145922_s : "container.enchant";
     }
 
     public boolean func_145921_b()
     {
-        return this.field_145922_s != null && this.field_145922_s.length() > 0;
+        return field_145922_s != null && field_145922_s.length() > 0;
     }
 
     public void func_145920_a(String p_145920_1_)
     {
-        this.field_145922_s = p_145920_1_;
+        field_145922_s = p_145920_1_;
     }
 }

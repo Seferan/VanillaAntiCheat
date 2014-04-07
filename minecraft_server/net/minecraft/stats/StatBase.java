@@ -43,11 +43,11 @@ public class StatBase
 
     public StatBase(String p_i45307_1_, IChatComponent p_i45307_2_, IStatType p_i45307_3_)
     {
-        this.statId = p_i45307_1_;
-        this.statName = p_i45307_2_;
-        this.type = p_i45307_3_;
-        this.field_150957_c = new ObjectiveStat(this);
-        IScoreObjectiveCriteria.field_96643_a.put(this.field_150957_c.func_96636_a(), this.field_150957_c);
+        statId = p_i45307_1_;
+        statName = p_i45307_2_;
+        type = p_i45307_3_;
+        field_150957_c = new ObjectiveStat(this);
+        IScoreObjectiveCriteria.field_96643_a.put(field_150957_c.func_96636_a(), field_150957_c);
     }
 
     public StatBase(String p_i45308_1_, IChatComponent p_i45308_2_)
@@ -61,7 +61,7 @@ public class StatBase
      */
     public StatBase initIndependentStat()
     {
-        this.isIndependent = true;
+        isIndependent = true;
         return this;
     }
 
@@ -70,14 +70,14 @@ public class StatBase
      */
     public StatBase registerStat()
     {
-        if (StatList.oneShotStats.containsKey(this.statId))
+        if (StatList.oneShotStats.containsKey(statId))
         {
-            throw new RuntimeException("Duplicate stat id: \"" + ((StatBase)StatList.oneShotStats.get(this.statId)).statName + "\" and \"" + this.statName + "\" at id " + this.statId);
+            throw new RuntimeException("Duplicate stat id: \"" + ((StatBase)StatList.oneShotStats.get(statId)).statName + "\" and \"" + statName + "\" at id " + statId);
         }
         else
         {
             StatList.allStats.add(this);
-            StatList.oneShotStats.put(this.statId, this);
+            StatList.oneShotStats.put(statId, this);
             return this;
         }
     }
@@ -89,15 +89,15 @@ public class StatBase
 
     public IChatComponent func_150951_e()
     {
-        IChatComponent var1 = this.statName.createCopy();
+        IChatComponent var1 = statName.createCopy();
         var1.getChatStyle().setColor(EnumChatFormatting.GRAY);
-        var1.getChatStyle().setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ACHIEVEMENT, new ChatComponentText(this.statId)));
+        var1.getChatStyle().setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ACHIEVEMENT, new ChatComponentText(statId)));
         return var1;
     }
 
     public IChatComponent func_150955_j()
     {
-        IChatComponent var1 = this.func_150951_e();
+        IChatComponent var1 = func_150951_e();
         IChatComponent var2 = (new ChatComponentText("[")).appendSibling(var1).appendText("]");
         var2.setChatStyle(var1.getChatStyle());
         return var2;
@@ -112,7 +112,7 @@ public class StatBase
         else if (par1Obj != null && this.getClass() == par1Obj.getClass())
         {
             StatBase var2 = (StatBase)par1Obj;
-            return this.statId.equals(var2.statId);
+            return statId.equals(var2.statId);
         }
         else
         {
@@ -122,27 +122,27 @@ public class StatBase
 
     public int hashCode()
     {
-        return this.statId.hashCode();
+        return statId.hashCode();
     }
 
     public String toString()
     {
-        return "Stat{id=" + this.statId + ", nameId=" + this.statName + ", awardLocallyOnly=" + this.isIndependent + ", formatter=" + this.type + ", objectiveCriteria=" + this.field_150957_c + '}';
+        return "Stat{id=" + statId + ", nameId=" + statName + ", awardLocallyOnly=" + isIndependent + ", formatter=" + type + ", objectiveCriteria=" + field_150957_c + '}';
     }
 
     public IScoreObjectiveCriteria func_150952_k()
     {
-        return this.field_150957_c;
+        return field_150957_c;
     }
 
     public Class func_150954_l()
     {
-        return this.field_150956_d;
+        return field_150956_d;
     }
 
     public StatBase func_150953_b(Class p_150953_1_)
     {
-        this.field_150956_d = p_150953_1_;
+        field_150956_d = p_150953_1_;
         return this;
     }
 }

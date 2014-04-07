@@ -11,7 +11,7 @@ public abstract class BlockContainer extends Block implements ITileEntityProvide
     protected BlockContainer(Material p_i45386_1_)
     {
         super(p_i45386_1_);
-        this.isBlockContainer = true;
+        isBlockContainer = true;
     }
 
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)

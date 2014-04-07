@@ -10,13 +10,13 @@ public enum EnumDifficulty
 
     private EnumDifficulty(int p_i45312_3_, String p_i45312_4_)
     {
-        this.field_151527_f = p_i45312_3_;
-        this.field_151528_g = p_i45312_4_;
+        field_151527_f = p_i45312_3_;
+        field_151528_g = p_i45312_4_;
     }
 
     public int func_151525_a()
     {
-        return this.field_151527_f;
+        return field_151527_f;
     }
 
     public static EnumDifficulty func_151523_a(int p_151523_0_)
@@ -26,7 +26,7 @@ public enum EnumDifficulty
 
     public String func_151526_b()
     {
-        return this.field_151528_g;
+        return field_151528_g;
     }
 
     static

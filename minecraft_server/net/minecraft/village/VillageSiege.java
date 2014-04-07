@@ -30,7 +30,7 @@ public class VillageSiege
 
     public VillageSiege(World par1World)
     {
-        this.worldObj = par1World;
+        worldObj = par1World;
     }
 
     /**
@@ -42,76 +42,76 @@ public class VillageSiege
 
         if (var1)
         {
-            if (this.field_75536_c == 2)
+            if (field_75536_c == 2)
             {
-                this.field_75533_d = 100;
+                field_75533_d = 100;
                 return;
             }
         }
         else
         {
-            if (this.worldObj.isDaytime())
+            if (worldObj.isDaytime())
             {
-                this.field_75536_c = 0;
+                field_75536_c = 0;
                 return;
             }
 
-            if (this.field_75536_c == 2) { return; }
+            if (field_75536_c == 2) { return; }
 
-            if (this.field_75536_c == 0)
+            if (field_75536_c == 0)
             {
-                float var2 = this.worldObj.getCelestialAngle(0.0F);
+                float var2 = worldObj.getCelestialAngle(0.0F);
 
-                if ((double)var2 < 0.5D || (double)var2 > 0.501D) { return; }
+                if (var2 < 0.5D || var2 > 0.501D) { return; }
 
-                this.field_75536_c = this.worldObj.rand.nextInt(10) == 0 ? 1 : 2;
-                this.field_75535_b = false;
+                field_75536_c = worldObj.rand.nextInt(10) == 0 ? 1 : 2;
+                field_75535_b = false;
 
-                if (this.field_75536_c == 2) { return; }
+                if (field_75536_c == 2) { return; }
             }
         }
 
-        if (!this.field_75535_b)
+        if (!field_75535_b)
         {
-            if (!this.func_75529_b()) { return; }
+            if (!func_75529_b()) { return; }
 
-            this.field_75535_b = true;
+            field_75535_b = true;
         }
 
-        if (this.field_75534_e > 0)
+        if (field_75534_e > 0)
         {
-            --this.field_75534_e;
+            --field_75534_e;
         }
         else
         {
-            this.field_75534_e = 2;
+            field_75534_e = 2;
 
-            if (this.field_75533_d > 0)
+            if (field_75533_d > 0)
             {
-                this.spawnZombie();
-                --this.field_75533_d;
+                spawnZombie();
+                --field_75533_d;
             }
             else
             {
-                this.field_75536_c = 2;
+                field_75536_c = 2;
             }
         }
     }
 
     private boolean func_75529_b()
     {
-        List var1 = this.worldObj.playerEntities;
+        List var1 = worldObj.playerEntities;
         Iterator var2 = var1.iterator();
 
         while (var2.hasNext())
         {
             EntityPlayer var3 = (EntityPlayer)var2.next();
-            this.theVillage = this.worldObj.villageCollectionObj.findNearestVillage((int)var3.posX, (int)var3.posY, (int)var3.posZ, 1);
+            theVillage = worldObj.villageCollectionObj.findNearestVillage((int)var3.posX, (int)var3.posY, (int)var3.posZ, 1);
 
-            if (this.theVillage != null && this.theVillage.getNumVillageDoors() >= 10 && this.theVillage.getTicksSinceLastDoorAdding() >= 20 && this.theVillage.getNumVillagers() >= 20)
+            if (theVillage != null && theVillage.getNumVillageDoors() >= 10 && theVillage.getTicksSinceLastDoorAdding() >= 20 && theVillage.getNumVillagers() >= 20)
             {
-                ChunkCoordinates var4 = this.theVillage.getCenter();
-                float var5 = (float)this.theVillage.getVillageRadius();
+                ChunkCoordinates var4 = theVillage.getCenter();
+                float var5 = theVillage.getVillageRadius();
                 boolean var6 = false;
                 int var7 = 0;
 
@@ -119,17 +119,17 @@ public class VillageSiege
                 {
                     if (var7 < 10)
                     {
-                        this.field_75532_g = var4.posX + (int)((double)(MathHelper.cos(this.worldObj.rand.nextFloat() * (float)Math.PI * 2.0F) * var5) * 0.9D);
-                        this.field_75538_h = var4.posY;
-                        this.field_75539_i = var4.posZ + (int)((double)(MathHelper.sin(this.worldObj.rand.nextFloat() * (float)Math.PI * 2.0F) * var5) * 0.9D);
+                        field_75532_g = var4.posX + (int)(MathHelper.cos(worldObj.rand.nextFloat() * (float)Math.PI * 2.0F) * var5 * 0.9D);
+                        field_75538_h = var4.posY;
+                        field_75539_i = var4.posZ + (int)(MathHelper.sin(worldObj.rand.nextFloat() * (float)Math.PI * 2.0F) * var5 * 0.9D);
                         var6 = false;
-                        Iterator var8 = this.worldObj.villageCollectionObj.getVillageList().iterator();
+                        Iterator var8 = worldObj.villageCollectionObj.getVillageList().iterator();
 
                         while (var8.hasNext())
                         {
                             Village var9 = (Village)var8.next();
 
-                            if (var9 != this.theVillage && var9.isInRange(this.field_75532_g, this.field_75538_h, this.field_75539_i))
+                            if (var9 != theVillage && var9.isInRange(field_75532_g, field_75538_h, field_75539_i))
                             {
                                 var6 = true;
                                 break;
@@ -145,12 +145,12 @@ public class VillageSiege
 
                     if (var6) { return false; }
 
-                    Vec3 var10 = this.func_75527_a(this.field_75532_g, this.field_75538_h, this.field_75539_i);
+                    Vec3 var10 = func_75527_a(field_75532_g, field_75538_h, field_75539_i);
 
                     if (var10 != null)
                     {
-                        this.field_75534_e = 0;
-                        this.field_75533_d = 20;
+                        field_75534_e = 0;
+                        field_75533_d = 20;
                         return true;
                     }
 
@@ -164,7 +164,7 @@ public class VillageSiege
 
     private boolean spawnZombie()
     {
-        Vec3 var1 = this.func_75527_a(this.field_75532_g, this.field_75538_h, this.field_75539_i);
+        Vec3 var1 = func_75527_a(field_75532_g, field_75538_h, field_75539_i);
 
         if (var1 == null)
         {
@@ -176,7 +176,7 @@ public class VillageSiege
 
             try
             {
-                var2 = new EntityZombie(this.worldObj);
+                var2 = new EntityZombie(worldObj);
                 var2.onSpawnWithEgg((IEntityLivingData)null);
                 var2.setVillager(false);
             }
@@ -186,10 +186,10 @@ public class VillageSiege
                 return false;
             }
 
-            var2.setLocationAndAngles(var1.xCoord, var1.yCoord, var1.zCoord, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
-            this.worldObj.spawnEntityInWorld(var2);
-            ChunkCoordinates var3 = this.theVillage.getCenter();
-            var2.setHomeArea(var3.posX, var3.posY, var3.posZ, this.theVillage.getVillageRadius());
+            var2.setLocationAndAngles(var1.xCoord, var1.yCoord, var1.zCoord, worldObj.rand.nextFloat() * 360.0F, 0.0F);
+            worldObj.spawnEntityInWorld(var2);
+            ChunkCoordinates var3 = theVillage.getCenter();
+            var2.setHomeArea(var3.posX, var3.posY, var3.posZ, theVillage.getVillageRadius());
             return true;
         }
     }
@@ -198,13 +198,13 @@ public class VillageSiege
     {
         for (int var4 = 0; var4 < 10; ++var4)
         {
-            int var5 = par1 + this.worldObj.rand.nextInt(16) - 8;
-            int var6 = par2 + this.worldObj.rand.nextInt(6) - 3;
-            int var7 = par3 + this.worldObj.rand.nextInt(16) - 8;
+            int var5 = par1 + worldObj.rand.nextInt(16) - 8;
+            int var6 = par2 + worldObj.rand.nextInt(6) - 3;
+            int var7 = par3 + worldObj.rand.nextInt(16) - 8;
 
-            if (this.theVillage.isInRange(var5, var6, var7) && SpawnerAnimals.canCreatureTypeSpawnAtLocation(EnumCreatureType.monster, this.worldObj, var5, var6, var7))
+            if (theVillage.isInRange(var5, var6, var7) && SpawnerAnimals.canCreatureTypeSpawnAtLocation(EnumCreatureType.monster, worldObj, var5, var6, var7))
             {
-                this.worldObj.getWorldVec3Pool().getVecFromPool((double)var5, (double)var6, (double)var7);
+                worldObj.getWorldVec3Pool().getVecFromPool(var5, var6, var7);
             }
         }
 

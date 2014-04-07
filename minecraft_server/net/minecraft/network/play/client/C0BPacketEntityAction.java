@@ -19,9 +19,9 @@ public class C0BPacketEntityAction extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149517_a = p_148837_1_.readInt();
-        this.field_149515_b = p_148837_1_.readByte();
-        this.field_149516_c = p_148837_1_.readInt();
+        field_149517_a = p_148837_1_.readInt();
+        field_149515_b = p_148837_1_.readByte();
+        field_149516_c = p_148837_1_.readInt();
     }
 
     /**
@@ -29,9 +29,9 @@ public class C0BPacketEntityAction extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149517_a);
-        p_148840_1_.writeByte(this.field_149515_b);
-        p_148840_1_.writeInt(this.field_149516_c);
+        p_148840_1_.writeInt(field_149517_a);
+        p_148840_1_.writeByte(field_149515_b);
+        p_148840_1_.writeInt(field_149516_c);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149514_1_)
@@ -41,12 +41,12 @@ public class C0BPacketEntityAction extends Packet
 
     public int func_149513_d()
     {
-        return this.field_149515_b;
+        return field_149515_b;
     }
 
     public int func_149512_e()
     {
-        return this.field_149516_c;
+        return field_149516_c;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

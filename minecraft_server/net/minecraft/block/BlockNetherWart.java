@@ -15,10 +15,10 @@ public class BlockNetherWart extends BlockBush
 
     protected BlockNetherWart()
     {
-        this.setTickRandomly(true);
+        setTickRandomly(true);
         float var1 = 0.5F;
-        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
-        this.setcreativeTab((CreativeTabs)null);
+        setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
+        setcreativeTab((CreativeTabs)null);
     }
 
     protected boolean func_149854_a(Block p_149854_1_)
@@ -32,7 +32,7 @@ public class BlockNetherWart extends BlockBush
      */
     public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
     {
-        return this.func_149854_a(p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_));
+        return func_149854_a(p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_));
     }
 
     /**
@@ -81,7 +81,7 @@ public class BlockNetherWart extends BlockBush
 
             for (int var9 = 0; var9 < var8; ++var9)
             {
-                this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(Items.nether_wart));
+                dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(Items.nether_wart));
             }
         }
     }

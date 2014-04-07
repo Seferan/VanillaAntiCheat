@@ -78,7 +78,7 @@ public interface IChatComponent extends Iterable
                     while (var13.hasNext())
                     {
                         JsonElement var16 = (JsonElement)var13.next();
-                        IChatComponent var17 = this.deserialize(var16, var16.getClass(), p_150698_3_);
+                        IChatComponent var17 = deserialize(var16, var16.getClass(), p_150698_3_);
 
                         if (var12 == null)
                         {
@@ -119,7 +119,7 @@ public interface IChatComponent extends Iterable
 
                         for (int var9 = 0; var9 < var8.length; ++var9)
                         {
-                            var8[var9] = this.deserialize(var7.get(var9), p_150698_2_, p_150698_3_);
+                            var8[var9] = deserialize(var7.get(var9), p_150698_2_, p_150698_3_);
 
                             if (var8[var9] instanceof ChatComponentText)
                             {
@@ -148,7 +148,7 @@ public interface IChatComponent extends Iterable
 
                     for (int var15 = 0; var15 < var14.size(); ++var15)
                     {
-                        ((IChatComponent)var5).appendSibling(this.deserialize(var14.get(var15), p_150698_2_, p_150698_3_));
+                        ((IChatComponent)var5).appendSibling(deserialize(var14.get(var15), p_150698_2_, p_150698_3_));
                     }
                 }
 
@@ -186,7 +186,7 @@ public interface IChatComponent extends Iterable
 
                 if (!p_150697_1_.getChatStyle().isEmpty())
                 {
-                    this.func_150695_a(p_150697_1_.getChatStyle(), var4, p_150697_3_);
+                    func_150695_a(p_150697_1_.getChatStyle(), var4, p_150697_3_);
                 }
 
                 if (!p_150697_1_.getSiblings().isEmpty())
@@ -249,7 +249,7 @@ public interface IChatComponent extends Iterable
 
         public static IChatComponent func_150699_a(String p_150699_0_)
         {
-            return (IChatComponent)field_150700_a.fromJson(p_150699_0_, IChatComponent.class);
+            return field_150700_a.fromJson(p_150699_0_, IChatComponent.class);
         }
 
         public JsonElement serialize(Object par1Obj, Type par2Type, JsonSerializationContext par3JsonSerializationContext)

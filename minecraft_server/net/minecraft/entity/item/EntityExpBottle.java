@@ -47,19 +47,19 @@ public class EntityExpBottle extends EntityThrowable
      */
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            this.worldObj.playAuxSFX(2002, (int)Math.round(this.posX), (int)Math.round(this.posY), (int)Math.round(this.posZ), 0);
-            int var2 = 3 + this.worldObj.rand.nextInt(5) + this.worldObj.rand.nextInt(5);
+            worldObj.playAuxSFX(2002, (int)Math.round(posX), (int)Math.round(posY), (int)Math.round(posZ), 0);
+            int var2 = 3 + worldObj.rand.nextInt(5) + worldObj.rand.nextInt(5);
 
             while (var2 > 0)
             {
                 int var3 = EntityXPOrb.getXPSplit(var2);
                 var2 -= var3;
-                this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.posX, this.posY, this.posZ, var3));
+                worldObj.spawnEntityInWorld(new EntityXPOrb(worldObj, posX, posY, posZ, var3));
             }
 
-            this.setDead();
+            setDead();
         }
     }
 }

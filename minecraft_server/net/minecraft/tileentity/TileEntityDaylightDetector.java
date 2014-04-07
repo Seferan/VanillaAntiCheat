@@ -8,13 +8,13 @@ public class TileEntityDaylightDetector extends TileEntity
 
     public void updateEntity()
     {
-        if (this.worldObj != null && !this.worldObj.isClient && this.worldObj.getTotalWorldTime() % 20L == 0L)
+        if (worldObj != null && !worldObj.isClient && worldObj.getTotalWorldTime() % 20L == 0L)
         {
-            this.blockType = this.getBlockType();
+            blockType = getBlockType();
 
-            if (this.blockType instanceof BlockDaylightDetector)
+            if (blockType instanceof BlockDaylightDetector)
             {
-                ((BlockDaylightDetector)this.blockType).func_149957_e(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                ((BlockDaylightDetector)blockType).func_149957_e(worldObj, xCoord, yCoord, zCoord);
             }
         }
     }

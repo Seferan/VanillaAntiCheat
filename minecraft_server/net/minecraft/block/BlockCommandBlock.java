@@ -40,7 +40,7 @@ public class BlockCommandBlock extends BlockContainer
             if (var6 && !var8)
             {
                 p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var7 | 1, 4);
-                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, this.func_149738_a(p_149695_1_));
+                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, func_149738_a(p_149695_1_));
             }
             else if (!var6 && var8)
             {

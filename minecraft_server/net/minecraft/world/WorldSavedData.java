@@ -13,7 +13,7 @@ public abstract class WorldSavedData
 
     public WorldSavedData(String par1Str)
     {
-        this.mapName = par1Str;
+        mapName = par1Str;
     }
 
     /**
@@ -33,7 +33,7 @@ public abstract class WorldSavedData
      */
     public void markDirty()
     {
-        this.setDirty(true);
+        setDirty(true);
     }
 
     /**
@@ -42,7 +42,7 @@ public abstract class WorldSavedData
      */
     public void setDirty(boolean par1)
     {
-        this.dirty = par1;
+        dirty = par1;
     }
 
     /**
@@ -50,6 +50,6 @@ public abstract class WorldSavedData
      */
     public boolean isDirty()
     {
-        return this.dirty;
+        return dirty;
     }
 }

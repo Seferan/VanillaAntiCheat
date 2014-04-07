@@ -14,12 +14,12 @@ public class CombatEntry
 
     public CombatEntry(DamageSource par1DamageSource, int par2, float par3, float par4, String par5Str, float par6)
     {
-        this.damageSrc = par1DamageSource;
-        this.field_94567_b = par2;
-        this.field_94568_c = par4;
-        this.field_94565_d = par3;
-        this.field_94566_e = par5Str;
-        this.field_94564_f = par6;
+        damageSrc = par1DamageSource;
+        field_94567_b = par2;
+        field_94568_c = par4;
+        field_94565_d = par3;
+        field_94566_e = par5Str;
+        field_94564_f = par6;
     }
 
     /**
@@ -27,31 +27,31 @@ public class CombatEntry
      */
     public DamageSource getDamageSrc()
     {
-        return this.damageSrc;
+        return damageSrc;
     }
 
     public float func_94563_c()
     {
-        return this.field_94568_c;
+        return field_94568_c;
     }
 
     public boolean func_94559_f()
     {
-        return this.damageSrc.getEntity() instanceof EntityLivingBase;
+        return damageSrc.getEntity() instanceof EntityLivingBase;
     }
 
     public String func_94562_g()
     {
-        return this.field_94566_e;
+        return field_94566_e;
     }
 
     public IChatComponent func_151522_h()
     {
-        return this.getDamageSrc().getEntity() == null ? null : this.getDamageSrc().getEntity().getUsernameAsIChatComponent();
+        return getDamageSrc().getEntity() == null ? null : getDamageSrc().getEntity().getUsernameAsIChatComponent();
     }
 
     public float func_94561_i()
     {
-        return this.damageSrc == DamageSource.outOfWorld ? Float.MAX_VALUE : this.field_94564_f;
+        return damageSrc == DamageSource.outOfWorld ? Float.MAX_VALUE : field_94564_f;
     }
 }

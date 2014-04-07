@@ -14,7 +14,7 @@ public class WorldGenLiquids extends WorldGenerator
 
     public WorldGenLiquids(Block p_i45465_1_)
     {
-        this.field_150521_a = p_i45465_1_;
+        field_150521_a = p_i45465_1_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -79,9 +79,9 @@ public class WorldGenLiquids extends WorldGenerator
 
             if (var6 == 3 && var7 == 1)
             {
-                par1World.setBlock(par3, par4, par5, this.field_150521_a, 0, 2);
+                par1World.setBlock(par3, par4, par5, field_150521_a, 0, 2);
                 par1World.scheduledUpdatesAreImmediate = true;
-                this.field_150521_a.updateTick(par1World, par3, par4, par5, par2Random);
+                field_150521_a.updateTick(par1World, par3, par4, par5, par2Random);
                 par1World.scheduledUpdatesAreImmediate = false;
             }
 

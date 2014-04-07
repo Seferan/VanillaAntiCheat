@@ -14,7 +14,7 @@ public class RegistrySimple implements IRegistry
     private static final Logger logger = LogManager.getLogger();
 
     /** Objects registered on this registry. */
-    protected final Map registryObjects = this.createUnderlyingMap();
+    protected final Map registryObjects = createUnderlyingMap();
     private static final String __OBFID = "CL_00001210";
 
     /**
@@ -27,7 +27,7 @@ public class RegistrySimple implements IRegistry
 
     public Object getObject(Object par1Obj)
     {
-        return this.registryObjects.get(par1Obj);
+        return registryObjects.get(par1Obj);
     }
 
     /**
@@ -35,12 +35,12 @@ public class RegistrySimple implements IRegistry
      */
     public void putObject(Object par1Obj, Object par2Obj)
     {
-        if (this.registryObjects.containsKey(par1Obj))
+        if (registryObjects.containsKey(par1Obj))
         {
             logger.warn("Adding duplicate key \'" + par1Obj + "\' to registry");
         }
 
-        this.registryObjects.put(par1Obj, par2Obj);
+        registryObjects.put(par1Obj, par2Obj);
     }
 
     /**
@@ -48,7 +48,7 @@ public class RegistrySimple implements IRegistry
      */
     public Set getKeys()
     {
-        return Collections.unmodifiableSet(this.registryObjects.keySet());
+        return Collections.unmodifiableSet(registryObjects.keySet());
     }
 
     /**
@@ -56,6 +56,6 @@ public class RegistrySimple implements IRegistry
      */
     public boolean containsKey(Object p_148741_1_)
     {
-        return this.registryObjects.containsKey(p_148741_1_);
+        return registryObjects.containsKey(p_148741_1_);
     }
 }

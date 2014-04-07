@@ -17,8 +17,8 @@ public class BlockCactus extends Block
     protected BlockCactus()
     {
         super(Material.field_151570_A);
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -43,7 +43,7 @@ public class BlockCactus extends Block
                 {
                     p_149674_1_.setBlock(p_149674_2_, p_149674_3_ + 1, p_149674_4_, this);
                     p_149674_1_.setBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_, 0, 4);
-                    this.onNeighborBlockChange(p_149674_1_, p_149674_2_, p_149674_3_ + 1, p_149674_4_, this);
+                    onNeighborBlockChange(p_149674_1_, p_149674_2_, p_149674_3_ + 1, p_149674_4_, this);
                 }
                 else
                 {
@@ -60,7 +60,7 @@ public class BlockCactus extends Block
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
         float var5 = 0.0625F;
-        return AxisAlignedBB.getAABBPool().getAABB((double)((float)p_149668_2_ + var5), (double)p_149668_3_, (double)((float)p_149668_4_ + var5), (double)((float)(p_149668_2_ + 1) - var5), (double)((float)(p_149668_3_ + 1) - var5), (double)((float)(p_149668_4_ + 1) - var5));
+        return AxisAlignedBB.getAABBPool().getAABB(p_149668_2_ + var5, p_149668_3_, p_149668_4_ + var5, p_149668_2_ + 1 - var5, p_149668_3_ + 1 - var5, p_149668_4_ + 1 - var5);
     }
 
     public boolean renderAsNormalBlock()
@@ -83,12 +83,12 @@ public class BlockCactus extends Block
 
     public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return !super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) ? false : this.canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
+        return !super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) ? false : canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
     }
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        if (!this.canBlockStay(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
+        if (!canBlockStay(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
         {
             p_149695_1_.func_147480_a(p_149695_2_, p_149695_3_, p_149695_4_, true);
         }

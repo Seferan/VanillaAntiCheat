@@ -20,7 +20,7 @@ public class C00PacketLoginStart extends Packet
 
     public C00PacketLoginStart(GameProfile p_i45270_1_)
     {
-        this.field_149305_a = p_i45270_1_;
+        field_149305_a = p_i45270_1_;
     }
 
     /**
@@ -28,7 +28,7 @@ public class C00PacketLoginStart extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149305_a = new GameProfile((String)null, p_148837_1_.readStringFromBuffer(16));
+        field_149305_a = new GameProfile((String)null, p_148837_1_.readStringFromBuffer(16));
     }
 
     /**
@@ -36,7 +36,7 @@ public class C00PacketLoginStart extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149305_a.getName());
+        p_148840_1_.writeStringToBuffer(field_149305_a.getName());
     }
 
     public void func_148833_a(INetHandlerLoginServer p_149303_1_)
@@ -46,7 +46,7 @@ public class C00PacketLoginStart extends Packet
 
     public GameProfile func_149304_c()
     {
-        return this.field_149305_a;
+        return field_149305_a;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

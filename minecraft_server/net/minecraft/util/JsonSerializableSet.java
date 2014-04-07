@@ -21,7 +21,7 @@ public class JsonSerializableSet extends ForwardingSet implements IJsonSerializa
     public JsonElement getSerializableElement()
     {
         JsonArray var1 = new JsonArray();
-        Iterator var2 = this.iterator();
+        Iterator var2 = iterator();
 
         while (var2.hasNext())
         {
@@ -34,6 +34,6 @@ public class JsonSerializableSet extends ForwardingSet implements IJsonSerializa
 
     protected Set delegate()
     {
-        return this.underlyingSet;
+        return underlyingSet;
     }
 }

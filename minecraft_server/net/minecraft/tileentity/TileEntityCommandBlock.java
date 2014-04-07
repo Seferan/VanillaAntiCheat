@@ -39,13 +39,13 @@ public class TileEntityCommandBlock extends TileEntity
     public void writeToNBT(NBTTagCompound p_145841_1_)
     {
         super.writeToNBT(p_145841_1_);
-        this.field_145994_a.func_145758_a(p_145841_1_);
+        field_145994_a.func_145758_a(p_145841_1_);
     }
 
     public void readFromNBT(NBTTagCompound p_145839_1_)
     {
         super.readFromNBT(p_145839_1_);
-        this.field_145994_a.func_145759_b(p_145839_1_);
+        field_145994_a.func_145759_b(p_145839_1_);
     }
 
     /**
@@ -54,12 +54,12 @@ public class TileEntityCommandBlock extends TileEntity
     public Packet getDescriptionPacket()
     {
         NBTTagCompound var1 = new NBTTagCompound();
-        this.writeToNBT(var1);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 2, var1);
+        writeToNBT(var1);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 2, var1);
     }
 
     public CommandBlockLogic func_145993_a()
     {
-        return this.field_145994_a;
+        return field_145994_a;
     }
 }

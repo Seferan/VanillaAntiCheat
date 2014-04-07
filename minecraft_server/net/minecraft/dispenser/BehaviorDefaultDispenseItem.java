@@ -15,9 +15,9 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem
      */
     public final ItemStack dispense(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
     {
-        ItemStack var3 = this.dispenseStack(par1IBlockSource, par2ItemStack);
-        this.playDispenseSound(par1IBlockSource);
-        this.spawnDispenseParticles(par1IBlockSource, BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata()));
+        ItemStack var3 = dispenseStack(par1IBlockSource, par2ItemStack);
+        playDispenseSound(par1IBlockSource);
+        spawnDispenseParticles(par1IBlockSource, BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata()));
         return var3;
     }
 
@@ -41,12 +41,12 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem
         double var9 = par4IPosition.getZ();
         EntityItem var11 = new EntityItem(par0World, var5, var7 - 0.3D, var9, par1ItemStack);
         double var12 = par0World.rand.nextDouble() * 0.1D + 0.2D;
-        var11.motionX = (double)par3EnumFacing.getFrontOffsetX() * var12;
+        var11.motionX = par3EnumFacing.getFrontOffsetX() * var12;
         var11.motionY = 0.20000000298023224D;
-        var11.motionZ = (double)par3EnumFacing.getFrontOffsetZ() * var12;
-        var11.motionX += par0World.rand.nextGaussian() * 0.007499999832361937D * (double)par2;
-        var11.motionY += par0World.rand.nextGaussian() * 0.007499999832361937D * (double)par2;
-        var11.motionZ += par0World.rand.nextGaussian() * 0.007499999832361937D * (double)par2;
+        var11.motionZ = par3EnumFacing.getFrontOffsetZ() * var12;
+        var11.motionX += par0World.rand.nextGaussian() * 0.007499999832361937D * par2;
+        var11.motionY += par0World.rand.nextGaussian() * 0.007499999832361937D * par2;
+        var11.motionZ += par0World.rand.nextGaussian() * 0.007499999832361937D * par2;
         par0World.spawnEntityInWorld(var11);
     }
 
@@ -64,7 +64,7 @@ public class BehaviorDefaultDispenseItem implements IBehaviorDispenseItem
      */
     protected void spawnDispenseParticles(IBlockSource par1IBlockSource, EnumFacing par2EnumFacing)
     {
-        par1IBlockSource.getWorld().playAuxSFX(2000, par1IBlockSource.getXInt(), par1IBlockSource.getYInt(), par1IBlockSource.getZInt(), this.func_82488_a(par2EnumFacing));
+        par1IBlockSource.getWorld().playAuxSFX(2000, par1IBlockSource.getXInt(), par1IBlockSource.getYInt(), par1IBlockSource.getZInt(), func_82488_a(par2EnumFacing));
     }
 
     private int func_82488_a(EnumFacing par1EnumFacing)

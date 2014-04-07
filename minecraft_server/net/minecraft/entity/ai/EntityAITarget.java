@@ -51,9 +51,9 @@ public abstract class EntityAITarget extends EntityAIBase
 
     public EntityAITarget(EntityCreature par1EntityCreature, boolean par2, boolean par3)
     {
-        this.taskOwner = par1EntityCreature;
-        this.shouldCheckSight = par2;
-        this.nearbyOnly = par3;
+        taskOwner = par1EntityCreature;
+        shouldCheckSight = par2;
+        nearbyOnly = par3;
     }
 
     /**
@@ -61,7 +61,7 @@ public abstract class EntityAITarget extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        EntityLivingBase var1 = this.taskOwner.getAttackTarget();
+        EntityLivingBase var1 = taskOwner.getAttackTarget();
 
         if (var1 == null)
         {
@@ -73,21 +73,21 @@ public abstract class EntityAITarget extends EntityAIBase
         }
         else
         {
-            double var2 = this.getTargetDistance();
+            double var2 = getTargetDistance();
 
-            if (this.taskOwner.getDistanceSqToEntity(var1) > var2 * var2)
+            if (taskOwner.getDistanceSqToEntity(var1) > var2 * var2)
             {
                 return false;
             }
             else
             {
-                if (this.shouldCheckSight)
+                if (shouldCheckSight)
                 {
-                    if (this.taskOwner.getEntitySenses().canSee(var1))
+                    if (taskOwner.getEntitySenses().canSee(var1))
                     {
-                        this.field_75298_g = 0;
+                        field_75298_g = 0;
                     }
-                    else if (++this.field_75298_g > 60) { return false; }
+                    else if (++field_75298_g > 60) { return false; }
                 }
 
                 return !(var1 instanceof EntityPlayerMP) || !((EntityPlayerMP)var1).theItemInWorldManager.isCreative();
@@ -97,7 +97,7 @@ public abstract class EntityAITarget extends EntityAIBase
 
     protected double getTargetDistance()
     {
-        IAttributeInstance var1 = this.taskOwner.getEntityAttribute(SharedMonsterAttributes.followRange);
+        IAttributeInstance var1 = taskOwner.getEntityAttribute(SharedMonsterAttributes.followRange);
         return var1 == null ? 16.0D : var1.getAttributeValue();
     }
 
@@ -106,9 +106,9 @@ public abstract class EntityAITarget extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.targetSearchStatus = 0;
-        this.targetSearchDelay = 0;
-        this.field_75298_g = 0;
+        targetSearchStatus = 0;
+        targetSearchDelay = 0;
+        field_75298_g = 0;
     }
 
     /**
@@ -116,7 +116,7 @@ public abstract class EntityAITarget extends EntityAIBase
      */
     public void resetTask()
     {
-        this.taskOwner.setAttackTarget((EntityLivingBase)null);
+        taskOwner.setAttackTarget((EntityLivingBase)null);
     }
 
     /**
@@ -129,7 +129,7 @@ public abstract class EntityAITarget extends EntityAIBase
         {
             return false;
         }
-        else if (par1EntityLivingBase == this.taskOwner)
+        else if (par1EntityLivingBase == taskOwner)
         {
             return false;
         }
@@ -137,43 +137,43 @@ public abstract class EntityAITarget extends EntityAIBase
         {
             return false;
         }
-        else if (!this.taskOwner.canAttackClass(par1EntityLivingBase.getClass()))
+        else if (!taskOwner.canAttackClass(par1EntityLivingBase.getClass()))
         {
             return false;
         }
         else
         {
-            if (this.taskOwner instanceof IEntityOwnable && StringUtils.isNotEmpty(((IEntityOwnable)this.taskOwner).getOwnerName()))
+            if (taskOwner instanceof IEntityOwnable && StringUtils.isNotEmpty(((IEntityOwnable)taskOwner).getOwnerName()))
             {
-                if (par1EntityLivingBase instanceof IEntityOwnable && ((IEntityOwnable)this.taskOwner).getOwnerName().equals(((IEntityOwnable)par1EntityLivingBase).getOwnerName())) { return false; }
+                if (par1EntityLivingBase instanceof IEntityOwnable && ((IEntityOwnable)taskOwner).getOwnerName().equals(((IEntityOwnable)par1EntityLivingBase).getOwnerName())) { return false; }
 
-                if (par1EntityLivingBase == ((IEntityOwnable)this.taskOwner).getOwner()) { return false; }
+                if (par1EntityLivingBase == ((IEntityOwnable)taskOwner).getOwner()) { return false; }
             }
             else if (par1EntityLivingBase instanceof EntityPlayer && !par2 && ((EntityPlayer)par1EntityLivingBase).capabilities.disableDamage) { return false; }
 
-            if (!this.taskOwner.isWithinHomeDistance(MathHelper.floor_double(par1EntityLivingBase.posX), MathHelper.floor_double(par1EntityLivingBase.posY), MathHelper.floor_double(par1EntityLivingBase.posZ)))
+            if (!taskOwner.isWithinHomeDistance(MathHelper.floor_double(par1EntityLivingBase.posX), MathHelper.floor_double(par1EntityLivingBase.posY), MathHelper.floor_double(par1EntityLivingBase.posZ)))
             {
                 return false;
             }
-            else if (this.shouldCheckSight && !this.taskOwner.getEntitySenses().canSee(par1EntityLivingBase))
+            else if (shouldCheckSight && !taskOwner.getEntitySenses().canSee(par1EntityLivingBase))
             {
                 return false;
             }
             else
             {
-                if (this.nearbyOnly)
+                if (nearbyOnly)
                 {
-                    if (--this.targetSearchDelay <= 0)
+                    if (--targetSearchDelay <= 0)
                     {
-                        this.targetSearchStatus = 0;
+                        targetSearchStatus = 0;
                     }
 
-                    if (this.targetSearchStatus == 0)
+                    if (targetSearchStatus == 0)
                     {
-                        this.targetSearchStatus = this.canEasilyReach(par1EntityLivingBase) ? 1 : 2;
+                        targetSearchStatus = canEasilyReach(par1EntityLivingBase) ? 1 : 2;
                     }
 
-                    if (this.targetSearchStatus == 2) { return false; }
+                    if (targetSearchStatus == 2) { return false; }
                 }
 
                 return true;
@@ -186,8 +186,8 @@ public abstract class EntityAITarget extends EntityAIBase
      */
     private boolean canEasilyReach(EntityLivingBase par1EntityLivingBase)
     {
-        this.targetSearchDelay = 10 + this.taskOwner.getRNG().nextInt(5);
-        PathEntity var2 = this.taskOwner.getNavigator().getPathToEntityLiving(par1EntityLivingBase);
+        targetSearchDelay = 10 + taskOwner.getRNG().nextInt(5);
+        PathEntity var2 = taskOwner.getNavigator().getPathToEntityLiving(par1EntityLivingBase);
 
         if (var2 == null)
         {
@@ -205,7 +205,7 @@ public abstract class EntityAITarget extends EntityAIBase
             {
                 int var4 = var3.xCoord - MathHelper.floor_double(par1EntityLivingBase.posX);
                 int var5 = var3.zCoord - MathHelper.floor_double(par1EntityLivingBase.posZ);
-                return (double)(var4 * var4 + var5 * var5) <= 2.25D;
+                return var4 * var4 + var5 * var5 <= 2.25D;
             }
         }
     }

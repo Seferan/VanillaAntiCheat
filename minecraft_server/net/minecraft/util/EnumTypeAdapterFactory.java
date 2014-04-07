@@ -33,7 +33,7 @@ public class EnumTypeAdapterFactory implements TypeAdapterFactory
             for (int var7 = 0; var7 < var6; ++var7)
             {
                 Object var8 = var5[var7];
-                var4.put(this.func_151232_a(var8), var8);
+                var4.put(func_151232_a(var8), var8);
             }
 
             return new TypeAdapter()

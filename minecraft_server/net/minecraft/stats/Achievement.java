@@ -59,10 +59,10 @@ public class Achievement extends StatBase
     public Achievement(String p_i45302_1_, String p_i45302_2_, int p_i45302_3_, int p_i45302_4_, ItemStack p_i45302_5_, Achievement p_i45302_6_)
     {
         super(p_i45302_1_, new ChatComponentTranslation("achievement." + p_i45302_2_, new Object[0]));
-        this.theItemStack = p_i45302_5_;
-        this.achievementDescription = "achievement." + p_i45302_2_ + ".desc";
-        this.displayColumn = p_i45302_3_;
-        this.displayRow = p_i45302_4_;
+        theItemStack = p_i45302_5_;
+        achievementDescription = "achievement." + p_i45302_2_ + ".desc";
+        displayColumn = p_i45302_3_;
+        displayRow = p_i45302_4_;
 
         if (p_i45302_3_ < AchievementList.minDisplayColumn)
         {
@@ -84,7 +84,7 @@ public class Achievement extends StatBase
             AchievementList.maxDisplayRow = p_i45302_4_;
         }
 
-        this.parentAchievement = p_i45302_6_;
+        parentAchievement = p_i45302_6_;
     }
 
     /**
@@ -93,7 +93,7 @@ public class Achievement extends StatBase
      */
     public Achievement initIndependentStat()
     {
-        this.isIndependent = true;
+        isIndependent = true;
         return this;
     }
 
@@ -103,7 +103,7 @@ public class Achievement extends StatBase
      */
     public Achievement setSpecial()
     {
-        this.isSpecial = true;
+        isSpecial = true;
         return this;
     }
 
@@ -125,7 +125,7 @@ public class Achievement extends StatBase
     public IChatComponent func_150951_e()
     {
         IChatComponent var1 = super.func_150951_e();
-        var1.getChatStyle().setColor(this.getSpecial() ? EnumChatFormatting.DARK_PURPLE : EnumChatFormatting.GREEN);
+        var1.getChatStyle().setColor(getSpecial() ? EnumChatFormatting.DARK_PURPLE : EnumChatFormatting.GREEN);
         return var1;
     }
 
@@ -140,6 +140,6 @@ public class Achievement extends StatBase
      */
     public boolean getSpecial()
     {
-        return this.isSpecial;
+        return isSpecial;
     }
 }

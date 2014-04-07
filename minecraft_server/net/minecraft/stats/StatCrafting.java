@@ -11,6 +11,6 @@ public class StatCrafting extends StatBase
     public StatCrafting(String p_i45305_1_, IChatComponent p_i45305_2_, Item p_i45305_3_)
     {
         super(p_i45305_1_, p_i45305_2_);
-        this.field_150960_a = p_i45305_3_;
+        field_150960_a = p_i45305_3_;
     }
 }

@@ -10,6 +10,6 @@ public class BlockHay extends BlockRotatedPillar
     public BlockHay()
     {
         super(Material.field_151577_b);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 }

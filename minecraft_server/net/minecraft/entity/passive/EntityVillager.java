@@ -88,31 +88,31 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     public EntityVillager(World par1World, int par2)
     {
         super(par1World);
-        this.setProfession(par2);
-        this.setSize(0.6F, 1.8F);
-        this.getNavigator().setBreakDoors(true);
-        this.getNavigator().setAvoidsWater(true);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-        this.tasks.addTask(1, new EntityAITradePlayer(this));
-        this.tasks.addTask(1, new EntityAILookAtTradePlayer(this));
-        this.tasks.addTask(2, new EntityAIMoveIndoors(this));
-        this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-        this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
-        this.tasks.addTask(6, new EntityAIVillagerMate(this));
-        this.tasks.addTask(7, new EntityAIFollowGolem(this));
-        this.tasks.addTask(8, new EntityAIPlay(this, 0.32D));
-        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityVillager.class, 5.0F, 0.02F));
-        this.tasks.addTask(9, new EntityAIWander(this, 0.6D));
-        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        setProfession(par2);
+        setSize(0.6F, 1.8F);
+        getNavigator().setBreakDoors(true);
+        getNavigator().setAvoidsWater(true);
+        tasks.addTask(0, new EntityAISwimming(this));
+        tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+        tasks.addTask(1, new EntityAITradePlayer(this));
+        tasks.addTask(1, new EntityAILookAtTradePlayer(this));
+        tasks.addTask(2, new EntityAIMoveIndoors(this));
+        tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
+        tasks.addTask(4, new EntityAIOpenDoor(this, true));
+        tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
+        tasks.addTask(6, new EntityAIVillagerMate(this));
+        tasks.addTask(7, new EntityAIFollowGolem(this));
+        tasks.addTask(8, new EntityAIPlay(this, 0.32D));
+        tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
+        tasks.addTask(9, new EntityAIWatchClosest2(this, EntityVillager.class, 5.0F, 0.02F));
+        tasks.addTask(9, new EntityAIWander(this, 0.6D));
+        tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
     }
 
     /**
@@ -128,40 +128,40 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
      */
     protected void updateAITick()
     {
-        if (--this.randomTickDivider <= 0)
+        if (--randomTickDivider <= 0)
         {
-            this.worldObj.villageCollectionObj.addVillagerPosition(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
-            this.randomTickDivider = 70 + this.rand.nextInt(50);
-            this.villageObj = this.worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ), 32);
+            worldObj.villageCollectionObj.addVillagerPosition(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ));
+            randomTickDivider = 70 + rand.nextInt(50);
+            villageObj = worldObj.villageCollectionObj.findNearestVillage(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ), 32);
 
-            if (this.villageObj == null)
+            if (villageObj == null)
             {
-                this.detachHome();
+                detachHome();
             }
             else
             {
-                ChunkCoordinates var1 = this.villageObj.getCenter();
-                this.setHomeArea(var1.posX, var1.posY, var1.posZ, (int)((float)this.villageObj.getVillageRadius() * 0.6F));
+                ChunkCoordinates var1 = villageObj.getCenter();
+                setHomeArea(var1.posX, var1.posY, var1.posZ, (int)(villageObj.getVillageRadius() * 0.6F));
 
-                if (this.isLookingForHome)
+                if (isLookingForHome)
                 {
-                    this.isLookingForHome = false;
-                    this.villageObj.func_82683_b(5);
+                    isLookingForHome = false;
+                    villageObj.func_82683_b(5);
                 }
             }
         }
 
-        if (!this.isTrading() && this.timeUntilReset > 0)
+        if (!isTrading() && timeUntilReset > 0)
         {
-            --this.timeUntilReset;
+            --timeUntilReset;
 
-            if (this.timeUntilReset <= 0)
+            if (timeUntilReset <= 0)
             {
-                if (this.needsInitilization)
+                if (needsInitilization)
                 {
-                    if (this.buyingList.size() > 1)
+                    if (buyingList.size() > 1)
                     {
-                        Iterator var3 = this.buyingList.iterator();
+                        Iterator var3 = buyingList.iterator();
 
                         while (var3.hasNext())
                         {
@@ -169,22 +169,22 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
                             if (var2.func_82784_g())
                             {
-                                var2.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
+                                var2.func_82783_a(rand.nextInt(6) + rand.nextInt(6) + 2);
                             }
                         }
                     }
 
-                    this.addDefaultEquipmentAndRecipies(1);
-                    this.needsInitilization = false;
+                    addDefaultEquipmentAndRecipies(1);
+                    needsInitilization = false;
 
-                    if (this.villageObj != null && this.lastBuyingPlayer != null)
+                    if (villageObj != null && lastBuyingPlayer != null)
                     {
-                        this.worldObj.setEntityState(this, (byte)14);
-                        this.villageObj.setReputationForPlayer(this.lastBuyingPlayer, 1);
+                        worldObj.setEntityState(this, (byte)14);
+                        villageObj.setReputationForPlayer(lastBuyingPlayer, 1);
                     }
                 }
 
-                this.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
+                addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
             }
         }
 
@@ -200,12 +200,12 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
         ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
         boolean var3 = var2 != null && var2.getItem() == Items.spawn_egg;
 
-        if (!var3 && this.isEntityAlive() && !this.isTrading() && !this.isChild())
+        if (!var3 && isEntityAlive() && !isTrading() && !isChild())
         {
-            if (!this.worldObj.isClient)
+            if (!worldObj.isClient)
             {
-                this.setCustomer(par1EntityPlayer);
-                par1EntityPlayer.displayGUIMerchant(this, this.getCustomNameTag());
+                setCustomer(par1EntityPlayer);
+                par1EntityPlayer.displayGUIMerchant(this, getCustomNameTag());
             }
 
             return true;
@@ -219,7 +219,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Integer.valueOf(0));
+        dataWatcher.addObject(16, Integer.valueOf(0));
     }
 
     /**
@@ -228,12 +228,12 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("Profession", this.getProfession());
-        par1NBTTagCompound.setInteger("Riches", this.wealth);
+        par1NBTTagCompound.setInteger("Profession", getProfession());
+        par1NBTTagCompound.setInteger("Riches", wealth);
 
-        if (this.buyingList != null)
+        if (buyingList != null)
         {
-            par1NBTTagCompound.setTag("Offers", this.buyingList.getRecipiesAsTags());
+            par1NBTTagCompound.setTag("Offers", buyingList.getRecipiesAsTags());
         }
     }
 
@@ -243,13 +243,13 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.setProfession(par1NBTTagCompound.getInteger("Profession"));
-        this.wealth = par1NBTTagCompound.getInteger("Riches");
+        setProfession(par1NBTTagCompound.getInteger("Profession"));
+        wealth = par1NBTTagCompound.getInteger("Riches");
 
         if (par1NBTTagCompound.func_150297_b("Offers", 10))
         {
             NBTTagCompound var2 = par1NBTTagCompound.getCompoundTag("Offers");
-            this.buyingList = new MerchantRecipeList(var2);
+            buyingList = new MerchantRecipeList(var2);
         }
     }
 
@@ -266,7 +266,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
      */
     protected String getLivingSound()
     {
-        return this.isTrading() ? "mob.villager.haggle" : "mob.villager.idle";
+        return isTrading() ? "mob.villager.haggle" : "mob.villager.idle";
     }
 
     /**
@@ -287,56 +287,56 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
     public void setProfession(int par1)
     {
-        this.dataWatcher.updateObject(16, Integer.valueOf(par1));
+        dataWatcher.updateObject(16, Integer.valueOf(par1));
     }
 
     public int getProfession()
     {
-        return this.dataWatcher.getWatchableObjectInt(16);
+        return dataWatcher.getWatchableObjectInt(16);
     }
 
     public boolean isMating()
     {
-        return this.isMating;
+        return isMating;
     }
 
     public void setMating(boolean par1)
     {
-        this.isMating = par1;
+        isMating = par1;
     }
 
     public void setPlaying(boolean par1)
     {
-        this.isPlaying = par1;
+        isPlaying = par1;
     }
 
     public boolean isPlaying()
     {
-        return this.isPlaying;
+        return isPlaying;
     }
 
     public void setRevengeTarget(EntityLivingBase par1EntityLivingBase)
     {
         super.setRevengeTarget(par1EntityLivingBase);
 
-        if (this.villageObj != null && par1EntityLivingBase != null)
+        if (villageObj != null && par1EntityLivingBase != null)
         {
-            this.villageObj.addOrRenewAgressor(par1EntityLivingBase);
+            villageObj.addOrRenewAgressor(par1EntityLivingBase);
 
             if (par1EntityLivingBase instanceof EntityPlayer)
             {
                 byte var2 = -1;
 
-                if (this.isChild())
+                if (isChild())
                 {
                     var2 = -3;
                 }
 
-                this.villageObj.setReputationForPlayer(par1EntityLivingBase.getUsername(), var2);
+                villageObj.setReputationForPlayer(par1EntityLivingBase.getUsername(), var2);
 
-                if (this.isEntityAlive())
+                if (isEntityAlive())
                 {
-                    this.worldObj.setEntityState(this, (byte)13);
+                    worldObj.setEntityState(this, (byte)13);
                 }
             }
         }
@@ -347,7 +347,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
      */
     public void onDeath(DamageSource par1DamageSource)
     {
-        if (this.villageObj != null)
+        if (villageObj != null)
         {
             Entity var2 = par1DamageSource.getEntity();
 
@@ -355,20 +355,20 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
             {
                 if (var2 instanceof EntityPlayer)
                 {
-                    this.villageObj.setReputationForPlayer(var2.getUsername(), -2);
+                    villageObj.setReputationForPlayer(var2.getUsername(), -2);
                 }
                 else if (var2 instanceof IMob)
                 {
-                    this.villageObj.endMatingSeason();
+                    villageObj.endMatingSeason();
                 }
             }
             else if (var2 == null)
             {
-                EntityPlayer var3 = this.worldObj.getClosestPlayerToEntity(this, 16.0D);
+                EntityPlayer var3 = worldObj.getClosestPlayerToEntity(this, 16.0D);
 
                 if (var3 != null)
                 {
-                    this.villageObj.endMatingSeason();
+                    villageObj.endMatingSeason();
                 }
             }
         }
@@ -378,71 +378,71 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
 
     public void setCustomer(EntityPlayer par1EntityPlayer)
     {
-        this.buyingPlayer = par1EntityPlayer;
+        buyingPlayer = par1EntityPlayer;
     }
 
     public EntityPlayer getCustomer()
     {
-        return this.buyingPlayer;
+        return buyingPlayer;
     }
 
     public boolean isTrading()
     {
-        return this.buyingPlayer != null;
+        return buyingPlayer != null;
     }
 
     public void useRecipe(MerchantRecipe par1MerchantRecipe)
     {
         par1MerchantRecipe.incrementToolUses();
-        this.livingSoundTime = -this.getTalkInterval();
-        this.playSound("mob.villager.yes", this.getSoundVolume(), this.getSoundPitch());
+        livingSoundTime = -getTalkInterval();
+        playSound("mob.villager.yes", getSoundVolume(), getSoundPitch());
 
-        if (par1MerchantRecipe.hasSameIDsAs((MerchantRecipe)this.buyingList.get(this.buyingList.size() - 1)))
+        if (par1MerchantRecipe.hasSameIDsAs((MerchantRecipe)buyingList.get(buyingList.size() - 1)))
         {
-            this.timeUntilReset = 40;
-            this.needsInitilization = true;
+            timeUntilReset = 40;
+            needsInitilization = true;
 
-            if (this.buyingPlayer != null)
+            if (buyingPlayer != null)
             {
-                this.lastBuyingPlayer = this.buyingPlayer.getUsername();
+                lastBuyingPlayer = buyingPlayer.getUsername();
             }
             else
             {
-                this.lastBuyingPlayer = null;
+                lastBuyingPlayer = null;
             }
         }
 
         if (par1MerchantRecipe.getItemToBuy().getItem() == Items.emerald)
         {
-            this.wealth += par1MerchantRecipe.getItemToBuy().stackSize;
+            wealth += par1MerchantRecipe.getItemToBuy().stackSize;
         }
     }
 
     public void func_110297_a_(ItemStack par1ItemStack)
     {
-        if (!this.worldObj.isClient && this.livingSoundTime > -this.getTalkInterval() + 20)
+        if (!worldObj.isClient && livingSoundTime > -getTalkInterval() + 20)
         {
-            this.livingSoundTime = -this.getTalkInterval();
+            livingSoundTime = -getTalkInterval();
 
             if (par1ItemStack != null)
             {
-                this.playSound("mob.villager.yes", this.getSoundVolume(), this.getSoundPitch());
+                playSound("mob.villager.yes", getSoundVolume(), getSoundPitch());
             }
             else
             {
-                this.playSound("mob.villager.no", this.getSoundVolume(), this.getSoundPitch());
+                playSound("mob.villager.no", getSoundVolume(), getSoundPitch());
             }
         }
     }
 
     public MerchantRecipeList getRecipes(EntityPlayer par1EntityPlayer)
     {
-        if (this.buyingList == null)
+        if (buyingList == null)
         {
-            this.addDefaultEquipmentAndRecipies(1);
+            addDefaultEquipmentAndRecipies(1);
         }
 
-        return this.buyingList;
+        return buyingList;
     }
 
     /**
@@ -451,7 +451,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
      */
     private float adjustProbability(float par1)
     {
-        float var2 = par1 + this.field_82191_bN;
+        float var2 = par1 + field_82191_bN;
         return var2 > 0.9F ? 0.9F - (var2 - 0.9F) : var2;
     }
 
@@ -462,13 +462,13 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
      */
     private void addDefaultEquipmentAndRecipies(int par1)
     {
-        if (this.buyingList != null)
+        if (buyingList != null)
         {
-            this.field_82191_bN = MathHelper.sqrt_float((float)this.buyingList.size()) * 0.2F;
+            field_82191_bN = MathHelper.sqrt_float(buyingList.size()) * 0.2F;
         }
         else
         {
-            this.field_82191_bN = 0.0F;
+            field_82191_bN = 0.0F;
         }
 
         MerchantRecipeList var2;
@@ -476,133 +476,133 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
         int var6;
         label50:
 
-        switch (this.getProfession())
-        {
-        case 0:
-            func_146091_a(var2, Items.wheat, this.rand, this.adjustProbability(0.9F));
-            func_146091_a(var2, Item.getItemFromBlock(Blocks.wool), this.rand, this.adjustProbability(0.5F));
-            func_146091_a(var2, Items.chicken, this.rand, this.adjustProbability(0.5F));
-            func_146091_a(var2, Items.cooked_fished, this.rand, this.adjustProbability(0.4F));
-            func_146089_b(var2, Items.bread, this.rand, this.adjustProbability(0.9F));
-            func_146089_b(var2, Items.melon, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.apple, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.cookie, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.shears, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.flint_and_steel, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.cooked_chicken, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.arrow, this.rand, this.adjustProbability(0.5F));
-
-            if (this.rand.nextFloat() < this.adjustProbability(0.5F))
+            switch (getProfession())
             {
-                var2.add(new MerchantRecipe(new ItemStack(Blocks.gravel, 10), new ItemStack(Items.emerald), new ItemStack(Items.flint, 4 + this.rand.nextInt(2), 0)));
-            }
+            case 0:
+                func_146091_a(var2, Items.wheat, rand, adjustProbability(0.9F));
+                func_146091_a(var2, Item.getItemFromBlock(Blocks.wool), rand, adjustProbability(0.5F));
+                func_146091_a(var2, Items.chicken, rand, adjustProbability(0.5F));
+                func_146091_a(var2, Items.cooked_fished, rand, adjustProbability(0.4F));
+                func_146089_b(var2, Items.bread, rand, adjustProbability(0.9F));
+                func_146089_b(var2, Items.melon, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.apple, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.cookie, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.shears, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.flint_and_steel, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.cooked_chicken, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.arrow, rand, adjustProbability(0.5F));
 
-            break;
-
-        case 1:
-            func_146091_a(var2, Items.paper, this.rand, this.adjustProbability(0.8F));
-            func_146091_a(var2, Items.book, this.rand, this.adjustProbability(0.8F));
-            func_146091_a(var2, Items.written_book, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Item.getItemFromBlock(Blocks.bookshelf), this.rand, this.adjustProbability(0.8F));
-            func_146089_b(var2, Item.getItemFromBlock(Blocks.glass), this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.compass, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.clock, this.rand, this.adjustProbability(0.2F));
-
-            if (this.rand.nextFloat() < this.adjustProbability(0.07F))
-            {
-                Enchantment var8 = Enchantment.enchantmentsBookList[this.rand.nextInt(Enchantment.enchantmentsBookList.length)];
-                int var10 = MathHelper.getRandomIntegerInRange(this.rand, var8.getMinLevel(), var8.getMaxLevel());
-                ItemStack var11 = Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(var8, var10));
-                var6 = 2 + this.rand.nextInt(5 + var10 * 10) + 3 * var10;
-                var2.add(new MerchantRecipe(new ItemStack(Items.book), new ItemStack(Items.emerald, var6), var11));
-            }
-
-            break;
-
-        case 2:
-            func_146089_b(var2, Items.ender_eye, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.experience_bottle, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.redstone, this.rand, this.adjustProbability(0.4F));
-            func_146089_b(var2, Item.getItemFromBlock(Blocks.glowstone), this.rand, this.adjustProbability(0.3F));
-            Item[] var3 = new Item[] {Items.iron_sword, Items.diamond_sword, Items.iron_chestplate, Items.diamond_chestplate, Items.iron_axe, Items.diamond_axe, Items.iron_pickaxe, Items.diamond_pickaxe};
-            Item[] var4 = var3;
-            int var5 = var3.length;
-            var6 = 0;
-
-            while (true)
-            {
-                if (var6 >= var5)
+                if (rand.nextFloat() < adjustProbability(0.5F))
                 {
-                    break label50;
+                    var2.add(new MerchantRecipe(new ItemStack(Blocks.gravel, 10), new ItemStack(Items.emerald), new ItemStack(Items.flint, 4 + rand.nextInt(2), 0)));
                 }
 
-                Item var7 = var4[var6];
+                break;
 
-                if (this.rand.nextFloat() < this.adjustProbability(0.05F))
+            case 1:
+                func_146091_a(var2, Items.paper, rand, adjustProbability(0.8F));
+                func_146091_a(var2, Items.book, rand, adjustProbability(0.8F));
+                func_146091_a(var2, Items.written_book, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Item.getItemFromBlock(Blocks.bookshelf), rand, adjustProbability(0.8F));
+                func_146089_b(var2, Item.getItemFromBlock(Blocks.glass), rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.compass, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.clock, rand, adjustProbability(0.2F));
+
+                if (rand.nextFloat() < adjustProbability(0.07F))
                 {
-                    var2.add(new MerchantRecipe(new ItemStack(var7, 1, 0), new ItemStack(Items.emerald, 2 + this.rand.nextInt(3), 0), EnchantmentHelper.addRandomEnchantment(this.rand, new ItemStack(var7, 1, 0), 5 + this.rand.nextInt(15))));
+                    Enchantment var8 = Enchantment.enchantmentsBookList[rand.nextInt(Enchantment.enchantmentsBookList.length)];
+                    int var10 = MathHelper.getRandomIntegerInRange(rand, var8.getMinLevel(), var8.getMaxLevel());
+                    ItemStack var11 = Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(var8, var10));
+                    var6 = 2 + rand.nextInt(5 + var10 * 10) + 3 * var10;
+                    var2.add(new MerchantRecipe(new ItemStack(Items.book), new ItemStack(Items.emerald, var6), var11));
                 }
 
-                ++var6;
+                break;
+
+            case 2:
+                func_146089_b(var2, Items.ender_eye, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.experience_bottle, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.redstone, rand, adjustProbability(0.4F));
+                func_146089_b(var2, Item.getItemFromBlock(Blocks.glowstone), rand, adjustProbability(0.3F));
+                Item[] var3 = new Item[] {Items.iron_sword, Items.diamond_sword, Items.iron_chestplate, Items.diamond_chestplate, Items.iron_axe, Items.diamond_axe, Items.iron_pickaxe, Items.diamond_pickaxe};
+                Item[] var4 = var3;
+                int var5 = var3.length;
+                var6 = 0;
+
+                while (true)
+                {
+                    if (var6 >= var5)
+                    {
+                        break label50;
+                    }
+
+                    Item var7 = var4[var6];
+
+                    if (rand.nextFloat() < adjustProbability(0.05F))
+                    {
+                        var2.add(new MerchantRecipe(new ItemStack(var7, 1, 0), new ItemStack(Items.emerald, 2 + rand.nextInt(3), 0), EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(var7, 1, 0), 5 + rand.nextInt(15))));
+                    }
+
+                    ++var6;
+                }
+
+            case 3:
+                func_146091_a(var2, Items.coal, rand, adjustProbability(0.7F));
+                func_146091_a(var2, Items.iron_ingot, rand, adjustProbability(0.5F));
+                func_146091_a(var2, Items.gold_ingot, rand, adjustProbability(0.5F));
+                func_146091_a(var2, Items.diamond, rand, adjustProbability(0.5F));
+                func_146089_b(var2, Items.iron_sword, rand, adjustProbability(0.5F));
+                func_146089_b(var2, Items.diamond_sword, rand, adjustProbability(0.5F));
+                func_146089_b(var2, Items.iron_axe, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.diamond_axe, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.iron_pickaxe, rand, adjustProbability(0.5F));
+                func_146089_b(var2, Items.diamond_pickaxe, rand, adjustProbability(0.5F));
+                func_146089_b(var2, Items.iron_shovel, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.diamond_shovel, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.iron_hoe, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.diamond_hoe, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.iron_boots, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.diamond_boots, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.iron_helmet, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.diamond_helmet, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.iron_chestplate, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.diamond_chestplate, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.iron_leggings, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.diamond_leggings, rand, adjustProbability(0.2F));
+                func_146089_b(var2, Items.chainmail_boots, rand, adjustProbability(0.1F));
+                func_146089_b(var2, Items.chainmail_helmet, rand, adjustProbability(0.1F));
+                func_146089_b(var2, Items.chainmail_chestplate, rand, adjustProbability(0.1F));
+                func_146089_b(var2, Items.chainmail_leggings, rand, adjustProbability(0.1F));
+                break;
+
+            case 4:
+                func_146091_a(var2, Items.coal, rand, adjustProbability(0.7F));
+                func_146091_a(var2, Items.porkchop, rand, adjustProbability(0.5F));
+                func_146091_a(var2, Items.beef, rand, adjustProbability(0.5F));
+                func_146089_b(var2, Items.saddle, rand, adjustProbability(0.1F));
+                func_146089_b(var2, Items.leather_chestplate, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.leather_boots, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.leather_helmet, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.leather_leggings, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.cooked_porkchop, rand, adjustProbability(0.3F));
+                func_146089_b(var2, Items.cooked_beef, rand, adjustProbability(0.3F));
             }
-
-        case 3:
-            func_146091_a(var2, Items.coal, this.rand, this.adjustProbability(0.7F));
-            func_146091_a(var2, Items.iron_ingot, this.rand, this.adjustProbability(0.5F));
-            func_146091_a(var2, Items.gold_ingot, this.rand, this.adjustProbability(0.5F));
-            func_146091_a(var2, Items.diamond, this.rand, this.adjustProbability(0.5F));
-            func_146089_b(var2, Items.iron_sword, this.rand, this.adjustProbability(0.5F));
-            func_146089_b(var2, Items.diamond_sword, this.rand, this.adjustProbability(0.5F));
-            func_146089_b(var2, Items.iron_axe, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.diamond_axe, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.iron_pickaxe, this.rand, this.adjustProbability(0.5F));
-            func_146089_b(var2, Items.diamond_pickaxe, this.rand, this.adjustProbability(0.5F));
-            func_146089_b(var2, Items.iron_shovel, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.diamond_shovel, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.iron_hoe, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.diamond_hoe, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.iron_boots, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.diamond_boots, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.iron_helmet, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.diamond_helmet, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.iron_chestplate, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.diamond_chestplate, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.iron_leggings, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.diamond_leggings, this.rand, this.adjustProbability(0.2F));
-            func_146089_b(var2, Items.chainmail_boots, this.rand, this.adjustProbability(0.1F));
-            func_146089_b(var2, Items.chainmail_helmet, this.rand, this.adjustProbability(0.1F));
-            func_146089_b(var2, Items.chainmail_chestplate, this.rand, this.adjustProbability(0.1F));
-            func_146089_b(var2, Items.chainmail_leggings, this.rand, this.adjustProbability(0.1F));
-            break;
-
-        case 4:
-            func_146091_a(var2, Items.coal, this.rand, this.adjustProbability(0.7F));
-            func_146091_a(var2, Items.porkchop, this.rand, this.adjustProbability(0.5F));
-            func_146091_a(var2, Items.beef, this.rand, this.adjustProbability(0.5F));
-            func_146089_b(var2, Items.saddle, this.rand, this.adjustProbability(0.1F));
-            func_146089_b(var2, Items.leather_chestplate, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.leather_boots, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.leather_helmet, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.leather_leggings, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.cooked_porkchop, this.rand, this.adjustProbability(0.3F));
-            func_146089_b(var2, Items.cooked_beef, this.rand, this.adjustProbability(0.3F));
-        }
 
         if (var2.isEmpty())
         {
-            func_146091_a(var2, Items.gold_ingot, this.rand, 1.0F);
+            func_146091_a(var2, Items.gold_ingot, rand, 1.0F);
         }
 
         Collections.shuffle(var2);
 
-        if (this.buyingList == null)
+        if (buyingList == null)
         {
-            this.buyingList = new MerchantRecipeList();
+            buyingList = new MerchantRecipeList();
         }
 
         for (int var9 = 0; var9 < par1 && var9 < var2.size(); ++var9)
         {
-            this.buyingList.addToListWithCheck((MerchantRecipe)var2.get(var9));
+            buyingList.addToListWithCheck((MerchantRecipe)var2.get(var9));
         }
     }
 
@@ -657,18 +657,18 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
     public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData)
     {
         par1EntityLivingData = super.onSpawnWithEgg(par1EntityLivingData);
-        this.setProfession(this.worldObj.rand.nextInt(5));
+        setProfession(worldObj.rand.nextInt(5));
         return par1EntityLivingData;
     }
 
     public void setLookingForHome()
     {
-        this.isLookingForHome = true;
+        isLookingForHome = true;
     }
 
     public EntityVillager createChild(EntityAgeable par1EntityAgeable)
     {
-        EntityVillager var2 = new EntityVillager(this.worldObj);
+        EntityVillager var2 = new EntityVillager(worldObj);
         var2.onSpawnWithEgg((IEntityLivingData)null);
         return var2;
     }

@@ -21,24 +21,24 @@ public class VACProxyCheck
      *            1 = aggressive, unsuccessful check = proxy
      *            0 is recommended
      * @return if the IP is a proxy or not
-     * @throws Exception 
+     * @throws Exception
      */
     public static boolean isProxy(String ip, int mode)
     {
         URL url;
         String finalIp = ip;
-        
+
         try
         {
             if (finalIp.startsWith("/"))
                 finalIp = finalIp.substring(1);
             if (ip.contains(":"))
                 finalIp = finalIp.split(":")[0];
-            
+
             url = new URL("http://www.stopforumspam.com/api?ip=" + finalIp);
             URLConnection connection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            
+
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.contains("<appears>"))

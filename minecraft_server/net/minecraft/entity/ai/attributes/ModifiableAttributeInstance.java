@@ -26,13 +26,13 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 
     public ModifiableAttributeInstance(BaseAttributeMap par1BaseAttributeMap, IAttribute par2Attribute)
     {
-        this.attributeMap = par1BaseAttributeMap;
-        this.genericAttribute = par2Attribute;
-        this.baseValue = par2Attribute.getDefaultValue();
+        attributeMap = par1BaseAttributeMap;
+        genericAttribute = par2Attribute;
+        baseValue = par2Attribute.getDefaultValue();
 
         for (int var3 = 0; var3 < 3; ++var3)
         {
-            this.mapByOperation.put(Integer.valueOf(var3), new HashSet());
+            mapByOperation.put(Integer.valueOf(var3), new HashSet());
         }
     }
 
@@ -41,26 +41,26 @@ public class ModifiableAttributeInstance implements IAttributeInstance
      */
     public IAttribute getAttribute()
     {
-        return this.genericAttribute;
+        return genericAttribute;
     }
 
     public double getBaseValue()
     {
-        return this.baseValue;
+        return baseValue;
     }
 
     public void setBaseValue(double par1)
     {
-        if (par1 != this.getBaseValue())
+        if (par1 != getBaseValue())
         {
-            this.baseValue = par1;
-            this.flagForUpdate();
+            baseValue = par1;
+            flagForUpdate();
         }
     }
 
     public Collection getModifiersByOperation(int par1)
     {
-        return (Collection)this.mapByOperation.get(Integer.valueOf(par1));
+        return (Collection)mapByOperation.get(Integer.valueOf(par1));
     }
 
     public Collection func_111122_c()
@@ -69,7 +69,7 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 
         for (int var2 = 0; var2 < 3; ++var2)
         {
-            var1.addAll(this.getModifiersByOperation(var2));
+            var1.addAll(getModifiersByOperation(var2));
         }
 
         return var1;
@@ -80,47 +80,47 @@ public class ModifiableAttributeInstance implements IAttributeInstance
      */
     public AttributeModifier getModifier(UUID par1UUID)
     {
-        return (AttributeModifier)this.mapByUUID.get(par1UUID);
+        return (AttributeModifier)mapByUUID.get(par1UUID);
     }
 
     public void applyModifier(AttributeModifier par1AttributeModifier)
     {
-        if (this.getModifier(par1AttributeModifier.getID()) != null)
+        if (getModifier(par1AttributeModifier.getID()) != null)
         {
             throw new IllegalArgumentException("Modifier is already applied on this attribute!");
         }
         else
         {
-            Object var2 = (Set)this.mapByName.get(par1AttributeModifier.getName());
+            Object var2 = mapByName.get(par1AttributeModifier.getName());
 
             if (var2 == null)
             {
                 var2 = new HashSet();
-                this.mapByName.put(par1AttributeModifier.getName(), var2);
+                mapByName.put(par1AttributeModifier.getName(), var2);
             }
 
-            ((Set)this.mapByOperation.get(Integer.valueOf(par1AttributeModifier.getOperation()))).add(par1AttributeModifier);
+            ((Set)mapByOperation.get(Integer.valueOf(par1AttributeModifier.getOperation()))).add(par1AttributeModifier);
             ((Set)var2).add(par1AttributeModifier);
-            this.mapByUUID.put(par1AttributeModifier.getID(), par1AttributeModifier);
-            this.flagForUpdate();
+            mapByUUID.put(par1AttributeModifier.getID(), par1AttributeModifier);
+            flagForUpdate();
         }
     }
 
     private void flagForUpdate()
     {
-        this.needsUpdate = true;
-        this.attributeMap.addAttributeInstance(this);
+        needsUpdate = true;
+        attributeMap.addAttributeInstance(this);
     }
 
     public void removeModifier(AttributeModifier par1AttributeModifier)
     {
         for (int var2 = 0; var2 < 3; ++var2)
         {
-            Set var3 = (Set)this.mapByOperation.get(Integer.valueOf(var2));
+            Set var3 = (Set)mapByOperation.get(Integer.valueOf(var2));
             var3.remove(par1AttributeModifier);
         }
 
-        Set var4 = (Set)this.mapByName.get(par1AttributeModifier.getName());
+        Set var4 = (Set)mapByName.get(par1AttributeModifier.getName());
 
         if (var4 != null)
         {
@@ -128,31 +128,31 @@ public class ModifiableAttributeInstance implements IAttributeInstance
 
             if (var4.isEmpty())
             {
-                this.mapByName.remove(par1AttributeModifier.getName());
+                mapByName.remove(par1AttributeModifier.getName());
             }
         }
 
-        this.mapByUUID.remove(par1AttributeModifier.getID());
-        this.flagForUpdate();
+        mapByUUID.remove(par1AttributeModifier.getID());
+        flagForUpdate();
     }
 
     public double getAttributeValue()
     {
-        if (this.needsUpdate)
+        if (needsUpdate)
         {
-            this.cachedValue = this.computeValue();
-            this.needsUpdate = false;
+            cachedValue = computeValue();
+            needsUpdate = false;
         }
 
-        return this.cachedValue;
+        return cachedValue;
     }
 
     private double computeValue()
     {
-        double var1 = this.getBaseValue();
+        double var1 = getBaseValue();
         AttributeModifier var4;
 
-        for (Iterator var3 = this.getModifiersByOperation(0).iterator(); var3.hasNext(); var1 += var4.getAmount())
+        for (Iterator var3 = getModifiersByOperation(0).iterator(); var3.hasNext(); var1 += var4.getAmount())
         {
             var4 = (AttributeModifier)var3.next();
         }
@@ -161,16 +161,16 @@ public class ModifiableAttributeInstance implements IAttributeInstance
         Iterator var5;
         AttributeModifier var6;
 
-        for (var5 = this.getModifiersByOperation(1).iterator(); var5.hasNext(); var7 += var1 * var6.getAmount())
+        for (var5 = getModifiersByOperation(1).iterator(); var5.hasNext(); var7 += var1 * var6.getAmount())
         {
             var6 = (AttributeModifier)var5.next();
         }
 
-        for (var5 = this.getModifiersByOperation(2).iterator(); var5.hasNext(); var7 *= 1.0D + var6.getAmount())
+        for (var5 = getModifiersByOperation(2).iterator(); var5.hasNext(); var7 *= 1.0D + var6.getAmount())
         {
             var6 = (AttributeModifier)var5.next();
         }
 
-        return this.genericAttribute.clampValue(var7);
+        return genericAttribute.clampValue(var7);
     }
 }

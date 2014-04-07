@@ -32,12 +32,12 @@ public abstract class RConThreadBase implements Runnable
 
     protected RConThreadBase(IServer p_i45300_1_, String p_i45300_2_)
     {
-        this.server = p_i45300_1_;
-        this.field_164003_c = p_i45300_2_;
+        server = p_i45300_1_;
+        field_164003_c = p_i45300_2_;
 
-        if (this.server.isDebuggingEnabled())
+        if (server.isDebuggingEnabled())
         {
-            this.logWarning("Debugging is enabled, performance maybe reduced!");
+            logWarning("Debugging is enabled, performance maybe reduced!");
         }
     }
 
@@ -46,9 +46,9 @@ public abstract class RConThreadBase implements Runnable
      */
     public synchronized void startThread()
     {
-        this.rconThread = new Thread(this, this.field_164003_c + " #" + field_164004_h.incrementAndGet());
-        this.rconThread.start();
-        this.running = true;
+        rconThread = new Thread(this, field_164003_c + " #" + field_164004_h.incrementAndGet());
+        rconThread.start();
+        running = true;
     }
 
     /**
@@ -56,7 +56,7 @@ public abstract class RConThreadBase implements Runnable
      */
     public boolean isRunning()
     {
-        return this.running;
+        return running;
     }
 
     /**
@@ -64,7 +64,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected void logDebug(String par1Str)
     {
-        this.server.logDebug(par1Str);
+        server.logDebug(par1Str);
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected void logInfo(String par1Str)
     {
-        this.server.logInfo(par1Str);
+        server.logInfo(par1Str);
     }
 
     /**
@@ -80,7 +80,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected void logWarning(String par1Str)
     {
-        this.server.logWarning(par1Str);
+        server.logWarning(par1Str);
     }
 
     /**
@@ -88,7 +88,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected void logSevere(String par1Str)
     {
-        this.server.logSevere(par1Str);
+        server.logSevere(par1Str);
     }
 
     /**
@@ -96,7 +96,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected int getNumberOfPlayers()
     {
-        return this.server.getCurrentPlayerCount();
+        return server.getCurrentPlayerCount();
     }
 
     /**
@@ -104,8 +104,8 @@ public abstract class RConThreadBase implements Runnable
      */
     protected void registerSocket(DatagramSocket par1DatagramSocket)
     {
-        this.logDebug("registerSocket: " + par1DatagramSocket);
-        this.socketList.add(par1DatagramSocket);
+        logDebug("registerSocket: " + par1DatagramSocket);
+        socketList.add(par1DatagramSocket);
     }
 
     /**
@@ -113,7 +113,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected boolean closeSocket(DatagramSocket par1DatagramSocket, boolean par2)
     {
-        this.logDebug("closeSocket: " + par1DatagramSocket);
+        logDebug("closeSocket: " + par1DatagramSocket);
 
         if (null == par1DatagramSocket)
         {
@@ -131,7 +131,7 @@ public abstract class RConThreadBase implements Runnable
 
             if (par2)
             {
-                this.socketList.remove(par1DatagramSocket);
+                socketList.remove(par1DatagramSocket);
             }
 
             return var3;
@@ -143,7 +143,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected boolean closeServerSocket(ServerSocket par1ServerSocket)
     {
-        return this.closeServerSocket_do(par1ServerSocket, true);
+        return closeServerSocket_do(par1ServerSocket, true);
     }
 
     /**
@@ -151,7 +151,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected boolean closeServerSocket_do(ServerSocket par1ServerSocket, boolean par2)
     {
-        this.logDebug("closeSocket: " + par1ServerSocket);
+        logDebug("closeSocket: " + par1ServerSocket);
 
         if (null == par1ServerSocket)
         {
@@ -171,12 +171,12 @@ public abstract class RConThreadBase implements Runnable
             }
             catch (IOException var5)
             {
-                this.logWarning("IO: " + var5.getMessage());
+                logWarning("IO: " + var5.getMessage());
             }
 
             if (par2)
             {
-                this.serverSocketList.remove(par1ServerSocket);
+                serverSocketList.remove(par1ServerSocket);
             }
 
             return var3;
@@ -188,7 +188,7 @@ public abstract class RConThreadBase implements Runnable
      */
     protected void closeAllSockets()
     {
-        this.closeAllSockets_do(false);
+        closeAllSockets_do(false);
     }
 
     /**
@@ -197,36 +197,36 @@ public abstract class RConThreadBase implements Runnable
     protected void closeAllSockets_do(boolean par1)
     {
         int var2 = 0;
-        Iterator var3 = this.socketList.iterator();
+        Iterator var3 = socketList.iterator();
 
         while (var3.hasNext())
         {
             DatagramSocket var4 = (DatagramSocket)var3.next();
 
-            if (this.closeSocket(var4, false))
+            if (closeSocket(var4, false))
             {
                 ++var2;
             }
         }
 
-        this.socketList.clear();
-        var3 = this.serverSocketList.iterator();
+        socketList.clear();
+        var3 = serverSocketList.iterator();
 
         while (var3.hasNext())
         {
             ServerSocket var5 = (ServerSocket)var3.next();
 
-            if (this.closeServerSocket_do(var5, false))
+            if (closeServerSocket_do(var5, false))
             {
                 ++var2;
             }
         }
 
-        this.serverSocketList.clear();
+        serverSocketList.clear();
 
         if (par1 && 0 < var2)
         {
-            this.logWarning("Force closed " + var2 + " sockets");
+            logWarning("Force closed " + var2 + " sockets");
         }
     }
 }

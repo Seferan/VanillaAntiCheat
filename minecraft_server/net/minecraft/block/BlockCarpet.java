@@ -13,10 +13,10 @@ public class BlockCarpet extends Block
     protected BlockCarpet()
     {
         super(Material.field_151593_r);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
-        this.func_150089_b(0);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabDecorations);
+        func_150089_b(0);
     }
 
     /**
@@ -27,7 +27,7 @@ public class BlockCarpet extends Block
     {
         byte var5 = 0;
         float var6 = 0.0625F;
-        return AxisAlignedBB.getAABBPool().getAABB((double)p_149668_2_ + this.minX, (double)p_149668_3_ + this.minY, (double)p_149668_4_ + this.minZ, (double)p_149668_2_ + this.maxX, (double)((float)p_149668_3_ + (float)var5 * var6), (double)p_149668_4_ + this.maxZ);
+        return AxisAlignedBB.getAABBPool().getAABB(p_149668_2_ + minX, p_149668_3_ + minY, p_149668_4_ + minZ, p_149668_2_ + maxX, p_149668_3_ + var5 * var6, p_149668_4_ + maxZ);
     }
 
     public boolean isOpaqueCube()
@@ -45,36 +45,36 @@ public class BlockCarpet extends Block
      */
     public void setBlockBoundsForItemRender()
     {
-        this.func_150089_b(0);
+        func_150089_b(0);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.func_150089_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
+        func_150089_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
     }
 
     protected void func_150089_b(int p_150089_1_)
     {
         byte var2 = 0;
-        float var3 = (float)(1 * (1 + var2)) / 16.0F;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var3, 1.0F);
+        float var3 = 1 * (1 + var2) / 16.0F;
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var3, 1.0F);
     }
 
     public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) && this.canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
+        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) && canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
     }
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        this.func_150090_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+        func_150090_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
     }
 
     private boolean func_150090_e(World p_150090_1_, int p_150090_2_, int p_150090_3_, int p_150090_4_)
     {
-        if (!this.canBlockStay(p_150090_1_, p_150090_2_, p_150090_3_, p_150090_4_))
+        if (!canBlockStay(p_150090_1_, p_150090_2_, p_150090_3_, p_150090_4_))
         {
-            this.dropBlockAsItem(p_150090_1_, p_150090_2_, p_150090_3_, p_150090_4_, p_150090_1_.getBlockMetadata(p_150090_2_, p_150090_3_, p_150090_4_), 0);
+            dropBlockAsItem(p_150090_1_, p_150090_2_, p_150090_3_, p_150090_4_, p_150090_1_.getBlockMetadata(p_150090_2_, p_150090_3_, p_150090_4_), 0);
             p_150090_1_.setBlockToAir(p_150090_2_, p_150090_3_, p_150090_4_);
             return false;
         }

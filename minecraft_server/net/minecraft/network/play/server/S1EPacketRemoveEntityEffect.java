@@ -20,8 +20,8 @@ public class S1EPacketRemoveEntityEffect extends Packet
 
     public S1EPacketRemoveEntityEffect(int p_i45212_1_, PotionEffect p_i45212_2_)
     {
-        this.field_149079_a = p_i45212_1_;
-        this.field_149078_b = p_i45212_2_.getPotionID();
+        field_149079_a = p_i45212_1_;
+        field_149078_b = p_i45212_2_.getPotionID();
     }
 
     /**
@@ -29,8 +29,8 @@ public class S1EPacketRemoveEntityEffect extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149079_a = p_148837_1_.readInt();
-        this.field_149078_b = p_148837_1_.readUnsignedByte();
+        field_149079_a = p_148837_1_.readInt();
+        field_149078_b = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -38,8 +38,8 @@ public class S1EPacketRemoveEntityEffect extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149079_a);
-        p_148840_1_.writeByte(this.field_149078_b);
+        p_148840_1_.writeInt(field_149079_a);
+        p_148840_1_.writeByte(field_149078_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149077_1_)

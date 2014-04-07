@@ -19,11 +19,11 @@ public class BlockSign extends BlockContainer
     protected BlockSign(Class p_i45426_1_, boolean p_i45426_2_)
     {
         super(Material.wood);
-        this.field_149967_b = p_i45426_2_;
-        this.field_149968_a = p_i45426_1_;
+        field_149967_b = p_i45426_2_;
+        field_149968_a = p_i45426_1_;
         float var3 = 0.25F;
         float var4 = 1.0F;
-        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var4, 0.5F + var3);
+        setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var4, 0.5F + var3);
     }
 
     /**
@@ -37,7 +37,7 @@ public class BlockSign extends BlockContainer
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        if (!this.field_149967_b)
+        if (!field_149967_b)
         {
             int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_);
             float var6 = 0.28125F;
@@ -45,26 +45,26 @@ public class BlockSign extends BlockContainer
             float var8 = 0.0F;
             float var9 = 1.0F;
             float var10 = 0.125F;
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 
             if (var5 == 2)
             {
-                this.setBlockBounds(var8, var6, 1.0F - var10, var9, var7, 1.0F);
+                setBlockBounds(var8, var6, 1.0F - var10, var9, var7, 1.0F);
             }
 
             if (var5 == 3)
             {
-                this.setBlockBounds(var8, var6, 0.0F, var9, var7, var10);
+                setBlockBounds(var8, var6, 0.0F, var9, var7, var10);
             }
 
             if (var5 == 4)
             {
-                this.setBlockBounds(1.0F - var10, var6, var8, 1.0F, var7, var9);
+                setBlockBounds(1.0F - var10, var6, var8, 1.0F, var7, var9);
             }
 
             if (var5 == 5)
             {
-                this.setBlockBounds(0.0F, var6, var8, var10, var7, var9);
+                setBlockBounds(0.0F, var6, var8, var10, var7, var9);
             }
         }
     }
@@ -100,7 +100,7 @@ public class BlockSign extends BlockContainer
     {
         try
         {
-            return (TileEntity)this.field_149968_a.newInstance();
+            return (TileEntity)field_149968_a.newInstance();
         }
         catch (Exception var4)
         {
@@ -117,7 +117,7 @@ public class BlockSign extends BlockContainer
     {
         boolean var6 = false;
 
-        if (this.field_149967_b)
+        if (field_149967_b)
         {
             if (!p_149695_1_.getBlock(p_149695_2_, p_149695_3_ - 1, p_149695_4_).getMaterial().isSolid())
             {
@@ -152,7 +152,7 @@ public class BlockSign extends BlockContainer
 
         if (var6)
         {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
+            dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
 

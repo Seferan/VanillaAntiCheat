@@ -11,8 +11,8 @@ public class EntityAITradePlayer extends EntityAIBase
 
     public EntityAITradePlayer(EntityVillager par1EntityVillager)
     {
-        this.villager = par1EntityVillager;
-        this.setMutexBits(5);
+        villager = par1EntityVillager;
+        setMutexBits(5);
     }
 
     /**
@@ -20,26 +20,26 @@ public class EntityAITradePlayer extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (!this.villager.isEntityAlive())
+        if (!villager.isEntityAlive())
         {
             return false;
         }
-        else if (this.villager.isInWater())
+        else if (villager.isInWater())
         {
             return false;
         }
-        else if (!this.villager.onGround)
+        else if (!villager.onGround)
         {
             return false;
         }
-        else if (this.villager.velocityChanged)
+        else if (villager.velocityChanged)
         {
             return false;
         }
         else
         {
-            EntityPlayer var1 = this.villager.getCustomer();
-            return var1 == null ? false : (this.villager.getDistanceSqToEntity(var1) > 16.0D ? false : var1.openContainer instanceof Container);
+            EntityPlayer var1 = villager.getCustomer();
+            return var1 == null ? false : (villager.getDistanceSqToEntity(var1) > 16.0D ? false : var1.openContainer instanceof Container);
         }
     }
 
@@ -48,7 +48,7 @@ public class EntityAITradePlayer extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.villager.getNavigator().clearPathEntity();
+        villager.getNavigator().clearPathEntity();
     }
 
     /**
@@ -56,6 +56,6 @@ public class EntityAITradePlayer extends EntityAIBase
      */
     public void resetTask()
     {
-        this.villager.setCustomer((EntityPlayer)null);
+        villager.setCustomer((EntityPlayer)null);
     }
 }

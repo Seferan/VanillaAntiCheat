@@ -28,7 +28,7 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return this.field_146022_i[par1];
+        return field_146022_i[par1];
     }
 
     /**
@@ -37,27 +37,27 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (this.field_146022_i[par1] != null)
+        if (field_146022_i[par1] != null)
         {
             ItemStack var3;
 
-            if (this.field_146022_i[par1].stackSize <= par2)
+            if (field_146022_i[par1].stackSize <= par2)
             {
-                var3 = this.field_146022_i[par1];
-                this.field_146022_i[par1] = null;
-                this.onInventoryChanged();
+                var3 = field_146022_i[par1];
+                field_146022_i[par1] = null;
+                onInventoryChanged();
                 return var3;
             }
             else
             {
-                var3 = this.field_146022_i[par1].splitStack(par2);
+                var3 = field_146022_i[par1].splitStack(par2);
 
-                if (this.field_146022_i[par1].stackSize == 0)
+                if (field_146022_i[par1].stackSize == 0)
                 {
-                    this.field_146022_i[par1] = null;
+                    field_146022_i[par1] = null;
                 }
 
-                this.onInventoryChanged();
+                onInventoryChanged();
                 return var3;
             }
         }
@@ -74,10 +74,10 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        if (this.field_146022_i[par1] != null)
+        if (field_146022_i[par1] != null)
         {
-            ItemStack var2 = this.field_146022_i[par1];
-            this.field_146022_i[par1] = null;
+            ItemStack var2 = field_146022_i[par1];
+            field_146022_i[par1] = null;
             return var2;
         }
         else
@@ -91,9 +91,9 @@ public class TileEntityDispenser extends TileEntity implements IInventory
         int var1 = -1;
         int var2 = 1;
 
-        for (int var3 = 0; var3 < this.field_146022_i.length; ++var3)
+        for (int var3 = 0; var3 < field_146022_i.length; ++var3)
         {
-            if (this.field_146022_i[var3] != null && this.field_146021_j.nextInt(var2++) == 0)
+            if (field_146022_i[var3] != null && field_146021_j.nextInt(var2++) == 0)
             {
                 var1 = var3;
             }
@@ -108,23 +108,23 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
-        this.field_146022_i[par1] = par2ItemStack;
+        field_146022_i[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > getInventoryStackLimit())
         {
-            par2ItemStack.stackSize = this.getInventoryStackLimit();
+            par2ItemStack.stackSize = getInventoryStackLimit();
         }
 
-        this.onInventoryChanged();
+        onInventoryChanged();
     }
 
     public int func_146019_a(ItemStack p_146019_1_)
     {
-        for (int var2 = 0; var2 < this.field_146022_i.length; ++var2)
+        for (int var2 = 0; var2 < field_146022_i.length; ++var2)
         {
-            if (this.field_146022_i[var2] == null || this.field_146022_i[var2].getItem() == null)
+            if (field_146022_i[var2] == null || field_146022_i[var2].getItem() == null)
             {
-                this.setInventorySlotContents(var2, p_146019_1_);
+                setInventorySlotContents(var2, p_146019_1_);
                 return var2;
             }
         }
@@ -137,12 +137,12 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.field_146020_a : "container.dispenser";
+        return isInventoryNameLocalized() ? field_146020_a : "container.dispenser";
     }
 
     public void func_146018_a(String p_146018_1_)
     {
-        this.field_146020_a = p_146018_1_;
+        field_146020_a = p_146018_1_;
     }
 
     /**
@@ -150,29 +150,29 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public boolean isInventoryNameLocalized()
     {
-        return this.field_146020_a != null;
+        return field_146020_a != null;
     }
 
     public void readFromNBT(NBTTagCompound p_145839_1_)
     {
         super.readFromNBT(p_145839_1_);
         NBTTagList var2 = p_145839_1_.getTagList("Items", 10);
-        this.field_146022_i = new ItemStack[this.getSizeInventory()];
+        field_146022_i = new ItemStack[getSizeInventory()];
 
         for (int var3 = 0; var3 < var2.tagCount(); ++var3)
         {
             NBTTagCompound var4 = var2.getCompoundTagAt(var3);
             int var5 = var4.getByte("Slot") & 255;
 
-            if (var5 >= 0 && var5 < this.field_146022_i.length)
+            if (var5 >= 0 && var5 < field_146022_i.length)
             {
-                this.field_146022_i[var5] = ItemStack.loadItemStackFromNBT(var4);
+                field_146022_i[var5] = ItemStack.loadItemStackFromNBT(var4);
             }
         }
 
         if (p_145839_1_.func_150297_b("CustomName", 8))
         {
-            this.field_146020_a = p_145839_1_.getString("CustomName");
+            field_146020_a = p_145839_1_.getString("CustomName");
         }
     }
 
@@ -181,22 +181,22 @@ public class TileEntityDispenser extends TileEntity implements IInventory
         super.writeToNBT(p_145841_1_);
         NBTTagList var2 = new NBTTagList();
 
-        for (int var3 = 0; var3 < this.field_146022_i.length; ++var3)
+        for (int var3 = 0; var3 < field_146022_i.length; ++var3)
         {
-            if (this.field_146022_i[var3] != null)
+            if (field_146022_i[var3] != null)
             {
                 NBTTagCompound var4 = new NBTTagCompound();
                 var4.setByte("Slot", (byte)var3);
-                this.field_146022_i[var3].writeToNBT(var4);
+                field_146022_i[var3].writeToNBT(var4);
                 var2.appendTag(var4);
             }
         }
 
         p_145841_1_.setTag("Items", var2);
 
-        if (this.isInventoryNameLocalized())
+        if (isInventoryNameLocalized())
         {
-            p_145841_1_.setString("CustomName", this.field_146020_a);
+            p_145841_1_.setString("CustomName", field_146020_a);
         }
     }
 
@@ -215,7 +215,7 @@ public class TileEntityDispenser extends TileEntity implements IInventory
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return worldObj.getTileEntity(xCoord, yCoord, zCoord) != this ? false : par1EntityPlayer.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64.0D;
     }
 
     public void openChest()

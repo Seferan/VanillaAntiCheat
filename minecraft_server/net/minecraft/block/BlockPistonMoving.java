@@ -19,7 +19,7 @@ public class BlockPistonMoving extends BlockContainer
     public BlockPistonMoving()
     {
         super(Material.piston);
-        this.setHardness(-1.0F);
+        setHardness(-1.0F);
     }
 
     /**
@@ -110,7 +110,7 @@ public class BlockPistonMoving extends BlockContainer
     {
         if (!p_149690_1_.isClient)
         {
-            TileEntityPiston var8 = this.func_149963_e(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_);
+            TileEntityPiston var8 = func_149963_e(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_);
 
             if (var8 != null)
             {
@@ -138,7 +138,7 @@ public class BlockPistonMoving extends BlockContainer
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        TileEntityPiston var5 = this.func_149963_e(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        TileEntityPiston var5 = func_149963_e(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
 
         if (var5 == null)
         {
@@ -153,13 +153,13 @@ public class BlockPistonMoving extends BlockContainer
                 var6 = 1.0F - var6;
             }
 
-            return this.func_149964_a(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_, var5.func_145861_a(), var6, var5.func_145864_c());
+            return func_149964_a(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_, var5.func_145861_a(), var6, var5.func_145864_c());
         }
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        TileEntityPiston var5 = this.func_149963_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_);
+        TileEntityPiston var5 = func_149963_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_);
 
         if (var5 != null)
         {
@@ -176,12 +176,12 @@ public class BlockPistonMoving extends BlockContainer
             }
 
             int var8 = var5.func_145864_c();
-            this.minX = var6.getBlockBoundsMinX() - (double)((float)Facing.offsetsXForSide[var8] * var7);
-            this.minY = var6.getBlockBoundsMinY() - (double)((float)Facing.offsetsYForSide[var8] * var7);
-            this.minZ = var6.getBlockBoundsMinZ() - (double)((float)Facing.offsetsZForSide[var8] * var7);
-            this.maxX = var6.getBlockBoundsMaxX() - (double)((float)Facing.offsetsXForSide[var8] * var7);
-            this.maxY = var6.getBlockBoundsMaxY() - (double)((float)Facing.offsetsYForSide[var8] * var7);
-            this.maxZ = var6.getBlockBoundsMaxZ() - (double)((float)Facing.offsetsZForSide[var8] * var7);
+            minX = var6.getBlockBoundsMinX() - Facing.offsetsXForSide[var8] * var7;
+            minY = var6.getBlockBoundsMinY() - Facing.offsetsYForSide[var8] * var7;
+            minZ = var6.getBlockBoundsMinZ() - Facing.offsetsZForSide[var8] * var7;
+            maxX = var6.getBlockBoundsMaxX() - Facing.offsetsXForSide[var8] * var7;
+            maxY = var6.getBlockBoundsMaxY() - Facing.offsetsYForSide[var8] * var7;
+            maxZ = var6.getBlockBoundsMaxZ() - Facing.offsetsZForSide[var8] * var7;
         }
     }
 
@@ -199,29 +199,29 @@ public class BlockPistonMoving extends BlockContainer
             {
                 if (Facing.offsetsXForSide[p_149964_7_] < 0)
                 {
-                    var8.minX -= (double)((float)Facing.offsetsXForSide[p_149964_7_] * p_149964_6_);
+                    var8.minX -= Facing.offsetsXForSide[p_149964_7_] * p_149964_6_;
                 }
                 else
                 {
-                    var8.maxX -= (double)((float)Facing.offsetsXForSide[p_149964_7_] * p_149964_6_);
+                    var8.maxX -= Facing.offsetsXForSide[p_149964_7_] * p_149964_6_;
                 }
 
                 if (Facing.offsetsYForSide[p_149964_7_] < 0)
                 {
-                    var8.minY -= (double)((float)Facing.offsetsYForSide[p_149964_7_] * p_149964_6_);
+                    var8.minY -= Facing.offsetsYForSide[p_149964_7_] * p_149964_6_;
                 }
                 else
                 {
-                    var8.maxY -= (double)((float)Facing.offsetsYForSide[p_149964_7_] * p_149964_6_);
+                    var8.maxY -= Facing.offsetsYForSide[p_149964_7_] * p_149964_6_;
                 }
 
                 if (Facing.offsetsZForSide[p_149964_7_] < 0)
                 {
-                    var8.minZ -= (double)((float)Facing.offsetsZForSide[p_149964_7_] * p_149964_6_);
+                    var8.minZ -= Facing.offsetsZForSide[p_149964_7_] * p_149964_6_;
                 }
                 else
                 {
-                    var8.maxZ -= (double)((float)Facing.offsetsZForSide[p_149964_7_] * p_149964_6_);
+                    var8.maxZ -= Facing.offsetsZForSide[p_149964_7_] * p_149964_6_;
                 }
 
                 return var8;

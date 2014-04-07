@@ -15,10 +15,10 @@ public class BlockBush extends Block
     protected BlockBush(Material p_i45395_1_)
     {
         super(p_i45395_1_);
-        this.setTickRandomly(true);
+        setTickRandomly(true);
         float var2 = 0.2F;
-        this.setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, var2 * 3.0F, 0.5F + var2);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, var2 * 3.0F, 0.5F + var2);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     protected BlockBush()
@@ -28,7 +28,7 @@ public class BlockBush extends Block
 
     public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) && this.func_149854_a(p_149742_1_.getBlock(p_149742_2_, p_149742_3_ - 1, p_149742_4_));
+        return super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) && func_149854_a(p_149742_1_.getBlock(p_149742_2_, p_149742_3_ - 1, p_149742_4_));
     }
 
     protected boolean func_149854_a(Block p_149854_1_)
@@ -39,7 +39,7 @@ public class BlockBush extends Block
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         super.onNeighborBlockChange(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_);
-        this.func_149855_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+        func_149855_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
     }
 
     /**
@@ -47,14 +47,14 @@ public class BlockBush extends Block
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        this.func_149855_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+        func_149855_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
     }
 
     protected void func_149855_e(World p_149855_1_, int p_149855_2_, int p_149855_3_, int p_149855_4_)
     {
-        if (!this.canBlockStay(p_149855_1_, p_149855_2_, p_149855_3_, p_149855_4_))
+        if (!canBlockStay(p_149855_1_, p_149855_2_, p_149855_3_, p_149855_4_))
         {
-            this.dropBlockAsItem(p_149855_1_, p_149855_2_, p_149855_3_, p_149855_4_, p_149855_1_.getBlockMetadata(p_149855_2_, p_149855_3_, p_149855_4_), 0);
+            dropBlockAsItem(p_149855_1_, p_149855_2_, p_149855_3_, p_149855_4_, p_149855_1_.getBlockMetadata(p_149855_2_, p_149855_3_, p_149855_4_), 0);
             p_149855_1_.setBlock(p_149855_2_, p_149855_3_, p_149855_4_, getBlockById(0), 0, 2);
         }
     }
@@ -65,7 +65,7 @@ public class BlockBush extends Block
      */
     public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
     {
-        return this.func_149854_a(p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_));
+        return func_149854_a(p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_));
     }
 
     /**

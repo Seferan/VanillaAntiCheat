@@ -16,15 +16,15 @@ public class FlatLayerInfo
 
     public FlatLayerInfo(int p_i45467_1_, Block p_i45467_2_)
     {
-        this.layerCount = 1;
-        this.layerCount = p_i45467_1_;
-        this.field_151537_a = p_i45467_2_;
+        layerCount = 1;
+        layerCount = p_i45467_1_;
+        field_151537_a = p_i45467_2_;
     }
 
     public FlatLayerInfo(int p_i45468_1_, Block p_i45468_2_, int p_i45468_3_)
     {
         this(p_i45468_1_, p_i45468_2_);
-        this.layerFillBlockMeta = p_i45468_3_;
+        layerFillBlockMeta = p_i45468_3_;
     }
 
     /**
@@ -32,12 +32,12 @@ public class FlatLayerInfo
      */
     public int getLayerCount()
     {
-        return this.layerCount;
+        return layerCount;
     }
 
     public Block func_151536_b()
     {
-        return this.field_151537_a;
+        return field_151537_a;
     }
 
     /**
@@ -45,7 +45,7 @@ public class FlatLayerInfo
      */
     public int getFillBlockMeta()
     {
-        return this.layerFillBlockMeta;
+        return layerFillBlockMeta;
     }
 
     /**
@@ -53,7 +53,7 @@ public class FlatLayerInfo
      */
     public int getMinY()
     {
-        return this.layerMinimumY;
+        return layerMinimumY;
     }
 
     /**
@@ -61,21 +61,21 @@ public class FlatLayerInfo
      */
     public void setMinY(int par1)
     {
-        this.layerMinimumY = par1;
+        layerMinimumY = par1;
     }
 
     public String toString()
     {
-        String var1 = Integer.toString(Block.getIdFromBlock(this.field_151537_a));
+        String var1 = Integer.toString(Block.getIdFromBlock(field_151537_a));
 
-        if (this.layerCount > 1)
+        if (layerCount > 1)
         {
-            var1 = this.layerCount + "x" + var1;
+            var1 = layerCount + "x" + var1;
         }
 
-        if (this.layerFillBlockMeta > 0)
+        if (layerFillBlockMeta > 0)
         {
-            var1 = var1 + ":" + this.layerFillBlockMeta;
+            var1 = var1 + ":" + layerFillBlockMeta;
         }
 
         return var1;

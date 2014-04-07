@@ -27,29 +27,29 @@ public class BlockHopper extends BlockContainer
     public BlockHopper()
     {
         super(Material.iron);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setcreativeTab(CreativeTabs.tabRedstone);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         float var8 = 0.125F;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, var8, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, var8, 1.0F, 1.0F);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var8);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var8);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-        this.setBlockBounds(1.0F - var8, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(1.0F - var8, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-        this.setBlockBounds(0.0F, 0.0F, 1.0F - var8, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 1.0F - var8, 1.0F, 1.0F, 1.0F);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
@@ -90,7 +90,7 @@ public class BlockHopper extends BlockContainer
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
-        this.func_149919_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
+        func_149919_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
     }
 
     /**
@@ -117,7 +117,7 @@ public class BlockHopper extends BlockContainer
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        this.func_149919_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+        func_149919_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
     }
 
     private void func_149919_e(World p_149919_1_, int p_149919_2_, int p_149919_3_, int p_149919_4_)
@@ -145,13 +145,13 @@ public class BlockHopper extends BlockContainer
 
                 if (var9 != null)
                 {
-                    float var10 = this.field_149922_a.nextFloat() * 0.8F + 0.1F;
-                    float var11 = this.field_149922_a.nextFloat() * 0.8F + 0.1F;
-                    float var12 = this.field_149922_a.nextFloat() * 0.8F + 0.1F;
+                    float var10 = field_149922_a.nextFloat() * 0.8F + 0.1F;
+                    float var11 = field_149922_a.nextFloat() * 0.8F + 0.1F;
+                    float var12 = field_149922_a.nextFloat() * 0.8F + 0.1F;
 
                     while (var9.stackSize > 0)
                     {
-                        int var13 = this.field_149922_a.nextInt(21) + 10;
+                        int var13 = field_149922_a.nextInt(21) + 10;
 
                         if (var13 > var9.stackSize)
                         {
@@ -159,7 +159,7 @@ public class BlockHopper extends BlockContainer
                         }
 
                         var9.stackSize -= var13;
-                        EntityItem var14 = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + var10), (double)((float)p_149749_3_ + var11), (double)((float)p_149749_4_ + var12), new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
+                        EntityItem var14 = new EntityItem(p_149749_1_, p_149749_2_ + var10, p_149749_3_ + var11, p_149749_4_ + var12, new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
 
                         if (var9.hasTagCompound())
                         {
@@ -167,9 +167,9 @@ public class BlockHopper extends BlockContainer
                         }
 
                         float var15 = 0.05F;
-                        var14.motionX = (double)((float)this.field_149922_a.nextGaussian() * var15);
-                        var14.motionY = (double)((float)this.field_149922_a.nextGaussian() * var15 + 0.2F);
-                        var14.motionZ = (double)((float)this.field_149922_a.nextGaussian() * var15);
+                        var14.motionX = (float)field_149922_a.nextGaussian() * var15;
+                        var14.motionY = (float)field_149922_a.nextGaussian() * var15 + 0.2F;
+                        var14.motionZ = (float)field_149922_a.nextGaussian() * var15;
                         p_149749_1_.spawnEntityInWorld(var14);
                     }
                 }

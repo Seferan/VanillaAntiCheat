@@ -21,15 +21,15 @@ public class S1CPacketEntityMetadata extends Packet
 
     public S1CPacketEntityMetadata(int p_i45217_1_, DataWatcher p_i45217_2_, boolean p_i45217_3_)
     {
-        this.field_149379_a = p_i45217_1_;
+        field_149379_a = p_i45217_1_;
 
         if (p_i45217_3_)
         {
-            this.field_149378_b = p_i45217_2_.getAllWatched();
+            field_149378_b = p_i45217_2_.getAllWatched();
         }
         else
         {
-            this.field_149378_b = p_i45217_2_.getChanged();
+            field_149378_b = p_i45217_2_.getChanged();
         }
     }
 
@@ -38,8 +38,8 @@ public class S1CPacketEntityMetadata extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149379_a = p_148837_1_.readInt();
-        this.field_149378_b = DataWatcher.readWatchedListFromPacketBuffer(p_148837_1_);
+        field_149379_a = p_148837_1_.readInt();
+        field_149378_b = DataWatcher.readWatchedListFromPacketBuffer(p_148837_1_);
     }
 
     /**
@@ -47,8 +47,8 @@ public class S1CPacketEntityMetadata extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149379_a);
-        DataWatcher.writeWatchedListToPacketBuffer(this.field_149378_b, p_148840_1_);
+        p_148840_1_.writeInt(field_149379_a);
+        DataWatcher.writeWatchedListToPacketBuffer(field_149378_b, p_148840_1_);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149377_1_)

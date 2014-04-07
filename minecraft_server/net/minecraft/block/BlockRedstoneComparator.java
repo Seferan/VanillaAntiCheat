@@ -19,7 +19,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
     public BlockRedstoneComparator(boolean p_i45399_1_)
     {
         super(p_i45399_1_);
-        this.isBlockContainer = true;
+        isBlockContainer = true;
     }
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
@@ -52,17 +52,17 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
 
     protected boolean func_149905_c(int p_149905_1_)
     {
-        return this.field_149914_a || (p_149905_1_ & 8) != 0;
+        return field_149914_a || (p_149905_1_ & 8) != 0;
     }
 
     protected int func_149904_f(IBlockAccess p_149904_1_, int p_149904_2_, int p_149904_3_, int p_149904_4_, int p_149904_5_)
     {
-        return this.func_149971_e(p_149904_1_, p_149904_2_, p_149904_3_, p_149904_4_).func_145996_a();
+        return func_149971_e(p_149904_1_, p_149904_2_, p_149904_3_, p_149904_4_).func_145996_a();
     }
 
     private int func_149970_j(World p_149970_1_, int p_149970_2_, int p_149970_3_, int p_149970_4_, int p_149970_5_)
     {
-        return !this.func_149969_d(p_149970_5_) ? this.func_149903_h(p_149970_1_, p_149970_2_, p_149970_3_, p_149970_4_, p_149970_5_) : Math.max(this.func_149903_h(p_149970_1_, p_149970_2_, p_149970_3_, p_149970_4_, p_149970_5_) - this.func_149902_h(p_149970_1_, p_149970_2_, p_149970_3_, p_149970_4_, p_149970_5_), 0);
+        return !func_149969_d(p_149970_5_) ? func_149903_h(p_149970_1_, p_149970_2_, p_149970_3_, p_149970_4_, p_149970_5_) : Math.max(func_149903_h(p_149970_1_, p_149970_2_, p_149970_3_, p_149970_4_, p_149970_5_) - func_149902_h(p_149970_1_, p_149970_2_, p_149970_3_, p_149970_4_, p_149970_5_), 0);
     }
 
     public boolean func_149969_d(int p_149969_1_)
@@ -72,7 +72,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
 
     protected boolean func_149900_a(World p_149900_1_, int p_149900_2_, int p_149900_3_, int p_149900_4_, int p_149900_5_)
     {
-        int var6 = this.func_149903_h(p_149900_1_, p_149900_2_, p_149900_3_, p_149900_4_, p_149900_5_);
+        int var6 = func_149903_h(p_149900_1_, p_149900_2_, p_149900_3_, p_149900_4_, p_149900_5_);
 
         if (var6 >= 15)
         {
@@ -84,7 +84,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         }
         else
         {
-            int var7 = this.func_149902_h(p_149900_1_, p_149900_2_, p_149900_3_, p_149900_4_, p_149900_5_);
+            int var7 = func_149902_h(p_149900_1_, p_149900_2_, p_149900_3_, p_149900_4_, p_149900_5_);
             return var7 == 0 ? true : var6 >= var7;
         }
     }
@@ -127,13 +127,13 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
     public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         int var10 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_);
-        boolean var11 = this.field_149914_a | (var10 & 8) != 0;
-        boolean var12 = !this.func_149969_d(var10);
+        boolean var11 = field_149914_a | (var10 & 8) != 0;
+        boolean var12 = !func_149969_d(var10);
         int var13 = var12 ? 4 : 0;
         var13 |= var11 ? 8 : 0;
-        p_149727_1_.playSoundEffect((double)p_149727_2_ + 0.5D, (double)p_149727_3_ + 0.5D, (double)p_149727_4_ + 0.5D, "random.click", 0.3F, var12 ? 0.55F : 0.5F);
+        p_149727_1_.playSoundEffect(p_149727_2_ + 0.5D, p_149727_3_ + 0.5D, p_149727_4_ + 0.5D, "random.click", 0.3F, var12 ? 0.55F : 0.5F);
         p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_, var13 | var10 & 3, 2);
-        this.func_149972_c(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_1_.rand);
+        func_149972_c(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_1_.rand);
         return true;
     }
 
@@ -142,18 +142,18 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
         if (!p_149897_1_.func_147477_a(p_149897_2_, p_149897_3_, p_149897_4_, this))
         {
             int var6 = p_149897_1_.getBlockMetadata(p_149897_2_, p_149897_3_, p_149897_4_);
-            int var7 = this.func_149970_j(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_, var6);
-            int var8 = this.func_149971_e(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_).func_145996_a();
+            int var7 = func_149970_j(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_, var6);
+            int var8 = func_149971_e(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_).func_145996_a();
 
-            if (var7 != var8 || this.func_149905_c(var6) != this.func_149900_a(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_, var6))
+            if (var7 != var8 || func_149905_c(var6) != func_149900_a(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_, var6))
             {
-                if (this.func_149912_i(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_, var6))
+                if (func_149912_i(p_149897_1_, p_149897_2_, p_149897_3_, p_149897_4_, var6))
                 {
-                    p_149897_1_.func_147454_a(p_149897_2_, p_149897_3_, p_149897_4_, this, this.func_149901_b(0), -1);
+                    p_149897_1_.func_147454_a(p_149897_2_, p_149897_3_, p_149897_4_, this, func_149901_b(0), -1);
                 }
                 else
                 {
-                    p_149897_1_.func_147454_a(p_149897_2_, p_149897_3_, p_149897_4_, this, this.func_149901_b(0), 0);
+                    p_149897_1_.func_147454_a(p_149897_2_, p_149897_3_, p_149897_4_, this, func_149901_b(0), 0);
                 }
             }
         }
@@ -162,14 +162,14 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
     private void func_149972_c(World p_149972_1_, int p_149972_2_, int p_149972_3_, int p_149972_4_, Random p_149972_5_)
     {
         int var6 = p_149972_1_.getBlockMetadata(p_149972_2_, p_149972_3_, p_149972_4_);
-        int var7 = this.func_149970_j(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_, var6);
-        int var8 = this.func_149971_e(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_).func_145996_a();
-        this.func_149971_e(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_).func_145995_a(var7);
+        int var7 = func_149970_j(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_, var6);
+        int var8 = func_149971_e(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_).func_145996_a();
+        func_149971_e(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_).func_145995_a(var7);
 
-        if (var8 != var7 || !this.func_149969_d(var6))
+        if (var8 != var7 || !func_149969_d(var6))
         {
-            boolean var9 = this.func_149900_a(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_, var6);
-            boolean var10 = this.field_149914_a || (var6 & 8) != 0;
+            boolean var9 = func_149900_a(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_, var6);
+            boolean var10 = field_149914_a || (var6 & 8) != 0;
 
             if (var10 && !var9)
             {
@@ -180,7 +180,7 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
                 p_149972_1_.setBlockMetadata(p_149972_2_, p_149972_3_, p_149972_4_, var6 | 8, 2);
             }
 
-            this.func_149911_e(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_);
+            func_149911_e(p_149972_1_, p_149972_2_, p_149972_3_, p_149972_4_);
         }
     }
 
@@ -189,26 +189,26 @@ public class BlockRedstoneComparator extends BlockRedstoneDiode implements ITile
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        if (this.field_149914_a)
+        if (field_149914_a)
         {
             int var6 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
-            p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, this.func_149898_i(), var6 | 8, 4);
+            p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, func_149898_i(), var6 | 8, 4);
         }
 
-        this.func_149972_c(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
+        func_149972_c(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
     }
 
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
-        p_149726_1_.setTileEntity(p_149726_2_, p_149726_3_, p_149726_4_, this.createNewTileEntity(p_149726_1_, 0));
+        p_149726_1_.setTileEntity(p_149726_2_, p_149726_3_, p_149726_4_, createNewTileEntity(p_149726_1_, 0));
     }
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
         p_149749_1_.removeTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
-        this.func_149911_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
+        func_149911_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
     }
 
     public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_)

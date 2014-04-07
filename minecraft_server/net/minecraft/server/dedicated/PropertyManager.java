@@ -25,7 +25,7 @@ public class PropertyManager
 
     public PropertyManager(File p_i45278_1_)
     {
-        this.serverPropertiesFile = p_i45278_1_;
+        serverPropertiesFile = p_i45278_1_;
 
         if (p_i45278_1_.exists())
         {
@@ -34,12 +34,12 @@ public class PropertyManager
             try
             {
                 var2 = new FileInputStream(p_i45278_1_);
-                this.serverProperties.load(var2);
+                serverProperties.load(var2);
             }
             catch (Exception var12)
             {
                 field_164440_a.warn("Failed to load " + p_i45278_1_, var12);
-                this.generateNewProperties();
+                generateNewProperties();
             }
             finally
             {
@@ -59,7 +59,7 @@ public class PropertyManager
         else
         {
             field_164440_a.warn(p_i45278_1_ + " does not exist");
-            this.generateNewProperties();
+            generateNewProperties();
         }
     }
 
@@ -69,7 +69,7 @@ public class PropertyManager
     public void generateNewProperties()
     {
         field_164440_a.info("Generating new properties file");
-        this.saveProperties();
+        saveProperties();
     }
 
     /**
@@ -87,13 +87,13 @@ public class PropertyManager
                 }
             };
             sortedProperties.putAll(serverProperties);
-            var1 = new FileOutputStream(this.serverPropertiesFile);
+            var1 = new FileOutputStream(serverPropertiesFile);
             sortedProperties.store(var1, "Minecraft server properties");
         }
         catch (Exception var11)
         {
-            field_164440_a.warn("Failed to save " + this.serverPropertiesFile, var11);
-            this.generateNewProperties();
+            field_164440_a.warn("Failed to save " + serverPropertiesFile, var11);
+            generateNewProperties();
         }
         finally
         {
@@ -116,7 +116,7 @@ public class PropertyManager
      */
     public File getPropertiesFile()
     {
-        return this.serverPropertiesFile;
+        return serverPropertiesFile;
     }
 
     /**
@@ -125,14 +125,14 @@ public class PropertyManager
      */
     public String getStringProperty(String par1Str, String par2Str)
     {
-        if (!this.serverProperties.containsKey(par1Str))
+        if (!serverProperties.containsKey(par1Str))
         {
-            this.serverProperties.setProperty(par1Str, par2Str);
-            this.saveProperties();
-            this.saveProperties();
+            serverProperties.setProperty(par1Str, par2Str);
+            saveProperties();
+            saveProperties();
         }
 
-        return this.serverProperties.getProperty(par1Str, par2Str);
+        return serverProperties.getProperty(par1Str, par2Str);
     }
 
     /**
@@ -143,12 +143,12 @@ public class PropertyManager
     {
         try
         {
-            return Integer.parseInt(this.getStringProperty(par1Str, "" + par2));
+            return Integer.parseInt(getStringProperty(par1Str, "" + par2));
         }
         catch (Exception var4)
         {
-            this.serverProperties.setProperty(par1Str, "" + par2);
-            this.saveProperties();
+            serverProperties.setProperty(par1Str, "" + par2);
+            saveProperties();
             return par2;
         }
     }
@@ -161,12 +161,12 @@ public class PropertyManager
     {
         try
         {
-            return Double.parseDouble(this.getStringProperty(propertyName, "" + defaultValue));
+            return Double.parseDouble(getStringProperty(propertyName, "" + defaultValue));
         }
         catch (Exception ex)
         {
-            this.serverProperties.setProperty(propertyName, "" + defaultValue);
-            this.saveProperties();
+            serverProperties.setProperty(propertyName, "" + defaultValue);
+            saveProperties();
             return defaultValue;
         }
     }
@@ -179,12 +179,12 @@ public class PropertyManager
     {
         try
         {
-            return Boolean.parseBoolean(this.getStringProperty(par1Str, "" + par2));
+            return Boolean.parseBoolean(getStringProperty(par1Str, "" + par2));
         }
         catch (Exception var4)
         {
-            this.serverProperties.setProperty(par1Str, "" + par2);
-            this.saveProperties();
+            serverProperties.setProperty(par1Str, "" + par2);
+            saveProperties();
             return par2;
         }
     }
@@ -194,6 +194,6 @@ public class PropertyManager
      */
     public void setProperty(String par1Str, Object par2Obj)
     {
-        this.serverProperties.setProperty(par1Str, "" + par2Obj);
+        serverProperties.setProperty(par1Str, "" + par2Obj);
     }
 }

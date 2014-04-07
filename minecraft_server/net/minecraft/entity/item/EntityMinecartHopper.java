@@ -58,7 +58,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
             par1EntityPlayer.displayGUIHopperMinecart(this);
         }
@@ -74,9 +74,9 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     {
         boolean var5 = !par4;
 
-        if (var5 != this.getBlocked())
+        if (var5 != getBlocked())
         {
-            this.setBlocked(var5);
+            setBlocked(var5);
         }
     }
 
@@ -85,7 +85,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public boolean getBlocked()
     {
-        return this.isBlocked;
+        return isBlocked;
     }
 
     /**
@@ -93,7 +93,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public void setBlocked(boolean par1)
     {
-        this.isBlocked = par1;
+        isBlocked = par1;
     }
 
     /**
@@ -101,7 +101,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public World getWorldObj()
     {
-        return this.worldObj;
+        return worldObj;
     }
 
     /**
@@ -109,7 +109,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public double getXPos()
     {
-        return this.posX;
+        return posX;
     }
 
     /**
@@ -117,7 +117,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public double getYPos()
     {
-        return this.posY;
+        return posY;
     }
 
     /**
@@ -125,7 +125,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public double getZPos()
     {
-        return this.posZ;
+        return posZ;
     }
 
     /**
@@ -135,18 +135,18 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     {
         super.onUpdate();
 
-        if (!this.worldObj.isClient && this.isEntityAlive() && this.getBlocked())
+        if (!worldObj.isClient && isEntityAlive() && getBlocked())
         {
-            --this.transferTicker;
+            --transferTicker;
 
-            if (!this.canTransfer())
+            if (!canTransfer())
             {
-                this.setTransferTicker(0);
+                setTransferTicker(0);
 
-                if (this.func_96112_aD())
+                if (func_96112_aD())
                 {
-                    this.setTransferTicker(4);
-                    this.onInventoryChanged();
+                    setTransferTicker(4);
+                    onInventoryChanged();
                 }
             }
         }
@@ -160,7 +160,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
         }
         else
         {
-            List var1 = this.worldObj.selectEntitiesWithinAABB(EntityItem.class, this.boundingBox.expand(0.25D, 0.0D, 0.25D), IEntitySelector.selectAnything);
+            List var1 = worldObj.selectEntitiesWithinAABB(EntityItem.class, boundingBox.expand(0.25D, 0.0D, 0.25D), IEntitySelector.selectAnything);
 
             if (var1.size() > 0)
             {
@@ -174,7 +174,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     public void killMinecart(DamageSource par1DamageSource)
     {
         super.killMinecart(par1DamageSource);
-        this.func_145778_a(Item.getItemFromBlock(Blocks.hopper), 1, 0.0F);
+        func_145778_a(Item.getItemFromBlock(Blocks.hopper), 1, 0.0F);
     }
 
     /**
@@ -183,7 +183,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("TransferCooldown", this.transferTicker);
+        par1NBTTagCompound.setInteger("TransferCooldown", transferTicker);
     }
 
     /**
@@ -192,7 +192,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.transferTicker = par1NBTTagCompound.getInteger("TransferCooldown");
+        transferTicker = par1NBTTagCompound.getInteger("TransferCooldown");
     }
 
     /**
@@ -200,7 +200,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public void setTransferTicker(int par1)
     {
-        this.transferTicker = par1;
+        transferTicker = par1;
     }
 
     /**
@@ -208,6 +208,6 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
      */
     public boolean canTransfer()
     {
-        return this.transferTicker > 0;
+        return transferTicker > 0;
     }
 }

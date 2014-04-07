@@ -26,13 +26,13 @@ public class S20PacketEntityProperties extends Packet
 
     public S20PacketEntityProperties(int p_i45236_1_, Collection p_i45236_2_)
     {
-        this.field_149445_a = p_i45236_1_;
+        field_149445_a = p_i45236_1_;
         Iterator var3 = p_i45236_2_.iterator();
 
         while (var3.hasNext())
         {
             IAttributeInstance var4 = (IAttributeInstance)var3.next();
-            this.field_149444_b.add(new S20PacketEntityProperties.Snapshot(var4.getAttribute().getAttributeUnlocalizedName(), var4.getBaseValue(), var4.func_111122_c()));
+            field_149444_b.add(new S20PacketEntityProperties.Snapshot(var4.getAttribute().getAttributeUnlocalizedName(), var4.getBaseValue(), var4.func_111122_c()));
         }
     }
 
@@ -41,7 +41,7 @@ public class S20PacketEntityProperties extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149445_a = p_148837_1_.readInt();
+        field_149445_a = p_148837_1_.readInt();
         int var2 = p_148837_1_.readInt();
 
         for (int var3 = 0; var3 < var2; ++var3)
@@ -57,7 +57,7 @@ public class S20PacketEntityProperties extends Packet
                 var7.add(new AttributeModifier(var10, "Unknown synced attribute modifier", p_148837_1_.readDouble(), p_148837_1_.readByte()));
             }
 
-            this.field_149444_b.add(new S20PacketEntityProperties.Snapshot(var4, var5, var7));
+            field_149444_b.add(new S20PacketEntityProperties.Snapshot(var4, var5, var7));
         }
     }
 
@@ -66,9 +66,9 @@ public class S20PacketEntityProperties extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149445_a);
-        p_148840_1_.writeInt(this.field_149444_b.size());
-        Iterator var2 = this.field_149444_b.iterator();
+        p_148840_1_.writeInt(field_149445_a);
+        p_148840_1_.writeInt(field_149444_b.size());
+        Iterator var2 = field_149444_b.iterator();
 
         while (var2.hasNext())
         {
@@ -108,24 +108,24 @@ public class S20PacketEntityProperties extends Packet
 
         public Snapshot(String p_i45235_2_, double p_i45235_3_, Collection p_i45235_5_)
         {
-            this.field_151412_b = p_i45235_2_;
-            this.field_151413_c = p_i45235_3_;
-            this.field_151411_d = p_i45235_5_;
+            field_151412_b = p_i45235_2_;
+            field_151413_c = p_i45235_3_;
+            field_151411_d = p_i45235_5_;
         }
 
         public String func_151409_a()
         {
-            return this.field_151412_b;
+            return field_151412_b;
         }
 
         public double func_151410_b()
         {
-            return this.field_151413_c;
+            return field_151413_c;
         }
 
         public Collection func_151408_c()
         {
-            return this.field_151411_d;
+            return field_151411_d;
         }
     }
 }

@@ -56,8 +56,8 @@ public class MapColor
     {
         if (par1 >= 0 && par1 <= 63)
         {
-            this.colorIndex = par1;
-            this.colorValue = par2;
+            colorIndex = par1;
+            colorValue = par2;
             mapColorArray[par1] = this;
         }
         else

@@ -28,13 +28,13 @@ public class PlayerCapabilities
     public void writeCapabilitiesToNBT(NBTTagCompound par1NBTTagCompound)
     {
         NBTTagCompound var2 = new NBTTagCompound();
-        var2.setBoolean("invulnerable", this.disableDamage);
-        var2.setBoolean("flying", this.isFlying);
-        var2.setBoolean("mayfly", this.allowFlying);
-        var2.setBoolean("instabuild", this.isCreativeMode);
-        var2.setBoolean("mayBuild", this.allowEdit);
-        var2.setFloat("flySpeed", this.flySpeed);
-        var2.setFloat("walkSpeed", this.walkSpeed);
+        var2.setBoolean("invulnerable", disableDamage);
+        var2.setBoolean("flying", isFlying);
+        var2.setBoolean("mayfly", allowFlying);
+        var2.setBoolean("instabuild", isCreativeMode);
+        var2.setBoolean("mayBuild", allowEdit);
+        var2.setFloat("flySpeed", flySpeed);
+        var2.setFloat("walkSpeed", walkSpeed);
         par1NBTTagCompound.setTag("abilities", var2);
     }
 
@@ -43,31 +43,31 @@ public class PlayerCapabilities
         if (par1NBTTagCompound.func_150297_b("abilities", 10))
         {
             NBTTagCompound var2 = par1NBTTagCompound.getCompoundTag("abilities");
-            this.disableDamage = var2.getBoolean("invulnerable");
-            this.isFlying = var2.getBoolean("flying");
-            this.allowFlying = var2.getBoolean("mayfly");
-            this.isCreativeMode = var2.getBoolean("instabuild");
+            disableDamage = var2.getBoolean("invulnerable");
+            isFlying = var2.getBoolean("flying");
+            allowFlying = var2.getBoolean("mayfly");
+            isCreativeMode = var2.getBoolean("instabuild");
 
             if (var2.func_150297_b("flySpeed", 99))
             {
-                this.flySpeed = var2.getFloat("flySpeed");
-                this.walkSpeed = var2.getFloat("walkSpeed");
+                flySpeed = var2.getFloat("flySpeed");
+                walkSpeed = var2.getFloat("walkSpeed");
             }
 
             if (var2.func_150297_b("mayBuild", 1))
             {
-                this.allowEdit = var2.getBoolean("mayBuild");
+                allowEdit = var2.getBoolean("mayBuild");
             }
         }
     }
 
     public float getFlySpeed()
     {
-        return this.flySpeed;
+        return flySpeed;
     }
 
     public float getWalkSpeed()
     {
-        return this.walkSpeed;
+        return walkSpeed;
     }
 }

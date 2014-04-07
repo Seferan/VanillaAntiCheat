@@ -23,18 +23,18 @@ public class GenLayerRiver extends GenLayer
         int var6 = par2 - 1;
         int var7 = par3 + 2;
         int var8 = par4 + 2;
-        int[] var9 = this.parent.getInts(var5, var6, var7, var8);
+        int[] var9 = parent.getInts(var5, var6, var7, var8);
         int[] var10 = IntCache.getIntCache(par3 * par4);
 
         for (int var11 = 0; var11 < par4; ++var11)
         {
             for (int var12 = 0; var12 < par3; ++var12)
             {
-                int var13 = this.func_151630_c(var9[var12 + 0 + (var11 + 1) * var7]);
-                int var14 = this.func_151630_c(var9[var12 + 2 + (var11 + 1) * var7]);
-                int var15 = this.func_151630_c(var9[var12 + 1 + (var11 + 0) * var7]);
-                int var16 = this.func_151630_c(var9[var12 + 1 + (var11 + 2) * var7]);
-                int var17 = this.func_151630_c(var9[var12 + 1 + (var11 + 1) * var7]);
+                int var13 = func_151630_c(var9[var12 + 0 + (var11 + 1) * var7]);
+                int var14 = func_151630_c(var9[var12 + 2 + (var11 + 1) * var7]);
+                int var15 = func_151630_c(var9[var12 + 1 + (var11 + 0) * var7]);
+                int var16 = func_151630_c(var9[var12 + 1 + (var11 + 2) * var7]);
+                int var17 = func_151630_c(var9[var12 + 1 + (var11 + 1) * var7]);
 
                 if (var17 == var13 && var17 == var15 && var17 == var14 && var17 == var16)
                 {

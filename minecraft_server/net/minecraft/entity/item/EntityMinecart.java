@@ -43,9 +43,9 @@ public abstract class EntityMinecart extends Entity
     public EntityMinecart(World par1World)
     {
         super(par1World);
-        this.preventEntitySpawning = true;
-        this.setSize(0.98F, 0.7F);
-        this.yOffset = this.height / 2.0F;
+        preventEntitySpawning = true;
+        setSize(0.98F, 0.7F);
+        yOffset = height / 2.0F;
     }
 
     /**
@@ -94,12 +94,12 @@ public abstract class EntityMinecart extends Entity
 
     protected void entityInit()
     {
-        this.dataWatcher.addObject(17, new Integer(0));
-        this.dataWatcher.addObject(18, new Integer(1));
-        this.dataWatcher.addObject(19, new Float(0.0F));
-        this.dataWatcher.addObject(20, new Integer(0));
-        this.dataWatcher.addObject(21, new Integer(6));
-        this.dataWatcher.addObject(22, Byte.valueOf((byte)0));
+        dataWatcher.addObject(17, new Integer(0));
+        dataWatcher.addObject(18, new Integer(1));
+        dataWatcher.addObject(19, new Float(0.0F));
+        dataWatcher.addObject(20, new Integer(0));
+        dataWatcher.addObject(21, new Integer(6));
+        dataWatcher.addObject(22, Byte.valueOf((byte)0));
     }
 
     /**
@@ -132,13 +132,13 @@ public abstract class EntityMinecart extends Entity
     public EntityMinecart(World par1World, double par2, double par4, double par6)
     {
         this(par1World);
-        this.setPosition(par2, par4, par6);
-        this.motionX = 0.0D;
-        this.motionY = 0.0D;
-        this.motionZ = 0.0D;
-        this.prevPosX = par2;
-        this.prevPosY = par4;
-        this.prevPosZ = par6;
+        setPosition(par2, par4, par6);
+        motionX = 0.0D;
+        motionY = 0.0D;
+        motionZ = 0.0D;
+        prevPosX = par2;
+        prevPosY = par4;
+        prevPosZ = par6;
     }
 
     /**
@@ -147,7 +147,7 @@ public abstract class EntityMinecart extends Entity
      */
     public double getMountedYOffset()
     {
-        return (double)this.height * 0.0D - 0.30000001192092896D;
+        return height * 0.0D - 0.30000001192092896D;
     }
 
     /**
@@ -155,34 +155,34 @@ public abstract class EntityMinecart extends Entity
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (!this.worldObj.isClient && !this.isDead)
+        if (!worldObj.isClient && !isDead)
         {
-            if (this.isEntityInvulnerable())
+            if (isEntityInvulnerable())
             {
                 return false;
             }
             else
             {
-                this.setRollingDirection(-this.getRollingDirection());
-                this.setRollingAmplitude(10);
-                this.setBeenAttacked();
-                this.setDamage(this.getDamage() + par2 * 10.0F);
+                setRollingDirection(-getRollingDirection());
+                setRollingAmplitude(10);
+                setBeenAttacked();
+                setDamage(getDamage() + par2 * 10.0F);
                 boolean var3 = par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer)par1DamageSource.getEntity()).capabilities.isCreativeMode;
 
-                if (var3 || this.getDamage() > 40.0F)
+                if (var3 || getDamage() > 40.0F)
                 {
-                    if (this.riddenByEntity != null)
+                    if (riddenByEntity != null)
                     {
-                        this.riddenByEntity.mountEntity(this);
+                        riddenByEntity.mountEntity(this);
                     }
 
-                    if (var3 && !this.isInventoryNameLocalized())
+                    if (var3 && !isInventoryNameLocalized())
                     {
-                        this.setDead();
+                        setDead();
                     }
                     else
                     {
-                        this.killMinecart(par1DamageSource);
+                        killMinecart(par1DamageSource);
                     }
                 }
 
@@ -197,15 +197,15 @@ public abstract class EntityMinecart extends Entity
 
     public void killMinecart(DamageSource par1DamageSource)
     {
-        this.setDead();
+        setDead();
         ItemStack var2 = new ItemStack(Items.minecart, 1);
 
-        if (this.entityName != null)
+        if (entityName != null)
         {
-            var2.setStackDisplayName(this.entityName);
+            var2.setStackDisplayName(entityName);
         }
 
-        this.entityDropItem(var2, 0.0F);
+        entityDropItem(var2, 0.0F);
     }
 
     /**
@@ -214,7 +214,7 @@ public abstract class EntityMinecart extends Entity
      */
     public boolean canBeCollidedWith()
     {
-        return !this.isDead;
+        return !isDead;
     }
 
     /**
@@ -230,40 +230,40 @@ public abstract class EntityMinecart extends Entity
      */
     public void onUpdate()
     {
-        if (this.getRollingAmplitude() > 0)
+        if (getRollingAmplitude() > 0)
         {
-            this.setRollingAmplitude(this.getRollingAmplitude() - 1);
+            setRollingAmplitude(getRollingAmplitude() - 1);
         }
 
-        if (this.getDamage() > 0.0F)
+        if (getDamage() > 0.0F)
         {
-            this.setDamage(this.getDamage() - 1.0F);
+            setDamage(getDamage() - 1.0F);
         }
 
-        if (this.posY < -64.0D)
+        if (posY < -64.0D)
         {
-            this.kill();
+            kill();
         }
 
         int var2;
 
-        if (!this.worldObj.isClient && this.worldObj instanceof WorldServer)
+        if (!worldObj.isClient && worldObj instanceof WorldServer)
         {
-            this.worldObj.theProfiler.startSection("portal");
-            MinecraftServer var1 = ((WorldServer)this.worldObj).func_73046_m();
-            var2 = this.getMaxInPortalTime();
+            worldObj.theProfiler.startSection("portal");
+            MinecraftServer var1 = ((WorldServer)worldObj).func_73046_m();
+            var2 = getMaxInPortalTime();
 
-            if (this.inPortal)
+            if (inPortal)
             {
                 if (var1.getAllowNether())
                 {
-                    if (this.ridingEntity == null && this.portalCounter++ >= var2)
+                    if (ridingEntity == null && portalCounter++ >= var2)
                     {
-                        this.portalCounter = var2;
-                        this.timeUntilPortal = this.getPortalCooldown();
+                        portalCounter = var2;
+                        timeUntilPortal = getPortalCooldown();
                         byte var3;
 
-                        if (this.worldObj.provider.dimensionId == -1)
+                        if (worldObj.provider.dimensionId == -1)
                         {
                             var3 = 0;
                         }
@@ -272,112 +272,112 @@ public abstract class EntityMinecart extends Entity
                             var3 = -1;
                         }
 
-                        this.travelToDimension(var3);
+                        travelToDimension(var3);
                     }
 
-                    this.inPortal = false;
+                    inPortal = false;
                 }
             }
             else
             {
-                if (this.portalCounter > 0)
+                if (portalCounter > 0)
                 {
-                    this.portalCounter -= 4;
+                    portalCounter -= 4;
                 }
 
-                if (this.portalCounter < 0)
+                if (portalCounter < 0)
                 {
-                    this.portalCounter = 0;
+                    portalCounter = 0;
                 }
             }
 
-            if (this.timeUntilPortal > 0)
+            if (timeUntilPortal > 0)
             {
-                --this.timeUntilPortal;
+                --timeUntilPortal;
             }
 
-            this.worldObj.theProfiler.endSection();
+            worldObj.theProfiler.endSection();
         }
 
-        if (this.worldObj.isClient)
+        if (worldObj.isClient)
         {
-            if (this.turnProgress > 0)
+            if (turnProgress > 0)
             {
-                double var19 = this.posX + (this.minecartX - this.posX) / (double)this.turnProgress;
-                double var21 = this.posY + (this.minecartY - this.posY) / (double)this.turnProgress;
-                double var5 = this.posZ + (this.minecartZ - this.posZ) / (double)this.turnProgress;
-                double var7 = MathHelper.wrapAngleTo180_double(this.minecartYaw - (double)this.rotationYaw);
-                this.rotationYaw = (float)((double)this.rotationYaw + var7 / (double)this.turnProgress);
-                this.rotationPitch = (float)((double)this.rotationPitch + (this.minecartPitch - (double)this.rotationPitch) / (double)this.turnProgress);
-                --this.turnProgress;
-                this.setPosition(var19, var21, var5);
-                this.setRotation(this.rotationYaw, this.rotationPitch);
+                double var19 = posX + (minecartX - posX) / turnProgress;
+                double var21 = posY + (minecartY - posY) / turnProgress;
+                double var5 = posZ + (minecartZ - posZ) / turnProgress;
+                double var7 = MathHelper.wrapAngleTo180_double(minecartYaw - rotationYaw);
+                rotationYaw = (float)(rotationYaw + var7 / turnProgress);
+                rotationPitch = (float)(rotationPitch + (minecartPitch - rotationPitch) / turnProgress);
+                --turnProgress;
+                setPosition(var19, var21, var5);
+                setRotation(rotationYaw, rotationPitch);
             }
             else
             {
-                this.setPosition(this.posX, this.posY, this.posZ);
-                this.setRotation(this.rotationYaw, this.rotationPitch);
+                setPosition(posX, posY, posZ);
+                setRotation(rotationYaw, rotationPitch);
             }
         }
         else
         {
-            this.prevPosX = this.posX;
-            this.prevPosY = this.posY;
-            this.prevPosZ = this.posZ;
-            this.motionY -= 0.03999999910593033D;
-            int var18 = MathHelper.floor_double(this.posX);
-            var2 = MathHelper.floor_double(this.posY);
-            int var20 = MathHelper.floor_double(this.posZ);
+            prevPosX = posX;
+            prevPosY = posY;
+            prevPosZ = posZ;
+            motionY -= 0.03999999910593033D;
+            int var18 = MathHelper.floor_double(posX);
+            var2 = MathHelper.floor_double(posY);
+            int var20 = MathHelper.floor_double(posZ);
 
-            if (BlockRailBase.func_150049_b_(this.worldObj, var18, var2 - 1, var20))
+            if (BlockRailBase.func_150049_b_(worldObj, var18, var2 - 1, var20))
             {
                 --var2;
             }
 
             double var4 = 0.4D;
             double var6 = 0.0078125D;
-            Block var8 = this.worldObj.getBlock(var18, var2, var20);
+            Block var8 = worldObj.getBlock(var18, var2, var20);
 
             if (BlockRailBase.func_150051_a(var8))
             {
-                int var9 = this.worldObj.getBlockMetadata(var18, var2, var20);
-                this.func_145821_a(var18, var2, var20, var4, var6, var8, var9);
+                int var9 = worldObj.getBlockMetadata(var18, var2, var20);
+                func_145821_a(var18, var2, var20, var4, var6, var8, var9);
 
                 if (var8 == Blocks.activator_rail)
                 {
-                    this.onActivatorRailPass(var18, var2, var20, (var9 & 8) != 0);
+                    onActivatorRailPass(var18, var2, var20, (var9 & 8) != 0);
                 }
             }
             else
             {
-                this.func_94088_b(var4);
+                func_94088_b(var4);
             }
 
-            this.func_145775_I();
-            this.rotationPitch = 0.0F;
-            double var22 = this.prevPosX - this.posX;
-            double var11 = this.prevPosZ - this.posZ;
+            func_145775_I();
+            rotationPitch = 0.0F;
+            double var22 = prevPosX - posX;
+            double var11 = prevPosZ - posZ;
 
             if (var22 * var22 + var11 * var11 > 0.001D)
             {
-                this.rotationYaw = (float)(Math.atan2(var11, var22) * 180.0D / Math.PI);
+                rotationYaw = (float)(Math.atan2(var11, var22) * 180.0D / Math.PI);
 
-                if (this.isInReverse)
+                if (isInReverse)
                 {
-                    this.rotationYaw += 180.0F;
+                    rotationYaw += 180.0F;
                 }
             }
 
-            double var13 = (double)MathHelper.wrapAngleTo180_float(this.rotationYaw - this.prevRotationYaw);
+            double var13 = MathHelper.wrapAngleTo180_float(rotationYaw - prevRotationYaw);
 
             if (var13 < -170.0D || var13 >= 170.0D)
             {
-                this.rotationYaw += 180.0F;
-                this.isInReverse = !this.isInReverse;
+                rotationYaw += 180.0F;
+                isInReverse = !isInReverse;
             }
 
-            this.setRotation(this.rotationYaw, this.rotationPitch);
-            List var15 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+            setRotation(rotationYaw, rotationPitch);
+            List var15 = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
             if (var15 != null && !var15.isEmpty())
             {
@@ -385,21 +385,21 @@ public abstract class EntityMinecart extends Entity
                 {
                     Entity var17 = (Entity)var15.get(var16);
 
-                    if (var17 != this.riddenByEntity && var17.canBePushed() && var17 instanceof EntityMinecart)
+                    if (var17 != riddenByEntity && var17.canBePushed() && var17 instanceof EntityMinecart)
                     {
                         var17.applyEntityCollision(this);
                     }
                 }
             }
 
-            if (this.riddenByEntity != null && this.riddenByEntity.isDead)
+            if (riddenByEntity != null && riddenByEntity.isDead)
             {
-                if (this.riddenByEntity.ridingEntity == this)
+                if (riddenByEntity.ridingEntity == this)
                 {
-                    this.riddenByEntity.ridingEntity = null;
+                    riddenByEntity.ridingEntity = null;
                 }
 
-                this.riddenByEntity = null;
+                riddenByEntity = null;
             }
         }
     }
@@ -414,48 +414,48 @@ public abstract class EntityMinecart extends Entity
 
     protected void func_94088_b(double par1)
     {
-        if (this.motionX < -par1)
+        if (motionX < -par1)
         {
-            this.motionX = -par1;
+            motionX = -par1;
         }
 
-        if (this.motionX > par1)
+        if (motionX > par1)
         {
-            this.motionX = par1;
+            motionX = par1;
         }
 
-        if (this.motionZ < -par1)
+        if (motionZ < -par1)
         {
-            this.motionZ = -par1;
+            motionZ = -par1;
         }
 
-        if (this.motionZ > par1)
+        if (motionZ > par1)
         {
-            this.motionZ = par1;
+            motionZ = par1;
         }
 
-        if (this.onGround)
+        if (onGround)
         {
-            this.motionX *= 0.5D;
-            this.motionY *= 0.5D;
-            this.motionZ *= 0.5D;
+            motionX *= 0.5D;
+            motionY *= 0.5D;
+            motionZ *= 0.5D;
         }
 
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        moveEntity(motionX, motionY, motionZ);
 
-        if (!this.onGround)
+        if (!onGround)
         {
-            this.motionX *= 0.949999988079071D;
-            this.motionY *= 0.949999988079071D;
-            this.motionZ *= 0.949999988079071D;
+            motionX *= 0.949999988079071D;
+            motionY *= 0.949999988079071D;
+            motionZ *= 0.949999988079071D;
         }
     }
 
     protected void func_145821_a(int p_145821_1_, int p_145821_2_, int p_145821_3_, double p_145821_4_, double p_145821_6_, Block p_145821_8_, int p_145821_9_)
     {
-        this.fallDistance = 0.0F;
-        Vec3 var10 = this.func_70489_a(this.posX, this.posY, this.posZ);
-        this.posY = (double)p_145821_2_;
+        fallDistance = 0.0F;
+        Vec3 var10 = func_70489_a(posX, posY, posZ);
+        posY = p_145821_2_;
         boolean var11 = false;
         boolean var12 = false;
 
@@ -472,34 +472,34 @@ public abstract class EntityMinecart extends Entity
 
         if (p_145821_9_ >= 2 && p_145821_9_ <= 5)
         {
-            this.posY = (double)(p_145821_2_ + 1);
+            posY = p_145821_2_ + 1;
         }
 
         if (p_145821_9_ == 2)
         {
-            this.motionX -= p_145821_6_;
+            motionX -= p_145821_6_;
         }
 
         if (p_145821_9_ == 3)
         {
-            this.motionX += p_145821_6_;
+            motionX += p_145821_6_;
         }
 
         if (p_145821_9_ == 4)
         {
-            this.motionZ += p_145821_6_;
+            motionZ += p_145821_6_;
         }
 
         if (p_145821_9_ == 5)
         {
-            this.motionZ -= p_145821_6_;
+            motionZ -= p_145821_6_;
         }
 
         int[][] var13 = matrix[p_145821_9_];
-        double var14 = (double)(var13[1][0] - var13[0][0]);
-        double var16 = (double)(var13[1][2] - var13[0][2]);
+        double var14 = var13[1][0] - var13[0][0];
+        double var16 = var13[1][2] - var13[0][2];
         double var18 = Math.sqrt(var14 * var14 + var16 * var16);
-        double var20 = this.motionX * var14 + this.motionZ * var16;
+        double var20 = motionX * var14 + motionZ * var16;
 
         if (var20 < 0.0D)
         {
@@ -507,34 +507,34 @@ public abstract class EntityMinecart extends Entity
             var16 = -var16;
         }
 
-        double var22 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        double var22 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
         if (var22 > 2.0D)
         {
             var22 = 2.0D;
         }
 
-        this.motionX = var22 * var14 / var18;
-        this.motionZ = var22 * var16 / var18;
+        motionX = var22 * var14 / var18;
+        motionZ = var22 * var16 / var18;
         double var24;
         double var26;
         double var28;
         double var30;
 
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
+        if (riddenByEntity != null && riddenByEntity instanceof EntityLivingBase)
         {
-            var24 = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
+            var24 = ((EntityLivingBase)riddenByEntity).moveForward;
 
             if (var24 > 0.0D)
             {
-                var26 = -Math.sin((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
-                var28 = Math.cos((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
-                var30 = this.motionX * this.motionX + this.motionZ * this.motionZ;
+                var26 = -Math.sin(riddenByEntity.rotationYaw * (float)Math.PI / 180.0F);
+                var28 = Math.cos(riddenByEntity.rotationYaw * (float)Math.PI / 180.0F);
+                var30 = motionX * motionX + motionZ * motionZ;
 
                 if (var30 < 0.01D)
                 {
-                    this.motionX += var26 * 0.1D;
-                    this.motionZ += var28 * 0.1D;
+                    motionX += var26 * 0.1D;
+                    motionZ += var28 * 0.1D;
                     var12 = false;
                 }
             }
@@ -542,27 +542,27 @@ public abstract class EntityMinecart extends Entity
 
         if (var12)
         {
-            var24 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            var24 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
             if (var24 < 0.03D)
             {
-                this.motionX *= 0.0D;
-                this.motionY *= 0.0D;
-                this.motionZ *= 0.0D;
+                motionX *= 0.0D;
+                motionY *= 0.0D;
+                motionZ *= 0.0D;
             }
             else
             {
-                this.motionX *= 0.5D;
-                this.motionY *= 0.0D;
-                this.motionZ *= 0.5D;
+                motionX *= 0.5D;
+                motionY *= 0.0D;
+                motionZ *= 0.5D;
             }
         }
 
         var24 = 0.0D;
-        var26 = (double)p_145821_1_ + 0.5D + (double)var13[0][0] * 0.5D;
-        var28 = (double)p_145821_3_ + 0.5D + (double)var13[0][2] * 0.5D;
-        var30 = (double)p_145821_1_ + 0.5D + (double)var13[1][0] * 0.5D;
-        double var32 = (double)p_145821_3_ + 0.5D + (double)var13[1][2] * 0.5D;
+        var26 = p_145821_1_ + 0.5D + var13[0][0] * 0.5D;
+        var28 = p_145821_3_ + 0.5D + var13[0][2] * 0.5D;
+        var30 = p_145821_1_ + 0.5D + var13[1][0] * 0.5D;
+        double var32 = p_145821_3_ + 0.5D + var13[1][2] * 0.5D;
         var14 = var30 - var26;
         var16 = var32 - var28;
         double var34;
@@ -570,28 +570,28 @@ public abstract class EntityMinecart extends Entity
 
         if (var14 == 0.0D)
         {
-            this.posX = (double)p_145821_1_ + 0.5D;
-            var24 = this.posZ - (double)p_145821_3_;
+            posX = p_145821_1_ + 0.5D;
+            var24 = posZ - p_145821_3_;
         }
         else if (var16 == 0.0D)
         {
-            this.posZ = (double)p_145821_3_ + 0.5D;
-            var24 = this.posX - (double)p_145821_1_;
+            posZ = p_145821_3_ + 0.5D;
+            var24 = posX - p_145821_1_;
         }
         else
         {
-            var34 = this.posX - var26;
-            var36 = this.posZ - var28;
+            var34 = posX - var26;
+            var36 = posZ - var28;
             var24 = (var34 * var14 + var36 * var16) * 2.0D;
         }
 
-        this.posX = var26 + var14 * var24;
-        this.posZ = var28 + var16 * var24;
-        this.setPosition(this.posX, this.posY + (double)this.yOffset, this.posZ);
-        var34 = this.motionX;
-        var36 = this.motionZ;
+        posX = var26 + var14 * var24;
+        posZ = var28 + var16 * var24;
+        setPosition(posX, posY + yOffset, posZ);
+        var34 = motionX;
+        var36 = motionZ;
 
-        if (this.riddenByEntity != null)
+        if (riddenByEntity != null)
         {
             var34 *= 0.75D;
             var36 *= 0.75D;
@@ -617,74 +617,74 @@ public abstract class EntityMinecart extends Entity
             var36 = p_145821_4_;
         }
 
-        this.moveEntity(var34, 0.0D, var36);
+        moveEntity(var34, 0.0D, var36);
 
-        if (var13[0][1] != 0 && MathHelper.floor_double(this.posX) - p_145821_1_ == var13[0][0] && MathHelper.floor_double(this.posZ) - p_145821_3_ == var13[0][2])
+        if (var13[0][1] != 0 && MathHelper.floor_double(posX) - p_145821_1_ == var13[0][0] && MathHelper.floor_double(posZ) - p_145821_3_ == var13[0][2])
         {
-            this.setPosition(this.posX, this.posY + (double)var13[0][1], this.posZ);
+            setPosition(posX, posY + var13[0][1], posZ);
         }
-        else if (var13[1][1] != 0 && MathHelper.floor_double(this.posX) - p_145821_1_ == var13[1][0] && MathHelper.floor_double(this.posZ) - p_145821_3_ == var13[1][2])
+        else if (var13[1][1] != 0 && MathHelper.floor_double(posX) - p_145821_1_ == var13[1][0] && MathHelper.floor_double(posZ) - p_145821_3_ == var13[1][2])
         {
-            this.setPosition(this.posX, this.posY + (double)var13[1][1], this.posZ);
+            setPosition(posX, posY + var13[1][1], posZ);
         }
 
-        this.applyDrag();
-        Vec3 var38 = this.func_70489_a(this.posX, this.posY, this.posZ);
+        applyDrag();
+        Vec3 var38 = func_70489_a(posX, posY, posZ);
 
         if (var38 != null && var10 != null)
         {
             double var39 = (var10.yCoord - var38.yCoord) * 0.05D;
-            var22 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            var22 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
             if (var22 > 0.0D)
             {
-                this.motionX = this.motionX / var22 * (var22 + var39);
-                this.motionZ = this.motionZ / var22 * (var22 + var39);
+                motionX = motionX / var22 * (var22 + var39);
+                motionZ = motionZ / var22 * (var22 + var39);
             }
 
-            this.setPosition(this.posX, var38.yCoord, this.posZ);
+            setPosition(posX, var38.yCoord, posZ);
         }
 
-        int var45 = MathHelper.floor_double(this.posX);
-        int var40 = MathHelper.floor_double(this.posZ);
+        int var45 = MathHelper.floor_double(posX);
+        int var40 = MathHelper.floor_double(posZ);
 
         if (var45 != p_145821_1_ || var40 != p_145821_3_)
         {
-            var22 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.motionX = var22 * (double)(var45 - p_145821_1_);
-            this.motionZ = var22 * (double)(var40 - p_145821_3_);
+            var22 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+            motionX = var22 * (var45 - p_145821_1_);
+            motionZ = var22 * (var40 - p_145821_3_);
         }
 
         if (var11)
         {
-            double var41 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            double var41 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
             if (var41 > 0.01D)
             {
                 double var43 = 0.06D;
-                this.motionX += this.motionX / var41 * var43;
-                this.motionZ += this.motionZ / var41 * var43;
+                motionX += motionX / var41 * var43;
+                motionZ += motionZ / var41 * var43;
             }
             else if (p_145821_9_ == 1)
             {
-                if (this.worldObj.getBlock(p_145821_1_ - 1, p_145821_2_, p_145821_3_).isNormalCube())
+                if (worldObj.getBlock(p_145821_1_ - 1, p_145821_2_, p_145821_3_).isNormalCube())
                 {
-                    this.motionX = 0.02D;
+                    motionX = 0.02D;
                 }
-                else if (this.worldObj.getBlock(p_145821_1_ + 1, p_145821_2_, p_145821_3_).isNormalCube())
+                else if (worldObj.getBlock(p_145821_1_ + 1, p_145821_2_, p_145821_3_).isNormalCube())
                 {
-                    this.motionX = -0.02D;
+                    motionX = -0.02D;
                 }
             }
             else if (p_145821_9_ == 0)
             {
-                if (this.worldObj.getBlock(p_145821_1_, p_145821_2_, p_145821_3_ - 1).isNormalCube())
+                if (worldObj.getBlock(p_145821_1_, p_145821_2_, p_145821_3_ - 1).isNormalCube())
                 {
-                    this.motionZ = 0.02D;
+                    motionZ = 0.02D;
                 }
-                else if (this.worldObj.getBlock(p_145821_1_, p_145821_2_, p_145821_3_ + 1).isNormalCube())
+                else if (worldObj.getBlock(p_145821_1_, p_145821_2_, p_145821_3_ + 1).isNormalCube())
                 {
-                    this.motionZ = -0.02D;
+                    motionZ = -0.02D;
                 }
             }
         }
@@ -692,17 +692,17 @@ public abstract class EntityMinecart extends Entity
 
     protected void applyDrag()
     {
-        if (this.riddenByEntity != null)
+        if (riddenByEntity != null)
         {
-            this.motionX *= 0.996999979019165D;
-            this.motionY *= 0.0D;
-            this.motionZ *= 0.996999979019165D;
+            motionX *= 0.996999979019165D;
+            motionY *= 0.0D;
+            motionZ *= 0.996999979019165D;
         }
         else
         {
-            this.motionX *= 0.9599999785423279D;
-            this.motionY *= 0.0D;
-            this.motionZ *= 0.9599999785423279D;
+            motionX *= 0.9599999785423279D;
+            motionY *= 0.0D;
+            motionZ *= 0.9599999785423279D;
         }
     }
 
@@ -712,17 +712,17 @@ public abstract class EntityMinecart extends Entity
         int var8 = MathHelper.floor_double(par3);
         int var9 = MathHelper.floor_double(par5);
 
-        if (BlockRailBase.func_150049_b_(this.worldObj, var7, var8 - 1, var9))
+        if (BlockRailBase.func_150049_b_(worldObj, var7, var8 - 1, var9))
         {
             --var8;
         }
 
-        Block var10 = this.worldObj.getBlock(var7, var8, var9);
+        Block var10 = worldObj.getBlock(var7, var8, var9);
 
         if (BlockRailBase.func_150051_a(var10))
         {
-            int var11 = this.worldObj.getBlockMetadata(var7, var8, var9);
-            par3 = (double)var8;
+            int var11 = worldObj.getBlockMetadata(var7, var8, var9);
+            par3 = var8;
 
             if (((BlockRailBase)var10).func_150050_e())
             {
@@ -731,30 +731,30 @@ public abstract class EntityMinecart extends Entity
 
             if (var11 >= 2 && var11 <= 5)
             {
-                par3 = (double)(var8 + 1);
+                par3 = var8 + 1;
             }
 
             int[][] var12 = matrix[var11];
             double var13 = 0.0D;
-            double var15 = (double)var7 + 0.5D + (double)var12[0][0] * 0.5D;
-            double var17 = (double)var8 + 0.5D + (double)var12[0][1] * 0.5D;
-            double var19 = (double)var9 + 0.5D + (double)var12[0][2] * 0.5D;
-            double var21 = (double)var7 + 0.5D + (double)var12[1][0] * 0.5D;
-            double var23 = (double)var8 + 0.5D + (double)var12[1][1] * 0.5D;
-            double var25 = (double)var9 + 0.5D + (double)var12[1][2] * 0.5D;
+            double var15 = var7 + 0.5D + var12[0][0] * 0.5D;
+            double var17 = var8 + 0.5D + var12[0][1] * 0.5D;
+            double var19 = var9 + 0.5D + var12[0][2] * 0.5D;
+            double var21 = var7 + 0.5D + var12[1][0] * 0.5D;
+            double var23 = var8 + 0.5D + var12[1][1] * 0.5D;
+            double var25 = var9 + 0.5D + var12[1][2] * 0.5D;
             double var27 = var21 - var15;
             double var29 = (var23 - var17) * 2.0D;
             double var31 = var25 - var19;
 
             if (var27 == 0.0D)
             {
-                par1 = (double)var7 + 0.5D;
-                var13 = par5 - (double)var9;
+                par1 = var7 + 0.5D;
+                var13 = par5 - var9;
             }
             else if (var31 == 0.0D)
             {
-                par5 = (double)var9 + 0.5D;
-                var13 = par1 - (double)var7;
+                par5 = var9 + 0.5D;
+                var13 = par1 - var7;
             }
             else
             {
@@ -777,7 +777,7 @@ public abstract class EntityMinecart extends Entity
                 par3 += 0.5D;
             }
 
-            return this.worldObj.getWorldVec3Pool().getVecFromPool(par1, par3, par5);
+            return worldObj.getWorldVec3Pool().getVecFromPool(par1, par3, par5);
         }
         else
         {
@@ -792,14 +792,14 @@ public abstract class EntityMinecart extends Entity
     {
         if (par1NBTTagCompound.getBoolean("CustomDisplayTile"))
         {
-            this.func_145819_k(par1NBTTagCompound.getInteger("DisplayTile"));
-            this.setDisplayTileData(par1NBTTagCompound.getInteger("DisplayData"));
-            this.setDisplayTileOffset(par1NBTTagCompound.getInteger("DisplayOffset"));
+            func_145819_k(par1NBTTagCompound.getInteger("DisplayTile"));
+            setDisplayTileData(par1NBTTagCompound.getInteger("DisplayData"));
+            setDisplayTileOffset(par1NBTTagCompound.getInteger("DisplayOffset"));
         }
 
         if (par1NBTTagCompound.func_150297_b("CustomName", 8) && par1NBTTagCompound.getString("CustomName").length() > 0)
         {
-            this.entityName = par1NBTTagCompound.getString("CustomName");
+            entityName = par1NBTTagCompound.getString("CustomName");
         }
     }
 
@@ -808,17 +808,17 @@ public abstract class EntityMinecart extends Entity
      */
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        if (this.hasDisplayTile())
+        if (hasDisplayTile())
         {
             par1NBTTagCompound.setBoolean("CustomDisplayTile", true);
-            par1NBTTagCompound.setInteger("DisplayTile", this.func_145820_n().getMaterial() == Material.air ? 0 : Block.getIdFromBlock(this.func_145820_n()));
-            par1NBTTagCompound.setInteger("DisplayData", this.getDisplayTileData());
-            par1NBTTagCompound.setInteger("DisplayOffset", this.getDisplayTileOffset());
+            par1NBTTagCompound.setInteger("DisplayTile", func_145820_n().getMaterial() == Material.air ? 0 : Block.getIdFromBlock(func_145820_n()));
+            par1NBTTagCompound.setInteger("DisplayData", getDisplayTileData());
+            par1NBTTagCompound.setInteger("DisplayOffset", getDisplayTileOffset());
         }
 
-        if (this.entityName != null && this.entityName.length() > 0)
+        if (entityName != null && entityName.length() > 0)
         {
-            par1NBTTagCompound.setString("CustomName", this.entityName);
+            par1NBTTagCompound.setString("CustomName", entityName);
         }
     }
 
@@ -828,22 +828,22 @@ public abstract class EntityMinecart extends Entity
      */
     public void applyEntityCollision(Entity par1Entity)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            if (par1Entity != this.riddenByEntity)
+            if (par1Entity != riddenByEntity)
             {
-                if (par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityPlayer) && !(par1Entity instanceof EntityIronGolem) && this.getMinecartType() == 0 && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.01D && this.riddenByEntity == null && par1Entity.ridingEntity == null)
+                if (par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityPlayer) && !(par1Entity instanceof EntityIronGolem) && getMinecartType() == 0 && motionX * motionX + motionZ * motionZ > 0.01D && riddenByEntity == null && par1Entity.ridingEntity == null)
                 {
                     par1Entity.mountEntity(this);
                 }
 
-                double var2 = par1Entity.posX - this.posX;
-                double var4 = par1Entity.posZ - this.posZ;
+                double var2 = par1Entity.posX - posX;
+                double var4 = par1Entity.posZ - posZ;
                 double var6 = var2 * var2 + var4 * var4;
 
                 if (var6 >= 9.999999747378752E-5D)
                 {
-                    var6 = (double)MathHelper.sqrt_double(var6);
+                    var6 = MathHelper.sqrt_double(var6);
                     var2 /= var6;
                     var4 /= var6;
                     double var8 = 1.0D / var6;
@@ -857,47 +857,47 @@ public abstract class EntityMinecart extends Entity
                     var4 *= var8;
                     var2 *= 0.10000000149011612D;
                     var4 *= 0.10000000149011612D;
-                    var2 *= (double)(1.0F - this.entityCollisionReduction);
-                    var4 *= (double)(1.0F - this.entityCollisionReduction);
+                    var2 *= 1.0F - entityCollisionReduction;
+                    var4 *= 1.0F - entityCollisionReduction;
                     var2 *= 0.5D;
                     var4 *= 0.5D;
 
                     if (par1Entity instanceof EntityMinecart)
                     {
-                        double var10 = par1Entity.posX - this.posX;
-                        double var12 = par1Entity.posZ - this.posZ;
-                        Vec3 var14 = this.worldObj.getWorldVec3Pool().getVecFromPool(var10, 0.0D, var12).normalize();
-                        Vec3 var15 = this.worldObj.getWorldVec3Pool().getVecFromPool((double)MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F), 0.0D, (double)MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F)).normalize();
+                        double var10 = par1Entity.posX - posX;
+                        double var12 = par1Entity.posZ - posZ;
+                        Vec3 var14 = worldObj.getWorldVec3Pool().getVecFromPool(var10, 0.0D, var12).normalize();
+                        Vec3 var15 = worldObj.getWorldVec3Pool().getVecFromPool(MathHelper.cos(rotationYaw * (float)Math.PI / 180.0F), 0.0D, MathHelper.sin(rotationYaw * (float)Math.PI / 180.0F)).normalize();
                         double var16 = Math.abs(var14.dotProduct(var15));
 
                         if (var16 < 0.800000011920929D) { return; }
 
-                        double var18 = par1Entity.motionX + this.motionX;
-                        double var20 = par1Entity.motionZ + this.motionZ;
+                        double var18 = par1Entity.motionX + motionX;
+                        double var20 = par1Entity.motionZ + motionZ;
 
-                        if (((EntityMinecart)par1Entity).getMinecartType() == 2 && this.getMinecartType() != 2)
+                        if (((EntityMinecart)par1Entity).getMinecartType() == 2 && getMinecartType() != 2)
                         {
-                            this.motionX *= 0.20000000298023224D;
-                            this.motionZ *= 0.20000000298023224D;
-                            this.addVelocity(par1Entity.motionX - var2, 0.0D, par1Entity.motionZ - var4);
+                            motionX *= 0.20000000298023224D;
+                            motionZ *= 0.20000000298023224D;
+                            addVelocity(par1Entity.motionX - var2, 0.0D, par1Entity.motionZ - var4);
                             par1Entity.motionX *= 0.949999988079071D;
                             par1Entity.motionZ *= 0.949999988079071D;
                         }
-                        else if (((EntityMinecart)par1Entity).getMinecartType() != 2 && this.getMinecartType() == 2)
+                        else if (((EntityMinecart)par1Entity).getMinecartType() != 2 && getMinecartType() == 2)
                         {
                             par1Entity.motionX *= 0.20000000298023224D;
                             par1Entity.motionZ *= 0.20000000298023224D;
-                            par1Entity.addVelocity(this.motionX + var2, 0.0D, this.motionZ + var4);
-                            this.motionX *= 0.949999988079071D;
-                            this.motionZ *= 0.949999988079071D;
+                            par1Entity.addVelocity(motionX + var2, 0.0D, motionZ + var4);
+                            motionX *= 0.949999988079071D;
+                            motionZ *= 0.949999988079071D;
                         }
                         else
                         {
                             var18 /= 2.0D;
                             var20 /= 2.0D;
-                            this.motionX *= 0.20000000298023224D;
-                            this.motionZ *= 0.20000000298023224D;
-                            this.addVelocity(var18 - var2, 0.0D, var20 - var4);
+                            motionX *= 0.20000000298023224D;
+                            motionZ *= 0.20000000298023224D;
+                            addVelocity(var18 - var2, 0.0D, var20 - var4);
                             par1Entity.motionX *= 0.20000000298023224D;
                             par1Entity.motionZ *= 0.20000000298023224D;
                             par1Entity.addVelocity(var18 + var2, 0.0D, var20 + var4);
@@ -905,7 +905,7 @@ public abstract class EntityMinecart extends Entity
                     }
                     else
                     {
-                        this.addVelocity(-var2, 0.0D, -var4);
+                        addVelocity(-var2, 0.0D, -var4);
                         par1Entity.addVelocity(var2 / 4.0D, 0.0D, var4 / 4.0D);
                     }
                 }
@@ -919,7 +919,7 @@ public abstract class EntityMinecart extends Entity
      */
     public void setDamage(float par1)
     {
-        this.dataWatcher.updateObject(19, Float.valueOf(par1));
+        dataWatcher.updateObject(19, Float.valueOf(par1));
     }
 
     /**
@@ -928,7 +928,7 @@ public abstract class EntityMinecart extends Entity
      */
     public float getDamage()
     {
-        return this.dataWatcher.getWatchableObjectFloat(19);
+        return dataWatcher.getWatchableObjectFloat(19);
     }
 
     /**
@@ -936,7 +936,7 @@ public abstract class EntityMinecart extends Entity
      */
     public void setRollingAmplitude(int par1)
     {
-        this.dataWatcher.updateObject(17, Integer.valueOf(par1));
+        dataWatcher.updateObject(17, Integer.valueOf(par1));
     }
 
     /**
@@ -944,7 +944,7 @@ public abstract class EntityMinecart extends Entity
      */
     public int getRollingAmplitude()
     {
-        return this.dataWatcher.getWatchableObjectInt(17);
+        return dataWatcher.getWatchableObjectInt(17);
     }
 
     /**
@@ -953,7 +953,7 @@ public abstract class EntityMinecart extends Entity
      */
     public void setRollingDirection(int par1)
     {
-        this.dataWatcher.updateObject(18, Integer.valueOf(par1));
+        dataWatcher.updateObject(18, Integer.valueOf(par1));
     }
 
     /**
@@ -962,20 +962,20 @@ public abstract class EntityMinecart extends Entity
      */
     public int getRollingDirection()
     {
-        return this.dataWatcher.getWatchableObjectInt(18);
+        return dataWatcher.getWatchableObjectInt(18);
     }
 
     public abstract int getMinecartType();
 
     public Block func_145820_n()
     {
-        if (!this.hasDisplayTile())
+        if (!hasDisplayTile())
         {
-            return this.func_145817_o();
+            return func_145817_o();
         }
         else
         {
-            int var1 = this.getDataWatcher().getWatchableObjectInt(20) & 65535;
+            int var1 = getDataWatcher().getWatchableObjectInt(20) & 65535;
             return Block.getBlockById(var1);
         }
     }
@@ -987,7 +987,7 @@ public abstract class EntityMinecart extends Entity
 
     public int getDisplayTileData()
     {
-        return !this.hasDisplayTile() ? this.getDefaultDisplayTileData() : this.getDataWatcher().getWatchableObjectInt(20) >> 16;
+        return !hasDisplayTile() ? getDefaultDisplayTileData() : getDataWatcher().getWatchableObjectInt(20) >> 16;
     }
 
     public int getDefaultDisplayTileData()
@@ -997,7 +997,7 @@ public abstract class EntityMinecart extends Entity
 
     public int getDisplayTileOffset()
     {
-        return !this.hasDisplayTile() ? this.getDefaultDisplayTileOffset() : this.getDataWatcher().getWatchableObjectInt(21);
+        return !hasDisplayTile() ? getDefaultDisplayTileOffset() : getDataWatcher().getWatchableObjectInt(21);
     }
 
     public int getDefaultDisplayTileOffset()
@@ -1007,30 +1007,30 @@ public abstract class EntityMinecart extends Entity
 
     public void func_145819_k(int p_145819_1_)
     {
-        this.getDataWatcher().updateObject(20, Integer.valueOf(p_145819_1_ & 65535 | this.getDisplayTileData() << 16));
-        this.setHasDisplayTile(true);
+        getDataWatcher().updateObject(20, Integer.valueOf(p_145819_1_ & 65535 | getDisplayTileData() << 16));
+        setHasDisplayTile(true);
     }
 
     public void setDisplayTileData(int par1)
     {
-        this.getDataWatcher().updateObject(20, Integer.valueOf(Block.getIdFromBlock(this.func_145820_n()) & 65535 | par1 << 16));
-        this.setHasDisplayTile(true);
+        getDataWatcher().updateObject(20, Integer.valueOf(Block.getIdFromBlock(func_145820_n()) & 65535 | par1 << 16));
+        setHasDisplayTile(true);
     }
 
     public void setDisplayTileOffset(int par1)
     {
-        this.getDataWatcher().updateObject(21, Integer.valueOf(par1));
-        this.setHasDisplayTile(true);
+        getDataWatcher().updateObject(21, Integer.valueOf(par1));
+        setHasDisplayTile(true);
     }
 
     public boolean hasDisplayTile()
     {
-        return this.getDataWatcher().getWatchableObjectByte(22) == 1;
+        return getDataWatcher().getWatchableObjectByte(22) == 1;
     }
 
     public void setHasDisplayTile(boolean par1)
     {
-        this.getDataWatcher().updateObject(22, Byte.valueOf((byte)(par1 ? 1 : 0)));
+        getDataWatcher().updateObject(22, Byte.valueOf((byte)(par1 ? 1 : 0)));
     }
 
     /**
@@ -1038,7 +1038,7 @@ public abstract class EntityMinecart extends Entity
      */
     public void setMinecartName(String par1Str)
     {
-        this.entityName = par1Str;
+        entityName = par1Str;
     }
 
     /**
@@ -1047,7 +1047,7 @@ public abstract class EntityMinecart extends Entity
      */
     public String getUsername()
     {
-        return this.entityName != null ? this.entityName : super.getUsername();
+        return entityName != null ? entityName : super.getUsername();
     }
 
     /**
@@ -1055,11 +1055,11 @@ public abstract class EntityMinecart extends Entity
      */
     public boolean isInventoryNameLocalized()
     {
-        return this.entityName != null;
+        return entityName != null;
     }
 
     public String func_95999_t()
     {
-        return this.entityName;
+        return entityName;
     }
 }

@@ -30,12 +30,12 @@ public final class WorldSettings
 
     public WorldSettings(long par1, WorldSettings.GameType par3EnumGameType, boolean par4, boolean par5, WorldType par6WorldType)
     {
-        this.field_82751_h = "";
-        this.seed = par1;
-        this.theGameType = par3EnumGameType;
-        this.mapFeaturesEnabled = par4;
-        this.hardcoreEnabled = par5;
-        this.terrainType = par6WorldType;
+        field_82751_h = "";
+        seed = par1;
+        theGameType = par3EnumGameType;
+        mapFeaturesEnabled = par4;
+        hardcoreEnabled = par5;
+        terrainType = par6WorldType;
     }
 
     public WorldSettings(WorldInfo par1WorldInfo)
@@ -48,13 +48,13 @@ public final class WorldSettings
      */
     public WorldSettings enableBonusChest()
     {
-        this.bonusChestEnabled = true;
+        bonusChestEnabled = true;
         return this;
     }
 
     public WorldSettings func_82750_a(String par1Str)
     {
-        this.field_82751_h = par1Str;
+        field_82751_h = par1Str;
         return this;
     }
 
@@ -63,7 +63,7 @@ public final class WorldSettings
      */
     public boolean isBonusChestEnabled()
     {
-        return this.bonusChestEnabled;
+        return bonusChestEnabled;
     }
 
     /**
@@ -71,7 +71,7 @@ public final class WorldSettings
      */
     public long getSeed()
     {
-        return this.seed;
+        return seed;
     }
 
     /**
@@ -79,7 +79,7 @@ public final class WorldSettings
      */
     public WorldSettings.GameType getGameType()
     {
-        return this.theGameType;
+        return theGameType;
     }
 
     /**
@@ -87,7 +87,7 @@ public final class WorldSettings
      */
     public boolean getHardcoreEnabled()
     {
-        return this.hardcoreEnabled;
+        return hardcoreEnabled;
     }
 
     /**
@@ -96,12 +96,12 @@ public final class WorldSettings
      */
     public boolean isMapFeaturesEnabled()
     {
-        return this.mapFeaturesEnabled;
+        return mapFeaturesEnabled;
     }
 
     public WorldType getTerrainType()
     {
-        return this.terrainType;
+        return terrainType;
     }
 
     /**
@@ -109,7 +109,7 @@ public final class WorldSettings
      */
     public boolean areCommandsAllowed()
     {
-        return this.commandsAllowed;
+        return commandsAllowed;
     }
 
     /**
@@ -122,7 +122,7 @@ public final class WorldSettings
 
     public String func_82749_j()
     {
-        return this.field_82751_h;
+        return field_82751_h;
     }
 
     public static enum GameType
@@ -136,18 +136,18 @@ public final class WorldSettings
 
         private GameType(String par1Str, int par2, int par3, String par4Str)
         {
-            this.id = par3;
-            this.name = par4Str;
+            id = par3;
+            name = par4Str;
         }
 
         public int getID()
         {
-            return this.id;
+            return id;
         }
 
         public String getName()
         {
-            return this.name;
+            return name;
         }
 
         public void configurePlayerCapabilities(PlayerCapabilities par1PlayerCapabilities)
@@ -166,7 +166,7 @@ public final class WorldSettings
                 par1PlayerCapabilities.isFlying = false;
             }
 
-            par1PlayerCapabilities.allowEdit = !this.isAdventure();
+            par1PlayerCapabilities.allowEdit = !isAdventure();
         }
 
         public boolean isAdventure()

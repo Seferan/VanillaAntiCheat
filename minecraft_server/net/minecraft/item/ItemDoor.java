@@ -15,9 +15,9 @@ public class ItemDoor extends Item
 
     public ItemDoor(Material p_i45334_1_)
     {
-        this.doorMaterial = p_i45334_1_;
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.tabRedstone);
+        doorMaterial = p_i45334_1_;
+        maxStackSize = 1;
+        setCreativeTab(CreativeTabs.tabRedstone);
     }
 
     /**
@@ -36,7 +36,7 @@ public class ItemDoor extends Item
             ++par5;
             Block var11;
 
-            if (this.doorMaterial == Material.wood)
+            if (doorMaterial == Material.wood)
             {
                 var11 = Blocks.wooden_door;
             }
@@ -53,7 +53,7 @@ public class ItemDoor extends Item
                 }
                 else
                 {
-                    int var12 = MathHelper.floor_double((double)((par2EntityPlayer.rotationYaw + 180.0F) * 4.0F / 360.0F) - 0.5D) & 3;
+                    int var12 = MathHelper.floor_double((par2EntityPlayer.rotationYaw + 180.0F) * 4.0F / 360.0F - 0.5D) & 3;
                     func_150924_a(par3World, par4, par5, par6, var12, var11);
                     --par1ItemStack.stackSize;
                     return true;

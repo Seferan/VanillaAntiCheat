@@ -14,7 +14,7 @@ public class BlockClay extends Block
     public BlockClay()
     {
         super(Material.field_151571_B);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)

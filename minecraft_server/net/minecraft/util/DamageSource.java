@@ -110,7 +110,7 @@ public class DamageSource
      */
     public boolean isProjectile()
     {
-        return this.projectile;
+        return projectile;
     }
 
     /**
@@ -118,24 +118,24 @@ public class DamageSource
      */
     public DamageSource setProjectile()
     {
-        this.projectile = true;
+        projectile = true;
         return this;
     }
 
     public boolean isExplosion()
     {
-        return this.explosion;
+        return explosion;
     }
 
     public DamageSource setExplosion()
     {
-        this.explosion = true;
+        explosion = true;
         return this;
     }
 
     public boolean isUnblockable()
     {
-        return this.isUnblockable;
+        return isUnblockable;
     }
 
     /**
@@ -143,12 +143,12 @@ public class DamageSource
      */
     public float getHungerDamage()
     {
-        return this.hungerDamage;
+        return hungerDamage;
     }
 
     public boolean canHarmInCreative()
     {
-        return this.isDamageAllowedInCreativeMode;
+        return isDamageAllowedInCreativeMode;
     }
 
     /**
@@ -157,17 +157,17 @@ public class DamageSource
      */
     public boolean isDamageAbsolute()
     {
-        return this.damageIsAbsolute;
+        return damageIsAbsolute;
     }
 
     protected DamageSource(String par1Str)
     {
-        this.damageType = par1Str;
+        damageType = par1Str;
     }
 
     public Entity getSourceOfDamage()
     {
-        return this.getEntity();
+        return getEntity();
     }
 
     public Entity getEntity()
@@ -177,14 +177,14 @@ public class DamageSource
 
     protected DamageSource setDamageBypassesArmor()
     {
-        this.isUnblockable = true;
-        this.hungerDamage = 0.0F;
+        isUnblockable = true;
+        hungerDamage = 0.0F;
         return this;
     }
 
     protected DamageSource setDamageAllowedInCreativeMode()
     {
-        this.isDamageAllowedInCreativeMode = true;
+        isDamageAllowedInCreativeMode = true;
         return this;
     }
 
@@ -195,8 +195,8 @@ public class DamageSource
      */
     protected DamageSource setDamageIsAbsolute()
     {
-        this.damageIsAbsolute = true;
-        this.hungerDamage = 0.0F;
+        damageIsAbsolute = true;
+        hungerDamage = 0.0F;
         return this;
     }
 
@@ -205,14 +205,14 @@ public class DamageSource
      */
     protected DamageSource setFireDamage()
     {
-        this.fireDamage = true;
+        fireDamage = true;
         return this;
     }
 
     public IChatComponent func_151519_b(EntityLivingBase p_151519_1_)
     {
         EntityLivingBase var2 = p_151519_1_.func_94060_bK();
-        String var3 = "death.attack." + this.damageType;
+        String var3 = "death.attack." + damageType;
         String var4 = var3 + ".player";
         return var2 != null && StatCollector.canTranslate(var4) ? new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), var2.getUsernameAsIChatComponent()}) : new ChatComponentTranslation(var3, new Object[] {p_151519_1_.getUsernameAsIChatComponent()});
     }
@@ -222,7 +222,7 @@ public class DamageSource
      */
     public boolean isFireDamage()
     {
-        return this.fireDamage;
+        return fireDamage;
     }
 
     /**
@@ -230,7 +230,7 @@ public class DamageSource
      */
     public String getDamageType()
     {
-        return this.damageType;
+        return damageType;
     }
 
     /**
@@ -239,7 +239,7 @@ public class DamageSource
      */
     public DamageSource setDifficultyScaled()
     {
-        this.difficultyScaled = true;
+        difficultyScaled = true;
         return this;
     }
 
@@ -249,7 +249,7 @@ public class DamageSource
      */
     public boolean isDifficultyScaled()
     {
-        return this.difficultyScaled;
+        return difficultyScaled;
     }
 
     /**
@@ -257,7 +257,7 @@ public class DamageSource
      */
     public boolean isMagicDamage()
     {
-        return this.magicDamage;
+        return magicDamage;
     }
 
     /**
@@ -265,7 +265,7 @@ public class DamageSource
      */
     public DamageSource setMagicDamage()
     {
-        this.magicDamage = true;
+        magicDamage = true;
         return this;
     }
 }

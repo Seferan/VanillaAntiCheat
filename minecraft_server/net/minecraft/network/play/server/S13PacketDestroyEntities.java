@@ -18,7 +18,7 @@ public class S13PacketDestroyEntities extends Packet
 
     public S13PacketDestroyEntities(int... p_i45211_1_)
     {
-        this.field_149100_a = p_i45211_1_;
+        field_149100_a = p_i45211_1_;
     }
 
     /**
@@ -26,11 +26,11 @@ public class S13PacketDestroyEntities extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149100_a = new int[p_148837_1_.readByte()];
+        field_149100_a = new int[p_148837_1_.readByte()];
 
-        for (int var2 = 0; var2 < this.field_149100_a.length; ++var2)
+        for (int var2 = 0; var2 < field_149100_a.length; ++var2)
         {
-            this.field_149100_a[var2] = p_148837_1_.readInt();
+            field_149100_a[var2] = p_148837_1_.readInt();
         }
     }
 
@@ -39,11 +39,11 @@ public class S13PacketDestroyEntities extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149100_a.length);
+        p_148840_1_.writeByte(field_149100_a.length);
 
-        for (int var2 = 0; var2 < this.field_149100_a.length; ++var2)
+        for (int var2 = 0; var2 < field_149100_a.length; ++var2)
         {
-            p_148840_1_.writeInt(this.field_149100_a[var2]);
+            p_148840_1_.writeInt(field_149100_a[var2]);
         }
     }
 
@@ -60,17 +60,17 @@ public class S13PacketDestroyEntities extends Packet
     {
         StringBuilder var1 = new StringBuilder();
 
-        for (int var2 = 0; var2 < this.field_149100_a.length; ++var2)
+        for (int var2 = 0; var2 < field_149100_a.length; ++var2)
         {
             if (var2 > 0)
             {
                 var1.append(", ");
             }
 
-            var1.append(this.field_149100_a[var2]);
+            var1.append(field_149100_a[var2]);
         }
 
-        return String.format("entities=%d[%s]", new Object[] {Integer.valueOf(this.field_149100_a.length), var1});
+        return String.format("entities=%d[%s]", new Object[] {Integer.valueOf(field_149100_a.length), var1});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

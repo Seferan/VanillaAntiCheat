@@ -23,8 +23,8 @@ public abstract class ChatComponentStyle implements IChatComponent
      */
     public IChatComponent appendSibling(IChatComponent p_150257_1_)
     {
-        p_150257_1_.getChatStyle().setParentStyle(this.getChatStyle());
-        this.siblings.add(p_150257_1_);
+        p_150257_1_.getChatStyle().setParentStyle(getChatStyle());
+        siblings.add(p_150257_1_);
         return this;
     }
 
@@ -33,7 +33,7 @@ public abstract class ChatComponentStyle implements IChatComponent
      */
     public List getSiblings()
     {
-        return this.siblings;
+        return siblings;
     }
 
     /**
@@ -41,18 +41,18 @@ public abstract class ChatComponentStyle implements IChatComponent
      */
     public IChatComponent appendText(String p_150258_1_)
     {
-        return this.appendSibling(new ChatComponentText(p_150258_1_));
+        return appendSibling(new ChatComponentText(p_150258_1_));
     }
 
     public IChatComponent setChatStyle(ChatStyle p_150255_1_)
     {
-        this.style = p_150255_1_;
-        Iterator var2 = this.siblings.iterator();
+        style = p_150255_1_;
+        Iterator var2 = siblings.iterator();
 
         while (var2.hasNext())
         {
             IChatComponent var3 = (IChatComponent)var2.next();
-            var3.getChatStyle().setParentStyle(this.getChatStyle());
+            var3.getChatStyle().setParentStyle(getChatStyle());
         }
 
         return this;
@@ -60,24 +60,24 @@ public abstract class ChatComponentStyle implements IChatComponent
 
     public ChatStyle getChatStyle()
     {
-        if (this.style == null)
+        if (style == null)
         {
-            this.style = new ChatStyle();
-            Iterator var1 = this.siblings.iterator();
+            style = new ChatStyle();
+            Iterator var1 = siblings.iterator();
 
             while (var1.hasNext())
             {
                 IChatComponent var2 = (IChatComponent)var1.next();
-                var2.getChatStyle().setParentStyle(this.style);
+                var2.getChatStyle().setParentStyle(style);
             }
         }
 
-        return this.style;
+        return style;
     }
 
     public Iterator iterator()
     {
-        return Iterators.concat(Iterators.forArray(new ChatComponentStyle[] {this}), createDeepCopyIterator(this.siblings));
+        return Iterators.concat(Iterators.forArray(new ChatComponentStyle[] {this}), createDeepCopyIterator(siblings));
     }
 
     /**
@@ -87,7 +87,7 @@ public abstract class ChatComponentStyle implements IChatComponent
     public final String getUnformattedText()
     {
         StringBuilder var1 = new StringBuilder();
-        Iterator var2 = this.iterator();
+        Iterator var2 = iterator();
 
         while (var2.hasNext())
         {
@@ -151,17 +151,17 @@ public abstract class ChatComponentStyle implements IChatComponent
         else
         {
             ChatComponentStyle var2 = (ChatComponentStyle)par1Obj;
-            return this.siblings.equals(var2.siblings) && this.getChatStyle().equals(var2.getChatStyle());
+            return siblings.equals(var2.siblings) && getChatStyle().equals(var2.getChatStyle());
         }
     }
 
     public int hashCode()
     {
-        return 31 * this.style.hashCode() + this.siblings.hashCode();
+        return 31 * style.hashCode() + siblings.hashCode();
     }
 
     public String toString()
     {
-        return "BaseComponent{style=" + this.style + ", siblings=" + this.siblings + '}';
+        return "BaseComponent{style=" + style + ", siblings=" + siblings + '}';
     }
 }

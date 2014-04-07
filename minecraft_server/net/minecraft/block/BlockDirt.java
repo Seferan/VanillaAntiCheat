@@ -13,7 +13,7 @@ public class BlockDirt extends Block
     protected BlockDirt()
     {
         super(Material.ground);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

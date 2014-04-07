@@ -9,7 +9,7 @@ public class GenLayerDeepOcean extends GenLayer
     public GenLayerDeepOcean(long p_i45472_1_, GenLayer p_i45472_3_)
     {
         super(p_i45472_1_);
-        this.parent = p_i45472_3_;
+        parent = p_i45472_3_;
     }
 
     /**
@@ -23,7 +23,7 @@ public class GenLayerDeepOcean extends GenLayer
         int var6 = par2 - 1;
         int var7 = par3 + 2;
         int var8 = par4 + 2;
-        int[] var9 = this.parent.getInts(var5, var6, var7, var8);
+        int[] var9 = parent.getInts(var5, var6, var7, var8);
         int[] var10 = IntCache.getIntCache(par3 * par4);
 
         for (int var11 = 0; var11 < par4; ++var11)

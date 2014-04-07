@@ -12,12 +12,12 @@ public class NBTTagString extends NBTBase
 
     public NBTTagString()
     {
-        this.data = "";
+        data = "";
     }
 
     public NBTTagString(String par1Str)
     {
-        this.data = par1Str;
+        data = par1Str;
 
         if (par1Str == null) { throw new IllegalArgumentException("Empty string not allowed"); }
     }
@@ -28,7 +28,7 @@ public class NBTTagString extends NBTBase
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
-        par1DataOutput.writeUTF(this.data);
+        par1DataOutput.writeUTF(data);
     }
 
     /**
@@ -37,7 +37,7 @@ public class NBTTagString extends NBTBase
      */
     void load(DataInput par1DataInput, int par2) throws IOException
     {
-        this.data = par1DataInput.readUTF();
+        data = par1DataInput.readUTF();
     }
 
     /**
@@ -50,7 +50,7 @@ public class NBTTagString extends NBTBase
 
     public String toString()
     {
-        return "\"" + this.data + "\"";
+        return "\"" + data + "\"";
     }
 
     /**
@@ -58,7 +58,7 @@ public class NBTTagString extends NBTBase
      */
     public NBTBase copy()
     {
-        return new NBTTagString(this.data);
+        return new NBTTagString(data);
     }
 
     public boolean equals(Object par1Obj)
@@ -70,17 +70,17 @@ public class NBTTagString extends NBTBase
         else
         {
             NBTTagString var2 = (NBTTagString)par1Obj;
-            return this.data == null && var2.data == null || this.data != null && this.data.equals(var2.data);
+            return data == null && var2.data == null || data != null && data.equals(var2.data);
         }
     }
 
     public int hashCode()
     {
-        return super.hashCode() ^ this.data.hashCode();
+        return super.hashCode() ^ data.hashCode();
     }
 
     public String func_150285_a_()
     {
-        return this.data;
+        return data;
     }
 }

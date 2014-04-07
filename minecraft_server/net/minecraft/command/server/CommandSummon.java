@@ -43,9 +43,9 @@ public class CommandSummon extends CommandBase
         if (par2ArrayOfStr.length >= 1)
         {
             String var3 = par2ArrayOfStr[0];
-            double var4 = (double)par1ICommandSender.getCommandSenderPosition().posX + 0.5D;
-            double var6 = (double)par1ICommandSender.getCommandSenderPosition().posY;
-            double var8 = (double)par1ICommandSender.getCommandSenderPosition().posZ + 0.5D;
+            double var4 = par1ICommandSender.getCommandSenderPosition().posX + 0.5D;
+            double var6 = par1ICommandSender.getCommandSenderPosition().posY;
+            double var8 = par1ICommandSender.getCommandSenderPosition().posZ + 0.5D;
 
             if (par2ArrayOfStr.length >= 4)
             {
@@ -138,7 +138,7 @@ public class CommandSummon extends CommandBase
      */
     public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.func_147182_d()) : null;
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, func_147182_d()) : null;
     }
 
     protected String[] func_147182_d()

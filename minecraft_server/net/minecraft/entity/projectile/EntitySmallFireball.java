@@ -13,19 +13,19 @@ public class EntitySmallFireball extends EntityFireball
     public EntitySmallFireball(World par1World)
     {
         super(par1World);
-        this.setSize(0.3125F, 0.3125F);
+        setSize(0.3125F, 0.3125F);
     }
 
     public EntitySmallFireball(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
     {
         super(par1World, par2EntityLivingBase, par3, par5, par7);
-        this.setSize(0.3125F, 0.3125F);
+        setSize(0.3125F, 0.3125F);
     }
 
     public EntitySmallFireball(World par1World, double par2, double par4, double par6, double par8, double par10, double par12)
     {
         super(par1World, par2, par4, par6, par8, par10, par12);
-        this.setSize(0.3125F, 0.3125F);
+        setSize(0.3125F, 0.3125F);
     }
 
     /**
@@ -33,11 +33,11 @@ public class EntitySmallFireball extends EntityFireball
      */
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
             if (par1MovingObjectPosition.entityHit != null)
             {
-                if (!par1MovingObjectPosition.entityHit.isImmuneToFire() && par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), 5.0F))
+                if (!par1MovingObjectPosition.entityHit.isImmuneToFire() && par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, shootingEntity), 5.0F))
                 {
                     par1MovingObjectPosition.entityHit.setFire(5);
                 }
@@ -74,13 +74,13 @@ public class EntitySmallFireball extends EntityFireball
                     ++var2;
                 }
 
-                if (this.worldObj.isAirBlock(var2, var3, var4))
+                if (worldObj.isAirBlock(var2, var3, var4))
                 {
-                    this.worldObj.setBlock(var2, var3, var4, Blocks.fire);
+                    worldObj.setBlock(var2, var3, var4, Blocks.fire);
                 }
             }
 
-            this.setDead();
+            setDead();
         }
     }
 

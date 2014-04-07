@@ -14,8 +14,8 @@ public class WorldGenTallGrass extends WorldGenerator
 
     public WorldGenTallGrass(Block p_i45466_1_, int p_i45466_2_)
     {
-        this.field_150522_a = p_i45466_1_;
-        this.tallGrassMetadata = p_i45466_2_;
+        field_150522_a = p_i45466_1_;
+        tallGrassMetadata = p_i45466_2_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -33,9 +33,9 @@ public class WorldGenTallGrass extends WorldGenerator
             int var9 = par4 + par2Random.nextInt(4) - par2Random.nextInt(4);
             int var10 = par5 + par2Random.nextInt(8) - par2Random.nextInt(8);
 
-            if (par1World.isAirBlock(var8, var9, var10) && this.field_150522_a.canBlockStay(par1World, var8, var9, var10))
+            if (par1World.isAirBlock(var8, var9, var10) && field_150522_a.canBlockStay(par1World, var8, var9, var10))
             {
-                par1World.setBlock(var8, var9, var10, this.field_150522_a, this.tallGrassMetadata, 2);
+                par1World.setBlock(var8, var9, var10, field_150522_a, tallGrassMetadata, 2);
             }
         }
 

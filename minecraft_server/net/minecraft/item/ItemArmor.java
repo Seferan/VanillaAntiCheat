@@ -33,7 +33,7 @@ public class ItemArmor extends Item
             int var4 = par1IBlockSource.getXInt() + var3.getFrontOffsetX();
             int var5 = par1IBlockSource.getYInt() + var3.getFrontOffsetY();
             int var6 = par1IBlockSource.getZInt() + var3.getFrontOffsetZ();
-            AxisAlignedBB var7 = AxisAlignedBB.getAABBPool().getAABB((double)var4, (double)var5, (double)var6, (double)(var4 + 1), (double)(var5 + 1), (double)(var6 + 1));
+            AxisAlignedBB var7 = AxisAlignedBB.getAABBPool().getAABB(var4, var5, var6, var4 + 1, var5 + 1, var6 + 1);
             List var8 = par1IBlockSource.getWorld().selectEntitiesWithinAABB(EntityLivingBase.class, var7, new IEntitySelector.ArmoredMob(par2ItemStack));
 
             if (var8.size() > 0)
@@ -81,13 +81,13 @@ public class ItemArmor extends Item
 
     public ItemArmor(ItemArmor.ArmorMaterial p_i45325_1_, int p_i45325_2_, int p_i45325_3_)
     {
-        this.material = p_i45325_1_;
-        this.armorType = p_i45325_3_;
-        this.renderIndex = p_i45325_2_;
-        this.damageReduceAmount = p_i45325_1_.getDamageReductionAmount(p_i45325_3_);
-        this.setMaxDamage(p_i45325_1_.getDurability(p_i45325_3_));
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.tabCombat);
+        material = p_i45325_1_;
+        armorType = p_i45325_3_;
+        renderIndex = p_i45325_2_;
+        damageReduceAmount = p_i45325_1_.getDamageReductionAmount(p_i45325_3_);
+        setMaxDamage(p_i45325_1_.getDurability(p_i45325_3_));
+        maxStackSize = 1;
+        setCreativeTab(CreativeTabs.tabCombat);
         BlockDispenser.field_149943_a.putObject(this, dispenserBehavior);
     }
 
@@ -97,7 +97,7 @@ public class ItemArmor extends Item
      */
     public int getItemEnchantability()
     {
-        return this.material.getEnchantability();
+        return material.getEnchantability();
     }
 
     /**
@@ -105,7 +105,7 @@ public class ItemArmor extends Item
      */
     public ItemArmor.ArmorMaterial getArmorMaterial()
     {
-        return this.material;
+        return material;
     }
 
     /**
@@ -113,7 +113,7 @@ public class ItemArmor extends Item
      */
     public boolean hasColor(ItemStack par1ItemStack)
     {
-        return this.material != ItemArmor.ArmorMaterial.CLOTH ? false : (!par1ItemStack.hasTagCompound() ? false : (!par1ItemStack.getTagCompound().func_150297_b("display", 10) ? false : par1ItemStack.getTagCompound().getCompoundTag("display").func_150297_b("color", 3)));
+        return material != ItemArmor.ArmorMaterial.CLOTH ? false : (!par1ItemStack.hasTagCompound() ? false : (!par1ItemStack.getTagCompound().func_150297_b("display", 10) ? false : par1ItemStack.getTagCompound().getCompoundTag("display").func_150297_b("color", 3)));
     }
 
     /**
@@ -121,7 +121,7 @@ public class ItemArmor extends Item
      */
     public int getColor(ItemStack par1ItemStack)
     {
-        if (this.material != ItemArmor.ArmorMaterial.CLOTH)
+        if (material != ItemArmor.ArmorMaterial.CLOTH)
         {
             return -1;
         }
@@ -146,7 +146,7 @@ public class ItemArmor extends Item
      */
     public void removeColor(ItemStack par1ItemStack)
     {
-        if (this.material == ItemArmor.ArmorMaterial.CLOTH)
+        if (material == ItemArmor.ArmorMaterial.CLOTH)
         {
             NBTTagCompound var2 = par1ItemStack.getTagCompound();
 
@@ -164,7 +164,7 @@ public class ItemArmor extends Item
 
     public void func_82813_b(ItemStack par1ItemStack, int par2)
     {
-        if (this.material != ItemArmor.ArmorMaterial.CLOTH)
+        if (material != ItemArmor.ArmorMaterial.CLOTH)
         {
             throw new UnsupportedOperationException("Can\'t dye non-leather!");
         }
@@ -194,7 +194,7 @@ public class ItemArmor extends Item
      */
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
-        return this.material.func_151685_b() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return material.func_151685_b() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -227,24 +227,24 @@ public class ItemArmor extends Item
 
         private ArmorMaterial(String par1Str, int par2, int par3, int[] par4ArrayOfInteger, int par5)
         {
-            this.maxDamageFactor = par3;
-            this.damageReductionAmountArray = par4ArrayOfInteger;
-            this.enchantability = par5;
+            maxDamageFactor = par3;
+            damageReductionAmountArray = par4ArrayOfInteger;
+            enchantability = par5;
         }
 
         public int getDurability(int par1)
         {
-            return ItemArmor.maxDamageArray[par1] * this.maxDamageFactor;
+            return ItemArmor.maxDamageArray[par1] * maxDamageFactor;
         }
 
         public int getDamageReductionAmount(int par1)
         {
-            return this.damageReductionAmountArray[par1];
+            return damageReductionAmountArray[par1];
         }
 
         public int getEnchantability()
         {
-            return this.enchantability;
+            return enchantability;
         }
 
         public Item func_151685_b()

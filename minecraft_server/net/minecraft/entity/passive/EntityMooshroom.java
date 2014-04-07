@@ -15,7 +15,7 @@ public class EntityMooshroom extends EntityCow
     public EntityMooshroom(World par1World)
     {
         super(par1World);
-        this.setSize(0.9F, 1.3F);
+        setSize(0.9F, 1.3F);
     }
 
     /**
@@ -26,7 +26,7 @@ public class EntityMooshroom extends EntityCow
     {
         ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
 
-        if (var2 != null && var2.getItem() == Items.bowl && this.getGrowingAge() >= 0)
+        if (var2 != null && var2.getItem() == Items.bowl && getGrowingAge() >= 0)
         {
             if (var2.stackSize == 1)
             {
@@ -41,26 +41,26 @@ public class EntityMooshroom extends EntityCow
             }
         }
 
-        if (var2 != null && var2.getItem() == Items.shears && this.getGrowingAge() >= 0)
+        if (var2 != null && var2.getItem() == Items.shears && getGrowingAge() >= 0)
         {
-            this.setDead();
-            this.worldObj.spawnParticle("largeexplode", this.posX, this.posY + (double)(this.height / 2.0F), this.posZ, 0.0D, 0.0D, 0.0D);
+            setDead();
+            worldObj.spawnParticle("largeexplode", posX, posY + height / 2.0F, posZ, 0.0D, 0.0D, 0.0D);
 
-            if (!this.worldObj.isClient)
+            if (!worldObj.isClient)
             {
-                EntityCow var3 = new EntityCow(this.worldObj);
-                var3.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-                var3.setHealth(this.getHealth());
-                var3.renderYawOffset = this.renderYawOffset;
-                this.worldObj.spawnEntityInWorld(var3);
+                EntityCow var3 = new EntityCow(worldObj);
+                var3.setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
+                var3.setHealth(getHealth());
+                var3.renderYawOffset = renderYawOffset;
+                worldObj.spawnEntityInWorld(var3);
 
                 for (int var4 = 0; var4 < 5; ++var4)
                 {
-                    this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY + (double)this.height, this.posZ, new ItemStack(Blocks.red_mushroom)));
+                    worldObj.spawnEntityInWorld(new EntityItem(worldObj, posX, posY + height, posZ, new ItemStack(Blocks.red_mushroom)));
                 }
 
                 var2.damageItem(1, par1EntityPlayer);
-                this.playSound("mob.sheep.shear", 1.0F, 1.0F);
+                playSound("mob.sheep.shear", 1.0F, 1.0F);
             }
 
             return true;
@@ -73,6 +73,6 @@ public class EntityMooshroom extends EntityCow
 
     public EntityMooshroom createChild(EntityAgeable par1EntityAgeable)
     {
-        return new EntityMooshroom(this.worldObj);
+        return new EntityMooshroom(worldObj);
     }
 }

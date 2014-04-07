@@ -25,33 +25,33 @@ public class AttributeModifier
 
     public AttributeModifier(UUID par1UUID, String par2Str, double par3, int par5)
     {
-        this.isSaved = true;
-        this.id = par1UUID;
-        this.name = par2Str;
-        this.amount = par3;
-        this.operation = par5;
+        isSaved = true;
+        id = par1UUID;
+        name = par2Str;
+        amount = par3;
+        operation = par5;
         Validate.notEmpty(par2Str, "Modifier name cannot be empty", new Object[0]);
         Validate.inclusiveBetween(Integer.valueOf(0), Integer.valueOf(2), Integer.valueOf(par5), "Invalid operation", new Object[0]);
     }
 
     public UUID getID()
     {
-        return this.id;
+        return id;
     }
 
     public String getName()
     {
-        return this.name;
+        return name;
     }
 
     public int getOperation()
     {
-        return this.operation;
+        return operation;
     }
 
     public double getAmount()
     {
-        return this.amount;
+        return amount;
     }
 
     /**
@@ -59,7 +59,7 @@ public class AttributeModifier
      */
     public boolean isSaved()
     {
-        return this.isSaved;
+        return isSaved;
     }
 
     /**
@@ -67,7 +67,7 @@ public class AttributeModifier
      */
     public AttributeModifier setSaved(boolean par1)
     {
-        this.isSaved = par1;
+        isSaved = par1;
         return this;
     }
 
@@ -81,9 +81,9 @@ public class AttributeModifier
         {
             AttributeModifier var2 = (AttributeModifier)par1Obj;
 
-            if (this.id != null)
+            if (id != null)
             {
-                if (!this.id.equals(var2.id)) { return false; }
+                if (!id.equals(var2.id)) { return false; }
             }
             else if (var2.id != null) { return false; }
 
@@ -97,11 +97,11 @@ public class AttributeModifier
 
     public int hashCode()
     {
-        return this.id != null ? this.id.hashCode() : 0;
+        return id != null ? id.hashCode() : 0;
     }
 
     public String toString()
     {
-        return "AttributeModifier{amount=" + this.amount + ", operation=" + this.operation + ", name=\'" + this.name + '\'' + ", id=" + this.id + ", serialize=" + this.isSaved + '}';
+        return "AttributeModifier{amount=" + amount + ", operation=" + operation + ", name=\'" + name + '\'' + ", id=" + id + ", serialize=" + isSaved + '}';
     }
 }

@@ -32,7 +32,7 @@ public class CommandDifficulty extends CommandBase
     {
         if (par2ArrayOfStr.length > 0)
         {
-            EnumDifficulty var3 = this.func_147201_h(par1ICommandSender, par2ArrayOfStr[0]);
+            EnumDifficulty var3 = func_147201_h(par1ICommandSender, par2ArrayOfStr[0]);
             MinecraftServer.getServer().func_147139_a(var3);
             notifyAdmins(par1ICommandSender, "commands.difficulty.success", new Object[] {new ChatComponentTranslation(var3.func_151526_b(), new Object[0])});
         }

@@ -16,16 +16,16 @@ public class BlockCake extends Block
     protected BlockCake()
     {
         super(Material.field_151568_F);
-        this.setTickRandomly(true);
+        setTickRandomly(true);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_);
         float var6 = 0.0625F;
-        float var7 = (float)(1 + var5 * 2) / 16.0F;
+        float var7 = (1 + var5 * 2) / 16.0F;
         float var8 = 0.5F;
-        this.setBlockBounds(var7, 0.0F, var6, 1.0F - var6, var8, 1.0F - var6);
+        setBlockBounds(var7, 0.0F, var6, 1.0F - var6, var8, 1.0F - var6);
     }
 
     /**
@@ -35,7 +35,7 @@ public class BlockCake extends Block
     {
         float var1 = 0.0625F;
         float var2 = 0.5F;
-        this.setBlockBounds(var1, 0.0F, var1, 1.0F - var1, var2, 1.0F - var1);
+        setBlockBounds(var1, 0.0F, var1, 1.0F - var1, var2, 1.0F - var1);
     }
 
     /**
@@ -46,9 +46,9 @@ public class BlockCake extends Block
     {
         int var5 = p_149668_1_.getBlockMetadata(p_149668_2_, p_149668_3_, p_149668_4_);
         float var6 = 0.0625F;
-        float var7 = (float)(1 + var5 * 2) / 16.0F;
+        float var7 = (1 + var5 * 2) / 16.0F;
         float var8 = 0.5F;
-        return AxisAlignedBB.getAABBPool().getAABB((double)((float)p_149668_2_ + var7), (double)p_149668_3_, (double)((float)p_149668_4_ + var6), (double)((float)(p_149668_2_ + 1) - var6), (double)((float)p_149668_3_ + var8 - var6), (double)((float)(p_149668_4_ + 1) - var6));
+        return AxisAlignedBB.getAABBPool().getAABB(p_149668_2_ + var7, p_149668_3_, p_149668_4_ + var6, p_149668_2_ + 1 - var6, p_149668_3_ + var8 - var6, p_149668_4_ + 1 - var6);
     }
 
     public boolean renderAsNormalBlock()
@@ -66,7 +66,7 @@ public class BlockCake extends Block
      */
     public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-        this.func_150036_b(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_5_);
+        func_150036_b(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_5_);
         return true;
     }
 
@@ -75,7 +75,7 @@ public class BlockCake extends Block
      */
     public void onBlockClicked(World p_149699_1_, int p_149699_2_, int p_149699_3_, int p_149699_4_, EntityPlayer p_149699_5_)
     {
-        this.func_150036_b(p_149699_1_, p_149699_2_, p_149699_3_, p_149699_4_, p_149699_5_);
+        func_150036_b(p_149699_1_, p_149699_2_, p_149699_3_, p_149699_4_, p_149699_5_);
     }
 
     private void func_150036_b(World p_150036_1_, int p_150036_2_, int p_150036_3_, int p_150036_4_, EntityPlayer p_150036_5_)
@@ -98,12 +98,12 @@ public class BlockCake extends Block
 
     public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return !super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) ? false : this.canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
+        return !super.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_) ? false : canBlockStay(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
     }
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        if (!this.canBlockStay(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
+        if (!canBlockStay(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
         {
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }

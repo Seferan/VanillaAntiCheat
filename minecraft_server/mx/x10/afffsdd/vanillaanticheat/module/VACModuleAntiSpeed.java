@@ -27,7 +27,7 @@ public class VACModuleAntiSpeed implements IVacModule
      * The amount of ticks since the player last jumped in bunnyhop.
      */
     public long timeSinceLastBhop;
-    
+
     public VACModuleAntiSpeed()
     {
         resets = 0;
@@ -37,7 +37,7 @@ public class VACModuleAntiSpeed implements IVacModule
         timeSinceSneakingStarted = 0;
         timeSinceLastBhop = 0;
     }
-    
+
     public String getModuleName()
     {
         return "Anti-Speedhack";
@@ -47,7 +47,7 @@ public class VACModuleAntiSpeed implements IVacModule
     {
         if (timeSinceLastBhop <= 5) timeSinceLastBhop++;
     }
-    
+
     /**
      * Increment moved and reset the ratio if necessary.
      */
@@ -61,16 +61,16 @@ public class VACModuleAntiSpeed implements IVacModule
             speeded = 0;
         }
     }
-    
+
     /**
      * Get the ratio of the number of times the player moved to fast compared to
      * the number of times they moved
      */
     public double getSpeedingRatio()
     {
-        return speeded / Math.max((double)moved, 1.0);
+        return speeded / Math.max(moved, 1.0);
     }
-    
+
     /**
      * Give the player a speeding ticket and reset them.
      */
@@ -78,7 +78,7 @@ public class VACModuleAntiSpeed implements IVacModule
     {
         resets++;
     }
-    
+
     /**
      * Increment the number of times the player moved too quickly.
      */
@@ -86,17 +86,17 @@ public class VACModuleAntiSpeed implements IVacModule
     {
         speeded++;
     }
-    
+
     public boolean wasSneaking()
     {
         return wasSneaking;
     }
-    
+
     public long getTimeSinceLastBhop()
     {
         return timeSinceLastBhop;
     }
-    
+
     /**
      * Reset the time since the player last jumped.
      */
@@ -104,12 +104,12 @@ public class VACModuleAntiSpeed implements IVacModule
     {
         timeSinceLastBhop = 0;
     }
-    
+
     public int resets()
     {
         return resets;
     }
-    
+
     /**
      * Sets whether the player was sneaking or not depending on how long ago
      * they started sneaking. This is to give them some time to slow down after

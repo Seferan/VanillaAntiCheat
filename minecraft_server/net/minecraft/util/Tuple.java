@@ -11,8 +11,8 @@ public class Tuple
 
     public Tuple(Object par1Obj, Object par2Obj)
     {
-        this.first = par1Obj;
-        this.second = par2Obj;
+        first = par1Obj;
+        second = par2Obj;
     }
 
     /**
@@ -20,7 +20,7 @@ public class Tuple
      */
     public Object getFirst()
     {
-        return this.first;
+        return first;
     }
 
     /**
@@ -28,6 +28,6 @@ public class Tuple
      */
     public Object getSecond()
     {
-        return this.second;
+        return second;
     }
 }

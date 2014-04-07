@@ -15,9 +15,9 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
 
     public EntityAIMoveTowardsRestriction(EntityCreature par1EntityCreature, double par2)
     {
-        this.theEntity = par1EntityCreature;
-        this.movementSpeed = par2;
-        this.setMutexBits(1);
+        theEntity = par1EntityCreature;
+        movementSpeed = par2;
+        setMutexBits(1);
     }
 
     /**
@@ -25,14 +25,14 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.theEntity.isWithinHomeDistanceCurrentPosition())
+        if (theEntity.isWithinHomeDistanceCurrentPosition())
         {
             return false;
         }
         else
         {
-            ChunkCoordinates var1 = this.theEntity.getHomePosition();
-            Vec3 var2 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool((double)var1.posX, (double)var1.posY, (double)var1.posZ));
+            ChunkCoordinates var1 = theEntity.getHomePosition();
+            Vec3 var2 = RandomPositionGenerator.findRandomTargetBlockTowards(theEntity, 16, 7, theEntity.worldObj.getWorldVec3Pool().getVecFromPool(var1.posX, var1.posY, var1.posZ));
 
             if (var2 == null)
             {
@@ -40,9 +40,9 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
             }
             else
             {
-                this.movePosX = var2.xCoord;
-                this.movePosY = var2.yCoord;
-                this.movePosZ = var2.zCoord;
+                movePosX = var2.xCoord;
+                movePosY = var2.yCoord;
+                movePosZ = var2.zCoord;
                 return true;
             }
         }
@@ -53,7 +53,7 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.theEntity.getNavigator().noPath();
+        return !theEntity.getNavigator().noPath();
     }
 
     /**
@@ -61,6 +61,6 @@ public class EntityAIMoveTowardsRestriction extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.movementSpeed);
+        theEntity.getNavigator().tryMoveToXYZ(movePosX, movePosY, movePosZ, movementSpeed);
     }
 }

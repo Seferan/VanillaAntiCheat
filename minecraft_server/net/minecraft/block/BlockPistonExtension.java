@@ -19,8 +19,8 @@ public class BlockPistonExtension extends Block
     public BlockPistonExtension()
     {
         super(Material.piston);
-        this.setStepSound(soundTypePiston);
-        this.setHardness(0.5F);
+        setStepSound(soundTypePiston);
+        setHardness(0.5F);
     }
 
     /**
@@ -115,48 +115,48 @@ public class BlockPistonExtension extends Block
         switch (func_150085_b(var8))
         {
         case 0:
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.25F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.25F, 1.0F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-            this.setBlockBounds(0.375F, 0.25F, 0.375F, 0.625F, 1.0F, 0.625F);
+            setBlockBounds(0.375F, 0.25F, 0.375F, 0.625F, 1.0F, 0.625F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
             break;
 
         case 1:
-            this.setBlockBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-            this.setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 0.75F, 0.625F);
+            setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 0.75F, 0.625F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
             break;
 
         case 2:
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.25F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.25F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-            this.setBlockBounds(0.25F, 0.375F, 0.25F, 0.75F, 0.625F, 1.0F);
+            setBlockBounds(0.25F, 0.375F, 0.25F, 0.75F, 0.625F, 1.0F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
             break;
 
         case 3:
-            this.setBlockBounds(0.0F, 0.0F, 0.75F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.75F, 1.0F, 1.0F, 1.0F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-            this.setBlockBounds(0.25F, 0.375F, 0.0F, 0.75F, 0.625F, 0.75F);
+            setBlockBounds(0.25F, 0.375F, 0.0F, 0.75F, 0.625F, 0.75F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
             break;
 
         case 4:
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.25F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 0.25F, 1.0F, 1.0F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-            this.setBlockBounds(0.375F, 0.25F, 0.25F, 0.625F, 0.75F, 1.0F);
+            setBlockBounds(0.375F, 0.25F, 0.25F, 0.625F, 0.75F, 1.0F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
             break;
 
         case 5:
-            this.setBlockBounds(0.75F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.75F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-            this.setBlockBounds(0.0F, 0.375F, 0.25F, 0.75F, 0.625F, 0.75F);
+            setBlockBounds(0.0F, 0.375F, 0.25F, 0.75F, 0.625F, 0.75F);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         }
 
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
@@ -167,27 +167,27 @@ public class BlockPistonExtension extends Block
         switch (func_150085_b(var5))
         {
         case 0:
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.25F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.25F, 1.0F);
             break;
 
         case 1:
-            this.setBlockBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
             break;
 
         case 2:
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.25F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.25F);
             break;
 
         case 3:
-            this.setBlockBounds(0.0F, 0.0F, 0.75F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.75F, 1.0F, 1.0F, 1.0F);
             break;
 
         case 4:
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.25F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 0.25F, 1.0F, 1.0F);
             break;
 
         case 5:
-            this.setBlockBounds(0.75F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.75F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
     }
 

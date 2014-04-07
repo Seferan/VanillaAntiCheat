@@ -18,7 +18,7 @@ public class MapGenStructureData extends WorldSavedData
      */
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
-        this.field_143044_a = par1NBTTagCompound.getCompoundTag("Features");
+        field_143044_a = par1NBTTagCompound.getCompoundTag("Features");
     }
 
     /**
@@ -27,12 +27,12 @@ public class MapGenStructureData extends WorldSavedData
      */
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        par1NBTTagCompound.setTag("Features", this.field_143044_a);
+        par1NBTTagCompound.setTag("Features", field_143044_a);
     }
 
     public void func_143043_a(NBTTagCompound par1NBTTagCompound, int par2, int par3)
     {
-        this.field_143044_a.setTag(func_143042_b(par2, par3), par1NBTTagCompound);
+        field_143044_a.setTag(func_143042_b(par2, par3), par1NBTTagCompound);
     }
 
     public static String func_143042_b(int par1, int par2)
@@ -42,6 +42,6 @@ public class MapGenStructureData extends WorldSavedData
 
     public NBTTagCompound func_143041_a()
     {
-        return this.field_143044_a;
+        return field_143044_a;
     }
 }

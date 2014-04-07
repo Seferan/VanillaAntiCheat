@@ -15,7 +15,7 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
 
     public RegistryNamespaced()
     {
-        this.field_148758_b = ((BiMap)this.registryObjects).inverse();
+        field_148758_b = ((BiMap)registryObjects).inverse();
     }
 
     /**
@@ -24,8 +24,8 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
      */
     public void addObject(int p_148756_1_, String p_148756_2_, Object p_148756_3_)
     {
-        this.underlyingIntegerMap.func_148746_a(p_148756_3_, p_148756_1_);
-        this.putObject(ensureNamespaced(p_148756_2_), p_148756_3_);
+        underlyingIntegerMap.func_148746_a(p_148756_3_, p_148756_1_);
+        putObject(ensureNamespaced(p_148756_2_), p_148756_3_);
     }
 
     /**
@@ -46,7 +46,7 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
      */
     public String getNameForObject(Object p_148750_1_)
     {
-        return (String)this.field_148758_b.get(p_148750_1_);
+        return (String)field_148758_b.get(p_148750_1_);
     }
 
     /**
@@ -62,7 +62,7 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
      */
     public int getIDForObject(Object p_148757_1_)
     {
-        return this.underlyingIntegerMap.func_148747_b(p_148757_1_);
+        return underlyingIntegerMap.func_148747_b(p_148757_1_);
     }
 
     /**
@@ -70,12 +70,12 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
      */
     public Object getObjectForID(int p_148754_1_)
     {
-        return this.underlyingIntegerMap.func_148745_a(p_148754_1_);
+        return underlyingIntegerMap.func_148745_a(p_148754_1_);
     }
 
     public Iterator iterator()
     {
-        return this.underlyingIntegerMap.iterator();
+        return underlyingIntegerMap.iterator();
     }
 
     /**
@@ -84,7 +84,7 @@ public class RegistryNamespaced extends RegistrySimple implements IObjectIntIter
      */
     public boolean containsID(int p_148753_1_)
     {
-        return this.underlyingIntegerMap.func_148744_b(p_148753_1_);
+        return underlyingIntegerMap.func_148744_b(p_148753_1_);
     }
 
     /**

@@ -40,7 +40,7 @@ public interface IEntitySelector
 
         public ArmoredMob(ItemStack par1ItemStack)
         {
-            this.field_96567_c = par1ItemStack;
+            field_96567_c = par1ItemStack;
         }
 
         public boolean isEntityApplicable(Entity par1Entity)
@@ -56,7 +56,7 @@ public interface IEntitySelector
             else
             {
                 EntityLivingBase var2 = (EntityLivingBase)par1Entity;
-                return var2.getEquipmentInSlot(EntityLiving.getArmorPosition(this.field_96567_c)) != null ? false : (var2 instanceof EntityLiving ? ((EntityLiving)var2).canPickUpLoot() : var2 instanceof EntityPlayer);
+                return var2.getEquipmentInSlot(EntityLiving.getArmorPosition(field_96567_c)) != null ? false : (var2 instanceof EntityLiving ? ((EntityLiving)var2).canPickUpLoot() : var2 instanceof EntityPlayer);
             }
         }
     }

@@ -12,7 +12,7 @@ public class EnchantmentDurability extends Enchantment
     protected EnchantmentDurability(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.breakable);
-        this.setName("durability");
+        setName("durability");
     }
 
     /**

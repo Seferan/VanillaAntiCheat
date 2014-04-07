@@ -41,9 +41,9 @@ public class TileEntityMobSpawner extends TileEntity
         {
             super.setRandomMinecart(par1WeightedRandomMinecart);
 
-            if (this.getSpawnerWorld() != null)
+            if (getSpawnerWorld() != null)
             {
-                this.getSpawnerWorld().markBlockForUpdate(TileEntityMobSpawner.this.xCoord, TileEntityMobSpawner.this.yCoord, TileEntityMobSpawner.this.zCoord);
+                getSpawnerWorld().markBlockForUpdate(TileEntityMobSpawner.this.xCoord, TileEntityMobSpawner.this.yCoord, TileEntityMobSpawner.this.zCoord);
             }
         }
     };
@@ -52,18 +52,18 @@ public class TileEntityMobSpawner extends TileEntity
     public void readFromNBT(NBTTagCompound p_145839_1_)
     {
         super.readFromNBT(p_145839_1_);
-        this.field_145882_a.readFromNBT(p_145839_1_);
+        field_145882_a.readFromNBT(p_145839_1_);
     }
 
     public void writeToNBT(NBTTagCompound p_145841_1_)
     {
         super.writeToNBT(p_145841_1_);
-        this.field_145882_a.writeToNBT(p_145841_1_);
+        field_145882_a.writeToNBT(p_145841_1_);
     }
 
     public void updateEntity()
     {
-        this.field_145882_a.updateSpawner();
+        field_145882_a.updateSpawner();
         super.updateEntity();
     }
 
@@ -73,18 +73,18 @@ public class TileEntityMobSpawner extends TileEntity
     public Packet getDescriptionPacket()
     {
         NBTTagCompound var1 = new NBTTagCompound();
-        this.writeToNBT(var1);
+        writeToNBT(var1);
         var1.removeTag("SpawnPotentials");
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, var1);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, var1);
     }
 
     public boolean receiveClientEvent(int p_145842_1_, int p_145842_2_)
     {
-        return this.field_145882_a.setDelayToMin(p_145842_1_) ? true : super.receiveClientEvent(p_145842_1_, p_145842_2_);
+        return field_145882_a.setDelayToMin(p_145842_1_) ? true : super.receiveClientEvent(p_145842_1_, p_145842_2_);
     }
 
     public MobSpawnerBaseLogic func_145881_a()
     {
-        return this.field_145882_a;
+        return field_145882_a;
     }
 }

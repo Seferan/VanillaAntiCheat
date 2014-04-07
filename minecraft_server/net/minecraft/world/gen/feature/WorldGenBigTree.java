@@ -62,35 +62,35 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     void generateLeafNodeList()
     {
-        this.height = (int)((double)this.heightLimit * this.heightAttenuation);
+        height = (int)(heightLimit * heightAttenuation);
 
-        if (this.height >= this.heightLimit)
+        if (height >= heightLimit)
         {
-            this.height = this.heightLimit - 1;
+            height = heightLimit - 1;
         }
 
-        int var1 = (int)(1.382D + Math.pow(this.leafDensity * (double)this.heightLimit / 13.0D, 2.0D));
+        int var1 = (int)(1.382D + Math.pow(leafDensity * heightLimit / 13.0D, 2.0D));
 
         if (var1 < 1)
         {
             var1 = 1;
         }
 
-        int[][] var2 = new int[var1 * this.heightLimit][4];
-        int var3 = this.basePos[1] + this.heightLimit - this.leafDistanceLimit;
+        int[][] var2 = new int[var1 * heightLimit][4];
+        int var3 = basePos[1] + heightLimit - leafDistanceLimit;
         int var4 = 1;
-        int var5 = this.basePos[1] + this.height;
-        int var6 = var3 - this.basePos[1];
-        var2[0][0] = this.basePos[0];
+        int var5 = basePos[1] + height;
+        int var6 = var3 - basePos[1];
+        var2[0][0] = basePos[0];
         var2[0][1] = var3;
-        var2[0][2] = this.basePos[2];
+        var2[0][2] = basePos[2];
         var2[0][3] = var5;
         --var3;
 
         while (var6 >= 0)
         {
             int var7 = 0;
-            float var8 = this.layerSize(var6);
+            float var8 = layerSize(var6);
 
             if (var8 < 0.0F)
             {
@@ -101,29 +101,29 @@ public class WorldGenBigTree extends WorldGenAbstractTree
             {
                 for (double var9 = 0.5D; var7 < var1; ++var7)
                 {
-                    double var11 = this.scaleWidth * (double)var8 * ((double)this.rand.nextFloat() + 0.328D);
-                    double var13 = (double)this.rand.nextFloat() * 2.0D * Math.PI;
-                    int var15 = MathHelper.floor_double(var11 * Math.sin(var13) + (double)this.basePos[0] + var9);
-                    int var16 = MathHelper.floor_double(var11 * Math.cos(var13) + (double)this.basePos[2] + var9);
+                    double var11 = scaleWidth * var8 * (rand.nextFloat() + 0.328D);
+                    double var13 = rand.nextFloat() * 2.0D * Math.PI;
+                    int var15 = MathHelper.floor_double(var11 * Math.sin(var13) + basePos[0] + var9);
+                    int var16 = MathHelper.floor_double(var11 * Math.cos(var13) + basePos[2] + var9);
                     int[] var17 = new int[] {var15, var3, var16};
-                    int[] var18 = new int[] {var15, var3 + this.leafDistanceLimit, var16};
+                    int[] var18 = new int[] {var15, var3 + leafDistanceLimit, var16};
 
-                    if (this.checkBlockLine(var17, var18) == -1)
+                    if (checkBlockLine(var17, var18) == -1)
                     {
-                        int[] var19 = new int[] {this.basePos[0], this.basePos[1], this.basePos[2]};
-                        double var20 = Math.sqrt(Math.pow((double)Math.abs(this.basePos[0] - var17[0]), 2.0D) + Math.pow((double)Math.abs(this.basePos[2] - var17[2]), 2.0D));
-                        double var22 = var20 * this.branchSlope;
+                        int[] var19 = new int[] {basePos[0], basePos[1], basePos[2]};
+                        double var20 = Math.sqrt(Math.pow(Math.abs(basePos[0] - var17[0]), 2.0D) + Math.pow(Math.abs(basePos[2] - var17[2]), 2.0D));
+                        double var22 = var20 * branchSlope;
 
-                        if ((double)var17[1] - var22 > (double)var5)
+                        if (var17[1] - var22 > var5)
                         {
                             var19[1] = var5;
                         }
                         else
                         {
-                            var19[1] = (int)((double)var17[1] - var22);
+                            var19[1] = (int)(var17[1] - var22);
                         }
 
-                        if (this.checkBlockLine(var19, var17) == -1)
+                        if (checkBlockLine(var19, var17) == -1)
                         {
                             var2[var4][0] = var15;
                             var2[var4][1] = var3;
@@ -139,13 +139,13 @@ public class WorldGenBigTree extends WorldGenAbstractTree
             }
         }
 
-        this.leafNodes = new int[var4][4];
-        System.arraycopy(var2, 0, this.leafNodes, 0, var4);
+        leafNodes = new int[var4][4];
+        System.arraycopy(var2, 0, leafNodes, 0, var4);
     }
 
     void func_150529_a(int p_150529_1_, int p_150529_2_, int p_150529_3_, float p_150529_4_, byte p_150529_5_, Block p_150529_6_)
     {
-        int var7 = (int)((double)p_150529_4_ + 0.618D);
+        int var7 = (int)(p_150529_4_ + 0.618D);
         byte var8 = otherCoordPairs[p_150529_5_];
         byte var9 = otherCoordPairs[p_150529_5_ + 3];
         int[] var10 = new int[] {p_150529_1_, p_150529_2_, p_150529_3_};
@@ -160,16 +160,16 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 
             while (var13 <= var7)
             {
-                double var15 = Math.pow((double)Math.abs(var12) + 0.5D, 2.0D) + Math.pow((double)Math.abs(var13) + 0.5D, 2.0D);
+                double var15 = Math.pow(Math.abs(var12) + 0.5D, 2.0D) + Math.pow(Math.abs(var13) + 0.5D, 2.0D);
 
-                if (var15 > (double)(p_150529_4_ * p_150529_4_))
+                if (var15 > p_150529_4_ * p_150529_4_)
                 {
                     ++var13;
                 }
                 else
                 {
                     var11[var9] = var10[var9] + var13;
-                    Block var14 = this.worldObj.getBlock(var11[0], var11[1], var11[2]);
+                    Block var14 = worldObj.getBlock(var11[0], var11[1], var11[2]);
 
                     if (var14.getMaterial() != Material.air && var14.getMaterial() != Material.field_151584_j)
                     {
@@ -177,7 +177,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
                     }
                     else
                     {
-                        this.func_150516_a(this.worldObj, var11[0], var11[1], var11[2], p_150529_6_, 0);
+                        func_150516_a(worldObj, var11[0], var11[1], var11[2], p_150529_6_, 0);
                         ++var13;
                     }
                 }
@@ -190,14 +190,14 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     float layerSize(int par1)
     {
-        if ((double)par1 < (double)((float)this.heightLimit) * 0.3D)
+        if (par1 < (heightLimit) * 0.3D)
         {
             return -1.618F;
         }
         else
         {
-            float var2 = (float)this.heightLimit / 2.0F;
-            float var3 = (float)this.heightLimit / 2.0F - (float)par1;
+            float var2 = heightLimit / 2.0F;
+            float var3 = heightLimit / 2.0F - par1;
             float var4;
 
             if (var3 == 0.0F)
@@ -210,7 +210,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
             }
             else
             {
-                var4 = (float)Math.sqrt(Math.pow((double)Math.abs(var2), 2.0D) - Math.pow((double)Math.abs(var3), 2.0D));
+                var4 = (float)Math.sqrt(Math.pow(Math.abs(var2), 2.0D) - Math.pow(Math.abs(var3), 2.0D));
             }
 
             var4 *= 0.5F;
@@ -220,7 +220,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 
     float leafSize(int par1)
     {
-        return par1 >= 0 && par1 < this.leafDistanceLimit ? (par1 != 0 && par1 != this.leafDistanceLimit - 1 ? 3.0F : 2.0F) : -1.0F;
+        return par1 >= 0 && par1 < leafDistanceLimit ? (par1 != 0 && par1 != leafDistanceLimit - 1 ? 3.0F : 2.0F) : -1.0F;
     }
 
     /**
@@ -231,10 +231,10 @@ public class WorldGenBigTree extends WorldGenAbstractTree
     {
         int var4 = par2;
 
-        for (int var5 = par2 + this.leafDistanceLimit; var4 < var5; ++var4)
+        for (int var5 = par2 + leafDistanceLimit; var4 < var5; ++var4)
         {
-            float var6 = this.leafSize(var4 - par2);
-            this.func_150529_a(par1, var4, par3, var6, (byte)1, Blocks.leaves);
+            float var6 = leafSize(var4 - par2);
+            func_150529_a(par1, var4, par3, var6, (byte)1, Blocks.leaves);
         }
     }
 
@@ -276,9 +276,9 @@ public class WorldGenBigTree extends WorldGenAbstractTree
 
             for (int var16 = var4[var6] + var9; var15 != var16; var15 += var9)
             {
-                var14[var6] = MathHelper.floor_double((double)(p_150530_1_[var6] + var15) + 0.5D);
-                var14[var7] = MathHelper.floor_double((double)p_150530_1_[var7] + (double)var15 * var10 + 0.5D);
-                var14[var8] = MathHelper.floor_double((double)p_150530_1_[var8] + (double)var15 * var12 + 0.5D);
+                var14[var6] = MathHelper.floor_double(p_150530_1_[var6] + var15 + 0.5D);
+                var14[var7] = MathHelper.floor_double(p_150530_1_[var7] + var15 * var10 + 0.5D);
+                var14[var8] = MathHelper.floor_double(p_150530_1_[var8] + var15 * var12 + 0.5D);
                 byte var17 = 0;
                 int var18 = Math.abs(var14[0] - p_150530_1_[0]);
                 int var19 = Math.abs(var14[2] - p_150530_1_[2]);
@@ -296,7 +296,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
                     }
                 }
 
-                this.func_150516_a(this.worldObj, var14[0], var14[1], var14[2], p_150530_3_, var17);
+                func_150516_a(worldObj, var14[0], var14[1], var14[2], p_150530_3_, var17);
             }
         }
     }
@@ -309,12 +309,12 @@ public class WorldGenBigTree extends WorldGenAbstractTree
     {
         int var1 = 0;
 
-        for (int var2 = this.leafNodes.length; var1 < var2; ++var1)
+        for (int var2 = leafNodes.length; var1 < var2; ++var1)
         {
-            int var3 = this.leafNodes[var1][0];
-            int var4 = this.leafNodes[var1][1];
-            int var5 = this.leafNodes[var1][2];
-            this.generateLeafNode(var3, var4, var5);
+            int var3 = leafNodes[var1][0];
+            int var4 = leafNodes[var1][1];
+            int var5 = leafNodes[var1][2];
+            generateLeafNode(var3, var4, var5);
         }
     }
 
@@ -324,7 +324,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     boolean leafNodeNeedsBase(int par1)
     {
-        return (double)par1 >= (double)this.heightLimit * 0.2D;
+        return par1 >= heightLimit * 0.2D;
     }
 
     /**
@@ -333,25 +333,25 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     void generateTrunk()
     {
-        int var1 = this.basePos[0];
-        int var2 = this.basePos[1];
-        int var3 = this.basePos[1] + this.height;
-        int var4 = this.basePos[2];
+        int var1 = basePos[0];
+        int var2 = basePos[1];
+        int var3 = basePos[1] + height;
+        int var4 = basePos[2];
         int[] var5 = new int[] {var1, var2, var4};
         int[] var6 = new int[] {var1, var3, var4};
-        this.func_150530_a(var5, var6, Blocks.log);
+        func_150530_a(var5, var6, Blocks.log);
 
-        if (this.trunkSize == 2)
+        if (trunkSize == 2)
         {
             ++var5[0];
             ++var6[0];
-            this.func_150530_a(var5, var6, Blocks.log);
+            func_150530_a(var5, var6, Blocks.log);
             ++var5[2];
             ++var6[2];
-            this.func_150530_a(var5, var6, Blocks.log);
+            func_150530_a(var5, var6, Blocks.log);
             var5[0] += -1;
             var6[0] += -1;
-            this.func_150530_a(var5, var6, Blocks.log);
+            func_150530_a(var5, var6, Blocks.log);
         }
     }
 
@@ -362,18 +362,18 @@ public class WorldGenBigTree extends WorldGenAbstractTree
     void generateLeafNodeBases()
     {
         int var1 = 0;
-        int var2 = this.leafNodes.length;
+        int var2 = leafNodes.length;
 
-        for (int[] var3 = new int[] {this.basePos[0], this.basePos[1], this.basePos[2]}; var1 < var2; ++var1)
+        for (int[] var3 = new int[] {basePos[0], basePos[1], basePos[2]}; var1 < var2; ++var1)
         {
-            int[] var4 = this.leafNodes[var1];
+            int[] var4 = leafNodes[var1];
             int[] var5 = new int[] {var4[0], var4[1], var4[2]};
             var3[1] = var4[3];
-            int var6 = var3[1] - this.basePos[1];
+            int var6 = var3[1] - basePos[1];
 
-            if (this.leafNodeNeedsBase(var6))
+            if (leafNodeNeedsBase(var6))
             {
-                this.func_150530_a(var3, var5, Blocks.log);
+                func_150530_a(var3, var5, Blocks.log);
             }
         }
     }
@@ -427,11 +427,11 @@ public class WorldGenBigTree extends WorldGenAbstractTree
             for (var15 = var3[var5] + var8; var14 != var15; var14 += var8)
             {
                 var13[var5] = par1ArrayOfInteger[var5] + var14;
-                var13[var6] = MathHelper.floor_double((double)par1ArrayOfInteger[var6] + (double)var14 * var9);
-                var13[var7] = MathHelper.floor_double((double)par1ArrayOfInteger[var7] + (double)var14 * var11);
-                Block var16 = this.worldObj.getBlock(var13[0], var13[1], var13[2]);
+                var13[var6] = MathHelper.floor_double(par1ArrayOfInteger[var6] + var14 * var9);
+                var13[var7] = MathHelper.floor_double(par1ArrayOfInteger[var7] + var14 * var11);
+                Block var16 = worldObj.getBlock(var13[0], var13[1], var13[2]);
 
-                if (!this.func_150523_a(var16))
+                if (!func_150523_a(var16))
                 {
                     break;
                 }
@@ -447,9 +447,9 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     boolean validTreeLocation()
     {
-        int[] var1 = new int[] {this.basePos[0], this.basePos[1], this.basePos[2]};
-        int[] var2 = new int[] {this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2]};
-        Block var3 = this.worldObj.getBlock(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
+        int[] var1 = new int[] {basePos[0], basePos[1], basePos[2]};
+        int[] var2 = new int[] {basePos[0], basePos[1] + heightLimit - 1, basePos[2]};
+        Block var3 = worldObj.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
 
         if (var3 != Blocks.dirt && var3 != Blocks.grass && var3 != Blocks.farmland)
         {
@@ -457,7 +457,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
         }
         else
         {
-            int var4 = this.checkBlockLine(var1, var2);
+            int var4 = checkBlockLine(var1, var2);
 
             if (var4 == -1)
             {
@@ -469,7 +469,7 @@ public class WorldGenBigTree extends WorldGenAbstractTree
             }
             else
             {
-                this.heightLimit = var4;
+                heightLimit = var4;
                 return true;
             }
         }
@@ -480,41 +480,41 @@ public class WorldGenBigTree extends WorldGenAbstractTree
      */
     public void setScale(double par1, double par3, double par5)
     {
-        this.heightLimitLimit = (int)(par1 * 12.0D);
+        heightLimitLimit = (int)(par1 * 12.0D);
 
         if (par1 > 0.5D)
         {
-            this.leafDistanceLimit = 5;
+            leafDistanceLimit = 5;
         }
 
-        this.scaleWidth = par3;
-        this.leafDensity = par5;
+        scaleWidth = par3;
+        leafDensity = par5;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
-        this.worldObj = par1World;
+        worldObj = par1World;
         long var6 = par2Random.nextLong();
-        this.rand.setSeed(var6);
-        this.basePos[0] = par3;
-        this.basePos[1] = par4;
-        this.basePos[2] = par5;
+        rand.setSeed(var6);
+        basePos[0] = par3;
+        basePos[1] = par4;
+        basePos[2] = par5;
 
-        if (this.heightLimit == 0)
+        if (heightLimit == 0)
         {
-            this.heightLimit = 5 + this.rand.nextInt(this.heightLimitLimit);
+            heightLimit = 5 + rand.nextInt(heightLimitLimit);
         }
 
-        if (!this.validTreeLocation())
+        if (!validTreeLocation())
         {
             return false;
         }
         else
         {
-            this.generateLeafNodeList();
-            this.generateLeaves();
-            this.generateTrunk();
-            this.generateLeafNodeBases();
+            generateLeafNodeList();
+            generateLeaves();
+            generateTrunk();
+            generateLeafNodeBases();
             return true;
         }
     }

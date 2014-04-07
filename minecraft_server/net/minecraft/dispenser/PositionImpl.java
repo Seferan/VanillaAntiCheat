@@ -9,23 +9,23 @@ public class PositionImpl implements IPosition
 
     public PositionImpl(double par1, double par3, double par5)
     {
-        this.x = par1;
-        this.y = par3;
-        this.z = par5;
+        x = par1;
+        y = par3;
+        z = par5;
     }
 
     public double getX()
     {
-        return this.x;
+        return x;
     }
 
     public double getY()
     {
-        return this.y;
+        return y;
     }
 
     public double getZ()
     {
-        return this.z;
+        return z;
     }
 }

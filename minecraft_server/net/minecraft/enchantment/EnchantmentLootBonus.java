@@ -10,15 +10,15 @@ public class EnchantmentLootBonus extends Enchantment
 
         if (par3EnumEnchantmentType == EnumEnchantmentType.digger)
         {
-            this.setName("lootBonusDigger");
+            setName("lootBonusDigger");
         }
         else if (par3EnumEnchantmentType == EnumEnchantmentType.fishing_rod)
         {
-            this.setName("lootBonusFishing");
+            setName("lootBonusFishing");
         }
         else
         {
-            this.setName("lootBonus");
+            setName("lootBonus");
         }
     }
 

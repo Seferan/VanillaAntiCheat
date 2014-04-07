@@ -20,15 +20,15 @@ public class S3DPacketDisplayScoreboard extends Packet
 
     public S3DPacketDisplayScoreboard(int p_i45216_1_, ScoreObjective p_i45216_2_)
     {
-        this.field_149374_a = p_i45216_1_;
+        field_149374_a = p_i45216_1_;
 
         if (p_i45216_2_ == null)
         {
-            this.field_149373_b = "";
+            field_149373_b = "";
         }
         else
         {
-            this.field_149373_b = p_i45216_2_.getName();
+            field_149373_b = p_i45216_2_.getName();
         }
     }
 
@@ -37,8 +37,8 @@ public class S3DPacketDisplayScoreboard extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149374_a = p_148837_1_.readByte();
-        this.field_149373_b = p_148837_1_.readStringFromBuffer(16);
+        field_149374_a = p_148837_1_.readByte();
+        field_149373_b = p_148837_1_.readStringFromBuffer(16);
     }
 
     /**
@@ -46,8 +46,8 @@ public class S3DPacketDisplayScoreboard extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149374_a);
-        p_148840_1_.writeStringToBuffer(this.field_149373_b);
+        p_148840_1_.writeByte(field_149374_a);
+        p_148840_1_.writeStringToBuffer(field_149373_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149372_1_)

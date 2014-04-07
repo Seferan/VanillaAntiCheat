@@ -24,7 +24,7 @@ public class BlockRedstoneWire extends Block
     public BlockRedstoneWire()
     {
         super(Material.circuits);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
     }
 
     /**
@@ -61,9 +61,9 @@ public class BlockRedstoneWire extends Block
 
     private void func_150177_e(World p_150177_1_, int p_150177_2_, int p_150177_3_, int p_150177_4_)
     {
-        this.func_150175_a(p_150177_1_, p_150177_2_, p_150177_3_, p_150177_4_, p_150177_2_, p_150177_3_, p_150177_4_);
-        ArrayList var5 = new ArrayList(this.field_150179_b);
-        this.field_150179_b.clear();
+        func_150175_a(p_150177_1_, p_150177_2_, p_150177_3_, p_150177_4_, p_150177_2_, p_150177_3_, p_150177_4_);
+        ArrayList var5 = new ArrayList(field_150179_b);
+        field_150179_b.clear();
 
         for (int var6 = 0; var6 < var5.size(); ++var6)
         {
@@ -76,10 +76,10 @@ public class BlockRedstoneWire extends Block
     {
         int var8 = p_150175_1_.getBlockMetadata(p_150175_2_, p_150175_3_, p_150175_4_);
         byte var9 = 0;
-        int var15 = this.func_150178_a(p_150175_1_, p_150175_5_, p_150175_6_, p_150175_7_, var9);
-        this.field_150181_a = false;
+        int var15 = func_150178_a(p_150175_1_, p_150175_5_, p_150175_6_, p_150175_7_, var9);
+        field_150181_a = false;
         int var10 = p_150175_1_.getStrongestIndirectPower(p_150175_2_, p_150175_3_, p_150175_4_);
-        this.field_150181_a = true;
+        field_150181_a = true;
 
         if (var10 > 0 && var10 > var15 - 1)
         {
@@ -115,19 +115,19 @@ public class BlockRedstoneWire extends Block
 
             if (var13 != p_150175_5_ || var14 != p_150175_7_)
             {
-                var11 = this.func_150178_a(p_150175_1_, var13, p_150175_3_, var14, var11);
+                var11 = func_150178_a(p_150175_1_, var13, p_150175_3_, var14, var11);
             }
 
             if (p_150175_1_.getBlock(var13, p_150175_3_, var14).isNormalCube() && !p_150175_1_.getBlock(p_150175_2_, p_150175_3_ + 1, p_150175_4_).isNormalCube())
             {
                 if ((var13 != p_150175_5_ || var14 != p_150175_7_) && p_150175_3_ >= p_150175_6_)
                 {
-                    var11 = this.func_150178_a(p_150175_1_, var13, p_150175_3_ + 1, var14, var11);
+                    var11 = func_150178_a(p_150175_1_, var13, p_150175_3_ + 1, var14, var11);
                 }
             }
             else if (!p_150175_1_.getBlock(var13, p_150175_3_, var14).isNormalCube() && (var13 != p_150175_5_ || var14 != p_150175_7_) && p_150175_3_ <= p_150175_6_)
             {
-                var11 = this.func_150178_a(p_150175_1_, var13, p_150175_3_ - 1, var14, var11);
+                var11 = func_150178_a(p_150175_1_, var13, p_150175_3_ - 1, var14, var11);
             }
         }
 
@@ -152,13 +152,13 @@ public class BlockRedstoneWire extends Block
         if (var8 != var15)
         {
             p_150175_1_.setBlockMetadata(p_150175_2_, p_150175_3_, p_150175_4_, var15, 2);
-            this.field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_, p_150175_4_));
-            this.field_150179_b.add(new ChunkPosition(p_150175_2_ - 1, p_150175_3_, p_150175_4_));
-            this.field_150179_b.add(new ChunkPosition(p_150175_2_ + 1, p_150175_3_, p_150175_4_));
-            this.field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_ - 1, p_150175_4_));
-            this.field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_ + 1, p_150175_4_));
-            this.field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_, p_150175_4_ - 1));
-            this.field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_, p_150175_4_ + 1));
+            field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_, p_150175_4_));
+            field_150179_b.add(new ChunkPosition(p_150175_2_ - 1, p_150175_3_, p_150175_4_));
+            field_150179_b.add(new ChunkPosition(p_150175_2_ + 1, p_150175_3_, p_150175_4_));
+            field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_ - 1, p_150175_4_));
+            field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_ + 1, p_150175_4_));
+            field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_, p_150175_4_ - 1));
+            field_150179_b.add(new ChunkPosition(p_150175_2_, p_150175_3_, p_150175_4_ + 1));
         }
     }
 
@@ -182,48 +182,48 @@ public class BlockRedstoneWire extends Block
 
         if (!p_149726_1_.isClient)
         {
-            this.func_150177_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
+            func_150177_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
             p_149726_1_.notifyBlocksOfNeighborChange(p_149726_2_, p_149726_3_ + 1, p_149726_4_, this);
             p_149726_1_.notifyBlocksOfNeighborChange(p_149726_2_, p_149726_3_ - 1, p_149726_4_, this);
-            this.func_150172_m(p_149726_1_, p_149726_2_ - 1, p_149726_3_, p_149726_4_);
-            this.func_150172_m(p_149726_1_, p_149726_2_ + 1, p_149726_3_, p_149726_4_);
-            this.func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_ - 1);
-            this.func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_ + 1);
+            func_150172_m(p_149726_1_, p_149726_2_ - 1, p_149726_3_, p_149726_4_);
+            func_150172_m(p_149726_1_, p_149726_2_ + 1, p_149726_3_, p_149726_4_);
+            func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_ - 1);
+            func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_ + 1);
 
             if (p_149726_1_.getBlock(p_149726_2_ - 1, p_149726_3_, p_149726_4_).isNormalCube())
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_ - 1, p_149726_3_ + 1, p_149726_4_);
+                func_150172_m(p_149726_1_, p_149726_2_ - 1, p_149726_3_ + 1, p_149726_4_);
             }
             else
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_ - 1, p_149726_3_ - 1, p_149726_4_);
+                func_150172_m(p_149726_1_, p_149726_2_ - 1, p_149726_3_ - 1, p_149726_4_);
             }
 
             if (p_149726_1_.getBlock(p_149726_2_ + 1, p_149726_3_, p_149726_4_).isNormalCube())
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_ + 1, p_149726_3_ + 1, p_149726_4_);
+                func_150172_m(p_149726_1_, p_149726_2_ + 1, p_149726_3_ + 1, p_149726_4_);
             }
             else
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_ + 1, p_149726_3_ - 1, p_149726_4_);
+                func_150172_m(p_149726_1_, p_149726_2_ + 1, p_149726_3_ - 1, p_149726_4_);
             }
 
             if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_, p_149726_4_ - 1).isNormalCube())
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ + 1, p_149726_4_ - 1);
+                func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ + 1, p_149726_4_ - 1);
             }
             else
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ - 1, p_149726_4_ - 1);
+                func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ - 1, p_149726_4_ - 1);
             }
 
             if (p_149726_1_.getBlock(p_149726_2_, p_149726_3_, p_149726_4_ + 1).isNormalCube())
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ + 1, p_149726_4_ + 1);
+                func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ + 1, p_149726_4_ + 1);
             }
             else
             {
-                this.func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ - 1, p_149726_4_ + 1);
+                func_150172_m(p_149726_1_, p_149726_2_, p_149726_3_ - 1, p_149726_4_ + 1);
             }
         }
     }
@@ -240,46 +240,46 @@ public class BlockRedstoneWire extends Block
             p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_ - 1, p_149749_3_, p_149749_4_, this);
             p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_, p_149749_4_ + 1, this);
             p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_, p_149749_4_ - 1, this);
-            this.func_150177_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
-            this.func_150172_m(p_149749_1_, p_149749_2_ - 1, p_149749_3_, p_149749_4_);
-            this.func_150172_m(p_149749_1_, p_149749_2_ + 1, p_149749_3_, p_149749_4_);
-            this.func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_ - 1);
-            this.func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_ + 1);
+            func_150177_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
+            func_150172_m(p_149749_1_, p_149749_2_ - 1, p_149749_3_, p_149749_4_);
+            func_150172_m(p_149749_1_, p_149749_2_ + 1, p_149749_3_, p_149749_4_);
+            func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_ - 1);
+            func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_ + 1);
 
             if (p_149749_1_.getBlock(p_149749_2_ - 1, p_149749_3_, p_149749_4_).isNormalCube())
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_ - 1, p_149749_3_ + 1, p_149749_4_);
+                func_150172_m(p_149749_1_, p_149749_2_ - 1, p_149749_3_ + 1, p_149749_4_);
             }
             else
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_ - 1, p_149749_3_ - 1, p_149749_4_);
+                func_150172_m(p_149749_1_, p_149749_2_ - 1, p_149749_3_ - 1, p_149749_4_);
             }
 
             if (p_149749_1_.getBlock(p_149749_2_ + 1, p_149749_3_, p_149749_4_).isNormalCube())
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_ + 1, p_149749_3_ + 1, p_149749_4_);
+                func_150172_m(p_149749_1_, p_149749_2_ + 1, p_149749_3_ + 1, p_149749_4_);
             }
             else
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_ + 1, p_149749_3_ - 1, p_149749_4_);
+                func_150172_m(p_149749_1_, p_149749_2_ + 1, p_149749_3_ - 1, p_149749_4_);
             }
 
             if (p_149749_1_.getBlock(p_149749_2_, p_149749_3_, p_149749_4_ - 1).isNormalCube())
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ + 1, p_149749_4_ - 1);
+                func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ + 1, p_149749_4_ - 1);
             }
             else
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ - 1, p_149749_4_ - 1);
+                func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ - 1, p_149749_4_ - 1);
             }
 
             if (p_149749_1_.getBlock(p_149749_2_, p_149749_3_, p_149749_4_ + 1).isNormalCube())
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ + 1, p_149749_4_ + 1);
+                func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ + 1, p_149749_4_ + 1);
             }
             else
             {
-                this.func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ - 1, p_149749_4_ + 1);
+                func_150172_m(p_149749_1_, p_149749_2_, p_149749_3_ - 1, p_149749_4_ + 1);
             }
         }
     }
@@ -301,15 +301,15 @@ public class BlockRedstoneWire extends Block
     {
         if (!p_149695_1_.isClient)
         {
-            boolean var6 = this.canPlaceBlockAt(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+            boolean var6 = canPlaceBlockAt(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
 
             if (var6)
             {
-                this.func_150177_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+                func_150177_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
             }
             else
             {
-                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 0, 0);
+                dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, 0, 0);
                 p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
             }
 
@@ -324,12 +324,12 @@ public class BlockRedstoneWire extends Block
 
     public int isProvidingStrongPower(IBlockAccess p_149748_1_, int p_149748_2_, int p_149748_3_, int p_149748_4_, int p_149748_5_)
     {
-        return !this.field_150181_a ? 0 : this.isProvidingWeakPower(p_149748_1_, p_149748_2_, p_149748_3_, p_149748_4_, p_149748_5_);
+        return !field_150181_a ? 0 : isProvidingWeakPower(p_149748_1_, p_149748_2_, p_149748_3_, p_149748_4_, p_149748_5_);
     }
 
     public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
     {
-        if (!this.field_150181_a)
+        if (!field_150181_a)
         {
             return 0;
         }
@@ -386,7 +386,7 @@ public class BlockRedstoneWire extends Block
      */
     public boolean canProvidePower()
     {
-        return this.field_150181_a;
+        return field_150181_a;
     }
 
     public static boolean func_150174_f(IBlockAccess p_150174_0_, int p_150174_1_, int p_150174_2_, int p_150174_3_, int p_150174_4_)

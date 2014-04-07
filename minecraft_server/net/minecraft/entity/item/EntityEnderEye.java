@@ -24,7 +24,7 @@ public class EntityEnderEye extends Entity
     public EntityEnderEye(World par1World)
     {
         super(par1World);
-        this.setSize(0.25F, 0.25F);
+        setSize(0.25F, 0.25F);
     }
 
     protected void entityInit()
@@ -34,10 +34,10 @@ public class EntityEnderEye extends Entity
     public EntityEnderEye(World par1World, double par2, double par4, double par6)
     {
         super(par1World);
-        this.despawnTimer = 0;
-        this.setSize(0.25F, 0.25F);
-        this.setPosition(par2, par4, par6);
-        this.yOffset = 0.0F;
+        despawnTimer = 0;
+        setSize(0.25F, 0.25F);
+        setPosition(par2, par4, par6);
+        yOffset = 0.0F;
     }
 
     /**
@@ -47,25 +47,25 @@ public class EntityEnderEye extends Entity
      */
     public void moveTowards(double par1, int par3, double par4)
     {
-        double var6 = par1 - this.posX;
-        double var8 = par4 - this.posZ;
+        double var6 = par1 - posX;
+        double var8 = par4 - posZ;
         float var10 = MathHelper.sqrt_double(var6 * var6 + var8 * var8);
 
         if (var10 > 12.0F)
         {
-            this.targetX = this.posX + var6 / (double)var10 * 12.0D;
-            this.targetZ = this.posZ + var8 / (double)var10 * 12.0D;
-            this.targetY = this.posY + 8.0D;
+            targetX = posX + var6 / var10 * 12.0D;
+            targetZ = posZ + var8 / var10 * 12.0D;
+            targetY = posY + 8.0D;
         }
         else
         {
-            this.targetX = par1;
-            this.targetY = (double)par3;
-            this.targetZ = par4;
+            targetX = par1;
+            targetY = par3;
+            targetZ = par4;
         }
 
-        this.despawnTimer = 0;
-        this.shatterOrDrop = this.rand.nextInt(5) > 0;
+        despawnTimer = 0;
+        shatterOrDrop = rand.nextInt(5) > 0;
     }
 
     /**
@@ -73,96 +73,96 @@ public class EntityEnderEye extends Entity
      */
     public void onUpdate()
     {
-        this.lastTickPosX = this.posX;
-        this.lastTickPosY = this.posY;
-        this.lastTickPosZ = this.posZ;
+        lastTickPosX = posX;
+        lastTickPosY = posY;
+        lastTickPosZ = posZ;
         super.onUpdate();
-        this.posX += this.motionX;
-        this.posY += this.motionY;
-        this.posZ += this.motionZ;
-        float var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+        posX += motionX;
+        posY += motionY;
+        posZ += motionZ;
+        float var1 = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
+        rotationYaw = (float)(Math.atan2(motionX, motionZ) * 180.0D / Math.PI);
 
-        for (this.rotationPitch = (float)(Math.atan2(this.motionY, (double)var1) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+        for (rotationPitch = (float)(Math.atan2(motionY, var1) * 180.0D / Math.PI); rotationPitch - prevRotationPitch < -180.0F; prevRotationPitch -= 360.0F)
         {
             ;
         }
 
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
+        while (rotationPitch - prevRotationPitch >= 180.0F)
         {
-            this.prevRotationPitch += 360.0F;
+            prevRotationPitch += 360.0F;
         }
 
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F)
+        while (rotationYaw - prevRotationYaw < -180.0F)
         {
-            this.prevRotationYaw -= 360.0F;
+            prevRotationYaw -= 360.0F;
         }
 
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
+        while (rotationYaw - prevRotationYaw >= 180.0F)
         {
-            this.prevRotationYaw += 360.0F;
+            prevRotationYaw += 360.0F;
         }
 
-        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+        rotationPitch = prevRotationPitch + (rotationPitch - prevRotationPitch) * 0.2F;
+        rotationYaw = prevRotationYaw + (rotationYaw - prevRotationYaw) * 0.2F;
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            double var2 = this.targetX - this.posX;
-            double var4 = this.targetZ - this.posZ;
+            double var2 = targetX - posX;
+            double var4 = targetZ - posZ;
             float var6 = (float)Math.sqrt(var2 * var2 + var4 * var4);
             float var7 = (float)Math.atan2(var4, var2);
-            double var8 = (double)var1 + (double)(var6 - var1) * 0.0025D;
+            double var8 = var1 + (var6 - var1) * 0.0025D;
 
             if (var6 < 1.0F)
             {
                 var8 *= 0.8D;
-                this.motionY *= 0.8D;
+                motionY *= 0.8D;
             }
 
-            this.motionX = Math.cos((double)var7) * var8;
-            this.motionZ = Math.sin((double)var7) * var8;
+            motionX = Math.cos(var7) * var8;
+            motionZ = Math.sin(var7) * var8;
 
-            if (this.posY < this.targetY)
+            if (posY < targetY)
             {
-                this.motionY += (1.0D - this.motionY) * 0.014999999664723873D;
+                motionY += (1.0D - motionY) * 0.014999999664723873D;
             }
             else
             {
-                this.motionY += (-1.0D - this.motionY) * 0.014999999664723873D;
+                motionY += (-1.0D - motionY) * 0.014999999664723873D;
             }
         }
 
         float var10 = 0.25F;
 
-        if (this.isInWater())
+        if (isInWater())
         {
             for (int var3 = 0; var3 < 4; ++var3)
             {
-                this.worldObj.spawnParticle("bubble", this.posX - this.motionX * (double)var10, this.posY - this.motionY * (double)var10, this.posZ - this.motionZ * (double)var10, this.motionX, this.motionY, this.motionZ);
+                worldObj.spawnParticle("bubble", posX - motionX * var10, posY - motionY * var10, posZ - motionZ * var10, motionX, motionY, motionZ);
             }
         }
         else
         {
-            this.worldObj.spawnParticle("portal", this.posX - this.motionX * (double)var10 + this.rand.nextDouble() * 0.6D - 0.3D, this.posY - this.motionY * (double)var10 - 0.5D, this.posZ - this.motionZ * (double)var10 + this.rand.nextDouble() * 0.6D - 0.3D, this.motionX, this.motionY, this.motionZ);
+            worldObj.spawnParticle("portal", posX - motionX * var10 + rand.nextDouble() * 0.6D - 0.3D, posY - motionY * var10 - 0.5D, posZ - motionZ * var10 + rand.nextDouble() * 0.6D - 0.3D, motionX, motionY, motionZ);
         }
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            this.setPosition(this.posX, this.posY, this.posZ);
-            ++this.despawnTimer;
+            setPosition(posX, posY, posZ);
+            ++despawnTimer;
 
-            if (this.despawnTimer > 80 && !this.worldObj.isClient)
+            if (despawnTimer > 80 && !worldObj.isClient)
             {
-                this.setDead();
+                setDead();
 
-                if (this.shatterOrDrop)
+                if (shatterOrDrop)
                 {
-                    this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(Items.ender_eye)));
+                    worldObj.spawnEntityInWorld(new EntityItem(worldObj, posX, posY, posZ, new ItemStack(Items.ender_eye)));
                 }
                 else
                 {
-                    this.worldObj.playAuxSFX(2003, (int)Math.round(this.posX), (int)Math.round(this.posY), (int)Math.round(this.posZ), 0);
+                    worldObj.playAuxSFX(2003, (int)Math.round(posX), (int)Math.round(posY), (int)Math.round(posZ), 0);
                 }
             }
         }

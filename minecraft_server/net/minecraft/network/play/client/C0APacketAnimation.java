@@ -18,8 +18,8 @@ public class C0APacketAnimation extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149424_a = p_148837_1_.readInt();
-        this.field_149423_b = p_148837_1_.readByte();
+        field_149424_a = p_148837_1_.readInt();
+        field_149423_b = p_148837_1_.readByte();
     }
 
     /**
@@ -27,8 +27,8 @@ public class C0APacketAnimation extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149424_a);
-        p_148840_1_.writeByte(this.field_149423_b);
+        p_148840_1_.writeInt(field_149424_a);
+        p_148840_1_.writeByte(field_149423_b);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149422_1_)
@@ -42,12 +42,12 @@ public class C0APacketAnimation extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d, type=%d", new Object[] {Integer.valueOf(this.field_149424_a), Integer.valueOf(this.field_149423_b)});
+        return String.format("id=%d, type=%d", new Object[] {Integer.valueOf(field_149424_a), Integer.valueOf(field_149423_b)});
     }
 
     public int func_149421_d()
     {
-        return this.field_149423_b;
+        return field_149423_b;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

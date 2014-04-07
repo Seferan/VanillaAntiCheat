@@ -21,10 +21,10 @@ public class C00Handshake extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149600_a = p_148837_1_.readVarIntFromBuffer();
-        this.field_149598_b = p_148837_1_.readStringFromBuffer(255);
-        this.field_149599_c = p_148837_1_.readUnsignedShort();
-        this.field_149597_d = EnumConnectionState.func_150760_a(p_148837_1_.readVarIntFromBuffer());
+        field_149600_a = p_148837_1_.readVarIntFromBuffer();
+        field_149598_b = p_148837_1_.readStringFromBuffer(255);
+        field_149599_c = p_148837_1_.readUnsignedShort();
+        field_149597_d = EnumConnectionState.func_150760_a(p_148837_1_.readVarIntFromBuffer());
     }
 
     /**
@@ -32,10 +32,10 @@ public class C00Handshake extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeVarIntToBuffer(this.field_149600_a);
-        p_148840_1_.writeStringToBuffer(this.field_149598_b);
-        p_148840_1_.writeShort(this.field_149599_c);
-        p_148840_1_.writeVarIntToBuffer(this.field_149597_d.func_150759_c());
+        p_148840_1_.writeVarIntToBuffer(field_149600_a);
+        p_148840_1_.writeStringToBuffer(field_149598_b);
+        p_148840_1_.writeShort(field_149599_c);
+        p_148840_1_.writeVarIntToBuffer(field_149597_d.func_150759_c());
     }
 
     public void func_148833_a(INetHandlerHandshakeServer p_149596_1_)
@@ -55,12 +55,12 @@ public class C00Handshake extends Packet
 
     public EnumConnectionState func_149594_c()
     {
-        return this.field_149597_d;
+        return field_149597_d;
     }
 
     public int func_149595_d()
     {
-        return this.field_149600_a;
+        return field_149600_a;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

@@ -41,23 +41,23 @@ public class EntityMinecartTNT extends EntityMinecart
     {
         super.onUpdate();
 
-        if (this.minecartTNTFuse > 0)
+        if (minecartTNTFuse > 0)
         {
-            --this.minecartTNTFuse;
-            this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+            --minecartTNTFuse;
+            worldObj.spawnParticle("smoke", posX, posY + 0.5D, posZ, 0.0D, 0.0D, 0.0D);
         }
-        else if (this.minecartTNTFuse == 0)
+        else if (minecartTNTFuse == 0)
         {
-            this.explodeCart(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            explodeCart(motionX * motionX + motionZ * motionZ);
         }
 
-        if (this.isCollidedHorizontally)
+        if (isCollidedHorizontally)
         {
-            double var1 = this.motionX * this.motionX + this.motionZ * this.motionZ;
+            double var1 = motionX * motionX + motionZ * motionZ;
 
             if (var1 >= 0.009999999776482582D)
             {
-                this.explodeCart(var1);
+                explodeCart(var1);
             }
         }
     }
@@ -65,16 +65,16 @@ public class EntityMinecartTNT extends EntityMinecart
     public void killMinecart(DamageSource par1DamageSource)
     {
         super.killMinecart(par1DamageSource);
-        double var2 = this.motionX * this.motionX + this.motionZ * this.motionZ;
+        double var2 = motionX * motionX + motionZ * motionZ;
 
         if (!par1DamageSource.isExplosion())
         {
-            this.entityDropItem(new ItemStack(Blocks.tnt, 1), 0.0F);
+            entityDropItem(new ItemStack(Blocks.tnt, 1), 0.0F);
         }
 
         if (par1DamageSource.isFireDamage() || par1DamageSource.isExplosion() || var2 >= 0.009999999776482582D)
         {
-            this.explodeCart(var2);
+            explodeCart(var2);
         }
     }
 
@@ -83,7 +83,7 @@ public class EntityMinecartTNT extends EntityMinecart
      */
     protected void explodeCart(double par1)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
             double var3 = Math.sqrt(par1);
 
@@ -92,8 +92,8 @@ public class EntityMinecartTNT extends EntityMinecart
                 var3 = 5.0D;
             }
 
-            this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)(4.0D + this.rand.nextDouble() * 1.5D * var3), true);
-            this.setDead();
+            worldObj.createExplosion(this, posX, posY, posZ, (float)(4.0D + rand.nextDouble() * 1.5D * var3), true);
+            setDead();
         }
     }
 
@@ -105,7 +105,7 @@ public class EntityMinecartTNT extends EntityMinecart
         if (par1 >= 3.0F)
         {
             float var2 = par1 / 10.0F;
-            this.explodeCart((double)(var2 * var2));
+            explodeCart(var2 * var2);
         }
 
         super.fall(par1);
@@ -117,9 +117,9 @@ public class EntityMinecartTNT extends EntityMinecart
      */
     public void onActivatorRailPass(int par1, int par2, int par3, boolean par4)
     {
-        if (par4 && this.minecartTNTFuse < 0)
+        if (par4 && minecartTNTFuse < 0)
         {
-            this.ignite();
+            ignite();
         }
     }
 
@@ -128,12 +128,12 @@ public class EntityMinecartTNT extends EntityMinecart
      */
     public void ignite()
     {
-        this.minecartTNTFuse = 80;
+        minecartTNTFuse = 80;
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            this.worldObj.setEntityState(this, (byte)10);
-            this.worldObj.playSoundAtEntity(this, "game.tnt.primed", 1.0F, 1.0F);
+            worldObj.setEntityState(this, (byte)10);
+            worldObj.playSoundAtEntity(this, "game.tnt.primed", 1.0F, 1.0F);
         }
     }
 
@@ -142,17 +142,17 @@ public class EntityMinecartTNT extends EntityMinecart
      */
     public boolean isIgnited()
     {
-        return this.minecartTNTFuse > -1;
+        return minecartTNTFuse > -1;
     }
 
     public float func_145772_a(Explosion p_145772_1_, World p_145772_2_, int p_145772_3_, int p_145772_4_, int p_145772_5_, Block p_145772_6_)
     {
-        return this.isIgnited() && (BlockRailBase.func_150051_a(p_145772_6_) || BlockRailBase.func_150049_b_(p_145772_2_, p_145772_3_, p_145772_4_ + 1, p_145772_5_)) ? 0.0F : super.func_145772_a(p_145772_1_, p_145772_2_, p_145772_3_, p_145772_4_, p_145772_5_, p_145772_6_);
+        return isIgnited() && (BlockRailBase.func_150051_a(p_145772_6_) || BlockRailBase.func_150049_b_(p_145772_2_, p_145772_3_, p_145772_4_ + 1, p_145772_5_)) ? 0.0F : super.func_145772_a(p_145772_1_, p_145772_2_, p_145772_3_, p_145772_4_, p_145772_5_, p_145772_6_);
     }
 
     public boolean func_145774_a(Explosion p_145774_1_, World p_145774_2_, int p_145774_3_, int p_145774_4_, int p_145774_5_, Block p_145774_6_, float p_145774_7_)
     {
-        return this.isIgnited() && (BlockRailBase.func_150051_a(p_145774_6_) || BlockRailBase.func_150049_b_(p_145774_2_, p_145774_3_, p_145774_4_ + 1, p_145774_5_)) ? false : super.func_145774_a(p_145774_1_, p_145774_2_, p_145774_3_, p_145774_4_, p_145774_5_, p_145774_6_, p_145774_7_);
+        return isIgnited() && (BlockRailBase.func_150051_a(p_145774_6_) || BlockRailBase.func_150049_b_(p_145774_2_, p_145774_3_, p_145774_4_ + 1, p_145774_5_)) ? false : super.func_145774_a(p_145774_1_, p_145774_2_, p_145774_3_, p_145774_4_, p_145774_5_, p_145774_6_, p_145774_7_);
     }
 
     /**
@@ -164,7 +164,7 @@ public class EntityMinecartTNT extends EntityMinecart
 
         if (par1NBTTagCompound.func_150297_b("TNTFuse", 99))
         {
-            this.minecartTNTFuse = par1NBTTagCompound.getInteger("TNTFuse");
+            minecartTNTFuse = par1NBTTagCompound.getInteger("TNTFuse");
         }
     }
 
@@ -174,6 +174,6 @@ public class EntityMinecartTNT extends EntityMinecart
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("TNTFuse", this.minecartTNTFuse);
+        par1NBTTagCompound.setInteger("TNTFuse", minecartTNTFuse);
     }
 }

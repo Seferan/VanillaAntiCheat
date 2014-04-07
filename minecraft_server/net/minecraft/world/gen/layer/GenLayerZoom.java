@@ -21,7 +21,7 @@ public class GenLayerZoom extends GenLayer
         int var6 = par2 >> 1;
         int var7 = (par3 >> 1) + 2;
         int var8 = (par4 >> 1) + 2;
-        int[] var9 = this.parent.getInts(var5, var6, var7, var8);
+        int[] var9 = parent.getInts(var5, var6, var7, var8);
         int var10 = var7 - 1 << 1;
         int var11 = var8 - 1 << 1;
         int[] var12 = IntCache.getIntCache(var10 * var11);
@@ -35,13 +35,13 @@ public class GenLayerZoom extends GenLayer
 
             for (int var17 = var9[var15 + 0 + (var13 + 1) * var7]; var15 < var7 - 1; ++var15)
             {
-                this.initChunkSeed((long)(var15 + var5 << 1), (long)(var13 + var6 << 1));
+                initChunkSeed(var15 + var5 << 1, var13 + var6 << 1);
                 int var18 = var9[var15 + 1 + (var13 + 0) * var7];
                 int var19 = var9[var15 + 1 + (var13 + 1) * var7];
                 var12[var14] = var16;
-                var12[var14++ + var10] = this.func_151619_a(new int[] {var16, var17});
-                var12[var14] = this.func_151619_a(new int[] {var16, var18});
-                var12[var14++ + var10] = this.func_151617_b(var16, var18, var17, var19);
+                var12[var14++ + var10] = func_151619_a(new int[] {var16, var17});
+                var12[var14] = func_151619_a(new int[] {var16, var18});
+                var12[var14++ + var10] = func_151617_b(var16, var18, var17, var19);
                 var16 = var18;
                 var17 = var19;
             }
@@ -67,7 +67,7 @@ public class GenLayerZoom extends GenLayer
 
         for (int var5 = 0; var5 < par3; ++var5)
         {
-            var4 = new GenLayerZoom(par0 + (long)var5, (GenLayer)var4);
+            var4 = new GenLayerZoom(par0 + var5, (GenLayer)var4);
         }
 
         return (GenLayer)var4;

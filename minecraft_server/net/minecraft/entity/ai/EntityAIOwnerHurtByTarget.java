@@ -13,8 +13,8 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
     public EntityAIOwnerHurtByTarget(EntityTameable par1EntityTameable)
     {
         super(par1EntityTameable, false);
-        this.theDefendingTameable = par1EntityTameable;
-        this.setMutexBits(1);
+        theDefendingTameable = par1EntityTameable;
+        setMutexBits(1);
     }
 
     /**
@@ -22,13 +22,13 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
      */
     public boolean shouldExecute()
     {
-        if (!this.theDefendingTameable.isTamed())
+        if (!theDefendingTameable.isTamed())
         {
             return false;
         }
         else
         {
-            EntityLivingBase var1 = this.theDefendingTameable.getOwner();
+            EntityLivingBase var1 = theDefendingTameable.getOwner();
 
             if (var1 == null)
             {
@@ -36,9 +36,9 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
             }
             else
             {
-                this.theOwnerAttacker = var1.getAITarget();
+                theOwnerAttacker = var1.getAITarget();
                 int var2 = var1.func_142015_aE();
-                return var2 != this.field_142051_e && this.isSuitableTarget(this.theOwnerAttacker, false) && this.theDefendingTameable.func_142018_a(this.theOwnerAttacker, var1);
+                return var2 != field_142051_e && isSuitableTarget(theOwnerAttacker, false) && theDefendingTameable.func_142018_a(theOwnerAttacker, var1);
             }
         }
     }
@@ -48,12 +48,12 @@ public class EntityAIOwnerHurtByTarget extends EntityAITarget
      */
     public void startExecuting()
     {
-        this.taskOwner.setAttackTarget(this.theOwnerAttacker);
-        EntityLivingBase var1 = this.theDefendingTameable.getOwner();
+        taskOwner.setAttackTarget(theOwnerAttacker);
+        EntityLivingBase var1 = theDefendingTameable.getOwner();
 
         if (var1 != null)
         {
-            this.field_142051_e = var1.func_142015_aE();
+            field_142051_e = var1.func_142015_aE();
         }
 
         super.startExecuting();

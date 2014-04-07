@@ -20,9 +20,9 @@ public abstract class BlockButton extends Block
     protected BlockButton(boolean p_i45396_1_)
     {
         super(Material.circuits);
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
-        this.field_150047_a = p_i45396_1_;
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabRedstone);
+        field_150047_a = p_i45396_1_;
     }
 
     /**
@@ -36,7 +36,7 @@ public abstract class BlockButton extends Block
 
     public int func_149738_a(World p_149738_1_)
     {
-        return this.field_150047_a ? 30 : 20;
+        return field_150047_a ? 30 : 20;
     }
 
     public boolean isOpaqueCube()
@@ -87,7 +87,7 @@ public abstract class BlockButton extends Block
         }
         else
         {
-            var10 = this.func_150045_e(p_149660_1_, p_149660_2_, p_149660_3_, p_149660_4_);
+            var10 = func_150045_e(p_149660_1_, p_149660_2_, p_149660_3_, p_149660_4_);
         }
 
         return var10 + var11;
@@ -100,7 +100,7 @@ public abstract class BlockButton extends Block
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        if (this.func_150044_m(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
+        if (func_150044_m(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
         {
             int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_) & 7;
             boolean var7 = false;
@@ -127,7 +127,7 @@ public abstract class BlockButton extends Block
 
             if (var7)
             {
-                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
+                dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
                 p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
             }
         }
@@ -135,9 +135,9 @@ public abstract class BlockButton extends Block
 
     private boolean func_150044_m(World p_150044_1_, int p_150044_2_, int p_150044_3_, int p_150044_4_)
     {
-        if (!this.canPlaceBlockAt(p_150044_1_, p_150044_2_, p_150044_3_, p_150044_4_))
+        if (!canPlaceBlockAt(p_150044_1_, p_150044_2_, p_150044_3_, p_150044_4_))
         {
-            this.dropBlockAsItem(p_150044_1_, p_150044_2_, p_150044_3_, p_150044_4_, p_150044_1_.getBlockMetadata(p_150044_2_, p_150044_3_, p_150044_4_), 0);
+            dropBlockAsItem(p_150044_1_, p_150044_2_, p_150044_3_, p_150044_4_, p_150044_1_.getBlockMetadata(p_150044_2_, p_150044_3_, p_150044_4_), 0);
             p_150044_1_.setBlockToAir(p_150044_2_, p_150044_3_, p_150044_4_);
             return false;
         }
@@ -150,7 +150,7 @@ public abstract class BlockButton extends Block
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         int var5 = p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_);
-        this.func_150043_b(var5);
+        func_150043_b(var5);
     }
 
     private void func_150043_b(int p_150043_1_)
@@ -169,19 +169,19 @@ public abstract class BlockButton extends Block
 
         if (var2 == 1)
         {
-            this.setBlockBounds(0.0F, var4, 0.5F - var6, var7, var5, 0.5F + var6);
+            setBlockBounds(0.0F, var4, 0.5F - var6, var7, var5, 0.5F + var6);
         }
         else if (var2 == 2)
         {
-            this.setBlockBounds(1.0F - var7, var4, 0.5F - var6, 1.0F, var5, 0.5F + var6);
+            setBlockBounds(1.0F - var7, var4, 0.5F - var6, 1.0F, var5, 0.5F + var6);
         }
         else if (var2 == 3)
         {
-            this.setBlockBounds(0.5F - var6, var4, 0.0F, 0.5F + var6, var5, var7);
+            setBlockBounds(0.5F - var6, var4, 0.0F, 0.5F + var6, var5, var7);
         }
         else if (var2 == 4)
         {
-            this.setBlockBounds(0.5F - var6, var4, 1.0F - var7, 0.5F + var6, var5, 1.0F);
+            setBlockBounds(0.5F - var6, var4, 1.0F - var7, 0.5F + var6, var5, 1.0F);
         }
     }
 
@@ -209,9 +209,9 @@ public abstract class BlockButton extends Block
         {
             p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_, var11 + var12, 3);
             p_149727_1_.markBlockRangeForRenderUpdate(p_149727_2_, p_149727_3_, p_149727_4_, p_149727_2_, p_149727_3_, p_149727_4_);
-            p_149727_1_.playSoundEffect((double)p_149727_2_ + 0.5D, (double)p_149727_3_ + 0.5D, (double)p_149727_4_ + 0.5D, "random.click", 0.3F, 0.6F);
-            this.func_150042_a(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, var11);
-            p_149727_1_.scheduleBlockUpdate(p_149727_2_, p_149727_3_, p_149727_4_, this, this.func_149738_a(p_149727_1_));
+            p_149727_1_.playSoundEffect(p_149727_2_ + 0.5D, p_149727_3_ + 0.5D, p_149727_4_ + 0.5D, "random.click", 0.3F, 0.6F);
+            func_150042_a(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, var11);
+            p_149727_1_.scheduleBlockUpdate(p_149727_2_, p_149727_3_, p_149727_4_, this, func_149738_a(p_149727_1_));
             return true;
         }
     }
@@ -221,7 +221,7 @@ public abstract class BlockButton extends Block
         if ((p_149749_6_ & 8) > 0)
         {
             int var7 = p_149749_6_ & 7;
-            this.func_150042_a(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, var7);
+            func_150042_a(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, var7);
         }
 
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
@@ -267,16 +267,16 @@ public abstract class BlockButton extends Block
 
             if ((var6 & 8) != 0)
             {
-                if (this.field_150047_a)
+                if (field_150047_a)
                 {
-                    this.func_150046_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+                    func_150046_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
                 }
                 else
                 {
                     p_149674_1_.setBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_, var6 & 7, 3);
                     int var7 = var6 & 7;
-                    this.func_150042_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, var7);
-                    p_149674_1_.playSoundEffect((double)p_149674_2_ + 0.5D, (double)p_149674_3_ + 0.5D, (double)p_149674_4_ + 0.5D, "random.click", 0.3F, 0.5F);
+                    func_150042_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, var7);
+                    p_149674_1_.playSoundEffect(p_149674_2_ + 0.5D, p_149674_3_ + 0.5D, p_149674_4_ + 0.5D, "random.click", 0.3F, 0.5F);
                     p_149674_1_.markBlockRangeForRenderUpdate(p_149674_2_, p_149674_3_, p_149674_4_, p_149674_2_, p_149674_3_, p_149674_4_);
                 }
             }
@@ -291,18 +291,18 @@ public abstract class BlockButton extends Block
         float var1 = 0.1875F;
         float var2 = 0.125F;
         float var3 = 0.125F;
-        this.setBlockBounds(0.5F - var1, 0.5F - var2, 0.5F - var3, 0.5F + var1, 0.5F + var2, 0.5F + var3);
+        setBlockBounds(0.5F - var1, 0.5F - var2, 0.5F - var3, 0.5F + var1, 0.5F + var2, 0.5F + var3);
     }
 
     public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity p_149670_5_)
     {
         if (!p_149670_1_.isClient)
         {
-            if (this.field_150047_a)
+            if (field_150047_a)
             {
                 if ((p_149670_1_.getBlockMetadata(p_149670_2_, p_149670_3_, p_149670_4_) & 8) == 0)
                 {
-                    this.func_150046_n(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_);
+                    func_150046_n(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_);
                 }
             }
         }
@@ -313,29 +313,29 @@ public abstract class BlockButton extends Block
         int var5 = p_150046_1_.getBlockMetadata(p_150046_2_, p_150046_3_, p_150046_4_);
         int var6 = var5 & 7;
         boolean var7 = (var5 & 8) != 0;
-        this.func_150043_b(var5);
-        List var9 = p_150046_1_.getEntitiesWithinAABB(EntityArrow.class, AxisAlignedBB.getAABBPool().getAABB((double)p_150046_2_ + this.minX, (double)p_150046_3_ + this.minY, (double)p_150046_4_ + this.minZ, (double)p_150046_2_ + this.maxX, (double)p_150046_3_ + this.maxY, (double)p_150046_4_ + this.maxZ));
+        func_150043_b(var5);
+        List var9 = p_150046_1_.getEntitiesWithinAABB(EntityArrow.class, AxisAlignedBB.getAABBPool().getAABB(p_150046_2_ + minX, p_150046_3_ + minY, p_150046_4_ + minZ, p_150046_2_ + maxX, p_150046_3_ + maxY, p_150046_4_ + maxZ));
         boolean var8 = !var9.isEmpty();
 
         if (var8 && !var7)
         {
             p_150046_1_.setBlockMetadata(p_150046_2_, p_150046_3_, p_150046_4_, var6 | 8, 3);
-            this.func_150042_a(p_150046_1_, p_150046_2_, p_150046_3_, p_150046_4_, var6);
+            func_150042_a(p_150046_1_, p_150046_2_, p_150046_3_, p_150046_4_, var6);
             p_150046_1_.markBlockRangeForRenderUpdate(p_150046_2_, p_150046_3_, p_150046_4_, p_150046_2_, p_150046_3_, p_150046_4_);
-            p_150046_1_.playSoundEffect((double)p_150046_2_ + 0.5D, (double)p_150046_3_ + 0.5D, (double)p_150046_4_ + 0.5D, "random.click", 0.3F, 0.6F);
+            p_150046_1_.playSoundEffect(p_150046_2_ + 0.5D, p_150046_3_ + 0.5D, p_150046_4_ + 0.5D, "random.click", 0.3F, 0.6F);
         }
 
         if (!var8 && var7)
         {
             p_150046_1_.setBlockMetadata(p_150046_2_, p_150046_3_, p_150046_4_, var6, 3);
-            this.func_150042_a(p_150046_1_, p_150046_2_, p_150046_3_, p_150046_4_, var6);
+            func_150042_a(p_150046_1_, p_150046_2_, p_150046_3_, p_150046_4_, var6);
             p_150046_1_.markBlockRangeForRenderUpdate(p_150046_2_, p_150046_3_, p_150046_4_, p_150046_2_, p_150046_3_, p_150046_4_);
-            p_150046_1_.playSoundEffect((double)p_150046_2_ + 0.5D, (double)p_150046_3_ + 0.5D, (double)p_150046_4_ + 0.5D, "random.click", 0.3F, 0.5F);
+            p_150046_1_.playSoundEffect(p_150046_2_ + 0.5D, p_150046_3_ + 0.5D, p_150046_4_ + 0.5D, "random.click", 0.3F, 0.5F);
         }
 
         if (var8)
         {
-            p_150046_1_.scheduleBlockUpdate(p_150046_2_, p_150046_3_, p_150046_4_, this, this.func_149738_a(p_150046_1_));
+            p_150046_1_.scheduleBlockUpdate(p_150046_2_, p_150046_3_, p_150046_4_, this, func_149738_a(p_150046_1_));
         }
     }
 

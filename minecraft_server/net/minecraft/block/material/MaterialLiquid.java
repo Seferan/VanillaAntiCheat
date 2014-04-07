@@ -7,8 +7,8 @@ public class MaterialLiquid extends Material
     public MaterialLiquid(MapColor par1MapColor)
     {
         super(par1MapColor);
-        this.setReplaceable();
-        this.setNoPushMobility();
+        setReplaceable();
+        setNoPushMobility();
     }
 
     /**

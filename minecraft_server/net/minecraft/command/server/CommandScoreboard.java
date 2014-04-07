@@ -57,19 +57,19 @@ public class CommandScoreboard extends CommandBase
 
                 if (par2ArrayOfStr[1].equalsIgnoreCase("list"))
                 {
-                    this.func_147196_d(par1ICommandSender);
+                    func_147196_d(par1ICommandSender);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("add"))
                 {
                     if (par2ArrayOfStr.length < 4) { throw new WrongUsageException("commands.scoreboard.objectives.add.usage", new Object[0]); }
 
-                    this.func_147193_c(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147193_c(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("remove"))
                 {
                     if (par2ArrayOfStr.length != 3) { throw new WrongUsageException("commands.scoreboard.objectives.remove.usage", new Object[0]); }
 
-                    this.func_147191_h(par1ICommandSender, par2ArrayOfStr[2]);
+                    func_147191_h(par1ICommandSender, par2ArrayOfStr[2]);
                 }
                 else
                 {
@@ -77,7 +77,7 @@ public class CommandScoreboard extends CommandBase
 
                     if (par2ArrayOfStr.length != 3 && par2ArrayOfStr.length != 4) { throw new WrongUsageException("commands.scoreboard.objectives.setdisplay.usage", new Object[0]); }
 
-                    this.func_147198_k(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147198_k(par1ICommandSender, par2ArrayOfStr, 2);
                 }
 
                 return;
@@ -91,25 +91,25 @@ public class CommandScoreboard extends CommandBase
                 {
                     if (par2ArrayOfStr.length > 3) { throw new WrongUsageException("commands.scoreboard.players.list.usage", new Object[0]); }
 
-                    this.func_147195_l(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147195_l(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("add"))
                 {
                     if (par2ArrayOfStr.length != 5) { throw new WrongUsageException("commands.scoreboard.players.add.usage", new Object[0]); }
 
-                    this.func_147197_m(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147197_m(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("remove"))
                 {
                     if (par2ArrayOfStr.length != 5) { throw new WrongUsageException("commands.scoreboard.players.remove.usage", new Object[0]); }
 
-                    this.func_147197_m(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147197_m(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("set"))
                 {
                     if (par2ArrayOfStr.length != 5) { throw new WrongUsageException("commands.scoreboard.players.set.usage", new Object[0]); }
 
-                    this.func_147197_m(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147197_m(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else
                 {
@@ -117,7 +117,7 @@ public class CommandScoreboard extends CommandBase
 
                     if (par2ArrayOfStr.length != 3) { throw new WrongUsageException("commands.scoreboard.players.reset.usage", new Object[0]); }
 
-                    this.func_147187_n(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147187_n(par1ICommandSender, par2ArrayOfStr, 2);
                 }
 
                 return;
@@ -131,37 +131,37 @@ public class CommandScoreboard extends CommandBase
                 {
                     if (par2ArrayOfStr.length > 3) { throw new WrongUsageException("commands.scoreboard.teams.list.usage", new Object[0]); }
 
-                    this.func_147186_g(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147186_g(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("add"))
                 {
                     if (par2ArrayOfStr.length < 3) { throw new WrongUsageException("commands.scoreboard.teams.add.usage", new Object[0]); }
 
-                    this.func_147185_d(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147185_d(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("remove"))
                 {
                     if (par2ArrayOfStr.length != 3) { throw new WrongUsageException("commands.scoreboard.teams.remove.usage", new Object[0]); }
 
-                    this.func_147194_f(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147194_f(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("empty"))
                 {
                     if (par2ArrayOfStr.length != 3) { throw new WrongUsageException("commands.scoreboard.teams.empty.usage", new Object[0]); }
 
-                    this.func_147188_j(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147188_j(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("join"))
                 {
                     if (par2ArrayOfStr.length < 4 && (par2ArrayOfStr.length != 3 || !(par1ICommandSender instanceof EntityPlayer))) { throw new WrongUsageException("commands.scoreboard.teams.join.usage", new Object[0]); }
 
-                    this.func_147190_h(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147190_h(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("leave"))
                 {
                     if (par2ArrayOfStr.length < 3 && !(par1ICommandSender instanceof EntityPlayer)) { throw new WrongUsageException("commands.scoreboard.teams.leave.usage", new Object[0]); }
 
-                    this.func_147199_i(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147199_i(par1ICommandSender, par2ArrayOfStr, 2);
                 }
                 else
                 {
@@ -169,7 +169,7 @@ public class CommandScoreboard extends CommandBase
 
                     if (par2ArrayOfStr.length != 4 && par2ArrayOfStr.length != 5) { throw new WrongUsageException("commands.scoreboard.teams.option.usage", new Object[0]); }
 
-                    this.func_147200_e(par1ICommandSender, par2ArrayOfStr, 2);
+                    func_147200_e(par1ICommandSender, par2ArrayOfStr, 2);
                 }
 
                 return;
@@ -186,7 +186,7 @@ public class CommandScoreboard extends CommandBase
 
     protected ScoreObjective func_147189_a(String p_147189_1_, boolean p_147189_2_)
     {
-        Scoreboard var3 = this.func_147192_d();
+        Scoreboard var3 = func_147192_d();
         ScoreObjective var4 = var3.getObjective(p_147189_1_);
 
         if (var4 == null)
@@ -205,7 +205,7 @@ public class CommandScoreboard extends CommandBase
 
     protected ScorePlayerTeam func_147183_a(String p_147183_1_)
     {
-        Scoreboard var2 = this.func_147192_d();
+        Scoreboard var2 = func_147192_d();
         ScorePlayerTeam var3 = var2.getTeam(p_147183_1_);
 
         if (var3 == null)
@@ -222,7 +222,7 @@ public class CommandScoreboard extends CommandBase
     {
         String var4 = p_147193_2_[p_147193_3_++];
         String var5 = p_147193_2_[p_147193_3_++];
-        Scoreboard var6 = this.func_147192_d();
+        Scoreboard var6 = func_147192_d();
         IScoreObjectiveCriteria var7 = (IScoreObjectiveCriteria)IScoreObjectiveCriteria.field_96643_a.get(var5);
 
         if (var7 == null)
@@ -270,7 +270,7 @@ public class CommandScoreboard extends CommandBase
     protected void func_147185_d(ICommandSender p_147185_1_, String[] p_147185_2_, int p_147185_3_)
     {
         String var4 = p_147185_2_[p_147185_3_++];
-        Scoreboard var5 = this.func_147192_d();
+        Scoreboard var5 = func_147192_d();
 
         if (var5.getTeam(var4) != null)
         {
@@ -312,7 +312,7 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147200_e(ICommandSender p_147200_1_, String[] p_147200_2_, int p_147200_3_)
     {
-        ScorePlayerTeam var4 = this.func_147183_a(p_147200_2_[p_147200_3_++]);
+        ScorePlayerTeam var4 = func_147183_a(p_147200_2_[p_147200_3_++]);
 
         if (var4 != null)
         {
@@ -370,8 +370,8 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147194_f(ICommandSender p_147194_1_, String[] p_147194_2_, int p_147194_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
-        ScorePlayerTeam var5 = this.func_147183_a(p_147194_2_[p_147194_3_++]);
+        Scoreboard var4 = func_147192_d();
+        ScorePlayerTeam var5 = func_147183_a(p_147194_2_[p_147194_3_++]);
 
         if (var5 != null)
         {
@@ -382,11 +382,11 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147186_g(ICommandSender p_147186_1_, String[] p_147186_2_, int p_147186_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
+        Scoreboard var4 = func_147192_d();
 
         if (p_147186_2_.length > p_147186_3_)
         {
-            ScorePlayerTeam var5 = this.func_147183_a(p_147186_2_[p_147186_3_++]);
+            ScorePlayerTeam var5 = func_147183_a(p_147186_2_[p_147186_3_++]);
 
             if (var5 == null) { return; }
 
@@ -420,7 +420,7 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147190_h(ICommandSender p_147190_1_, String[] p_147190_2_, int p_147190_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
+        Scoreboard var4 = func_147192_d();
         String var5 = p_147190_2_[p_147190_3_++];
         HashSet var6 = new HashSet();
         HashSet var7 = new HashSet();
@@ -466,7 +466,7 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147199_i(ICommandSender p_147199_1_, String[] p_147199_2_, int p_147199_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
+        Scoreboard var4 = func_147192_d();
         HashSet var5 = new HashSet();
         HashSet var6 = new HashSet();
         String var7;
@@ -511,8 +511,8 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147188_j(ICommandSender p_147188_1_, String[] p_147188_2_, int p_147188_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
-        ScorePlayerTeam var5 = this.func_147183_a(p_147188_2_[p_147188_3_++]);
+        Scoreboard var4 = func_147192_d();
+        ScorePlayerTeam var5 = func_147183_a(p_147188_2_[p_147188_3_++]);
 
         if (var5 != null)
         {
@@ -539,15 +539,15 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147191_h(ICommandSender p_147191_1_, String p_147191_2_)
     {
-        Scoreboard var3 = this.func_147192_d();
-        ScoreObjective var4 = this.func_147189_a(p_147191_2_, false);
+        Scoreboard var3 = func_147192_d();
+        ScoreObjective var4 = func_147189_a(p_147191_2_, false);
         var3.func_96519_k(var4);
         notifyAdmins(p_147191_1_, "commands.scoreboard.objectives.remove.success", new Object[] {p_147191_2_});
     }
 
     protected void func_147196_d(ICommandSender p_147196_1_)
     {
-        Scoreboard var2 = this.func_147192_d();
+        Scoreboard var2 = func_147192_d();
         Collection var3 = var2.getScoreObjectives();
 
         if (var3.size() <= 0)
@@ -571,14 +571,14 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147198_k(ICommandSender p_147198_1_, String[] p_147198_2_, int p_147198_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
+        Scoreboard var4 = func_147192_d();
         String var5 = p_147198_2_[p_147198_3_++];
         int var6 = Scoreboard.getObjectiveDisplaySlotNumber(var5);
         ScoreObjective var7 = null;
 
         if (p_147198_2_.length == 4)
         {
-            var7 = this.func_147189_a(p_147198_2_[p_147198_3_++], false);
+            var7 = func_147189_a(p_147198_2_[p_147198_3_++], false);
         }
 
         if (var6 < 0)
@@ -602,7 +602,7 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147195_l(ICommandSender p_147195_1_, String[] p_147195_2_, int p_147195_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
+        Scoreboard var4 = func_147192_d();
 
         if (p_147195_2_.length > p_147195_3_)
         {
@@ -639,9 +639,9 @@ public class CommandScoreboard extends CommandBase
     {
         String var4 = p_147197_2_[p_147197_3_ - 1];
         String var5 = func_96332_d(p_147197_1_, p_147197_2_[p_147197_3_++]);
-        ScoreObjective var6 = this.func_147189_a(p_147197_2_[p_147197_3_++], true);
+        ScoreObjective var6 = func_147189_a(p_147197_2_[p_147197_3_++], true);
         int var7 = var4.equalsIgnoreCase("set") ? parseInt(p_147197_1_, p_147197_2_[p_147197_3_++]) : parseIntWithMin(p_147197_1_, p_147197_2_[p_147197_3_++], 1);
-        Scoreboard var8 = this.func_147192_d();
+        Scoreboard var8 = func_147192_d();
         Score var9 = var8.func_96529_a(var5, var6);
 
         if (var4.equalsIgnoreCase("set"))
@@ -662,7 +662,7 @@ public class CommandScoreboard extends CommandBase
 
     protected void func_147187_n(ICommandSender p_147187_1_, String[] p_147187_2_, int p_147187_3_)
     {
-        Scoreboard var4 = this.func_147192_d();
+        Scoreboard var4 = func_147192_d();
         String var5 = func_96332_d(p_147187_1_, p_147187_2_[p_147187_3_++]);
         var4.func_96515_c(var5);
         notifyAdmins(p_147187_1_, "commands.scoreboard.players.reset.success", new Object[] {var5});
@@ -694,13 +694,13 @@ public class CommandScoreboard extends CommandBase
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("remove"))
                 {
-                    if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, this.func_147184_a(false)); }
+                    if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, func_147184_a(false)); }
                 }
                 else if (par2ArrayOfStr[1].equalsIgnoreCase("setdisplay"))
                 {
                     if (par2ArrayOfStr.length == 3) { return getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"list", "sidebar", "belowName"}); }
 
-                    if (par2ArrayOfStr.length == 4) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, this.func_147184_a(false)); }
+                    if (par2ArrayOfStr.length == 4) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, func_147184_a(false)); }
                 }
             }
             else if (par2ArrayOfStr[0].equalsIgnoreCase("players"))
@@ -709,13 +709,13 @@ public class CommandScoreboard extends CommandBase
 
                 if (!par2ArrayOfStr[1].equalsIgnoreCase("set") && !par2ArrayOfStr[1].equalsIgnoreCase("add") && !par2ArrayOfStr[1].equalsIgnoreCase("remove"))
                 {
-                    if ((par2ArrayOfStr[1].equalsIgnoreCase("reset") || par2ArrayOfStr[1].equalsIgnoreCase("list")) && par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, this.func_147192_d().getObjectiveNames()); }
+                    if ((par2ArrayOfStr[1].equalsIgnoreCase("reset") || par2ArrayOfStr[1].equalsIgnoreCase("list")) && par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, func_147192_d().getObjectiveNames()); }
                 }
                 else
                 {
                     if (par2ArrayOfStr.length == 3) { return getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames()); }
 
-                    if (par2ArrayOfStr.length == 4) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, this.func_147184_a(true)); }
+                    if (par2ArrayOfStr.length == 4) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, func_147184_a(true)); }
                 }
             }
             else if (par2ArrayOfStr[0].equalsIgnoreCase("teams"))
@@ -724,7 +724,7 @@ public class CommandScoreboard extends CommandBase
 
                 if (par2ArrayOfStr[1].equalsIgnoreCase("join"))
                 {
-                    if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, this.func_147192_d().getTeamNames()); }
+                    if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, func_147192_d().getTeamNames()); }
 
                     if (par2ArrayOfStr.length >= 4) { return getListOfStringsMatchingLastWord(par2ArrayOfStr, MinecraftServer.getServer().getAllUsernames()); }
                 }
@@ -736,7 +736,7 @@ public class CommandScoreboard extends CommandBase
                     {
                         if (par2ArrayOfStr[1].equalsIgnoreCase("option"))
                         {
-                            if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, this.func_147192_d().getTeamNames()); }
+                            if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, func_147192_d().getTeamNames()); }
 
                             if (par2ArrayOfStr.length == 4) { return getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"color", "friendlyfire", "seeFriendlyInvisibles"}); }
 
@@ -748,7 +748,7 @@ public class CommandScoreboard extends CommandBase
                             }
                         }
                     }
-                    else if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, this.func_147192_d().getTeamNames()); }
+                    else if (par2ArrayOfStr.length == 3) { return getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, func_147192_d().getTeamNames()); }
                 }
             }
 
@@ -758,7 +758,7 @@ public class CommandScoreboard extends CommandBase
 
     protected List func_147184_a(boolean p_147184_1_)
     {
-        Collection var2 = this.func_147192_d().getScoreObjectives();
+        Collection var2 = func_147192_d().getScoreObjectives();
         ArrayList var3 = new ArrayList();
         Iterator var4 = var2.iterator();
 

@@ -26,7 +26,7 @@ public class S00PacketServerInfo extends Packet
 
     public S00PacketServerInfo(ServerStatusResponse p_i45273_1_)
     {
-        this.field_149296_b = p_i45273_1_;
+        field_149296_b = p_i45273_1_;
     }
 
     /**
@@ -34,7 +34,7 @@ public class S00PacketServerInfo extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149296_b = (ServerStatusResponse)field_149297_a.fromJson(p_148837_1_.readStringFromBuffer(32767), ServerStatusResponse.class);
+        field_149296_b = field_149297_a.fromJson(p_148837_1_.readStringFromBuffer(32767), ServerStatusResponse.class);
     }
 
     /**
@@ -42,7 +42,7 @@ public class S00PacketServerInfo extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(field_149297_a.toJson(this.field_149296_b));
+        p_148840_1_.writeStringToBuffer(field_149297_a.toJson(field_149296_b));
     }
 
     public void func_148833_a(INetHandlerStatusClient p_149295_1_)

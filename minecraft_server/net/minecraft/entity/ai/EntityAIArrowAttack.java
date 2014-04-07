@@ -41,7 +41,7 @@ public class EntityAIArrowAttack extends EntityAIBase
 
     public EntityAIArrowAttack(IRangedAttackMob par1IRangedAttackMob, double par2, int par4, int par5, float par6)
     {
-        this.rangedAttackTime = -1;
+        rangedAttackTime = -1;
 
         if (!(par1IRangedAttackMob instanceof EntityLivingBase))
         {
@@ -49,14 +49,14 @@ public class EntityAIArrowAttack extends EntityAIBase
         }
         else
         {
-            this.rangedAttackEntityHost = par1IRangedAttackMob;
-            this.entityHost = (EntityLiving)par1IRangedAttackMob;
-            this.entityMoveSpeed = par2;
-            this.field_96561_g = par4;
-            this.maxRangedAttackTime = par5;
-            this.field_96562_i = par6;
-            this.field_82642_h = par6 * par6;
-            this.setMutexBits(3);
+            rangedAttackEntityHost = par1IRangedAttackMob;
+            entityHost = (EntityLiving)par1IRangedAttackMob;
+            entityMoveSpeed = par2;
+            field_96561_g = par4;
+            maxRangedAttackTime = par5;
+            field_96562_i = par6;
+            field_82642_h = par6 * par6;
+            setMutexBits(3);
         }
     }
 
@@ -65,7 +65,7 @@ public class EntityAIArrowAttack extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        EntityLivingBase var1 = this.entityHost.getAttackTarget();
+        EntityLivingBase var1 = entityHost.getAttackTarget();
 
         if (var1 == null)
         {
@@ -73,7 +73,7 @@ public class EntityAIArrowAttack extends EntityAIBase
         }
         else
         {
-            this.attackTarget = var1;
+            attackTarget = var1;
             return true;
         }
     }
@@ -83,7 +83,7 @@ public class EntityAIArrowAttack extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return this.shouldExecute() || !this.entityHost.getNavigator().noPath();
+        return shouldExecute() || !entityHost.getNavigator().noPath();
     }
 
     /**
@@ -91,9 +91,9 @@ public class EntityAIArrowAttack extends EntityAIBase
      */
     public void resetTask()
     {
-        this.attackTarget = null;
-        this.field_75318_f = 0;
-        this.rangedAttackTime = -1;
+        attackTarget = null;
+        field_75318_f = 0;
+        rangedAttackTime = -1;
     }
 
     /**
@@ -101,35 +101,35 @@ public class EntityAIArrowAttack extends EntityAIBase
      */
     public void updateTask()
     {
-        double var1 = this.entityHost.getDistanceSq(this.attackTarget.posX, this.attackTarget.boundingBox.minY, this.attackTarget.posZ);
-        boolean var3 = this.entityHost.getEntitySenses().canSee(this.attackTarget);
+        double var1 = entityHost.getDistanceSq(attackTarget.posX, attackTarget.boundingBox.minY, attackTarget.posZ);
+        boolean var3 = entityHost.getEntitySenses().canSee(attackTarget);
 
         if (var3)
         {
-            ++this.field_75318_f;
+            ++field_75318_f;
         }
         else
         {
-            this.field_75318_f = 0;
+            field_75318_f = 0;
         }
 
-        if (var1 <= (double)this.field_82642_h && this.field_75318_f >= 20)
+        if (var1 <= field_82642_h && field_75318_f >= 20)
         {
-            this.entityHost.getNavigator().clearPathEntity();
+            entityHost.getNavigator().clearPathEntity();
         }
         else
         {
-            this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, this.entityMoveSpeed);
+            entityHost.getNavigator().tryMoveToEntityLiving(attackTarget, entityMoveSpeed);
         }
 
-        this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
+        entityHost.getLookHelper().setLookPositionWithEntity(attackTarget, 30.0F, 30.0F);
         float var4;
 
-        if (--this.rangedAttackTime == 0)
+        if (--rangedAttackTime == 0)
         {
-            if (var1 > (double)this.field_82642_h || !var3) { return; }
+            if (var1 > field_82642_h || !var3) { return; }
 
-            var4 = MathHelper.sqrt_double(var1) / this.field_96562_i;
+            var4 = MathHelper.sqrt_double(var1) / field_96562_i;
             float var5 = var4;
 
             if (var4 < 0.1F)
@@ -142,13 +142,13 @@ public class EntityAIArrowAttack extends EntityAIBase
                 var5 = 1.0F;
             }
 
-            this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, var5);
-            this.rangedAttackTime = MathHelper.floor_float(var4 * (float)(this.maxRangedAttackTime - this.field_96561_g) + (float)this.field_96561_g);
+            rangedAttackEntityHost.attackEntityWithRangedAttack(attackTarget, var5);
+            rangedAttackTime = MathHelper.floor_float(var4 * (maxRangedAttackTime - field_96561_g) + field_96561_g);
         }
-        else if (this.rangedAttackTime < 0)
+        else if (rangedAttackTime < 0)
         {
-            var4 = MathHelper.sqrt_double(var1) / this.field_96562_i;
-            this.rangedAttackTime = MathHelper.floor_float(var4 * (float)(this.maxRangedAttackTime - this.field_96561_g) + (float)this.field_96561_g);
+            var4 = MathHelper.sqrt_double(var1) / field_96562_i;
+            rangedAttackTime = MathHelper.floor_float(var4 * (maxRangedAttackTime - field_96561_g) + field_96561_g);
         }
     }
 }

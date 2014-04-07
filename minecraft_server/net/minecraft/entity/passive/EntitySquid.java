@@ -42,14 +42,14 @@ public class EntitySquid extends EntityWaterMob
     public EntitySquid(World par1World)
     {
         super(par1World);
-        this.setSize(0.95F, 0.95F);
-        this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
+        setSize(0.95F, 0.95F);
+        rotationVelocity = 1.0F / (rand.nextFloat() + 1.0F) * 0.2F;
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
     }
 
     /**
@@ -103,11 +103,11 @@ public class EntitySquid extends EntityWaterMob
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-        int var3 = this.rand.nextInt(3 + par2) + 1;
+        int var3 = rand.nextInt(3 + par2) + 1;
 
         for (int var4 = 0; var4 < var3; ++var4)
         {
-            this.entityDropItem(new ItemStack(Items.dye, 1, 0), 0.0F);
+            entityDropItem(new ItemStack(Items.dye, 1, 0), 0.0F);
         }
     }
 
@@ -117,7 +117,7 @@ public class EntitySquid extends EntityWaterMob
      */
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.field_151586_h, this);
+        return worldObj.handleMaterialAcceleration(boundingBox.expand(0.0D, -0.6000000238418579D, 0.0D), Material.field_151586_h, this);
     }
 
     /**
@@ -128,74 +128,74 @@ public class EntitySquid extends EntityWaterMob
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        this.prevSquidPitch = this.squidPitch;
-        this.prevSquidYaw = this.squidYaw;
-        this.prevSquidRotation = this.squidRotation;
-        this.lastTentacleAngle = this.tentacleAngle;
-        this.squidRotation += this.rotationVelocity;
+        prevSquidPitch = squidPitch;
+        prevSquidYaw = squidYaw;
+        prevSquidRotation = squidRotation;
+        lastTentacleAngle = tentacleAngle;
+        squidRotation += rotationVelocity;
 
-        if (this.squidRotation > ((float)Math.PI * 2F))
+        if (squidRotation > ((float)Math.PI * 2F))
         {
-            this.squidRotation -= ((float)Math.PI * 2F);
+            squidRotation -= ((float)Math.PI * 2F);
 
-            if (this.rand.nextInt(10) == 0)
+            if (rand.nextInt(10) == 0)
             {
-                this.rotationVelocity = 1.0F / (this.rand.nextFloat() + 1.0F) * 0.2F;
+                rotationVelocity = 1.0F / (rand.nextFloat() + 1.0F) * 0.2F;
             }
         }
 
-        if (this.isInWater())
+        if (isInWater())
         {
             float var1;
 
-            if (this.squidRotation < (float)Math.PI)
+            if (squidRotation < (float)Math.PI)
             {
-                var1 = this.squidRotation / (float)Math.PI;
-                this.tentacleAngle = MathHelper.sin(var1 * var1 * (float)Math.PI) * (float)Math.PI * 0.25F;
+                var1 = squidRotation / (float)Math.PI;
+                tentacleAngle = MathHelper.sin(var1 * var1 * (float)Math.PI) * (float)Math.PI * 0.25F;
 
-                if ((double)var1 > 0.75D)
+                if (var1 > 0.75D)
                 {
-                    this.randomMotionSpeed = 1.0F;
-                    this.field_70871_bB = 1.0F;
+                    randomMotionSpeed = 1.0F;
+                    field_70871_bB = 1.0F;
                 }
                 else
                 {
-                    this.field_70871_bB *= 0.8F;
+                    field_70871_bB *= 0.8F;
                 }
             }
             else
             {
-                this.tentacleAngle = 0.0F;
-                this.randomMotionSpeed *= 0.9F;
-                this.field_70871_bB *= 0.99F;
+                tentacleAngle = 0.0F;
+                randomMotionSpeed *= 0.9F;
+                field_70871_bB *= 0.99F;
             }
 
-            if (!this.worldObj.isClient)
+            if (!worldObj.isClient)
             {
-                this.motionX = (double)(this.randomMotionVecX * this.randomMotionSpeed);
-                this.motionY = (double)(this.randomMotionVecY * this.randomMotionSpeed);
-                this.motionZ = (double)(this.randomMotionVecZ * this.randomMotionSpeed);
+                motionX = randomMotionVecX * randomMotionSpeed;
+                motionY = randomMotionVecY * randomMotionSpeed;
+                motionZ = randomMotionVecZ * randomMotionSpeed;
             }
 
-            var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.renderYawOffset += (-((float)Math.atan2(this.motionX, this.motionZ)) * 180.0F / (float)Math.PI - this.renderYawOffset) * 0.1F;
-            this.rotationYaw = this.renderYawOffset;
-            this.squidYaw += (float)Math.PI * this.field_70871_bB * 1.5F;
-            this.squidPitch += (-((float)Math.atan2((double)var1, this.motionY)) * 180.0F / (float)Math.PI - this.squidPitch) * 0.1F;
+            var1 = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
+            renderYawOffset += (-((float)Math.atan2(motionX, motionZ)) * 180.0F / (float)Math.PI - renderYawOffset) * 0.1F;
+            rotationYaw = renderYawOffset;
+            squidYaw += (float)Math.PI * field_70871_bB * 1.5F;
+            squidPitch += (-((float)Math.atan2(var1, motionY)) * 180.0F / (float)Math.PI - squidPitch) * 0.1F;
         }
         else
         {
-            this.tentacleAngle = MathHelper.abs(MathHelper.sin(this.squidRotation)) * (float)Math.PI * 0.25F;
+            tentacleAngle = MathHelper.abs(MathHelper.sin(squidRotation)) * (float)Math.PI * 0.25F;
 
-            if (!this.worldObj.isClient)
+            if (!worldObj.isClient)
             {
-                this.motionX = 0.0D;
-                this.motionY -= 0.08D;
-                this.motionY *= 0.9800000190734863D;
-                this.motionZ = 0.0D;
+                motionX = 0.0D;
+                motionY -= 0.08D;
+                motionY *= 0.9800000190734863D;
+                motionZ = 0.0D;
             }
 
-            this.squidPitch = (float)((double)this.squidPitch + (double)(-90.0F - this.squidPitch) * 0.02D);
+            squidPitch = (float)(squidPitch + (-90.0F - squidPitch) * 0.02D);
         }
     }
 
@@ -204,26 +204,26 @@ public class EntitySquid extends EntityWaterMob
      */
     public void moveEntityWithHeading(float par1, float par2)
     {
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        moveEntity(motionX, motionY, motionZ);
     }
 
     protected void updateEntityActionState()
     {
-        ++this.entityAge;
+        ++entityAge;
 
-        if (this.entityAge > 100)
+        if (entityAge > 100)
         {
-            this.randomMotionVecX = this.randomMotionVecY = this.randomMotionVecZ = 0.0F;
+            randomMotionVecX = randomMotionVecY = randomMotionVecZ = 0.0F;
         }
-        else if (this.rand.nextInt(50) == 0 || !this.inWater || this.randomMotionVecX == 0.0F && this.randomMotionVecY == 0.0F && this.randomMotionVecZ == 0.0F)
+        else if (rand.nextInt(50) == 0 || !inWater || randomMotionVecX == 0.0F && randomMotionVecY == 0.0F && randomMotionVecZ == 0.0F)
         {
-            float var1 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
-            this.randomMotionVecX = MathHelper.cos(var1) * 0.2F;
-            this.randomMotionVecY = -0.1F + this.rand.nextFloat() * 0.2F;
-            this.randomMotionVecZ = MathHelper.sin(var1) * 0.2F;
+            float var1 = rand.nextFloat() * (float)Math.PI * 2.0F;
+            randomMotionVecX = MathHelper.cos(var1) * 0.2F;
+            randomMotionVecY = -0.1F + rand.nextFloat() * 0.2F;
+            randomMotionVecZ = MathHelper.sin(var1) * 0.2F;
         }
 
-        this.despawnEntity();
+        despawnEntity();
     }
 
     /**
@@ -232,6 +232,6 @@ public class EntitySquid extends EntityWaterMob
      */
     public boolean getCanSpawnHere()
     {
-        return this.posY > 45.0D && this.posY < 63.0D && super.getCanSpawnHere();
+        return posY > 45.0D && posY < 63.0D && super.getCanSpawnHere();
     }
 }

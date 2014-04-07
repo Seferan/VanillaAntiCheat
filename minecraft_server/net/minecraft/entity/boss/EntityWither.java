@@ -58,27 +58,27 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
     public EntityWither(World par1World)
     {
         super(par1World);
-        this.setHealth(this.getMaxHealth());
-        this.setSize(0.9F, 4.0F);
-        this.isImmuneToFire = true;
-        this.getNavigator().setCanSwim(true);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
-        this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, attackEntitySelector));
-        this.experienceValue = 50;
+        setHealth(getMaxHealth());
+        setSize(0.9F, 4.0F);
+        isImmuneToFire = true;
+        getNavigator().setCanSwim(true);
+        tasks.addTask(0, new EntityAISwimming(this));
+        tasks.addTask(2, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
+        tasks.addTask(5, new EntityAIWander(this, 1.0D));
+        tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        tasks.addTask(7, new EntityAILookIdle(this));
+        targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, attackEntitySelector));
+        experienceValue = 50;
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(17, new Integer(0));
-        this.dataWatcher.addObject(18, new Integer(0));
-        this.dataWatcher.addObject(19, new Integer(0));
-        this.dataWatcher.addObject(20, new Integer(0));
+        dataWatcher.addObject(17, new Integer(0));
+        dataWatcher.addObject(18, new Integer(0));
+        dataWatcher.addObject(19, new Integer(0));
+        dataWatcher.addObject(20, new Integer(0));
     }
 
     /**
@@ -87,7 +87,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("Invul", this.func_82212_n());
+        par1NBTTagCompound.setInteger("Invul", func_82212_n());
     }
 
     /**
@@ -96,7 +96,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.func_82215_s(par1NBTTagCompound.getInteger("Invul"));
+        func_82215_s(par1NBTTagCompound.getInteger("Invul"));
     }
 
     /**
@@ -130,43 +130,43 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     public void onLivingUpdate()
     {
-        this.motionY *= 0.6000000238418579D;
+        motionY *= 0.6000000238418579D;
         double var4;
         double var6;
         double var8;
 
-        if (!this.worldObj.isClient && this.getWatchedTargetId(0) > 0)
+        if (!worldObj.isClient && getWatchedTargetId(0) > 0)
         {
-            Entity var1 = this.worldObj.getEntityByID(this.getWatchedTargetId(0));
+            Entity var1 = worldObj.getEntityByID(getWatchedTargetId(0));
 
             if (var1 != null)
             {
-                if (this.posY < var1.posY || !this.isArmored() && this.posY < var1.posY + 5.0D)
+                if (posY < var1.posY || !isArmored() && posY < var1.posY + 5.0D)
                 {
-                    if (this.motionY < 0.0D)
+                    if (motionY < 0.0D)
                     {
-                        this.motionY = 0.0D;
+                        motionY = 0.0D;
                     }
 
-                    this.motionY += (0.5D - this.motionY) * 0.6000000238418579D;
+                    motionY += (0.5D - motionY) * 0.6000000238418579D;
                 }
 
-                double var2 = var1.posX - this.posX;
-                var4 = var1.posZ - this.posZ;
+                double var2 = var1.posX - posX;
+                var4 = var1.posZ - posZ;
                 var6 = var2 * var2 + var4 * var4;
 
                 if (var6 > 9.0D)
                 {
-                    var8 = (double)MathHelper.sqrt_double(var6);
-                    this.motionX += (var2 / var8 * 0.5D - this.motionX) * 0.6000000238418579D;
-                    this.motionZ += (var4 / var8 * 0.5D - this.motionZ) * 0.6000000238418579D;
+                    var8 = MathHelper.sqrt_double(var6);
+                    motionX += (var2 / var8 * 0.5D - motionX) * 0.6000000238418579D;
+                    motionZ += (var4 / var8 * 0.5D - motionZ) * 0.6000000238418579D;
                 }
             }
         }
 
-        if (this.motionX * this.motionX + this.motionZ * this.motionZ > 0.05000000074505806D)
+        if (motionX * motionX + motionZ * motionZ > 0.05000000074505806D)
         {
-            this.rotationYaw = (float)Math.atan2(this.motionZ, this.motionX) * (180F / (float)Math.PI) - 90.0F;
+            rotationYaw = (float)Math.atan2(motionZ, motionX) * (180F / (float)Math.PI) - 90.0F;
         }
 
         super.onLivingUpdate();
@@ -174,62 +174,62 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
         for (var20 = 0; var20 < 2; ++var20)
         {
-            this.field_82218_g[var20] = this.field_82221_e[var20];
-            this.field_82217_f[var20] = this.field_82220_d[var20];
+            field_82218_g[var20] = field_82221_e[var20];
+            field_82217_f[var20] = field_82220_d[var20];
         }
 
         int var21;
 
         for (var20 = 0; var20 < 2; ++var20)
         {
-            var21 = this.getWatchedTargetId(var20 + 1);
+            var21 = getWatchedTargetId(var20 + 1);
             Entity var3 = null;
 
             if (var21 > 0)
             {
-                var3 = this.worldObj.getEntityByID(var21);
+                var3 = worldObj.getEntityByID(var21);
             }
 
             if (var3 != null)
             {
-                var4 = this.func_82214_u(var20 + 1);
-                var6 = this.func_82208_v(var20 + 1);
-                var8 = this.func_82213_w(var20 + 1);
+                var4 = func_82214_u(var20 + 1);
+                var6 = func_82208_v(var20 + 1);
+                var8 = func_82213_w(var20 + 1);
                 double var10 = var3.posX - var4;
-                double var12 = var3.posY + (double)var3.getEyeHeight() - var6;
+                double var12 = var3.posY + var3.getEyeHeight() - var6;
                 double var14 = var3.posZ - var8;
-                double var16 = (double)MathHelper.sqrt_double(var10 * var10 + var14 * var14);
+                double var16 = MathHelper.sqrt_double(var10 * var10 + var14 * var14);
                 float var18 = (float)(Math.atan2(var14, var10) * 180.0D / Math.PI) - 90.0F;
                 float var19 = (float)(-(Math.atan2(var12, var16) * 180.0D / Math.PI));
-                this.field_82220_d[var20] = this.func_82204_b(this.field_82220_d[var20], var19, 40.0F);
-                this.field_82221_e[var20] = this.func_82204_b(this.field_82221_e[var20], var18, 10.0F);
+                field_82220_d[var20] = func_82204_b(field_82220_d[var20], var19, 40.0F);
+                field_82221_e[var20] = func_82204_b(field_82221_e[var20], var18, 10.0F);
             }
             else
             {
-                this.field_82221_e[var20] = this.func_82204_b(this.field_82221_e[var20], this.renderYawOffset, 10.0F);
+                field_82221_e[var20] = func_82204_b(field_82221_e[var20], renderYawOffset, 10.0F);
             }
         }
 
-        boolean var22 = this.isArmored();
+        boolean var22 = isArmored();
 
         for (var21 = 0; var21 < 3; ++var21)
         {
-            double var23 = this.func_82214_u(var21);
-            double var5 = this.func_82208_v(var21);
-            double var7 = this.func_82213_w(var21);
-            this.worldObj.spawnParticle("smoke", var23 + this.rand.nextGaussian() * 0.30000001192092896D, var5 + this.rand.nextGaussian() * 0.30000001192092896D, var7 + this.rand.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D);
+            double var23 = func_82214_u(var21);
+            double var5 = func_82208_v(var21);
+            double var7 = func_82213_w(var21);
+            worldObj.spawnParticle("smoke", var23 + rand.nextGaussian() * 0.30000001192092896D, var5 + rand.nextGaussian() * 0.30000001192092896D, var7 + rand.nextGaussian() * 0.30000001192092896D, 0.0D, 0.0D, 0.0D);
 
-            if (var22 && this.worldObj.rand.nextInt(4) == 0)
+            if (var22 && worldObj.rand.nextInt(4) == 0)
             {
-                this.worldObj.spawnParticle("mobSpell", var23 + this.rand.nextGaussian() * 0.30000001192092896D, var5 + this.rand.nextGaussian() * 0.30000001192092896D, var7 + this.rand.nextGaussian() * 0.30000001192092896D, 0.699999988079071D, 0.699999988079071D, 0.5D);
+                worldObj.spawnParticle("mobSpell", var23 + rand.nextGaussian() * 0.30000001192092896D, var5 + rand.nextGaussian() * 0.30000001192092896D, var7 + rand.nextGaussian() * 0.30000001192092896D, 0.699999988079071D, 0.699999988079071D, 0.5D);
             }
         }
 
-        if (this.func_82212_n() > 0)
+        if (func_82212_n() > 0)
         {
             for (var21 = 0; var21 < 3; ++var21)
             {
-                this.worldObj.spawnParticle("mobSpell", this.posX + this.rand.nextGaussian() * 1.0D, this.posY + (double)(this.rand.nextFloat() * 3.3F), this.posZ + this.rand.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D);
+                worldObj.spawnParticle("mobSpell", posX + rand.nextGaussian() * 1.0D, posY + rand.nextFloat() * 3.3F, posZ + rand.nextGaussian() * 1.0D, 0.699999988079071D, 0.699999988079071D, 0.8999999761581421D);
             }
         }
     }
@@ -238,21 +238,21 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
     {
         int var1;
 
-        if (this.func_82212_n() > 0)
+        if (func_82212_n() > 0)
         {
-            var1 = this.func_82212_n() - 1;
+            var1 = func_82212_n() - 1;
 
             if (var1 <= 0)
             {
-                this.worldObj.newExplosion(this, this.posX, this.posY + (double)this.getEyeHeight(), this.posZ, 7.0F, false, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
-                this.worldObj.playBroadcastSound(1013, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                worldObj.newExplosion(this, posX, posY + getEyeHeight(), posZ, 7.0F, false, worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
+                worldObj.playBroadcastSound(1013, (int)posX, (int)posY, (int)posZ, 0);
             }
 
-            this.func_82215_s(var1);
+            func_82215_s(var1);
 
-            if (this.ticksExisted % 10 == 0)
+            if (ticksExisted % 10 == 0)
             {
-                this.heal(10.0F);
+                heal(10.0F);
             }
         }
         else
@@ -262,65 +262,65 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
             for (var1 = 1; var1 < 3; ++var1)
             {
-                if (this.ticksExisted >= this.field_82223_h[var1 - 1])
+                if (ticksExisted >= field_82223_h[var1 - 1])
                 {
-                    this.field_82223_h[var1 - 1] = this.ticksExisted + 10 + this.rand.nextInt(10);
+                    field_82223_h[var1 - 1] = ticksExisted + 10 + rand.nextInt(10);
 
-                    if (this.worldObj.difficultySetting == EnumDifficulty.NORMAL || this.worldObj.difficultySetting == EnumDifficulty.HARD)
+                    if (worldObj.difficultySetting == EnumDifficulty.NORMAL || worldObj.difficultySetting == EnumDifficulty.HARD)
                     {
                         int var10001 = var1 - 1;
-                        int var10003 = this.field_82224_i[var1 - 1];
-                        this.field_82224_i[var10001] = this.field_82224_i[var1 - 1] + 1;
+                        int var10003 = field_82224_i[var1 - 1];
+                        field_82224_i[var10001] = field_82224_i[var1 - 1] + 1;
 
                         if (var10003 > 15)
                         {
                             float var2 = 10.0F;
                             float var3 = 5.0F;
-                            double var4 = MathHelper.getRandomDoubleInRange(this.rand, this.posX - (double)var2, this.posX + (double)var2);
-                            double var6 = MathHelper.getRandomDoubleInRange(this.rand, this.posY - (double)var3, this.posY + (double)var3);
-                            double var8 = MathHelper.getRandomDoubleInRange(this.rand, this.posZ - (double)var2, this.posZ + (double)var2);
-                            this.func_82209_a(var1 + 1, var4, var6, var8, true);
-                            this.field_82224_i[var1 - 1] = 0;
+                            double var4 = MathHelper.getRandomDoubleInRange(rand, posX - var2, posX + var2);
+                            double var6 = MathHelper.getRandomDoubleInRange(rand, posY - var3, posY + var3);
+                            double var8 = MathHelper.getRandomDoubleInRange(rand, posZ - var2, posZ + var2);
+                            func_82209_a(var1 + 1, var4, var6, var8, true);
+                            field_82224_i[var1 - 1] = 0;
                         }
                     }
 
-                    var12 = this.getWatchedTargetId(var1);
+                    var12 = getWatchedTargetId(var1);
 
                     if (var12 > 0)
                     {
-                        Entity var14 = this.worldObj.getEntityByID(var12);
+                        Entity var14 = worldObj.getEntityByID(var12);
 
-                        if (var14 != null && var14.isEntityAlive() && this.getDistanceSqToEntity(var14) <= 900.0D && this.canEntityBeSeen(var14))
+                        if (var14 != null && var14.isEntityAlive() && getDistanceSqToEntity(var14) <= 900.0D && canEntityBeSeen(var14))
                         {
-                            this.func_82216_a(var1 + 1, (EntityLivingBase)var14);
-                            this.field_82223_h[var1 - 1] = this.ticksExisted + 40 + this.rand.nextInt(20);
-                            this.field_82224_i[var1 - 1] = 0;
+                            func_82216_a(var1 + 1, (EntityLivingBase)var14);
+                            field_82223_h[var1 - 1] = ticksExisted + 40 + rand.nextInt(20);
+                            field_82224_i[var1 - 1] = 0;
                         }
                         else
                         {
-                            this.func_82211_c(var1, 0);
+                            func_82211_c(var1, 0);
                         }
                     }
                     else
                     {
-                        List var13 = this.worldObj.selectEntitiesWithinAABB(EntityLivingBase.class, this.boundingBox.expand(20.0D, 8.0D, 20.0D), attackEntitySelector);
+                        List var13 = worldObj.selectEntitiesWithinAABB(EntityLivingBase.class, boundingBox.expand(20.0D, 8.0D, 20.0D), attackEntitySelector);
 
                         for (int var16 = 0; var16 < 10 && !var13.isEmpty(); ++var16)
                         {
-                            EntityLivingBase var5 = (EntityLivingBase)var13.get(this.rand.nextInt(var13.size()));
+                            EntityLivingBase var5 = (EntityLivingBase)var13.get(rand.nextInt(var13.size()));
 
-                            if (var5 != this && var5.isEntityAlive() && this.canEntityBeSeen(var5))
+                            if (var5 != this && var5.isEntityAlive() && canEntityBeSeen(var5))
                             {
                                 if (var5 instanceof EntityPlayer)
                                 {
                                     if (!((EntityPlayer)var5).capabilities.disableDamage)
                                     {
-                                        this.func_82211_c(var1, var5.getEntityId());
+                                        func_82211_c(var1, var5.getEntityId());
                                     }
                                 }
                                 else
                                 {
-                                    this.func_82211_c(var1, var5.getEntityId());
+                                    func_82211_c(var1, var5.getEntityId());
                                 }
 
                                 break;
@@ -332,24 +332,24 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
                 }
             }
 
-            if (this.getAttackTarget() != null)
+            if (getAttackTarget() != null)
             {
-                this.func_82211_c(0, this.getAttackTarget().getEntityId());
+                func_82211_c(0, getAttackTarget().getEntityId());
             }
             else
             {
-                this.func_82211_c(0, 0);
+                func_82211_c(0, 0);
             }
 
-            if (this.field_82222_j > 0)
+            if (field_82222_j > 0)
             {
-                --this.field_82222_j;
+                --field_82222_j;
 
-                if (this.field_82222_j == 0 && this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
+                if (field_82222_j == 0 && worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
                 {
-                    var1 = MathHelper.floor_double(this.posY);
-                    var12 = MathHelper.floor_double(this.posX);
-                    int var15 = MathHelper.floor_double(this.posZ);
+                    var1 = MathHelper.floor_double(posY);
+                    var12 = MathHelper.floor_double(posX);
+                    int var15 = MathHelper.floor_double(posZ);
                     boolean var18 = false;
 
                     for (int var17 = -1; var17 <= 1; ++var17)
@@ -361,11 +361,11 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
                                 int var20 = var12 + var17;
                                 int var9 = var1 + var7;
                                 int var10 = var15 + var19;
-                                Block var11 = this.worldObj.getBlock(var20, var9, var10);
+                                Block var11 = worldObj.getBlock(var20, var9, var10);
 
                                 if (var11.getMaterial() != Material.air && var11 != Blocks.bedrock && var11 != Blocks.end_portal && var11 != Blocks.end_portal_frame && var11 != Blocks.command_block)
                                 {
-                                    var18 = this.worldObj.func_147480_a(var20, var9, var10, true) || var18;
+                                    var18 = worldObj.func_147480_a(var20, var9, var10, true) || var18;
                                 }
                             }
                         }
@@ -373,22 +373,22 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
                     if (var18)
                     {
-                        this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1012, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                        worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1012, (int)posX, (int)posY, (int)posZ, 0);
                     }
                 }
             }
 
-            if (this.ticksExisted % 20 == 0)
+            if (ticksExisted % 20 == 0)
             {
-                this.heal(1.0F);
+                heal(1.0F);
             }
         }
     }
 
     public void func_82206_m()
     {
-        this.func_82215_s(220);
-        this.setHealth(this.getMaxHealth() / 3.0F);
+        func_82215_s(220);
+        setHealth(getMaxHealth() / 3.0F);
     }
 
     /**
@@ -411,32 +411,32 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
     {
         if (par1 <= 0)
         {
-            return this.posX;
+            return posX;
         }
         else
         {
-            float var2 = (this.renderYawOffset + (float)(180 * (par1 - 1))) / 180.0F * (float)Math.PI;
+            float var2 = (renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float)Math.PI;
             float var3 = MathHelper.cos(var2);
-            return this.posX + (double)var3 * 1.3D;
+            return posX + var3 * 1.3D;
         }
     }
 
     private double func_82208_v(int par1)
     {
-        return par1 <= 0 ? this.posY + 3.0D : this.posY + 2.2D;
+        return par1 <= 0 ? posY + 3.0D : posY + 2.2D;
     }
 
     private double func_82213_w(int par1)
     {
         if (par1 <= 0)
         {
-            return this.posZ;
+            return posZ;
         }
         else
         {
-            float var2 = (this.renderYawOffset + (float)(180 * (par1 - 1))) / 180.0F * (float)Math.PI;
+            float var2 = (renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float)Math.PI;
             float var3 = MathHelper.sin(var2);
-            return this.posZ + (double)var3 * 1.3D;
+            return posZ + var3 * 1.3D;
         }
     }
 
@@ -459,19 +459,19 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
     private void func_82216_a(int par1, EntityLivingBase par2EntityLivingBase)
     {
-        this.func_82209_a(par1, par2EntityLivingBase.posX, par2EntityLivingBase.posY + (double)par2EntityLivingBase.getEyeHeight() * 0.5D, par2EntityLivingBase.posZ, par1 == 0 && this.rand.nextFloat() < 0.001F);
+        func_82209_a(par1, par2EntityLivingBase.posX, par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight() * 0.5D, par2EntityLivingBase.posZ, par1 == 0 && rand.nextFloat() < 0.001F);
     }
 
     private void func_82209_a(int par1, double par2, double par4, double par6, boolean par8)
     {
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
-        double var9 = this.func_82214_u(par1);
-        double var11 = this.func_82208_v(par1);
-        double var13 = this.func_82213_w(par1);
+        worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1014, (int)posX, (int)posY, (int)posZ, 0);
+        double var9 = func_82214_u(par1);
+        double var11 = func_82208_v(par1);
+        double var13 = func_82213_w(par1);
         double var15 = par2 - var9;
         double var17 = par4 - var11;
         double var19 = par6 - var13;
-        EntityWitherSkull var21 = new EntityWitherSkull(this.worldObj, this, var15, var17, var19);
+        EntityWitherSkull var21 = new EntityWitherSkull(worldObj, this, var15, var17, var19);
 
         if (par8)
         {
@@ -481,7 +481,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
         var21.posY = var11;
         var21.posX = var9;
         var21.posZ = var13;
-        this.worldObj.spawnEntityInWorld(var21);
+        worldObj.spawnEntityInWorld(var21);
     }
 
     /**
@@ -489,7 +489,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2)
     {
-        this.func_82216_a(0, par1EntityLivingBase);
+        func_82216_a(0, par1EntityLivingBase);
     }
 
     /**
@@ -497,7 +497,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.isEntityInvulnerable())
+        if (isEntityInvulnerable())
         {
             return false;
         }
@@ -505,7 +505,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
         {
             return false;
         }
-        else if (this.func_82212_n() > 0)
+        else if (func_82212_n() > 0)
         {
             return false;
         }
@@ -513,7 +513,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
         {
             Entity var3;
 
-            if (this.isArmored())
+            if (isArmored())
             {
                 var3 = par1DamageSource.getSourceOfDamage();
 
@@ -522,20 +522,20 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
 
             var3 = par1DamageSource.getEntity();
 
-            if (var3 != null && !(var3 instanceof EntityPlayer) && var3 instanceof EntityLivingBase && ((EntityLivingBase)var3).getCreatureAttribute() == this.getCreatureAttribute())
+            if (var3 != null && !(var3 instanceof EntityPlayer) && var3 instanceof EntityLivingBase && ((EntityLivingBase)var3).getCreatureAttribute() == getCreatureAttribute())
             {
                 return false;
             }
             else
             {
-                if (this.field_82222_j <= 0)
+                if (field_82222_j <= 0)
                 {
-                    this.field_82222_j = 20;
+                    field_82222_j = 20;
                 }
 
-                for (int var4 = 0; var4 < this.field_82224_i.length; ++var4)
+                for (int var4 = 0; var4 < field_82224_i.length; ++var4)
                 {
-                    this.field_82224_i[var4] += 3;
+                    field_82224_i[var4] += 3;
                 }
 
                 return super.attackEntityFrom(par1DamageSource, par2);
@@ -548,11 +548,11 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-        this.func_145779_a(Items.nether_star, 1);
+        func_145779_a(Items.nether_star, 1);
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            Iterator var3 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(50.0D, 100.0D, 50.0D)).iterator();
+            Iterator var3 = worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(50.0D, 100.0D, 50.0D)).iterator();
 
             while (var3.hasNext())
             {
@@ -567,7 +567,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     protected void despawnEntity()
     {
-        this.entityAge = 0;
+        entityAge = 0;
     }
 
     /**
@@ -595,19 +595,19 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(300.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.6000000238418579D);
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(300.0D);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.6000000238418579D);
+        getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0D);
     }
 
     public int func_82212_n()
     {
-        return this.dataWatcher.getWatchableObjectInt(20);
+        return dataWatcher.getWatchableObjectInt(20);
     }
 
     public void func_82215_s(int par1)
     {
-        this.dataWatcher.updateObject(20, Integer.valueOf(par1));
+        dataWatcher.updateObject(20, Integer.valueOf(par1));
     }
 
     /**
@@ -616,12 +616,12 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     public int getWatchedTargetId(int par1)
     {
-        return this.dataWatcher.getWatchableObjectInt(17 + par1);
+        return dataWatcher.getWatchableObjectInt(17 + par1);
     }
 
     public void func_82211_c(int par1, int par2)
     {
-        this.dataWatcher.updateObject(17 + par1, Integer.valueOf(par2));
+        dataWatcher.updateObject(17 + par1, Integer.valueOf(par2));
     }
 
     /**
@@ -630,7 +630,7 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     public boolean isArmored()
     {
-        return this.getHealth() <= this.getMaxHealth() / 2.0F;
+        return getHealth() <= getMaxHealth() / 2.0F;
     }
 
     /**
@@ -646,6 +646,6 @@ public class EntityWither extends EntityMob implements IRangedAttackMob
      */
     public void mountEntity(Entity par1Entity)
     {
-        this.ridingEntity = null;
+        ridingEntity = null;
     }
 }

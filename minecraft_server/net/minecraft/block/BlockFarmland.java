@@ -17,9 +17,9 @@ public class BlockFarmland extends Block
     protected BlockFarmland()
     {
         super(Material.ground);
-        this.setTickRandomly(true);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
-        this.setLightOpacity(255);
+        setTickRandomly(true);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
+        setLightOpacity(255);
     }
 
     /**
@@ -28,7 +28,7 @@ public class BlockFarmland extends Block
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        return AxisAlignedBB.getAABBPool().getAABB((double)(p_149668_2_ + 0), (double)(p_149668_3_ + 0), (double)(p_149668_4_ + 0), (double)(p_149668_2_ + 1), (double)(p_149668_3_ + 1), (double)(p_149668_4_ + 1));
+        return AxisAlignedBB.getAABBPool().getAABB(p_149668_2_ + 0, p_149668_3_ + 0, p_149668_4_ + 0, p_149668_2_ + 1, p_149668_3_ + 1, p_149668_4_ + 1);
     }
 
     public boolean isOpaqueCube()
@@ -46,7 +46,7 @@ public class BlockFarmland extends Block
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        if (!this.func_149821_m(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_) && !p_149674_1_.canLightningStrikeAt(p_149674_2_, p_149674_3_ + 1, p_149674_4_))
+        if (!func_149821_m(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_) && !p_149674_1_.canLightningStrikeAt(p_149674_2_, p_149674_3_ + 1, p_149674_4_))
         {
             int var6 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
 
@@ -54,7 +54,7 @@ public class BlockFarmland extends Block
             {
                 p_149674_1_.setBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_, var6 - 1, 2);
             }
-            else if (!this.func_149822_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_))
+            else if (!func_149822_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_))
             {
                 p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, Blocks.dirt);
             }

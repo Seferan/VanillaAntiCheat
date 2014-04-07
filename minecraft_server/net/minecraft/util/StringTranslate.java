@@ -52,18 +52,18 @@ public class StringTranslate
 
                 if (!var3.isEmpty() && var3.charAt(0) != 35)
                 {
-                    String[] var4 = (String[])Iterables.toArray(equalSignSplitter.split(var3), String.class);
+                    String[] var4 = Iterables.toArray(equalSignSplitter.split(var3), String.class);
 
                     if (var4 != null && var4.length == 2)
                     {
                         String var5 = var4[0];
                         String var6 = numericVariablePattern.matcher(var4[1]).replaceAll("%$1s");
-                        this.languageList.put(var5, var6);
+                        languageList.put(var5, var6);
                     }
                 }
             }
 
-            this.lastUpdateTimeInMilliseconds = System.currentTimeMillis();
+            lastUpdateTimeInMilliseconds = System.currentTimeMillis();
         }
         catch (IOException var7)
         {
@@ -84,7 +84,7 @@ public class StringTranslate
      */
     public synchronized String translateKey(String par1Str)
     {
-        return this.tryTranslateKey(par1Str);
+        return tryTranslateKey(par1Str);
     }
 
     /**
@@ -92,7 +92,7 @@ public class StringTranslate
      */
     public synchronized String translateKeyFormat(String par1Str, Object... par2ArrayOfObj)
     {
-        String var3 = this.tryTranslateKey(par1Str);
+        String var3 = tryTranslateKey(par1Str);
 
         try
         {
@@ -110,7 +110,7 @@ public class StringTranslate
      */
     private String tryTranslateKey(String par1Str)
     {
-        String var2 = (String)this.languageList.get(par1Str);
+        String var2 = (String)languageList.get(par1Str);
         return var2 == null ? par1Str : var2;
     }
 
@@ -119,7 +119,7 @@ public class StringTranslate
      */
     public synchronized boolean isKeyTranslated(String par1Str)
     {
-        return this.languageList.containsKey(par1Str);
+        return languageList.containsKey(par1Str);
     }
 
     /**
@@ -128,6 +128,6 @@ public class StringTranslate
      */
     public long getLastUpdateTimeInMilliseconds()
     {
-        return this.lastUpdateTimeInMilliseconds;
+        return lastUpdateTimeInMilliseconds;
     }
 }

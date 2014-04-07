@@ -17,7 +17,7 @@ public class C09PacketHeldItemChange extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149615_a = p_148837_1_.readShort();
+        field_149615_a = p_148837_1_.readShort();
     }
 
     /**
@@ -25,7 +25,7 @@ public class C09PacketHeldItemChange extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeShort(this.field_149615_a);
+        p_148840_1_.writeShort(field_149615_a);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149613_1_)
@@ -35,7 +35,7 @@ public class C09PacketHeldItemChange extends Packet
 
     public int func_149614_c()
     {
-        return this.field_149615_a;
+        return field_149615_a;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

@@ -15,7 +15,7 @@ public class EnchantmentThorns extends Enchantment
     public EnchantmentThorns(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.armor_torso);
-        this.setName("thorns");
+        setName("thorns");
     }
 
     /**
@@ -56,7 +56,7 @@ public class EnchantmentThorns extends Enchantment
 
         if (func_92094_a(p_151367_3_, var4))
         {
-            p_151367_2_.attackEntityFrom(DamageSource.causeThornsDamage(p_151367_1_), (float)func_92095_b(p_151367_3_, var4));
+            p_151367_2_.attackEntityFrom(DamageSource.causeThornsDamage(p_151367_1_), func_92095_b(p_151367_3_, var4));
             p_151367_2_.playSound("damage.thorns", 0.5F, 1.0F);
 
             if (var5 != null)
@@ -72,7 +72,7 @@ public class EnchantmentThorns extends Enchantment
 
     public static boolean func_92094_a(int par0, Random par1Random)
     {
-        return par0 <= 0 ? false : par1Random.nextFloat() < 0.15F * (float)par0;
+        return par0 <= 0 ? false : par1Random.nextFloat() < 0.15F * par0;
     }
 
     public static int func_92095_b(int par0, Random par1Random)

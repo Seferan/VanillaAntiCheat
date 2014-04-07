@@ -27,7 +27,7 @@ public class ScoreHealthCriteria extends ScoreDummyCriteria
 
         if (par1List.size() > 0)
         {
-            var2 /= (float)par1List.size();
+            var2 /= par1List.size();
         }
 
         return MathHelper.ceiling_float_int(var2);

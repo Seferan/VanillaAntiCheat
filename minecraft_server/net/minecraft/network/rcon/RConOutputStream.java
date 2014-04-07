@@ -15,8 +15,8 @@ public class RConOutputStream
 
     public RConOutputStream(int par1)
     {
-        this.byteArrayOutput = new ByteArrayOutputStream(par1);
-        this.output = new DataOutputStream(this.byteArrayOutput);
+        byteArrayOutput = new ByteArrayOutputStream(par1);
+        output = new DataOutputStream(byteArrayOutput);
     }
 
     /**
@@ -24,7 +24,7 @@ public class RConOutputStream
      */
     public void writeByteArray(byte[] par1ArrayOfByte) throws IOException
     {
-        this.output.write(par1ArrayOfByte, 0, par1ArrayOfByte.length);
+        output.write(par1ArrayOfByte, 0, par1ArrayOfByte.length);
     }
 
     /**
@@ -32,8 +32,8 @@ public class RConOutputStream
      */
     public void writeString(String par1Str) throws IOException
     {
-        this.output.writeBytes(par1Str);
-        this.output.write(0);
+        output.writeBytes(par1Str);
+        output.write(0);
     }
 
     /**
@@ -41,7 +41,7 @@ public class RConOutputStream
      */
     public void writeInt(int par1) throws IOException
     {
-        this.output.write(par1);
+        output.write(par1);
     }
 
     /**
@@ -49,7 +49,7 @@ public class RConOutputStream
      */
     public void writeShort(short par1) throws IOException
     {
-        this.output.writeShort(Short.reverseBytes(par1));
+        output.writeShort(Short.reverseBytes(par1));
     }
 
     /**
@@ -57,7 +57,7 @@ public class RConOutputStream
      */
     public byte[] toByteArray()
     {
-        return this.byteArrayOutput.toByteArray();
+        return byteArrayOutput.toByteArray();
     }
 
     /**
@@ -65,6 +65,6 @@ public class RConOutputStream
      */
     public void reset()
     {
-        this.byteArrayOutput.reset();
+        byteArrayOutput.reset();
     }
 }

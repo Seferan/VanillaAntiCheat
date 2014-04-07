@@ -25,22 +25,22 @@ public class S18PacketEntityTeleport extends Packet
 
     public S18PacketEntityTeleport(Entity p_i45233_1_)
     {
-        this.field_149458_a = p_i45233_1_.getEntityId();
-        this.field_149456_b = MathHelper.floor_double(p_i45233_1_.posX * 32.0D);
-        this.field_149457_c = MathHelper.floor_double(p_i45233_1_.posY * 32.0D);
-        this.field_149454_d = MathHelper.floor_double(p_i45233_1_.posZ * 32.0D);
-        this.field_149455_e = (byte)((int)(p_i45233_1_.rotationYaw * 256.0F / 360.0F));
-        this.field_149453_f = (byte)((int)(p_i45233_1_.rotationPitch * 256.0F / 360.0F));
+        field_149458_a = p_i45233_1_.getEntityId();
+        field_149456_b = MathHelper.floor_double(p_i45233_1_.posX * 32.0D);
+        field_149457_c = MathHelper.floor_double(p_i45233_1_.posY * 32.0D);
+        field_149454_d = MathHelper.floor_double(p_i45233_1_.posZ * 32.0D);
+        field_149455_e = (byte)((int)(p_i45233_1_.rotationYaw * 256.0F / 360.0F));
+        field_149453_f = (byte)((int)(p_i45233_1_.rotationPitch * 256.0F / 360.0F));
     }
 
     public S18PacketEntityTeleport(int p_i45234_1_, int p_i45234_2_, int p_i45234_3_, int p_i45234_4_, byte p_i45234_5_, byte p_i45234_6_)
     {
-        this.field_149458_a = p_i45234_1_;
-        this.field_149456_b = p_i45234_2_;
-        this.field_149457_c = p_i45234_3_;
-        this.field_149454_d = p_i45234_4_;
-        this.field_149455_e = p_i45234_5_;
-        this.field_149453_f = p_i45234_6_;
+        field_149458_a = p_i45234_1_;
+        field_149456_b = p_i45234_2_;
+        field_149457_c = p_i45234_3_;
+        field_149454_d = p_i45234_4_;
+        field_149455_e = p_i45234_5_;
+        field_149453_f = p_i45234_6_;
     }
 
     /**
@@ -48,12 +48,12 @@ public class S18PacketEntityTeleport extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149458_a = p_148837_1_.readInt();
-        this.field_149456_b = p_148837_1_.readInt();
-        this.field_149457_c = p_148837_1_.readInt();
-        this.field_149454_d = p_148837_1_.readInt();
-        this.field_149455_e = p_148837_1_.readByte();
-        this.field_149453_f = p_148837_1_.readByte();
+        field_149458_a = p_148837_1_.readInt();
+        field_149456_b = p_148837_1_.readInt();
+        field_149457_c = p_148837_1_.readInt();
+        field_149454_d = p_148837_1_.readInt();
+        field_149455_e = p_148837_1_.readByte();
+        field_149453_f = p_148837_1_.readByte();
     }
 
     /**
@@ -61,12 +61,12 @@ public class S18PacketEntityTeleport extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149458_a);
-        p_148840_1_.writeInt(this.field_149456_b);
-        p_148840_1_.writeInt(this.field_149457_c);
-        p_148840_1_.writeInt(this.field_149454_d);
-        p_148840_1_.writeByte(this.field_149455_e);
-        p_148840_1_.writeByte(this.field_149453_f);
+        p_148840_1_.writeInt(field_149458_a);
+        p_148840_1_.writeInt(field_149456_b);
+        p_148840_1_.writeInt(field_149457_c);
+        p_148840_1_.writeInt(field_149454_d);
+        p_148840_1_.writeByte(field_149455_e);
+        p_148840_1_.writeByte(field_149453_f);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149452_1_)

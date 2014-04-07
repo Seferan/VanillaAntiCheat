@@ -84,7 +84,7 @@ public class CommandGive extends CommandBase
 
             String giverName = par1ICommandSender.getUsername();
             String recieverName = var3.getUsername();
-            if (this.isTargetOp(var3, par1ICommandSender))
+            if (isTargetOp(var3, par1ICommandSender))
             {
                 notifyAdmins(par1ICommandSender, "Tried to give " + var7.func_151000_E().getUnformattedText() + " * " + Integer.valueOf(var5) + " to non-op " + recieverName + "!");
             }
@@ -104,7 +104,7 @@ public class CommandGive extends CommandBase
      */
     public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getPlayers()) : (par2ArrayOfStr.length == 2 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, Item.itemRegistry.getKeys()) : null);
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, getPlayers()) : (par2ArrayOfStr.length == 2 ? getListOfStringsFromIterableMatchingLastWord(par2ArrayOfStr, Item.itemRegistry.getKeys()) : null);
     }
 
     protected String[] getPlayers()

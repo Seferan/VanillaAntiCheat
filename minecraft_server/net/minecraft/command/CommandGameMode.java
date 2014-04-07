@@ -33,13 +33,13 @@ public class CommandGameMode extends CommandBase
     {
         if (par2ArrayOfStr.length > 0)
         {
-            WorldSettings.GameType var3 = this.getGameModeFromCommand(par1ICommandSender, par2ArrayOfStr[0]);
+            WorldSettings.GameType var3 = getGameModeFromCommand(par1ICommandSender, par2ArrayOfStr[0]);
             EntityPlayerMP var4;
             ChatComponentTranslation var5 = new ChatComponentTranslation("gameMode." + var3.getName(), new Object[0]);
             if (par2ArrayOfStr.length >= 2)
             {
                 var4 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
-                if (this.isTargetOp(var4, par1ICommandSender))
+                if (isTargetOp(var4, par1ICommandSender))
                 {
                     notifyAdmins(par1ICommandSender, "Tried to set non-op " + var4.getUsername() + "'s game mode to " + var5.getUnformattedText() + "!");
                     return;
@@ -81,7 +81,7 @@ public class CommandGameMode extends CommandBase
      */
     public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"survival", "creative", "adventure"}) : (par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getListOfPlayerUsernames()) : null);
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"survival", "creative", "adventure"}) : (par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, getListOfPlayerUsernames()) : null);
     }
 
     /**

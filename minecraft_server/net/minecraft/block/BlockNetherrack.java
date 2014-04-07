@@ -11,7 +11,7 @@ public class BlockNetherrack extends Block
     public BlockNetherrack()
     {
         super(Material.rock);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public MapColor getMapColor(int p_149728_1_)

@@ -12,7 +12,7 @@ public class WorldGenDoublePlant extends WorldGenerator
 
     public void func_150548_a(int p_150548_1_)
     {
-        this.field_150549_a = p_150548_1_;
+        field_150549_a = p_150548_1_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -27,7 +27,7 @@ public class WorldGenDoublePlant extends WorldGenerator
 
             if (par1World.isAirBlock(var8, var9, var10) && (!par1World.provider.hasNoSky || var9 < 254) && Blocks.double_plant.canPlaceBlockAt(par1World, var8, var9, var10))
             {
-                Blocks.double_plant.func_149889_c(par1World, var8, var9, var10, this.field_150549_a, 2);
+                Blocks.double_plant.func_149889_c(par1World, var8, var9, var10, field_150549_a, 2);
                 var6 = true;
             }
         }

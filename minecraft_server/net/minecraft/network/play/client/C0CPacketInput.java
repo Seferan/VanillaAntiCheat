@@ -20,10 +20,10 @@ public class C0CPacketInput extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149624_a = p_148837_1_.readFloat();
-        this.field_149622_b = p_148837_1_.readFloat();
-        this.field_149623_c = p_148837_1_.readBoolean();
-        this.field_149621_d = p_148837_1_.readBoolean();
+        field_149624_a = p_148837_1_.readFloat();
+        field_149622_b = p_148837_1_.readFloat();
+        field_149623_c = p_148837_1_.readBoolean();
+        field_149621_d = p_148837_1_.readBoolean();
     }
 
     /**
@@ -31,10 +31,10 @@ public class C0CPacketInput extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeFloat(this.field_149624_a);
-        p_148840_1_.writeFloat(this.field_149622_b);
-        p_148840_1_.writeBoolean(this.field_149623_c);
-        p_148840_1_.writeBoolean(this.field_149621_d);
+        p_148840_1_.writeFloat(field_149624_a);
+        p_148840_1_.writeFloat(field_149622_b);
+        p_148840_1_.writeBoolean(field_149623_c);
+        p_148840_1_.writeBoolean(field_149621_d);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149619_1_)
@@ -44,22 +44,22 @@ public class C0CPacketInput extends Packet
 
     public float func_149620_c()
     {
-        return this.field_149624_a;
+        return field_149624_a;
     }
 
     public float func_149616_d()
     {
-        return this.field_149622_b;
+        return field_149622_b;
     }
 
     public boolean func_149618_e()
     {
-        return this.field_149623_c;
+        return field_149623_c;
     }
 
     public boolean func_149617_f()
     {
-        return this.field_149621_d;
+        return field_149621_d;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

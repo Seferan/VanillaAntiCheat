@@ -167,7 +167,7 @@ public class StatList
                 if (var1.getEnableStats())
                 {
                     mineBlockStatArray[var2] = (new StatCrafting("stat.mineBlock." + var2, new ChatComponentTranslation("stat.mineBlock", new Object[] {(new ItemStack(var1)).func_151000_E()}), Item.getItemFromBlock(var1))).registerStat();
-                    objectMineStats.add((StatCrafting)mineBlockStatArray[var2]);
+                    objectMineStats.add(mineBlockStatArray[var2]);
                 }
             }
         }
@@ -190,7 +190,7 @@ public class StatList
 
                 if (!(var1 instanceof ItemBlock))
                 {
-                    itemStats.add((StatCrafting)objectUseStats[var2]);
+                    itemStats.add(objectUseStats[var2]);
                 }
             }
         }

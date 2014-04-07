@@ -21,11 +21,11 @@ public class C07PacketPlayerDigging extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.status = p_148837_1_.readUnsignedByte();
-        this.x = p_148837_1_.readInt();
-        this.y = p_148837_1_.readUnsignedByte();
-        this.z = p_148837_1_.readInt();
-        this.side = p_148837_1_.readUnsignedByte();
+        status = p_148837_1_.readUnsignedByte();
+        x = p_148837_1_.readInt();
+        y = p_148837_1_.readUnsignedByte();
+        z = p_148837_1_.readInt();
+        side = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -33,11 +33,11 @@ public class C07PacketPlayerDigging extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.status);
-        p_148840_1_.writeInt(this.x);
-        p_148840_1_.writeByte(this.y);
-        p_148840_1_.writeInt(this.z);
-        p_148840_1_.writeByte(this.side);
+        p_148840_1_.writeByte(status);
+        p_148840_1_.writeInt(x);
+        p_148840_1_.writeByte(y);
+        p_148840_1_.writeInt(z);
+        p_148840_1_.writeByte(side);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149504_1_)
@@ -47,27 +47,27 @@ public class C07PacketPlayerDigging extends Packet
 
     public int getX()
     {
-        return this.x;
+        return x;
     }
 
     public int getY()
     {
-        return this.y;
+        return y;
     }
 
     public int getZ()
     {
-        return this.z;
+        return z;
     }
 
     public int getSide()
     {
-        return this.side;
+        return side;
     }
 
     public int getStatus()
     {
-        return this.status;
+        return status;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

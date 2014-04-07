@@ -21,9 +21,9 @@ public class S2FPacketSetSlot extends Packet
 
     public S2FPacketSetSlot(int p_i45188_1_, int p_i45188_2_, ItemStack p_i45188_3_)
     {
-        this.field_149179_a = p_i45188_1_;
-        this.field_149177_b = p_i45188_2_;
-        this.field_149178_c = p_i45188_3_ == null ? null : p_i45188_3_.copy();
+        field_149179_a = p_i45188_1_;
+        field_149177_b = p_i45188_2_;
+        field_149178_c = p_i45188_3_ == null ? null : p_i45188_3_.copy();
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149176_1_)
@@ -36,9 +36,9 @@ public class S2FPacketSetSlot extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149179_a = p_148837_1_.readUnsignedByte();
-        this.field_149177_b = p_148837_1_.readShort();
-        this.field_149178_c = p_148837_1_.readItemStackFromBuffer();
+        field_149179_a = p_148837_1_.readUnsignedByte();
+        field_149177_b = p_148837_1_.readShort();
+        field_149178_c = p_148837_1_.readItemStackFromBuffer();
     }
 
     /**
@@ -46,9 +46,9 @@ public class S2FPacketSetSlot extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149179_a);
-        p_148840_1_.writeShort(this.field_149177_b);
-        p_148840_1_.writeItemStackToBuffer(this.field_149178_c);
+        p_148840_1_.writeByte(field_149179_a);
+        p_148840_1_.writeShort(field_149177_b);
+        p_148840_1_.writeItemStackToBuffer(field_149178_c);
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

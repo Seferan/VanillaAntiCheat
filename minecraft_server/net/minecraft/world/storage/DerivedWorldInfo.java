@@ -13,7 +13,7 @@ public class DerivedWorldInfo extends WorldInfo
 
     public DerivedWorldInfo(WorldInfo par1WorldInfo)
     {
-        this.theWorldInfo = par1WorldInfo;
+        theWorldInfo = par1WorldInfo;
     }
 
     /**
@@ -21,7 +21,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public NBTTagCompound getNBTTagCompound()
     {
-        return this.theWorldInfo.getNBTTagCompound();
+        return theWorldInfo.getNBTTagCompound();
     }
 
     /**
@@ -30,7 +30,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public NBTTagCompound cloneNBTCompound(NBTTagCompound par1NBTTagCompound)
     {
-        return this.theWorldInfo.cloneNBTCompound(par1NBTTagCompound);
+        return theWorldInfo.cloneNBTCompound(par1NBTTagCompound);
     }
 
     /**
@@ -38,7 +38,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public long getSeed()
     {
-        return this.theWorldInfo.getSeed();
+        return theWorldInfo.getSeed();
     }
 
     /**
@@ -46,7 +46,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public int getSpawnX()
     {
-        return this.theWorldInfo.getSpawnX();
+        return theWorldInfo.getSpawnX();
     }
 
     /**
@@ -54,7 +54,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public int getSpawnY()
     {
-        return this.theWorldInfo.getSpawnY();
+        return theWorldInfo.getSpawnY();
     }
 
     /**
@@ -62,12 +62,12 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public int getSpawnZ()
     {
-        return this.theWorldInfo.getSpawnZ();
+        return theWorldInfo.getSpawnZ();
     }
 
     public long getWorldTotalTime()
     {
-        return this.theWorldInfo.getWorldTotalTime();
+        return theWorldInfo.getWorldTotalTime();
     }
 
     /**
@@ -75,7 +75,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public long getWorldTime()
     {
-        return this.theWorldInfo.getWorldTime();
+        return theWorldInfo.getWorldTime();
     }
 
     /**
@@ -83,12 +83,12 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public NBTTagCompound getPlayerNBTTagCompound()
     {
-        return this.theWorldInfo.getPlayerNBTTagCompound();
+        return theWorldInfo.getPlayerNBTTagCompound();
     }
 
     public int getDimension()
     {
-        return this.theWorldInfo.getDimension();
+        return theWorldInfo.getDimension();
     }
 
     /**
@@ -96,7 +96,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public String getWorldName()
     {
-        return this.theWorldInfo.getWorldName();
+        return theWorldInfo.getWorldName();
     }
 
     /**
@@ -104,7 +104,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public int getSaveVersion()
     {
-        return this.theWorldInfo.getSaveVersion();
+        return theWorldInfo.getSaveVersion();
     }
 
     /**
@@ -112,7 +112,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public boolean isThundering()
     {
-        return this.theWorldInfo.isThundering();
+        return theWorldInfo.isThundering();
     }
 
     /**
@@ -120,7 +120,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public int getThunderTime()
     {
-        return this.theWorldInfo.getThunderTime();
+        return theWorldInfo.getThunderTime();
     }
 
     /**
@@ -128,7 +128,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public boolean isRaining()
     {
-        return this.theWorldInfo.isRaining();
+        return theWorldInfo.isRaining();
     }
 
     /**
@@ -136,7 +136,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public int getRainTime()
     {
-        return this.theWorldInfo.getRainTime();
+        return theWorldInfo.getRainTime();
     }
 
     /**
@@ -144,7 +144,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public WorldSettings.GameType getGameType()
     {
-        return this.theWorldInfo.getGameType();
+        return theWorldInfo.getGameType();
     }
 
     public void incrementTotalWorldTime(long par1)
@@ -210,7 +210,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public boolean isMapFeaturesEnabled()
     {
-        return this.theWorldInfo.isMapFeaturesEnabled();
+        return theWorldInfo.isMapFeaturesEnabled();
     }
 
     /**
@@ -218,12 +218,12 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public boolean isHardcoreModeEnabled()
     {
-        return this.theWorldInfo.isHardcoreModeEnabled();
+        return theWorldInfo.isHardcoreModeEnabled();
     }
 
     public WorldType getTerrainType()
     {
-        return this.theWorldInfo.getTerrainType();
+        return theWorldInfo.getTerrainType();
     }
 
     public void setTerrainType(WorldType par1WorldType)
@@ -235,7 +235,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public boolean areCommandsAllowed()
     {
-        return this.theWorldInfo.areCommandsAllowed();
+        return theWorldInfo.areCommandsAllowed();
     }
 
     /**
@@ -243,7 +243,7 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public boolean isInitialized()
     {
-        return this.theWorldInfo.isInitialized();
+        return theWorldInfo.isInitialized();
     }
 
     /**
@@ -258,6 +258,6 @@ public class DerivedWorldInfo extends WorldInfo
      */
     public GameRules getGameRulesInstance()
     {
-        return this.theWorldInfo.getGameRulesInstance();
+        return theWorldInfo.getGameRulesInstance();
     }
 }

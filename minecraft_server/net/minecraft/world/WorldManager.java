@@ -21,8 +21,8 @@ public class WorldManager implements IWorldAccess
 
     public WorldManager(MinecraftServer par1MinecraftServer, WorldServer par2WorldServer)
     {
-        this.mcServer = par1MinecraftServer;
-        this.theWorldServer = par2WorldServer;
+        mcServer = par1MinecraftServer;
+        theWorldServer = par2WorldServer;
     }
 
     /**
@@ -39,7 +39,7 @@ public class WorldManager implements IWorldAccess
      */
     public void onEntityCreate(Entity par1Entity)
     {
-        this.theWorldServer.getEntityTracker().trackEntity(par1Entity);
+        theWorldServer.getEntityTracker().trackEntity(par1Entity);
     }
 
     /**
@@ -49,7 +49,7 @@ public class WorldManager implements IWorldAccess
      */
     public void onEntityDestroy(Entity par1Entity)
     {
-        this.theWorldServer.getEntityTracker().untrackEntity(par1Entity);
+        theWorldServer.getEntityTracker().untrackEntity(par1Entity);
     }
 
     /**
@@ -57,7 +57,7 @@ public class WorldManager implements IWorldAccess
      */
     public void playSound(String par1Str, double par2, double par4, double par6, float par8, float par9)
     {
-        this.mcServer.getConfigurationManager().func_148541_a(par2, par4, par6, par8 > 1.0F ? (double)(16.0F * par8) : 16.0D, this.theWorldServer.provider.dimensionId, new S29PacketSoundEffect(par1Str, par2, par4, par6, par8, par9));
+        mcServer.getConfigurationManager().func_148541_a(par2, par4, par6, par8 > 1.0F ? (double)(16.0F * par8) : 16.0D, theWorldServer.provider.dimensionId, new S29PacketSoundEffect(par1Str, par2, par4, par6, par8, par9));
     }
 
     /**
@@ -65,7 +65,7 @@ public class WorldManager implements IWorldAccess
      */
     public void playSoundToNearExcept(EntityPlayer par1EntityPlayer, String par2Str, double par3, double par5, double par7, float par9, float par10)
     {
-        this.mcServer.getConfigurationManager().func_148543_a(par1EntityPlayer, par3, par5, par7, par9 > 1.0F ? (double)(16.0F * par9) : 16.0D, this.theWorldServer.provider.dimensionId, new S29PacketSoundEffect(par2Str, par3, par5, par7, par9, par10));
+        mcServer.getConfigurationManager().func_148543_a(par1EntityPlayer, par3, par5, par7, par9 > 1.0F ? (double)(16.0F * par9) : 16.0D, theWorldServer.provider.dimensionId, new S29PacketSoundEffect(par2Str, par3, par5, par7, par9, par10));
     }
 
     public void func_147585_a(int p_147585_1_, int p_147585_2_, int p_147585_3_, int p_147585_4_, int p_147585_5_, int p_147585_6_)
@@ -74,7 +74,7 @@ public class WorldManager implements IWorldAccess
 
     public void func_147586_a(int p_147586_1_, int p_147586_2_, int p_147586_3_)
     {
-        this.theWorldServer.getPlayerManager().func_151250_a(p_147586_1_, p_147586_2_, p_147586_3_);
+        theWorldServer.getPlayerManager().func_151250_a(p_147586_1_, p_147586_2_, p_147586_3_);
     }
 
     public void func_147588_b(int p_147588_1_, int p_147588_2_, int p_147588_3_)
@@ -94,27 +94,27 @@ public class WorldManager implements IWorldAccess
      */
     public void playAuxSFX(EntityPlayer par1EntityPlayer, int par2, int par3, int par4, int par5, int par6)
     {
-        this.mcServer.getConfigurationManager().func_148543_a(par1EntityPlayer, (double)par3, (double)par4, (double)par5, 64.0D, this.theWorldServer.provider.dimensionId, new S28PacketEffect(par2, par3, par4, par5, par6, false));
+        mcServer.getConfigurationManager().func_148543_a(par1EntityPlayer, par3, par4, par5, 64.0D, theWorldServer.provider.dimensionId, new S28PacketEffect(par2, par3, par4, par5, par6, false));
     }
 
     public void broadcastSound(int par1, int par2, int par3, int par4, int par5)
     {
-        this.mcServer.getConfigurationManager().sendPacketToAllPlayers(new S28PacketEffect(par1, par2, par3, par4, par5, true));
+        mcServer.getConfigurationManager().sendPacketToAllPlayers(new S28PacketEffect(par1, par2, par3, par4, par5, true));
     }
 
     public void func_147587_b(int p_147587_1_, int p_147587_2_, int p_147587_3_, int p_147587_4_, int p_147587_5_)
     {
-        Iterator var6 = this.mcServer.getConfigurationManager().playerEntityList.iterator();
+        Iterator var6 = mcServer.getConfigurationManager().playerEntityList.iterator();
 
         while (var6.hasNext())
         {
             EntityPlayerMP var7 = (EntityPlayerMP)var6.next();
 
-            if (var7 != null && var7.worldObj == this.theWorldServer && var7.getEntityId() != p_147587_1_)
+            if (var7 != null && var7.worldObj == theWorldServer && var7.getEntityId() != p_147587_1_)
             {
-                double var8 = (double)p_147587_2_ - var7.posX;
-                double var10 = (double)p_147587_3_ - var7.posY;
-                double var12 = (double)p_147587_4_ - var7.posZ;
+                double var8 = p_147587_2_ - var7.posX;
+                double var10 = p_147587_3_ - var7.posY;
+                double var12 = p_147587_4_ - var7.posZ;
 
                 if (var8 * var8 + var10 * var10 + var12 * var12 < 1024.0D)
                 {

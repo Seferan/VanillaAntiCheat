@@ -109,9 +109,9 @@ public abstract class Enchantment
 
     protected Enchantment(int par1, int par2, EnumEnchantmentType par3EnumEnchantmentType)
     {
-        this.effectId = par1;
-        this.weight = par2;
-        this.type = par3EnumEnchantmentType;
+        effectId = par1;
+        weight = par2;
+        type = par3EnumEnchantmentType;
 
         if (enchantmentsList[par1] != null)
         {
@@ -125,7 +125,7 @@ public abstract class Enchantment
 
     public int getWeight()
     {
-        return this.weight;
+        return weight;
     }
 
     /**
@@ -159,7 +159,7 @@ public abstract class Enchantment
      */
     public int getMaxEnchantability(int par1)
     {
-        return this.getMinEnchantability(par1) + 5;
+        return getMinEnchantability(par1) + 5;
     }
 
     /**
@@ -194,7 +194,7 @@ public abstract class Enchantment
      */
     public Enchantment setName(String par1Str)
     {
-        this.name = par1Str;
+        name = par1Str;
         return this;
     }
 
@@ -203,7 +203,7 @@ public abstract class Enchantment
      */
     public String getName()
     {
-        return "enchantment." + this.name;
+        return "enchantment." + name;
     }
 
     /**
@@ -212,13 +212,13 @@ public abstract class Enchantment
      */
     public String getTranslatedName(int par1)
     {
-        String var2 = StatCollector.translateToLocal(this.getName());
+        String var2 = StatCollector.translateToLocal(getName());
         return var2 + " " + StatCollector.translateToLocal("enchantment.level." + par1);
     }
 
     public boolean canApply(ItemStack par1ItemStack)
     {
-        return this.type.canEnchantItem(par1ItemStack.getItem());
+        return type.canEnchantItem(par1ItemStack.getItem());
     }
 
     public void func_151368_a(EntityLivingBase p_151368_1_, Entity p_151368_2_, int p_151368_3_)

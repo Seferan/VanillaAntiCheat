@@ -120,7 +120,7 @@ public class WeightedRandom
 
         public Item(int par1)
         {
-            this.itemWeight = par1;
+            itemWeight = par1;
         }
     }
 }

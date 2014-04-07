@@ -19,8 +19,8 @@ public class BlockTrapDoor extends Block
         super(p_i45434_1_);
         float var2 = 0.5F;
         float var3 = 1.0F;
-        this.setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, var3, 0.5F + var2);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
+        setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, var3, 0.5F + var2);
+        setcreativeTab(CreativeTabs.tabRedstone);
     }
 
     public boolean isOpaqueCube()
@@ -52,13 +52,13 @@ public class BlockTrapDoor extends Block
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
         return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.func_150117_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
+        func_150117_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
     }
 
     /**
@@ -67,7 +67,7 @@ public class BlockTrapDoor extends Block
     public void setBlockBoundsForItemRender()
     {
         float var1 = 0.1875F;
-        this.setBlockBounds(0.0F, 0.5F - var1 / 2.0F, 0.0F, 1.0F, 0.5F + var1 / 2.0F, 1.0F);
+        setBlockBounds(0.0F, 0.5F - var1 / 2.0F, 0.0F, 1.0F, 0.5F + var1 / 2.0F, 1.0F);
     }
 
     public void func_150117_b(int p_150117_1_)
@@ -76,33 +76,33 @@ public class BlockTrapDoor extends Block
 
         if ((p_150117_1_ & 8) != 0)
         {
-            this.setBlockBounds(0.0F, 1.0F - var2, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 1.0F - var2, 0.0F, 1.0F, 1.0F, 1.0F);
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var2, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var2, 1.0F);
         }
 
         if (func_150118_d(p_150117_1_))
         {
             if ((p_150117_1_ & 3) == 0)
             {
-                this.setBlockBounds(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
+                setBlockBounds(0.0F, 0.0F, 1.0F - var2, 1.0F, 1.0F, 1.0F);
             }
 
             if ((p_150117_1_ & 3) == 1)
             {
-                this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
+                setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var2);
             }
 
             if ((p_150117_1_ & 3) == 2)
             {
-                this.setBlockBounds(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+                setBlockBounds(1.0F - var2, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
             }
 
             if ((p_150117_1_ & 3) == 3)
             {
-                this.setBlockBounds(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
+                setBlockBounds(0.0F, 0.0F, 0.0F, var2, 1.0F, 1.0F);
             }
         }
     }
@@ -119,7 +119,7 @@ public class BlockTrapDoor extends Block
      */
     public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-        if (this.blockMaterial == Material.iron)
+        if (blockMaterial == Material.iron)
         {
             return true;
         }
@@ -175,21 +175,21 @@ public class BlockTrapDoor extends Block
             if (!func_150119_a(p_149695_1_.getBlock(var7, p_149695_3_, var8)))
             {
                 p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
-                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
+                dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
             }
 
             boolean var9 = p_149695_1_.isBlockIndirectlyGettingPowered(p_149695_2_, p_149695_3_, p_149695_4_);
 
             if (var9 || p_149695_5_.canProvidePower())
             {
-                this.func_150120_a(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var9);
+                func_150120_a(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var9);
             }
         }
     }
 
     public MovingObjectPosition collisionRayTrace(World p_149731_1_, int p_149731_2_, int p_149731_3_, int p_149731_4_, Vec3 p_149731_5_, Vec3 p_149731_6_)
     {
-        this.setBlockBoundsBasedOnState(p_149731_1_, p_149731_2_, p_149731_3_, p_149731_4_);
+        setBlockBoundsBasedOnState(p_149731_1_, p_149731_2_, p_149731_3_, p_149731_4_);
         return super.collisionRayTrace(p_149731_1_, p_149731_2_, p_149731_3_, p_149731_4_, p_149731_5_, p_149731_6_);
     }
 

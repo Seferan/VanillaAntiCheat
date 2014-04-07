@@ -27,13 +27,13 @@ public class S01PacketJoinGame extends Packet
 
     public S01PacketJoinGame(int p_i45201_1_, WorldSettings.GameType p_i45201_2_, boolean p_i45201_3_, int p_i45201_4_, EnumDifficulty p_i45201_5_, int p_i45201_6_, WorldType p_i45201_7_)
     {
-        this.field_149206_a = p_i45201_1_;
-        this.field_149202_d = p_i45201_4_;
-        this.field_149203_e = p_i45201_5_;
-        this.field_149205_c = p_i45201_2_;
-        this.field_149200_f = p_i45201_6_;
-        this.field_149204_b = p_i45201_3_;
-        this.field_149201_g = p_i45201_7_;
+        field_149206_a = p_i45201_1_;
+        field_149202_d = p_i45201_4_;
+        field_149203_e = p_i45201_5_;
+        field_149205_c = p_i45201_2_;
+        field_149200_f = p_i45201_6_;
+        field_149204_b = p_i45201_3_;
+        field_149201_g = p_i45201_7_;
     }
 
     /**
@@ -41,19 +41,19 @@ public class S01PacketJoinGame extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149206_a = p_148837_1_.readInt();
+        field_149206_a = p_148837_1_.readInt();
         short var2 = p_148837_1_.readUnsignedByte();
-        this.field_149204_b = (var2 & 8) == 8;
+        field_149204_b = (var2 & 8) == 8;
         int var3 = var2 & -9;
-        this.field_149205_c = WorldSettings.GameType.getByID(var3);
-        this.field_149202_d = p_148837_1_.readByte();
-        this.field_149203_e = EnumDifficulty.func_151523_a(p_148837_1_.readUnsignedByte());
-        this.field_149200_f = p_148837_1_.readUnsignedByte();
-        this.field_149201_g = WorldType.parseWorldType(p_148837_1_.readStringFromBuffer(16));
+        field_149205_c = WorldSettings.GameType.getByID(var3);
+        field_149202_d = p_148837_1_.readByte();
+        field_149203_e = EnumDifficulty.func_151523_a(p_148837_1_.readUnsignedByte());
+        field_149200_f = p_148837_1_.readUnsignedByte();
+        field_149201_g = WorldType.parseWorldType(p_148837_1_.readStringFromBuffer(16));
 
-        if (this.field_149201_g == null)
+        if (field_149201_g == null)
         {
-            this.field_149201_g = WorldType.DEFAULT;
+            field_149201_g = WorldType.DEFAULT;
         }
     }
 
@@ -62,19 +62,19 @@ public class S01PacketJoinGame extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149206_a);
-        int var2 = this.field_149205_c.getID();
+        p_148840_1_.writeInt(field_149206_a);
+        int var2 = field_149205_c.getID();
 
-        if (this.field_149204_b)
+        if (field_149204_b)
         {
             var2 |= 8;
         }
 
         p_148840_1_.writeByte(var2);
-        p_148840_1_.writeByte(this.field_149202_d);
-        p_148840_1_.writeByte(this.field_149203_e.func_151525_a());
-        p_148840_1_.writeByte(this.field_149200_f);
-        p_148840_1_.writeStringToBuffer(this.field_149201_g.getWorldTypeName());
+        p_148840_1_.writeByte(field_149202_d);
+        p_148840_1_.writeByte(field_149203_e.func_151525_a());
+        p_148840_1_.writeByte(field_149200_f);
+        p_148840_1_.writeStringToBuffer(field_149201_g.getWorldTypeName());
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149199_1_)
@@ -88,7 +88,7 @@ public class S01PacketJoinGame extends Packet
      */
     public String serialize()
     {
-        return String.format("eid=%d, gameType=%d, hardcore=%b, dimension=%d, difficulty=%s, maxplayers=%d", new Object[] {Integer.valueOf(this.field_149206_a), Integer.valueOf(this.field_149205_c.getID()), Boolean.valueOf(this.field_149204_b), Integer.valueOf(this.field_149202_d), this.field_149203_e, Integer.valueOf(this.field_149200_f)});
+        return String.format("eid=%d, gameType=%d, hardcore=%b, dimension=%d, difficulty=%s, maxplayers=%d", new Object[] {Integer.valueOf(field_149206_a), Integer.valueOf(field_149205_c.getID()), Boolean.valueOf(field_149204_b), Integer.valueOf(field_149202_d), field_149203_e, Integer.valueOf(field_149200_f)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

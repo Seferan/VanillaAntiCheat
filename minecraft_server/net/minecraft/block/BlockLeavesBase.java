@@ -10,7 +10,7 @@ public class BlockLeavesBase extends Block
     protected BlockLeavesBase(Material p_i45433_1_, boolean p_i45433_2_)
     {
         super(p_i45433_1_);
-        this.field_150121_P = p_i45433_2_;
+        field_150121_P = p_i45433_2_;
     }
 
     public boolean isOpaqueCube()

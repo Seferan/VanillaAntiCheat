@@ -20,9 +20,9 @@ public class S05PacketSpawnPosition extends Packet
 
     public S05PacketSpawnPosition(int p_i45229_1_, int p_i45229_2_, int p_i45229_3_)
     {
-        this.field_149364_a = p_i45229_1_;
-        this.field_149362_b = p_i45229_2_;
-        this.field_149363_c = p_i45229_3_;
+        field_149364_a = p_i45229_1_;
+        field_149362_b = p_i45229_2_;
+        field_149363_c = p_i45229_3_;
     }
 
     /**
@@ -30,9 +30,9 @@ public class S05PacketSpawnPosition extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149364_a = p_148837_1_.readInt();
-        this.field_149362_b = p_148837_1_.readInt();
-        this.field_149363_c = p_148837_1_.readInt();
+        field_149364_a = p_148837_1_.readInt();
+        field_149362_b = p_148837_1_.readInt();
+        field_149363_c = p_148837_1_.readInt();
     }
 
     /**
@@ -40,9 +40,9 @@ public class S05PacketSpawnPosition extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149364_a);
-        p_148840_1_.writeInt(this.field_149362_b);
-        p_148840_1_.writeInt(this.field_149363_c);
+        p_148840_1_.writeInt(field_149364_a);
+        p_148840_1_.writeInt(field_149362_b);
+        p_148840_1_.writeInt(field_149363_c);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149361_1_)
@@ -66,7 +66,7 @@ public class S05PacketSpawnPosition extends Packet
      */
     public String serialize()
     {
-        return String.format("x=%d, y=%d, z=%d", new Object[] {Integer.valueOf(this.field_149364_a), Integer.valueOf(this.field_149362_b), Integer.valueOf(this.field_149363_c)});
+        return String.format("x=%d, y=%d, z=%d", new Object[] {Integer.valueOf(field_149364_a), Integer.valueOf(field_149362_b), Integer.valueOf(field_149363_c)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

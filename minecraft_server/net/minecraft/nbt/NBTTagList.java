@@ -25,21 +25,21 @@ public class NBTTagList extends NBTBase
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
-        if (!this.tagList.isEmpty())
+        if (!tagList.isEmpty())
         {
-            this.tagType = ((NBTBase)this.tagList.get(0)).getId();
+            tagType = ((NBTBase)tagList.get(0)).getId();
         }
         else
         {
-            this.tagType = 0;
+            tagType = 0;
         }
 
-        par1DataOutput.writeByte(this.tagType);
-        par1DataOutput.writeInt(this.tagList.size());
+        par1DataOutput.writeByte(tagType);
+        par1DataOutput.writeInt(tagList.size());
 
-        for (int var2 = 0; var2 < this.tagList.size(); ++var2)
+        for (int var2 = 0; var2 < tagList.size(); ++var2)
         {
-            ((NBTBase)this.tagList.get(var2)).write(par1DataOutput);
+            ((NBTBase)tagList.get(var2)).write(par1DataOutput);
         }
     }
 
@@ -55,15 +55,15 @@ public class NBTTagList extends NBTBase
         }
         else
         {
-            this.tagType = par1DataInput.readByte();
+            tagType = par1DataInput.readByte();
             int var3 = par1DataInput.readInt();
-            this.tagList = new ArrayList();
+            tagList = new ArrayList();
 
             for (int var4 = 0; var4 < var3; ++var4)
             {
-                NBTBase var5 = NBTBase.func_150284_a(this.tagType);
+                NBTBase var5 = NBTBase.func_150284_a(tagType);
                 var5.load(par1DataInput, par2 + 1);
-                this.tagList.add(var5);
+                tagList.add(var5);
             }
         }
     }
@@ -81,7 +81,7 @@ public class NBTTagList extends NBTBase
         String var1 = "[";
         int var2 = 0;
 
-        for (Iterator var3 = this.tagList.iterator(); var3.hasNext(); ++var2)
+        for (Iterator var3 = tagList.iterator(); var3.hasNext(); ++var2)
         {
             NBTBase var4 = (NBTBase)var3.next();
             var1 = var1 + "" + var2 + ':' + var4 + ',';
@@ -96,17 +96,17 @@ public class NBTTagList extends NBTBase
      */
     public void appendTag(NBTBase par1NBTBase)
     {
-        if (this.tagType == 0)
+        if (tagType == 0)
         {
-            this.tagType = par1NBTBase.getId();
+            tagType = par1NBTBase.getId();
         }
-        else if (this.tagType != par1NBTBase.getId())
+        else if (tagType != par1NBTBase.getId())
         {
             System.err.println("WARNING: Adding mismatching tag types to tag list");
             return;
         }
 
-        this.tagList.add(par1NBTBase);
+        tagList.add(par1NBTBase);
     }
 
     /**
@@ -114,9 +114,9 @@ public class NBTTagList extends NBTBase
      */
     public NBTTagCompound getCompoundTagAt(int p_150305_1_)
     {
-        if (p_150305_1_ >= 0 && p_150305_1_ < this.tagList.size())
+        if (p_150305_1_ >= 0 && p_150305_1_ < tagList.size())
         {
-            NBTBase var2 = (NBTBase)this.tagList.get(p_150305_1_);
+            NBTBase var2 = (NBTBase)tagList.get(p_150305_1_);
             return var2.getId() == 10 ? (NBTTagCompound)var2 : new NBTTagCompound();
         }
         else
@@ -127,9 +127,9 @@ public class NBTTagList extends NBTBase
 
     public int[] func_150306_c(int p_150306_1_)
     {
-        if (p_150306_1_ >= 0 && p_150306_1_ < this.tagList.size())
+        if (p_150306_1_ >= 0 && p_150306_1_ < tagList.size())
         {
-            NBTBase var2 = (NBTBase)this.tagList.get(p_150306_1_);
+            NBTBase var2 = (NBTBase)tagList.get(p_150306_1_);
             return var2.getId() == 11 ? ((NBTTagIntArray)var2).func_150302_c() : new int[0];
         }
         else
@@ -140,9 +140,9 @@ public class NBTTagList extends NBTBase
 
     public double func_150309_d(int p_150309_1_)
     {
-        if (p_150309_1_ >= 0 && p_150309_1_ < this.tagList.size())
+        if (p_150309_1_ >= 0 && p_150309_1_ < tagList.size())
         {
-            NBTBase var2 = (NBTBase)this.tagList.get(p_150309_1_);
+            NBTBase var2 = (NBTBase)tagList.get(p_150309_1_);
             return var2.getId() == 6 ? ((NBTTagDouble)var2).func_150286_g() : 0.0D;
         }
         else
@@ -153,9 +153,9 @@ public class NBTTagList extends NBTBase
 
     public float func_150308_e(int p_150308_1_)
     {
-        if (p_150308_1_ >= 0 && p_150308_1_ < this.tagList.size())
+        if (p_150308_1_ >= 0 && p_150308_1_ < tagList.size())
         {
-            NBTBase var2 = (NBTBase)this.tagList.get(p_150308_1_);
+            NBTBase var2 = (NBTBase)tagList.get(p_150308_1_);
             return var2.getId() == 5 ? ((NBTTagFloat)var2).func_150288_h() : 0.0F;
         }
         else
@@ -169,9 +169,9 @@ public class NBTTagList extends NBTBase
      */
     public String getStringTagAt(int p_150307_1_)
     {
-        if (p_150307_1_ >= 0 && p_150307_1_ < this.tagList.size())
+        if (p_150307_1_ >= 0 && p_150307_1_ < tagList.size())
         {
-            NBTBase var2 = (NBTBase)this.tagList.get(p_150307_1_);
+            NBTBase var2 = (NBTBase)tagList.get(p_150307_1_);
             return var2.getId() == 8 ? var2.func_150285_a_() : var2.toString();
         }
         else
@@ -185,7 +185,7 @@ public class NBTTagList extends NBTBase
      */
     public int tagCount()
     {
-        return this.tagList.size();
+        return tagList.size();
     }
 
     /**
@@ -194,8 +194,8 @@ public class NBTTagList extends NBTBase
     public NBTBase copy()
     {
         NBTTagList var1 = new NBTTagList();
-        var1.tagType = this.tagType;
-        Iterator var2 = this.tagList.iterator();
+        var1.tagType = tagType;
+        Iterator var2 = tagList.iterator();
 
         while (var2.hasNext())
         {
@@ -213,7 +213,7 @@ public class NBTTagList extends NBTBase
         {
             NBTTagList var2 = (NBTTagList)par1Obj;
 
-            if (this.tagType == var2.tagType) { return this.tagList.equals(var2.tagList); }
+            if (tagType == var2.tagType) { return tagList.equals(var2.tagList); }
         }
 
         return false;
@@ -221,11 +221,11 @@ public class NBTTagList extends NBTBase
 
     public int hashCode()
     {
-        return super.hashCode() ^ this.tagList.hashCode();
+        return super.hashCode() ^ tagList.hashCode();
     }
 
     public int func_150303_d()
     {
-        return this.tagType;
+        return tagType;
     }
 }

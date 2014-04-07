@@ -25,18 +25,18 @@ public class ItemTool extends Item
 
     protected ItemTool(float p_i45333_1_, Item.ToolMaterial p_i45333_2_, Set p_i45333_3_)
     {
-        this.toolMaterial = p_i45333_2_;
-        this.field_150914_c = p_i45333_3_;
-        this.maxStackSize = 1;
-        this.setMaxDamage(p_i45333_2_.getMaxUses());
-        this.efficiencyOnProperMaterial = p_i45333_2_.getEfficiencyOnProperMaterial();
-        this.damageVsEntity = p_i45333_1_ + p_i45333_2_.getDamageVsEntity();
-        this.setCreativeTab(CreativeTabs.tabTools);
+        toolMaterial = p_i45333_2_;
+        field_150914_c = p_i45333_3_;
+        maxStackSize = 1;
+        setMaxDamage(p_i45333_2_.getMaxUses());
+        efficiencyOnProperMaterial = p_i45333_2_.getEfficiencyOnProperMaterial();
+        damageVsEntity = p_i45333_1_ + p_i45333_2_.getDamageVsEntity();
+        setCreativeTab(CreativeTabs.tabTools);
     }
 
     public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_)
     {
-        return this.field_150914_c.contains(p_150893_2_) ? this.efficiencyOnProperMaterial : 1.0F;
+        return field_150914_c.contains(p_150893_2_) ? efficiencyOnProperMaterial : 1.0F;
     }
 
     /**
@@ -51,7 +51,7 @@ public class ItemTool extends Item
 
     public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)
     {
-        if ((double)p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
+        if (p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
         {
             p_150894_1_.damageItem(1, p_150894_7_);
         }
@@ -61,7 +61,7 @@ public class ItemTool extends Item
 
     public Item.ToolMaterial func_150913_i()
     {
-        return this.toolMaterial;
+        return toolMaterial;
     }
 
     /**
@@ -70,7 +70,7 @@ public class ItemTool extends Item
      */
     public int getItemEnchantability()
     {
-        return this.toolMaterial.getEnchantability();
+        return toolMaterial.getEnchantability();
     }
 
     /**
@@ -78,7 +78,7 @@ public class ItemTool extends Item
      */
     public String getToolMaterialName()
     {
-        return this.toolMaterial.toString();
+        return toolMaterial.toString();
     }
 
     /**
@@ -86,7 +86,7 @@ public class ItemTool extends Item
      */
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
-        return this.toolMaterial.func_150995_f() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return toolMaterial.func_150995_f() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -96,7 +96,7 @@ public class ItemTool extends Item
     public Multimap getItemAttributeModifiers()
     {
         Multimap var1 = super.getItemAttributeModifiers();
-        var1.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", (double)this.damageVsEntity, 0));
+        var1.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Tool modifier", damageVsEntity, 0));
         return var1;
     }
 }

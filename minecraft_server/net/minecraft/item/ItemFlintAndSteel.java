@@ -12,9 +12,9 @@ public class ItemFlintAndSteel extends Item
 
     public ItemFlintAndSteel()
     {
-        this.maxStackSize = 1;
-        this.setMaxDamage(64);
-        this.setCreativeTab(CreativeTabs.tabTools);
+        maxStackSize = 1;
+        setMaxDamage(64);
+        setCreativeTab(CreativeTabs.tabTools);
     }
 
     /**
@@ -62,7 +62,7 @@ public class ItemFlintAndSteel extends Item
         {
             if (par3World.getBlock(par4, par5, par6).getMaterial() == Material.air)
             {
-                par3World.playSoundEffect((double)par4 + 0.5D, (double)par5 + 0.5D, (double)par6 + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+                par3World.playSoundEffect(par4 + 0.5D, par5 + 0.5D, par6 + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
                 par3World.setBlock(par4, par5, par6, Blocks.fire);
             }
 

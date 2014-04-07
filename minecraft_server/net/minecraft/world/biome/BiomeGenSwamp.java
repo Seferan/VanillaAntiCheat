@@ -17,23 +17,23 @@ public class BiomeGenSwamp extends BiomeGenBase
     protected BiomeGenSwamp(int par1)
     {
         super(par1);
-        this.theBiomeDecorator.treesPerChunk = 2;
-        this.theBiomeDecorator.flowersPerChunk = 1;
-        this.theBiomeDecorator.deadBushPerChunk = 1;
-        this.theBiomeDecorator.mushroomsPerChunk = 8;
-        this.theBiomeDecorator.reedsPerChunk = 10;
-        this.theBiomeDecorator.clayPerChunk = 1;
-        this.theBiomeDecorator.waterlilyPerChunk = 4;
-        this.theBiomeDecorator.sandPerChunk2 = 0;
-        this.theBiomeDecorator.sandPerChunk = 0;
-        this.theBiomeDecorator.grassPerChunk = 5;
-        this.waterColorMultiplier = 14745518;
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlime.class, 1, 1, 1));
+        theBiomeDecorator.treesPerChunk = 2;
+        theBiomeDecorator.flowersPerChunk = 1;
+        theBiomeDecorator.deadBushPerChunk = 1;
+        theBiomeDecorator.mushroomsPerChunk = 8;
+        theBiomeDecorator.reedsPerChunk = 10;
+        theBiomeDecorator.clayPerChunk = 1;
+        theBiomeDecorator.waterlilyPerChunk = 4;
+        theBiomeDecorator.sandPerChunk2 = 0;
+        theBiomeDecorator.sandPerChunk = 0;
+        theBiomeDecorator.grassPerChunk = 5;
+        waterColorMultiplier = 14745518;
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlime.class, 1, 1, 1));
     }
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return this.worldGeneratorSwamp;
+        return worldGeneratorSwamp;
     }
 
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
@@ -43,7 +43,7 @@ public class BiomeGenSwamp extends BiomeGenBase
 
     public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
     {
-        double var9 = field_150606_ad.func_151601_a((double)p_150573_5_ * 0.25D, (double)p_150573_6_ * 0.25D);
+        double var9 = field_150606_ad.func_151601_a(p_150573_5_ * 0.25D, p_150573_6_ * 0.25D);
 
         if (var9 > 0.0D)
         {
@@ -72,6 +72,6 @@ public class BiomeGenSwamp extends BiomeGenBase
             }
         }
 
-        this.func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
     }
 }

@@ -10,7 +10,7 @@ public class EnchantmentUntouching extends Enchantment
     protected EnchantmentUntouching(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.digger);
-        this.setName("untouching");
+        setName("untouching");
     }
 
     /**

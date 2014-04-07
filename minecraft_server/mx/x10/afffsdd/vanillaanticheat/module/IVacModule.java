@@ -7,7 +7,7 @@ public interface IVacModule
      * @return name of the VAC module
      */
     public String getModuleName();
-    
+
     /**
      * Update the state of the VAC Module. Should be performed
      * once per tick

@@ -16,14 +16,14 @@ public class VACModuleAntiFly implements IVacModule
      * The z-coordinate to reset the player to
      */
     private double z;
-    
+
     public VACModuleAntiFly()
     {
         resetCount = 0;
         x = 0.0;
         z = 0.0;
     }
-    
+
     public String getModuleName()
     {
         return "Anti-Fly";

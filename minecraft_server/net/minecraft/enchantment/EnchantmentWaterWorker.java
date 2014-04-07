@@ -7,7 +7,7 @@ public class EnchantmentWaterWorker extends Enchantment
     public EnchantmentWaterWorker(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.armor_head);
-        this.setName("waterWorker");
+        setName("waterWorker");
     }
 
     /**
@@ -25,7 +25,7 @@ public class EnchantmentWaterWorker extends Enchantment
      */
     public int getMaxEnchantability(int par1)
     {
-        return this.getMinEnchantability(par1) + 40;
+        return getMinEnchantability(par1) + 40;
     }
 
     /**

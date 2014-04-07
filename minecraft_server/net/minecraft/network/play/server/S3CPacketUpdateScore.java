@@ -22,18 +22,18 @@ public class S3CPacketUpdateScore extends Packet
 
     public S3CPacketUpdateScore(Score p_i45227_1_, int p_i45227_2_)
     {
-        this.field_149329_a = p_i45227_1_.getPlayerName();
-        this.field_149327_b = p_i45227_1_.func_96645_d().getName();
-        this.field_149328_c = p_i45227_1_.getScorePoints();
-        this.field_149326_d = p_i45227_2_;
+        field_149329_a = p_i45227_1_.getPlayerName();
+        field_149327_b = p_i45227_1_.func_96645_d().getName();
+        field_149328_c = p_i45227_1_.getScorePoints();
+        field_149326_d = p_i45227_2_;
     }
 
     public S3CPacketUpdateScore(String p_i45228_1_)
     {
-        this.field_149329_a = p_i45228_1_;
-        this.field_149327_b = "";
-        this.field_149328_c = 0;
-        this.field_149326_d = 1;
+        field_149329_a = p_i45228_1_;
+        field_149327_b = "";
+        field_149328_c = 0;
+        field_149326_d = 1;
     }
 
     /**
@@ -41,13 +41,13 @@ public class S3CPacketUpdateScore extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149329_a = p_148837_1_.readStringFromBuffer(16);
-        this.field_149326_d = p_148837_1_.readByte();
+        field_149329_a = p_148837_1_.readStringFromBuffer(16);
+        field_149326_d = p_148837_1_.readByte();
 
-        if (this.field_149326_d != 1)
+        if (field_149326_d != 1)
         {
-            this.field_149327_b = p_148837_1_.readStringFromBuffer(16);
-            this.field_149328_c = p_148837_1_.readInt();
+            field_149327_b = p_148837_1_.readStringFromBuffer(16);
+            field_149328_c = p_148837_1_.readInt();
         }
     }
 
@@ -56,13 +56,13 @@ public class S3CPacketUpdateScore extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149329_a);
-        p_148840_1_.writeByte(this.field_149326_d);
+        p_148840_1_.writeStringToBuffer(field_149329_a);
+        p_148840_1_.writeByte(field_149326_d);
 
-        if (this.field_149326_d != 1)
+        if (field_149326_d != 1)
         {
-            p_148840_1_.writeStringToBuffer(this.field_149327_b);
-            p_148840_1_.writeInt(this.field_149328_c);
+            p_148840_1_.writeStringToBuffer(field_149327_b);
+            p_148840_1_.writeInt(field_149328_c);
         }
     }
 

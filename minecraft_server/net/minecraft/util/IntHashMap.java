@@ -48,7 +48,7 @@ public class IntHashMap
     {
         int var2 = computeHash(par1);
 
-        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2, this.slots.length)]; var3 != null; var3 = var3.nextEntry)
+        for (IntHashMap.Entry var3 = slots[getSlotIndex(var2, slots.length)]; var3 != null; var3 = var3.nextEntry)
         {
             if (var3.hashEntry == par1) { return var3.valueEntry; }
         }
@@ -61,7 +61,7 @@ public class IntHashMap
      */
     public boolean containsItem(int par1)
     {
-        return this.lookupEntry(par1) != null;
+        return lookupEntry(par1) != null;
     }
 
     /**
@@ -71,7 +71,7 @@ public class IntHashMap
     {
         int var2 = computeHash(par1);
 
-        for (IntHashMap.Entry var3 = this.slots[getSlotIndex(var2, this.slots.length)]; var3 != null; var3 = var3.nextEntry)
+        for (IntHashMap.Entry var3 = slots[getSlotIndex(var2, slots.length)]; var3 != null; var3 = var3.nextEntry)
         {
             if (var3.hashEntry == par1) { return var3; }
         }
@@ -84,11 +84,11 @@ public class IntHashMap
      */
     public void addKey(int par1, Object par2Obj)
     {
-        this.keySet.add(Integer.valueOf(par1));
+        keySet.add(Integer.valueOf(par1));
         int var3 = computeHash(par1);
-        int var4 = getSlotIndex(var3, this.slots.length);
+        int var4 = getSlotIndex(var3, slots.length);
 
-        for (IntHashMap.Entry var5 = this.slots[var4]; var5 != null; var5 = var5.nextEntry)
+        for (IntHashMap.Entry var5 = slots[var4]; var5 != null; var5 = var5.nextEntry)
         {
             if (var5.hashEntry == par1)
             {
@@ -97,8 +97,8 @@ public class IntHashMap
             }
         }
 
-        ++this.versionStamp;
-        this.insert(var3, par1, par2Obj, var4);
+        ++versionStamp;
+        insert(var3, par1, par2Obj, var4);
     }
 
     /**
@@ -106,19 +106,19 @@ public class IntHashMap
      */
     private void grow(int par1)
     {
-        IntHashMap.Entry[] var2 = this.slots;
+        IntHashMap.Entry[] var2 = slots;
         int var3 = var2.length;
 
         if (var3 == 1073741824)
         {
-            this.threshold = Integer.MAX_VALUE;
+            threshold = Integer.MAX_VALUE;
         }
         else
         {
             IntHashMap.Entry[] var4 = new IntHashMap.Entry[par1];
-            this.copyTo(var4);
-            this.slots = var4;
-            this.threshold = (int)((float)par1 * this.growFactor);
+            copyTo(var4);
+            slots = var4;
+            threshold = (int)(par1 * growFactor);
         }
     }
 
@@ -127,7 +127,7 @@ public class IntHashMap
      */
     private void copyTo(IntHashMap.Entry[] par1ArrayOfIntHashMapEntry)
     {
-        IntHashMap.Entry[] var2 = this.slots;
+        IntHashMap.Entry[] var2 = slots;
         int var3 = par1ArrayOfIntHashMapEntry.length;
 
         for (int var4 = 0; var4 < var2.length; ++var4)
@@ -156,8 +156,8 @@ public class IntHashMap
      */
     public Object removeObject(int par1)
     {
-        this.keySet.remove(Integer.valueOf(par1));
-        IntHashMap.Entry var2 = this.removeEntry(par1);
+        keySet.remove(Integer.valueOf(par1));
+        IntHashMap.Entry var2 = removeEntry(par1);
         return var2 == null ? null : var2.valueEntry;
     }
 
@@ -167,8 +167,8 @@ public class IntHashMap
     final IntHashMap.Entry removeEntry(int par1)
     {
         int var2 = computeHash(par1);
-        int var3 = getSlotIndex(var2, this.slots.length);
-        IntHashMap.Entry var4 = this.slots[var3];
+        int var3 = getSlotIndex(var2, slots.length);
+        IntHashMap.Entry var4 = slots[var3];
         IntHashMap.Entry var5;
         IntHashMap.Entry var6;
 
@@ -178,12 +178,12 @@ public class IntHashMap
 
             if (var5.hashEntry == par1)
             {
-                ++this.versionStamp;
-                --this.count;
+                ++versionStamp;
+                --count;
 
                 if (var4 == var5)
                 {
-                    this.slots[var3] = var6;
+                    slots[var3] = var6;
                 }
                 else
                 {
@@ -204,15 +204,15 @@ public class IntHashMap
      */
     public void clearMap()
     {
-        ++this.versionStamp;
-        IntHashMap.Entry[] var1 = this.slots;
+        ++versionStamp;
+        IntHashMap.Entry[] var1 = slots;
 
         for (int var2 = 0; var2 < var1.length; ++var2)
         {
             var1[var2] = null;
         }
 
-        this.count = 0;
+        count = 0;
     }
 
     /**
@@ -220,12 +220,12 @@ public class IntHashMap
      */
     private void insert(int par1, int par2, Object par3Obj, int par4)
     {
-        IntHashMap.Entry var5 = this.slots[par4];
-        this.slots[par4] = new IntHashMap.Entry(par1, par2, par3Obj, var5);
+        IntHashMap.Entry var5 = slots[par4];
+        slots[par4] = new IntHashMap.Entry(par1, par2, par3Obj, var5);
 
-        if (this.count++ >= this.threshold)
+        if (count++ >= threshold)
         {
-            this.grow(2 * this.slots.length);
+            grow(2 * slots.length);
         }
     }
 
@@ -239,20 +239,20 @@ public class IntHashMap
 
         Entry(int par1, int par2, Object par3Obj, IntHashMap.Entry par4IntHashMapEntry)
         {
-            this.valueEntry = par3Obj;
-            this.nextEntry = par4IntHashMapEntry;
-            this.hashEntry = par2;
-            this.slotHash = par1;
+            valueEntry = par3Obj;
+            nextEntry = par4IntHashMapEntry;
+            hashEntry = par2;
+            slotHash = par1;
         }
 
         public final int getHash()
         {
-            return this.hashEntry;
+            return hashEntry;
         }
 
         public final Object getValue()
         {
-            return this.valueEntry;
+            return valueEntry;
         }
 
         public final boolean equals(Object par1Obj)
@@ -264,12 +264,12 @@ public class IntHashMap
             else
             {
                 IntHashMap.Entry var2 = (IntHashMap.Entry)par1Obj;
-                Integer var3 = Integer.valueOf(this.getHash());
+                Integer var3 = Integer.valueOf(getHash());
                 Integer var4 = Integer.valueOf(var2.getHash());
 
                 if (var3 == var4 || var3 != null && var3.equals(var4))
                 {
-                    Object var5 = this.getValue();
+                    Object var5 = getValue();
                     Object var6 = var2.getValue();
 
                     if (var5 == var6 || var5 != null && var5.equals(var6)) { return true; }
@@ -281,12 +281,12 @@ public class IntHashMap
 
         public final int hashCode()
         {
-            return IntHashMap.computeHash(this.hashEntry);
+            return IntHashMap.computeHash(hashEntry);
         }
 
         public final String toString()
         {
-            return this.getHash() + "=" + this.getValue();
+            return getHash() + "=" + getValue();
         }
     }
 }

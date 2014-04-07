@@ -20,6 +20,6 @@ public class ItemAxe extends ItemTool
 
     public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_)
     {
-        return p_150893_2_.getMaterial() != Material.wood && p_150893_2_.getMaterial() != Material.plants && p_150893_2_.getMaterial() != Material.field_151582_l ? super.func_150893_a(p_150893_1_, p_150893_2_) : this.efficiencyOnProperMaterial;
+        return p_150893_2_.getMaterial() != Material.wood && p_150893_2_.getMaterial() != Material.plants && p_150893_2_.getMaterial() != Material.field_151582_l ? super.func_150893_a(p_150893_1_, p_150893_2_) : efficiencyOnProperMaterial;
     }
 }

@@ -73,7 +73,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                 if ((var22 == Blocks.grass || var22 == Blocks.dirt || var22 == Blocks.farmland) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
+                    func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
                     var21 = par2Random.nextInt(2);
                     var13 = 1;
                     byte var24 = 0;
@@ -94,7 +94,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                                 if ((Math.abs(var18) != var21 || Math.abs(var20) != var21 || var21 <= 0) && !par1World.getBlock(var17, var16, var19).func_149730_j())
                                 {
-                                    this.func_150516_a(par1World, var17, var16, var19, Blocks.leaves, 1);
+                                    func_150516_a(par1World, var17, var16, var19, Blocks.leaves, 1);
                                 }
                             }
                         }
@@ -124,7 +124,7 @@ public class WorldGenTaiga2 extends WorldGenAbstractTree
 
                         if (var25.getMaterial() == Material.air || var25.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, par3, par4 + var16, par5, Blocks.log, 1);
+                            func_150516_a(par1World, par3, par4 + var16, par5, Blocks.log, 1);
                         }
                     }
 

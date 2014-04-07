@@ -23,17 +23,17 @@ public class S2DPacketOpenWindow extends Packet
 
     public S2DPacketOpenWindow(int p_i45184_1_, int p_i45184_2_, String p_i45184_3_, int p_i45184_4_, boolean p_i45184_5_)
     {
-        this.field_148909_a = p_i45184_1_;
-        this.field_148907_b = p_i45184_2_;
-        this.field_148908_c = p_i45184_3_;
-        this.field_148905_d = p_i45184_4_;
-        this.field_148906_e = p_i45184_5_;
+        field_148909_a = p_i45184_1_;
+        field_148907_b = p_i45184_2_;
+        field_148908_c = p_i45184_3_;
+        field_148905_d = p_i45184_4_;
+        field_148906_e = p_i45184_5_;
     }
 
     public S2DPacketOpenWindow(int p_i45185_1_, int p_i45185_2_, String p_i45185_3_, int p_i45185_4_, boolean p_i45185_5_, int p_i45185_6_)
     {
         this(p_i45185_1_, p_i45185_2_, p_i45185_3_, p_i45185_4_, p_i45185_5_);
-        this.field_148904_f = p_i45185_6_;
+        field_148904_f = p_i45185_6_;
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148903_1_)
@@ -46,15 +46,15 @@ public class S2DPacketOpenWindow extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148909_a = p_148837_1_.readUnsignedByte();
-        this.field_148907_b = p_148837_1_.readUnsignedByte();
-        this.field_148908_c = p_148837_1_.readStringFromBuffer(32);
-        this.field_148905_d = p_148837_1_.readUnsignedByte();
-        this.field_148906_e = p_148837_1_.readBoolean();
+        field_148909_a = p_148837_1_.readUnsignedByte();
+        field_148907_b = p_148837_1_.readUnsignedByte();
+        field_148908_c = p_148837_1_.readStringFromBuffer(32);
+        field_148905_d = p_148837_1_.readUnsignedByte();
+        field_148906_e = p_148837_1_.readBoolean();
 
-        if (this.field_148907_b == 11)
+        if (field_148907_b == 11)
         {
-            this.field_148904_f = p_148837_1_.readInt();
+            field_148904_f = p_148837_1_.readInt();
         }
     }
 
@@ -63,15 +63,15 @@ public class S2DPacketOpenWindow extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_148909_a);
-        p_148840_1_.writeByte(this.field_148907_b);
-        p_148840_1_.writeStringToBuffer(this.field_148908_c);
-        p_148840_1_.writeByte(this.field_148905_d);
-        p_148840_1_.writeBoolean(this.field_148906_e);
+        p_148840_1_.writeByte(field_148909_a);
+        p_148840_1_.writeByte(field_148907_b);
+        p_148840_1_.writeStringToBuffer(field_148908_c);
+        p_148840_1_.writeByte(field_148905_d);
+        p_148840_1_.writeBoolean(field_148906_e);
 
-        if (this.field_148907_b == 11)
+        if (field_148907_b == 11)
         {
-            p_148840_1_.writeInt(this.field_148904_f);
+            p_148840_1_.writeInt(field_148904_f);
         }
     }
 

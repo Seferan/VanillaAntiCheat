@@ -39,17 +39,17 @@ public class EntitySnowball extends EntityThrowable
                 var2 = 3;
             }
 
-            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), (float)var2);
+            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), var2);
         }
 
         for (int var3 = 0; var3 < 8; ++var3)
         {
-            this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            worldObj.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
         }
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            this.setDead();
+            setDead();
         }
     }
 }

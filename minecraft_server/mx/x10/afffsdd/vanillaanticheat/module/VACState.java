@@ -31,7 +31,7 @@ public class VACState implements IVacModule
      * The anti-speedhack module.
      */
     public VACModuleAntiSpeed aSpeed;
-    
+
     public VACState()
     {
         aFastBreak = new VACModuleAntiFastbreak();
@@ -42,7 +42,7 @@ public class VACState implements IVacModule
         aRegen = new VACModuleAntiRegen();
         aSpeed = new VACModuleAntiSpeed();
     }
-    
+
     public String getModuleName()
     {
         return "VACState";

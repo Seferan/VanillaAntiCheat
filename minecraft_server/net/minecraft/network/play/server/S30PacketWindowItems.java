@@ -21,13 +21,13 @@ public class S30PacketWindowItems extends Packet
 
     public S30PacketWindowItems(int p_i45186_1_, List p_i45186_2_)
     {
-        this.field_148914_a = p_i45186_1_;
-        this.field_148913_b = new ItemStack[p_i45186_2_.size()];
+        field_148914_a = p_i45186_1_;
+        field_148913_b = new ItemStack[p_i45186_2_.size()];
 
-        for (int var3 = 0; var3 < this.field_148913_b.length; ++var3)
+        for (int var3 = 0; var3 < field_148913_b.length; ++var3)
         {
             ItemStack var4 = (ItemStack)p_i45186_2_.get(var3);
-            this.field_148913_b[var3] = var4 == null ? null : var4.copy();
+            field_148913_b[var3] = var4 == null ? null : var4.copy();
         }
     }
 
@@ -36,13 +36,13 @@ public class S30PacketWindowItems extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148914_a = p_148837_1_.readUnsignedByte();
+        field_148914_a = p_148837_1_.readUnsignedByte();
         short var2 = p_148837_1_.readShort();
-        this.field_148913_b = new ItemStack[var2];
+        field_148913_b = new ItemStack[var2];
 
         for (int var3 = 0; var3 < var2; ++var3)
         {
-            this.field_148913_b[var3] = p_148837_1_.readItemStackFromBuffer();
+            field_148913_b[var3] = p_148837_1_.readItemStackFromBuffer();
         }
     }
 
@@ -51,9 +51,9 @@ public class S30PacketWindowItems extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_148914_a);
-        p_148840_1_.writeShort(this.field_148913_b.length);
-        ItemStack[] var2 = this.field_148913_b;
+        p_148840_1_.writeByte(field_148914_a);
+        p_148840_1_.writeShort(field_148913_b.length);
+        ItemStack[] var2 = field_148913_b;
         int var3 = var2.length;
 
         for (int var4 = 0; var4 < var3; ++var4)

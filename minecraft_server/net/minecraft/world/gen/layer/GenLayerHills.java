@@ -14,8 +14,8 @@ public class GenLayerHills extends GenLayer
     public GenLayerHills(long p_i45479_1_, GenLayer p_i45479_3_, GenLayer p_i45479_4_)
     {
         super(p_i45479_1_);
-        this.parent = p_i45479_3_;
-        this.field_151628_d = p_i45479_4_;
+        parent = p_i45479_3_;
+        field_151628_d = p_i45479_4_;
     }
 
     /**
@@ -25,15 +25,15 @@ public class GenLayerHills extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        int[] var5 = this.parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
-        int[] var6 = this.field_151628_d.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
+        int[] var5 = parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
+        int[] var6 = field_151628_d.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
         int[] var7 = IntCache.getIntCache(par3 * par4);
 
         for (int var8 = 0; var8 < par4; ++var8)
         {
             for (int var9 = 0; var9 < par3; ++var9)
             {
-                this.initChunkSeed((long)(var9 + par1), (long)(var8 + par2));
+                initChunkSeed(var9 + par1, var8 + par2);
                 int var10 = var5[var9 + 1 + (var8 + 1) * (par3 + 2)];
                 int var11 = var6[var9 + 1 + (var8 + 1) * (par3 + 2)];
                 boolean var12 = (var11 - 2) % 29 == 0;
@@ -54,7 +54,7 @@ public class GenLayerHills extends GenLayer
                         var7[var9 + var8 * par3] = var10;
                     }
                 }
-                else if (this.nextInt(3) != 0 && !var12)
+                else if (nextInt(3) != 0 && !var12)
                 {
                     var7[var9 + var8 * par3] = var10;
                 }
@@ -93,7 +93,7 @@ public class GenLayerHills extends GenLayer
                     }
                     else if (var10 == BiomeGenBase.plains.biomeID)
                     {
-                        if (this.nextInt(3) == 0)
+                        if (nextInt(3) == 0)
                         {
                             var13 = BiomeGenBase.forestHills.biomeID;
                         }
@@ -126,9 +126,9 @@ public class GenLayerHills extends GenLayer
                     {
                         var13 = BiomeGenBase.field_150589_Z.biomeID;
                     }
-                    else if (var10 == BiomeGenBase.field_150575_M.biomeID && this.nextInt(3) == 0)
+                    else if (var10 == BiomeGenBase.field_150575_M.biomeID && nextInt(3) == 0)
                     {
-                        var14 = this.nextInt(2);
+                        var14 = nextInt(2);
 
                         if (var14 == 0)
                         {

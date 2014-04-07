@@ -36,12 +36,12 @@ public class MovingObjectPosition
 
     public MovingObjectPosition(int p_i45481_1_, int p_i45481_2_, int p_i45481_3_, int p_i45481_4_, Vec3 p_i45481_5_, boolean p_i45481_6_)
     {
-        this.typeOfHit = p_i45481_6_ ? MovingObjectPosition.MovingObjectType.BLOCK : MovingObjectPosition.MovingObjectType.MISS;
-        this.blockX = p_i45481_1_;
-        this.blockY = p_i45481_2_;
-        this.blockZ = p_i45481_3_;
-        this.sideHit = p_i45481_4_;
-        this.hitVec = p_i45481_5_.myVec3LocalPool.getVecFromPool(p_i45481_5_.xCoord, p_i45481_5_.yCoord, p_i45481_5_.zCoord);
+        typeOfHit = p_i45481_6_ ? MovingObjectPosition.MovingObjectType.BLOCK : MovingObjectPosition.MovingObjectType.MISS;
+        blockX = p_i45481_1_;
+        blockY = p_i45481_2_;
+        blockZ = p_i45481_3_;
+        sideHit = p_i45481_4_;
+        hitVec = p_i45481_5_.myVec3LocalPool.getVecFromPool(p_i45481_5_.xCoord, p_i45481_5_.yCoord, p_i45481_5_.zCoord);
     }
 
     public MovingObjectPosition(Entity par1Entity)
@@ -51,14 +51,14 @@ public class MovingObjectPosition
 
     public MovingObjectPosition(Entity p_i45482_1_, Vec3 p_i45482_2_)
     {
-        this.typeOfHit = MovingObjectPosition.MovingObjectType.ENTITY;
-        this.entityHit = p_i45482_1_;
-        this.hitVec = p_i45482_2_;
+        typeOfHit = MovingObjectPosition.MovingObjectType.ENTITY;
+        entityHit = p_i45482_1_;
+        hitVec = p_i45482_2_;
     }
 
     public String toString()
     {
-        return "HitResult{type=" + this.typeOfHit + ", x=" + this.blockX + ", y=" + this.blockY + ", z=" + this.blockZ + ", f=" + this.sideHit + ", pos=" + this.hitVec + ", entity=" + this.entityHit + '}';
+        return "HitResult{type=" + typeOfHit + ", x=" + blockX + ", y=" + blockY + ", z=" + blockZ + ", f=" + sideHit + ", pos=" + hitVec + ", entity=" + entityHit + '}';
     }
 
     public static enum MovingObjectType

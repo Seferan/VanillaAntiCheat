@@ -36,10 +36,10 @@ public class CommandServerKick extends CommandBase
             boolean ban = MinecraftServer.getServer().shouldKicksBeBans();
             int banLength = MinecraftServer.getServer().getKickTempbanLength();
             EntityPlayerMP var3 = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(par2ArrayOfStr[0]);
-            
+
             String reason = "Kicked by an operator.";
             if (ban) reason += " You will be unbanned in " + String.valueOf(banLength) + " minutes.";
-            
+
             boolean var5 = false;
 
             if (var3 == null)
@@ -60,7 +60,7 @@ public class CommandServerKick extends CommandBase
                     banEntry.setBannedBy(par1ICommandSender.getUsername());
                     banEntry.setBanReason(reason);
                     banEntry.setBanEndDate(new Date(new Date().getTime() + banLength * 60000L));
-                    MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(banEntry);   
+                    MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(banEntry);
                 }
                 var3.playerNetServerHandler.kickPlayerFromServer(reason);
 

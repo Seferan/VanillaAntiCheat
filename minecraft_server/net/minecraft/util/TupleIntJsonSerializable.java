@@ -11,7 +11,7 @@ public class TupleIntJsonSerializable
      */
     public int getIntegerValue()
     {
-        return this.integerValue;
+        return integerValue;
     }
 
     /**
@@ -19,7 +19,7 @@ public class TupleIntJsonSerializable
      */
     public void setIntegerValue(int p_151188_1_)
     {
-        this.integerValue = p_151188_1_;
+        integerValue = p_151188_1_;
     }
 
     /**
@@ -27,7 +27,7 @@ public class TupleIntJsonSerializable
      */
     public IJsonSerializable getJsonSerializableValue()
     {
-        return this.jsonSerializableValue;
+        return jsonSerializableValue;
     }
 
     /**
@@ -35,6 +35,6 @@ public class TupleIntJsonSerializable
      */
     public void setJsonSerializableValue(IJsonSerializable p_151190_1_)
     {
-        this.jsonSerializableValue = p_151190_1_;
+        jsonSerializableValue = p_151190_1_;
     }
 }

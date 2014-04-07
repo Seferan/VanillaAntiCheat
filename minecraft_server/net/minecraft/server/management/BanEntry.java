@@ -21,17 +21,17 @@ public class BanEntry
 
     public BanEntry(String par1Str)
     {
-        this.username = par1Str;
+        username = par1Str;
     }
 
     public String getBannedUsername()
     {
-        return this.username;
+        return username;
     }
 
     public Date getBanStartDate()
     {
-        return this.banStartDate;
+        return banStartDate;
     }
 
     /**
@@ -39,56 +39,56 @@ public class BanEntry
      */
     public void setBanStartDate(Date par1Date)
     {
-        this.banStartDate = par1Date != null ? par1Date : new Date();
+        banStartDate = par1Date != null ? par1Date : new Date();
     }
 
     public String getBannedBy()
     {
-        return this.bannedBy;
+        return bannedBy;
     }
 
     public void setBannedBy(String par1Str)
     {
-        this.bannedBy = par1Str;
+        bannedBy = par1Str;
     }
 
     public Date getBanEndDate()
     {
-        return this.banEndDate;
+        return banEndDate;
     }
 
     public void setBanEndDate(Date par1Date)
     {
-        this.banEndDate = par1Date;
+        banEndDate = par1Date;
     }
 
     public boolean hasBanExpired()
     {
-        return this.banEndDate == null ? false : this.banEndDate.before(new Date());
+        return banEndDate == null ? false : banEndDate.before(new Date());
     }
 
     public String getBanReason()
     {
-        return this.reason;
+        return reason;
     }
 
     public void setBanReason(String par1Str)
     {
-        this.reason = par1Str;
+        reason = par1Str;
     }
 
     public String buildBanString()
     {
         StringBuilder var1 = new StringBuilder();
-        var1.append(this.getBannedUsername());
+        var1.append(getBannedUsername());
         var1.append("|");
-        var1.append(dateFormat.format(this.getBanStartDate()));
+        var1.append(dateFormat.format(getBanStartDate()));
         var1.append("|");
-        var1.append(this.getBannedBy());
+        var1.append(getBannedBy());
         var1.append("|");
-        var1.append(this.getBanEndDate() == null ? "Forever" : dateFormat.format(this.getBanEndDate()));
+        var1.append(getBanEndDate() == null ? "Forever" : dateFormat.format(getBanEndDate()));
         var1.append("|");
-        var1.append(this.getBanReason());
+        var1.append(getBanReason());
         return var1.toString();
     }
 

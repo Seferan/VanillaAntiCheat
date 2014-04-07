@@ -22,17 +22,17 @@ public class EntityMinecartEmpty extends EntityMinecart
      */
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != par1EntityPlayer)
+        if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer && riddenByEntity != par1EntityPlayer)
         {
             return true;
         }
-        else if (this.riddenByEntity != null && this.riddenByEntity != par1EntityPlayer)
+        else if (riddenByEntity != null && riddenByEntity != par1EntityPlayer)
         {
             return false;
         }
         else
         {
-            if (!this.worldObj.isClient)
+            if (!worldObj.isClient)
             {
                 par1EntityPlayer.mountEntity(this);
             }

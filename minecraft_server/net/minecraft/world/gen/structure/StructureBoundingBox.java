@@ -31,12 +31,12 @@ public class StructureBoundingBox
     {
         if (par1ArrayOfInteger.length == 6)
         {
-            this.minX = par1ArrayOfInteger[0];
-            this.minY = par1ArrayOfInteger[1];
-            this.minZ = par1ArrayOfInteger[2];
-            this.maxX = par1ArrayOfInteger[3];
-            this.maxY = par1ArrayOfInteger[4];
-            this.maxZ = par1ArrayOfInteger[5];
+            minX = par1ArrayOfInteger[0];
+            minY = par1ArrayOfInteger[1];
+            minZ = par1ArrayOfInteger[2];
+            maxX = par1ArrayOfInteger[3];
+            maxY = par1ArrayOfInteger[4];
+            maxZ = par1ArrayOfInteger[5];
         }
     }
 
@@ -75,32 +75,32 @@ public class StructureBoundingBox
 
     public StructureBoundingBox(StructureBoundingBox par1StructureBoundingBox)
     {
-        this.minX = par1StructureBoundingBox.minX;
-        this.minY = par1StructureBoundingBox.minY;
-        this.minZ = par1StructureBoundingBox.minZ;
-        this.maxX = par1StructureBoundingBox.maxX;
-        this.maxY = par1StructureBoundingBox.maxY;
-        this.maxZ = par1StructureBoundingBox.maxZ;
+        minX = par1StructureBoundingBox.minX;
+        minY = par1StructureBoundingBox.minY;
+        minZ = par1StructureBoundingBox.minZ;
+        maxX = par1StructureBoundingBox.maxX;
+        maxY = par1StructureBoundingBox.maxY;
+        maxZ = par1StructureBoundingBox.maxZ;
     }
 
     public StructureBoundingBox(int par1, int par2, int par3, int par4, int par5, int par6)
     {
-        this.minX = par1;
-        this.minY = par2;
-        this.minZ = par3;
-        this.maxX = par4;
-        this.maxY = par5;
-        this.maxZ = par6;
+        minX = par1;
+        minY = par2;
+        minZ = par3;
+        maxX = par4;
+        maxY = par5;
+        maxZ = par6;
     }
 
     public StructureBoundingBox(int par1, int par2, int par3, int par4)
     {
-        this.minX = par1;
-        this.minZ = par2;
-        this.maxX = par3;
-        this.maxZ = par4;
-        this.minY = 1;
-        this.maxY = 512;
+        minX = par1;
+        minZ = par2;
+        maxX = par3;
+        maxZ = par4;
+        minY = 1;
+        maxY = 512;
     }
 
     /**
@@ -108,7 +108,7 @@ public class StructureBoundingBox
      */
     public boolean intersectsWith(StructureBoundingBox par1StructureBoundingBox)
     {
-        return this.maxX >= par1StructureBoundingBox.minX && this.minX <= par1StructureBoundingBox.maxX && this.maxZ >= par1StructureBoundingBox.minZ && this.minZ <= par1StructureBoundingBox.maxZ && this.maxY >= par1StructureBoundingBox.minY && this.minY <= par1StructureBoundingBox.maxY;
+        return maxX >= par1StructureBoundingBox.minX && minX <= par1StructureBoundingBox.maxX && maxZ >= par1StructureBoundingBox.minZ && minZ <= par1StructureBoundingBox.maxZ && maxY >= par1StructureBoundingBox.minY && minY <= par1StructureBoundingBox.maxY;
     }
 
     /**
@@ -116,7 +116,7 @@ public class StructureBoundingBox
      */
     public boolean intersectsWith(int par1, int par2, int par3, int par4)
     {
-        return this.maxX >= par1 && this.minX <= par3 && this.maxZ >= par2 && this.minZ <= par4;
+        return maxX >= par1 && minX <= par3 && maxZ >= par2 && minZ <= par4;
     }
 
     /**
@@ -124,12 +124,12 @@ public class StructureBoundingBox
      */
     public void expandTo(StructureBoundingBox par1StructureBoundingBox)
     {
-        this.minX = Math.min(this.minX, par1StructureBoundingBox.minX);
-        this.minY = Math.min(this.minY, par1StructureBoundingBox.minY);
-        this.minZ = Math.min(this.minZ, par1StructureBoundingBox.minZ);
-        this.maxX = Math.max(this.maxX, par1StructureBoundingBox.maxX);
-        this.maxY = Math.max(this.maxY, par1StructureBoundingBox.maxY);
-        this.maxZ = Math.max(this.maxZ, par1StructureBoundingBox.maxZ);
+        minX = Math.min(minX, par1StructureBoundingBox.minX);
+        minY = Math.min(minY, par1StructureBoundingBox.minY);
+        minZ = Math.min(minZ, par1StructureBoundingBox.minZ);
+        maxX = Math.max(maxX, par1StructureBoundingBox.maxX);
+        maxY = Math.max(maxY, par1StructureBoundingBox.maxY);
+        maxZ = Math.max(maxZ, par1StructureBoundingBox.maxZ);
     }
 
     /**
@@ -138,12 +138,12 @@ public class StructureBoundingBox
      */
     public void offset(int par1, int par2, int par3)
     {
-        this.minX += par1;
-        this.minY += par2;
-        this.minZ += par3;
-        this.maxX += par1;
-        this.maxY += par2;
-        this.maxZ += par3;
+        minX += par1;
+        minY += par2;
+        minZ += par3;
+        maxX += par1;
+        maxY += par2;
+        maxZ += par3;
     }
 
     /**
@@ -151,7 +151,7 @@ public class StructureBoundingBox
      */
     public boolean isVecInside(int par1, int par2, int par3)
     {
-        return par1 >= this.minX && par1 <= this.maxX && par3 >= this.minZ && par3 <= this.maxZ && par2 >= this.minY && par2 <= this.maxY;
+        return par1 >= minX && par1 <= maxX && par3 >= minZ && par3 <= maxZ && par2 >= minY && par2 <= maxY;
     }
 
     /**
@@ -159,7 +159,7 @@ public class StructureBoundingBox
      */
     public int getXSize()
     {
-        return this.maxX - this.minX + 1;
+        return maxX - minX + 1;
     }
 
     /**
@@ -167,7 +167,7 @@ public class StructureBoundingBox
      */
     public int getYSize()
     {
-        return this.maxY - this.minY + 1;
+        return maxY - minY + 1;
     }
 
     /**
@@ -175,31 +175,31 @@ public class StructureBoundingBox
      */
     public int getZSize()
     {
-        return this.maxZ - this.minZ + 1;
+        return maxZ - minZ + 1;
     }
 
     public int getCenterX()
     {
-        return this.minX + (this.maxX - this.minX + 1) / 2;
+        return minX + (maxX - minX + 1) / 2;
     }
 
     public int getCenterY()
     {
-        return this.minY + (this.maxY - this.minY + 1) / 2;
+        return minY + (maxY - minY + 1) / 2;
     }
 
     public int getCenterZ()
     {
-        return this.minZ + (this.maxZ - this.minZ + 1) / 2;
+        return minZ + (maxZ - minZ + 1) / 2;
     }
 
     public String toString()
     {
-        return "(" + this.minX + ", " + this.minY + ", " + this.minZ + "; " + this.maxX + ", " + this.maxY + ", " + this.maxZ + ")";
+        return "(" + minX + ", " + minY + ", " + minZ + "; " + maxX + ", " + maxY + ", " + maxZ + ")";
     }
 
     public NBTTagIntArray func_151535_h()
     {
-        return new NBTTagIntArray(new int[] {this.minX, this.minY, this.minZ, this.maxX, this.maxY, this.maxZ});
+        return new NBTTagIntArray(new int[] {minX, minY, minZ, maxX, maxY, maxZ});
     }
 }

@@ -13,7 +13,7 @@ public class BlockStainedGlassPane extends BlockPane
     public BlockStainedGlassPane()
     {
         super("glass", "glass_pane_top", Material.field_151592_s, false);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**

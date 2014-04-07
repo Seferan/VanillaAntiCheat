@@ -17,8 +17,8 @@ public class WorldGenClay extends WorldGenerator
 
     public WorldGenClay(int par1)
     {
-        this.field_150546_a = Blocks.clay;
-        this.numberOfBlocks = par1;
+        field_150546_a = Blocks.clay;
+        numberOfBlocks = par1;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -29,7 +29,7 @@ public class WorldGenClay extends WorldGenerator
         }
         else
         {
-            int var6 = par2Random.nextInt(this.numberOfBlocks - 2) + 2;
+            int var6 = par2Random.nextInt(numberOfBlocks - 2) + 2;
             byte var7 = 1;
 
             for (int var8 = par3 - var6; var8 <= par3 + var6; ++var8)
@@ -47,7 +47,7 @@ public class WorldGenClay extends WorldGenerator
 
                             if (var13 == Blocks.dirt || var13 == Blocks.clay)
                             {
-                                par1World.setBlock(var8, var12, var9, this.field_150546_a, 0, 2);
+                                par1World.setBlock(var8, var12, var9, field_150546_a, 0, 2);
                             }
                         }
                     }

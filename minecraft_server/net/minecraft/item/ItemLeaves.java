@@ -10,9 +10,9 @@ public class ItemLeaves extends ItemBlock
     public ItemLeaves(BlockLeaves p_i45344_1_)
     {
         super(p_i45344_1_);
-        this.field_150940_b = p_i45344_1_;
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
+        field_150940_b = p_i45344_1_;
+        setMaxDamage(0);
+        setHasSubtypes(true);
     }
 
     /**
@@ -32,11 +32,11 @@ public class ItemLeaves extends ItemBlock
     {
         int var2 = par1ItemStack.getItemDamage();
 
-        if (var2 < 0 || var2 >= this.field_150940_b.func_150125_e().length)
+        if (var2 < 0 || var2 >= field_150940_b.func_150125_e().length)
         {
             var2 = 0;
         }
 
-        return super.getUnlocalizedName() + "." + this.field_150940_b.func_150125_e()[var2];
+        return super.getUnlocalizedName() + "." + field_150940_b.func_150125_e()[var2];
     }
 }

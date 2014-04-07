@@ -11,7 +11,7 @@ public class ItemRedstone extends Item
 
     public ItemRedstone()
     {
-        this.setCreativeTab(CreativeTabs.tabRedstone);
+        setCreativeTab(CreativeTabs.tabRedstone);
     }
 
     /**

@@ -14,12 +14,12 @@ public class WorldGenSpikes extends WorldGenerator
 
     public WorldGenSpikes(Block p_i45464_1_)
     {
-        this.field_150520_a = p_i45464_1_;
+        field_150520_a = p_i45464_1_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
-        if (par1World.isAirBlock(par3, par4, par5) && par1World.getBlock(par3, par4 - 1, par5) == this.field_150520_a)
+        if (par1World.isAirBlock(par3, par4, par5) && par1World.getBlock(par3, par4 - 1, par5) == field_150520_a)
         {
             int var6 = par2Random.nextInt(32) + 6;
             int var7 = par2Random.nextInt(4) + 1;
@@ -35,7 +35,7 @@ public class WorldGenSpikes extends WorldGenerator
                     var10 = var8 - par3;
                     var11 = var9 - par5;
 
-                    if (var10 * var10 + var11 * var11 <= var7 * var7 + 1 && par1World.getBlock(var8, par4 - 1, var9) != this.field_150520_a) { return false; }
+                    if (var10 * var10 + var11 * var11 <= var7 * var7 + 1 && par1World.getBlock(var8, par4 - 1, var9) != field_150520_a) { return false; }
                 }
             }
 
@@ -57,7 +57,7 @@ public class WorldGenSpikes extends WorldGenerator
             }
 
             EntityEnderCrystal var13 = new EntityEnderCrystal(par1World);
-            var13.setLocationAndAngles((double)((float)par3 + 0.5F), (double)(par4 + var6), (double)((float)par5 + 0.5F), par2Random.nextFloat() * 360.0F, 0.0F);
+            var13.setLocationAndAngles(par3 + 0.5F, par4 + var6, par5 + 0.5F, par2Random.nextFloat() * 360.0F, 0.0F);
             par1World.spawnEntityInWorld(var13);
             par1World.setBlock(par3, par4 + var6, par5, Blocks.bedrock, 0, 2);
             return true;

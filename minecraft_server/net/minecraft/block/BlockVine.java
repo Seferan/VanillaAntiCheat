@@ -22,8 +22,8 @@ public class BlockVine extends Block
     public BlockVine()
     {
         super(Material.field_151582_l);
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -31,7 +31,7 @@ public class BlockVine extends Block
      */
     public void setBlockBoundsForItemRender()
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     /**
@@ -108,7 +108,7 @@ public class BlockVine extends Block
             var13 = true;
         }
 
-        if (!var13 && this.func_150093_a(p_149719_1_.getBlock(p_149719_2_, p_149719_3_ + 1, p_149719_4_)))
+        if (!var13 && func_150093_a(p_149719_1_.getBlock(p_149719_2_, p_149719_3_ + 1, p_149719_4_)))
         {
             var8 = Math.min(var8, 0.9375F);
             var11 = 1.0F;
@@ -118,7 +118,7 @@ public class BlockVine extends Block
             var12 = 1.0F;
         }
 
-        this.setBlockBounds(var7, var8, var9, var10, var11, var12);
+        setBlockBounds(var7, var8, var9, var10, var11, var12);
     }
 
     /**
@@ -139,19 +139,19 @@ public class BlockVine extends Block
         switch (p_149707_5_)
         {
         case 1:
-            return this.func_150093_a(p_149707_1_.getBlock(p_149707_2_, p_149707_3_ + 1, p_149707_4_));
+            return func_150093_a(p_149707_1_.getBlock(p_149707_2_, p_149707_3_ + 1, p_149707_4_));
 
         case 2:
-            return this.func_150093_a(p_149707_1_.getBlock(p_149707_2_, p_149707_3_, p_149707_4_ + 1));
+            return func_150093_a(p_149707_1_.getBlock(p_149707_2_, p_149707_3_, p_149707_4_ + 1));
 
         case 3:
-            return this.func_150093_a(p_149707_1_.getBlock(p_149707_2_, p_149707_3_, p_149707_4_ - 1));
+            return func_150093_a(p_149707_1_.getBlock(p_149707_2_, p_149707_3_, p_149707_4_ - 1));
 
         case 4:
-            return this.func_150093_a(p_149707_1_.getBlock(p_149707_2_ + 1, p_149707_3_, p_149707_4_));
+            return func_150093_a(p_149707_1_.getBlock(p_149707_2_ + 1, p_149707_3_, p_149707_4_));
 
         case 5:
-            return this.func_150093_a(p_149707_1_.getBlock(p_149707_2_ - 1, p_149707_3_, p_149707_4_));
+            return func_150093_a(p_149707_1_.getBlock(p_149707_2_ - 1, p_149707_3_, p_149707_4_));
 
         default:
             return false;
@@ -174,14 +174,14 @@ public class BlockVine extends Block
             {
                 int var8 = 1 << var7;
 
-                if ((var5 & var8) != 0 && !this.func_150093_a(p_150094_1_.getBlock(p_150094_2_ + Direction.offsetX[var7], p_150094_3_, p_150094_4_ + Direction.offsetZ[var7])) && (p_150094_1_.getBlock(p_150094_2_, p_150094_3_ + 1, p_150094_4_) != this || (p_150094_1_.getBlockMetadata(p_150094_2_, p_150094_3_ + 1, p_150094_4_) & var8) == 0))
+                if ((var5 & var8) != 0 && !func_150093_a(p_150094_1_.getBlock(p_150094_2_ + Direction.offsetX[var7], p_150094_3_, p_150094_4_ + Direction.offsetZ[var7])) && (p_150094_1_.getBlock(p_150094_2_, p_150094_3_ + 1, p_150094_4_) != this || (p_150094_1_.getBlockMetadata(p_150094_2_, p_150094_3_ + 1, p_150094_4_) & var8) == 0))
                 {
                     var6 &= ~var8;
                 }
             }
         }
 
-        if (var6 == 0 && !this.func_150093_a(p_150094_1_.getBlock(p_150094_2_, p_150094_3_ + 1, p_150094_4_)))
+        if (var6 == 0 && !func_150093_a(p_150094_1_.getBlock(p_150094_2_, p_150094_3_ + 1, p_150094_4_)))
         {
             return false;
         }
@@ -198,9 +198,9 @@ public class BlockVine extends Block
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        if (!p_149695_1_.isClient && !this.func_150094_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
+        if (!p_149695_1_.isClient && !func_150094_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
         {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
+            dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
     }
@@ -220,25 +220,25 @@ public class BlockVine extends Block
             int var11;
             label134:
 
-            for (var9 = p_149674_2_ - var6; var9 <= p_149674_2_ + var6; ++var9)
-            {
-                for (var10 = p_149674_4_ - var6; var10 <= p_149674_4_ + var6; ++var10)
+                for (var9 = p_149674_2_ - var6; var9 <= p_149674_2_ + var6; ++var9)
                 {
-                    for (var11 = p_149674_3_ - 1; var11 <= p_149674_3_ + 1; ++var11)
+                    for (var10 = p_149674_4_ - var6; var10 <= p_149674_4_ + var6; ++var10)
                     {
-                        if (p_149674_1_.getBlock(var9, var11, var10) == this)
+                        for (var11 = p_149674_3_ - 1; var11 <= p_149674_3_ + 1; ++var11)
                         {
-                            --var7;
-
-                            if (var7 <= 0)
+                            if (p_149674_1_.getBlock(var9, var11, var10) == this)
                             {
-                                var8 = true;
-                                break label134;
+                                --var7;
+
+                                if (var7 <= 0)
+                                {
+                                    var8 = true;
+                                    break label134;
+                                }
                             }
                         }
                     }
                 }
-            }
 
             var9 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
             var10 = p_149674_1_.rand.nextInt(6);
@@ -255,7 +255,7 @@ public class BlockVine extends Block
                 {
                     for (var13 = 0; var13 <= 3; ++var13)
                     {
-                        if (!this.func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var13], p_149674_3_ + 1, p_149674_4_ + Direction.offsetZ[var13])))
+                        if (!func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var13], p_149674_3_ + 1, p_149674_4_ + Direction.offsetZ[var13])))
                         {
                             var15 &= ~(1 << var13);
                         }
@@ -283,23 +283,23 @@ public class BlockVine extends Block
                         var13 = var11 + 1 & 3;
                         var14 = var11 + 3 & 3;
 
-                        if ((var9 & 1 << var13) != 0 && this.func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var13], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var13])))
+                        if ((var9 & 1 << var13) != 0 && func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var13], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var13])))
                         {
                             p_149674_1_.setBlock(p_149674_2_ + Direction.offsetX[var11], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11], this, 1 << var13, 2);
                         }
-                        else if ((var9 & 1 << var14) != 0 && this.func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var14], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var14])))
+                        else if ((var9 & 1 << var14) != 0 && func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var14], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var14])))
                         {
                             p_149674_1_.setBlock(p_149674_2_ + Direction.offsetX[var11], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11], this, 1 << var14, 2);
                         }
-                        else if ((var9 & 1 << var13) != 0 && p_149674_1_.isAirBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var13], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var13]) && this.func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var13], p_149674_3_, p_149674_4_ + Direction.offsetZ[var13])))
+                        else if ((var9 & 1 << var13) != 0 && p_149674_1_.isAirBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var13], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var13]) && func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var13], p_149674_3_, p_149674_4_ + Direction.offsetZ[var13])))
                         {
                             p_149674_1_.setBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var13], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var13], this, 1 << (var11 + 2 & 3), 2);
                         }
-                        else if ((var9 & 1 << var14) != 0 && p_149674_1_.isAirBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var14], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var14]) && this.func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var14], p_149674_3_, p_149674_4_ + Direction.offsetZ[var14])))
+                        else if ((var9 & 1 << var14) != 0 && p_149674_1_.isAirBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var14], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var14]) && func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var14], p_149674_3_, p_149674_4_ + Direction.offsetZ[var14])))
                         {
                             p_149674_1_.setBlock(p_149674_2_ + Direction.offsetX[var11] + Direction.offsetX[var14], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11] + Direction.offsetZ[var14], this, 1 << (var11 + 2 & 3), 2);
                         }
-                        else if (this.func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var11], p_149674_3_ + 1, p_149674_4_ + Direction.offsetZ[var11])))
+                        else if (func_150093_a(p_149674_1_.getBlock(p_149674_2_ + Direction.offsetX[var11], p_149674_3_ + 1, p_149674_4_ + Direction.offsetZ[var11])))
                         {
                             p_149674_1_.setBlock(p_149674_2_ + Direction.offsetX[var11], p_149674_3_, p_149674_4_ + Direction.offsetZ[var11], this, 0, 2);
                         }
@@ -380,7 +380,7 @@ public class BlockVine extends Block
         if (!p_149636_1_.isClient && p_149636_2_.getCurrentEquippedItem() != null && p_149636_2_.getCurrentEquippedItem().getItem() == Items.shears)
         {
             p_149636_2_.addStat(StatList.mineBlockStatArray[Block.getIdFromBlock(this)], 1);
-            this.dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, new ItemStack(Blocks.vine, 1, 0));
+            dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, new ItemStack(Blocks.vine, 1, 0));
         }
         else
         {

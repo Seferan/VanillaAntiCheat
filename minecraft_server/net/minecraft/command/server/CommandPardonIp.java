@@ -18,7 +18,7 @@ public class CommandPardonIp extends CommandBase
     {
         return "pardon-ip";
     }
-    
+
     public List getCommandAliases()
     {
         return Arrays.asList(new String[] {"pardonip", "unbanip"});

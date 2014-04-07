@@ -12,30 +12,30 @@ public class ScoreObjective
 
     public ScoreObjective(Scoreboard par1Scoreboard, String par2Str, IScoreObjectiveCriteria par3ScoreObjectiveCriteria)
     {
-        this.theScoreboard = par1Scoreboard;
-        this.name = par2Str;
-        this.objectiveCriteria = par3ScoreObjectiveCriteria;
-        this.displayName = par2Str;
+        theScoreboard = par1Scoreboard;
+        name = par2Str;
+        objectiveCriteria = par3ScoreObjectiveCriteria;
+        displayName = par2Str;
     }
 
     public String getName()
     {
-        return this.name;
+        return name;
     }
 
     public IScoreObjectiveCriteria getCriteria()
     {
-        return this.objectiveCriteria;
+        return objectiveCriteria;
     }
 
     public String getDisplayName()
     {
-        return this.displayName;
+        return displayName;
     }
 
     public void setDisplayName(String par1Str)
     {
-        this.displayName = par1Str;
-        this.theScoreboard.func_96532_b(this);
+        displayName = par1Str;
+        theScoreboard.func_96532_b(this);
     }
 }

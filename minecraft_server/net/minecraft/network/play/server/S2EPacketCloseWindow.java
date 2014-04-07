@@ -18,7 +18,7 @@ public class S2EPacketCloseWindow extends Packet
 
     public S2EPacketCloseWindow(int p_i45183_1_)
     {
-        this.field_148896_a = p_i45183_1_;
+        field_148896_a = p_i45183_1_;
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148895_1_)
@@ -31,7 +31,7 @@ public class S2EPacketCloseWindow extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148896_a = p_148837_1_.readUnsignedByte();
+        field_148896_a = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -39,7 +39,7 @@ public class S2EPacketCloseWindow extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_148896_a);
+        p_148840_1_.writeByte(field_148896_a);
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

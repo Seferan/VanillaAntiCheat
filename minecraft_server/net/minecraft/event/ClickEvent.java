@@ -12,8 +12,8 @@ public class ClickEvent
 
     public ClickEvent(ClickEvent.Action p_i45156_1_, String p_i45156_2_)
     {
-        this.action = p_i45156_1_;
-        this.value = p_i45156_2_;
+        action = p_i45156_1_;
+        value = p_i45156_2_;
     }
 
     /**
@@ -21,7 +21,7 @@ public class ClickEvent
      */
     public ClickEvent.Action getAction()
     {
-        return this.action;
+        return action;
     }
 
     /**
@@ -30,7 +30,7 @@ public class ClickEvent
      */
     public String getValue()
     {
-        return this.value;
+        return value;
     }
 
     public boolean equals(Object par1Obj)
@@ -43,15 +43,15 @@ public class ClickEvent
         {
             ClickEvent var2 = (ClickEvent)par1Obj;
 
-            if (this.action != var2.action)
+            if (action != var2.action)
             {
                 return false;
             }
             else
             {
-                if (this.value != null)
+                if (value != null)
                 {
-                    if (!this.value.equals(var2.value)) { return false; }
+                    if (!value.equals(var2.value)) { return false; }
                 }
                 else if (var2.value != null) { return false; }
 
@@ -66,13 +66,13 @@ public class ClickEvent
 
     public String toString()
     {
-        return "ClickEvent{action=" + this.action + ", value=\'" + this.value + '\'' + '}';
+        return "ClickEvent{action=" + action + ", value=\'" + value + '\'' + '}';
     }
 
     public int hashCode()
     {
-        int var1 = this.action.hashCode();
-        var1 = 31 * var1 + (this.value != null ? this.value.hashCode() : 0);
+        int var1 = action.hashCode();
+        var1 = 31 * var1 + (value != null ? value.hashCode() : 0);
         return var1;
     }
 
@@ -88,18 +88,18 @@ public class ClickEvent
 
         private Action(String p_i45155_1_, int p_i45155_2_, String p_i45155_3_, boolean p_i45155_4_)
         {
-            this.canonicalName = p_i45155_3_;
-            this.allowedInChat = p_i45155_4_;
+            canonicalName = p_i45155_3_;
+            allowedInChat = p_i45155_4_;
         }
 
         public boolean shouldAllowInChat()
         {
-            return this.allowedInChat;
+            return allowedInChat;
         }
 
         public String getCanonicalName()
         {
-            return this.canonicalName;
+            return canonicalName;
         }
 
         public static ClickEvent.Action getValueByCanonicalName(String p_150672_0_)

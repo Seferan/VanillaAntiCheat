@@ -362,13 +362,13 @@ public class JsonToNBT
 
         public Compound(String p_i45137_1_)
         {
-            this.field_150490_a = p_i45137_1_;
+            field_150490_a = p_i45137_1_;
         }
 
         public NBTBase func_150489_a()
         {
             NBTTagCompound var1 = new NBTTagCompound();
-            Iterator var2 = this.field_150491_b.iterator();
+            Iterator var2 = field_150491_b.iterator();
 
             while (var2.hasNext())
             {
@@ -387,13 +387,13 @@ public class JsonToNBT
 
         public List(String p_i45138_1_)
         {
-            this.field_150490_a = p_i45138_1_;
+            field_150490_a = p_i45138_1_;
         }
 
         public NBTBase func_150489_a()
         {
             NBTTagList var1 = new NBTTagList();
-            Iterator var2 = this.field_150492_b.iterator();
+            Iterator var2 = field_150492_b.iterator();
 
             while (var2.hasNext())
             {
@@ -420,49 +420,49 @@ public class JsonToNBT
 
         public Primitive(String p_i45139_1_, String p_i45139_2_)
         {
-            this.field_150490_a = p_i45139_1_;
-            this.field_150493_b = p_i45139_2_;
+            field_150490_a = p_i45139_1_;
+            field_150493_b = p_i45139_2_;
         }
 
         public NBTBase func_150489_a()
         {
             try
             {
-                if (this.field_150493_b.matches("[-+]?[0-9]*\\.?[0-9]+[d|D]"))
+                if (field_150493_b.matches("[-+]?[0-9]*\\.?[0-9]+[d|D]"))
                 {
-                    return new NBTTagDouble(Double.parseDouble(this.field_150493_b.substring(0, this.field_150493_b.length() - 1)));
+                    return new NBTTagDouble(Double.parseDouble(field_150493_b.substring(0, field_150493_b.length() - 1)));
                 }
-                else if (this.field_150493_b.matches("[-+]?[0-9]*\\.?[0-9]+[f|F]"))
+                else if (field_150493_b.matches("[-+]?[0-9]*\\.?[0-9]+[f|F]"))
                 {
-                    return new NBTTagFloat(Float.parseFloat(this.field_150493_b.substring(0, this.field_150493_b.length() - 1)));
+                    return new NBTTagFloat(Float.parseFloat(field_150493_b.substring(0, field_150493_b.length() - 1)));
                 }
-                else if (this.field_150493_b.matches("[-+]?[0-9]+[b|B]"))
+                else if (field_150493_b.matches("[-+]?[0-9]+[b|B]"))
                 {
-                    return new NBTTagByte(Byte.parseByte(this.field_150493_b.substring(0, this.field_150493_b.length() - 1)));
+                    return new NBTTagByte(Byte.parseByte(field_150493_b.substring(0, field_150493_b.length() - 1)));
                 }
-                else if (this.field_150493_b.matches("[-+]?[0-9]+[l|L]"))
+                else if (field_150493_b.matches("[-+]?[0-9]+[l|L]"))
                 {
-                    return new NBTTagLong(Long.parseLong(this.field_150493_b.substring(0, this.field_150493_b.length() - 1)));
+                    return new NBTTagLong(Long.parseLong(field_150493_b.substring(0, field_150493_b.length() - 1)));
                 }
-                else if (this.field_150493_b.matches("[-+]?[0-9]+[s|S]"))
+                else if (field_150493_b.matches("[-+]?[0-9]+[s|S]"))
                 {
-                    return new NBTTagShort(Short.parseShort(this.field_150493_b.substring(0, this.field_150493_b.length() - 1)));
+                    return new NBTTagShort(Short.parseShort(field_150493_b.substring(0, field_150493_b.length() - 1)));
                 }
-                else if (this.field_150493_b.matches("[-+]?[0-9]+"))
+                else if (field_150493_b.matches("[-+]?[0-9]+"))
                 {
-                    return new NBTTagInt(Integer.parseInt(this.field_150493_b.substring(0, this.field_150493_b.length())));
+                    return new NBTTagInt(Integer.parseInt(field_150493_b.substring(0, field_150493_b.length())));
                 }
-                else if (this.field_150493_b.matches("[-+]?[0-9]*\\.?[0-9]+"))
+                else if (field_150493_b.matches("[-+]?[0-9]*\\.?[0-9]+"))
                 {
-                    return new NBTTagDouble(Double.parseDouble(this.field_150493_b.substring(0, this.field_150493_b.length())));
+                    return new NBTTagDouble(Double.parseDouble(field_150493_b.substring(0, field_150493_b.length())));
                 }
-                else if (!this.field_150493_b.equalsIgnoreCase("true") && !this.field_150493_b.equalsIgnoreCase("false"))
+                else if (!field_150493_b.equalsIgnoreCase("true") && !field_150493_b.equalsIgnoreCase("false"))
                 {
-                    if (this.field_150493_b.startsWith("[") && this.field_150493_b.endsWith("]"))
+                    if (field_150493_b.startsWith("[") && field_150493_b.endsWith("]"))
                     {
-                        if (this.field_150493_b.length() > 2)
+                        if (field_150493_b.length() > 2)
                         {
-                            String var1 = this.field_150493_b.substring(1, this.field_150493_b.length() - 1);
+                            String var1 = field_150493_b.substring(1, field_150493_b.length() - 1);
                             String[] var2 = var1.split(",");
 
                             try
@@ -485,7 +485,7 @@ public class JsonToNBT
                             }
                             catch (NumberFormatException var5)
                             {
-                                return new NBTTagString(this.field_150493_b);
+                                return new NBTTagString(field_150493_b);
                             }
                         }
                         else
@@ -495,24 +495,24 @@ public class JsonToNBT
                     }
                     else
                     {
-                        if (this.field_150493_b.startsWith("\"") && this.field_150493_b.endsWith("\"") && this.field_150493_b.length() > 2)
+                        if (field_150493_b.startsWith("\"") && field_150493_b.endsWith("\"") && field_150493_b.length() > 2)
                         {
-                            this.field_150493_b = this.field_150493_b.substring(1, this.field_150493_b.length() - 1);
+                            field_150493_b = field_150493_b.substring(1, field_150493_b.length() - 1);
                         }
 
-                        this.field_150493_b = this.field_150493_b.replaceAll("\\\\\"", "\"");
-                        return new NBTTagString(this.field_150493_b);
+                        field_150493_b = field_150493_b.replaceAll("\\\\\"", "\"");
+                        return new NBTTagString(field_150493_b);
                     }
                 }
                 else
                 {
-                    return new NBTTagByte((byte)(Boolean.parseBoolean(this.field_150493_b) ? 1 : 0));
+                    return new NBTTagByte((byte)(Boolean.parseBoolean(field_150493_b) ? 1 : 0));
                 }
             }
             catch (NumberFormatException var6)
             {
-                this.field_150493_b = this.field_150493_b.replaceAll("\\\\\"", "\"");
-                return new NBTTagString(this.field_150493_b);
+                field_150493_b = field_150493_b.replaceAll("\\\\\"", "\"");
+                return new NBTTagString(field_150493_b);
             }
         }
     }

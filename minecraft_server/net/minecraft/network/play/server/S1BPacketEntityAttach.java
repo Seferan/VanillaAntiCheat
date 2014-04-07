@@ -21,9 +21,9 @@ public class S1BPacketEntityAttach extends Packet
 
     public S1BPacketEntityAttach(int p_i45218_1_, Entity p_i45218_2_, Entity p_i45218_3_)
     {
-        this.field_149408_a = p_i45218_1_;
-        this.field_149406_b = p_i45218_2_.getEntityId();
-        this.field_149407_c = p_i45218_3_ != null ? p_i45218_3_.getEntityId() : -1;
+        field_149408_a = p_i45218_1_;
+        field_149406_b = p_i45218_2_.getEntityId();
+        field_149407_c = p_i45218_3_ != null ? p_i45218_3_.getEntityId() : -1;
     }
 
     /**
@@ -31,9 +31,9 @@ public class S1BPacketEntityAttach extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149406_b = p_148837_1_.readInt();
-        this.field_149407_c = p_148837_1_.readInt();
-        this.field_149408_a = p_148837_1_.readUnsignedByte();
+        field_149406_b = p_148837_1_.readInt();
+        field_149407_c = p_148837_1_.readInt();
+        field_149408_a = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -41,9 +41,9 @@ public class S1BPacketEntityAttach extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149406_b);
-        p_148840_1_.writeInt(this.field_149407_c);
-        p_148840_1_.writeByte(this.field_149408_a);
+        p_148840_1_.writeInt(field_149406_b);
+        p_148840_1_.writeInt(field_149407_c);
+        p_148840_1_.writeByte(field_149408_a);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149405_1_)

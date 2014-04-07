@@ -51,9 +51,9 @@ public class BlockRedstoneTorch extends BlockTorch
 
     protected BlockRedstoneTorch(boolean p_i45423_1_)
     {
-        this.field_150113_a = p_i45423_1_;
-        this.setTickRandomly(true);
-        this.setcreativeTab((CreativeTabs)null);
+        field_150113_a = p_i45423_1_;
+        setTickRandomly(true);
+        setcreativeTab((CreativeTabs)null);
     }
 
     public int func_149738_a(World p_149738_1_)
@@ -68,7 +68,7 @@ public class BlockRedstoneTorch extends BlockTorch
             super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
         }
 
-        if (this.field_150113_a)
+        if (field_150113_a)
         {
             p_149726_1_.notifyBlocksOfNeighborChange(p_149726_2_, p_149726_3_ - 1, p_149726_4_, this);
             p_149726_1_.notifyBlocksOfNeighborChange(p_149726_2_, p_149726_3_ + 1, p_149726_4_, this);
@@ -81,7 +81,7 @@ public class BlockRedstoneTorch extends BlockTorch
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        if (this.field_150113_a)
+        if (field_150113_a)
         {
             p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_ - 1, p_149749_4_, this);
             p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_ + 1, p_149749_4_, this);
@@ -94,7 +94,7 @@ public class BlockRedstoneTorch extends BlockTorch
 
     public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
     {
-        if (!this.field_150113_a)
+        if (!field_150113_a)
         {
             return 0;
         }
@@ -116,7 +116,7 @@ public class BlockRedstoneTorch extends BlockTorch
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        boolean var6 = this.func_150110_m(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+        boolean var6 = func_150110_m(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
         List var7 = (List)field_150112_b.get(p_149674_1_);
 
         while (var7 != null && !var7.isEmpty() && p_149674_1_.getTotalWorldTime() - ((BlockRedstoneTorch.Toggle)var7.get(0)).field_150844_d > 60L)
@@ -124,27 +124,27 @@ public class BlockRedstoneTorch extends BlockTorch
             var7.remove(0);
         }
 
-        if (this.field_150113_a)
+        if (field_150113_a)
         {
             if (var6)
             {
                 p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, Blocks.unlit_redstone_torch, p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_), 3);
 
-                if (this.func_150111_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, true))
+                if (func_150111_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, true))
                 {
-                    p_149674_1_.playSoundEffect((double)((float)p_149674_2_ + 0.5F), (double)((float)p_149674_3_ + 0.5F), (double)((float)p_149674_4_ + 0.5F), "random.fizz", 0.5F, 2.6F + (p_149674_1_.rand.nextFloat() - p_149674_1_.rand.nextFloat()) * 0.8F);
+                    p_149674_1_.playSoundEffect(p_149674_2_ + 0.5F, p_149674_3_ + 0.5F, p_149674_4_ + 0.5F, "random.fizz", 0.5F, 2.6F + (p_149674_1_.rand.nextFloat() - p_149674_1_.rand.nextFloat()) * 0.8F);
 
                     for (int var8 = 0; var8 < 5; ++var8)
                     {
-                        double var9 = (double)p_149674_2_ + p_149674_5_.nextDouble() * 0.6D + 0.2D;
-                        double var11 = (double)p_149674_3_ + p_149674_5_.nextDouble() * 0.6D + 0.2D;
-                        double var13 = (double)p_149674_4_ + p_149674_5_.nextDouble() * 0.6D + 0.2D;
+                        double var9 = p_149674_2_ + p_149674_5_.nextDouble() * 0.6D + 0.2D;
+                        double var11 = p_149674_3_ + p_149674_5_.nextDouble() * 0.6D + 0.2D;
+                        double var13 = p_149674_4_ + p_149674_5_.nextDouble() * 0.6D + 0.2D;
                         p_149674_1_.spawnParticle("smoke", var9, var11, var13, 0.0D, 0.0D, 0.0D);
                     }
                 }
             }
         }
-        else if (!var6 && !this.func_150111_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, false))
+        else if (!var6 && !func_150111_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, false))
         {
             p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, Blocks.redstone_torch, p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_), 3);
         }
@@ -152,20 +152,20 @@ public class BlockRedstoneTorch extends BlockTorch
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        if (!this.func_150108_b(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_))
+        if (!func_150108_b(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_5_))
         {
-            boolean var6 = this.func_150110_m(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+            boolean var6 = func_150110_m(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
 
-            if (this.field_150113_a && var6 || !this.field_150113_a && !var6)
+            if (field_150113_a && var6 || !field_150113_a && !var6)
             {
-                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, this.func_149738_a(p_149695_1_));
+                p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, func_149738_a(p_149695_1_));
             }
         }
     }
 
     public int isProvidingStrongPower(IBlockAccess p_149748_1_, int p_149748_2_, int p_149748_3_, int p_149748_4_, int p_149748_5_)
     {
-        return p_149748_5_ == 0 ? this.isProvidingWeakPower(p_149748_1_, p_149748_2_, p_149748_3_, p_149748_4_, p_149748_5_) : 0;
+        return p_149748_5_ == 0 ? isProvidingWeakPower(p_149748_1_, p_149748_2_, p_149748_3_, p_149748_4_, p_149748_5_) : 0;
     }
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
@@ -197,10 +197,10 @@ public class BlockRedstoneTorch extends BlockTorch
 
         public Toggle(int p_i45422_1_, int p_i45422_2_, int p_i45422_3_, long p_i45422_4_)
         {
-            this.field_150847_a = p_i45422_1_;
-            this.field_150845_b = p_i45422_2_;
-            this.field_150846_c = p_i45422_3_;
-            this.field_150844_d = p_i45422_4_;
+            field_150847_a = p_i45422_1_;
+            field_150845_b = p_i45422_2_;
+            field_150846_c = p_i45422_3_;
+            field_150844_d = p_i45422_4_;
         }
     }
 }

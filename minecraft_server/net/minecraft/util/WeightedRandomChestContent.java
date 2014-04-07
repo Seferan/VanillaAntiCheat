@@ -22,17 +22,17 @@ public class WeightedRandomChestContent extends WeightedRandom.Item
     public WeightedRandomChestContent(Item p_i45311_1_, int p_i45311_2_, int p_i45311_3_, int p_i45311_4_, int p_i45311_5_)
     {
         super(p_i45311_5_);
-        this.theItemId = new ItemStack(p_i45311_1_, 1, p_i45311_2_);
-        this.theMinimumChanceToGenerateItem = p_i45311_3_;
-        this.theMaximumChanceToGenerateItem = p_i45311_4_;
+        theItemId = new ItemStack(p_i45311_1_, 1, p_i45311_2_);
+        theMinimumChanceToGenerateItem = p_i45311_3_;
+        theMaximumChanceToGenerateItem = p_i45311_4_;
     }
 
     public WeightedRandomChestContent(ItemStack par1ItemStack, int par2, int par3, int par4)
     {
         super(par4);
-        this.theItemId = par1ItemStack;
-        this.theMinimumChanceToGenerateItem = par2;
-        this.theMaximumChanceToGenerateItem = par3;
+        theItemId = par1ItemStack;
+        theMinimumChanceToGenerateItem = par2;
+        theMaximumChanceToGenerateItem = par3;
     }
 
     /**

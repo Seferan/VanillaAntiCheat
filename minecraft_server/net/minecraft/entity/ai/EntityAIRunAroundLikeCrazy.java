@@ -16,9 +16,9 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
 
     public EntityAIRunAroundLikeCrazy(EntityHorse par1EntityHorse, double par2)
     {
-        this.horseHost = par1EntityHorse;
-        this.field_111178_b = par2;
-        this.setMutexBits(1);
+        horseHost = par1EntityHorse;
+        field_111178_b = par2;
+        setMutexBits(1);
     }
 
     /**
@@ -26,9 +26,9 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (!this.horseHost.isTame() && this.horseHost.riddenByEntity != null)
+        if (!horseHost.isTame() && horseHost.riddenByEntity != null)
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.horseHost, 5, 4);
+            Vec3 var1 = RandomPositionGenerator.findRandomTarget(horseHost, 5, 4);
 
             if (var1 == null)
             {
@@ -36,9 +36,9 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
             }
             else
             {
-                this.field_111179_c = var1.xCoord;
-                this.field_111176_d = var1.yCoord;
-                this.field_111177_e = var1.zCoord;
+                field_111179_c = var1.xCoord;
+                field_111176_d = var1.yCoord;
+                field_111177_e = var1.zCoord;
                 return true;
             }
         }
@@ -53,7 +53,7 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.horseHost.getNavigator().tryMoveToXYZ(this.field_111179_c, this.field_111176_d, this.field_111177_e, this.field_111178_b);
+        horseHost.getNavigator().tryMoveToXYZ(field_111179_c, field_111176_d, field_111177_e, field_111178_b);
     }
 
     /**
@@ -61,7 +61,7 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.horseHost.getNavigator().noPath() && this.horseHost.riddenByEntity != null;
+        return !horseHost.getNavigator().noPath() && horseHost.riddenByEntity != null;
     }
 
     /**
@@ -69,27 +69,27 @@ public class EntityAIRunAroundLikeCrazy extends EntityAIBase
      */
     public void updateTask()
     {
-        if (this.horseHost.getRNG().nextInt(50) == 0)
+        if (horseHost.getRNG().nextInt(50) == 0)
         {
-            if (this.horseHost.riddenByEntity instanceof EntityPlayer)
+            if (horseHost.riddenByEntity instanceof EntityPlayer)
             {
-                int var1 = this.horseHost.getTemper();
-                int var2 = this.horseHost.getMaxTemper();
+                int var1 = horseHost.getTemper();
+                int var2 = horseHost.getMaxTemper();
 
-                if (var2 > 0 && this.horseHost.getRNG().nextInt(var2) < var1)
+                if (var2 > 0 && horseHost.getRNG().nextInt(var2) < var1)
                 {
-                    this.horseHost.setTamedBy((EntityPlayer)this.horseHost.riddenByEntity);
-                    this.horseHost.worldObj.setEntityState(this.horseHost, (byte)7);
+                    horseHost.setTamedBy((EntityPlayer)horseHost.riddenByEntity);
+                    horseHost.worldObj.setEntityState(horseHost, (byte)7);
                     return;
                 }
 
-                this.horseHost.increaseTemper(5);
+                horseHost.increaseTemper(5);
             }
 
-            this.horseHost.riddenByEntity.mountEntity((Entity)null);
-            this.horseHost.riddenByEntity = null;
-            this.horseHost.makeHorseRearWithSound();
-            this.horseHost.worldObj.setEntityState(this.horseHost, (byte)6);
+            horseHost.riddenByEntity.mountEntity((Entity)null);
+            horseHost.riddenByEntity = null;
+            horseHost.makeHorseRearWithSound();
+            horseHost.worldObj.setEntityState(horseHost, (byte)6);
         }
     }
 }

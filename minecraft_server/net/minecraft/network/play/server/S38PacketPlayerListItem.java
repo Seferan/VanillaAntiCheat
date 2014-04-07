@@ -20,9 +20,9 @@ public class S38PacketPlayerListItem extends Packet
 
     public S38PacketPlayerListItem(String p_i45209_1_, boolean p_i45209_2_, int p_i45209_3_)
     {
-        this.field_149126_a = p_i45209_1_;
-        this.field_149124_b = p_i45209_2_;
-        this.field_149125_c = p_i45209_3_;
+        field_149126_a = p_i45209_1_;
+        field_149124_b = p_i45209_2_;
+        field_149125_c = p_i45209_3_;
     }
 
     /**
@@ -30,9 +30,9 @@ public class S38PacketPlayerListItem extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149126_a = p_148837_1_.readStringFromBuffer(16);
-        this.field_149124_b = p_148837_1_.readBoolean();
-        this.field_149125_c = p_148837_1_.readShort();
+        field_149126_a = p_148837_1_.readStringFromBuffer(16);
+        field_149124_b = p_148837_1_.readBoolean();
+        field_149125_c = p_148837_1_.readShort();
     }
 
     /**
@@ -40,9 +40,9 @@ public class S38PacketPlayerListItem extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149126_a);
-        p_148840_1_.writeBoolean(this.field_149124_b);
-        p_148840_1_.writeShort(this.field_149125_c);
+        p_148840_1_.writeStringToBuffer(field_149126_a);
+        p_148840_1_.writeBoolean(field_149124_b);
+        p_148840_1_.writeShort(field_149125_c);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149123_1_)

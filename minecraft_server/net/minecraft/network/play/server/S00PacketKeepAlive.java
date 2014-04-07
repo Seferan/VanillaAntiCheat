@@ -18,7 +18,7 @@ public class S00PacketKeepAlive extends Packet
 
     public S00PacketKeepAlive(int p_i45195_1_)
     {
-        this.field_149136_a = p_i45195_1_;
+        field_149136_a = p_i45195_1_;
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149135_1_)
@@ -31,7 +31,7 @@ public class S00PacketKeepAlive extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149136_a = p_148837_1_.readInt();
+        field_149136_a = p_148837_1_.readInt();
     }
 
     /**
@@ -39,7 +39,7 @@ public class S00PacketKeepAlive extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149136_a);
+        p_148840_1_.writeInt(field_149136_a);
     }
 
     /**

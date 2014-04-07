@@ -37,10 +37,10 @@ public class PathPoint
 
     public PathPoint(int par1, int par2, int par3)
     {
-        this.xCoord = par1;
-        this.yCoord = par2;
-        this.zCoord = par3;
-        this.hash = makeHash(par1, par2, par3);
+        xCoord = par1;
+        yCoord = par2;
+        zCoord = par3;
+        hash = makeHash(par1, par2, par3);
     }
 
     public static int makeHash(int par0, int par1, int par2)
@@ -53,17 +53,17 @@ public class PathPoint
      */
     public float distanceTo(PathPoint par1PathPoint)
     {
-        float var2 = (float)(par1PathPoint.xCoord - this.xCoord);
-        float var3 = (float)(par1PathPoint.yCoord - this.yCoord);
-        float var4 = (float)(par1PathPoint.zCoord - this.zCoord);
+        float var2 = par1PathPoint.xCoord - xCoord;
+        float var3 = par1PathPoint.yCoord - yCoord;
+        float var4 = par1PathPoint.zCoord - zCoord;
         return MathHelper.sqrt_float(var2 * var2 + var3 * var3 + var4 * var4);
     }
 
     public float func_75832_b(PathPoint par1PathPoint)
     {
-        float var2 = (float)(par1PathPoint.xCoord - this.xCoord);
-        float var3 = (float)(par1PathPoint.yCoord - this.yCoord);
-        float var4 = (float)(par1PathPoint.zCoord - this.zCoord);
+        float var2 = par1PathPoint.xCoord - xCoord;
+        float var3 = par1PathPoint.yCoord - yCoord;
+        float var4 = par1PathPoint.zCoord - zCoord;
         return var2 * var2 + var3 * var3 + var4 * var4;
     }
 
@@ -76,13 +76,13 @@ public class PathPoint
         else
         {
             PathPoint var2 = (PathPoint)par1Obj;
-            return this.hash == var2.hash && this.xCoord == var2.xCoord && this.yCoord == var2.yCoord && this.zCoord == var2.zCoord;
+            return hash == var2.hash && xCoord == var2.xCoord && yCoord == var2.yCoord && zCoord == var2.zCoord;
         }
     }
 
     public int hashCode()
     {
-        return this.hash;
+        return hash;
     }
 
     /**
@@ -90,11 +90,11 @@ public class PathPoint
      */
     public boolean isAssigned()
     {
-        return this.index >= 0;
+        return index >= 0;
     }
 
     public String toString()
     {
-        return this.xCoord + ", " + this.yCoord + ", " + this.zCoord;
+        return xCoord + ", " + yCoord + ", " + zCoord;
     }
 }

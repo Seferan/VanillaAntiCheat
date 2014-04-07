@@ -9,7 +9,7 @@ public class GenLayerRareBiome extends GenLayer
     public GenLayerRareBiome(long p_i45478_1_, GenLayer p_i45478_3_)
     {
         super(p_i45478_1_);
-        this.parent = p_i45478_3_;
+        parent = p_i45478_3_;
     }
 
     /**
@@ -19,17 +19,17 @@ public class GenLayerRareBiome extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        int[] var5 = this.parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
+        int[] var5 = parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
         int[] var6 = IntCache.getIntCache(par3 * par4);
 
         for (int var7 = 0; var7 < par4; ++var7)
         {
             for (int var8 = 0; var8 < par3; ++var8)
             {
-                this.initChunkSeed((long)(var8 + par1), (long)(var7 + par2));
+                initChunkSeed(var8 + par1, var7 + par2);
                 int var9 = var5[var8 + 1 + (var7 + 1) * (par3 + 2)];
 
-                if (this.nextInt(57) == 0)
+                if (nextInt(57) == 0)
                 {
                     if (var9 == BiomeGenBase.plains.biomeID)
                     {

@@ -421,7 +421,7 @@ public class Item
 
     public Item setMaxStackSize(int par1)
     {
-        this.maxStackSize = par1;
+        maxStackSize = par1;
         return this;
     }
 
@@ -460,7 +460,7 @@ public class Item
      */
     public int getItemStackLimit()
     {
-        return this.maxStackSize;
+        return maxStackSize;
     }
 
     /**
@@ -473,12 +473,12 @@ public class Item
 
     public boolean getHasSubtypes()
     {
-        return this.hasSubtypes;
+        return hasSubtypes;
     }
 
     protected Item setHasSubtypes(boolean par1)
     {
-        this.hasSubtypes = par1;
+        hasSubtypes = par1;
         return this;
     }
 
@@ -487,7 +487,7 @@ public class Item
      */
     public int getMaxDamage()
     {
-        return this.maxDamage;
+        return maxDamage;
     }
 
     /**
@@ -495,13 +495,13 @@ public class Item
      */
     protected Item setMaxDamage(int par1)
     {
-        this.maxDamage = par1;
+        maxDamage = par1;
         return this;
     }
 
     public boolean isDamageable()
     {
-        return this.maxDamage > 0 && !this.hasSubtypes;
+        return maxDamage > 0 && !hasSubtypes;
     }
 
     /**
@@ -537,7 +537,7 @@ public class Item
      */
     public Item setFull3D()
     {
-        this.bFull3D = true;
+        bFull3D = true;
         return this;
     }
 
@@ -547,7 +547,7 @@ public class Item
      */
     public Item setUnlocalizedName(String par1Str)
     {
-        this.unlocalizedName = par1Str;
+        unlocalizedName = par1Str;
         return this;
     }
 
@@ -567,7 +567,7 @@ public class Item
      */
     public String getUnlocalizedName()
     {
-        return "item." + this.unlocalizedName;
+        return "item." + unlocalizedName;
     }
 
     /**
@@ -577,12 +577,12 @@ public class Item
      */
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
-        return "item." + this.unlocalizedName;
+        return "item." + unlocalizedName;
     }
 
     public Item setContainerItem(Item par1Item)
     {
-        this.containerItem = par1Item;
+        containerItem = par1Item;
         return this;
     }
 
@@ -607,7 +607,7 @@ public class Item
 
     public Item getContainerItem()
     {
-        return this.containerItem;
+        return containerItem;
     }
 
     /**
@@ -615,7 +615,7 @@ public class Item
      */
     public boolean hasContainerItem()
     {
-        return this.containerItem != null;
+        return containerItem != null;
     }
 
     /**
@@ -672,23 +672,23 @@ public class Item
      */
     protected Item setPotionEffect(String par1Str)
     {
-        this.potionEffect = par1Str;
+        potionEffect = par1Str;
         return this;
     }
 
     public String getPotionEffect(ItemStack p_150896_1_)
     {
-        return this.potionEffect;
+        return potionEffect;
     }
 
     public boolean isPotionIngredient(ItemStack p_150892_1_)
     {
-        return this.getPotionEffect(p_150892_1_) != null;
+        return getPotionEffect(p_150892_1_) != null;
     }
 
     public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
-        return ("" + StatCollector.translateToLocal(this.getUnlocalizedNameInefficiently(par1ItemStack) + ".name")).trim();
+        return ("" + StatCollector.translateToLocal(getUnlocalizedNameInefficiently(par1ItemStack) + ".name")).trim();
     }
 
     public EnumRarity func_77613_e(ItemStack p_77613_1_)
@@ -701,7 +701,7 @@ public class Item
      */
     public boolean isItemTool(ItemStack par1ItemStack)
     {
-        return this.getItemStackLimit() == 1 && this.isDamageable();
+        return getItemStackLimit() == 1 && isDamageable();
     }
 
     protected MovingObjectPosition getMovingObjectPositionFromPlayer(World par1World, EntityPlayer par2EntityPlayer, boolean par3)
@@ -709,9 +709,9 @@ public class Item
         float var4 = 1.0F;
         float var5 = par2EntityPlayer.prevRotationPitch + (par2EntityPlayer.rotationPitch - par2EntityPlayer.prevRotationPitch) * var4;
         float var6 = par2EntityPlayer.prevRotationYaw + (par2EntityPlayer.rotationYaw - par2EntityPlayer.prevRotationYaw) * var4;
-        double var7 = par2EntityPlayer.prevPosX + (par2EntityPlayer.posX - par2EntityPlayer.prevPosX) * (double)var4;
-        double var9 = par2EntityPlayer.prevPosY + (par2EntityPlayer.posY - par2EntityPlayer.prevPosY) * (double)var4 + 1.62D - (double)par2EntityPlayer.yOffset;
-        double var11 = par2EntityPlayer.prevPosZ + (par2EntityPlayer.posZ - par2EntityPlayer.prevPosZ) * (double)var4;
+        double var7 = par2EntityPlayer.prevPosX + (par2EntityPlayer.posX - par2EntityPlayer.prevPosX) * var4;
+        double var9 = par2EntityPlayer.prevPosY + (par2EntityPlayer.posY - par2EntityPlayer.prevPosY) * var4 + 1.62D - par2EntityPlayer.yOffset;
+        double var11 = par2EntityPlayer.prevPosZ + (par2EntityPlayer.posZ - par2EntityPlayer.prevPosZ) * var4;
         Vec3 var13 = par1World.getWorldVec3Pool().getVecFromPool(var7, var9, var11);
         float var14 = MathHelper.cos(-var6 * 0.017453292F - (float)Math.PI);
         float var15 = MathHelper.sin(-var6 * 0.017453292F - (float)Math.PI);
@@ -720,7 +720,7 @@ public class Item
         float var18 = var15 * var16;
         float var20 = var14 * var16;
         double var21 = 5.0D;
-        Vec3 var23 = var13.addVector((double)var18 * var21, (double)var17 * var21, (double)var20 * var21);
+        Vec3 var23 = var13.addVector(var18 * var21, var17 * var21, var20 * var21);
         return par1World.func_147447_a(var13, var23, par3, !par3, false);
     }
 
@@ -738,7 +738,7 @@ public class Item
      */
     public Item setCreativeTab(CreativeTabs par1CreativeTabs)
     {
-        this.tabToDisplayOn = par1CreativeTabs;
+        tabToDisplayOn = par1CreativeTabs;
         return this;
     }
 
@@ -770,7 +770,7 @@ public class Item
 
     protected Item setTextureName(String par1Str)
     {
-        this.iconString = par1Str;
+        iconString = par1Str;
         return this;
     }
 
@@ -788,36 +788,36 @@ public class Item
 
         private ToolMaterial(String par1Str, int par2, int par3, int par4, float par5, float par6, int par7)
         {
-            this.harvestLevel = par3;
-            this.maxUses = par4;
-            this.efficiencyOnProperMaterial = par5;
-            this.damageVsEntity = par6;
-            this.enchantability = par7;
+            harvestLevel = par3;
+            maxUses = par4;
+            efficiencyOnProperMaterial = par5;
+            damageVsEntity = par6;
+            enchantability = par7;
         }
 
         public int getMaxUses()
         {
-            return this.maxUses;
+            return maxUses;
         }
 
         public float getEfficiencyOnProperMaterial()
         {
-            return this.efficiencyOnProperMaterial;
+            return efficiencyOnProperMaterial;
         }
 
         public float getDamageVsEntity()
         {
-            return this.damageVsEntity;
+            return damageVsEntity;
         }
 
         public int getHarvestLevel()
         {
-            return this.harvestLevel;
+            return harvestLevel;
         }
 
         public int getEnchantability()
         {
-            return this.enchantability;
+            return enchantability;
         }
 
         public Item func_150995_f()

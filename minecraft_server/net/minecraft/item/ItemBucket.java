@@ -17,9 +17,9 @@ public class ItemBucket extends Item
 
     public ItemBucket(Block p_i45331_1_)
     {
-        this.maxStackSize = 1;
-        this.isFull = p_i45331_1_;
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        maxStackSize = 1;
+        isFull = p_i45331_1_;
+        setCreativeTab(CreativeTabs.tabMisc);
     }
 
     /**
@@ -28,8 +28,8 @@ public class ItemBucket extends Item
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        boolean var4 = this.isFull == Blocks.air;
-        MovingObjectPosition var5 = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, var4);
+        boolean var4 = isFull == Blocks.air;
+        MovingObjectPosition var5 = getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, var4);
 
         if (var5 == null)
         {
@@ -55,18 +55,18 @@ public class ItemBucket extends Item
                     if (var9 == Material.field_151586_h && var10 == 0)
                     {
                         par2World.setBlockToAir(var6, var7, var8);
-                        return this.func_150910_a(par1ItemStack, par3EntityPlayer, Items.water_bucket);
+                        return func_150910_a(par1ItemStack, par3EntityPlayer, Items.water_bucket);
                     }
 
                     if (var9 == Material.field_151587_i && var10 == 0)
                     {
                         par2World.setBlockToAir(var6, var7, var8);
-                        return this.func_150910_a(par1ItemStack, par3EntityPlayer, Items.lava_bucket);
+                        return func_150910_a(par1ItemStack, par3EntityPlayer, Items.lava_bucket);
                     }
                 }
                 else
                 {
-                    if (this.isFull == Blocks.air) { return new ItemStack(Items.bucket); }
+                    if (isFull == Blocks.air) { return new ItemStack(Items.bucket); }
 
                     if (var5.sideHit == 0)
                     {
@@ -100,7 +100,7 @@ public class ItemBucket extends Item
 
                     if (!par3EntityPlayer.canPlayerEdit(var6, var7, var8, var5.sideHit, par1ItemStack)) { return par1ItemStack; }
 
-                    if (this.tryPlaceContainedLiquid(par2World, var6, var7, var8) && !par3EntityPlayer.capabilities.isCreativeMode) { return new ItemStack(Items.bucket); }
+                    if (tryPlaceContainedLiquid(par2World, var6, var7, var8) && !par3EntityPlayer.capabilities.isCreativeMode) { return new ItemStack(Items.bucket); }
                 }
             }
 
@@ -134,7 +134,7 @@ public class ItemBucket extends Item
      */
     public boolean tryPlaceContainedLiquid(World par1World, int par2, int par3, int par4)
     {
-        if (this.isFull == Blocks.air)
+        if (isFull == Blocks.air)
         {
             return false;
         }
@@ -149,13 +149,13 @@ public class ItemBucket extends Item
             }
             else
             {
-                if (par1World.provider.isHellWorld && this.isFull == Blocks.flowing_water)
+                if (par1World.provider.isHellWorld && isFull == Blocks.flowing_water)
                 {
-                    par1World.playSoundEffect((double)((float)par2 + 0.5F), (double)((float)par3 + 0.5F), (double)((float)par4 + 0.5F), "random.fizz", 0.5F, 2.6F + (par1World.rand.nextFloat() - par1World.rand.nextFloat()) * 0.8F);
+                    par1World.playSoundEffect(par2 + 0.5F, par3 + 0.5F, par4 + 0.5F, "random.fizz", 0.5F, 2.6F + (par1World.rand.nextFloat() - par1World.rand.nextFloat()) * 0.8F);
 
                     for (int var7 = 0; var7 < 8; ++var7)
                     {
-                        par1World.spawnParticle("largesmoke", (double)par2 + Math.random(), (double)par3 + Math.random(), (double)par4 + Math.random(), 0.0D, 0.0D, 0.0D);
+                        par1World.spawnParticle("largesmoke", par2 + Math.random(), par3 + Math.random(), par4 + Math.random(), 0.0D, 0.0D, 0.0D);
                     }
                 }
                 else
@@ -165,7 +165,7 @@ public class ItemBucket extends Item
                         par1World.func_147480_a(par2, par3, par4, true);
                     }
 
-                    par1World.setBlock(par2, par3, par4, this.isFull, 0, 3);
+                    par1World.setBlock(par2, par3, par4, isFull, 0, 3);
                 }
 
                 return true;

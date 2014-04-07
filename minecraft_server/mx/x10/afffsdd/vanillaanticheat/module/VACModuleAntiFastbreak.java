@@ -15,7 +15,7 @@ public class VACModuleAntiFastbreak implements IVacModule
      *  Total number of times the block was mined (even if broken too quickly)
      */
     private int mined;
-    
+
     public VACModuleAntiFastbreak()
     {
         ticksTaken = 0;
@@ -23,17 +23,17 @@ public class VACModuleAntiFastbreak implements IVacModule
         deviations = 0;
         mined = 0;
     }
-    
+
     public String getModuleName()
     {
         return "Anti-Fastbreak";
     }
-    
+
     public void updateState()
     {
         if (isBreakingBlock) ticksTaken++;
     }
-    
+
     /**
      * Reset isBreakingBlock to false.
      */

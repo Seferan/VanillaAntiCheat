@@ -13,8 +13,8 @@ public class EntityAISit extends EntityAIBase
 
     public EntityAISit(EntityTameable par1EntityTameable)
     {
-        this.theEntity = par1EntityTameable;
-        this.setMutexBits(5);
+        theEntity = par1EntityTameable;
+        setMutexBits(5);
     }
 
     /**
@@ -22,22 +22,22 @@ public class EntityAISit extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (!this.theEntity.isTamed())
+        if (!theEntity.isTamed())
         {
             return false;
         }
-        else if (this.theEntity.isInWater())
+        else if (theEntity.isInWater())
         {
             return false;
         }
-        else if (!this.theEntity.onGround)
+        else if (!theEntity.onGround)
         {
             return false;
         }
         else
         {
-            EntityLivingBase var1 = this.theEntity.getOwner();
-            return var1 == null ? true : (this.theEntity.getDistanceSqToEntity(var1) < 144.0D && var1.getAITarget() != null ? false : this.isSitting);
+            EntityLivingBase var1 = theEntity.getOwner();
+            return var1 == null ? true : (theEntity.getDistanceSqToEntity(var1) < 144.0D && var1.getAITarget() != null ? false : isSitting);
         }
     }
 
@@ -46,8 +46,8 @@ public class EntityAISit extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().clearPathEntity();
-        this.theEntity.setSitting(true);
+        theEntity.getNavigator().clearPathEntity();
+        theEntity.setSitting(true);
     }
 
     /**
@@ -55,7 +55,7 @@ public class EntityAISit extends EntityAIBase
      */
     public void resetTask()
     {
-        this.theEntity.setSitting(false);
+        theEntity.setSitting(false);
     }
 
     /**
@@ -63,6 +63,6 @@ public class EntityAISit extends EntityAIBase
      */
     public void setSitting(boolean par1)
     {
-        this.isSitting = par1;
+        isSitting = par1;
     }
 }

@@ -20,16 +20,16 @@ public class ItemSword extends Item
 
     public ItemSword(Item.ToolMaterial p_i45356_1_)
     {
-        this.field_150933_b = p_i45356_1_;
-        this.maxStackSize = 1;
-        this.setMaxDamage(p_i45356_1_.getMaxUses());
-        this.setCreativeTab(CreativeTabs.tabCombat);
-        this.field_150934_a = 4.0F + p_i45356_1_.getDamageVsEntity();
+        field_150933_b = p_i45356_1_;
+        maxStackSize = 1;
+        setMaxDamage(p_i45356_1_.getMaxUses());
+        setCreativeTab(CreativeTabs.tabCombat);
+        field_150934_a = 4.0F + p_i45356_1_.getDamageVsEntity();
     }
 
     public float func_150931_i()
     {
-        return this.field_150933_b.getDamageVsEntity();
+        return field_150933_b.getDamageVsEntity();
     }
 
     public float func_150893_a(ItemStack p_150893_1_, Block p_150893_2_)
@@ -57,7 +57,7 @@ public class ItemSword extends Item
 
     public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)
     {
-        if ((double)p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
+        if (p_150894_3_.getBlockHardness(p_150894_2_, p_150894_4_, p_150894_5_, p_150894_6_) != 0.0D)
         {
             p_150894_1_.damageItem(2, p_150894_7_);
         }
@@ -88,7 +88,7 @@ public class ItemSword extends Item
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        par3EntityPlayer.setItemInUse(par1ItemStack, getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
 
@@ -103,12 +103,12 @@ public class ItemSword extends Item
      */
     public int getItemEnchantability()
     {
-        return this.field_150933_b.getEnchantability();
+        return field_150933_b.getEnchantability();
     }
 
     public String func_150932_j()
     {
-        return this.field_150933_b.toString();
+        return field_150933_b.toString();
     }
 
     /**
@@ -116,7 +116,7 @@ public class ItemSword extends Item
      */
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
     {
-        return this.field_150933_b.func_150995_f() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+        return field_150933_b.func_150995_f() == par2ItemStack.getItem() ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
     /**
@@ -126,7 +126,7 @@ public class ItemSword extends Item
     public Multimap getItemAttributeModifiers()
     {
         Multimap var1 = super.getItemAttributeModifiers();
-        var1.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double)this.field_150934_a, 0));
+        var1.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", field_150934_a, 0));
         return var1;
     }
 }

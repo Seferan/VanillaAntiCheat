@@ -17,8 +17,8 @@ public class BlockTripWireHook extends Block
     public BlockTripWireHook()
     {
         super(Material.circuits);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
-        this.setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabRedstone);
+        setTickRandomly(true);
     }
 
     /**
@@ -99,14 +99,14 @@ public class BlockTripWireHook extends Block
      */
     public void onPostBlockPlaced(World p_149714_1_, int p_149714_2_, int p_149714_3_, int p_149714_4_, int p_149714_5_)
     {
-        this.func_150136_a(p_149714_1_, p_149714_2_, p_149714_3_, p_149714_4_, false, p_149714_5_, false, -1, 0);
+        func_150136_a(p_149714_1_, p_149714_2_, p_149714_3_, p_149714_4_, false, p_149714_5_, false, -1, 0);
     }
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
         if (p_149695_5_ != this)
         {
-            if (this.func_150137_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
+            if (func_150137_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
             {
                 int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_);
                 int var7 = var6 & 3;
@@ -134,7 +134,7 @@ public class BlockTripWireHook extends Block
 
                 if (var8)
                 {
-                    this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
+                    dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
                     p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
                 }
             }
@@ -193,7 +193,7 @@ public class BlockTripWireHook extends Block
 
                 if (var20 == p_150136_8_)
                 {
-                    p_150136_1_.scheduleBlockUpdate(p_150136_2_, p_150136_3_, p_150136_4_, this, this.func_149738_a(p_150136_1_));
+                    p_150136_1_.scheduleBlockUpdate(p_150136_2_, p_150136_3_, p_150136_4_, this, func_149738_a(p_150136_1_));
                     var13 &= var25;
                 }
             }
@@ -211,11 +211,11 @@ public class BlockTripWireHook extends Block
             var22 = p_150136_4_ + var17 * var18;
             var28 = Direction.rotateOpposite[var10];
             p_150136_1_.setBlockMetadata(var21, p_150136_3_, var22, var28 | var20, 3);
-            this.func_150134_a(p_150136_1_, var21, p_150136_3_, var22, var28);
-            this.func_150135_a(p_150136_1_, var21, p_150136_3_, var22, var13, var14, var11, var12);
+            func_150134_a(p_150136_1_, var21, p_150136_3_, var22, var28);
+            func_150135_a(p_150136_1_, var21, p_150136_3_, var22, var13, var14, var11, var12);
         }
 
-        this.func_150135_a(p_150136_1_, p_150136_2_, p_150136_3_, p_150136_4_, var13, var14, var11, var12);
+        func_150135_a(p_150136_1_, p_150136_2_, p_150136_3_, p_150136_4_, var13, var14, var11, var12);
 
         if (!p_150136_5_)
         {
@@ -223,7 +223,7 @@ public class BlockTripWireHook extends Block
 
             if (p_150136_7_)
             {
-                this.func_150134_a(p_150136_1_, p_150136_2_, p_150136_3_, p_150136_4_, var10);
+                func_150134_a(p_150136_1_, p_150136_2_, p_150136_3_, p_150136_4_, var10);
             }
         }
 
@@ -257,26 +257,26 @@ public class BlockTripWireHook extends Block
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        this.func_150136_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, false, p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_), true, -1, 0);
+        func_150136_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, false, p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_), true, -1, 0);
     }
 
     private void func_150135_a(World p_150135_1_, int p_150135_2_, int p_150135_3_, int p_150135_4_, boolean p_150135_5_, boolean p_150135_6_, boolean p_150135_7_, boolean p_150135_8_)
     {
         if (p_150135_6_ && !p_150135_8_)
         {
-            p_150135_1_.playSoundEffect((double)p_150135_2_ + 0.5D, (double)p_150135_3_ + 0.1D, (double)p_150135_4_ + 0.5D, "random.click", 0.4F, 0.6F);
+            p_150135_1_.playSoundEffect(p_150135_2_ + 0.5D, p_150135_3_ + 0.1D, p_150135_4_ + 0.5D, "random.click", 0.4F, 0.6F);
         }
         else if (!p_150135_6_ && p_150135_8_)
         {
-            p_150135_1_.playSoundEffect((double)p_150135_2_ + 0.5D, (double)p_150135_3_ + 0.1D, (double)p_150135_4_ + 0.5D, "random.click", 0.4F, 0.5F);
+            p_150135_1_.playSoundEffect(p_150135_2_ + 0.5D, p_150135_3_ + 0.1D, p_150135_4_ + 0.5D, "random.click", 0.4F, 0.5F);
         }
         else if (p_150135_5_ && !p_150135_7_)
         {
-            p_150135_1_.playSoundEffect((double)p_150135_2_ + 0.5D, (double)p_150135_3_ + 0.1D, (double)p_150135_4_ + 0.5D, "random.click", 0.4F, 0.7F);
+            p_150135_1_.playSoundEffect(p_150135_2_ + 0.5D, p_150135_3_ + 0.1D, p_150135_4_ + 0.5D, "random.click", 0.4F, 0.7F);
         }
         else if (!p_150135_5_ && p_150135_7_)
         {
-            p_150135_1_.playSoundEffect((double)p_150135_2_ + 0.5D, (double)p_150135_3_ + 0.1D, (double)p_150135_4_ + 0.5D, "random.bowhit", 0.4F, 1.2F / (p_150135_1_.rand.nextFloat() * 0.2F + 0.9F));
+            p_150135_1_.playSoundEffect(p_150135_2_ + 0.5D, p_150135_3_ + 0.1D, p_150135_4_ + 0.5D, "random.bowhit", 0.4F, 1.2F / (p_150135_1_.rand.nextFloat() * 0.2F + 0.9F));
         }
     }
 
@@ -304,9 +304,9 @@ public class BlockTripWireHook extends Block
 
     private boolean func_150137_e(World p_150137_1_, int p_150137_2_, int p_150137_3_, int p_150137_4_)
     {
-        if (!this.canPlaceBlockAt(p_150137_1_, p_150137_2_, p_150137_3_, p_150137_4_))
+        if (!canPlaceBlockAt(p_150137_1_, p_150137_2_, p_150137_3_, p_150137_4_))
         {
-            this.dropBlockAsItem(p_150137_1_, p_150137_2_, p_150137_3_, p_150137_4_, p_150137_1_.getBlockMetadata(p_150137_2_, p_150137_3_, p_150137_4_), 0);
+            dropBlockAsItem(p_150137_1_, p_150137_2_, p_150137_3_, p_150137_4_, p_150137_1_.getBlockMetadata(p_150137_2_, p_150137_3_, p_150137_4_), 0);
             p_150137_1_.setBlockToAir(p_150137_2_, p_150137_3_, p_150137_4_);
             return false;
         }
@@ -323,19 +323,19 @@ public class BlockTripWireHook extends Block
 
         if (var5 == 3)
         {
-            this.setBlockBounds(0.0F, 0.2F, 0.5F - var6, var6 * 2.0F, 0.8F, 0.5F + var6);
+            setBlockBounds(0.0F, 0.2F, 0.5F - var6, var6 * 2.0F, 0.8F, 0.5F + var6);
         }
         else if (var5 == 1)
         {
-            this.setBlockBounds(1.0F - var6 * 2.0F, 0.2F, 0.5F - var6, 1.0F, 0.8F, 0.5F + var6);
+            setBlockBounds(1.0F - var6 * 2.0F, 0.2F, 0.5F - var6, 1.0F, 0.8F, 0.5F + var6);
         }
         else if (var5 == 0)
         {
-            this.setBlockBounds(0.5F - var6, 0.2F, 0.0F, 0.5F + var6, 0.8F, var6 * 2.0F);
+            setBlockBounds(0.5F - var6, 0.2F, 0.0F, 0.5F + var6, 0.8F, var6 * 2.0F);
         }
         else if (var5 == 2)
         {
-            this.setBlockBounds(0.5F - var6, 0.2F, 1.0F - var6 * 2.0F, 0.5F + var6, 0.8F, 1.0F);
+            setBlockBounds(0.5F - var6, 0.2F, 1.0F - var6 * 2.0F, 0.5F + var6, 0.8F, 1.0F);
         }
     }
 
@@ -346,7 +346,7 @@ public class BlockTripWireHook extends Block
 
         if (var7 || var8)
         {
-            this.func_150136_a(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, true, p_149749_6_, false, -1, 0);
+            func_150136_a(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, true, p_149749_6_, false, -1, 0);
         }
 
         if (var8)

@@ -57,9 +57,9 @@ public class BlockBrewingStand extends BlockContainer
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        this.setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.875F, 0.5625F);
+        setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.875F, 0.5625F);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-        this.setBlockBoundsForItemRender();
+        setBlockBoundsForItemRender();
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
     }
 
@@ -68,7 +68,7 @@ public class BlockBrewingStand extends BlockContainer
      */
     public void setBlockBoundsForItemRender()
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
     }
 
     /**
@@ -118,13 +118,13 @@ public class BlockBrewingStand extends BlockContainer
 
                 if (var10 != null)
                 {
-                    float var11 = this.field_149961_a.nextFloat() * 0.8F + 0.1F;
-                    float var12 = this.field_149961_a.nextFloat() * 0.8F + 0.1F;
-                    float var13 = this.field_149961_a.nextFloat() * 0.8F + 0.1F;
+                    float var11 = field_149961_a.nextFloat() * 0.8F + 0.1F;
+                    float var12 = field_149961_a.nextFloat() * 0.8F + 0.1F;
+                    float var13 = field_149961_a.nextFloat() * 0.8F + 0.1F;
 
                     while (var10.stackSize > 0)
                     {
-                        int var14 = this.field_149961_a.nextInt(21) + 10;
+                        int var14 = field_149961_a.nextInt(21) + 10;
 
                         if (var14 > var10.stackSize)
                         {
@@ -132,11 +132,11 @@ public class BlockBrewingStand extends BlockContainer
                         }
 
                         var10.stackSize -= var14;
-                        EntityItem var15 = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + var11), (double)((float)p_149749_3_ + var12), (double)((float)p_149749_4_ + var13), new ItemStack(var10.getItem(), var14, var10.getItemDamage()));
+                        EntityItem var15 = new EntityItem(p_149749_1_, p_149749_2_ + var11, p_149749_3_ + var12, p_149749_4_ + var13, new ItemStack(var10.getItem(), var14, var10.getItemDamage()));
                         float var16 = 0.05F;
-                        var15.motionX = (double)((float)this.field_149961_a.nextGaussian() * var16);
-                        var15.motionY = (double)((float)this.field_149961_a.nextGaussian() * var16 + 0.2F);
-                        var15.motionZ = (double)((float)this.field_149961_a.nextGaussian() * var16);
+                        var15.motionX = (float)field_149961_a.nextGaussian() * var16;
+                        var15.motionY = (float)field_149961_a.nextGaussian() * var16 + 0.2F;
+                        var15.motionZ = (float)field_149961_a.nextGaussian() * var16;
                         p_149749_1_.spawnEntityInWorld(var15);
                     }
                 }

@@ -23,10 +23,10 @@ public class Slot
 
     public Slot(IInventory par1IInventory, int par2, int par3, int par4)
     {
-        this.inventory = par1IInventory;
-        this.slotIndex = par2;
-        this.xDisplayPosition = par3;
-        this.yDisplayPosition = par4;
+        inventory = par1IInventory;
+        slotIndex = par2;
+        xDisplayPosition = par3;
+        yDisplayPosition = par4;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Slot
 
     public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
     {
-        this.onSlotChanged();
+        onSlotChanged();
     }
 
     /**
@@ -85,7 +85,7 @@ public class Slot
      */
     public ItemStack getStack()
     {
-        return this.inventory.getStackInSlot(this.slotIndex);
+        return inventory.getStackInSlot(slotIndex);
     }
 
     /**
@@ -93,7 +93,7 @@ public class Slot
      */
     public boolean getHasStack()
     {
-        return this.getStack() != null;
+        return getStack() != null;
     }
 
     /**
@@ -101,8 +101,8 @@ public class Slot
      */
     public void putStack(ItemStack par1ItemStack)
     {
-        this.inventory.setInventorySlotContents(this.slotIndex, par1ItemStack);
-        this.onSlotChanged();
+        inventory.setInventorySlotContents(slotIndex, par1ItemStack);
+        onSlotChanged();
     }
 
     /**
@@ -110,7 +110,7 @@ public class Slot
      */
     public void onSlotChanged()
     {
-        this.inventory.onInventoryChanged();
+        inventory.onInventoryChanged();
     }
 
     /**
@@ -119,7 +119,7 @@ public class Slot
      */
     public int getSlotStackLimit()
     {
-        return this.inventory.getInventoryStackLimit();
+        return inventory.getInventoryStackLimit();
     }
 
     /**
@@ -128,7 +128,7 @@ public class Slot
      */
     public ItemStack decrStackSize(int par1)
     {
-        return this.inventory.decrStackSize(this.slotIndex, par1);
+        return inventory.decrStackSize(slotIndex, par1);
     }
 
     /**
@@ -136,7 +136,7 @@ public class Slot
      */
     public boolean isHere(IInventory par1IInventory, int par2)
     {
-        return par1IInventory == this.inventory && par2 == this.slotIndex;
+        return par1IInventory == inventory && par2 == slotIndex;
     }
 
     /**

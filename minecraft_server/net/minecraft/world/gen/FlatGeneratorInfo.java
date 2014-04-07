@@ -27,7 +27,7 @@ public class FlatGeneratorInfo
      */
     public int getBiome()
     {
-        return this.biomeToUse;
+        return biomeToUse;
     }
 
     /**
@@ -35,7 +35,7 @@ public class FlatGeneratorInfo
      */
     public void setBiome(int par1)
     {
-        this.biomeToUse = par1;
+        biomeToUse = par1;
     }
 
     /**
@@ -43,7 +43,7 @@ public class FlatGeneratorInfo
      */
     public Map getWorldFeatures()
     {
-        return this.worldFeatures;
+        return worldFeatures;
     }
 
     /**
@@ -51,7 +51,7 @@ public class FlatGeneratorInfo
      */
     public List getFlatLayers()
     {
-        return this.flatLayers;
+        return flatLayers;
     }
 
     public void func_82645_d()
@@ -59,7 +59,7 @@ public class FlatGeneratorInfo
         int var1 = 0;
         FlatLayerInfo var3;
 
-        for (Iterator var2 = this.flatLayers.iterator(); var2.hasNext(); var1 += var3.getLayerCount())
+        for (Iterator var2 = flatLayers.iterator(); var2.hasNext(); var1 += var3.getLayerCount())
         {
             var3 = (FlatLayerInfo)var2.next();
             var3.setMinY(var1);
@@ -73,24 +73,24 @@ public class FlatGeneratorInfo
         var1.append(";");
         int var2;
 
-        for (var2 = 0; var2 < this.flatLayers.size(); ++var2)
+        for (var2 = 0; var2 < flatLayers.size(); ++var2)
         {
             if (var2 > 0)
             {
                 var1.append(",");
             }
 
-            var1.append(((FlatLayerInfo)this.flatLayers.get(var2)).toString());
+            var1.append(((FlatLayerInfo)flatLayers.get(var2)).toString());
         }
 
         var1.append(";");
-        var1.append(this.biomeToUse);
+        var1.append(biomeToUse);
 
-        if (!this.worldFeatures.isEmpty())
+        if (!worldFeatures.isEmpty())
         {
             var1.append(";");
             var2 = 0;
-            Iterator var3 = this.worldFeatures.entrySet().iterator();
+            Iterator var3 = worldFeatures.entrySet().iterator();
 
             while (var3.hasNext())
             {

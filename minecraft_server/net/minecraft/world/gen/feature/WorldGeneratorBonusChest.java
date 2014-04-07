@@ -26,8 +26,8 @@ public class WorldGeneratorBonusChest extends WorldGenerator
 
     public WorldGeneratorBonusChest(WeightedRandomChestContent[] par1ArrayOfWeightedRandomChestContent, int par2)
     {
-        this.theBonusChestGenerator = par1ArrayOfWeightedRandomChestContent;
-        this.itemsToGenerateInBonusChest = par2;
+        theBonusChestGenerator = par1ArrayOfWeightedRandomChestContent;
+        itemsToGenerateInBonusChest = par2;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -60,7 +60,7 @@ public class WorldGeneratorBonusChest extends WorldGenerator
 
                     if (var11 != null && var11 != null)
                     {
-                        WeightedRandomChestContent.generateChestContents(par2Random, this.theBonusChestGenerator, var11, this.itemsToGenerateInBonusChest);
+                        WeightedRandomChestContent.generateChestContents(par2Random, theBonusChestGenerator, var11, itemsToGenerateInBonusChest);
                     }
 
                     if (par1World.isAirBlock(var8 - 1, var9, var10) && World.doesBlockHaveSolidTopSurface(par1World, var8 - 1, var9 - 1, var10))

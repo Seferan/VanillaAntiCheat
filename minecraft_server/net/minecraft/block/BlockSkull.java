@@ -28,7 +28,7 @@ public class BlockSkull extends BlockContainer
     protected BlockSkull()
     {
         super(Material.circuits);
-        this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
+        setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
     }
 
     /**
@@ -57,23 +57,23 @@ public class BlockSkull extends BlockContainer
         {
         case 1:
         default:
-            this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
+            setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
             break;
 
         case 2:
-            this.setBlockBounds(0.25F, 0.25F, 0.5F, 0.75F, 0.75F, 1.0F);
+            setBlockBounds(0.25F, 0.25F, 0.5F, 0.75F, 0.75F, 1.0F);
             break;
 
         case 3:
-            this.setBlockBounds(0.25F, 0.25F, 0.0F, 0.75F, 0.75F, 0.5F);
+            setBlockBounds(0.25F, 0.25F, 0.0F, 0.75F, 0.75F, 0.5F);
             break;
 
         case 4:
-            this.setBlockBounds(0.5F, 0.25F, 0.25F, 1.0F, 0.75F, 0.75F);
+            setBlockBounds(0.5F, 0.25F, 0.25F, 1.0F, 0.75F, 0.75F);
             break;
 
         case 5:
-            this.setBlockBounds(0.0F, 0.25F, 0.25F, 0.5F, 0.75F, 0.75F);
+            setBlockBounds(0.0F, 0.25F, 0.25F, 0.5F, 0.75F, 0.75F);
         }
     }
 
@@ -83,7 +83,7 @@ public class BlockSkull extends BlockContainer
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
         return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 
@@ -92,7 +92,7 @@ public class BlockSkull extends BlockContainer
      */
     public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
+        int var7 = MathHelper.floor_double(p_149689_5_.rotationYaw * 4.0F / 360.0F + 2.5D) & 3;
         p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_, var7, 2);
     }
 
@@ -151,7 +151,7 @@ public class BlockSkull extends BlockContainer
         {
             if ((p_149749_6_ & 8) == 0)
             {
-                ItemStack var7 = new ItemStack(Items.skull, 1, this.getDamageValue(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_));
+                ItemStack var7 = new ItemStack(Items.skull, 1, getDamageValue(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_));
                 TileEntitySkull var8 = (TileEntitySkull)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
 
                 if (var8.func_145904_a() == 3 && var8.func_145907_c() != null && var8.func_145907_c().length() > 0)
@@ -160,7 +160,7 @@ public class BlockSkull extends BlockContainer
                     var7.getTagCompound().setString("SkullOwner", var8.func_145907_c());
                 }
 
-                this.dropBlockAsItem_do(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, var7);
+                dropBlockAsItem_do(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, var7);
             }
 
             super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
@@ -184,7 +184,7 @@ public class BlockSkull extends BlockContainer
 
             for (var6 = -2; var6 <= 0; ++var6)
             {
-                if (p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 1, p_149965_4_ + var6) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 1, p_149965_4_ + var6 + 1) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 2, p_149965_4_ + var6 + 1) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 1, p_149965_4_ + var6 + 2) == Blocks.soul_sand && this.func_149966_a(p_149965_1_, p_149965_2_, p_149965_3_, p_149965_4_ + var6, 1) && this.func_149966_a(p_149965_1_, p_149965_2_, p_149965_3_, p_149965_4_ + var6 + 1, 1) && this.func_149966_a(p_149965_1_, p_149965_2_, p_149965_3_, p_149965_4_ + var6 + 2, 1))
+                if (p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 1, p_149965_4_ + var6) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 1, p_149965_4_ + var6 + 1) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 2, p_149965_4_ + var6 + 1) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_, p_149965_3_ - 1, p_149965_4_ + var6 + 2) == Blocks.soul_sand && func_149966_a(p_149965_1_, p_149965_2_, p_149965_3_, p_149965_4_ + var6, 1) && func_149966_a(p_149965_1_, p_149965_2_, p_149965_3_, p_149965_4_ + var6 + 1, 1) && func_149966_a(p_149965_1_, p_149965_2_, p_149965_3_, p_149965_4_ + var6 + 2, 1))
                 {
                     p_149965_1_.setBlockMetadata(p_149965_2_, p_149965_3_, p_149965_4_ + var6, 8, 2);
                     p_149965_1_.setBlockMetadata(p_149965_2_, p_149965_3_, p_149965_4_ + var6 + 1, 8, 2);
@@ -200,7 +200,7 @@ public class BlockSkull extends BlockContainer
                     if (!p_149965_1_.isClient)
                     {
                         var7 = new EntityWither(p_149965_1_);
-                        var7.setLocationAndAngles((double)p_149965_2_ + 0.5D, (double)p_149965_3_ - 1.45D, (double)(p_149965_4_ + var6) + 1.5D, 90.0F, 0.0F);
+                        var7.setLocationAndAngles(p_149965_2_ + 0.5D, p_149965_3_ - 1.45D, p_149965_4_ + var6 + 1.5D, 90.0F, 0.0F);
                         var7.renderYawOffset = 90.0F;
                         var7.func_82206_m();
 
@@ -220,7 +220,7 @@ public class BlockSkull extends BlockContainer
 
                     for (var10 = 0; var10 < 120; ++var10)
                     {
-                        p_149965_1_.spawnParticle("snowballpoof", (double)p_149965_2_ + p_149965_1_.rand.nextDouble(), (double)(p_149965_3_ - 2) + p_149965_1_.rand.nextDouble() * 3.9D, (double)(p_149965_4_ + var6 + 1) + p_149965_1_.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
+                        p_149965_1_.spawnParticle("snowballpoof", p_149965_2_ + p_149965_1_.rand.nextDouble(), p_149965_3_ - 2 + p_149965_1_.rand.nextDouble() * 3.9D, p_149965_4_ + var6 + 1 + p_149965_1_.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
                     }
 
                     p_149965_1_.notifyBlockChange(p_149965_2_, p_149965_3_, p_149965_4_ + var6, getBlockById(0));
@@ -236,7 +236,7 @@ public class BlockSkull extends BlockContainer
 
             for (var6 = -2; var6 <= 0; ++var6)
             {
-                if (p_149965_1_.getBlock(p_149965_2_ + var6, p_149965_3_ - 1, p_149965_4_) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_ + var6 + 1, p_149965_3_ - 1, p_149965_4_) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_ + var6 + 1, p_149965_3_ - 2, p_149965_4_) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_ + var6 + 2, p_149965_3_ - 1, p_149965_4_) == Blocks.soul_sand && this.func_149966_a(p_149965_1_, p_149965_2_ + var6, p_149965_3_, p_149965_4_, 1) && this.func_149966_a(p_149965_1_, p_149965_2_ + var6 + 1, p_149965_3_, p_149965_4_, 1) && this.func_149966_a(p_149965_1_, p_149965_2_ + var6 + 2, p_149965_3_, p_149965_4_, 1))
+                if (p_149965_1_.getBlock(p_149965_2_ + var6, p_149965_3_ - 1, p_149965_4_) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_ + var6 + 1, p_149965_3_ - 1, p_149965_4_) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_ + var6 + 1, p_149965_3_ - 2, p_149965_4_) == Blocks.soul_sand && p_149965_1_.getBlock(p_149965_2_ + var6 + 2, p_149965_3_ - 1, p_149965_4_) == Blocks.soul_sand && func_149966_a(p_149965_1_, p_149965_2_ + var6, p_149965_3_, p_149965_4_, 1) && func_149966_a(p_149965_1_, p_149965_2_ + var6 + 1, p_149965_3_, p_149965_4_, 1) && func_149966_a(p_149965_1_, p_149965_2_ + var6 + 2, p_149965_3_, p_149965_4_, 1))
                 {
                     p_149965_1_.setBlockMetadata(p_149965_2_ + var6, p_149965_3_, p_149965_4_, 8, 2);
                     p_149965_1_.setBlockMetadata(p_149965_2_ + var6 + 1, p_149965_3_, p_149965_4_, 8, 2);
@@ -252,7 +252,7 @@ public class BlockSkull extends BlockContainer
                     if (!p_149965_1_.isClient)
                     {
                         var7 = new EntityWither(p_149965_1_);
-                        var7.setLocationAndAngles((double)(p_149965_2_ + var6) + 1.5D, (double)p_149965_3_ - 1.45D, (double)p_149965_4_ + 0.5D, 0.0F, 0.0F);
+                        var7.setLocationAndAngles(p_149965_2_ + var6 + 1.5D, p_149965_3_ - 1.45D, p_149965_4_ + 0.5D, 0.0F, 0.0F);
                         var7.func_82206_m();
 
                         if (!p_149965_1_.isClient)
@@ -271,7 +271,7 @@ public class BlockSkull extends BlockContainer
 
                     for (var10 = 0; var10 < 120; ++var10)
                     {
-                        p_149965_1_.spawnParticle("snowballpoof", (double)(p_149965_2_ + var6 + 1) + p_149965_1_.rand.nextDouble(), (double)(p_149965_3_ - 2) + p_149965_1_.rand.nextDouble() * 3.9D, (double)p_149965_4_ + p_149965_1_.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
+                        p_149965_1_.spawnParticle("snowballpoof", p_149965_2_ + var6 + 1 + p_149965_1_.rand.nextDouble(), p_149965_3_ - 2 + p_149965_1_.rand.nextDouble() * 3.9D, p_149965_4_ + p_149965_1_.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
                     }
 
                     p_149965_1_.notifyBlockChange(p_149965_2_ + var6, p_149965_3_, p_149965_4_, getBlockById(0));

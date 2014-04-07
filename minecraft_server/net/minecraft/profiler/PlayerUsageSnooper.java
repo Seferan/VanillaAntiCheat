@@ -38,15 +38,15 @@ public class PlayerUsageSnooper
     {
         try
         {
-            this.serverUrl = new URL("http://snoop.minecraft.net/" + par1Str + "?version=" + 1);
+            serverUrl = new URL("http://snoop.minecraft.net/" + par1Str + "?version=" + 1);
         }
         catch (MalformedURLException var6)
         {
             throw new IllegalArgumentException();
         }
 
-        this.playerStatsCollector = par2IPlayerUsage;
-        this.minecraftStartTimeMilis = par3;
+        playerStatsCollector = par2IPlayerUsage;
+        minecraftStartTimeMilis = par3;
     }
 
     /**
@@ -54,27 +54,27 @@ public class PlayerUsageSnooper
      */
     public void startSnooper()
     {
-        if (!this.isRunning)
+        if (!isRunning)
         {
-            this.isRunning = true;
-            this.addBaseDataToSnooper();
-            this.threadTrigger.schedule(new TimerTask()
+            isRunning = true;
+            addBaseDataToSnooper();
+            threadTrigger.schedule(new TimerTask()
             {
                 private static final String __OBFID = "CL_00001516";
 
                 public void run()
                 {
-                    if (PlayerUsageSnooper.this.playerStatsCollector.isSnooperEnabled())
+                    if (playerStatsCollector.isSnooperEnabled())
                     {
                         HashMap var1;
 
-                        synchronized (PlayerUsageSnooper.this.syncLock)
+                        synchronized (syncLock)
                         {
-                            var1 = new HashMap(PlayerUsageSnooper.this.dataMap);
+                            var1 = new HashMap(dataMap);
                             var1.put("snooper_count", Integer.valueOf(PlayerUsageSnooper.getSelfCounterFor(PlayerUsageSnooper.this)));
                         }
 
-                        HttpUtil.func_151226_a(PlayerUsageSnooper.this.serverUrl, var1, true);
+                        HttpUtil.func_151226_a(serverUrl, var1, true);
                     }
                 }
             }, 0L, 900000L);
@@ -83,14 +83,14 @@ public class PlayerUsageSnooper
 
     private void addBaseDataToSnooper()
     {
-        this.addJvmArgsToSnooper();
-        this.addData("snooper_token", this.uniqueID);
-        this.addData("os_name", System.getProperty("os.name"));
-        this.addData("os_version", System.getProperty("os.version"));
-        this.addData("os_architecture", System.getProperty("os.arch"));
-        this.addData("java_version", System.getProperty("java.version"));
-        this.addData("version", "1.7.2");
-        this.playerStatsCollector.addServerTypeToSnooper(this);
+        addJvmArgsToSnooper();
+        addData("snooper_token", uniqueID);
+        addData("os_name", System.getProperty("os.name"));
+        addData("os_version", System.getProperty("os.version"));
+        addData("os_architecture", System.getProperty("os.arch"));
+        addData("java_version", System.getProperty("java.version"));
+        addData("version", "1.7.2");
+        playerStatsCollector.addServerTypeToSnooper(this);
     }
 
     private void addJvmArgsToSnooper()
@@ -106,20 +106,20 @@ public class PlayerUsageSnooper
 
             if (var5.startsWith("-X"))
             {
-                this.addData("jvm_arg[" + var3++ + "]", var5);
+                addData("jvm_arg[" + var3++ + "]", var5);
             }
         }
 
-        this.addData("jvm_args", Integer.valueOf(var3));
+        addData("jvm_args", Integer.valueOf(var3));
     }
 
     public void addMemoryStatsToSnooper()
     {
-        this.addData("memory_total", Long.valueOf(Runtime.getRuntime().totalMemory()));
-        this.addData("memory_max", Long.valueOf(Runtime.getRuntime().maxMemory()));
-        this.addData("memory_free", Long.valueOf(Runtime.getRuntime().freeMemory()));
-        this.addData("cpu_cores", Integer.valueOf(Runtime.getRuntime().availableProcessors()));
-        this.playerStatsCollector.addServerStatsToSnooper(this);
+        addData("memory_total", Long.valueOf(Runtime.getRuntime().totalMemory()));
+        addData("memory_max", Long.valueOf(Runtime.getRuntime().maxMemory()));
+        addData("memory_free", Long.valueOf(Runtime.getRuntime().freeMemory()));
+        addData("cpu_cores", Integer.valueOf(Runtime.getRuntime().availableProcessors()));
+        playerStatsCollector.addServerStatsToSnooper(this);
     }
 
     /**
@@ -127,22 +127,22 @@ public class PlayerUsageSnooper
      */
     public void addData(String par1Str, Object par2Obj)
     {
-        Object var3 = this.syncLock;
+        Object var3 = syncLock;
 
-        synchronized (this.syncLock)
+        synchronized (syncLock)
         {
-            this.dataMap.put(par1Str, par2Obj);
+            dataMap.put(par1Str, par2Obj);
         }
     }
 
     public boolean isSnooperRunning()
     {
-        return this.isRunning;
+        return isRunning;
     }
 
     public void stopSnooper()
     {
-        this.threadTrigger.cancel();
+        threadTrigger.cancel();
     }
 
     /**
@@ -150,7 +150,7 @@ public class PlayerUsageSnooper
      */
     public long getMinecraftStartTimeMillis()
     {
-        return this.minecraftStartTimeMilis;
+        return minecraftStartTimeMilis;
     }
 
     /**

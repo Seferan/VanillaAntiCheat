@@ -10,7 +10,7 @@ public class EnchantmentDigging extends Enchantment
     protected EnchantmentDigging(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.digger);
-        this.setName("digging");
+        setName("digging");
     }
 
     /**

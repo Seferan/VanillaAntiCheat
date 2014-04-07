@@ -15,9 +15,9 @@ public class ItemSeeds extends Item
 
     public ItemSeeds(Block p_i45352_1_, Block p_i45352_2_)
     {
-        this.field_150925_a = p_i45352_1_;
-        this.soilBlockID = p_i45352_2_;
-        this.setCreativeTab(CreativeTabs.tabMaterials);
+        field_150925_a = p_i45352_1_;
+        soilBlockID = p_i45352_2_;
+        setCreativeTab(CreativeTabs.tabMaterials);
     }
 
     /**
@@ -33,9 +33,9 @@ public class ItemSeeds extends Item
         }
         else if (par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6, par7, par1ItemStack))
         {
-            if (par3World.getBlock(par4, par5, par6) == this.soilBlockID && par3World.isAirBlock(par4, par5 + 1, par6))
+            if (par3World.getBlock(par4, par5, par6) == soilBlockID && par3World.isAirBlock(par4, par5 + 1, par6))
             {
-                par3World.setBlock(par4, par5 + 1, par6, this.field_150925_a);
+                par3World.setBlock(par4, par5 + 1, par6, field_150925_a);
                 --par1ItemStack.stackSize;
                 return true;
             }

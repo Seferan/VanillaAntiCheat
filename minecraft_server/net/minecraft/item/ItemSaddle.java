@@ -11,8 +11,8 @@ public class ItemSaddle extends Item
 
     public ItemSaddle()
     {
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.tabTransport);
+        maxStackSize = 1;
+        setCreativeTab(CreativeTabs.tabTransport);
     }
 
     /**
@@ -46,7 +46,7 @@ public class ItemSaddle extends Item
      */
     public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
     {
-        this.itemInteractionForEntity(par1ItemStack, (EntityPlayer)null, par2EntityLivingBase);
+        itemInteractionForEntity(par1ItemStack, (EntityPlayer)null, par2EntityLivingBase);
         return true;
     }
 }

@@ -22,11 +22,11 @@ public abstract class BlockLeaves extends BlockLeavesBase
     public BlockLeaves()
     {
         super(Material.field_151584_j, false);
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
-        this.setHardness(0.2F);
-        this.setLightOpacity(1);
-        this.setStepSound(soundTypeGrass);
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabDecorations);
+        setHardness(0.2F);
+        setLightOpacity(1);
+        setStepSound(soundTypeGrass);
     }
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
@@ -70,9 +70,9 @@ public abstract class BlockLeaves extends BlockLeavesBase
                 int var10 = var9 * var9;
                 int var11 = var9 / 2;
 
-                if (this.field_150128_a == null)
+                if (field_150128_a == null)
                 {
-                    this.field_150128_a = new int[var9 * var9 * var9];
+                    field_150128_a = new int[var9 * var9 * var9];
                 }
 
                 int var12;
@@ -94,16 +94,16 @@ public abstract class BlockLeaves extends BlockLeavesBase
                                 {
                                     if (var15.getMaterial() == Material.field_151584_j)
                                     {
-                                        this.field_150128_a[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = -2;
+                                        field_150128_a[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = -2;
                                     }
                                     else
                                     {
-                                        this.field_150128_a[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = -1;
+                                        field_150128_a[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = -1;
                                     }
                                 }
                                 else
                                 {
-                                    this.field_150128_a[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = 0;
+                                    field_150128_a[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = 0;
                                 }
                             }
                         }
@@ -117,36 +117,36 @@ public abstract class BlockLeaves extends BlockLeavesBase
                             {
                                 for (int var16 = -var7; var16 <= var7; ++var16)
                                 {
-                                    if (this.field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + var16 + var11] == var12 - 1)
+                                    if (field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + var16 + var11] == var12 - 1)
                                     {
-                                        if (this.field_150128_a[(var13 + var11 - 1) * var10 + (var14 + var11) * var9 + var16 + var11] == -2)
+                                        if (field_150128_a[(var13 + var11 - 1) * var10 + (var14 + var11) * var9 + var16 + var11] == -2)
                                         {
-                                            this.field_150128_a[(var13 + var11 - 1) * var10 + (var14 + var11) * var9 + var16 + var11] = var12;
+                                            field_150128_a[(var13 + var11 - 1) * var10 + (var14 + var11) * var9 + var16 + var11] = var12;
                                         }
 
-                                        if (this.field_150128_a[(var13 + var11 + 1) * var10 + (var14 + var11) * var9 + var16 + var11] == -2)
+                                        if (field_150128_a[(var13 + var11 + 1) * var10 + (var14 + var11) * var9 + var16 + var11] == -2)
                                         {
-                                            this.field_150128_a[(var13 + var11 + 1) * var10 + (var14 + var11) * var9 + var16 + var11] = var12;
+                                            field_150128_a[(var13 + var11 + 1) * var10 + (var14 + var11) * var9 + var16 + var11] = var12;
                                         }
 
-                                        if (this.field_150128_a[(var13 + var11) * var10 + (var14 + var11 - 1) * var9 + var16 + var11] == -2)
+                                        if (field_150128_a[(var13 + var11) * var10 + (var14 + var11 - 1) * var9 + var16 + var11] == -2)
                                         {
-                                            this.field_150128_a[(var13 + var11) * var10 + (var14 + var11 - 1) * var9 + var16 + var11] = var12;
+                                            field_150128_a[(var13 + var11) * var10 + (var14 + var11 - 1) * var9 + var16 + var11] = var12;
                                         }
 
-                                        if (this.field_150128_a[(var13 + var11) * var10 + (var14 + var11 + 1) * var9 + var16 + var11] == -2)
+                                        if (field_150128_a[(var13 + var11) * var10 + (var14 + var11 + 1) * var9 + var16 + var11] == -2)
                                         {
-                                            this.field_150128_a[(var13 + var11) * var10 + (var14 + var11 + 1) * var9 + var16 + var11] = var12;
+                                            field_150128_a[(var13 + var11) * var10 + (var14 + var11 + 1) * var9 + var16 + var11] = var12;
                                         }
 
-                                        if (this.field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + (var16 + var11 - 1)] == -2)
+                                        if (field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + (var16 + var11 - 1)] == -2)
                                         {
-                                            this.field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + (var16 + var11 - 1)] = var12;
+                                            field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + (var16 + var11 - 1)] = var12;
                                         }
 
-                                        if (this.field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + var16 + var11 + 1] == -2)
+                                        if (field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + var16 + var11 + 1] == -2)
                                         {
-                                            this.field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + var16 + var11 + 1] = var12;
+                                            field_150128_a[(var13 + var11) * var10 + (var14 + var11) * var9 + var16 + var11 + 1] = var12;
                                         }
                                     }
                                 }
@@ -155,7 +155,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
                     }
                 }
 
-                var12 = this.field_150128_a[var11 * var10 + var11 * var9 + var11];
+                var12 = field_150128_a[var11 * var10 + var11 * var9 + var11];
 
                 if (var12 >= 0)
                 {
@@ -163,7 +163,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
                 }
                 else
                 {
-                    this.func_150126_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+                    func_150126_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
                 }
             }
         }
@@ -171,7 +171,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
 
     private void func_150126_e(World p_150126_1_, int p_150126_2_, int p_150126_3_, int p_150126_4_)
     {
-        this.dropBlockAsItem(p_150126_1_, p_150126_2_, p_150126_3_, p_150126_4_, p_150126_1_.getBlockMetadata(p_150126_2_, p_150126_3_, p_150126_4_), 0);
+        dropBlockAsItem(p_150126_1_, p_150126_2_, p_150126_3_, p_150126_4_, p_150126_1_.getBlockMetadata(p_150126_2_, p_150126_3_, p_150126_4_), 0);
         p_150126_1_.setBlockToAir(p_150126_2_, p_150126_3_, p_150126_4_);
     }
 
@@ -196,7 +196,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
     {
         if (!p_149690_1_.isClient)
         {
-            int var8 = this.func_150123_b(p_149690_5_);
+            int var8 = func_150123_b(p_149690_5_);
 
             if (p_149690_7_ > 0)
             {
@@ -210,8 +210,8 @@ public abstract class BlockLeaves extends BlockLeavesBase
 
             if (p_149690_1_.rand.nextInt(var8) == 0)
             {
-                Item var9 = this.getItemDropped(p_149690_5_, p_149690_1_.rand, p_149690_7_);
-                this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var9, 1, this.damageDropped(p_149690_5_)));
+                Item var9 = getItemDropped(p_149690_5_, p_149690_1_.rand, p_149690_7_);
+                dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var9, 1, damageDropped(p_149690_5_)));
             }
 
             var8 = 200;
@@ -226,7 +226,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
                 }
             }
 
-            this.func_150124_c(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, var8);
+            func_150124_c(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, var8);
         }
     }
 
@@ -244,7 +244,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
         if (!p_149636_1_.isClient && p_149636_2_.getCurrentEquippedItem() != null && p_149636_2_.getCurrentEquippedItem().getItem() == Items.shears)
         {
             p_149636_2_.addStat(StatList.mineBlockStatArray[Block.getIdFromBlock(this)], 1);
-            this.dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, new ItemStack(Item.getItemFromBlock(this), 1, p_149636_6_ & 3));
+            dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, new ItemStack(Item.getItemFromBlock(this), 1, p_149636_6_ & 3));
         }
         else
         {
@@ -263,7 +263,7 @@ public abstract class BlockLeaves extends BlockLeavesBase
 
     public boolean isOpaqueCube()
     {
-        return !this.field_150121_P;
+        return !field_150121_P;
     }
 
     /**

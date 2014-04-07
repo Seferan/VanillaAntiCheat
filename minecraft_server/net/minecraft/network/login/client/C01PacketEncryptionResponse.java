@@ -22,8 +22,8 @@ public class C01PacketEncryptionResponse extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149302_a = readBlob(p_148837_1_);
-        this.field_149301_b = readBlob(p_148837_1_);
+        field_149302_a = readBlob(p_148837_1_);
+        field_149301_b = readBlob(p_148837_1_);
     }
 
     /**
@@ -31,8 +31,8 @@ public class C01PacketEncryptionResponse extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        writeBlob(p_148840_1_, this.field_149302_a);
-        writeBlob(p_148840_1_, this.field_149301_b);
+        writeBlob(p_148840_1_, field_149302_a);
+        writeBlob(p_148840_1_, field_149301_b);
     }
 
     public void func_148833_a(INetHandlerLoginServer p_149298_1_)
@@ -42,12 +42,12 @@ public class C01PacketEncryptionResponse extends Packet
 
     public SecretKey func_149300_a(PrivateKey p_149300_1_)
     {
-        return CryptManager.decryptSharedKey(p_149300_1_, this.field_149302_a);
+        return CryptManager.decryptSharedKey(p_149300_1_, field_149302_a);
     }
 
     public byte[] func_149299_b(PrivateKey p_149299_1_)
     {
-        return p_149299_1_ == null ? this.field_149301_b : CryptManager.decryptData(p_149299_1_, this.field_149301_b);
+        return p_149299_1_ == null ? field_149301_b : CryptManager.decryptData(p_149299_1_, field_149301_b);
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

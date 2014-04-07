@@ -23,18 +23,18 @@ public abstract class StructureStart
 
     public StructureStart(int par1, int par2)
     {
-        this.field_143024_c = par1;
-        this.field_143023_d = par2;
+        field_143024_c = par1;
+        field_143023_d = par2;
     }
 
     public StructureBoundingBox getBoundingBox()
     {
-        return this.boundingBox;
+        return boundingBox;
     }
 
     public LinkedList getComponents()
     {
-        return this.components;
+        return components;
     }
 
     /**
@@ -43,7 +43,7 @@ public abstract class StructureStart
      */
     public void generateStructure(World par1World, Random par2Random, StructureBoundingBox par3StructureBoundingBox)
     {
-        Iterator var4 = this.components.iterator();
+        Iterator var4 = components.iterator();
 
         while (var4.hasNext())
         {
@@ -62,13 +62,13 @@ public abstract class StructureStart
      */
     protected void updateBoundingBox()
     {
-        this.boundingBox = StructureBoundingBox.getNewBoundingBox();
-        Iterator var1 = this.components.iterator();
+        boundingBox = StructureBoundingBox.getNewBoundingBox();
+        Iterator var1 = components.iterator();
 
         while (var1.hasNext())
         {
             StructureComponent var2 = (StructureComponent)var1.next();
-            this.boundingBox.expandTo(var2.getBoundingBox());
+            boundingBox.expandTo(var2.getBoundingBox());
         }
     }
 
@@ -78,9 +78,9 @@ public abstract class StructureStart
         var3.setString("id", MapGenStructureIO.func_143033_a(this));
         var3.setInteger("ChunkX", par1);
         var3.setInteger("ChunkZ", par2);
-        var3.setTag("BB", this.boundingBox.func_151535_h());
+        var3.setTag("BB", boundingBox.func_151535_h());
         NBTTagList var4 = new NBTTagList();
-        Iterator var5 = this.components.iterator();
+        Iterator var5 = components.iterator();
 
         while (var5.hasNext())
         {
@@ -89,7 +89,7 @@ public abstract class StructureStart
         }
 
         var3.setTag("Children", var4);
-        this.func_143022_a(var3);
+        func_143022_a(var3);
         return var3;
     }
 
@@ -99,22 +99,22 @@ public abstract class StructureStart
 
     public void func_143020_a(World par1World, NBTTagCompound par2NBTTagCompound)
     {
-        this.field_143024_c = par2NBTTagCompound.getInteger("ChunkX");
-        this.field_143023_d = par2NBTTagCompound.getInteger("ChunkZ");
+        field_143024_c = par2NBTTagCompound.getInteger("ChunkX");
+        field_143023_d = par2NBTTagCompound.getInteger("ChunkZ");
 
         if (par2NBTTagCompound.hasKey("BB"))
         {
-            this.boundingBox = new StructureBoundingBox(par2NBTTagCompound.getIntArray("BB"));
+            boundingBox = new StructureBoundingBox(par2NBTTagCompound.getIntArray("BB"));
         }
 
         NBTTagList var3 = par2NBTTagCompound.getTagList("Children", 10);
 
         for (int var4 = 0; var4 < var3.tagCount(); ++var4)
         {
-            this.components.add(MapGenStructureIO.func_143032_b(var3.getCompoundTagAt(var4), par1World));
+            components.add(MapGenStructureIO.func_143032_b(var3.getCompoundTagAt(var4), par1World));
         }
 
-        this.func_143017_b(par2NBTTagCompound);
+        func_143017_b(par2NBTTagCompound);
     }
 
     public void func_143017_b(NBTTagCompound par1NBTTagCompound)
@@ -128,16 +128,16 @@ public abstract class StructureStart
     protected void markAvailableHeight(World par1World, Random par2Random, int par3)
     {
         int var4 = 63 - par3;
-        int var5 = this.boundingBox.getYSize() + 1;
+        int var5 = boundingBox.getYSize() + 1;
 
         if (var5 < var4)
         {
             var5 += par2Random.nextInt(var4 - var5);
         }
 
-        int var6 = var5 - this.boundingBox.maxY;
-        this.boundingBox.offset(0, var6, 0);
-        Iterator var7 = this.components.iterator();
+        int var6 = var5 - boundingBox.maxY;
+        boundingBox.offset(0, var6, 0);
+        Iterator var7 = components.iterator();
 
         while (var7.hasNext())
         {
@@ -148,7 +148,7 @@ public abstract class StructureStart
 
     protected void setRandomHeight(World par1World, Random par2Random, int par3, int par4)
     {
-        int var5 = par4 - par3 + 1 - this.boundingBox.getYSize();
+        int var5 = par4 - par3 + 1 - boundingBox.getYSize();
         boolean var6 = true;
         int var10;
 
@@ -161,9 +161,9 @@ public abstract class StructureStart
             var10 = par3;
         }
 
-        int var7 = var10 - this.boundingBox.minY;
-        this.boundingBox.offset(0, var7, 0);
-        Iterator var8 = this.components.iterator();
+        int var7 = var10 - boundingBox.minY;
+        boundingBox.offset(0, var7, 0);
+        Iterator var8 = components.iterator();
 
         while (var8.hasNext())
         {
@@ -183,11 +183,11 @@ public abstract class StructureStart
 
     public int func_143019_e()
     {
-        return this.field_143024_c;
+        return field_143024_c;
     }
 
     public int func_143018_f()
     {
-        return this.field_143023_d;
+        return field_143023_d;
     }
 }

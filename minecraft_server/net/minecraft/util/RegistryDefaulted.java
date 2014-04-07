@@ -10,12 +10,12 @@ public class RegistryDefaulted extends RegistrySimple
 
     public RegistryDefaulted(Object par1Obj)
     {
-        this.defaultObject = par1Obj;
+        defaultObject = par1Obj;
     }
 
     public Object getObject(Object par1Obj)
     {
         Object var2 = super.getObject(par1Obj);
-        return var2 == null ? this.defaultObject : var2;
+        return var2 == null ? defaultObject : var2;
     }
 }

@@ -10,6 +10,6 @@ public class BlockSponge extends Block
     protected BlockSponge()
     {
         super(Material.field_151583_m);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 }

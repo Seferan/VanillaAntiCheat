@@ -30,24 +30,24 @@ public class BlockStairs extends Block
     protected BlockStairs(Block p_i45428_1_, int p_i45428_2_)
     {
         super(p_i45428_1_.blockMaterial);
-        this.field_150149_b = p_i45428_1_;
-        this.field_150151_M = p_i45428_2_;
-        this.setHardness(p_i45428_1_.blockHardness);
-        this.setResistance(p_i45428_1_.blockResistance / 3.0F);
-        this.setStepSound(p_i45428_1_.stepSound);
-        this.setLightOpacity(255);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        field_150149_b = p_i45428_1_;
+        field_150151_M = p_i45428_2_;
+        setHardness(p_i45428_1_.blockHardness);
+        setResistance(p_i45428_1_.blockResistance / 3.0F);
+        setStepSound(p_i45428_1_.stepSound);
+        setLightOpacity(255);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        if (this.field_150152_N)
+        if (field_150152_N)
         {
-            this.setBlockBounds(0.5F * (float)(this.field_150153_O % 2), 0.5F * (float)(this.field_150153_O / 2 % 2), 0.5F * (float)(this.field_150153_O / 4 % 2), 0.5F + 0.5F * (float)(this.field_150153_O % 2), 0.5F + 0.5F * (float)(this.field_150153_O / 2 % 2), 0.5F + 0.5F * (float)(this.field_150153_O / 4 % 2));
+            setBlockBounds(0.5F * (field_150153_O % 2), 0.5F * (field_150153_O / 2 % 2), 0.5F * (field_150153_O / 4 % 2), 0.5F + 0.5F * (field_150153_O % 2), 0.5F + 0.5F * (field_150153_O / 2 % 2), 0.5F + 0.5F * (field_150153_O / 4 % 2));
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
     }
 
@@ -75,11 +75,11 @@ public class BlockStairs extends Block
 
         if ((var5 & 4) != 0)
         {
-            this.setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         }
     }
 
@@ -127,12 +127,12 @@ public class BlockStairs extends Block
             {
                 var16 = var15 & 3;
 
-                if (var16 == 3 && !this.func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ + 1, var5))
+                if (var16 == 3 && !func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ + 1, var5))
                 {
                     var12 = 0.5F;
                     var13 = false;
                 }
-                else if (var16 == 2 && !this.func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ - 1, var5))
+                else if (var16 == 2 && !func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ - 1, var5))
                 {
                     var11 = 0.5F;
                     var13 = false;
@@ -150,12 +150,12 @@ public class BlockStairs extends Block
             {
                 var16 = var15 & 3;
 
-                if (var16 == 3 && !this.func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ + 1, var5))
+                if (var16 == 3 && !func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ + 1, var5))
                 {
                     var12 = 0.5F;
                     var13 = false;
                 }
-                else if (var16 == 2 && !this.func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ - 1, var5))
+                else if (var16 == 2 && !func_150146_f(p_150145_1_, p_150145_2_, p_150145_3_, p_150145_4_ - 1, var5))
                 {
                     var11 = 0.5F;
                     var13 = false;
@@ -173,12 +173,12 @@ public class BlockStairs extends Block
             {
                 var16 = var15 & 3;
 
-                if (var16 == 1 && !this.func_150146_f(p_150145_1_, p_150145_2_ + 1, p_150145_3_, p_150145_4_, var5))
+                if (var16 == 1 && !func_150146_f(p_150145_1_, p_150145_2_ + 1, p_150145_3_, p_150145_4_, var5))
                 {
                     var10 = 0.5F;
                     var13 = false;
                 }
-                else if (var16 == 0 && !this.func_150146_f(p_150145_1_, p_150145_2_ - 1, p_150145_3_, p_150145_4_, var5))
+                else if (var16 == 0 && !func_150146_f(p_150145_1_, p_150145_2_ - 1, p_150145_3_, p_150145_4_, var5))
                 {
                     var9 = 0.5F;
                     var13 = false;
@@ -194,12 +194,12 @@ public class BlockStairs extends Block
             {
                 var16 = var15 & 3;
 
-                if (var16 == 1 && !this.func_150146_f(p_150145_1_, p_150145_2_ + 1, p_150145_3_, p_150145_4_, var5))
+                if (var16 == 1 && !func_150146_f(p_150145_1_, p_150145_2_ + 1, p_150145_3_, p_150145_4_, var5))
                 {
                     var10 = 0.5F;
                     var13 = false;
                 }
-                else if (var16 == 0 && !this.func_150146_f(p_150145_1_, p_150145_2_ - 1, p_150145_3_, p_150145_4_, var5))
+                else if (var16 == 0 && !func_150146_f(p_150145_1_, p_150145_2_ - 1, p_150145_3_, p_150145_4_, var5))
                 {
                     var9 = 0.5F;
                     var13 = false;
@@ -207,7 +207,7 @@ public class BlockStairs extends Block
             }
         }
 
-        this.setBlockBounds(var9, var7, var11, var10, var8, var12);
+        setBlockBounds(var9, var7, var11, var10, var8, var12);
         return var13;
     }
 
@@ -242,13 +242,13 @@ public class BlockStairs extends Block
             {
                 var16 = var15 & 3;
 
-                if (var16 == 3 && !this.func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ - 1, var5))
+                if (var16 == 3 && !func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ - 1, var5))
                 {
                     var11 = 0.0F;
                     var12 = 0.5F;
                     var13 = true;
                 }
-                else if (var16 == 2 && !this.func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ + 1, var5))
+                else if (var16 == 2 && !func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ + 1, var5))
                 {
                     var11 = 0.5F;
                     var12 = 1.0F;
@@ -267,13 +267,13 @@ public class BlockStairs extends Block
                 var10 = 1.0F;
                 var16 = var15 & 3;
 
-                if (var16 == 3 && !this.func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ - 1, var5))
+                if (var16 == 3 && !func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ - 1, var5))
                 {
                     var11 = 0.0F;
                     var12 = 0.5F;
                     var13 = true;
                 }
-                else if (var16 == 2 && !this.func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ + 1, var5))
+                else if (var16 == 2 && !func_150146_f(p_150144_1_, p_150144_2_, p_150144_3_, p_150144_4_ + 1, var5))
                 {
                     var11 = 0.5F;
                     var12 = 1.0F;
@@ -292,11 +292,11 @@ public class BlockStairs extends Block
                 var12 = 0.5F;
                 var16 = var15 & 3;
 
-                if (var16 == 1 && !this.func_150146_f(p_150144_1_, p_150144_2_ - 1, p_150144_3_, p_150144_4_, var5))
+                if (var16 == 1 && !func_150146_f(p_150144_1_, p_150144_2_ - 1, p_150144_3_, p_150144_4_, var5))
                 {
                     var13 = true;
                 }
-                else if (var16 == 0 && !this.func_150146_f(p_150144_1_, p_150144_2_ + 1, p_150144_3_, p_150144_4_, var5))
+                else if (var16 == 0 && !func_150146_f(p_150144_1_, p_150144_2_ + 1, p_150144_3_, p_150144_4_, var5))
                 {
                     var9 = 0.5F;
                     var10 = 1.0F;
@@ -313,11 +313,11 @@ public class BlockStairs extends Block
             {
                 var16 = var15 & 3;
 
-                if (var16 == 1 && !this.func_150146_f(p_150144_1_, p_150144_2_ - 1, p_150144_3_, p_150144_4_, var5))
+                if (var16 == 1 && !func_150146_f(p_150144_1_, p_150144_2_ - 1, p_150144_3_, p_150144_4_, var5))
                 {
                     var13 = true;
                 }
-                else if (var16 == 0 && !this.func_150146_f(p_150144_1_, p_150144_2_ + 1, p_150144_3_, p_150144_4_, var5))
+                else if (var16 == 0 && !func_150146_f(p_150144_1_, p_150144_2_ + 1, p_150144_3_, p_150144_4_, var5))
                 {
                     var9 = 0.5F;
                     var10 = 1.0F;
@@ -328,7 +328,7 @@ public class BlockStairs extends Block
 
         if (var13)
         {
-            this.setBlockBounds(var9, var7, var11, var10, var8, var12);
+            setBlockBounds(var9, var7, var11, var10, var8, var12);
         }
 
         return var13;
@@ -336,17 +336,17 @@ public class BlockStairs extends Block
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        this.func_150147_e(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
+        func_150147_e(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
-        boolean var8 = this.func_150145_f(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
+        boolean var8 = func_150145_f(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
 
-        if (var8 && this.func_150144_g(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_))
+        if (var8 && func_150144_g(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_))
         {
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         }
 
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     /**
@@ -354,12 +354,12 @@ public class BlockStairs extends Block
      */
     public void onBlockClicked(World p_149699_1_, int p_149699_2_, int p_149699_3_, int p_149699_4_, EntityPlayer p_149699_5_)
     {
-        this.field_150149_b.onBlockClicked(p_149699_1_, p_149699_2_, p_149699_3_, p_149699_4_, p_149699_5_);
+        field_150149_b.onBlockClicked(p_149699_1_, p_149699_2_, p_149699_3_, p_149699_4_, p_149699_5_);
     }
 
     public void onBlockDestroyedByPlayer(World p_149664_1_, int p_149664_2_, int p_149664_3_, int p_149664_4_, int p_149664_5_)
     {
-        this.field_150149_b.onBlockDestroyedByPlayer(p_149664_1_, p_149664_2_, p_149664_3_, p_149664_4_, p_149664_5_);
+        field_150149_b.onBlockDestroyedByPlayer(p_149664_1_, p_149664_2_, p_149664_3_, p_149664_4_, p_149664_5_);
     }
 
     /**
@@ -368,22 +368,22 @@ public class BlockStairs extends Block
      */
     public float getExplosionResistance(Entity p_149638_1_)
     {
-        return this.field_150149_b.getExplosionResistance(p_149638_1_);
+        return field_150149_b.getExplosionResistance(p_149638_1_);
     }
 
     public int func_149738_a(World p_149738_1_)
     {
-        return this.field_150149_b.func_149738_a(p_149738_1_);
+        return field_150149_b.func_149738_a(p_149738_1_);
     }
 
     public void velocityToAddToEntity(World p_149640_1_, int p_149640_2_, int p_149640_3_, int p_149640_4_, Entity p_149640_5_, Vec3 p_149640_6_)
     {
-        this.field_150149_b.velocityToAddToEntity(p_149640_1_, p_149640_2_, p_149640_3_, p_149640_4_, p_149640_5_, p_149640_6_);
+        field_150149_b.velocityToAddToEntity(p_149640_1_, p_149640_2_, p_149640_3_, p_149640_4_, p_149640_5_, p_149640_6_);
     }
 
     public boolean isCollidable()
     {
-        return this.field_150149_b.isCollidable();
+        return field_150149_b.isCollidable();
     }
 
     /**
@@ -393,28 +393,28 @@ public class BlockStairs extends Block
      */
     public boolean canCollideCheck(int p_149678_1_, boolean p_149678_2_)
     {
-        return this.field_150149_b.canCollideCheck(p_149678_1_, p_149678_2_);
+        return field_150149_b.canCollideCheck(p_149678_1_, p_149678_2_);
     }
 
     public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
     {
-        return this.field_150149_b.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
+        return field_150149_b.canPlaceBlockAt(p_149742_1_, p_149742_2_, p_149742_3_, p_149742_4_);
     }
 
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
-        this.onNeighborBlockChange(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_, Blocks.air);
-        this.field_150149_b.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
+        onNeighborBlockChange(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_, Blocks.air);
+        field_150149_b.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
     }
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        this.field_150149_b.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
+        field_150149_b.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
 
     public void onEntityWalking(World p_149724_1_, int p_149724_2_, int p_149724_3_, int p_149724_4_, Entity p_149724_5_)
     {
-        this.field_150149_b.onEntityWalking(p_149724_1_, p_149724_2_, p_149724_3_, p_149724_4_, p_149724_5_);
+        field_150149_b.onEntityWalking(p_149724_1_, p_149724_2_, p_149724_3_, p_149724_4_, p_149724_5_);
     }
 
     /**
@@ -422,7 +422,7 @@ public class BlockStairs extends Block
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        this.field_150149_b.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
+        field_150149_b.updateTick(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
     }
 
     /**
@@ -430,7 +430,7 @@ public class BlockStairs extends Block
      */
     public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-        return this.field_150149_b.onBlockActivated(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_5_, 0, 0.0F, 0.0F, 0.0F);
+        return field_150149_b.onBlockActivated(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_5_, 0, 0.0F, 0.0F, 0.0F);
     }
 
     /**
@@ -438,12 +438,12 @@ public class BlockStairs extends Block
      */
     public void onBlockDestroyedByExplosion(World p_149723_1_, int p_149723_2_, int p_149723_3_, int p_149723_4_, Explosion p_149723_5_)
     {
-        this.field_150149_b.onBlockDestroyedByExplosion(p_149723_1_, p_149723_2_, p_149723_3_, p_149723_4_, p_149723_5_);
+        field_150149_b.onBlockDestroyedByExplosion(p_149723_1_, p_149723_2_, p_149723_3_, p_149723_4_, p_149723_5_);
     }
 
     public MapColor getMapColor(int p_149728_1_)
     {
-        return this.field_150149_b.getMapColor(this.field_150151_M);
+        return field_150149_b.getMapColor(field_150151_M);
     }
 
     /**
@@ -451,7 +451,7 @@ public class BlockStairs extends Block
      */
     public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int var7 = MathHelper.floor_double(p_149689_5_.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int var8 = p_149689_1_.getBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_) & 4;
 
         if (var7 == 0)
@@ -477,7 +477,7 @@ public class BlockStairs extends Block
 
     public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
     {
-        return p_149660_5_ != 0 && (p_149660_5_ == 1 || (double)p_149660_7_ <= 0.5D) ? p_149660_9_ : p_149660_9_ | 4;
+        return p_149660_5_ != 0 && (p_149660_5_ == 1 || p_149660_7_ <= 0.5D) ? p_149660_9_ : p_149660_9_ | 4;
     }
 
     public MovingObjectPosition collisionRayTrace(World p_149731_1_, int p_149731_2_, int p_149731_3_, int p_149731_4_, Vec3 p_149731_5_, Vec3 p_149731_6_)
@@ -487,14 +487,14 @@ public class BlockStairs extends Block
         int var9 = var8 & 3;
         boolean var10 = (var8 & 4) == 4;
         int[] var11 = field_150150_a[var9 + (var10 ? 4 : 0)];
-        this.field_150152_N = true;
+        field_150152_N = true;
         int var14;
         int var15;
         int var16;
 
         for (int var12 = 0; var12 < 8; ++var12)
         {
-            this.field_150153_O = var12;
+            field_150153_O = var12;
             int[] var13 = var11;
             var14 = var11.length;
 

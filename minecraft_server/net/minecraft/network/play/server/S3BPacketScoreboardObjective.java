@@ -21,9 +21,9 @@ public class S3BPacketScoreboardObjective extends Packet
 
     public S3BPacketScoreboardObjective(ScoreObjective p_i45224_1_, int p_i45224_2_)
     {
-        this.field_149343_a = p_i45224_1_.getName();
-        this.field_149341_b = p_i45224_1_.getDisplayName();
-        this.field_149342_c = p_i45224_2_;
+        field_149343_a = p_i45224_1_.getName();
+        field_149341_b = p_i45224_1_.getDisplayName();
+        field_149342_c = p_i45224_2_;
     }
 
     /**
@@ -31,9 +31,9 @@ public class S3BPacketScoreboardObjective extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149343_a = p_148837_1_.readStringFromBuffer(16);
-        this.field_149341_b = p_148837_1_.readStringFromBuffer(32);
-        this.field_149342_c = p_148837_1_.readByte();
+        field_149343_a = p_148837_1_.readStringFromBuffer(16);
+        field_149341_b = p_148837_1_.readStringFromBuffer(32);
+        field_149342_c = p_148837_1_.readByte();
     }
 
     /**
@@ -41,9 +41,9 @@ public class S3BPacketScoreboardObjective extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149343_a);
-        p_148840_1_.writeStringToBuffer(this.field_149341_b);
-        p_148840_1_.writeByte(this.field_149342_c);
+        p_148840_1_.writeStringToBuffer(field_149343_a);
+        p_148840_1_.writeStringToBuffer(field_149341_b);
+        p_148840_1_.writeByte(field_149342_c);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149340_1_)

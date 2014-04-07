@@ -17,7 +17,7 @@ public class VACState
         afResetCount = 0;
         antiFlyX = 0.0;
         antiFlyZ = 0.0;
-        
+
         ticksSinceLastOreMined = 0;
         veinsMined = 0;
     }
@@ -139,27 +139,27 @@ public class VACState
     {
         return afResetCount;
     }
-    
+
     // DIAMOND NOTIFICATIONS
     // ===============================================================================
     private int ticksSinceLastOreMined;
     private int veinsMined;
-    
+
     public void resetTicksSinceLastOre()
     {
         ticksSinceLastOreMined = 0;
     }
-    
+
     public void incrementVeinsMined()
     {
         veinsMined++;
     }
-    
+
     public int getNumberOfVeins()
     {
         return veinsMined;
     }
-    
+
     public boolean isMiningNewVein()
     {
         return ticksSinceLastOreMined > 100;

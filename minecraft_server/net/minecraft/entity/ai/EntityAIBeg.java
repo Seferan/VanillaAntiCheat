@@ -17,10 +17,10 @@ public class EntityAIBeg extends EntityAIBase
 
     public EntityAIBeg(EntityWolf par1EntityWolf, float par2)
     {
-        this.theWolf = par1EntityWolf;
-        this.worldObject = par1EntityWolf.worldObj;
-        this.minPlayerDistance = par2;
-        this.setMutexBits(2);
+        theWolf = par1EntityWolf;
+        worldObject = par1EntityWolf.worldObj;
+        minPlayerDistance = par2;
+        setMutexBits(2);
     }
 
     /**
@@ -28,8 +28,8 @@ public class EntityAIBeg extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        this.thePlayer = this.worldObject.getClosestPlayerToEntity(this.theWolf, (double)this.minPlayerDistance);
-        return this.thePlayer == null ? false : this.hasPlayerGotBoneInHand(this.thePlayer);
+        thePlayer = worldObject.getClosestPlayerToEntity(theWolf, minPlayerDistance);
+        return thePlayer == null ? false : hasPlayerGotBoneInHand(thePlayer);
     }
 
     /**
@@ -37,7 +37,7 @@ public class EntityAIBeg extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.thePlayer.isEntityAlive() ? false : (this.theWolf.getDistanceSqToEntity(this.thePlayer) > (double)(this.minPlayerDistance * this.minPlayerDistance) ? false : this.field_75384_e > 0 && this.hasPlayerGotBoneInHand(this.thePlayer));
+        return !thePlayer.isEntityAlive() ? false : (theWolf.getDistanceSqToEntity(thePlayer) > minPlayerDistance * minPlayerDistance ? false : field_75384_e > 0 && hasPlayerGotBoneInHand(thePlayer));
     }
 
     /**
@@ -45,8 +45,8 @@ public class EntityAIBeg extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theWolf.func_70918_i(true);
-        this.field_75384_e = 40 + this.theWolf.getRNG().nextInt(40);
+        theWolf.func_70918_i(true);
+        field_75384_e = 40 + theWolf.getRNG().nextInt(40);
     }
 
     /**
@@ -54,8 +54,8 @@ public class EntityAIBeg extends EntityAIBase
      */
     public void resetTask()
     {
-        this.theWolf.func_70918_i(false);
-        this.thePlayer = null;
+        theWolf.func_70918_i(false);
+        thePlayer = null;
     }
 
     /**
@@ -63,8 +63,8 @@ public class EntityAIBeg extends EntityAIBase
      */
     public void updateTask()
     {
-        this.theWolf.getLookHelper().setLookPosition(this.thePlayer.posX, this.thePlayer.posY + (double)this.thePlayer.getEyeHeight(), this.thePlayer.posZ, 10.0F, (float)this.theWolf.getVerticalFaceSpeed());
-        --this.field_75384_e;
+        theWolf.getLookHelper().setLookPosition(thePlayer.posX, thePlayer.posY + thePlayer.getEyeHeight(), thePlayer.posZ, 10.0F, theWolf.getVerticalFaceSpeed());
+        --field_75384_e;
     }
 
     /**
@@ -73,6 +73,6 @@ public class EntityAIBeg extends EntityAIBase
     private boolean hasPlayerGotBoneInHand(EntityPlayer par1EntityPlayer)
     {
         ItemStack var2 = par1EntityPlayer.inventory.getCurrentItem();
-        return var2 == null ? false : (!this.theWolf.isTamed() && var2.getItem() == Items.bone ? true : this.theWolf.isBreedingItem(var2));
+        return var2 == null ? false : (!theWolf.isTamed() && var2.getItem() == Items.bone ? true : theWolf.isBreedingItem(var2));
     }
 }

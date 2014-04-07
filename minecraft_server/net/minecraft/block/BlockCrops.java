@@ -16,13 +16,13 @@ public class BlockCrops extends BlockBush implements IGrowable
 
     protected BlockCrops()
     {
-        this.setTickRandomly(true);
+        setTickRandomly(true);
         float var1 = 0.5F;
-        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
-        this.setcreativeTab((CreativeTabs)null);
-        this.setHardness(0.0F);
-        this.setStepSound(soundTypeGrass);
-        this.disableStats();
+        setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 0.25F, 0.5F + var1);
+        setcreativeTab((CreativeTabs)null);
+        setHardness(0.0F);
+        setStepSound(soundTypeGrass);
+        disableStats();
     }
 
     protected boolean func_149854_a(Block p_149854_1_)
@@ -43,7 +43,7 @@ public class BlockCrops extends BlockBush implements IGrowable
 
             if (var6 < 7)
             {
-                float var7 = this.func_149864_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+                float var7 = func_149864_n(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
 
                 if (p_149674_5_.nextInt((int)(25.0F / var7) + 1) == 0)
                 {
@@ -150,7 +150,7 @@ public class BlockCrops extends BlockBush implements IGrowable
                 {
                     if (p_149690_1_.rand.nextInt(15) <= p_149690_5_)
                     {
-                        this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(this.func_149866_i(), 1, 0));
+                        dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(func_149866_i(), 1, 0));
                     }
                 }
             }
@@ -159,7 +159,7 @@ public class BlockCrops extends BlockBush implements IGrowable
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return p_149650_1_ == 7 ? this.func_149865_P() : this.func_149866_i();
+        return p_149650_1_ == 7 ? func_149865_P() : func_149866_i();
     }
 
     /**
@@ -182,6 +182,6 @@ public class BlockCrops extends BlockBush implements IGrowable
 
     public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
     {
-        this.func_149863_m(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_);
+        func_149863_m(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_);
     }
 }

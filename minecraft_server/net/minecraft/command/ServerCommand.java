@@ -9,7 +9,7 @@ public class ServerCommand
 
     public ServerCommand(String par1Str, ICommandSender par2ICommandSender)
     {
-        this.command = par1Str;
-        this.sender = par2ICommandSender;
+        command = par1Str;
+        sender = par2ICommandSender;
     }
 }

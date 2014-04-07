@@ -24,7 +24,7 @@ public class CommandBanIp extends CommandBase
     {
         return "ban-ip";
     }
-    
+
     public List getCommandAliases()
     {
         return Arrays.asList(new String[] {"banip", "ipban"});
@@ -65,7 +65,7 @@ public class CommandBanIp extends CommandBase
 
             if (var3.matches())
             {
-                this.func_147210_a(par1ICommandSender, par2ArrayOfStr[0], var4 == null ? null : var4.getUnformattedText());
+                func_147210_a(par1ICommandSender, par2ArrayOfStr[0], var4 == null ? null : var4.getUnformattedText());
             }
             else
             {
@@ -73,7 +73,7 @@ public class CommandBanIp extends CommandBase
 
                 if (var5 == null) { throw new PlayerNotFoundException("commands.banip.invalid", new Object[0]); }
 
-                this.func_147210_a(par1ICommandSender, var5.getPlayerIP(), var4 == null ? null : var4.getUnformattedText());
+                func_147210_a(par1ICommandSender, var5.getPlayerIP(), var4 == null ? null : var4.getUnformattedText());
             }
         }
         else

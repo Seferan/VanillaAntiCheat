@@ -45,8 +45,8 @@ public class CommandDebug extends CommandBase
             {
                 notifyAdmins(par1ICommandSender, "commands.debug.start", new Object[0]);
                 MinecraftServer.getServer().enableProfiling();
-                this.field_147206_b = MinecraftServer.getCurrentTimeMillis();
-                this.field_147207_c = MinecraftServer.getServer().getTickCounter();
+                field_147206_b = MinecraftServer.getCurrentTimeMillis();
+                field_147207_c = MinecraftServer.getServer().getTickCounter();
                 return;
             }
 
@@ -56,11 +56,11 @@ public class CommandDebug extends CommandBase
 
                 long var3 = MinecraftServer.getCurrentTimeMillis();
                 int var5 = MinecraftServer.getServer().getTickCounter();
-                long var6 = var3 - this.field_147206_b;
-                int var8 = var5 - this.field_147207_c;
-                this.func_147205_a(var6, var8);
+                long var6 = var3 - field_147206_b;
+                int var8 = var5 - field_147207_c;
+                func_147205_a(var6, var8);
                 MinecraftServer.getServer().theProfiler.profilingEnabled = false;
-                notifyAdmins(par1ICommandSender, "commands.debug.stop", new Object[] {Float.valueOf((float)var6 / 1000.0F), Integer.valueOf(var8)});
+                notifyAdmins(par1ICommandSender, "commands.debug.stop", new Object[] {Float.valueOf(var6 / 1000.0F), Integer.valueOf(var8)});
                 return;
             }
         }
@@ -76,7 +76,7 @@ public class CommandDebug extends CommandBase
         try
         {
             FileWriter var5 = new FileWriter(var4);
-            var5.write(this.func_147204_b(p_147205_1_, p_147205_3_));
+            var5.write(func_147204_b(p_147205_1_, p_147205_3_));
             var5.close();
         }
         catch (Throwable var6)
@@ -94,9 +94,9 @@ public class CommandDebug extends CommandBase
         var4.append("\n\n");
         var4.append("Time span: ").append(p_147204_1_).append(" ms\n");
         var4.append("Tick span: ").append(p_147204_3_).append(" ticks\n");
-        var4.append("// This is approximately ").append(String.format("%.2f", new Object[] {Float.valueOf((float)p_147204_3_ / ((float)p_147204_1_ / 1000.0F))})).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
+        var4.append("// This is approximately ").append(String.format("%.2f", new Object[] {Float.valueOf(p_147204_3_ / (p_147204_1_ / 1000.0F))})).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
         var4.append("--- BEGIN PROFILE DUMP ---\n\n");
-        this.func_147202_a(0, "root", var4);
+        func_147202_a(0, "root", var4);
         var4.append("--- END PROFILE DUMP ---\n\n");
         return var4.toString();
     }
@@ -128,7 +128,7 @@ public class CommandDebug extends CommandBase
                 {
                     try
                     {
-                        this.func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + var6.field_76331_c, p_147202_3_);
+                        func_147202_a(p_147202_1_ + 1, p_147202_2_ + "." + var6.field_76331_c, p_147202_3_);
                     }
                     catch (Exception var8)
                     {
@@ -145,7 +145,7 @@ public class CommandDebug extends CommandBase
 
         try
         {
-            return var0[(int)(System.nanoTime() % (long)var0.length)];
+            return var0[(int)(System.nanoTime() % var0.length)];
         }
         catch (Throwable var2)
         {

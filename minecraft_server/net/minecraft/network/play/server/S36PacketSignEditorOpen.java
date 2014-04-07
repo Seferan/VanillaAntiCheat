@@ -20,9 +20,9 @@ public class S36PacketSignEditorOpen extends Packet
 
     public S36PacketSignEditorOpen(int p_i45207_1_, int p_i45207_2_, int p_i45207_3_)
     {
-        this.field_149133_a = p_i45207_1_;
-        this.field_149131_b = p_i45207_2_;
-        this.field_149132_c = p_i45207_3_;
+        field_149133_a = p_i45207_1_;
+        field_149131_b = p_i45207_2_;
+        field_149132_c = p_i45207_3_;
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149130_1_)
@@ -35,9 +35,9 @@ public class S36PacketSignEditorOpen extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149133_a = p_148837_1_.readInt();
-        this.field_149131_b = p_148837_1_.readInt();
-        this.field_149132_c = p_148837_1_.readInt();
+        field_149133_a = p_148837_1_.readInt();
+        field_149131_b = p_148837_1_.readInt();
+        field_149132_c = p_148837_1_.readInt();
     }
 
     /**
@@ -45,9 +45,9 @@ public class S36PacketSignEditorOpen extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149133_a);
-        p_148840_1_.writeInt(this.field_149131_b);
-        p_148840_1_.writeInt(this.field_149132_c);
+        p_148840_1_.writeInt(field_149133_a);
+        p_148840_1_.writeInt(field_149131_b);
+        p_148840_1_.writeInt(field_149132_c);
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

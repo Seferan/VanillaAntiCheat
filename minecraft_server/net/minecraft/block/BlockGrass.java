@@ -19,8 +19,8 @@ public class BlockGrass extends Block implements IGrowable
     protected BlockGrass()
     {
         super(Material.field_151577_b);
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

@@ -18,7 +18,7 @@ public class SlotFurnace extends Slot
     public SlotFurnace(EntityPlayer par1EntityPlayer, IInventory par2IInventory, int par3, int par4, int par5)
     {
         super(par2IInventory, par3, par4, par5);
-        this.thePlayer = par1EntityPlayer;
+        thePlayer = par1EntityPlayer;
     }
 
     /**
@@ -36,9 +36,9 @@ public class SlotFurnace extends Slot
      */
     public ItemStack decrStackSize(int par1)
     {
-        if (this.getHasStack())
+        if (getHasStack())
         {
-            this.field_75228_b += Math.min(par1, this.getStack().stackSize);
+            field_75228_b += Math.min(par1, getStack().stackSize);
         }
 
         return super.decrStackSize(par1);
@@ -57,7 +57,7 @@ public class SlotFurnace extends Slot
      */
     protected void onCrafting(ItemStack par1ItemStack, int par2)
     {
-        this.field_75228_b += par2;
+        field_75228_b += par2;
         this.onCrafting(par1ItemStack);
     }
 
@@ -67,11 +67,11 @@ public class SlotFurnace extends Slot
      */
     protected void onCrafting(ItemStack par1ItemStack)
     {
-        par1ItemStack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.field_75228_b);
+        par1ItemStack.onCrafting(thePlayer.worldObj, thePlayer, field_75228_b);
 
-        if (!this.thePlayer.worldObj.isClient)
+        if (!thePlayer.worldObj.isClient)
         {
-            int var2 = this.field_75228_b;
+            int var2 = field_75228_b;
             float var3 = FurnaceRecipes.smelting().func_151398_b(par1ItemStack);
             int var4;
 
@@ -81,9 +81,9 @@ public class SlotFurnace extends Slot
             }
             else if (var3 < 1.0F)
             {
-                var4 = MathHelper.floor_float((float)var2 * var3);
+                var4 = MathHelper.floor_float(var2 * var3);
 
-                if (var4 < MathHelper.ceiling_float_int((float)var2 * var3) && (float)Math.random() < (float)var2 * var3 - (float)var4)
+                if (var4 < MathHelper.ceiling_float_int(var2 * var3) && (float)Math.random() < var2 * var3 - var4)
                 {
                     ++var4;
                 }
@@ -95,20 +95,20 @@ public class SlotFurnace extends Slot
             {
                 var4 = EntityXPOrb.getXPSplit(var2);
                 var2 -= var4;
-                this.thePlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(this.thePlayer.worldObj, this.thePlayer.posX, this.thePlayer.posY + 0.5D, this.thePlayer.posZ + 0.5D, var4));
+                thePlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(thePlayer.worldObj, thePlayer.posX, thePlayer.posY + 0.5D, thePlayer.posZ + 0.5D, var4));
             }
         }
 
-        this.field_75228_b = 0;
+        field_75228_b = 0;
 
         if (par1ItemStack.getItem() == Items.iron_ingot)
         {
-            this.thePlayer.addStat(AchievementList.acquireIron, 1);
+            thePlayer.addStat(AchievementList.acquireIron, 1);
         }
 
         if (par1ItemStack.getItem() == Items.cooked_fished)
         {
-            this.thePlayer.addStat(AchievementList.cookFish, 1);
+            thePlayer.addStat(AchievementList.cookFish, 1);
         }
     }
 }

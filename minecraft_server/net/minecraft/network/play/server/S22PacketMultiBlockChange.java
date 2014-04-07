@@ -29,8 +29,8 @@ public class S22PacketMultiBlockChange extends Packet
 
     public S22PacketMultiBlockChange(int p_i45181_1_, short[] p_i45181_2_, Chunk p_i45181_3_)
     {
-        this.field_148925_b = new ChunkCoordIntPair(p_i45181_3_.xPosition, p_i45181_3_.zPosition);
-        this.field_148924_d = p_i45181_1_;
+        field_148925_b = new ChunkCoordIntPair(p_i45181_3_.xPosition, p_i45181_3_.zPosition);
+        field_148924_d = p_i45181_1_;
         int var4 = 4 * p_i45181_1_;
 
         try
@@ -41,20 +41,20 @@ public class S22PacketMultiBlockChange extends Packet
             for (int var7 = 0; var7 < p_i45181_1_; ++var7)
             {
                 int var8 = p_i45181_2_[var7] >> 12 & 15;
-                int var9 = p_i45181_2_[var7] >> 8 & 15;
-                int var10 = p_i45181_2_[var7] & 255;
-                var6.writeShort(p_i45181_2_[var7]);
-                var6.writeShort((short)((Block.getIdFromBlock(p_i45181_3_.func_150810_a(var8, var10, var9)) & 4095) << 4 | p_i45181_3_.getBlockMetadata(var8, var10, var9) & 15));
+            int var9 = p_i45181_2_[var7] >> 8 & 15;
+            int var10 = p_i45181_2_[var7] & 255;
+            var6.writeShort(p_i45181_2_[var7]);
+            var6.writeShort((short)((Block.getIdFromBlock(p_i45181_3_.func_150810_a(var8, var10, var9)) & 4095) << 4 | p_i45181_3_.getBlockMetadata(var8, var10, var9) & 15));
             }
 
-            this.field_148926_c = var5.toByteArray();
+            field_148926_c = var5.toByteArray();
 
-            if (this.field_148926_c.length != var4) { throw new RuntimeException("Expected length " + var4 + " doesn\'t match received length " + this.field_148926_c.length); }
+            if (field_148926_c.length != var4) { throw new RuntimeException("Expected length " + var4 + " doesn\'t match received length " + field_148926_c.length); }
         }
         catch (IOException var11)
         {
             logger.error("Couldn\'t create bulk block update packet", var11);
-            this.field_148926_c = null;
+            field_148926_c = null;
         }
     }
 
@@ -63,14 +63,14 @@ public class S22PacketMultiBlockChange extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148925_b = new ChunkCoordIntPair(p_148837_1_.readInt(), p_148837_1_.readInt());
-        this.field_148924_d = p_148837_1_.readShort() & 65535;
+        field_148925_b = new ChunkCoordIntPair(p_148837_1_.readInt(), p_148837_1_.readInt());
+        field_148924_d = p_148837_1_.readShort() & 65535;
         int var2 = p_148837_1_.readInt();
 
         if (var2 > 0)
         {
-            this.field_148926_c = new byte[var2];
-            p_148837_1_.readBytes(this.field_148926_c);
+            field_148926_c = new byte[var2];
+            p_148837_1_.readBytes(field_148926_c);
         }
     }
 
@@ -79,14 +79,14 @@ public class S22PacketMultiBlockChange extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_148925_b.chunkXPos);
-        p_148840_1_.writeInt(this.field_148925_b.chunkZPos);
-        p_148840_1_.writeShort((short)this.field_148924_d);
+        p_148840_1_.writeInt(field_148925_b.chunkXPos);
+        p_148840_1_.writeInt(field_148925_b.chunkZPos);
+        p_148840_1_.writeShort((short)field_148924_d);
 
-        if (this.field_148926_c != null)
+        if (field_148926_c != null)
         {
-            p_148840_1_.writeInt(this.field_148926_c.length);
-            p_148840_1_.writeBytes(this.field_148926_c);
+            p_148840_1_.writeInt(field_148926_c.length);
+            p_148840_1_.writeBytes(field_148926_c);
         }
         else
         {
@@ -105,7 +105,7 @@ public class S22PacketMultiBlockChange extends Packet
      */
     public String serialize()
     {
-        return String.format("xc=%d, zc=%d, count=%d", new Object[] {Integer.valueOf(this.field_148925_b.chunkXPos), Integer.valueOf(this.field_148925_b.chunkZPos), Integer.valueOf(this.field_148924_d)});
+        return String.format("xc=%d, zc=%d, count=%d", new Object[] {Integer.valueOf(field_148925_b.chunkXPos), Integer.valueOf(field_148925_b.chunkZPos), Integer.valueOf(field_148924_d)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

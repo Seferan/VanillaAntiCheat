@@ -15,8 +15,8 @@ public class ItemHangingEntity extends Item
 
     public ItemHangingEntity(Class p_i45342_1_)
     {
-        this.hangingEntityClass = p_i45342_1_;
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        hangingEntityClass = p_i45342_1_;
+        setCreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -37,7 +37,7 @@ public class ItemHangingEntity extends Item
         else
         {
             int var11 = Direction.facingToDirection[par7];
-            EntityHanging var12 = this.createHangingEntity(par3World, par4, par5, par6, var11);
+            EntityHanging var12 = createHangingEntity(par3World, par4, par5, par6, var11);
 
             if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
             {
@@ -65,6 +65,6 @@ public class ItemHangingEntity extends Item
      */
     private EntityHanging createHangingEntity(World par1World, int par2, int par3, int par4, int par5)
     {
-        return (EntityHanging)(this.hangingEntityClass == EntityPainting.class ? new EntityPainting(par1World, par2, par3, par4, par5) : (this.hangingEntityClass == EntityItemFrame.class ? new EntityItemFrame(par1World, par2, par3, par4, par5) : null));
+        return hangingEntityClass == EntityPainting.class ? new EntityPainting(par1World, par2, par3, par4, par5) : (hangingEntityClass == EntityItemFrame.class ? new EntityItemFrame(par1World, par2, par3, par4, par5) : null);
     }
 }

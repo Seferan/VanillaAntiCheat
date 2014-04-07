@@ -23,7 +23,7 @@ public class ItemMap extends ItemMapBase
 
     protected ItemMap()
     {
-        this.setHasSubtypes(true);
+        setHasSubtypes(true);
     }
 
     public MapData getMapData(ItemStack par1ItemStack, World par2World)
@@ -39,7 +39,7 @@ public class ItemMap extends ItemMapBase
             var4.scale = 3;
             int var5 = 128 * (1 << var4.scale);
             var4.xCenter = Math.round((float)par2World.getWorldInfo().getSpawnX() / (float)var5) * var5;
-            var4.zCenter = Math.round((float)(par2World.getWorldInfo().getSpawnZ() / var5)) * var5;
+            var4.zCenter = Math.round(par2World.getWorldInfo().getSpawnZ() / var5) * var5;
             var4.dimension = (byte)par2World.provider.dimensionId;
             var4.markDirty();
             par2World.setItemData(var3, var4);
@@ -55,8 +55,8 @@ public class ItemMap extends ItemMapBase
             int var4 = 1 << par3MapData.scale;
             int var5 = par3MapData.xCenter;
             int var6 = par3MapData.zCenter;
-            int var7 = MathHelper.floor_double(par2Entity.posX - (double)var5) / var4 + 64;
-            int var8 = MathHelper.floor_double(par2Entity.posZ - (double)var6) / var4 + 64;
+            int var7 = MathHelper.floor_double(par2Entity.posX - var5) / var4 + 64;
+            int var8 = MathHelper.floor_double(par2Entity.posZ - var6) / var4 + 64;
             int var9 = 128 / var4;
 
             if (par1World.provider.hasNoSky)
@@ -150,7 +150,7 @@ public class ItemMap extends ItemMapBase
                                 }
 
                                 var26 /= var4 * var4;
-                                double var36 = (var27 - var14) * 4.0D / (double)(var4 + 4) + ((double)(var11 + var16 & 1) - 0.5D) * 0.4D;
+                                double var36 = (var27 - var14) * 4.0D / (var4 + 4) + ((var11 + var16 & 1) - 0.5D) * 0.4D;
                                 byte var39 = 1;
 
                                 if (var36 > 0.6D)
@@ -163,11 +163,11 @@ public class ItemMap extends ItemMapBase
                                     var39 = 0;
                                 }
 
-                                MapColor var38 = (MapColor)Iterables.getFirst(Multisets.copyHighestCountFirst(var22), MapColor.field_151660_b);
+                                MapColor var38 = Iterables.getFirst(Multisets.copyHighestCountFirst(var22), MapColor.field_151660_b);
 
                                 if (var38 == MapColor.field_151662_n)
                                 {
-                                    var36 = (double)var26 * 0.1D + (double)(var11 + var16 & 1) * 0.2D;
+                                    var36 = var26 * 0.1D + (var11 + var16 & 1) * 0.2D;
                                     var39 = 1;
 
                                     if (var36 < 0.5D)
@@ -224,7 +224,7 @@ public class ItemMap extends ItemMapBase
     {
         if (!par2World.isClient)
         {
-            MapData var6 = this.getMapData(par1ItemStack, par2World);
+            MapData var6 = getMapData(par1ItemStack, par2World);
 
             if (par3Entity instanceof EntityPlayer)
             {
@@ -234,14 +234,14 @@ public class ItemMap extends ItemMapBase
 
             if (par5)
             {
-                this.updateMapData(par2World, par3Entity, var6);
+                updateMapData(par2World, par3Entity, var6);
             }
         }
     }
 
     public Packet func_150911_c(ItemStack p_150911_1_, World p_150911_2_, EntityPlayer p_150911_3_)
     {
-        byte[] var4 = this.getMapData(p_150911_1_, p_150911_2_).getUpdatePacketData(p_150911_1_, p_150911_2_, p_150911_3_);
+        byte[] var4 = getMapData(p_150911_1_, p_150911_2_).getUpdatePacketData(p_150911_1_, p_150911_2_, p_150911_3_);
         return var4 == null ? null : new S34PacketMaps(p_150911_1_.getItemDamage(), var4);
     }
 

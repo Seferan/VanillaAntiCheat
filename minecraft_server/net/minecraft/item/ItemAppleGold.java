@@ -12,7 +12,7 @@ public class ItemAppleGold extends ItemFood
     public ItemAppleGold(int p_i45341_1_, float p_i45341_2_, boolean p_i45341_3_)
     {
         super(p_i45341_1_, p_i45341_2_, p_i45341_3_);
-        this.setHasSubtypes(true);
+        setHasSubtypes(true);
     }
 
     public EnumRarity func_77613_e(ItemStack p_77613_1_)

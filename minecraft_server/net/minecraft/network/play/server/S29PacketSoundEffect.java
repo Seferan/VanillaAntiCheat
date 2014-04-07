@@ -26,21 +26,21 @@ public class S29PacketSoundEffect extends Packet
     public S29PacketSoundEffect(String p_i45200_1_, double p_i45200_2_, double p_i45200_4_, double p_i45200_6_, float p_i45200_8_, float p_i45200_9_)
     {
         Validate.notNull(p_i45200_1_, "name", new Object[0]);
-        this.field_149219_a = p_i45200_1_;
-        this.field_149217_b = (int)(p_i45200_2_ * 8.0D);
-        this.field_149218_c = (int)(p_i45200_4_ * 8.0D);
-        this.field_149215_d = (int)(p_i45200_6_ * 8.0D);
-        this.field_149216_e = p_i45200_8_;
-        this.field_149214_f = (int)(p_i45200_9_ * 63.0F);
+        field_149219_a = p_i45200_1_;
+        field_149217_b = (int)(p_i45200_2_ * 8.0D);
+        field_149218_c = (int)(p_i45200_4_ * 8.0D);
+        field_149215_d = (int)(p_i45200_6_ * 8.0D);
+        field_149216_e = p_i45200_8_;
+        field_149214_f = (int)(p_i45200_9_ * 63.0F);
 
-        if (this.field_149214_f < 0)
+        if (field_149214_f < 0)
         {
-            this.field_149214_f = 0;
+            field_149214_f = 0;
         }
 
-        if (this.field_149214_f > 255)
+        if (field_149214_f > 255)
         {
-            this.field_149214_f = 255;
+            field_149214_f = 255;
         }
     }
 
@@ -49,12 +49,12 @@ public class S29PacketSoundEffect extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149219_a = p_148837_1_.readStringFromBuffer(256);
-        this.field_149217_b = p_148837_1_.readInt();
-        this.field_149218_c = p_148837_1_.readInt();
-        this.field_149215_d = p_148837_1_.readInt();
-        this.field_149216_e = p_148837_1_.readFloat();
-        this.field_149214_f = p_148837_1_.readUnsignedByte();
+        field_149219_a = p_148837_1_.readStringFromBuffer(256);
+        field_149217_b = p_148837_1_.readInt();
+        field_149218_c = p_148837_1_.readInt();
+        field_149215_d = p_148837_1_.readInt();
+        field_149216_e = p_148837_1_.readFloat();
+        field_149214_f = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -62,12 +62,12 @@ public class S29PacketSoundEffect extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149219_a);
-        p_148840_1_.writeInt(this.field_149217_b);
-        p_148840_1_.writeInt(this.field_149218_c);
-        p_148840_1_.writeInt(this.field_149215_d);
-        p_148840_1_.writeFloat(this.field_149216_e);
-        p_148840_1_.writeByte(this.field_149214_f);
+        p_148840_1_.writeStringToBuffer(field_149219_a);
+        p_148840_1_.writeInt(field_149217_b);
+        p_148840_1_.writeInt(field_149218_c);
+        p_148840_1_.writeInt(field_149215_d);
+        p_148840_1_.writeFloat(field_149216_e);
+        p_148840_1_.writeByte(field_149214_f);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149213_1_)

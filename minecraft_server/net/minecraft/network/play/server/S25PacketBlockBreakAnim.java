@@ -22,11 +22,11 @@ public class S25PacketBlockBreakAnim extends Packet
 
     public S25PacketBlockBreakAnim(int p_i45174_1_, int p_i45174_2_, int p_i45174_3_, int p_i45174_4_, int p_i45174_5_)
     {
-        this.field_148852_a = p_i45174_1_;
-        this.field_148850_b = p_i45174_2_;
-        this.field_148851_c = p_i45174_3_;
-        this.field_148848_d = p_i45174_4_;
-        this.field_148849_e = p_i45174_5_;
+        field_148852_a = p_i45174_1_;
+        field_148850_b = p_i45174_2_;
+        field_148851_c = p_i45174_3_;
+        field_148848_d = p_i45174_4_;
+        field_148849_e = p_i45174_5_;
     }
 
     /**
@@ -34,11 +34,11 @@ public class S25PacketBlockBreakAnim extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148852_a = p_148837_1_.readVarIntFromBuffer();
-        this.field_148850_b = p_148837_1_.readInt();
-        this.field_148851_c = p_148837_1_.readInt();
-        this.field_148848_d = p_148837_1_.readInt();
-        this.field_148849_e = p_148837_1_.readUnsignedByte();
+        field_148852_a = p_148837_1_.readVarIntFromBuffer();
+        field_148850_b = p_148837_1_.readInt();
+        field_148851_c = p_148837_1_.readInt();
+        field_148848_d = p_148837_1_.readInt();
+        field_148849_e = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -46,11 +46,11 @@ public class S25PacketBlockBreakAnim extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeVarIntToBuffer(this.field_148852_a);
-        p_148840_1_.writeInt(this.field_148850_b);
-        p_148840_1_.writeInt(this.field_148851_c);
-        p_148840_1_.writeInt(this.field_148848_d);
-        p_148840_1_.writeByte(this.field_148849_e);
+        p_148840_1_.writeVarIntToBuffer(field_148852_a);
+        p_148840_1_.writeInt(field_148850_b);
+        p_148840_1_.writeInt(field_148851_c);
+        p_148840_1_.writeInt(field_148848_d);
+        p_148840_1_.writeByte(field_148849_e);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148847_1_)

@@ -16,12 +16,12 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
 
     public NoiseGeneratorOctaves(Random par1Random, int par2)
     {
-        this.octaves = par2;
-        this.generatorCollection = new NoiseGeneratorImproved[par2];
+        octaves = par2;
+        generatorCollection = new NoiseGeneratorImproved[par2];
 
         for (int var3 = 0; var3 < par2; ++var3)
         {
-            this.generatorCollection[var3] = new NoiseGeneratorImproved(par1Random);
+            generatorCollection[var3] = new NoiseGeneratorImproved(par1Random);
         }
     }
 
@@ -45,20 +45,20 @@ public class NoiseGeneratorOctaves extends NoiseGenerator
 
         double var27 = 1.0D;
 
-        for (int var16 = 0; var16 < this.octaves; ++var16)
+        for (int var16 = 0; var16 < octaves; ++var16)
         {
-            double var17 = (double)par2 * var27 * par8;
-            double var19 = (double)par3 * var27 * par10;
-            double var21 = (double)par4 * var27 * par12;
+            double var17 = par2 * var27 * par8;
+            double var19 = par3 * var27 * par10;
+            double var21 = par4 * var27 * par12;
             long var23 = MathHelper.floor_double_long(var17);
             long var25 = MathHelper.floor_double_long(var21);
-            var17 -= (double)var23;
-            var21 -= (double)var25;
+            var17 -= var23;
+            var21 -= var25;
             var23 %= 16777216L;
             var25 %= 16777216L;
-            var17 += (double)var23;
-            var21 += (double)var25;
-            this.generatorCollection[var16].populateNoiseArray(par1ArrayOfDouble, var17, var19, var21, par5, par6, par7, par8 * var27, par10 * var27, par12 * var27, var27);
+            var17 += var23;
+            var21 += var25;
+            generatorCollection[var16].populateNoiseArray(par1ArrayOfDouble, var17, var19, var21, par5, par6, par7, par8 * var27, par10 * var27, par12 * var27, var27);
             var27 /= 2.0D;
         }
 

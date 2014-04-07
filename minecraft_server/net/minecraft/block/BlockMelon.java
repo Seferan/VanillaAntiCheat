@@ -14,7 +14,7 @@ public class BlockMelon extends Block
     protected BlockMelon()
     {
         super(Material.field_151572_C);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
@@ -36,7 +36,7 @@ public class BlockMelon extends Block
      */
     public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
     {
-        int var3 = this.quantityDropped(p_149679_2_) + p_149679_2_.nextInt(1 + p_149679_1_);
+        int var3 = quantityDropped(p_149679_2_) + p_149679_2_.nextInt(1 + p_149679_1_);
 
         if (var3 > 9)
         {

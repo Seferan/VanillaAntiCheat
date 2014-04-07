@@ -33,19 +33,19 @@ public class RConThreadClient extends RConThreadBase
     RConThreadClient(IServer par1IServer, Socket par2Socket)
     {
         super(par1IServer, "RCON Client");
-        this.clientSocket = par2Socket;
+        clientSocket = par2Socket;
 
         try
         {
-            this.clientSocket.setSoTimeout(0);
+            clientSocket.setSoTimeout(0);
         }
         catch (Exception var4)
         {
-            this.running = false;
+            running = false;
         }
 
-        this.rconPassword = par1IServer.getStringProperty("rcon.password", "");
-        this.logInfo("Rcon connection from: " + par2Socket.getInetAddress());
+        rconPassword = par1IServer.getStringProperty("rcon.password", "");
+        logInfo("Rcon connection from: " + par2Socket.getInetAddress());
     }
 
     public void run()
@@ -54,66 +54,66 @@ public class RConThreadClient extends RConThreadBase
         {
             try
             {
-                if (!this.running)
+                if (!running)
                 {
                     break;
                 }
 
-                BufferedInputStream var1 = new BufferedInputStream(this.clientSocket.getInputStream());
-                int var2 = var1.read(this.buffer, 0, 1460);
+                BufferedInputStream var1 = new BufferedInputStream(clientSocket.getInputStream());
+                int var2 = var1.read(buffer, 0, 1460);
 
                 if (10 > var2) { return; }
 
                 byte var3 = 0;
-                int var4 = RConUtils.getBytesAsLEInt(this.buffer, 0, var2);
+                int var4 = RConUtils.getBytesAsLEInt(buffer, 0, var2);
 
                 if (var4 == var2 - 4)
                 {
                     int var21 = var3 + 4;
-                    int var5 = RConUtils.getBytesAsLEInt(this.buffer, var21, var2);
+                    int var5 = RConUtils.getBytesAsLEInt(buffer, var21, var2);
                     var21 += 4;
-                    int var6 = RConUtils.getRemainingBytesAsLEInt(this.buffer, var21);
+                    int var6 = RConUtils.getRemainingBytesAsLEInt(buffer, var21);
                     var21 += 4;
 
                     switch (var6)
                     {
                     case 2:
-                        if (this.loggedIn)
+                        if (loggedIn)
                         {
-                            String var8 = RConUtils.getBytesAsString(this.buffer, var21, var2);
+                            String var8 = RConUtils.getBytesAsString(buffer, var21, var2);
 
                             try
                             {
-                                this.sendMultipacketResponse(var5, this.server.handleRConCommand(var8));
+                                sendMultipacketResponse(var5, server.handleRConCommand(var8));
                             }
                             catch (Exception var16)
                             {
-                                this.sendMultipacketResponse(var5, "Error executing: " + var8 + " (" + var16.getMessage() + ")");
+                                sendMultipacketResponse(var5, "Error executing: " + var8 + " (" + var16.getMessage() + ")");
                             }
 
                             continue;
                         }
 
-                        this.sendLoginFailedResponse();
+                        sendLoginFailedResponse();
                         continue;
 
                     case 3:
-                        String var7 = RConUtils.getBytesAsString(this.buffer, var21, var2);
+                        String var7 = RConUtils.getBytesAsString(buffer, var21, var2);
                         int var10000 = var21 + var7.length();
 
-                        if (0 != var7.length() && var7.equals(this.rconPassword))
+                        if (0 != var7.length() && var7.equals(rconPassword))
                         {
-                            this.loggedIn = true;
-                            this.sendResponse(var5, 2, "");
+                            loggedIn = true;
+                            sendResponse(var5, 2, "");
                             continue;
                         }
 
-                        this.loggedIn = false;
-                        this.sendLoginFailedResponse();
+                        loggedIn = false;
+                        sendLoginFailedResponse();
                         continue;
 
                     default:
-                        this.sendMultipacketResponse(var5, String.format("Unknown request %s", new Object[] {Integer.toHexString(var6)}));
+                        sendMultipacketResponse(var5, String.format("Unknown request %s", new Object[] {Integer.toHexString(var6)}));
                         continue;
                     }
                 }
@@ -154,7 +154,7 @@ public class RConThreadClient extends RConThreadBase
         var5.write(var6);
         var5.write(0);
         var5.write(0);
-        this.clientSocket.getOutputStream().write(var4.toByteArray());
+        clientSocket.getOutputStream().write(var4.toByteArray());
     }
 
     /**
@@ -162,7 +162,7 @@ public class RConThreadClient extends RConThreadBase
      */
     private void sendLoginFailedResponse() throws IOException
     {
-        this.sendResponse(-1, 2, "");
+        sendResponse(-1, 2, "");
     }
 
     /**
@@ -175,7 +175,7 @@ public class RConThreadClient extends RConThreadBase
         do
         {
             int var4 = 4096 <= var3 ? 4096 : var3;
-            this.sendResponse(par1, 0, par2Str.substring(0, var4));
+            sendResponse(par1, 0, par2Str.substring(0, var4));
             par2Str = par2Str.substring(var4);
             var3 = par2Str.length();
         } while (0 != var3);
@@ -186,18 +186,18 @@ public class RConThreadClient extends RConThreadBase
      */
     private void closeSocket()
     {
-        if (null != this.clientSocket)
+        if (null != clientSocket)
         {
             try
             {
-                this.clientSocket.close();
+                clientSocket.close();
             }
             catch (IOException var2)
             {
-                this.logWarning("IO: " + var2.getMessage());
+                logWarning("IO: " + var2.getMessage());
             }
 
-            this.clientSocket = null;
+            clientSocket = null;
         }
     }
 }

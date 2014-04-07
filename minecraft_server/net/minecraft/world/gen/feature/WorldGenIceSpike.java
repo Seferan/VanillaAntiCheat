@@ -40,16 +40,16 @@ public class WorldGenIceSpike extends WorldGenerator
 
             for (var8 = 0; var8 < var6; ++var8)
             {
-                float var9 = (1.0F - (float)var8 / (float)var6) * (float)var7;
+                float var9 = (1.0F - (float)var8 / (float)var6) * var7;
                 var10 = MathHelper.ceiling_float_int(var9);
 
                 for (var11 = -var10; var11 <= var10; ++var11)
                 {
-                    float var12 = (float)MathHelper.abs_int(var11) - 0.25F;
+                    float var12 = MathHelper.abs_int(var11) - 0.25F;
 
                     for (int var13 = -var10; var13 <= var10; ++var13)
                     {
-                        float var14 = (float)MathHelper.abs_int(var13) - 0.25F;
+                        float var14 = MathHelper.abs_int(var13) - 0.25F;
 
                         if ((var11 == 0 && var13 == 0 || var12 * var12 + var14 * var14 <= var9 * var9) && (var11 != -var10 && var11 != var10 && var13 != -var10 && var13 != var10 || par2Random.nextFloat() <= 0.75F))
                         {
@@ -57,7 +57,7 @@ public class WorldGenIceSpike extends WorldGenerator
 
                             if (var15.getMaterial() == Material.air || var15 == Blocks.dirt || var15 == Blocks.snow || var15 == Blocks.ice)
                             {
-                                this.func_150515_a(par1World, par3 + var11, par4 + var8, par5 + var13, Blocks.packed_ice);
+                                func_150515_a(par1World, par3 + var11, par4 + var8, par5 + var13, Blocks.packed_ice);
                             }
 
                             if (var8 != 0 && var10 > 1)
@@ -66,7 +66,7 @@ public class WorldGenIceSpike extends WorldGenerator
 
                                 if (var15.getMaterial() == Material.air || var15 == Blocks.dirt || var15 == Blocks.snow || var15 == Blocks.ice)
                                 {
-                                    this.func_150515_a(par1World, par3 + var11, par4 - var8, par5 + var13, Blocks.packed_ice);
+                                    func_150515_a(par1World, par3 + var11, par4 - var8, par5 + var13, Blocks.packed_ice);
                                 }
                             }
                         }
@@ -107,7 +107,7 @@ public class WorldGenIceSpike extends WorldGenerator
 
                             if (var18.getMaterial() == Material.air || var18 == Blocks.dirt || var18 == Blocks.snow || var18 == Blocks.ice || var18 == Blocks.packed_ice)
                             {
-                                this.func_150515_a(par1World, par3 + var16, var11, par5 + var10, Blocks.packed_ice);
+                                func_150515_a(par1World, par3 + var16, var11, par5 + var10, Blocks.packed_ice);
                                 --var11;
                                 --var17;
 

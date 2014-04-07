@@ -23,46 +23,46 @@ public abstract class CommandBlockLogic implements ICommandSender
 
     public int func_145760_g()
     {
-        return this.field_145764_b;
+        return field_145764_b;
     }
 
     public IChatComponent func_145749_h()
     {
-        return this.field_145762_d;
+        return field_145762_d;
     }
 
     public void func_145758_a(NBTTagCompound p_145758_1_)
     {
-        p_145758_1_.setString("Command", this.field_145763_e);
-        p_145758_1_.setInteger("SuccessCount", this.field_145764_b);
-        p_145758_1_.setString("CustomName", this.field_145761_f);
+        p_145758_1_.setString("Command", field_145763_e);
+        p_145758_1_.setInteger("SuccessCount", field_145764_b);
+        p_145758_1_.setString("CustomName", field_145761_f);
 
-        if (this.field_145762_d != null)
+        if (field_145762_d != null)
         {
-            p_145758_1_.setString("LastOutput", IChatComponent.Serializer.func_150696_a(this.field_145762_d));
+            p_145758_1_.setString("LastOutput", IChatComponent.Serializer.func_150696_a(field_145762_d));
         }
 
-        p_145758_1_.setBoolean("TrackOutput", this.field_145765_c);
+        p_145758_1_.setBoolean("TrackOutput", field_145765_c);
     }
 
     public void func_145759_b(NBTTagCompound p_145759_1_)
     {
-        this.field_145763_e = p_145759_1_.getString("Command");
-        this.field_145764_b = p_145759_1_.getInteger("SuccessCount");
+        field_145763_e = p_145759_1_.getString("Command");
+        field_145764_b = p_145759_1_.getInteger("SuccessCount");
 
         if (p_145759_1_.func_150297_b("CustomName", 8))
         {
-            this.field_145761_f = p_145759_1_.getString("CustomName");
+            field_145761_f = p_145759_1_.getString("CustomName");
         }
 
         if (p_145759_1_.func_150297_b("LastOutput", 8))
         {
-            this.field_145762_d = IChatComponent.Serializer.func_150699_a(p_145759_1_.getString("LastOutput"));
+            field_145762_d = IChatComponent.Serializer.func_150699_a(p_145759_1_.getString("LastOutput"));
         }
 
         if (p_145759_1_.func_150297_b("TrackOutput", 1))
         {
-            this.field_145765_c = p_145759_1_.getBoolean("TrackOutput");
+            field_145765_c = p_145759_1_.getBoolean("TrackOutput");
         }
     }
 
@@ -76,19 +76,19 @@ public abstract class CommandBlockLogic implements ICommandSender
 
     public void func_145752_a(String p_145752_1_)
     {
-        this.field_145763_e = p_145752_1_;
+        field_145763_e = p_145752_1_;
     }
 
     public String func_145753_i()
     {
-        return this.field_145763_e;
+        return field_145763_e;
     }
 
     public void func_145755_a(World p_145755_1_)
     {
         if (p_145755_1_.isClient)
         {
-            this.field_145764_b = 0;
+            field_145764_b = 0;
         }
 
         MinecraftServer var2 = MinecraftServer.getServer();
@@ -96,11 +96,11 @@ public abstract class CommandBlockLogic implements ICommandSender
         if (var2 != null && var2.isCommandBlockEnabled())
         {
             ICommandManager var3 = var2.getCommandManager();
-            this.field_145764_b = var3.executeCommand(this, this.field_145763_e);
+            field_145764_b = var3.executeCommand(this, field_145763_e);
         }
         else
         {
-            this.field_145764_b = 0;
+            field_145764_b = 0;
         }
     }
 
@@ -110,17 +110,17 @@ public abstract class CommandBlockLogic implements ICommandSender
      */
     public String getUsername()
     {
-        return this.field_145761_f;
+        return field_145761_f;
     }
 
     public IChatComponent getUsernameAsIChatComponent()
     {
-        return new ChatComponentText(this.getUsername());
+        return new ChatComponentText(getUsername());
     }
 
     public void func_145754_b(String p_145754_1_)
     {
-        this.field_145761_f = p_145754_1_;
+        field_145761_f = p_145754_1_;
     }
 
     /**
@@ -133,10 +133,10 @@ public abstract class CommandBlockLogic implements ICommandSender
      */
     public void addChatMessage(IChatComponent p_145747_1_)
     {
-        if (this.field_145765_c && this.getEntityWorld() != null && !this.getEntityWorld().isClient)
+        if (field_145765_c && getEntityWorld() != null && !getEntityWorld().isClient)
         {
-            this.field_145762_d = (new ChatComponentText("[" + field_145766_a.format(new Date()) + "] ")).appendSibling(p_145747_1_);
-            this.func_145756_e();
+            field_145762_d = (new ChatComponentText("[" + field_145766_a.format(new Date()) + "] ")).appendSibling(p_145747_1_);
+            func_145756_e();
         }
     }
 
@@ -149,6 +149,6 @@ public abstract class CommandBlockLogic implements ICommandSender
 
     public void func_145750_b(IChatComponent p_145750_1_)
     {
-        this.field_145762_d = p_145750_1_;
+        field_145762_d = p_145750_1_;
     }
 }

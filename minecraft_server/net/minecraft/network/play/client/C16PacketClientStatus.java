@@ -18,7 +18,7 @@ public class C16PacketClientStatus extends Packet
 
     public C16PacketClientStatus(C16PacketClientStatus.EnumState p_i45242_1_)
     {
-        this.field_149437_a = p_i45242_1_;
+        field_149437_a = p_i45242_1_;
     }
 
     /**
@@ -26,7 +26,7 @@ public class C16PacketClientStatus extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149437_a = C16PacketClientStatus.EnumState.field_151404_e[p_148837_1_.readByte() % C16PacketClientStatus.EnumState.field_151404_e.length];
+        field_149437_a = C16PacketClientStatus.EnumState.field_151404_e[p_148837_1_.readByte() % C16PacketClientStatus.EnumState.field_151404_e.length];
     }
 
     /**
@@ -34,7 +34,7 @@ public class C16PacketClientStatus extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149437_a.field_151403_d);
+        p_148840_1_.writeByte(field_149437_a.field_151403_d);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149436_1_)
@@ -44,7 +44,7 @@ public class C16PacketClientStatus extends Packet
 
     public C16PacketClientStatus.EnumState func_149435_c()
     {
-        return this.field_149437_a;
+        return field_149437_a;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)
@@ -63,7 +63,7 @@ public class C16PacketClientStatus extends Packet
 
         private EnumState(String p_i45241_1_, int p_i45241_2_, int p_i45241_3_)
         {
-            this.field_151403_d = p_i45241_3_;
+            field_151403_d = p_i45241_3_;
         }
 
         static

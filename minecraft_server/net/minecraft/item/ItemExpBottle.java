@@ -11,7 +11,7 @@ public class ItemExpBottle extends Item
 
     public ItemExpBottle()
     {
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        setCreativeTab(CreativeTabs.tabMisc);
     }
 
     /**

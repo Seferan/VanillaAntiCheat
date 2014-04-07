@@ -13,20 +13,20 @@ public class MapGenCaves extends MapGenBase
 
     protected void func_151542_a(long p_151542_1_, int p_151542_3_, int p_151542_4_, Block[] p_151542_5_, double p_151542_6_, double p_151542_8_, double p_151542_10_)
     {
-        this.func_151541_a(p_151542_1_, p_151542_3_, p_151542_4_, p_151542_5_, p_151542_6_, p_151542_8_, p_151542_10_, 1.0F + this.rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);
+        func_151541_a(p_151542_1_, p_151542_3_, p_151542_4_, p_151542_5_, p_151542_6_, p_151542_8_, p_151542_10_, 1.0F + rand.nextFloat() * 6.0F, 0.0F, 0.0F, -1, -1, 0.5D);
     }
 
     protected void func_151541_a(long p_151541_1_, int p_151541_3_, int p_151541_4_, Block[] p_151541_5_, double p_151541_6_, double p_151541_8_, double p_151541_10_, float p_151541_12_, float p_151541_13_, float p_151541_14_, int p_151541_15_, int p_151541_16_, double p_151541_17_)
     {
-        double var19 = (double)(p_151541_3_ * 16 + 8);
-        double var21 = (double)(p_151541_4_ * 16 + 8);
+        double var19 = p_151541_3_ * 16 + 8;
+        double var21 = p_151541_4_ * 16 + 8;
         float var23 = 0.0F;
         float var24 = 0.0F;
         Random var25 = new Random(p_151541_1_);
 
         if (p_151541_16_ <= 0)
         {
-            int var26 = this.range * 16 - 16;
+            int var26 = range * 16 - 16;
             p_151541_16_ = var26 - var25.nextInt(var26 / 4);
         }
 
@@ -42,13 +42,13 @@ public class MapGenCaves extends MapGenBase
 
         for (boolean var28 = var25.nextInt(6) == 0; p_151541_15_ < p_151541_16_; ++p_151541_15_)
         {
-            double var29 = 1.5D + (double)(MathHelper.sin((float)p_151541_15_ * (float)Math.PI / (float)p_151541_16_) * p_151541_12_ * 1.0F);
+            double var29 = 1.5D + MathHelper.sin(p_151541_15_ * (float)Math.PI / p_151541_16_) * p_151541_12_ * 1.0F;
             double var31 = var29 * p_151541_17_;
             float var33 = MathHelper.cos(p_151541_14_);
             float var34 = MathHelper.sin(p_151541_14_);
-            p_151541_6_ += (double)(MathHelper.cos(p_151541_13_) * var33);
-            p_151541_8_ += (double)var34;
-            p_151541_10_ += (double)(MathHelper.sin(p_151541_13_) * var33);
+            p_151541_6_ += MathHelper.cos(p_151541_13_) * var33;
+            p_151541_8_ += var34;
+            p_151541_10_ += MathHelper.sin(p_151541_13_) * var33;
 
             if (var28)
             {
@@ -68,8 +68,8 @@ public class MapGenCaves extends MapGenBase
 
             if (!var54 && p_151541_15_ == var27 && p_151541_12_ > 1.0F && p_151541_16_ > 0)
             {
-                this.func_151541_a(var25.nextLong(), p_151541_3_, p_151541_4_, p_151541_5_, p_151541_6_, p_151541_8_, p_151541_10_, var25.nextFloat() * 0.5F + 0.5F, p_151541_13_ - ((float)Math.PI / 2F), p_151541_14_ / 3.0F, p_151541_15_, p_151541_16_, 1.0D);
-                this.func_151541_a(var25.nextLong(), p_151541_3_, p_151541_4_, p_151541_5_, p_151541_6_, p_151541_8_, p_151541_10_, var25.nextFloat() * 0.5F + 0.5F, p_151541_13_ + ((float)Math.PI / 2F), p_151541_14_ / 3.0F, p_151541_15_, p_151541_16_, 1.0D);
+                func_151541_a(var25.nextLong(), p_151541_3_, p_151541_4_, p_151541_5_, p_151541_6_, p_151541_8_, p_151541_10_, var25.nextFloat() * 0.5F + 0.5F, p_151541_13_ - ((float)Math.PI / 2F), p_151541_14_ / 3.0F, p_151541_15_, p_151541_16_, 1.0D);
+                func_151541_a(var25.nextLong(), p_151541_3_, p_151541_4_, p_151541_5_, p_151541_6_, p_151541_8_, p_151541_10_, var25.nextFloat() * 0.5F + 0.5F, p_151541_13_ + ((float)Math.PI / 2F), p_151541_14_ / 3.0F, p_151541_15_, p_151541_16_, 1.0D);
                 return;
             }
 
@@ -77,8 +77,8 @@ public class MapGenCaves extends MapGenBase
             {
                 double var35 = p_151541_6_ - var19;
                 double var37 = p_151541_10_ - var21;
-                double var39 = (double)(p_151541_16_ - p_151541_15_);
-                double var41 = (double)(p_151541_12_ + 2.0F + 16.0F);
+                double var39 = p_151541_16_ - p_151541_15_;
+                double var41 = p_151541_12_ + 2.0F + 16.0F;
 
                 if (var35 * var35 + var37 * var37 - var39 * var39 > var41 * var41) { return; }
 
@@ -155,11 +155,11 @@ public class MapGenCaves extends MapGenBase
                     {
                         for (var42 = var55; var42 < var36; ++var42)
                         {
-                            double var60 = ((double)(var42 + p_151541_3_ * 16) + 0.5D - p_151541_6_) / var29;
+                            double var60 = (var42 + p_151541_3_ * 16 + 0.5D - p_151541_6_) / var29;
 
                             for (var45 = var56; var45 < var40; ++var45)
                             {
-                                double var59 = ((double)(var45 + p_151541_4_ * 16) + 0.5D - p_151541_10_) / var29;
+                                double var59 = (var45 + p_151541_4_ * 16 + 0.5D - p_151541_10_) / var29;
                                 int var48 = (var42 * 16 + var45) * 256 + var38;
                                 boolean var49 = false;
 
@@ -167,7 +167,7 @@ public class MapGenCaves extends MapGenBase
                                 {
                                     for (int var50 = var38 - 1; var50 >= var57; --var50)
                                     {
-                                        double var51 = ((double)var50 + 0.5D - p_151541_8_) / var31;
+                                        double var51 = (var50 + 0.5D - p_151541_8_) / var31;
 
                                         if (var51 > -0.7D && var60 * var60 + var51 * var51 + var59 * var59 < 1.0D)
                                         {
@@ -190,7 +190,7 @@ public class MapGenCaves extends MapGenBase
 
                                                     if (var49 && p_151541_5_[var48 - 1] == Blocks.dirt)
                                                     {
-                                                        p_151541_5_[var48 - 1] = this.worldObj.getBiomeGenForCoords(var42 + p_151541_3_ * 16, var45 + p_151541_4_ * 16).topBlock;
+                                                        p_151541_5_[var48 - 1] = worldObj.getBiomeGenForCoords(var42 + p_151541_3_ * 16, var45 + p_151541_4_ * 16).topBlock;
                                                     }
                                                 }
                                             }
@@ -214,38 +214,38 @@ public class MapGenCaves extends MapGenBase
 
     protected void func_151538_a(World p_151538_1_, int p_151538_2_, int p_151538_3_, int p_151538_4_, int p_151538_5_, Block[] p_151538_6_)
     {
-        int var7 = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(15) + 1) + 1);
+        int var7 = rand.nextInt(rand.nextInt(rand.nextInt(15) + 1) + 1);
 
-        if (this.rand.nextInt(7) != 0)
+        if (rand.nextInt(7) != 0)
         {
             var7 = 0;
         }
 
         for (int var8 = 0; var8 < var7; ++var8)
         {
-            double var9 = (double)(p_151538_2_ * 16 + this.rand.nextInt(16));
-            double var11 = (double)this.rand.nextInt(this.rand.nextInt(120) + 8);
-            double var13 = (double)(p_151538_3_ * 16 + this.rand.nextInt(16));
+            double var9 = p_151538_2_ * 16 + rand.nextInt(16);
+            double var11 = rand.nextInt(rand.nextInt(120) + 8);
+            double var13 = p_151538_3_ * 16 + rand.nextInt(16);
             int var15 = 1;
 
-            if (this.rand.nextInt(4) == 0)
+            if (rand.nextInt(4) == 0)
             {
-                this.func_151542_a(this.rand.nextLong(), p_151538_4_, p_151538_5_, p_151538_6_, var9, var11, var13);
-                var15 += this.rand.nextInt(4);
+                func_151542_a(rand.nextLong(), p_151538_4_, p_151538_5_, p_151538_6_, var9, var11, var13);
+                var15 += rand.nextInt(4);
             }
 
             for (int var16 = 0; var16 < var15; ++var16)
             {
-                float var17 = this.rand.nextFloat() * (float)Math.PI * 2.0F;
-                float var18 = (this.rand.nextFloat() - 0.5F) * 2.0F / 8.0F;
-                float var19 = this.rand.nextFloat() * 2.0F + this.rand.nextFloat();
+                float var17 = rand.nextFloat() * (float)Math.PI * 2.0F;
+                float var18 = (rand.nextFloat() - 0.5F) * 2.0F / 8.0F;
+                float var19 = rand.nextFloat() * 2.0F + rand.nextFloat();
 
-                if (this.rand.nextInt(10) == 0)
+                if (rand.nextInt(10) == 0)
                 {
-                    var19 *= this.rand.nextFloat() * this.rand.nextFloat() * 3.0F + 1.0F;
+                    var19 *= rand.nextFloat() * rand.nextFloat() * 3.0F + 1.0F;
                 }
 
-                this.func_151541_a(this.rand.nextLong(), p_151538_4_, p_151538_5_, p_151538_6_, var9, var11, var13, var19, var17, var18, 0, 0, 1.0D);
+                func_151541_a(rand.nextLong(), p_151538_4_, p_151538_5_, p_151538_6_, var9, var11, var13, var19, var17, var18, 0, 0, 1.0D);
             }
         }
     }

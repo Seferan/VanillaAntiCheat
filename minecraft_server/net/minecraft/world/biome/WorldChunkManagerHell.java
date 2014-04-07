@@ -17,8 +17,8 @@ public class WorldChunkManagerHell extends WorldChunkManager
 
     public WorldChunkManagerHell(BiomeGenBase p_i45374_1_, float p_i45374_2_)
     {
-        this.biomeGenerator = p_i45374_1_;
-        this.rainfall = p_i45374_2_;
+        biomeGenerator = p_i45374_1_;
+        rainfall = p_i45374_2_;
     }
 
     /**
@@ -26,7 +26,7 @@ public class WorldChunkManagerHell extends WorldChunkManager
      */
     public BiomeGenBase getBiomeGenAt(int par1, int par2)
     {
-        return this.biomeGenerator;
+        return biomeGenerator;
     }
 
     /**
@@ -39,7 +39,7 @@ public class WorldChunkManagerHell extends WorldChunkManager
             par1ArrayOfBiomeGenBase = new BiomeGenBase[par4 * par5];
         }
 
-        Arrays.fill(par1ArrayOfBiomeGenBase, 0, par4 * par5, this.biomeGenerator);
+        Arrays.fill(par1ArrayOfBiomeGenBase, 0, par4 * par5, biomeGenerator);
         return par1ArrayOfBiomeGenBase;
     }
 
@@ -54,7 +54,7 @@ public class WorldChunkManagerHell extends WorldChunkManager
             par1ArrayOfFloat = new float[par4 * par5];
         }
 
-        Arrays.fill(par1ArrayOfFloat, 0, par4 * par5, this.rainfall);
+        Arrays.fill(par1ArrayOfFloat, 0, par4 * par5, rainfall);
         return par1ArrayOfFloat;
     }
 
@@ -70,7 +70,7 @@ public class WorldChunkManagerHell extends WorldChunkManager
             par1ArrayOfBiomeGenBase = new BiomeGenBase[par4 * par5];
         }
 
-        Arrays.fill(par1ArrayOfBiomeGenBase, 0, par4 * par5, this.biomeGenerator);
+        Arrays.fill(par1ArrayOfBiomeGenBase, 0, par4 * par5, biomeGenerator);
         return par1ArrayOfBiomeGenBase;
     }
 
@@ -81,12 +81,12 @@ public class WorldChunkManagerHell extends WorldChunkManager
      */
     public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] par1ArrayOfBiomeGenBase, int par2, int par3, int par4, int par5, boolean par6)
     {
-        return this.loadBlockGeneratorData(par1ArrayOfBiomeGenBase, par2, par3, par4, par5);
+        return loadBlockGeneratorData(par1ArrayOfBiomeGenBase, par2, par3, par4, par5);
     }
 
     public ChunkPosition findBiomePosition(int p_150795_1_, int p_150795_2_, int p_150795_3_, List p_150795_4_, Random p_150795_5_)
     {
-        return p_150795_4_.contains(this.biomeGenerator) ? new ChunkPosition(p_150795_1_ - p_150795_3_ + p_150795_5_.nextInt(p_150795_3_ * 2 + 1), 0, p_150795_2_ - p_150795_3_ + p_150795_5_.nextInt(p_150795_3_ * 2 + 1)) : null;
+        return p_150795_4_.contains(biomeGenerator) ? new ChunkPosition(p_150795_1_ - p_150795_3_ + p_150795_5_.nextInt(p_150795_3_ * 2 + 1), 0, p_150795_2_ - p_150795_3_ + p_150795_5_.nextInt(p_150795_3_ * 2 + 1)) : null;
     }
 
     /**
@@ -94,6 +94,6 @@ public class WorldChunkManagerHell extends WorldChunkManager
      */
     public boolean areBiomesViable(int par1, int par2, int par3, List par4List)
     {
-        return par4List.contains(this.biomeGenerator);
+        return par4List.contains(biomeGenerator);
     }
 }

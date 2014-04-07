@@ -16,8 +16,8 @@ public class BlockBeacon extends BlockContainer
     public BlockBeacon()
     {
         super(Material.field_151592_s);
-        this.setHardness(3.0F);
-        this.setcreativeTab(CreativeTabs.tabMisc);
+        setHardness(3.0F);
+        setcreativeTab(CreativeTabs.tabMisc);
     }
 
     /**

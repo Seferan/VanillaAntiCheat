@@ -11,18 +11,18 @@ public class ContainerChest extends Container
 
     public ContainerChest(IInventory par1IInventory, IInventory par2IInventory)
     {
-        this.lowerChestInventory = par2IInventory;
-        this.numRows = par2IInventory.getSizeInventory() / 9;
+        lowerChestInventory = par2IInventory;
+        numRows = par2IInventory.getSizeInventory() / 9;
         par2IInventory.openChest();
-        int var3 = (this.numRows - 4) * 18;
+        int var3 = (numRows - 4) * 18;
         int var4;
         int var5;
 
-        for (var4 = 0; var4 < this.numRows; ++var4)
+        for (var4 = 0; var4 < numRows; ++var4)
         {
             for (var5 = 0; var5 < 9; ++var5)
             {
-                this.addSlotToContainer(new Slot(par2IInventory, var5 + var4 * 9, 8 + var5 * 18, 18 + var4 * 18));
+                addSlotToContainer(new Slot(par2IInventory, var5 + var4 * 9, 8 + var5 * 18, 18 + var4 * 18));
             }
         }
 
@@ -30,19 +30,19 @@ public class ContainerChest extends Container
         {
             for (var5 = 0; var5 < 9; ++var5)
             {
-                this.addSlotToContainer(new Slot(par1IInventory, var5 + var4 * 9 + 9, 8 + var5 * 18, 103 + var4 * 18 + var3));
+                addSlotToContainer(new Slot(par1IInventory, var5 + var4 * 9 + 9, 8 + var5 * 18, 103 + var4 * 18 + var3));
             }
         }
 
         for (var4 = 0; var4 < 9; ++var4)
         {
-            this.addSlotToContainer(new Slot(par1IInventory, var4, 8 + var4 * 18, 161 + var3));
+            addSlotToContainer(new Slot(par1IInventory, var4, 8 + var4 * 18, 161 + var3));
         }
     }
 
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
-        return this.lowerChestInventory.isUseableByPlayer(par1EntityPlayer);
+        return lowerChestInventory.isUseableByPlayer(par1EntityPlayer);
     }
 
     /**
@@ -51,18 +51,18 @@ public class ContainerChest extends Container
     public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack var3 = null;
-        Slot var4 = (Slot)this.inventorySlots.get(par2);
+        Slot var4 = (Slot)inventorySlots.get(par2);
 
         if (var4 != null && var4.getHasStack())
         {
             ItemStack var5 = var4.getStack();
             var3 = var5.copy();
 
-            if (par2 < this.numRows * 9)
+            if (par2 < numRows * 9)
             {
-                if (!this.mergeItemStack(var5, this.numRows * 9, this.inventorySlots.size(), true)) { return null; }
+                if (!mergeItemStack(var5, numRows * 9, inventorySlots.size(), true)) { return null; }
             }
-            else if (!this.mergeItemStack(var5, 0, this.numRows * 9, false)) { return null; }
+            else if (!mergeItemStack(var5, 0, numRows * 9, false)) { return null; }
 
             if (var5.stackSize == 0)
             {
@@ -83,7 +83,7 @@ public class ContainerChest extends Container
     public void onContainerClosed(EntityPlayer par1EntityPlayer)
     {
         super.onContainerClosed(par1EntityPlayer);
-        this.lowerChestInventory.closeChest();
+        lowerChestInventory.closeChest();
     }
 
     /**
@@ -91,6 +91,6 @@ public class ContainerChest extends Container
      */
     public IInventory getLowerChestInventory()
     {
-        return this.lowerChestInventory;
+        return lowerChestInventory;
     }
 }

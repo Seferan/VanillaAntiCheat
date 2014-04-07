@@ -16,7 +16,7 @@ public class CommandPardonPlayer extends CommandBase
     {
         return "pardon";
     }
-    
+
     public List getCommandAliases()
     {
         return Arrays.asList(new String[] {"unban"});

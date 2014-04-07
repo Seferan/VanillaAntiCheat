@@ -35,18 +35,18 @@ public abstract class StructureComponent
 
     protected StructureComponent(int par1)
     {
-        this.componentType = par1;
-        this.coordBaseMode = -1;
+        componentType = par1;
+        coordBaseMode = -1;
     }
 
     public NBTTagCompound func_143010_b()
     {
         NBTTagCompound var1 = new NBTTagCompound();
         var1.setString("id", MapGenStructureIO.func_143036_a(this));
-        var1.setTag("BB", this.boundingBox.func_151535_h());
-        var1.setInteger("O", this.coordBaseMode);
-        var1.setInteger("GD", this.componentType);
-        this.func_143012_a(var1);
+        var1.setTag("BB", boundingBox.func_151535_h());
+        var1.setInteger("O", coordBaseMode);
+        var1.setInteger("GD", componentType);
+        func_143012_a(var1);
         return var1;
     }
 
@@ -56,12 +56,12 @@ public abstract class StructureComponent
     {
         if (par2NBTTagCompound.hasKey("BB"))
         {
-            this.boundingBox = new StructureBoundingBox(par2NBTTagCompound.getIntArray("BB"));
+            boundingBox = new StructureBoundingBox(par2NBTTagCompound.getIntArray("BB"));
         }
 
-        this.coordBaseMode = par2NBTTagCompound.getInteger("O");
-        this.componentType = par2NBTTagCompound.getInteger("GD");
-        this.func_143011_b(par2NBTTagCompound);
+        coordBaseMode = par2NBTTagCompound.getInteger("O");
+        componentType = par2NBTTagCompound.getInteger("GD");
+        func_143011_b(par2NBTTagCompound);
     }
 
     protected abstract void func_143011_b(NBTTagCompound var1);
@@ -82,7 +82,7 @@ public abstract class StructureComponent
 
     public StructureBoundingBox getBoundingBox()
     {
-        return this.boundingBox;
+        return boundingBox;
     }
 
     /**
@@ -90,7 +90,7 @@ public abstract class StructureComponent
      */
     public int getComponentType()
     {
-        return this.componentType;
+        return componentType;
     }
 
     /**
@@ -113,7 +113,7 @@ public abstract class StructureComponent
 
     public ChunkPosition func_151553_a()
     {
-        return new ChunkPosition(this.boundingBox.getCenterX(), this.boundingBox.getCenterY(), this.boundingBox.getCenterZ());
+        return new ChunkPosition(boundingBox.getCenterX(), boundingBox.getCenterY(), boundingBox.getCenterZ());
     }
 
     /**
@@ -121,12 +121,12 @@ public abstract class StructureComponent
      */
     protected boolean isLiquidInStructureBoundingBox(World par1World, StructureBoundingBox par2StructureBoundingBox)
     {
-        int var3 = Math.max(this.boundingBox.minX - 1, par2StructureBoundingBox.minX);
-        int var4 = Math.max(this.boundingBox.minY - 1, par2StructureBoundingBox.minY);
-        int var5 = Math.max(this.boundingBox.minZ - 1, par2StructureBoundingBox.minZ);
-        int var6 = Math.min(this.boundingBox.maxX + 1, par2StructureBoundingBox.maxX);
-        int var7 = Math.min(this.boundingBox.maxY + 1, par2StructureBoundingBox.maxY);
-        int var8 = Math.min(this.boundingBox.maxZ + 1, par2StructureBoundingBox.maxZ);
+        int var3 = Math.max(boundingBox.minX - 1, par2StructureBoundingBox.minX);
+        int var4 = Math.max(boundingBox.minY - 1, par2StructureBoundingBox.minY);
+        int var5 = Math.max(boundingBox.minZ - 1, par2StructureBoundingBox.minZ);
+        int var6 = Math.min(boundingBox.maxX + 1, par2StructureBoundingBox.maxX);
+        int var7 = Math.min(boundingBox.maxY + 1, par2StructureBoundingBox.maxY);
+        int var8 = Math.min(boundingBox.maxZ + 1, par2StructureBoundingBox.maxZ);
         int var9;
         int var10;
 
@@ -165,17 +165,17 @@ public abstract class StructureComponent
 
     protected int getXWithOffset(int par1, int par2)
     {
-        switch (this.coordBaseMode)
+        switch (coordBaseMode)
         {
         case 0:
         case 2:
-            return this.boundingBox.minX + par1;
+            return boundingBox.minX + par1;
 
         case 1:
-            return this.boundingBox.maxX - par2;
+            return boundingBox.maxX - par2;
 
         case 3:
-            return this.boundingBox.minX + par2;
+            return boundingBox.minX + par2;
 
         default:
             return par1;
@@ -184,22 +184,22 @@ public abstract class StructureComponent
 
     protected int getYWithOffset(int par1)
     {
-        return this.coordBaseMode == -1 ? par1 : par1 + this.boundingBox.minY;
+        return coordBaseMode == -1 ? par1 : par1 + boundingBox.minY;
     }
 
     protected int getZWithOffset(int par1, int par2)
     {
-        switch (this.coordBaseMode)
+        switch (coordBaseMode)
         {
         case 0:
-            return this.boundingBox.minZ + par2;
+            return boundingBox.minZ + par2;
 
         case 1:
         case 3:
-            return this.boundingBox.minZ + par1;
+            return boundingBox.minZ + par1;
 
         case 2:
-            return this.boundingBox.maxZ - par2;
+            return boundingBox.maxZ - par2;
 
         default:
             return par2;
@@ -210,7 +210,7 @@ public abstract class StructureComponent
     {
         if (p_151555_1_ == Blocks.rail)
         {
-            if (this.coordBaseMode == 1 || this.coordBaseMode == 3)
+            if (coordBaseMode == 1 || coordBaseMode == 3)
             {
                 if (p_151555_2_ == 1) { return 0; }
 
@@ -223,13 +223,13 @@ public abstract class StructureComponent
             {
                 if (p_151555_1_ == Blocks.ladder)
                 {
-                    if (this.coordBaseMode == 0)
+                    if (coordBaseMode == 0)
                     {
                         if (p_151555_2_ == 2) { return 3; }
 
                         if (p_151555_2_ == 3) { return 2; }
                     }
-                    else if (this.coordBaseMode == 1)
+                    else if (coordBaseMode == 1)
                     {
                         if (p_151555_2_ == 2) { return 4; }
 
@@ -239,7 +239,7 @@ public abstract class StructureComponent
 
                         if (p_151555_2_ == 5) { return 3; }
                     }
-                    else if (this.coordBaseMode == 3)
+                    else if (coordBaseMode == 3)
                     {
                         if (p_151555_2_ == 2) { return 5; }
 
@@ -252,13 +252,13 @@ public abstract class StructureComponent
                 }
                 else if (p_151555_1_ == Blocks.stone_button)
                 {
-                    if (this.coordBaseMode == 0)
+                    if (coordBaseMode == 0)
                     {
                         if (p_151555_2_ == 3) { return 4; }
 
                         if (p_151555_2_ == 4) { return 3; }
                     }
-                    else if (this.coordBaseMode == 1)
+                    else if (coordBaseMode == 1)
                     {
                         if (p_151555_2_ == 3) { return 1; }
 
@@ -268,7 +268,7 @@ public abstract class StructureComponent
 
                         if (p_151555_2_ == 1) { return 4; }
                     }
-                    else if (this.coordBaseMode == 3)
+                    else if (coordBaseMode == 3)
                     {
                         if (p_151555_2_ == 3) { return 2; }
 
@@ -283,11 +283,11 @@ public abstract class StructureComponent
                 {
                     if (p_151555_1_ == Blocks.piston || p_151555_1_ == Blocks.sticky_piston || p_151555_1_ == Blocks.lever || p_151555_1_ == Blocks.dispenser)
                     {
-                        if (this.coordBaseMode == 0)
+                        if (coordBaseMode == 0)
                         {
                             if (p_151555_2_ == 2 || p_151555_2_ == 3) { return Facing.oppositeSide[p_151555_2_]; }
                         }
-                        else if (this.coordBaseMode == 1)
+                        else if (coordBaseMode == 1)
                         {
                             if (p_151555_2_ == 2) { return 4; }
 
@@ -297,7 +297,7 @@ public abstract class StructureComponent
 
                             if (p_151555_2_ == 5) { return 3; }
                         }
-                        else if (this.coordBaseMode == 3)
+                        else if (coordBaseMode == 3)
                         {
                             if (p_151555_2_ == 2) { return 5; }
 
@@ -309,11 +309,11 @@ public abstract class StructureComponent
                         }
                     }
                 }
-                else if (this.coordBaseMode == 0)
+                else if (coordBaseMode == 0)
                 {
                     if (p_151555_2_ == 0 || p_151555_2_ == 2) { return Direction.rotateOpposite[p_151555_2_]; }
                 }
-                else if (this.coordBaseMode == 1)
+                else if (coordBaseMode == 1)
                 {
                     if (p_151555_2_ == 2) { return 1; }
 
@@ -323,7 +323,7 @@ public abstract class StructureComponent
 
                     if (p_151555_2_ == 3) { return 0; }
                 }
-                else if (this.coordBaseMode == 3)
+                else if (coordBaseMode == 3)
                 {
                     if (p_151555_2_ == 2) { return 3; }
 
@@ -334,13 +334,13 @@ public abstract class StructureComponent
                     if (p_151555_2_ == 3) { return 0; }
                 }
             }
-            else if (this.coordBaseMode == 0)
+            else if (coordBaseMode == 0)
             {
                 if (p_151555_2_ == 2) { return 3; }
 
                 if (p_151555_2_ == 3) { return 2; }
             }
-            else if (this.coordBaseMode == 1)
+            else if (coordBaseMode == 1)
             {
                 if (p_151555_2_ == 0) { return 2; }
 
@@ -350,7 +350,7 @@ public abstract class StructureComponent
 
                 if (p_151555_2_ == 3) { return 1; }
             }
-            else if (this.coordBaseMode == 3)
+            else if (coordBaseMode == 3)
             {
                 if (p_151555_2_ == 0) { return 2; }
 
@@ -361,7 +361,7 @@ public abstract class StructureComponent
                 if (p_151555_2_ == 3) { return 0; }
             }
         }
-        else if (this.coordBaseMode == 0)
+        else if (coordBaseMode == 0)
         {
             if (p_151555_2_ == 0) { return 2; }
 
@@ -369,9 +369,9 @@ public abstract class StructureComponent
         }
         else
         {
-            if (this.coordBaseMode == 1) { return p_151555_2_ + 1 & 3; }
+            if (coordBaseMode == 1) { return p_151555_2_ + 1 & 3; }
 
-            if (this.coordBaseMode == 3) { return p_151555_2_ + 3 & 3; }
+            if (coordBaseMode == 3) { return p_151555_2_ + 3 & 3; }
         }
 
         return p_151555_2_;
@@ -379,9 +379,9 @@ public abstract class StructureComponent
 
     protected void func_151550_a(World p_151550_1_, Block p_151550_2_, int p_151550_3_, int p_151550_4_, int p_151550_5_, int p_151550_6_, StructureBoundingBox p_151550_7_)
     {
-        int var8 = this.getXWithOffset(p_151550_4_, p_151550_6_);
-        int var9 = this.getYWithOffset(p_151550_5_);
-        int var10 = this.getZWithOffset(p_151550_4_, p_151550_6_);
+        int var8 = getXWithOffset(p_151550_4_, p_151550_6_);
+        int var9 = getYWithOffset(p_151550_5_);
+        int var10 = getZWithOffset(p_151550_4_, p_151550_6_);
 
         if (p_151550_7_.isVecInside(var8, var9, var10))
         {
@@ -391,9 +391,9 @@ public abstract class StructureComponent
 
     protected Block func_151548_a(World p_151548_1_, int p_151548_2_, int p_151548_3_, int p_151548_4_, StructureBoundingBox p_151548_5_)
     {
-        int var6 = this.getXWithOffset(p_151548_2_, p_151548_4_);
-        int var7 = this.getYWithOffset(p_151548_3_);
-        int var8 = this.getZWithOffset(p_151548_2_, p_151548_4_);
+        int var6 = getXWithOffset(p_151548_2_, p_151548_4_);
+        int var7 = getYWithOffset(p_151548_3_);
+        int var8 = getZWithOffset(p_151548_2_, p_151548_4_);
         return !p_151548_5_.isVecInside(var6, var7, var8) ? Blocks.air : p_151548_1_.getBlock(var6, var7, var8);
     }
 
@@ -409,7 +409,7 @@ public abstract class StructureComponent
             {
                 for (int var11 = par5; var11 <= par8; ++var11)
                 {
-                    this.func_151550_a(par1World, Blocks.air, 0, var10, var9, var11, par2StructureBoundingBox);
+                    func_151550_a(par1World, Blocks.air, 0, var10, var9, var11, par2StructureBoundingBox);
                 }
             }
         }
@@ -423,15 +423,15 @@ public abstract class StructureComponent
             {
                 for (int var14 = p_151549_5_; var14 <= p_151549_8_; ++var14)
                 {
-                    if (!p_151549_11_ || this.func_151548_a(p_151549_1_, var13, var12, var14, p_151549_2_).getMaterial() != Material.air)
+                    if (!p_151549_11_ || func_151548_a(p_151549_1_, var13, var12, var14, p_151549_2_).getMaterial() != Material.air)
                     {
                         if (var12 != p_151549_4_ && var12 != p_151549_7_ && var13 != p_151549_3_ && var13 != p_151549_6_ && var14 != p_151549_5_ && var14 != p_151549_8_)
                         {
-                            this.func_151550_a(p_151549_1_, p_151549_10_, 0, var13, var12, var14, p_151549_2_);
+                            func_151550_a(p_151549_1_, p_151549_10_, 0, var13, var12, var14, p_151549_2_);
                         }
                         else
                         {
-                            this.func_151550_a(p_151549_1_, p_151549_9_, 0, var13, var12, var14, p_151549_2_);
+                            func_151550_a(p_151549_1_, p_151549_9_, 0, var13, var12, var14, p_151549_2_);
                         }
                     }
                 }
@@ -447,15 +447,15 @@ public abstract class StructureComponent
             {
                 for (int var16 = p_151556_5_; var16 <= p_151556_8_; ++var16)
                 {
-                    if (!p_151556_13_ || this.func_151548_a(p_151556_1_, var15, var14, var16, p_151556_2_).getMaterial() != Material.air)
+                    if (!p_151556_13_ || func_151548_a(p_151556_1_, var15, var14, var16, p_151556_2_).getMaterial() != Material.air)
                     {
                         if (var14 != p_151556_4_ && var14 != p_151556_7_ && var15 != p_151556_3_ && var15 != p_151556_6_ && var16 != p_151556_5_ && var16 != p_151556_8_)
                         {
-                            this.func_151550_a(p_151556_1_, p_151556_11_, p_151556_12_, var15, var14, var16, p_151556_2_);
+                            func_151550_a(p_151556_1_, p_151556_11_, p_151556_12_, var15, var14, var16, p_151556_2_);
                         }
                         else
                         {
-                            this.func_151550_a(p_151556_1_, p_151556_9_, p_151556_10_, var15, var14, var16, p_151556_2_);
+                            func_151550_a(p_151556_1_, p_151556_9_, p_151556_10_, var15, var14, var16, p_151556_2_);
                         }
                     }
                 }
@@ -476,10 +476,10 @@ public abstract class StructureComponent
             {
                 for (int var14 = par5; var14 <= par8; ++var14)
                 {
-                    if (!par9 || this.func_151548_a(par1World, var13, var12, var14, par2StructureBoundingBox).getMaterial() != Material.air)
+                    if (!par9 || func_151548_a(par1World, var13, var12, var14, par2StructureBoundingBox).getMaterial() != Material.air)
                     {
                         par11StructurePieceBlockSelector.selectBlocks(par10Random, var13, var12, var14, var12 == par4 || var12 == par7 || var13 == par3 || var13 == par6 || var14 == par5 || var14 == par8);
-                        this.func_151550_a(par1World, par11StructurePieceBlockSelector.func_151561_a(), par11StructurePieceBlockSelector.getSelectedBlockMetaData(), var13, var12, var14, par2StructureBoundingBox);
+                        func_151550_a(par1World, par11StructurePieceBlockSelector.func_151561_a(), par11StructurePieceBlockSelector.getSelectedBlockMetaData(), var13, var12, var14, par2StructureBoundingBox);
                     }
                 }
             }
@@ -494,15 +494,15 @@ public abstract class StructureComponent
             {
                 for (int var16 = p_151551_7_; var16 <= p_151551_10_; ++var16)
                 {
-                    if (p_151551_3_.nextFloat() <= p_151551_4_ && (!p_151551_13_ || this.func_151548_a(p_151551_1_, var15, var14, var16, p_151551_2_).getMaterial() != Material.air))
+                    if (p_151551_3_.nextFloat() <= p_151551_4_ && (!p_151551_13_ || func_151548_a(p_151551_1_, var15, var14, var16, p_151551_2_).getMaterial() != Material.air))
                     {
                         if (var14 != p_151551_6_ && var14 != p_151551_9_ && var15 != p_151551_5_ && var15 != p_151551_8_ && var16 != p_151551_7_ && var16 != p_151551_10_)
                         {
-                            this.func_151550_a(p_151551_1_, p_151551_12_, 0, var15, var14, var16, p_151551_2_);
+                            func_151550_a(p_151551_1_, p_151551_12_, 0, var15, var14, var16, p_151551_2_);
                         }
                         else
                         {
-                            this.func_151550_a(p_151551_1_, p_151551_11_, 0, var15, var14, var16, p_151551_2_);
+                            func_151550_a(p_151551_1_, p_151551_11_, 0, var15, var14, var16, p_151551_2_);
                         }
                     }
                 }
@@ -514,37 +514,37 @@ public abstract class StructureComponent
     {
         if (p_151552_3_.nextFloat() < p_151552_4_)
         {
-            this.func_151550_a(p_151552_1_, p_151552_8_, p_151552_9_, p_151552_5_, p_151552_6_, p_151552_7_, p_151552_2_);
+            func_151550_a(p_151552_1_, p_151552_8_, p_151552_9_, p_151552_5_, p_151552_6_, p_151552_7_, p_151552_2_);
         }
     }
 
     protected void func_151547_a(World p_151547_1_, StructureBoundingBox p_151547_2_, int p_151547_3_, int p_151547_4_, int p_151547_5_, int p_151547_6_, int p_151547_7_, int p_151547_8_, Block p_151547_9_, boolean p_151547_10_)
     {
-        float var11 = (float)(p_151547_6_ - p_151547_3_ + 1);
-        float var12 = (float)(p_151547_7_ - p_151547_4_ + 1);
-        float var13 = (float)(p_151547_8_ - p_151547_5_ + 1);
-        float var14 = (float)p_151547_3_ + var11 / 2.0F;
-        float var15 = (float)p_151547_5_ + var13 / 2.0F;
+        float var11 = p_151547_6_ - p_151547_3_ + 1;
+        float var12 = p_151547_7_ - p_151547_4_ + 1;
+        float var13 = p_151547_8_ - p_151547_5_ + 1;
+        float var14 = p_151547_3_ + var11 / 2.0F;
+        float var15 = p_151547_5_ + var13 / 2.0F;
 
         for (int var16 = p_151547_4_; var16 <= p_151547_7_; ++var16)
         {
-            float var17 = (float)(var16 - p_151547_4_) / var12;
+            float var17 = (var16 - p_151547_4_) / var12;
 
             for (int var18 = p_151547_3_; var18 <= p_151547_6_; ++var18)
             {
-                float var19 = ((float)var18 - var14) / (var11 * 0.5F);
+                float var19 = (var18 - var14) / (var11 * 0.5F);
 
                 for (int var20 = p_151547_5_; var20 <= p_151547_8_; ++var20)
                 {
-                    float var21 = ((float)var20 - var15) / (var13 * 0.5F);
+                    float var21 = (var20 - var15) / (var13 * 0.5F);
 
-                    if (!p_151547_10_ || this.func_151548_a(p_151547_1_, var18, var16, var20, p_151547_2_).getMaterial() != Material.air)
+                    if (!p_151547_10_ || func_151548_a(p_151547_1_, var18, var16, var20, p_151547_2_).getMaterial() != Material.air)
                     {
                         float var22 = var19 * var19 + var17 * var17 + var21 * var21;
 
                         if (var22 <= 1.05F)
                         {
-                            this.func_151550_a(p_151547_1_, p_151547_9_, 0, var18, var16, var20, p_151547_2_);
+                            func_151550_a(p_151547_1_, p_151547_9_, 0, var18, var16, var20, p_151547_2_);
                         }
                     }
                 }
@@ -558,9 +558,9 @@ public abstract class StructureComponent
      */
     protected void clearCurrentPositionBlocksUpwards(World par1World, int par2, int par3, int par4, StructureBoundingBox par5StructureBoundingBox)
     {
-        int var6 = this.getXWithOffset(par2, par4);
-        int var7 = this.getYWithOffset(par3);
-        int var8 = this.getZWithOffset(par2, par4);
+        int var6 = getXWithOffset(par2, par4);
+        int var7 = getYWithOffset(par3);
+        int var8 = getZWithOffset(par2, par4);
 
         if (par5StructureBoundingBox.isVecInside(var6, var7, var8))
         {
@@ -574,9 +574,9 @@ public abstract class StructureComponent
 
     protected void func_151554_b(World p_151554_1_, Block p_151554_2_, int p_151554_3_, int p_151554_4_, int p_151554_5_, int p_151554_6_, StructureBoundingBox p_151554_7_)
     {
-        int var8 = this.getXWithOffset(p_151554_4_, p_151554_6_);
-        int var9 = this.getYWithOffset(p_151554_5_);
-        int var10 = this.getZWithOffset(p_151554_4_, p_151554_6_);
+        int var8 = getXWithOffset(p_151554_4_, p_151554_6_);
+        int var9 = getYWithOffset(p_151554_5_);
+        int var10 = getZWithOffset(p_151554_4_, p_151554_6_);
 
         if (p_151554_7_.isVecInside(var8, var9, var10))
         {
@@ -594,9 +594,9 @@ public abstract class StructureComponent
      */
     protected boolean generateStructureChestContents(World par1World, StructureBoundingBox par2StructureBoundingBox, Random par3Random, int par4, int par5, int par6, WeightedRandomChestContent[] par7ArrayOfWeightedRandomChestContent, int par8)
     {
-        int var9 = this.getXWithOffset(par4, par6);
-        int var10 = this.getYWithOffset(par5);
-        int var11 = this.getZWithOffset(par4, par6);
+        int var9 = getXWithOffset(par4, par6);
+        int var10 = getYWithOffset(par5);
+        int var11 = getZWithOffset(par4, par6);
 
         if (par2StructureBoundingBox.isVecInside(var9, var10, var11) && par1World.getBlock(var9, var10, var11) != Blocks.chest)
         {
@@ -621,13 +621,13 @@ public abstract class StructureComponent
      */
     protected boolean generateStructureDispenserContents(World par1World, StructureBoundingBox par2StructureBoundingBox, Random par3Random, int par4, int par5, int par6, int par7, WeightedRandomChestContent[] par8ArrayOfWeightedRandomChestContent, int par9)
     {
-        int var10 = this.getXWithOffset(par4, par6);
-        int var11 = this.getYWithOffset(par5);
-        int var12 = this.getZWithOffset(par4, par6);
+        int var10 = getXWithOffset(par4, par6);
+        int var11 = getYWithOffset(par5);
+        int var12 = getZWithOffset(par4, par6);
 
         if (par2StructureBoundingBox.isVecInside(var10, var11, var12) && par1World.getBlock(var10, var11, var12) != Blocks.dispenser)
         {
-            par1World.setBlock(var10, var11, var12, Blocks.dispenser, this.func_151555_a(Blocks.dispenser, par7), 2);
+            par1World.setBlock(var10, var11, var12, Blocks.dispenser, func_151555_a(Blocks.dispenser, par7), 2);
             TileEntityDispenser var13 = (TileEntityDispenser)par1World.getTileEntity(var10, var11, var12);
 
             if (var13 != null)
@@ -645,9 +645,9 @@ public abstract class StructureComponent
 
     protected void placeDoorAtCurrentPosition(World par1World, StructureBoundingBox par2StructureBoundingBox, Random par3Random, int par4, int par5, int par6, int par7)
     {
-        int var8 = this.getXWithOffset(par4, par6);
-        int var9 = this.getYWithOffset(par5);
-        int var10 = this.getZWithOffset(par4, par6);
+        int var8 = getXWithOffset(par4, par6);
+        int var9 = getYWithOffset(par5);
+        int var10 = getZWithOffset(par4, par6);
 
         if (par2StructureBoundingBox.isVecInside(var8, var9, var10))
         {
@@ -663,19 +663,19 @@ public abstract class StructureComponent
 
         protected BlockSelector()
         {
-            this.field_151562_a = Blocks.air;
+            field_151562_a = Blocks.air;
         }
 
         public abstract void selectBlocks(Random var1, int var2, int var3, int var4, boolean var5);
 
         public Block func_151561_a()
         {
-            return this.field_151562_a;
+            return field_151562_a;
         }
 
         public int getSelectedBlockMetaData()
         {
-            return this.selectedBlockMetaData;
+            return selectedBlockMetaData;
         }
     }
 }

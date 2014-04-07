@@ -20,7 +20,7 @@ public class C14PacketTabComplete extends Packet
 
     public C14PacketTabComplete(String p_i45239_1_)
     {
-        this.field_149420_a = p_i45239_1_;
+        field_149420_a = p_i45239_1_;
     }
 
     /**
@@ -28,7 +28,7 @@ public class C14PacketTabComplete extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149420_a = p_148837_1_.readStringFromBuffer(32767);
+        field_149420_a = p_148837_1_.readStringFromBuffer(32767);
     }
 
     /**
@@ -36,7 +36,7 @@ public class C14PacketTabComplete extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(StringUtils.substring(this.field_149420_a, 0, 32767));
+        p_148840_1_.writeStringToBuffer(StringUtils.substring(field_149420_a, 0, 32767));
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149418_1_)
@@ -46,7 +46,7 @@ public class C14PacketTabComplete extends Packet
 
     public String func_149419_c()
     {
-        return this.field_149420_a;
+        return field_149420_a;
     }
 
     /**
@@ -55,7 +55,7 @@ public class C14PacketTabComplete extends Packet
      */
     public String serialize()
     {
-        return String.format("message=\'%s\'", new Object[] {this.field_149420_a});
+        return String.format("message=\'%s\'", new Object[] {field_149420_a});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

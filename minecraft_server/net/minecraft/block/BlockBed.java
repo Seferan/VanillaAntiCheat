@@ -22,7 +22,7 @@ public class BlockBed extends BlockDirectional
     public BlockBed()
     {
         super(Material.cloth);
-        this.func_149978_e();
+        func_149978_e();
     }
 
     /**
@@ -103,9 +103,9 @@ public class BlockBed extends BlockDirectional
             }
             else
             {
-                double var18 = (double)p_149727_2_ + 0.5D;
-                double var13 = (double)p_149727_3_ + 0.5D;
-                double var15 = (double)p_149727_4_ + 0.5D;
+                double var18 = p_149727_2_ + 0.5D;
+                double var13 = p_149727_3_ + 0.5D;
+                double var15 = p_149727_4_ + 0.5D;
                 p_149727_1_.setBlockToAir(p_149727_2_, p_149727_3_, p_149727_4_);
                 int var17 = func_149895_l(var10);
                 p_149727_2_ += field_149981_a[var17][0];
@@ -114,12 +114,12 @@ public class BlockBed extends BlockDirectional
                 if (p_149727_1_.getBlock(p_149727_2_, p_149727_3_, p_149727_4_) == this)
                 {
                     p_149727_1_.setBlockToAir(p_149727_2_, p_149727_3_, p_149727_4_);
-                    var18 = (var18 + (double)p_149727_2_ + 0.5D) / 2.0D;
-                    var13 = (var13 + (double)p_149727_3_ + 0.5D) / 2.0D;
-                    var15 = (var15 + (double)p_149727_4_ + 0.5D) / 2.0D;
+                    var18 = (var18 + p_149727_2_ + 0.5D) / 2.0D;
+                    var13 = (var13 + p_149727_3_ + 0.5D) / 2.0D;
+                    var15 = (var15 + p_149727_4_ + 0.5D) / 2.0D;
                 }
 
-                p_149727_1_.newExplosion((Entity)null, (double)((float)p_149727_2_ + 0.5F), (double)((float)p_149727_3_ + 0.5F), (double)((float)p_149727_4_ + 0.5F), 5.0F, true, true);
+                p_149727_1_.newExplosion((Entity)null, p_149727_2_ + 0.5F, p_149727_3_ + 0.5F, p_149727_4_ + 0.5F, 5.0F, true, true);
                 return true;
             }
         }
@@ -145,7 +145,7 @@ public class BlockBed extends BlockDirectional
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.func_149978_e();
+        func_149978_e();
     }
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
@@ -166,7 +166,7 @@ public class BlockBed extends BlockDirectional
 
             if (!p_149695_1_.isClient)
             {
-                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
+                dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
             }
         }
     }
@@ -178,7 +178,7 @@ public class BlockBed extends BlockDirectional
 
     private void func_149978_e()
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
     }
 
     public static boolean func_149975_b(int p_149975_0_)

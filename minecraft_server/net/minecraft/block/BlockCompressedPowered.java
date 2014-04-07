@@ -11,7 +11,7 @@ public class BlockCompressedPowered extends BlockCompressed
     public BlockCompressedPowered(MapColor p_i45416_1_)
     {
         super(p_i45416_1_);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
+        setcreativeTab(CreativeTabs.tabRedstone);
     }
 
     /**

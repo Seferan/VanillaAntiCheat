@@ -38,11 +38,11 @@ public class EntityAINearestAttackableTarget extends EntityAITarget
     public EntityAINearestAttackableTarget(EntityCreature par1EntityCreature, Class par2Class, int par3, boolean par4, boolean par5, final IEntitySelector par6IEntitySelector)
     {
         super(par1EntityCreature, par4, par5);
-        this.targetClass = par2Class;
-        this.targetChance = par3;
-        this.theNearestAttackableTargetSorter = new EntityAINearestAttackableTarget.Sorter(par1EntityCreature);
-        this.setMutexBits(1);
-        this.targetEntitySelector = new IEntitySelector()
+        targetClass = par2Class;
+        targetChance = par3;
+        theNearestAttackableTargetSorter = new EntityAINearestAttackableTarget.Sorter(par1EntityCreature);
+        setMutexBits(1);
+        targetEntitySelector = new IEntitySelector()
         {
             private static final String __OBFID = "CL_00001621";
 
@@ -58,15 +58,15 @@ public class EntityAINearestAttackableTarget extends EntityAITarget
      */
     public boolean shouldExecute()
     {
-        if (this.targetChance > 0 && this.taskOwner.getRNG().nextInt(this.targetChance) != 0)
+        if (targetChance > 0 && taskOwner.getRNG().nextInt(targetChance) != 0)
         {
             return false;
         }
         else
         {
-            double var1 = this.getTargetDistance();
-            List var3 = this.taskOwner.worldObj.selectEntitiesWithinAABB(this.targetClass, this.taskOwner.boundingBox.expand(var1, 4.0D, var1), this.targetEntitySelector);
-            Collections.sort(var3, this.theNearestAttackableTargetSorter);
+            double var1 = getTargetDistance();
+            List var3 = taskOwner.worldObj.selectEntitiesWithinAABB(targetClass, taskOwner.boundingBox.expand(var1, 4.0D, var1), targetEntitySelector);
+            Collections.sort(var3, theNearestAttackableTargetSorter);
 
             if (var3.isEmpty())
             {
@@ -74,7 +74,7 @@ public class EntityAINearestAttackableTarget extends EntityAITarget
             }
             else
             {
-                this.targetEntity = (EntityLivingBase)var3.get(0);
+                targetEntity = (EntityLivingBase)var3.get(0);
                 return true;
             }
         }
@@ -85,7 +85,7 @@ public class EntityAINearestAttackableTarget extends EntityAITarget
      */
     public void startExecuting()
     {
-        this.taskOwner.setAttackTarget(this.targetEntity);
+        taskOwner.setAttackTarget(targetEntity);
         super.startExecuting();
     }
 
@@ -96,13 +96,13 @@ public class EntityAINearestAttackableTarget extends EntityAITarget
 
         public Sorter(Entity par1Entity)
         {
-            this.theEntity = par1Entity;
+            theEntity = par1Entity;
         }
 
         public int compare(Entity par1Entity, Entity par2Entity)
         {
-            double var3 = this.theEntity.getDistanceSqToEntity(par1Entity);
-            double var5 = this.theEntity.getDistanceSqToEntity(par2Entity);
+            double var3 = theEntity.getDistanceSqToEntity(par1Entity);
+            double var5 = theEntity.getDistanceSqToEntity(par2Entity);
             return var3 < var5 ? -1 : (var3 > var5 ? 1 : 0);
         }
 

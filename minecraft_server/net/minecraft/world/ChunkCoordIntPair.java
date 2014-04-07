@@ -11,8 +11,8 @@ public class ChunkCoordIntPair
 
     public ChunkCoordIntPair(int par1, int par2)
     {
-        this.chunkXPos = par1;
-        this.chunkZPos = par2;
+        chunkXPos = par1;
+        chunkZPos = par2;
     }
 
     /**
@@ -20,12 +20,12 @@ public class ChunkCoordIntPair
      */
     public static long chunkXZ2Int(int par0, int par1)
     {
-        return (long)par0 & 4294967295L | ((long)par1 & 4294967295L) << 32;
+        return par0 & 4294967295L | (par1 & 4294967295L) << 32;
     }
 
     public int hashCode()
     {
-        long var1 = chunkXZ2Int(this.chunkXPos, this.chunkZPos);
+        long var1 = chunkXZ2Int(chunkXPos, chunkZPos);
         int var3 = (int)var1;
         int var4 = (int)(var1 >> 32);
         return var3 ^ var4;
@@ -34,26 +34,26 @@ public class ChunkCoordIntPair
     public boolean equals(Object par1Obj)
     {
         ChunkCoordIntPair var2 = (ChunkCoordIntPair)par1Obj;
-        return var2.chunkXPos == this.chunkXPos && var2.chunkZPos == this.chunkZPos;
+        return var2.chunkXPos == chunkXPos && var2.chunkZPos == chunkZPos;
     }
 
     public int getCenterXPos()
     {
-        return (this.chunkXPos << 4) + 8;
+        return (chunkXPos << 4) + 8;
     }
 
     public int getCenterZPosition()
     {
-        return (this.chunkZPos << 4) + 8;
+        return (chunkZPos << 4) + 8;
     }
 
     public ChunkPosition func_151349_a(int p_151349_1_)
     {
-        return new ChunkPosition(this.getCenterXPos(), p_151349_1_, this.getCenterZPosition());
+        return new ChunkPosition(getCenterXPos(), p_151349_1_, getCenterZPosition());
     }
 
     public String toString()
     {
-        return "[" + this.chunkXPos + ", " + this.chunkZPos + "]";
+        return "[" + chunkXPos + ", " + chunkZPos + "]";
     }
 }

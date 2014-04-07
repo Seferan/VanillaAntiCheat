@@ -15,9 +15,9 @@ public class WorldProviderEnd extends WorldProvider
      */
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.sky, 0.0F);
-        this.dimensionId = 1;
-        this.hasNoSky = true;
+        worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.sky, 0.0F);
+        dimensionId = 1;
+        hasNoSky = true;
     }
 
     /**
@@ -25,7 +25,7 @@ public class WorldProviderEnd extends WorldProvider
      */
     public IChunkProvider createChunkGenerator()
     {
-        return new ChunkProviderEnd(this.worldObj, this.worldObj.getSeed());
+        return new ChunkProviderEnd(worldObj, worldObj.getSeed());
     }
 
     /**
@@ -61,7 +61,7 @@ public class WorldProviderEnd extends WorldProvider
      */
     public boolean canCoordinateBeSpawn(int par1, int par2)
     {
-        return this.worldObj.getTopBlock(par1, par2).getMaterial().blocksMovement();
+        return worldObj.getTopBlock(par1, par2).getMaterial().blocksMovement();
     }
 
     /**

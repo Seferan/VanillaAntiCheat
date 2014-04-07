@@ -26,8 +26,8 @@ public class S3FPacketCustomPayload extends Packet
 
     public S3FPacketCustomPayload(String p_i45190_1_, byte[] p_i45190_2_)
     {
-        this.field_149172_a = p_i45190_1_;
-        this.field_149171_b = p_i45190_2_;
+        field_149172_a = p_i45190_1_;
+        field_149171_b = p_i45190_2_;
 
         if (p_i45190_2_.length >= 32767) { throw new IllegalArgumentException("Payload may not be larger than 32767 bytes"); }
     }
@@ -37,9 +37,9 @@ public class S3FPacketCustomPayload extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149172_a = p_148837_1_.readStringFromBuffer(20);
-        this.field_149171_b = new byte[p_148837_1_.readUnsignedShort()];
-        p_148837_1_.readBytes(this.field_149171_b);
+        field_149172_a = p_148837_1_.readStringFromBuffer(20);
+        field_149171_b = new byte[p_148837_1_.readUnsignedShort()];
+        p_148837_1_.readBytes(field_149171_b);
     }
 
     /**
@@ -47,9 +47,9 @@ public class S3FPacketCustomPayload extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149172_a);
-        p_148840_1_.writeShort(this.field_149171_b.length);
-        p_148840_1_.writeBytes(this.field_149171_b);
+        p_148840_1_.writeStringToBuffer(field_149172_a);
+        p_148840_1_.writeShort(field_149171_b.length);
+        p_148840_1_.writeBytes(field_149171_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149170_1_)

@@ -12,9 +12,9 @@ public class ChunkPosition
 
     public ChunkPosition(int p_i45363_1_, int p_i45363_2_, int p_i45363_3_)
     {
-        this.chunkPosX = p_i45363_1_;
-        this.chunkPosY = p_i45363_2_;
-        this.chunkPosZ = p_i45363_3_;
+        chunkPosX = p_i45363_1_;
+        chunkPosY = p_i45363_2_;
+        chunkPosZ = p_i45363_3_;
     }
 
     public ChunkPosition(Vec3 p_i45364_1_)
@@ -31,12 +31,12 @@ public class ChunkPosition
         else
         {
             ChunkPosition var2 = (ChunkPosition)par1Obj;
-            return var2.chunkPosX == this.chunkPosX && var2.chunkPosY == this.chunkPosY && var2.chunkPosZ == this.chunkPosZ;
+            return var2.chunkPosX == chunkPosX && var2.chunkPosY == chunkPosY && var2.chunkPosZ == chunkPosZ;
         }
     }
 
     public int hashCode()
     {
-        return this.chunkPosX * 8976890 + this.chunkPosY * 981131 + this.chunkPosZ;
+        return chunkPosX * 8976890 + chunkPosY * 981131 + chunkPosZ;
     }
 }

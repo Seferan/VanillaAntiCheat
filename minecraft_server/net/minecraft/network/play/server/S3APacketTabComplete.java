@@ -20,7 +20,7 @@ public class S3APacketTabComplete extends Packet
 
     public S3APacketTabComplete(String[] p_i45178_1_)
     {
-        this.field_149632_a = p_i45178_1_;
+        field_149632_a = p_i45178_1_;
     }
 
     /**
@@ -28,11 +28,11 @@ public class S3APacketTabComplete extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149632_a = new String[p_148837_1_.readVarIntFromBuffer()];
+        field_149632_a = new String[p_148837_1_.readVarIntFromBuffer()];
 
-        for (int var2 = 0; var2 < this.field_149632_a.length; ++var2)
+        for (int var2 = 0; var2 < field_149632_a.length; ++var2)
         {
-            this.field_149632_a[var2] = p_148837_1_.readStringFromBuffer(32767);
+            field_149632_a[var2] = p_148837_1_.readStringFromBuffer(32767);
         }
     }
 
@@ -41,8 +41,8 @@ public class S3APacketTabComplete extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeVarIntToBuffer(this.field_149632_a.length);
-        String[] var2 = this.field_149632_a;
+        p_148840_1_.writeVarIntToBuffer(field_149632_a.length);
+        String[] var2 = field_149632_a;
         int var3 = var2.length;
 
         for (int var4 = 0; var4 < var3; ++var4)
@@ -63,7 +63,7 @@ public class S3APacketTabComplete extends Packet
      */
     public String serialize()
     {
-        return String.format("candidates=\'%s\'", new Object[] {ArrayUtils.toString(this.field_149632_a)});
+        return String.format("candidates=\'%s\'", new Object[] {ArrayUtils.toString(field_149632_a)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

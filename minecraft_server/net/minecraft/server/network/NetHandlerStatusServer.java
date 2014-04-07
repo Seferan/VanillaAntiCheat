@@ -19,8 +19,8 @@ public class NetHandlerStatusServer implements INetHandlerStatusServer
 
     public NetHandlerStatusServer(MinecraftServer p_i45299_1_, NetworkManager p_i45299_2_)
     {
-        this.field_147314_a = p_i45299_1_;
-        this.field_147313_b = p_i45299_2_;
+        field_147314_a = p_i45299_1_;
+        field_147313_b = p_i45299_2_;
     }
 
     /**
@@ -51,11 +51,11 @@ public class NetHandlerStatusServer implements INetHandlerStatusServer
 
     public void processServerQuery(C00PacketServerQuery p_147312_1_)
     {
-        this.field_147313_b.scheduleOutboundPacket(new S00PacketServerInfo(this.field_147314_a.func_147134_at()), new GenericFutureListener[0]);
+        field_147313_b.scheduleOutboundPacket(new S00PacketServerInfo(field_147314_a.func_147134_at()), new GenericFutureListener[0]);
     }
 
     public void processPing(C01PacketPing p_147311_1_)
     {
-        this.field_147313_b.scheduleOutboundPacket(new S01PacketPong(p_147311_1_.func_149289_c()), new GenericFutureListener[0]);
+        field_147313_b.scheduleOutboundPacket(new S01PacketPong(p_147311_1_.func_149289_c()), new GenericFutureListener[0]);
     }
 }

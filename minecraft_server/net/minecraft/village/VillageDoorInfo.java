@@ -14,12 +14,12 @@ public class VillageDoorInfo
 
     public VillageDoorInfo(int par1, int par2, int par3, int par4, int par5, int par6)
     {
-        this.posX = par1;
-        this.posY = par2;
-        this.posZ = par3;
-        this.insideDirectionX = par4;
-        this.insideDirectionZ = par5;
-        this.lastActivityTimestamp = par6;
+        posX = par1;
+        posY = par2;
+        posZ = par3;
+        insideDirectionX = par4;
+        insideDirectionZ = par5;
+        lastActivityTimestamp = par6;
     }
 
     /**
@@ -27,9 +27,9 @@ public class VillageDoorInfo
      */
     public int getDistanceSquared(int par1, int par2, int par3)
     {
-        int var4 = par1 - this.posX;
-        int var5 = par2 - this.posY;
-        int var6 = par3 - this.posZ;
+        int var4 = par1 - posX;
+        int var5 = par2 - posY;
+        int var6 = par3 - posZ;
         return var4 * var4 + var5 * var5 + var6 * var6;
     }
 
@@ -39,46 +39,46 @@ public class VillageDoorInfo
      */
     public int getInsideDistanceSquare(int par1, int par2, int par3)
     {
-        int var4 = par1 - this.posX - this.insideDirectionX;
-        int var5 = par2 - this.posY;
-        int var6 = par3 - this.posZ - this.insideDirectionZ;
+        int var4 = par1 - posX - insideDirectionX;
+        int var5 = par2 - posY;
+        int var6 = par3 - posZ - insideDirectionZ;
         return var4 * var4 + var5 * var5 + var6 * var6;
     }
 
     public int getInsidePosX()
     {
-        return this.posX + this.insideDirectionX;
+        return posX + insideDirectionX;
     }
 
     public int getInsidePosY()
     {
-        return this.posY;
+        return posY;
     }
 
     public int getInsidePosZ()
     {
-        return this.posZ + this.insideDirectionZ;
+        return posZ + insideDirectionZ;
     }
 
     public boolean isInside(int par1, int par2)
     {
-        int var3 = par1 - this.posX;
-        int var4 = par2 - this.posZ;
-        return var3 * this.insideDirectionX + var4 * this.insideDirectionZ >= 0;
+        int var3 = par1 - posX;
+        int var4 = par2 - posZ;
+        return var3 * insideDirectionX + var4 * insideDirectionZ >= 0;
     }
 
     public void resetDoorOpeningRestrictionCounter()
     {
-        this.doorOpeningRestrictionCounter = 0;
+        doorOpeningRestrictionCounter = 0;
     }
 
     public void incrementDoorOpeningRestrictionCounter()
     {
-        ++this.doorOpeningRestrictionCounter;
+        ++doorOpeningRestrictionCounter;
     }
 
     public int getDoorOpeningRestrictionCounter()
     {
-        return this.doorOpeningRestrictionCounter;
+        return doorOpeningRestrictionCounter;
     }
 }

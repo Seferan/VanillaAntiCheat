@@ -74,15 +74,15 @@ public class NetworkManager extends SimpleChannelInboundHandler
 
     public NetworkManager(boolean p_i45147_1_)
     {
-        this.isClientSide = p_i45147_1_;
+        isClientSide = p_i45147_1_;
     }
 
     public void channelActive(ChannelHandlerContext p_channelActive_1_) throws Exception
     {
         super.channelActive(p_channelActive_1_);
-        this.channel = p_channelActive_1_.channel();
-        this.socketAddress = this.channel.remoteAddress();
-        this.setConnectionState(EnumConnectionState.HANDSHAKING);
+        channel = p_channelActive_1_.channel();
+        socketAddress = channel.remoteAddress();
+        setConnectionState(EnumConnectionState.HANDSHAKING);
     }
 
     /**
@@ -91,34 +91,34 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public void setConnectionState(EnumConnectionState p_150723_1_)
     {
-        this.connectionState = (EnumConnectionState)this.channel.attr(attrKeyConnectionState).getAndSet(p_150723_1_);
-        this.channel.attr(attrKeyReceivable).set(p_150723_1_.func_150757_a(this.isClientSide));
-        this.channel.attr(attrKeySendable).set(p_150723_1_.func_150754_b(this.isClientSide));
-        this.channel.config().setAutoRead(true);
+        connectionState = (EnumConnectionState)channel.attr(attrKeyConnectionState).getAndSet(p_150723_1_);
+        channel.attr(attrKeyReceivable).set(p_150723_1_.func_150757_a(isClientSide));
+        channel.attr(attrKeySendable).set(p_150723_1_.func_150754_b(isClientSide));
+        channel.config().setAutoRead(true);
         logger.debug("Enabled auto read");
     }
 
     public void channelInactive(ChannelHandlerContext p_channelInactive_1_)
     {
-        this.closeChannel(new ChatComponentTranslation("disconnect.endOfStream", new Object[0]));
+        closeChannel(new ChatComponentTranslation("disconnect.endOfStream", new Object[0]));
     }
 
     public void exceptionCaught(ChannelHandlerContext p_exceptionCaught_1_, Throwable p_exceptionCaught_2_)
     {
-        this.closeChannel(new ChatComponentTranslation("disconnect.genericReason", new Object[] {"Internal Exception: " + p_exceptionCaught_2_}));
+        closeChannel(new ChatComponentTranslation("disconnect.genericReason", new Object[] {"Internal Exception: " + p_exceptionCaught_2_}));
     }
 
     protected void channelRead0(ChannelHandlerContext p_150728_1_, Packet p_150728_2_)
     {
-        if (this.channel.isOpen())
+        if (channel.isOpen())
         {
             if (p_150728_2_.hasPriority())
             {
-                p_150728_2_.func_148833_a(this.packetListener);
+                p_150728_2_.func_148833_a(packetListener);
             }
             else
             {
-                this.receivedPacketsQueue.add(p_150728_2_);
+                receivedPacketsQueue.add(p_150728_2_);
             }
         }
     }
@@ -131,7 +131,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
     {
         Validate.notNull(p_150719_1_, "packetListener", new Object[0]);
         logger.debug("Set listener of {} to {}", new Object[] {this, p_150719_1_});
-        this.packetListener = p_150719_1_;
+        packetListener = p_150719_1_;
     }
 
     /**
@@ -141,14 +141,14 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public void scheduleOutboundPacket(Packet p_150725_1_, GenericFutureListener... p_150725_2_)
     {
-        if (this.channel != null && this.channel.isOpen())
+        if (channel != null && channel.isOpen())
         {
-            this.flushOutboundQueue();
-            this.dispatchPacket(p_150725_1_, p_150725_2_);
+            flushOutboundQueue();
+            dispatchPacket(p_150725_1_, p_150725_2_);
         }
         else
         {
-            this.outboundPacketsQueue.add(new NetworkManager.InboundHandlerTuplePacketListener(p_150725_1_, p_150725_2_));
+            outboundPacketsQueue.add(new NetworkManager.InboundHandlerTuplePacketListener(p_150725_1_, p_150725_2_));
         }
     }
 
@@ -160,26 +160,26 @@ public class NetworkManager extends SimpleChannelInboundHandler
     private void dispatchPacket(final Packet p_150732_1_, final GenericFutureListener[] p_150732_2_)
     {
         final EnumConnectionState var3 = EnumConnectionState.func_150752_a(p_150732_1_);
-        final EnumConnectionState var4 = (EnumConnectionState)this.channel.attr(attrKeyConnectionState).get();
+        final EnumConnectionState var4 = (EnumConnectionState)channel.attr(attrKeyConnectionState).get();
 
         if (var4 != var3)
         {
             logger.debug("Disabled auto read");
-            this.channel.config().setAutoRead(false);
+            channel.config().setAutoRead(false);
         }
 
-        if (this.channel.eventLoop().inEventLoop())
+        if (channel.eventLoop().inEventLoop())
         {
             if (var3 != var4)
             {
-                this.setConnectionState(var3);
+                setConnectionState(var3);
             }
 
-            this.channel.writeAndFlush(p_150732_1_).addListeners(p_150732_2_).addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
+            channel.writeAndFlush(p_150732_1_).addListeners(p_150732_2_).addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
         }
         else
         {
-            this.channel.eventLoop().execute(new Runnable()
+            channel.eventLoop().execute(new Runnable()
             {
                 private static final String __OBFID = "CL_00001241";
 
@@ -190,7 +190,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
                         NetworkManager.this.setConnectionState(var3);
                     }
 
-                    NetworkManager.this.channel.writeAndFlush(p_150732_1_).addListeners(p_150732_2_).addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
+                    channel.writeAndFlush(p_150732_1_).addListeners(p_150732_2_).addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
                 }
             });
         }
@@ -201,12 +201,12 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     private void flushOutboundQueue()
     {
-        if (this.channel != null && this.channel.isOpen())
+        if (channel != null && channel.isOpen())
         {
-            while (!this.outboundPacketsQueue.isEmpty())
+            while (!outboundPacketsQueue.isEmpty())
             {
-                NetworkManager.InboundHandlerTuplePacketListener var1 = (NetworkManager.InboundHandlerTuplePacketListener)this.outboundPacketsQueue.poll();
-                this.dispatchPacket(var1.field_150774_a, var1.field_150773_b);
+                NetworkManager.InboundHandlerTuplePacketListener var1 = (NetworkManager.InboundHandlerTuplePacketListener)outboundPacketsQueue.poll();
+                dispatchPacket(var1.field_150774_a, var1.field_150773_b);
             }
         }
     }
@@ -216,31 +216,31 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public void processReceivedPackets()
     {
-        this.flushOutboundQueue();
-        EnumConnectionState var1 = (EnumConnectionState)this.channel.attr(attrKeyConnectionState).get();
+        flushOutboundQueue();
+        EnumConnectionState var1 = (EnumConnectionState)channel.attr(attrKeyConnectionState).get();
 
-        if (this.connectionState != var1)
+        if (connectionState != var1)
         {
-            if (this.connectionState != null)
+            if (connectionState != null)
             {
-                this.packetListener.onConnectionStateTransition(this.connectionState, var1);
+                packetListener.onConnectionStateTransition(connectionState, var1);
             }
 
-            this.connectionState = var1;
+            connectionState = var1;
         }
 
-        if (this.packetListener != null)
+        if (packetListener != null)
         {
-            for (int var2 = 1000; !this.receivedPacketsQueue.isEmpty() && var2 >= 0; --var2)
+            for (int var2 = 1000; !receivedPacketsQueue.isEmpty() && var2 >= 0; --var2)
             {
-                Packet var3 = (Packet)this.receivedPacketsQueue.poll();
-                var3.func_148833_a(this.packetListener);
+                Packet var3 = (Packet)receivedPacketsQueue.poll();
+                var3.func_148833_a(packetListener);
             }
 
-            this.packetListener.onNetworkTick();
+            packetListener.onNetworkTick();
         }
 
-        this.channel.flush();
+        channel.flush();
     }
 
     /**
@@ -248,7 +248,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public SocketAddress getRemoteAddress()
     {
-        return this.socketAddress;
+        return socketAddress;
     }
 
     /**
@@ -257,10 +257,10 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public void closeChannel(IChatComponent p_150718_1_)
     {
-        if (this.channel.isOpen())
+        if (channel.isOpen())
         {
-            this.channel.close();
-            this.terminationReason = p_150718_1_;
+            channel.close();
+            terminationReason = p_150718_1_;
         }
     }
 
@@ -271,7 +271,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public boolean isLocalChannel()
     {
-        return this.channel instanceof LocalChannel || this.channel instanceof LocalServerChannel;
+        return channel instanceof LocalChannel || channel instanceof LocalServerChannel;
     }
 
     /**
@@ -280,8 +280,8 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public void enableEncryption(SecretKey p_150727_1_)
     {
-        this.channel.pipeline().addBefore("splitter", "decrypt", new NettyEncryptingDecoder(CryptManager.func_151229_a(2, p_150727_1_)));
-        this.channel.pipeline().addBefore("prepender", "encrypt", new NettyEncryptingEncoder(CryptManager.func_151229_a(1, p_150727_1_)));
+        channel.pipeline().addBefore("splitter", "decrypt", new NettyEncryptingDecoder(CryptManager.func_151229_a(2, p_150727_1_)));
+        channel.pipeline().addBefore("prepender", "encrypt", new NettyEncryptingEncoder(CryptManager.func_151229_a(1, p_150727_1_)));
     }
 
     /**
@@ -290,7 +290,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public boolean isChannelOpen()
     {
-        return this.channel != null && this.channel.isOpen();
+        return channel != null && channel.isOpen();
     }
 
     /**
@@ -298,7 +298,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public INetHandler getNetHandler()
     {
-        return this.packetListener;
+        return packetListener;
     }
 
     /**
@@ -306,7 +306,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public IChatComponent getExitMessage()
     {
-        return this.terminationReason;
+        return terminationReason;
     }
 
     /**
@@ -314,7 +314,7 @@ public class NetworkManager extends SimpleChannelInboundHandler
      */
     public void disableAutoRead()
     {
-        this.channel.config().setAutoRead(false);
+        channel.config().setAutoRead(false);
     }
 
     protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, Object p_channelRead0_2_)
@@ -330,8 +330,8 @@ public class NetworkManager extends SimpleChannelInboundHandler
 
         public InboundHandlerTuplePacketListener(Packet p_i45146_1_, GenericFutureListener... p_i45146_2_)
         {
-            this.field_150774_a = p_i45146_1_;
-            this.field_150773_b = p_i45146_2_;
+            field_150774_a = p_i45146_1_;
+            field_150773_b = p_i45146_2_;
         }
     }
 }

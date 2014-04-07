@@ -7,7 +7,7 @@ public class EnchantmentArrowFire extends Enchantment
     public EnchantmentArrowFire(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.bow);
-        this.setName("arrowFire");
+        setName("arrowFire");
     }
 
     /**

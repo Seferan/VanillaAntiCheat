@@ -20,8 +20,8 @@ public class S19PacketEntityStatus extends Packet
 
     public S19PacketEntityStatus(Entity p_i45192_1_, byte p_i45192_2_)
     {
-        this.field_149164_a = p_i45192_1_.getEntityId();
-        this.field_149163_b = p_i45192_2_;
+        field_149164_a = p_i45192_1_.getEntityId();
+        field_149163_b = p_i45192_2_;
     }
 
     /**
@@ -29,8 +29,8 @@ public class S19PacketEntityStatus extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149164_a = p_148837_1_.readInt();
-        this.field_149163_b = p_148837_1_.readByte();
+        field_149164_a = p_148837_1_.readInt();
+        field_149163_b = p_148837_1_.readByte();
     }
 
     /**
@@ -38,8 +38,8 @@ public class S19PacketEntityStatus extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149164_a);
-        p_148840_1_.writeByte(this.field_149163_b);
+        p_148840_1_.writeInt(field_149164_a);
+        p_148840_1_.writeByte(field_149163_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149162_1_)

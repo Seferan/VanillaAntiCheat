@@ -54,92 +54,92 @@ public abstract class EntityCreature extends EntityLiving
 
     protected void updateEntityActionState()
     {
-        this.worldObj.theProfiler.startSection("ai");
+        worldObj.theProfiler.startSection("ai");
 
-        if (this.fleeingTick > 0 && --this.fleeingTick == 0)
+        if (fleeingTick > 0 && --fleeingTick == 0)
         {
-            IAttributeInstance var1 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+            IAttributeInstance var1 = getEntityAttribute(SharedMonsterAttributes.movementSpeed);
             var1.removeModifier(field_110181_i);
         }
 
-        this.hasAttacked = this.isMovementCeased();
+        hasAttacked = isMovementCeased();
         float var21 = 16.0F;
 
-        if (this.entityToAttack == null)
+        if (entityToAttack == null)
         {
-            this.entityToAttack = this.findPlayerToAttack();
+            entityToAttack = findPlayerToAttack();
 
-            if (this.entityToAttack != null)
+            if (entityToAttack != null)
             {
-                this.pathToEntity = this.worldObj.getPathEntityToEntity(this, this.entityToAttack, var21, true, false, false, true);
+                pathToEntity = worldObj.getPathEntityToEntity(this, entityToAttack, var21, true, false, false, true);
             }
         }
-        else if (this.entityToAttack.isEntityAlive())
+        else if (entityToAttack.isEntityAlive())
         {
-            float var2 = this.entityToAttack.getDistanceToEntity(this);
+            float var2 = entityToAttack.getDistanceToEntity(this);
 
-            if (this.canEntityBeSeen(this.entityToAttack))
+            if (canEntityBeSeen(entityToAttack))
             {
-                this.attackEntity(this.entityToAttack, var2);
+                attackEntity(entityToAttack, var2);
             }
         }
         else
         {
-            this.entityToAttack = null;
+            entityToAttack = null;
         }
 
-        if (this.entityToAttack instanceof EntityPlayerMP && ((EntityPlayerMP)this.entityToAttack).theItemInWorldManager.isCreative())
+        if (entityToAttack instanceof EntityPlayerMP && ((EntityPlayerMP)entityToAttack).theItemInWorldManager.isCreative())
         {
-            this.entityToAttack = null;
+            entityToAttack = null;
         }
 
-        this.worldObj.theProfiler.endSection();
+        worldObj.theProfiler.endSection();
 
-        if (!this.hasAttacked && this.entityToAttack != null && (this.pathToEntity == null || this.rand.nextInt(20) == 0))
+        if (!hasAttacked && entityToAttack != null && (pathToEntity == null || rand.nextInt(20) == 0))
         {
-            this.pathToEntity = this.worldObj.getPathEntityToEntity(this, this.entityToAttack, var21, true, false, false, true);
+            pathToEntity = worldObj.getPathEntityToEntity(this, entityToAttack, var21, true, false, false, true);
         }
-        else if (!this.hasAttacked && (this.pathToEntity == null && this.rand.nextInt(180) == 0 || this.rand.nextInt(120) == 0 || this.fleeingTick > 0) && this.entityAge < 100)
+        else if (!hasAttacked && (pathToEntity == null && rand.nextInt(180) == 0 || rand.nextInt(120) == 0 || fleeingTick > 0) && entityAge < 100)
         {
-            this.updateWanderPath();
+            updateWanderPath();
         }
 
-        int var22 = MathHelper.floor_double(this.boundingBox.minY + 0.5D);
-        boolean var3 = this.isInWater();
-        boolean var4 = this.handleLavaMovement();
-        this.rotationPitch = 0.0F;
+        int var22 = MathHelper.floor_double(boundingBox.minY + 0.5D);
+        boolean var3 = isInWater();
+        boolean var4 = handleLavaMovement();
+        rotationPitch = 0.0F;
 
-        if (this.pathToEntity != null && this.rand.nextInt(100) != 0)
+        if (pathToEntity != null && rand.nextInt(100) != 0)
         {
-            this.worldObj.theProfiler.startSection("followpath");
-            Vec3 var5 = this.pathToEntity.getPosition(this);
-            double var6 = (double)(this.width * 2.0F);
+            worldObj.theProfiler.startSection("followpath");
+            Vec3 var5 = pathToEntity.getPosition(this);
+            double var6 = width * 2.0F;
 
-            while (var5 != null && var5.squareDistanceTo(this.posX, var5.yCoord, this.posZ) < var6 * var6)
+            while (var5 != null && var5.squareDistanceTo(posX, var5.yCoord, posZ) < var6 * var6)
             {
-                this.pathToEntity.incrementPathIndex();
+                pathToEntity.incrementPathIndex();
 
-                if (this.pathToEntity.isFinished())
+                if (pathToEntity.isFinished())
                 {
                     var5 = null;
-                    this.pathToEntity = null;
+                    pathToEntity = null;
                 }
                 else
                 {
-                    var5 = this.pathToEntity.getPosition(this);
+                    var5 = pathToEntity.getPosition(this);
                 }
             }
 
-            this.isJumping = false;
+            isJumping = false;
 
             if (var5 != null)
             {
-                double var8 = var5.xCoord - this.posX;
-                double var10 = var5.zCoord - this.posZ;
-                double var12 = var5.yCoord - (double)var22;
+                double var8 = var5.xCoord - posX;
+                double var10 = var5.zCoord - posZ;
+                double var12 = var5.yCoord - var22;
                 float var14 = (float)(Math.atan2(var10, var8) * 180.0D / Math.PI) - 90.0F;
-                float var15 = MathHelper.wrapAngleTo180_float(var14 - this.rotationYaw);
-                this.moveForward = (float)this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
+                float var15 = MathHelper.wrapAngleTo180_float(var14 - rotationYaw);
+                moveForward = (float)getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue();
 
                 if (var15 > 30.0F)
                 {
@@ -151,46 +151,46 @@ public abstract class EntityCreature extends EntityLiving
                     var15 = -30.0F;
                 }
 
-                this.rotationYaw += var15;
+                rotationYaw += var15;
 
-                if (this.hasAttacked && this.entityToAttack != null)
+                if (hasAttacked && entityToAttack != null)
                 {
-                    double var16 = this.entityToAttack.posX - this.posX;
-                    double var18 = this.entityToAttack.posZ - this.posZ;
-                    float var20 = this.rotationYaw;
-                    this.rotationYaw = (float)(Math.atan2(var18, var16) * 180.0D / Math.PI) - 90.0F;
-                    var15 = (var20 - this.rotationYaw + 90.0F) * (float)Math.PI / 180.0F;
-                    this.moveStrafing = -MathHelper.sin(var15) * this.moveForward * 1.0F;
-                    this.moveForward = MathHelper.cos(var15) * this.moveForward * 1.0F;
+                    double var16 = entityToAttack.posX - posX;
+                    double var18 = entityToAttack.posZ - posZ;
+                    float var20 = rotationYaw;
+                    rotationYaw = (float)(Math.atan2(var18, var16) * 180.0D / Math.PI) - 90.0F;
+                    var15 = (var20 - rotationYaw + 90.0F) * (float)Math.PI / 180.0F;
+                    moveStrafing = -MathHelper.sin(var15) * moveForward * 1.0F;
+                    moveForward = MathHelper.cos(var15) * moveForward * 1.0F;
                 }
 
                 if (var12 > 0.0D)
                 {
-                    this.isJumping = true;
+                    isJumping = true;
                 }
             }
 
-            if (this.entityToAttack != null)
+            if (entityToAttack != null)
             {
-                this.faceEntity(this.entityToAttack, 30.0F, 30.0F);
+                faceEntity(entityToAttack, 30.0F, 30.0F);
             }
 
-            if (this.isCollidedHorizontally && !this.hasPath())
+            if (isCollidedHorizontally && !hasPath())
             {
-                this.isJumping = true;
+                isJumping = true;
             }
 
-            if (this.rand.nextFloat() < 0.8F && (var3 || var4))
+            if (rand.nextFloat() < 0.8F && (var3 || var4))
             {
-                this.isJumping = true;
+                isJumping = true;
             }
 
-            this.worldObj.theProfiler.endSection();
+            worldObj.theProfiler.endSection();
         }
         else
         {
             super.updateEntityActionState();
-            this.pathToEntity = null;
+            pathToEntity = null;
         }
     }
 
@@ -199,7 +199,7 @@ public abstract class EntityCreature extends EntityLiving
      */
     protected void updateWanderPath()
     {
-        this.worldObj.theProfiler.startSection("stroll");
+        worldObj.theProfiler.startSection("stroll");
         boolean var1 = false;
         int var2 = -1;
         int var3 = -1;
@@ -208,10 +208,10 @@ public abstract class EntityCreature extends EntityLiving
 
         for (int var6 = 0; var6 < 10; ++var6)
         {
-            int var7 = MathHelper.floor_double(this.posX + (double)this.rand.nextInt(13) - 6.0D);
-            int var8 = MathHelper.floor_double(this.posY + (double)this.rand.nextInt(7) - 3.0D);
-            int var9 = MathHelper.floor_double(this.posZ + (double)this.rand.nextInt(13) - 6.0D);
-            float var10 = this.getBlockPathWeight(var7, var8, var9);
+            int var7 = MathHelper.floor_double(posX + rand.nextInt(13) - 6.0D);
+            int var8 = MathHelper.floor_double(posY + rand.nextInt(7) - 3.0D);
+            int var9 = MathHelper.floor_double(posZ + rand.nextInt(13) - 6.0D);
+            float var10 = getBlockPathWeight(var7, var8, var9);
 
             if (var10 > var5)
             {
@@ -225,10 +225,10 @@ public abstract class EntityCreature extends EntityLiving
 
         if (var1)
         {
-            this.pathToEntity = this.worldObj.getEntityPathToXYZ(this, var2, var3, var4, 10.0F, true, false, false, true);
+            pathToEntity = worldObj.getEntityPathToXYZ(this, var2, var3, var4, 10.0F, true, false, false, true);
         }
 
-        this.worldObj.theProfiler.endSection();
+        worldObj.theProfiler.endSection();
     }
 
     /**
@@ -264,10 +264,10 @@ public abstract class EntityCreature extends EntityLiving
      */
     public boolean getCanSpawnHere()
     {
-        int var1 = MathHelper.floor_double(this.posX);
-        int var2 = MathHelper.floor_double(this.boundingBox.minY);
-        int var3 = MathHelper.floor_double(this.posZ);
-        return super.getCanSpawnHere() && this.getBlockPathWeight(var1, var2, var3) >= 0.0F;
+        int var1 = MathHelper.floor_double(posX);
+        int var2 = MathHelper.floor_double(boundingBox.minY);
+        int var3 = MathHelper.floor_double(posZ);
+        return super.getCanSpawnHere() && getBlockPathWeight(var1, var2, var3) >= 0.0F;
     }
 
     /**
@@ -275,7 +275,7 @@ public abstract class EntityCreature extends EntityLiving
      */
     public boolean hasPath()
     {
-        return this.pathToEntity != null;
+        return pathToEntity != null;
     }
 
     /**
@@ -283,7 +283,7 @@ public abstract class EntityCreature extends EntityLiving
      */
     public void setPathToEntity(PathEntity par1PathEntity)
     {
-        this.pathToEntity = par1PathEntity;
+        pathToEntity = par1PathEntity;
     }
 
     /**
@@ -291,7 +291,7 @@ public abstract class EntityCreature extends EntityLiving
      */
     public Entity getEntityToAttack()
     {
-        return this.entityToAttack;
+        return entityToAttack;
     }
 
     /**
@@ -299,23 +299,23 @@ public abstract class EntityCreature extends EntityLiving
      */
     public void setTarget(Entity par1Entity)
     {
-        this.entityToAttack = par1Entity;
+        entityToAttack = par1Entity;
     }
 
     public boolean isWithinHomeDistanceCurrentPosition()
     {
-        return this.isWithinHomeDistance(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
+        return isWithinHomeDistance(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ));
     }
 
     public boolean isWithinHomeDistance(int par1, int par2, int par3)
     {
-        return this.maximumHomeDistance == -1.0F ? true : this.homePosition.getDistanceSquared(par1, par2, par3) < this.maximumHomeDistance * this.maximumHomeDistance;
+        return maximumHomeDistance == -1.0F ? true : homePosition.getDistanceSquared(par1, par2, par3) < maximumHomeDistance * maximumHomeDistance;
     }
 
     public void setHomeArea(int par1, int par2, int par3, int par4)
     {
-        this.homePosition.set(par1, par2, par3);
-        this.maximumHomeDistance = (float)par4;
+        homePosition.set(par1, par2, par3);
+        maximumHomeDistance = par4;
     }
 
     /**
@@ -323,17 +323,17 @@ public abstract class EntityCreature extends EntityLiving
      */
     public ChunkCoordinates getHomePosition()
     {
-        return this.homePosition;
+        return homePosition;
     }
 
     public float func_110174_bM()
     {
-        return this.maximumHomeDistance;
+        return maximumHomeDistance;
     }
 
     public void detachHome()
     {
-        this.maximumHomeDistance = -1.0F;
+        maximumHomeDistance = -1.0F;
     }
 
     /**
@@ -341,7 +341,7 @@ public abstract class EntityCreature extends EntityLiving
      */
     public boolean hasHome()
     {
-        return this.maximumHomeDistance != -1.0F;
+        return maximumHomeDistance != -1.0F;
     }
 
     /**
@@ -352,57 +352,57 @@ public abstract class EntityCreature extends EntityLiving
     {
         super.updateLeashedState();
 
-        if (this.getLeashed() && this.getLeashedToEntity() != null && this.getLeashedToEntity().worldObj == this.worldObj)
+        if (getLeashed() && getLeashedToEntity() != null && getLeashedToEntity().worldObj == worldObj)
         {
-            Entity var1 = this.getLeashedToEntity();
-            this.setHomeArea((int)var1.posX, (int)var1.posY, (int)var1.posZ, 5);
-            float var2 = this.getDistanceToEntity(var1);
+            Entity var1 = getLeashedToEntity();
+            setHomeArea((int)var1.posX, (int)var1.posY, (int)var1.posZ, 5);
+            float var2 = getDistanceToEntity(var1);
 
             if (this instanceof EntityTameable && ((EntityTameable)this).isSitting())
             {
                 if (var2 > 10.0F)
                 {
-                    this.clearLeashed(true, true);
+                    clearLeashed(true, true);
                 }
 
                 return;
             }
 
-            if (!this.field_110180_bt)
+            if (!field_110180_bt)
             {
-                this.tasks.addTask(2, this.field_110178_bs);
-                this.getNavigator().setAvoidsWater(false);
-                this.field_110180_bt = true;
+                tasks.addTask(2, field_110178_bs);
+                getNavigator().setAvoidsWater(false);
+                field_110180_bt = true;
             }
 
-            this.func_142017_o(var2);
+            func_142017_o(var2);
 
             if (var2 > 4.0F)
             {
-                this.getNavigator().tryMoveToEntityLiving(var1, 1.0D);
+                getNavigator().tryMoveToEntityLiving(var1, 1.0D);
             }
 
             if (var2 > 6.0F)
             {
-                double var3 = (var1.posX - this.posX) / (double)var2;
-                double var5 = (var1.posY - this.posY) / (double)var2;
-                double var7 = (var1.posZ - this.posZ) / (double)var2;
-                this.motionX += var3 * Math.abs(var3) * 0.4D;
-                this.motionY += var5 * Math.abs(var5) * 0.4D;
-                this.motionZ += var7 * Math.abs(var7) * 0.4D;
+                double var3 = (var1.posX - posX) / var2;
+                double var5 = (var1.posY - posY) / var2;
+                double var7 = (var1.posZ - posZ) / var2;
+                motionX += var3 * Math.abs(var3) * 0.4D;
+                motionY += var5 * Math.abs(var5) * 0.4D;
+                motionZ += var7 * Math.abs(var7) * 0.4D;
             }
 
             if (var2 > 10.0F)
             {
-                this.clearLeashed(true, true);
+                clearLeashed(true, true);
             }
         }
-        else if (!this.getLeashed() && this.field_110180_bt)
+        else if (!getLeashed() && field_110180_bt)
         {
-            this.field_110180_bt = false;
-            this.tasks.removeTask(this.field_110178_bs);
-            this.getNavigator().setAvoidsWater(true);
-            this.detachHome();
+            field_110180_bt = false;
+            tasks.removeTask(field_110178_bs);
+            getNavigator().setAvoidsWater(true);
+            detachHome();
         }
     }
 

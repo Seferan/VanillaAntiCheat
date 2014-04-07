@@ -17,7 +17,7 @@ public class ItemEnderEye extends Item
 
     public ItemEnderEye()
     {
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        setCreativeTab(CreativeTabs.tabMisc);
     }
 
     /**
@@ -45,9 +45,9 @@ public class ItemEnderEye extends Item
 
                 for (var13 = 0; var13 < 16; ++var13)
                 {
-                    double var14 = (double)((float)par4 + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F);
-                    double var16 = (double)((float)par5 + 0.8125F);
-                    double var18 = (double)((float)par6 + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F);
+                    double var14 = par4 + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
+                    double var16 = par5 + 0.8125F;
+                    double var18 = par6 + (5.0F + itemRand.nextFloat() * 6.0F) / 16.0F;
                     double var20 = 0.0D;
                     double var22 = 0.0D;
                     double var24 = 0.0D;
@@ -153,7 +153,7 @@ public class ItemEnderEye extends Item
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        MovingObjectPosition var4 = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, false);
+        MovingObjectPosition var4 = getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, false);
 
         if (var4 != null && var4.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && par2World.getBlock(var4.blockX, var4.blockY, var4.blockZ) == Blocks.end_portal_frame)
         {
@@ -167,8 +167,8 @@ public class ItemEnderEye extends Item
 
                 if (var5 != null)
                 {
-                    EntityEnderEye var6 = new EntityEnderEye(par2World, par3EntityPlayer.posX, par3EntityPlayer.posY + 1.62D - (double)par3EntityPlayer.yOffset, par3EntityPlayer.posZ);
-                    var6.moveTowards((double)var5.chunkPosX, var5.chunkPosY, (double)var5.chunkPosZ);
+                    EntityEnderEye var6 = new EntityEnderEye(par2World, par3EntityPlayer.posX, par3EntityPlayer.posY + 1.62D - par3EntityPlayer.yOffset, par3EntityPlayer.posZ);
+                    var6.moveTowards(var5.chunkPosX, var5.chunkPosY, var5.chunkPosZ);
                     par2World.spawnEntityInWorld(var6);
                     par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
                     par2World.playAuxSFXAtEntity((EntityPlayer)null, 1002, (int)par3EntityPlayer.posX, (int)par3EntityPlayer.posY, (int)par3EntityPlayer.posZ, 0);

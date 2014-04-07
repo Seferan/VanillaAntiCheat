@@ -13,8 +13,8 @@ public class ItemSign extends Item
 
     public ItemSign()
     {
-        this.maxStackSize = 16;
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        maxStackSize = 16;
+        setCreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -75,7 +75,7 @@ public class ItemSign extends Item
             {
                 if (par7 == 1)
                 {
-                    int var11 = MathHelper.floor_double((double)((par2EntityPlayer.rotationYaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
+                    int var11 = MathHelper.floor_double((par2EntityPlayer.rotationYaw + 180.0F) * 16.0F / 360.0F + 0.5D) & 15;
                     par3World.setBlock(par4, par5, par6, Blocks.standing_sign, var11, 3);
                 }
                 else

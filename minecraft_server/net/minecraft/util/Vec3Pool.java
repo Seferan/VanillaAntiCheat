@@ -26,8 +26,8 @@ public class Vec3Pool
 
     public Vec3Pool(int par1, int par2)
     {
-        this.truncateArrayResetThreshold = par1;
-        this.minimumSize = par2;
+        truncateArrayResetThreshold = par1;
+        minimumSize = par2;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Vec3Pool
      */
     public Vec3 getVecFromPool(double par1, double par3, double par5)
     {
-        if (this.skipCache())
+        if (skipCache())
         {
             return new Vec3(this, par1, par3, par5);
         }
@@ -43,18 +43,18 @@ public class Vec3Pool
         {
             Vec3 var7;
 
-            if (this.nextFreeSpace >= this.vec3Cache.size())
+            if (nextFreeSpace >= vec3Cache.size())
             {
                 var7 = new Vec3(this, par1, par3, par5);
-                this.vec3Cache.add(var7);
+                vec3Cache.add(var7);
             }
             else
             {
-                var7 = (Vec3)this.vec3Cache.get(this.nextFreeSpace);
+                var7 = (Vec3)vec3Cache.get(nextFreeSpace);
                 var7.setComponents(par1, par3, par5);
             }
 
-            ++this.nextFreeSpace;
+            ++nextFreeSpace;
             return var7;
         }
     }
@@ -65,33 +65,33 @@ public class Vec3Pool
      */
     public void clear()
     {
-        if (!this.skipCache())
+        if (!skipCache())
         {
-            if (this.nextFreeSpace > this.maximumSizeSinceLastTruncation)
+            if (nextFreeSpace > maximumSizeSinceLastTruncation)
             {
-                this.maximumSizeSinceLastTruncation = this.nextFreeSpace;
+                maximumSizeSinceLastTruncation = nextFreeSpace;
             }
 
-            if (this.resetCount++ == this.truncateArrayResetThreshold)
+            if (resetCount++ == truncateArrayResetThreshold)
             {
-                int var1 = Math.max(this.maximumSizeSinceLastTruncation, this.vec3Cache.size() - this.minimumSize);
+                int var1 = Math.max(maximumSizeSinceLastTruncation, vec3Cache.size() - minimumSize);
 
-                while (this.vec3Cache.size() > var1)
+                while (vec3Cache.size() > var1)
                 {
-                    this.vec3Cache.remove(var1);
+                    vec3Cache.remove(var1);
                 }
 
-                this.maximumSizeSinceLastTruncation = 0;
-                this.resetCount = 0;
+                maximumSizeSinceLastTruncation = 0;
+                resetCount = 0;
             }
 
-            this.nextFreeSpace = 0;
+            nextFreeSpace = 0;
         }
     }
 
     public int getPoolSize()
     {
-        return this.vec3Cache.size();
+        return vec3Cache.size();
     }
 
     /**
@@ -99,7 +99,7 @@ public class Vec3Pool
      */
     public int getNextFreeSpace()
     {
-        return this.nextFreeSpace;
+        return nextFreeSpace;
     }
 
     /**
@@ -108,6 +108,6 @@ public class Vec3Pool
      */
     private boolean skipCache()
     {
-        return this.minimumSize < 0 || this.truncateArrayResetThreshold < 0;
+        return minimumSize < 0 || truncateArrayResetThreshold < 0;
     }
 }

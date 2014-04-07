@@ -21,7 +21,7 @@ public class RConConsoleSource implements ICommandSender
      */
     public void resetLog()
     {
-        this.buffer.setLength(0);
+        buffer.setLength(0);
     }
 
     /**
@@ -29,7 +29,7 @@ public class RConConsoleSource implements ICommandSender
      */
     public String getLogContents()
     {
-        return this.buffer.toString();
+        return buffer.toString();
     }
 
     /**
@@ -43,7 +43,7 @@ public class RConConsoleSource implements ICommandSender
 
     public IChatComponent getUsernameAsIChatComponent()
     {
-        return new ChatComponentText(this.getUsername());
+        return new ChatComponentText(getUsername());
     }
 
     /**
@@ -56,7 +56,7 @@ public class RConConsoleSource implements ICommandSender
      */
     public void addChatMessage(IChatComponent var1)
     {
-        this.buffer.append(var1.getUnformattedText());
+        buffer.append(var1.getUnformattedText());
     }
 
     public void addChatMessage(String message)

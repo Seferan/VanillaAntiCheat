@@ -41,19 +41,19 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 
     public SaveHandler(File par1File, String par2Str, boolean par3)
     {
-        this.worldDirectory = new File(par1File, par2Str);
-        this.worldDirectory.mkdirs();
-        this.playersDirectory = new File(this.worldDirectory, "players");
-        this.mapDataDir = new File(this.worldDirectory, "data");
-        this.mapDataDir.mkdirs();
-        this.saveDirectoryName = par2Str;
+        worldDirectory = new File(par1File, par2Str);
+        worldDirectory.mkdirs();
+        playersDirectory = new File(worldDirectory, "players");
+        mapDataDir = new File(worldDirectory, "data");
+        mapDataDir.mkdirs();
+        saveDirectoryName = par2Str;
 
         if (par3)
         {
-            this.playersDirectory.mkdirs();
+            playersDirectory.mkdirs();
         }
 
-        this.setSessionLock();
+        setSessionLock();
     }
 
     /**
@@ -63,12 +63,12 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
     {
         try
         {
-            File var1 = new File(this.worldDirectory, "session.lock");
+            File var1 = new File(worldDirectory, "session.lock");
             DataOutputStream var2 = new DataOutputStream(new FileOutputStream(var1));
 
             try
             {
-                var2.writeLong(this.initializationTime);
+                var2.writeLong(initializationTime);
             }
             finally
             {
@@ -87,7 +87,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
      */
     public File getWorldDirectory()
     {
-        return this.worldDirectory;
+        return worldDirectory;
     }
 
     /**
@@ -97,12 +97,12 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
     {
         try
         {
-            File var1 = new File(this.worldDirectory, "session.lock");
+            File var1 = new File(worldDirectory, "session.lock");
             DataInputStream var2 = new DataInputStream(new FileInputStream(var1));
 
             try
             {
-                if (var2.readLong() != this.initializationTime) { throw new MinecraftException("The save is being accessed from another location, aborting"); }
+                if (var2.readLong() != initializationTime) { throw new MinecraftException("The save is being accessed from another location, aborting"); }
             }
             finally
             {
@@ -128,7 +128,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
      */
     public WorldInfo loadWorldInfo()
     {
-        File var1 = new File(this.worldDirectory, "level.dat");
+        File var1 = new File(worldDirectory, "level.dat");
         NBTTagCompound var2;
         NBTTagCompound var3;
 
@@ -146,7 +146,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
             }
         }
 
-        var1 = new File(this.worldDirectory, "level.dat_old");
+        var1 = new File(worldDirectory, "level.dat_old");
 
         if (var1.exists())
         {
@@ -176,9 +176,9 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 
         try
         {
-            File var5 = new File(this.worldDirectory, "level.dat_new");
-            File var6 = new File(this.worldDirectory, "level.dat_old");
-            File var7 = new File(this.worldDirectory, "level.dat");
+            File var5 = new File(worldDirectory, "level.dat_new");
+            File var6 = new File(worldDirectory, "level.dat_old");
+            File var7 = new File(worldDirectory, "level.dat");
             CompressedStreamTools.writeCompressed(var4, new FileOutputStream(var5));
 
             if (var6.exists())
@@ -217,9 +217,9 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
 
         try
         {
-            File var4 = new File(this.worldDirectory, "level.dat_new");
-            File var5 = new File(this.worldDirectory, "level.dat_old");
-            File var6 = new File(this.worldDirectory, "level.dat");
+            File var4 = new File(worldDirectory, "level.dat_new");
+            File var5 = new File(worldDirectory, "level.dat_old");
+            File var6 = new File(worldDirectory, "level.dat");
             CompressedStreamTools.writeCompressed(var3, new FileOutputStream(var4));
 
             if (var5.exists())
@@ -256,8 +256,8 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
         {
             NBTTagCompound var2 = new NBTTagCompound();
             par1EntityPlayer.writeToNBT(var2);
-            File var3 = new File(this.playersDirectory, par1EntityPlayer.getUsername() + ".dat.tmp");
-            File var4 = new File(this.playersDirectory, par1EntityPlayer.getUsername() + ".dat");
+            File var3 = new File(playersDirectory, par1EntityPlayer.getUsername() + ".dat.tmp");
+            File var4 = new File(playersDirectory, par1EntityPlayer.getUsername() + ".dat");
             CompressedStreamTools.writeCompressed(var2, new FileOutputStream(var3));
 
             if (var4.exists())
@@ -278,7 +278,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
      */
     public NBTTagCompound readPlayerData(EntityPlayer par1EntityPlayer)
     {
-        NBTTagCompound var2 = this.getPlayerData(par1EntityPlayer.getUsername());
+        NBTTagCompound var2 = getPlayerData(par1EntityPlayer.getUsername());
 
         if (var2 != null)
         {
@@ -295,7 +295,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
     {
         try
         {
-            File var2 = new File(this.playersDirectory, par1Str + ".dat");
+            File var2 = new File(playersDirectory, par1Str + ".dat");
 
             if (var2.exists()) { return CompressedStreamTools.readCompressed(new FileInputStream(var2)); }
         }
@@ -317,7 +317,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
      */
     public String[] getAvailablePlayerDat()
     {
-        String[] var1 = this.playersDirectory.list();
+        String[] var1 = playersDirectory.list();
 
         for (int var2 = 0; var2 < var1.length; ++var2)
         {
@@ -342,7 +342,7 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
      */
     public File getMapFileFromName(String par1Str)
     {
-        return new File(this.mapDataDir, par1Str + ".dat");
+        return new File(mapDataDir, par1Str + ".dat");
     }
 
     /**
@@ -350,6 +350,6 @@ public class SaveHandler implements ISaveHandler, IPlayerFileData
      */
     public String getWorldDirectoryName()
     {
-        return this.saveDirectoryName;
+        return saveDirectoryName;
     }
 }

@@ -17,29 +17,29 @@ public abstract class BlockBasePressurePlate extends Block
     protected BlockBasePressurePlate(String p_i45387_1_, Material p_i45387_2_)
     {
         super(p_i45387_2_);
-        this.field_150067_a = p_i45387_1_;
-        this.setcreativeTab(CreativeTabs.tabRedstone);
-        this.setTickRandomly(true);
-        this.func_150063_b(this.func_150066_d(15));
+        field_150067_a = p_i45387_1_;
+        setcreativeTab(CreativeTabs.tabRedstone);
+        setTickRandomly(true);
+        func_150063_b(func_150066_d(15));
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.func_150063_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
+        func_150063_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
     }
 
     protected void func_150063_b(int p_150063_1_)
     {
-        boolean var2 = this.func_150060_c(p_150063_1_) > 0;
+        boolean var2 = func_150060_c(p_150063_1_) > 0;
         float var3 = 0.0625F;
 
         if (var2)
         {
-            this.setBlockBounds(var3, 0.0F, var3, 1.0F - var3, 0.03125F, 1.0F - var3);
+            setBlockBounds(var3, 0.0F, var3, 1.0F - var3, 0.03125F, 1.0F - var3);
         }
         else
         {
-            this.setBlockBounds(var3, 0.0F, var3, 1.0F - var3, 0.0625F, 1.0F - var3);
+            setBlockBounds(var3, 0.0F, var3, 1.0F - var3, 0.0625F, 1.0F - var3);
         }
     }
 
@@ -88,7 +88,7 @@ public abstract class BlockBasePressurePlate extends Block
 
         if (var6)
         {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
+            dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
     }
@@ -100,11 +100,11 @@ public abstract class BlockBasePressurePlate extends Block
     {
         if (!p_149674_1_.isClient)
         {
-            int var6 = this.func_150060_c(p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_));
+            int var6 = func_150060_c(p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_));
 
             if (var6 > 0)
             {
-                this.func_150062_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, var6);
+                func_150062_a(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, var6);
             }
         }
     }
@@ -113,54 +113,54 @@ public abstract class BlockBasePressurePlate extends Block
     {
         if (!p_149670_1_.isClient)
         {
-            int var6 = this.func_150060_c(p_149670_1_.getBlockMetadata(p_149670_2_, p_149670_3_, p_149670_4_));
+            int var6 = func_150060_c(p_149670_1_.getBlockMetadata(p_149670_2_, p_149670_3_, p_149670_4_));
 
             if (var6 == 0)
             {
-                this.func_150062_a(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_, var6);
+                func_150062_a(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_, var6);
             }
         }
     }
 
     protected void func_150062_a(World p_150062_1_, int p_150062_2_, int p_150062_3_, int p_150062_4_, int p_150062_5_)
     {
-        int var6 = this.func_150065_e(p_150062_1_, p_150062_2_, p_150062_3_, p_150062_4_);
+        int var6 = func_150065_e(p_150062_1_, p_150062_2_, p_150062_3_, p_150062_4_);
         boolean var7 = p_150062_5_ > 0;
         boolean var8 = var6 > 0;
 
         if (p_150062_5_ != var6)
         {
-            p_150062_1_.setBlockMetadata(p_150062_2_, p_150062_3_, p_150062_4_, this.func_150066_d(var6), 2);
-            this.func_150064_a_(p_150062_1_, p_150062_2_, p_150062_3_, p_150062_4_);
+            p_150062_1_.setBlockMetadata(p_150062_2_, p_150062_3_, p_150062_4_, func_150066_d(var6), 2);
+            func_150064_a_(p_150062_1_, p_150062_2_, p_150062_3_, p_150062_4_);
             p_150062_1_.markBlockRangeForRenderUpdate(p_150062_2_, p_150062_3_, p_150062_4_, p_150062_2_, p_150062_3_, p_150062_4_);
         }
 
         if (!var8 && var7)
         {
-            p_150062_1_.playSoundEffect((double)p_150062_2_ + 0.5D, (double)p_150062_3_ + 0.1D, (double)p_150062_4_ + 0.5D, "random.click", 0.3F, 0.5F);
+            p_150062_1_.playSoundEffect(p_150062_2_ + 0.5D, p_150062_3_ + 0.1D, p_150062_4_ + 0.5D, "random.click", 0.3F, 0.5F);
         }
         else if (var8 && !var7)
         {
-            p_150062_1_.playSoundEffect((double)p_150062_2_ + 0.5D, (double)p_150062_3_ + 0.1D, (double)p_150062_4_ + 0.5D, "random.click", 0.3F, 0.6F);
+            p_150062_1_.playSoundEffect(p_150062_2_ + 0.5D, p_150062_3_ + 0.1D, p_150062_4_ + 0.5D, "random.click", 0.3F, 0.6F);
         }
 
         if (var8)
         {
-            p_150062_1_.scheduleBlockUpdate(p_150062_2_, p_150062_3_, p_150062_4_, this, this.func_149738_a(p_150062_1_));
+            p_150062_1_.scheduleBlockUpdate(p_150062_2_, p_150062_3_, p_150062_4_, this, func_149738_a(p_150062_1_));
         }
     }
 
     protected AxisAlignedBB func_150061_a(int p_150061_1_, int p_150061_2_, int p_150061_3_)
     {
         float var4 = 0.125F;
-        return AxisAlignedBB.getAABBPool().getAABB((double)((float)p_150061_1_ + var4), (double)p_150061_2_, (double)((float)p_150061_3_ + var4), (double)((float)(p_150061_1_ + 1) - var4), (double)p_150061_2_ + 0.25D, (double)((float)(p_150061_3_ + 1) - var4));
+        return AxisAlignedBB.getAABBPool().getAABB(p_150061_1_ + var4, p_150061_2_, p_150061_3_ + var4, p_150061_1_ + 1 - var4, p_150061_2_ + 0.25D, p_150061_3_ + 1 - var4);
     }
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        if (this.func_150060_c(p_149749_6_) > 0)
+        if (func_150060_c(p_149749_6_) > 0)
         {
-            this.func_150064_a_(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
+            func_150064_a_(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
         }
 
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
@@ -174,12 +174,12 @@ public abstract class BlockBasePressurePlate extends Block
 
     public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
     {
-        return this.func_150060_c(p_149709_1_.getBlockMetadata(p_149709_2_, p_149709_3_, p_149709_4_));
+        return func_150060_c(p_149709_1_.getBlockMetadata(p_149709_2_, p_149709_3_, p_149709_4_));
     }
 
     public int isProvidingStrongPower(IBlockAccess p_149748_1_, int p_149748_2_, int p_149748_3_, int p_149748_4_, int p_149748_5_)
     {
-        return p_149748_5_ == 1 ? this.func_150060_c(p_149748_1_.getBlockMetadata(p_149748_2_, p_149748_3_, p_149748_4_)) : 0;
+        return p_149748_5_ == 1 ? func_150060_c(p_149748_1_.getBlockMetadata(p_149748_2_, p_149748_3_, p_149748_4_)) : 0;
     }
 
     /**
@@ -199,7 +199,7 @@ public abstract class BlockBasePressurePlate extends Block
         float var1 = 0.5F;
         float var2 = 0.125F;
         float var3 = 0.5F;
-        this.setBlockBounds(0.5F - var1, 0.5F - var2, 0.5F - var3, 0.5F + var1, 0.5F + var2, 0.5F + var3);
+        setBlockBounds(0.5F - var1, 0.5F - var2, 0.5F - var3, 0.5F + var1, 0.5F + var2, 0.5F + var3);
     }
 
     public int getMobilityFlag()

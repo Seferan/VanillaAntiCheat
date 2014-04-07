@@ -24,9 +24,9 @@ public class ItemMinecart extends Item
         {
             EnumFacing var3 = BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata());
             World var4 = par1IBlockSource.getWorld();
-            double var5 = par1IBlockSource.getX() + (double)((float)var3.getFrontOffsetX() * 1.125F);
-            double var7 = par1IBlockSource.getY() + (double)((float)var3.getFrontOffsetY() * 1.125F);
-            double var9 = par1IBlockSource.getZ() + (double)((float)var3.getFrontOffsetZ() * 1.125F);
+            double var5 = par1IBlockSource.getX() + var3.getFrontOffsetX() * 1.125F;
+            double var7 = par1IBlockSource.getY() + var3.getFrontOffsetY() * 1.125F;
+            double var9 = par1IBlockSource.getZ() + var3.getFrontOffsetZ() * 1.125F;
             int var11 = par1IBlockSource.getXInt() + var3.getFrontOffsetX();
             int var12 = par1IBlockSource.getYInt() + var3.getFrontOffsetY();
             int var13 = par1IBlockSource.getZInt() + var3.getFrontOffsetZ();
@@ -39,7 +39,7 @@ public class ItemMinecart extends Item
             }
             else
             {
-                if (var14.getMaterial() != Material.air || !BlockRailBase.func_150051_a(var4.getBlock(var11, var12 - 1, var13))) { return this.behaviourDefaultDispenseItem.dispense(par1IBlockSource, par2ItemStack); }
+                if (var14.getMaterial() != Material.air || !BlockRailBase.func_150051_a(var4.getBlock(var11, var12 - 1, var13))) { return behaviourDefaultDispenseItem.dispense(par1IBlockSource, par2ItemStack); }
 
                 var15 = -1.0D;
             }
@@ -66,9 +66,9 @@ public class ItemMinecart extends Item
 
     public ItemMinecart(int p_i45345_1_)
     {
-        this.maxStackSize = 1;
-        this.minecartType = p_i45345_1_;
-        this.setCreativeTab(CreativeTabs.tabTransport);
+        maxStackSize = 1;
+        minecartType = p_i45345_1_;
+        setCreativeTab(CreativeTabs.tabTransport);
         BlockDispenser.field_149943_a.putObject(this, dispenserMinecartBehavior);
     }
 
@@ -83,7 +83,7 @@ public class ItemMinecart extends Item
         {
             if (!par3World.isClient)
             {
-                EntityMinecart var11 = EntityMinecart.createMinecart(par3World, (double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), this.minecartType);
+                EntityMinecart var11 = EntityMinecart.createMinecart(par3World, par4 + 0.5F, par5 + 0.5F, par6 + 0.5F, minecartType);
 
                 if (par1ItemStack.hasDisplayName())
                 {

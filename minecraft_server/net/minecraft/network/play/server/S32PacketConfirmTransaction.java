@@ -20,9 +20,9 @@ public class S32PacketConfirmTransaction extends Packet
 
     public S32PacketConfirmTransaction(int p_i45182_1_, short p_i45182_2_, boolean p_i45182_3_)
     {
-        this.field_148894_a = p_i45182_1_;
-        this.field_148892_b = p_i45182_2_;
-        this.field_148893_c = p_i45182_3_;
+        field_148894_a = p_i45182_1_;
+        field_148892_b = p_i45182_2_;
+        field_148893_c = p_i45182_3_;
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148891_1_)
@@ -35,9 +35,9 @@ public class S32PacketConfirmTransaction extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148894_a = p_148837_1_.readUnsignedByte();
-        this.field_148892_b = p_148837_1_.readShort();
-        this.field_148893_c = p_148837_1_.readBoolean();
+        field_148894_a = p_148837_1_.readUnsignedByte();
+        field_148892_b = p_148837_1_.readShort();
+        field_148893_c = p_148837_1_.readBoolean();
     }
 
     /**
@@ -45,9 +45,9 @@ public class S32PacketConfirmTransaction extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_148894_a);
-        p_148840_1_.writeShort(this.field_148892_b);
-        p_148840_1_.writeBoolean(this.field_148893_c);
+        p_148840_1_.writeByte(field_148894_a);
+        p_148840_1_.writeShort(field_148892_b);
+        p_148840_1_.writeBoolean(field_148893_c);
     }
 
     /**
@@ -56,7 +56,7 @@ public class S32PacketConfirmTransaction extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d, uid=%d, accepted=%b", new Object[] {Integer.valueOf(this.field_148894_a), Short.valueOf(this.field_148892_b), Boolean.valueOf(this.field_148893_c)});
+        return String.format("id=%d, uid=%d, accepted=%b", new Object[] {Integer.valueOf(field_148894_a), Short.valueOf(field_148892_b), Boolean.valueOf(field_148893_c)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

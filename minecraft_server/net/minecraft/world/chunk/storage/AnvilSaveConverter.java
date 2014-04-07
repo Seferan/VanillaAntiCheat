@@ -49,7 +49,7 @@ public class AnvilSaveConverter extends SaveFormatOld
      */
     public ISaveHandler getSaveLoader(String par1Str, boolean par2)
     {
-        return new AnvilSaveHandler(this.savesDirectory, par1Str, par2);
+        return new AnvilSaveHandler(savesDirectory, par1Str, par2);
     }
 
     /**
@@ -57,8 +57,8 @@ public class AnvilSaveConverter extends SaveFormatOld
      */
     public boolean isOldMapFormat(String par1Str)
     {
-        WorldInfo var2 = this.getWorldInfo(par1Str);
-        return var2 != null && var2.getSaveVersion() != this.getSaveVersion();
+        WorldInfo var2 = getWorldInfo(par1Str);
+        return var2 != null && var2.getSaveVersion() != getSaveVersion();
     }
 
     /**
@@ -70,25 +70,25 @@ public class AnvilSaveConverter extends SaveFormatOld
         ArrayList var3 = new ArrayList();
         ArrayList var4 = new ArrayList();
         ArrayList var5 = new ArrayList();
-        File var6 = new File(this.savesDirectory, par1Str);
+        File var6 = new File(savesDirectory, par1Str);
         File var7 = new File(var6, "DIM-1");
         File var8 = new File(var6, "DIM1");
         logger.info("Scanning folders...");
-        this.addRegionFilesToCollection(var6, var3);
+        addRegionFilesToCollection(var6, var3);
 
         if (var7.exists())
         {
-            this.addRegionFilesToCollection(var7, var4);
+            addRegionFilesToCollection(var7, var4);
         }
 
         if (var8.exists())
         {
-            this.addRegionFilesToCollection(var8, var5);
+            addRegionFilesToCollection(var8, var5);
         }
 
         int var9 = var3.size() + var4.size() + var5.size();
         logger.info("Total conversion count is " + var9);
-        WorldInfo var10 = this.getWorldInfo(par1Str);
+        WorldInfo var10 = getWorldInfo(par1Str);
         Object var11 = null;
 
         if (var10.getTerrainType() == WorldType.FLAT)
@@ -100,9 +100,9 @@ public class AnvilSaveConverter extends SaveFormatOld
             var11 = new WorldChunkManager(var10.getSeed(), var10.getTerrainType());
         }
 
-        this.convertFile(new File(var6, "region"), var3, (WorldChunkManager)var11, 0, var9, par2IProgressUpdate);
-        this.convertFile(new File(var7, "region"), var4, new WorldChunkManagerHell(BiomeGenBase.hell, 0.0F), var3.size(), var9, par2IProgressUpdate);
-        this.convertFile(new File(var8, "region"), var5, new WorldChunkManagerHell(BiomeGenBase.sky, 0.0F), var3.size() + var4.size(), var9, par2IProgressUpdate);
+        convertFile(new File(var6, "region"), var3, (WorldChunkManager)var11, 0, var9, par2IProgressUpdate);
+        convertFile(new File(var7, "region"), var4, new WorldChunkManagerHell(BiomeGenBase.hell, 0.0F), var3.size(), var9, par2IProgressUpdate);
+        convertFile(new File(var8, "region"), var5, new WorldChunkManagerHell(BiomeGenBase.sky, 0.0F), var3.size() + var4.size(), var9, par2IProgressUpdate);
         var10.setSaveVersion(19133);
 
         if (var10.getTerrainType() == WorldType.DEFAULT_1_1)
@@ -110,8 +110,8 @@ public class AnvilSaveConverter extends SaveFormatOld
             var10.setTerrainType(WorldType.DEFAULT);
         }
 
-        this.createFile(par1Str);
-        ISaveHandler var12 = this.getSaveLoader(par1Str, false);
+        createFile(par1Str);
+        ISaveHandler var12 = getSaveLoader(par1Str, false);
         var12.saveWorldInfo(var10);
         return true;
     }
@@ -121,7 +121,7 @@ public class AnvilSaveConverter extends SaveFormatOld
      */
     private void createFile(String par1Str)
     {
-        File var2 = new File(this.savesDirectory, par1Str);
+        File var2 = new File(savesDirectory, par1Str);
 
         if (!var2.exists())
         {
@@ -154,9 +154,9 @@ public class AnvilSaveConverter extends SaveFormatOld
         while (var7.hasNext())
         {
             File var8 = (File)var7.next();
-            this.convertChunks(par1File, var8, par3WorldChunkManager, par4, par5, par6IProgressUpdate);
+            convertChunks(par1File, var8, par3WorldChunkManager, par4, par5, par6IProgressUpdate);
             ++par4;
-            int var9 = (int)Math.round(100.0D * (double)par4 / (double)par5);
+            int var9 = (int)Math.round(100.0D * par4 / par5);
             par6IProgressUpdate.setLoadingProgress(var9);
         }
     }
@@ -204,8 +204,8 @@ public class AnvilSaveConverter extends SaveFormatOld
                     }
                 }
 
-                var11 = (int)Math.round(100.0D * (double)(par4 * 1024) / (double)(par5 * 1024));
-                int var20 = (int)Math.round(100.0D * (double)((var10 + 1) * 32 + par4 * 1024) / (double)(par5 * 1024));
+                var11 = (int)Math.round(100.0D * (par4 * 1024) / (par5 * 1024));
+                int var20 = (int)Math.round(100.0D * ((var10 + 1) * 32 + par4 * 1024) / (par5 * 1024));
 
                 if (var20 > var11)
                 {

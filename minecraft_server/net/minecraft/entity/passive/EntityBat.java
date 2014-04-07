@@ -20,14 +20,14 @@ public class EntityBat extends EntityAmbientCreature
     public EntityBat(World par1World)
     {
         super(par1World);
-        this.setSize(0.5F, 0.9F);
-        this.setIsBatHanging(true);
+        setSize(0.5F, 0.9F);
+        setIsBatHanging(true);
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte)0));
+        dataWatcher.addObject(16, new Byte((byte)0));
     }
 
     /**
@@ -51,7 +51,7 @@ public class EntityBat extends EntityAmbientCreature
      */
     protected String getLivingSound()
     {
-        return this.getIsBatHanging() && this.rand.nextInt(4) != 0 ? null : "mob.bat.idle";
+        return getIsBatHanging() && rand.nextInt(4) != 0 ? null : "mob.bat.idle";
     }
 
     /**
@@ -90,25 +90,25 @@ public class EntityBat extends EntityAmbientCreature
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(6.0D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(6.0D);
     }
 
     public boolean getIsBatHanging()
     {
-        return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+        return (dataWatcher.getWatchableObjectByte(16) & 1) != 0;
     }
 
     public void setIsBatHanging(boolean par1)
     {
-        byte var2 = this.dataWatcher.getWatchableObjectByte(16);
+        byte var2 = dataWatcher.getWatchableObjectByte(16);
 
         if (par1)
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 | 1)));
+            dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 | 1)));
         }
         else
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 & -2)));
+            dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 & -2)));
         }
     }
 
@@ -127,14 +127,14 @@ public class EntityBat extends EntityAmbientCreature
     {
         super.onUpdate();
 
-        if (this.getIsBatHanging())
+        if (getIsBatHanging())
         {
-            this.motionX = this.motionY = this.motionZ = 0.0D;
-            this.posY = (double)MathHelper.floor_double(this.posY) + 1.0D - (double)this.height;
+            motionX = motionY = motionZ = 0.0D;
+            posY = MathHelper.floor_double(posY) + 1.0D - height;
         }
         else
         {
-            this.motionY *= 0.6000000238418579D;
+            motionY *= 0.6000000238418579D;
         }
     }
 
@@ -142,53 +142,53 @@ public class EntityBat extends EntityAmbientCreature
     {
         super.updateAITasks();
 
-        if (this.getIsBatHanging())
+        if (getIsBatHanging())
         {
-            if (!this.worldObj.getBlock(MathHelper.floor_double(this.posX), (int)this.posY + 1, MathHelper.floor_double(this.posZ)).isNormalCube())
+            if (!worldObj.getBlock(MathHelper.floor_double(posX), (int)posY + 1, MathHelper.floor_double(posZ)).isNormalCube())
             {
-                this.setIsBatHanging(false);
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                setIsBatHanging(false);
+                worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015, (int)posX, (int)posY, (int)posZ, 0);
             }
             else
             {
-                if (this.rand.nextInt(200) == 0)
+                if (rand.nextInt(200) == 0)
                 {
-                    this.rotationYawHead = (float)this.rand.nextInt(360);
+                    rotationYawHead = rand.nextInt(360);
                 }
 
-                if (this.worldObj.getClosestPlayerToEntity(this, 4.0D) != null)
+                if (worldObj.getClosestPlayerToEntity(this, 4.0D) != null)
                 {
-                    this.setIsBatHanging(false);
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    setIsBatHanging(false);
+                    worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1015, (int)posX, (int)posY, (int)posZ, 0);
                 }
             }
         }
         else
         {
-            if (this.spawnPosition != null && (!this.worldObj.isAirBlock(this.spawnPosition.posX, this.spawnPosition.posY, this.spawnPosition.posZ) || this.spawnPosition.posY < 1))
+            if (spawnPosition != null && (!worldObj.isAirBlock(spawnPosition.posX, spawnPosition.posY, spawnPosition.posZ) || spawnPosition.posY < 1))
             {
-                this.spawnPosition = null;
+                spawnPosition = null;
             }
 
-            if (this.spawnPosition == null || this.rand.nextInt(30) == 0 || this.spawnPosition.getDistanceSquared((int)this.posX, (int)this.posY, (int)this.posZ) < 4.0F)
+            if (spawnPosition == null || rand.nextInt(30) == 0 || spawnPosition.getDistanceSquared((int)posX, (int)posY, (int)posZ) < 4.0F)
             {
-                this.spawnPosition = new ChunkCoordinates((int)this.posX + this.rand.nextInt(7) - this.rand.nextInt(7), (int)this.posY + this.rand.nextInt(6) - 2, (int)this.posZ + this.rand.nextInt(7) - this.rand.nextInt(7));
+                spawnPosition = new ChunkCoordinates((int)posX + rand.nextInt(7) - rand.nextInt(7), (int)posY + rand.nextInt(6) - 2, (int)posZ + rand.nextInt(7) - rand.nextInt(7));
             }
 
-            double var1 = (double)this.spawnPosition.posX + 0.5D - this.posX;
-            double var3 = (double)this.spawnPosition.posY + 0.1D - this.posY;
-            double var5 = (double)this.spawnPosition.posZ + 0.5D - this.posZ;
-            this.motionX += (Math.signum(var1) * 0.5D - this.motionX) * 0.10000000149011612D;
-            this.motionY += (Math.signum(var3) * 0.699999988079071D - this.motionY) * 0.10000000149011612D;
-            this.motionZ += (Math.signum(var5) * 0.5D - this.motionZ) * 0.10000000149011612D;
-            float var7 = (float)(Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) - 90.0F;
-            float var8 = MathHelper.wrapAngleTo180_float(var7 - this.rotationYaw);
-            this.moveForward = 0.5F;
-            this.rotationYaw += var8;
+            double var1 = spawnPosition.posX + 0.5D - posX;
+            double var3 = spawnPosition.posY + 0.1D - posY;
+            double var5 = spawnPosition.posZ + 0.5D - posZ;
+            motionX += (Math.signum(var1) * 0.5D - motionX) * 0.10000000149011612D;
+            motionY += (Math.signum(var3) * 0.699999988079071D - motionY) * 0.10000000149011612D;
+            motionZ += (Math.signum(var5) * 0.5D - motionZ) * 0.10000000149011612D;
+            float var7 = (float)(Math.atan2(motionZ, motionX) * 180.0D / Math.PI) - 90.0F;
+            float var8 = MathHelper.wrapAngleTo180_float(var7 - rotationYaw);
+            moveForward = 0.5F;
+            rotationYaw += var8;
 
-            if (this.rand.nextInt(100) == 0 && this.worldObj.getBlock(MathHelper.floor_double(this.posX), (int)this.posY + 1, MathHelper.floor_double(this.posZ)).isNormalCube())
+            if (rand.nextInt(100) == 0 && worldObj.getBlock(MathHelper.floor_double(posX), (int)posY + 1, MathHelper.floor_double(posZ)).isNormalCube())
             {
-                this.setIsBatHanging(true);
+                setIsBatHanging(true);
             }
         }
     }
@@ -228,15 +228,15 @@ public class EntityBat extends EntityAmbientCreature
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.isEntityInvulnerable())
+        if (isEntityInvulnerable())
         {
             return false;
         }
         else
         {
-            if (!this.worldObj.isClient && this.getIsBatHanging())
+            if (!worldObj.isClient && getIsBatHanging())
             {
-                this.setIsBatHanging(false);
+                setIsBatHanging(false);
             }
 
             return super.attackEntityFrom(par1DamageSource, par2);
@@ -249,7 +249,7 @@ public class EntityBat extends EntityAmbientCreature
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.dataWatcher.updateObject(16, Byte.valueOf(par1NBTTagCompound.getByte("BatFlags")));
+        dataWatcher.updateObject(16, Byte.valueOf(par1NBTTagCompound.getByte("BatFlags")));
     }
 
     /**
@@ -258,7 +258,7 @@ public class EntityBat extends EntityAmbientCreature
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setByte("BatFlags", this.dataWatcher.getWatchableObjectByte(16));
+        par1NBTTagCompound.setByte("BatFlags", dataWatcher.getWatchableObjectByte(16));
     }
 
     /**
@@ -267,7 +267,7 @@ public class EntityBat extends EntityAmbientCreature
      */
     public boolean getCanSpawnHere()
     {
-        int var1 = MathHelper.floor_double(this.boundingBox.minY);
+        int var1 = MathHelper.floor_double(boundingBox.minY);
 
         if (var1 >= 63)
         {
@@ -275,22 +275,22 @@ public class EntityBat extends EntityAmbientCreature
         }
         else
         {
-            int var2 = MathHelper.floor_double(this.posX);
-            int var3 = MathHelper.floor_double(this.posZ);
-            int var4 = this.worldObj.getBlockLightValue(var2, var1, var3);
+            int var2 = MathHelper.floor_double(posX);
+            int var3 = MathHelper.floor_double(posZ);
+            int var4 = worldObj.getBlockLightValue(var2, var1, var3);
             byte var5 = 4;
-            Calendar var6 = this.worldObj.getCurrentDate();
+            Calendar var6 = worldObj.getCurrentDate();
 
             if ((var6.get(2) + 1 != 10 || var6.get(5) < 20) && (var6.get(2) + 1 != 11 || var6.get(5) > 3))
             {
-                if (this.rand.nextBoolean()) { return false; }
+                if (rand.nextBoolean()) { return false; }
             }
             else
             {
                 var5 = 7;
             }
 
-            return var4 > this.rand.nextInt(var5) ? false : super.getCanSpawnHere();
+            return var4 > rand.nextInt(var5) ? false : super.getCanSpawnHere();
         }
     }
 }

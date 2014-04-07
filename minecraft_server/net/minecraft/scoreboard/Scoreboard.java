@@ -28,12 +28,12 @@ public class Scoreboard
      */
     public ScoreObjective getObjective(String par1Str)
     {
-        return (ScoreObjective)this.scoreObjectives.get(par1Str);
+        return (ScoreObjective)scoreObjectives.get(par1Str);
     }
 
     public ScoreObjective addScoreObjective(String par1Str, IScoreObjectiveCriteria par2ScoreObjectiveCriteria)
     {
-        ScoreObjective var3 = this.getObjective(par1Str);
+        ScoreObjective var3 = getObjective(par1Str);
 
         if (var3 != null)
         {
@@ -42,35 +42,35 @@ public class Scoreboard
         else
         {
             var3 = new ScoreObjective(this, par1Str, par2ScoreObjectiveCriteria);
-            Object var4 = (List)this.scoreObjectiveCriterias.get(par2ScoreObjectiveCriteria);
+            Object var4 = scoreObjectiveCriterias.get(par2ScoreObjectiveCriteria);
 
             if (var4 == null)
             {
                 var4 = new ArrayList();
-                this.scoreObjectiveCriterias.put(par2ScoreObjectiveCriteria, var4);
+                scoreObjectiveCriterias.put(par2ScoreObjectiveCriteria, var4);
             }
 
             ((List)var4).add(var3);
-            this.scoreObjectives.put(par1Str, var3);
-            this.func_96522_a(var3);
+            scoreObjectives.put(par1Str, var3);
+            func_96522_a(var3);
             return var3;
         }
     }
 
     public Collection func_96520_a(IScoreObjectiveCriteria par1ScoreObjectiveCriteria)
     {
-        Collection var2 = (Collection)this.scoreObjectiveCriterias.get(par1ScoreObjectiveCriteria);
+        Collection var2 = (Collection)scoreObjectiveCriterias.get(par1ScoreObjectiveCriteria);
         return var2 == null ? new ArrayList() : new ArrayList(var2);
     }
 
     public Score func_96529_a(String par1Str, ScoreObjective par2ScoreObjective)
     {
-        Object var3 = (Map)this.field_96544_c.get(par1Str);
+        Object var3 = field_96544_c.get(par1Str);
 
         if (var3 == null)
         {
             var3 = new HashMap();
-            this.field_96544_c.put(par1Str, var3);
+            field_96544_c.put(par1Str, var3);
         }
 
         Score var4 = (Score)((Map)var3).get(par2ScoreObjective);
@@ -87,7 +87,7 @@ public class Scoreboard
     public Collection func_96534_i(ScoreObjective par1ScoreObjective)
     {
         ArrayList var2 = new ArrayList();
-        Iterator var3 = this.field_96544_c.values().iterator();
+        Iterator var3 = field_96544_c.values().iterator();
 
         while (var3.hasNext())
         {
@@ -106,27 +106,27 @@ public class Scoreboard
 
     public Collection getScoreObjectives()
     {
-        return this.scoreObjectives.values();
+        return scoreObjectives.values();
     }
 
     public Collection getObjectiveNames()
     {
-        return this.field_96544_c.keySet();
+        return field_96544_c.keySet();
     }
 
     public void func_96515_c(String par1Str)
     {
-        Map var2 = (Map)this.field_96544_c.remove(par1Str);
+        Map var2 = (Map)field_96544_c.remove(par1Str);
 
         if (var2 != null)
         {
-            this.func_96516_a(par1Str);
+            func_96516_a(par1Str);
         }
     }
 
     public Collection func_96528_e()
     {
-        Collection var1 = this.field_96544_c.values();
+        Collection var1 = field_96544_c.values();
         ArrayList var2 = new ArrayList();
         Iterator var3 = var1.iterator();
 
@@ -141,7 +141,7 @@ public class Scoreboard
 
     public Map func_96510_d(String par1Str)
     {
-        Object var2 = (Map)this.field_96544_c.get(par1Str);
+        Object var2 = field_96544_c.get(par1Str);
 
         if (var2 == null)
         {
@@ -153,24 +153,24 @@ public class Scoreboard
 
     public void func_96519_k(ScoreObjective par1ScoreObjective)
     {
-        this.scoreObjectives.remove(par1ScoreObjective.getName());
+        scoreObjectives.remove(par1ScoreObjective.getName());
 
         for (int var2 = 0; var2 < 3; ++var2)
         {
-            if (this.func_96539_a(var2) == par1ScoreObjective)
+            if (func_96539_a(var2) == par1ScoreObjective)
             {
-                this.func_96530_a(var2, (ScoreObjective)null);
+                func_96530_a(var2, (ScoreObjective)null);
             }
         }
 
-        List var5 = (List)this.scoreObjectiveCriterias.get(par1ScoreObjective.getCriteria());
+        List var5 = (List)scoreObjectiveCriterias.get(par1ScoreObjective.getCriteria());
 
         if (var5 != null)
         {
             var5.remove(par1ScoreObjective);
         }
 
-        Iterator var3 = this.field_96544_c.values().iterator();
+        Iterator var3 = field_96544_c.values().iterator();
 
         while (var3.hasNext())
         {
@@ -178,17 +178,17 @@ public class Scoreboard
             var4.remove(par1ScoreObjective);
         }
 
-        this.func_96533_c(par1ScoreObjective);
+        func_96533_c(par1ScoreObjective);
     }
 
     public void func_96530_a(int par1, ScoreObjective par2ScoreObjective)
     {
-        this.field_96541_d[par1] = par2ScoreObjective;
+        field_96541_d[par1] = par2ScoreObjective;
     }
 
     public ScoreObjective func_96539_a(int par1)
     {
-        return this.field_96541_d[par1];
+        return field_96541_d[par1];
     }
 
     /**
@@ -196,12 +196,12 @@ public class Scoreboard
      */
     public ScorePlayerTeam getTeam(String par1Str)
     {
-        return (ScorePlayerTeam)this.teams.get(par1Str);
+        return (ScorePlayerTeam)teams.get(par1Str);
     }
 
     public ScorePlayerTeam createTeam(String par1Str)
     {
-        ScorePlayerTeam var2 = this.getTeam(par1Str);
+        ScorePlayerTeam var2 = getTeam(par1Str);
 
         if (var2 != null)
         {
@@ -210,8 +210,8 @@ public class Scoreboard
         else
         {
             var2 = new ScorePlayerTeam(this, par1Str);
-            this.teams.put(par1Str, var2);
-            this.broadcastTeamCreated(var2);
+            teams.put(par1Str, var2);
+            broadcastTeamCreated(var2);
             return var2;
         }
     }
@@ -222,34 +222,34 @@ public class Scoreboard
      */
     public void removeTeam(ScorePlayerTeam par1ScorePlayerTeam)
     {
-        this.teams.remove(par1ScorePlayerTeam.getRegisteredName());
+        teams.remove(par1ScorePlayerTeam.getRegisteredName());
         Iterator var2 = par1ScorePlayerTeam.getMembershipCollection().iterator();
 
         while (var2.hasNext())
         {
             String var3 = (String)var2.next();
-            this.teamMemberships.remove(var3);
+            teamMemberships.remove(var3);
         }
 
-        this.func_96513_c(par1ScorePlayerTeam);
+        func_96513_c(par1ScorePlayerTeam);
     }
 
     public boolean func_151392_a(String p_151392_1_, String p_151392_2_)
     {
-        if (!this.teams.containsKey(p_151392_2_))
+        if (!teams.containsKey(p_151392_2_))
         {
             return false;
         }
         else
         {
-            ScorePlayerTeam var3 = this.getTeam(p_151392_2_);
+            ScorePlayerTeam var3 = getTeam(p_151392_2_);
 
-            if (this.getPlayersTeam(p_151392_1_) != null)
+            if (getPlayersTeam(p_151392_1_) != null)
             {
-                this.removePlayerFromTeams(p_151392_1_);
+                removePlayerFromTeams(p_151392_1_);
             }
 
-            this.teamMemberships.put(p_151392_1_, var3);
+            teamMemberships.put(p_151392_1_, var3);
             var3.getMembershipCollection().add(p_151392_1_);
             return true;
         }
@@ -257,11 +257,11 @@ public class Scoreboard
 
     public boolean removePlayerFromTeams(String par1Str)
     {
-        ScorePlayerTeam var2 = this.getPlayersTeam(par1Str);
+        ScorePlayerTeam var2 = getPlayersTeam(par1Str);
 
         if (var2 != null)
         {
-            this.removePlayerFromTeam(par1Str, var2);
+            removePlayerFromTeam(par1Str, var2);
             return true;
         }
         else
@@ -276,13 +276,13 @@ public class Scoreboard
      */
     public void removePlayerFromTeam(String par1Str, ScorePlayerTeam par2ScorePlayerTeam)
     {
-        if (this.getPlayersTeam(par1Str) != par2ScorePlayerTeam)
+        if (getPlayersTeam(par1Str) != par2ScorePlayerTeam)
         {
             throw new IllegalStateException("Player is either on another team or not on any team. Cannot remove from team \'" + par2ScorePlayerTeam.getRegisteredName() + "\'.");
         }
         else
         {
-            this.teamMemberships.remove(par1Str);
+            teamMemberships.remove(par1Str);
             par2ScorePlayerTeam.getMembershipCollection().remove(par1Str);
         }
     }
@@ -292,7 +292,7 @@ public class Scoreboard
      */
     public Collection getTeamNames()
     {
-        return this.teams.keySet();
+        return teams.keySet();
     }
 
     /**
@@ -300,7 +300,7 @@ public class Scoreboard
      */
     public Collection getTeams()
     {
-        return this.teams.values();
+        return teams.values();
     }
 
     /**
@@ -308,7 +308,7 @@ public class Scoreboard
      */
     public ScorePlayerTeam getPlayersTeam(String par1Str)
     {
-        return (ScorePlayerTeam)this.teamMemberships.get(par1Str);
+        return (ScorePlayerTeam)teamMemberships.get(par1Str);
     }
 
     public void func_96522_a(ScoreObjective par1ScoreObjective)

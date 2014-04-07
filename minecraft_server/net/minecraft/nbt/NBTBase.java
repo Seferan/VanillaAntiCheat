@@ -135,18 +135,18 @@ public abstract class NBTBase
         else
         {
             NBTBase var2 = (NBTBase)par1Obj;
-            return this.getId() == var2.getId();
+            return getId() == var2.getId();
         }
     }
 
     public int hashCode()
     {
-        return this.getId();
+        return getId();
     }
 
     protected String func_150285_a_()
     {
-        return this.toString();
+        return toString();
     }
 
     public abstract static class NBTPrimitive extends NBTBase

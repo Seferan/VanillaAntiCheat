@@ -15,7 +15,7 @@ public class BlockRail extends BlockRailBase
     {
         if (p_150048_7_.canProvidePower() && (new BlockRailBase.Rail(p_150048_1_, p_150048_2_, p_150048_3_, p_150048_4_)).func_150650_a() == 3)
         {
-            this.func_150052_a(p_150048_1_, p_150048_2_, p_150048_3_, p_150048_4_, false);
+            func_150052_a(p_150048_1_, p_150048_2_, p_150048_3_, p_150048_4_, false);
         }
     }
 }

@@ -32,35 +32,35 @@ public class EntityEgg extends EntityThrowable
     {
         if (par1MovingObjectPosition.entityHit != null)
         {
-            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0.0F);
+            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 0.0F);
         }
 
-        if (!this.worldObj.isClient && this.rand.nextInt(8) == 0)
+        if (!worldObj.isClient && rand.nextInt(8) == 0)
         {
             byte var2 = 1;
 
-            if (this.rand.nextInt(32) == 0)
+            if (rand.nextInt(32) == 0)
             {
                 var2 = 4;
             }
 
             for (int var3 = 0; var3 < var2; ++var3)
             {
-                EntityChicken var4 = new EntityChicken(this.worldObj);
+                EntityChicken var4 = new EntityChicken(worldObj);
                 var4.setGrowingAge(-24000);
-                var4.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-                this.worldObj.spawnEntityInWorld(var4);
+                var4.setLocationAndAngles(posX, posY, posZ, rotationYaw, 0.0F);
+                worldObj.spawnEntityInWorld(var4);
             }
         }
 
         for (int var5 = 0; var5 < 8; ++var5)
         {
-            this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            worldObj.spawnParticle("snowballpoof", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
         }
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            this.setDead();
+            setDead();
         }
     }
 }

@@ -39,8 +39,8 @@ public class CommandHandler implements ICommandManager
         String[] var3 = par2Str.split(" ");
         String var4 = var3[0];
         var3 = dropFirstString(var3);
-        ICommand var5 = (ICommand)this.commandMap.get(var4);
-        int var6 = this.getUsernameIndex(var5, var3);
+        ICommand var5 = (ICommand)commandMap.get(var4);
+        int var6 = getUsernameIndex(var5, var3);
         int var7 = 0;
         ChatComponentTranslation var9;
 
@@ -120,8 +120,8 @@ public class CommandHandler implements ICommandManager
     public ICommand registerCommand(ICommand par1ICommand)
     {
         List var2 = par1ICommand.getCommandAliases();
-        this.commandMap.put(par1ICommand.getCommandName(), par1ICommand);
-        this.commandSet.add(par1ICommand);
+        commandMap.put(par1ICommand.getCommandName(), par1ICommand);
+        commandSet.add(par1ICommand);
 
         if (var2 != null)
         {
@@ -130,11 +130,11 @@ public class CommandHandler implements ICommandManager
             while (var3.hasNext())
             {
                 String var4 = (String)var3.next();
-                ICommand var5 = (ICommand)this.commandMap.get(var4);
+                ICommand var5 = (ICommand)commandMap.get(var4);
 
                 if (var5 == null || !var5.getCommandName().equals(var4))
                 {
-                    this.commandMap.put(var4, par1ICommand);
+                    commandMap.put(var4, par1ICommand);
                 }
             }
         }
@@ -170,7 +170,7 @@ public class CommandHandler implements ICommandManager
         if (var3.length == 1)
         {
             ArrayList var8 = new ArrayList();
-            Iterator var6 = this.commandMap.entrySet().iterator();
+            Iterator var6 = commandMap.entrySet().iterator();
 
             while (var6.hasNext())
             {
@@ -188,7 +188,7 @@ public class CommandHandler implements ICommandManager
         {
             if (var3.length > 1)
             {
-                ICommand var5 = (ICommand)this.commandMap.get(var4);
+                ICommand var5 = (ICommand)commandMap.get(var4);
 
                 if (var5 != null) { return var5.addTabCompletionOptions(par1ICommandSender, dropFirstString(var3)); }
             }
@@ -203,7 +203,7 @@ public class CommandHandler implements ICommandManager
     public List getPossibleCommands(ICommandSender par1ICommandSender)
     {
         ArrayList var2 = new ArrayList();
-        Iterator var3 = this.commandSet.iterator();
+        Iterator var3 = commandSet.iterator();
 
         while (var3.hasNext())
         {
@@ -224,7 +224,7 @@ public class CommandHandler implements ICommandManager
      */
     public Map getCommands()
     {
-        return this.commandMap;
+        return commandMap;
     }
 
     /**

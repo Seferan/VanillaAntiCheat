@@ -50,7 +50,7 @@ public class CommandTime extends CommandBase
                         var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
                     }
 
-                    this.setTime(par1ICommandSender, var3);
+                    setTime(par1ICommandSender, var3);
                     notifyAdmins(par1ICommandSender, "commands.time.set", new Object[] {Integer.valueOf(var3)});
                     return;
                 }
@@ -58,7 +58,7 @@ public class CommandTime extends CommandBase
                 if (par2ArrayOfStr[0].equals("add"))
                 {
                     var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
-                    this.addTime(par1ICommandSender, var3);
+                    addTime(par1ICommandSender, var3);
                     notifyAdmins(par1ICommandSender, "commands.time.added", new Object[] {Integer.valueOf(var3)});
                     return;
                 }
@@ -89,7 +89,7 @@ public class CommandTime extends CommandBase
     {
         for (int var3 = 0; var3 < MinecraftServer.getServer().worldServers.length; ++var3)
         {
-            MinecraftServer.getServer().worldServers[var3].setWorldTime((long)par2);
+            MinecraftServer.getServer().worldServers[var3].setWorldTime(par2);
         }
     }
 
@@ -101,7 +101,7 @@ public class CommandTime extends CommandBase
         for (int var3 = 0; var3 < MinecraftServer.getServer().worldServers.length; ++var3)
         {
             WorldServer var4 = MinecraftServer.getServer().worldServers[var3];
-            var4.setWorldTime(var4.getWorldTime() + (long)par2);
+            var4.setWorldTime(var4.getWorldTime() + par2);
         }
     }
 }

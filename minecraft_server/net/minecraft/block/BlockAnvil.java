@@ -19,8 +19,8 @@ public class BlockAnvil extends BlockFalling
     protected BlockAnvil()
     {
         super(Material.field_151574_g);
-        this.setLightOpacity(0);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setLightOpacity(0);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     public boolean renderAsNormalBlock()
@@ -38,7 +38,7 @@ public class BlockAnvil extends BlockFalling
      */
     public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int var7 = MathHelper.floor_double(p_149689_5_.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         int var8 = p_149689_1_.getBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_) >> 2;
         ++var7;
         var7 %= 4;
@@ -103,11 +103,11 @@ public class BlockAnvil extends BlockFalling
 
         if (var5 != 3 && var5 != 1)
         {
-            this.setBlockBounds(0.125F, 0.0F, 0.0F, 0.875F, 1.0F, 1.0F);
+            setBlockBounds(0.125F, 0.0F, 0.0F, 0.875F, 1.0F, 1.0F);
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.125F, 1.0F, 1.0F, 0.875F);
+            setBlockBounds(0.0F, 0.0F, 0.125F, 1.0F, 1.0F, 0.875F);
         }
     }
 

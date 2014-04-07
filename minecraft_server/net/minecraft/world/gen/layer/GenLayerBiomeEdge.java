@@ -9,7 +9,7 @@ public class GenLayerBiomeEdge extends GenLayer
     public GenLayerBiomeEdge(long p_i45475_1_, GenLayer p_i45475_3_)
     {
         super(p_i45475_1_);
-        this.parent = p_i45475_3_;
+        parent = p_i45475_3_;
     }
 
     /**
@@ -19,17 +19,17 @@ public class GenLayerBiomeEdge extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        int[] var5 = this.parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
+        int[] var5 = parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
         int[] var6 = IntCache.getIntCache(par3 * par4);
 
         for (int var7 = 0; var7 < par4; ++var7)
         {
             for (int var8 = 0; var8 < par3; ++var8)
             {
-                this.initChunkSeed((long)(var8 + par1), (long)(var7 + par2));
+                initChunkSeed(var8 + par1, var7 + par2);
                 int var9 = var5[var8 + 1 + (var7 + 1) * (par3 + 2)];
 
-                if (!this.func_151636_a(var5, var6, var8, var7, par3, var9, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID) && !this.func_151635_b(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150607_aa.biomeID, BiomeGenBase.field_150589_Z.biomeID) && !this.func_151635_b(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150608_ab.biomeID, BiomeGenBase.field_150589_Z.biomeID) && !this.func_151635_b(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150578_U.biomeID, BiomeGenBase.taiga.biomeID))
+                if (!func_151636_a(var5, var6, var8, var7, par3, var9, BiomeGenBase.extremeHills.biomeID, BiomeGenBase.extremeHillsEdge.biomeID) && !func_151635_b(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150607_aa.biomeID, BiomeGenBase.field_150589_Z.biomeID) && !func_151635_b(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150608_ab.biomeID, BiomeGenBase.field_150589_Z.biomeID) && !func_151635_b(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150578_U.biomeID, BiomeGenBase.taiga.biomeID))
                 {
                     int var10;
                     int var11;
@@ -99,7 +99,7 @@ public class GenLayerBiomeEdge extends GenLayer
             int var11 = p_151636_1_[p_151636_3_ + 1 - 1 + (p_151636_4_ + 1) * (p_151636_5_ + 2)];
             int var12 = p_151636_1_[p_151636_3_ + 1 + (p_151636_4_ + 1 + 1) * (p_151636_5_ + 2)];
 
-            if (this.func_151634_b(var9, p_151636_7_) && this.func_151634_b(var10, p_151636_7_) && this.func_151634_b(var11, p_151636_7_) && this.func_151634_b(var12, p_151636_7_))
+            if (func_151634_b(var9, p_151636_7_) && func_151634_b(var10, p_151636_7_) && func_151634_b(var11, p_151636_7_) && func_151634_b(var12, p_151636_7_))
             {
                 p_151636_2_[p_151636_3_ + p_151636_4_ * p_151636_5_] = p_151636_6_;
             }

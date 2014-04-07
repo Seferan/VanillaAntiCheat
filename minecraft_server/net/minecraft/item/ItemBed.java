@@ -13,7 +13,7 @@ public class ItemBed extends Item
 
     public ItemBed()
     {
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        setCreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -35,7 +35,7 @@ public class ItemBed extends Item
         {
             ++par5;
             BlockBed var11 = (BlockBed)Blocks.bed;
-            int var12 = MathHelper.floor_double((double)(par2EntityPlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+            int var12 = MathHelper.floor_double(par2EntityPlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
             byte var13 = 0;
             byte var14 = 0;
 

@@ -13,20 +13,20 @@ public class EntityDamageSource extends DamageSource
     public EntityDamageSource(String par1Str, Entity par2Entity)
     {
         super(par1Str);
-        this.damageSourceEntity = par2Entity;
+        damageSourceEntity = par2Entity;
     }
 
     public Entity getEntity()
     {
-        return this.damageSourceEntity;
+        return damageSourceEntity;
     }
 
     public IChatComponent func_151519_b(EntityLivingBase p_151519_1_)
     {
-        ItemStack var2 = this.damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase)this.damageSourceEntity).getHeldItem() : null;
-        String var3 = "death.attack." + this.damageType;
+        ItemStack var2 = damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase)damageSourceEntity).getHeldItem() : null;
+        String var3 = "death.attack." + damageType;
         String var4 = var3 + ".item";
-        return var2 != null && var2.hasDisplayName() && StatCollector.canTranslate(var4) ? new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), this.damageSourceEntity.getUsernameAsIChatComponent(), var2.func_151000_E()}) : new ChatComponentTranslation(var3, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), this.damageSourceEntity.getUsernameAsIChatComponent()});
+        return var2 != null && var2.hasDisplayName() && StatCollector.canTranslate(var4) ? new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), damageSourceEntity.getUsernameAsIChatComponent(), var2.func_151000_E()}) : new ChatComponentTranslation(var3, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), damageSourceEntity.getUsernameAsIChatComponent()});
     }
 
     /**
@@ -35,6 +35,6 @@ public class EntityDamageSource extends DamageSource
      */
     public boolean isDifficultyScaled()
     {
-        return this.damageSourceEntity != null && this.damageSourceEntity instanceof EntityLivingBase && !(this.damageSourceEntity instanceof EntityPlayer);
+        return damageSourceEntity != null && damageSourceEntity instanceof EntityLivingBase && !(damageSourceEntity instanceof EntityPlayer);
     }
 }

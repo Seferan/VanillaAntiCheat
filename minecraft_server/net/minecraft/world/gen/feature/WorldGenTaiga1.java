@@ -51,7 +51,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
                         {
                             Block var15 = par1World.getBlock(var13, var11, var14);
 
-                            if (!this.func_150523_a(var15))
+                            if (!func_150523_a(var15))
                             {
                                 var10 = false;
                             }
@@ -74,7 +74,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
                 if ((var19 == Blocks.grass || var19 == Blocks.dirt) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
+                    func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
                     var18 = 0;
 
                     for (var13 = par4 + var6; var13 >= par4 + var7; --var13)
@@ -89,7 +89,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
                                 if ((Math.abs(var21) != var18 || Math.abs(var17) != var18 || var18 <= 0) && !par1World.getBlock(var14, var13, var16).func_149730_j())
                                 {
-                                    this.func_150516_a(par1World, var14, var13, var16, Blocks.leaves, 1);
+                                    func_150516_a(par1World, var14, var13, var16, Blocks.leaves, 1);
                                 }
                             }
                         }
@@ -110,7 +110,7 @@ public class WorldGenTaiga1 extends WorldGenAbstractTree
 
                         if (var20.getMaterial() == Material.air || var20.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, par3, par4 + var13, par5, Blocks.log, 1);
+                            func_150516_a(par1World, par3, par4 + var13, par5, Blocks.log, 1);
                         }
                     }
 

@@ -7,7 +7,7 @@ public class EnchantmentOxygen extends Enchantment
     public EnchantmentOxygen(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.armor_head);
-        this.setName("oxygen");
+        setName("oxygen");
     }
 
     /**
@@ -25,7 +25,7 @@ public class EnchantmentOxygen extends Enchantment
      */
     public int getMaxEnchantability(int par1)
     {
-        return this.getMinEnchantability(par1) + 30;
+        return getMinEnchantability(par1) + 30;
     }
 
     /**

@@ -15,7 +15,7 @@ public class BlockHugeMushroom extends Block
     public BlockHugeMushroom(Material p_i45412_1_, int p_i45412_2_)
     {
         super(p_i45412_1_);
-        this.field_149792_b = p_i45412_2_;
+        field_149792_b = p_i45412_2_;
     }
 
     /**
@@ -35,6 +35,6 @@ public class BlockHugeMushroom extends Block
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return Item.getItemById(Block.getIdFromBlock(Blocks.brown_mushroom) + this.field_149792_b);
+        return Item.getItemById(Block.getIdFromBlock(Blocks.brown_mushroom) + field_149792_b);
     }
 }

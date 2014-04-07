@@ -19,8 +19,8 @@ public class S0DPacketCollectItem extends Packet
 
     public S0DPacketCollectItem(int p_i45232_1_, int p_i45232_2_)
     {
-        this.field_149357_a = p_i45232_1_;
-        this.field_149356_b = p_i45232_2_;
+        field_149357_a = p_i45232_1_;
+        field_149356_b = p_i45232_2_;
     }
 
     /**
@@ -28,8 +28,8 @@ public class S0DPacketCollectItem extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149357_a = p_148837_1_.readInt();
-        this.field_149356_b = p_148837_1_.readInt();
+        field_149357_a = p_148837_1_.readInt();
+        field_149356_b = p_148837_1_.readInt();
     }
 
     /**
@@ -37,8 +37,8 @@ public class S0DPacketCollectItem extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149357_a);
-        p_148840_1_.writeInt(this.field_149356_b);
+        p_148840_1_.writeInt(field_149357_a);
+        p_148840_1_.writeInt(field_149356_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149355_1_)

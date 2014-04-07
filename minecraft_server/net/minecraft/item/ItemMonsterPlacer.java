@@ -21,8 +21,8 @@ public class ItemMonsterPlacer extends Item
 
     public ItemMonsterPlacer()
     {
-        this.setHasSubtypes(true);
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        setHasSubtypes(true);
+        setCreativeTab(CreativeTabs.tabMisc);
     }
 
     public String getItemStackDisplayName(ItemStack par1ItemStack)
@@ -62,7 +62,7 @@ public class ItemMonsterPlacer extends Item
                 var12 = 0.5D;
             }
 
-            Entity var14 = spawnCreature(par3World, par1ItemStack.getItemDamage(), (double)par4 + 0.5D, (double)par5 + var12, (double)par6 + 0.5D);
+            Entity var14 = spawnCreature(par3World, par1ItemStack.getItemDamage(), par4 + 0.5D, par5 + var12, par6 + 0.5D);
 
             if (var14 != null)
             {
@@ -93,7 +93,7 @@ public class ItemMonsterPlacer extends Item
         }
         else
         {
-            MovingObjectPosition var4 = this.getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
+            MovingObjectPosition var4 = getMovingObjectPositionFromPlayer(par2World, par3EntityPlayer, true);
 
             if (var4 == null)
             {
@@ -113,7 +113,7 @@ public class ItemMonsterPlacer extends Item
 
                     if (par2World.getBlock(var5, var6, var7) instanceof BlockLiquid)
                     {
-                        Entity var8 = spawnCreature(par2World, par1ItemStack.getItemDamage(), (double)var5, (double)var6, (double)var7);
+                        Entity var8 = spawnCreature(par2World, par1ItemStack.getItemDamage(), var5, var6, var7);
 
                         if (var8 != null)
                         {

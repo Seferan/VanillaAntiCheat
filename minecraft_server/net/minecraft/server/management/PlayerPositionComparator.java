@@ -12,13 +12,13 @@ public class PlayerPositionComparator implements Comparator
 
     public PlayerPositionComparator(ChunkCoordinates par1ChunkCoordinates)
     {
-        this.theChunkCoordinates = par1ChunkCoordinates;
+        theChunkCoordinates = par1ChunkCoordinates;
     }
 
     public int compare(EntityPlayerMP par1EntityPlayerMP, EntityPlayerMP par2EntityPlayerMP)
     {
-        double var3 = par1EntityPlayerMP.getDistanceSq((double)this.theChunkCoordinates.posX, (double)this.theChunkCoordinates.posY, (double)this.theChunkCoordinates.posZ);
-        double var5 = par2EntityPlayerMP.getDistanceSq((double)this.theChunkCoordinates.posX, (double)this.theChunkCoordinates.posY, (double)this.theChunkCoordinates.posZ);
+        double var3 = par1EntityPlayerMP.getDistanceSq(theChunkCoordinates.posX, theChunkCoordinates.posY, theChunkCoordinates.posZ);
+        double var5 = par2EntityPlayerMP.getDistanceSq(theChunkCoordinates.posX, theChunkCoordinates.posY, theChunkCoordinates.posZ);
         return var3 < var5 ? -1 : (var3 > var5 ? 1 : 0);
     }
 

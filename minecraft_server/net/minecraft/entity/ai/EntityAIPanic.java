@@ -14,9 +14,9 @@ public class EntityAIPanic extends EntityAIBase
 
     public EntityAIPanic(EntityCreature par1EntityCreature, double par2)
     {
-        this.theEntityCreature = par1EntityCreature;
-        this.speed = par2;
-        this.setMutexBits(1);
+        theEntityCreature = par1EntityCreature;
+        speed = par2;
+        setMutexBits(1);
     }
 
     /**
@@ -24,13 +24,13 @@ public class EntityAIPanic extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.theEntityCreature.getAITarget() == null && !this.theEntityCreature.isBurning())
+        if (theEntityCreature.getAITarget() == null && !theEntityCreature.isBurning())
         {
             return false;
         }
         else
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.theEntityCreature, 5, 4);
+            Vec3 var1 = RandomPositionGenerator.findRandomTarget(theEntityCreature, 5, 4);
 
             if (var1 == null)
             {
@@ -38,9 +38,9 @@ public class EntityAIPanic extends EntityAIBase
             }
             else
             {
-                this.randPosX = var1.xCoord;
-                this.randPosY = var1.yCoord;
-                this.randPosZ = var1.zCoord;
+                randPosX = var1.xCoord;
+                randPosY = var1.yCoord;
+                randPosZ = var1.zCoord;
                 return true;
             }
         }
@@ -51,7 +51,7 @@ public class EntityAIPanic extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntityCreature.getNavigator().tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, this.speed);
+        theEntityCreature.getNavigator().tryMoveToXYZ(randPosX, randPosY, randPosZ, speed);
     }
 
     /**
@@ -59,6 +59,6 @@ public class EntityAIPanic extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.theEntityCreature.getNavigator().noPath();
+        return !theEntityCreature.getNavigator().noPath();
     }
 }

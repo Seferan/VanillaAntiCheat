@@ -36,7 +36,7 @@ public class CommandGameRule extends CommandBase
         {
             var6 = par2ArrayOfStr[0];
             String var7 = par2ArrayOfStr[1];
-            GameRules var8 = this.getGameRules();
+            GameRules var8 = getGameRules();
 
             if (var8.hasRule(var6))
             {
@@ -51,7 +51,7 @@ public class CommandGameRule extends CommandBase
         else if (par2ArrayOfStr.length == 1)
         {
             var6 = par2ArrayOfStr[0];
-            GameRules var4 = this.getGameRules();
+            GameRules var4 = getGameRules();
 
             if (var4.hasRule(var6))
             {
@@ -65,7 +65,7 @@ public class CommandGameRule extends CommandBase
         }
         else if (par2ArrayOfStr.length == 0)
         {
-            GameRules var3 = this.getGameRules();
+            GameRules var3 = getGameRules();
             par1ICommandSender.addChatMessage(new ChatComponentText(joinNiceString(var3.getRules())));
         }
         else
@@ -80,7 +80,7 @@ public class CommandGameRule extends CommandBase
      */
     public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getGameRules().getRules()) : (par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"true", "false"}) : null);
+        return par2ArrayOfStr.length == 1 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, getGameRules().getRules()) : (par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, new String[] {"true", "false"}) : null);
     }
 
     /**

@@ -29,12 +29,12 @@ public class C0EPacketClickWindow extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149554_a = p_148837_1_.readByte();
-        this.field_149552_b = p_148837_1_.readShort();
-        this.field_149553_c = p_148837_1_.readByte();
-        this.field_149550_d = p_148837_1_.readShort();
-        this.field_149549_f = p_148837_1_.readByte();
-        this.field_149551_e = p_148837_1_.readItemStackFromBuffer();
+        field_149554_a = p_148837_1_.readByte();
+        field_149552_b = p_148837_1_.readShort();
+        field_149553_c = p_148837_1_.readByte();
+        field_149550_d = p_148837_1_.readShort();
+        field_149549_f = p_148837_1_.readByte();
+        field_149551_e = p_148837_1_.readItemStackFromBuffer();
     }
 
     /**
@@ -42,12 +42,12 @@ public class C0EPacketClickWindow extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149554_a);
-        p_148840_1_.writeShort(this.field_149552_b);
-        p_148840_1_.writeByte(this.field_149553_c);
-        p_148840_1_.writeShort(this.field_149550_d);
-        p_148840_1_.writeByte(this.field_149549_f);
-        p_148840_1_.writeItemStackToBuffer(this.field_149551_e);
+        p_148840_1_.writeByte(field_149554_a);
+        p_148840_1_.writeShort(field_149552_b);
+        p_148840_1_.writeByte(field_149553_c);
+        p_148840_1_.writeShort(field_149550_d);
+        p_148840_1_.writeByte(field_149549_f);
+        p_148840_1_.writeItemStackToBuffer(field_149551_e);
     }
 
     /**
@@ -56,37 +56,37 @@ public class C0EPacketClickWindow extends Packet
      */
     public String serialize()
     {
-        return this.field_149551_e != null ? String.format("id=%d, slot=%d, button=%d, type=%d, itemid=%d, itemcount=%d, itemaux=%d", new Object[] {Integer.valueOf(this.field_149554_a), Integer.valueOf(this.field_149552_b), Integer.valueOf(this.field_149553_c), Integer.valueOf(this.field_149549_f), Integer.valueOf(Item.getIdFromItem(this.field_149551_e.getItem())), Integer.valueOf(this.field_149551_e.stackSize), Integer.valueOf(this.field_149551_e.getItemDamage())}) : String.format("id=%d, slot=%d, button=%d, type=%d, itemid=-1", new Object[] {Integer.valueOf(this.field_149554_a), Integer.valueOf(this.field_149552_b), Integer.valueOf(this.field_149553_c), Integer.valueOf(this.field_149549_f)});
+        return field_149551_e != null ? String.format("id=%d, slot=%d, button=%d, type=%d, itemid=%d, itemcount=%d, itemaux=%d", new Object[] {Integer.valueOf(field_149554_a), Integer.valueOf(field_149552_b), Integer.valueOf(field_149553_c), Integer.valueOf(field_149549_f), Integer.valueOf(Item.getIdFromItem(field_149551_e.getItem())), Integer.valueOf(field_149551_e.stackSize), Integer.valueOf(field_149551_e.getItemDamage())}) : String.format("id=%d, slot=%d, button=%d, type=%d, itemid=-1", new Object[] {Integer.valueOf(field_149554_a), Integer.valueOf(field_149552_b), Integer.valueOf(field_149553_c), Integer.valueOf(field_149549_f)});
     }
 
     public int func_149548_c()
     {
-        return this.field_149554_a;
+        return field_149554_a;
     }
 
     public int func_149544_d()
     {
-        return this.field_149552_b;
+        return field_149552_b;
     }
 
     public int func_149543_e()
     {
-        return this.field_149553_c;
+        return field_149553_c;
     }
 
     public short func_149547_f()
     {
-        return this.field_149550_d;
+        return field_149550_d;
     }
 
     public ItemStack func_149546_g()
     {
-        return this.field_149551_e;
+        return field_149551_e;
     }
 
     public int func_149542_h()
     {
-        return this.field_149549_f;
+        return field_149549_f;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

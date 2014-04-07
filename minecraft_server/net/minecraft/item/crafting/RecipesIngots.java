@@ -12,7 +12,7 @@ public class RecipesIngots
 
     public RecipesIngots()
     {
-        this.recipeItems = new Object[][] { {Blocks.gold_block, new ItemStack(Items.gold_ingot, 9)}, {Blocks.iron_block, new ItemStack(Items.iron_ingot, 9)}, {Blocks.diamond_block, new ItemStack(Items.diamond, 9)}, {Blocks.emerald_block, new ItemStack(Items.emerald, 9)}, {Blocks.lapis_block, new ItemStack(Items.dye, 9, 4)}, {Blocks.redstone_block, new ItemStack(Items.redstone, 9)}, {Blocks.coal_block, new ItemStack(Items.coal, 9, 0)}, {Blocks.hay_block, new ItemStack(Items.wheat, 9)}};
+        recipeItems = new Object[][] { {Blocks.gold_block, new ItemStack(Items.gold_ingot, 9)}, {Blocks.iron_block, new ItemStack(Items.iron_ingot, 9)}, {Blocks.diamond_block, new ItemStack(Items.diamond, 9)}, {Blocks.emerald_block, new ItemStack(Items.emerald, 9)}, {Blocks.lapis_block, new ItemStack(Items.dye, 9, 4)}, {Blocks.redstone_block, new ItemStack(Items.redstone, 9)}, {Blocks.coal_block, new ItemStack(Items.coal, 9, 0)}, {Blocks.hay_block, new ItemStack(Items.wheat, 9)}};
     }
 
     /**
@@ -20,10 +20,10 @@ public class RecipesIngots
      */
     public void addRecipes(CraftingManager par1CraftingManager)
     {
-        for (int var2 = 0; var2 < this.recipeItems.length; ++var2)
+        for (int var2 = 0; var2 < recipeItems.length; ++var2)
         {
-            Block var3 = (Block)this.recipeItems[var2][0];
-            ItemStack var4 = (ItemStack)this.recipeItems[var2][1];
+            Block var3 = (Block)recipeItems[var2][0];
+            ItemStack var4 = (ItemStack)recipeItems[var2][1];
             par1CraftingManager.addRecipe(new ItemStack(var3), new Object[] {"###", "###", "###", '#', var4});
             par1CraftingManager.addRecipe(var4, new Object[] {"#", '#', var3});
         }

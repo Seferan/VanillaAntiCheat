@@ -21,7 +21,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     private File ownersList;
     private File whiteList;
     private static final String __OBFID = "CL_00001783";
-    
+
     /**
      * The long MOTD message that is given by /motd.
      */
@@ -31,45 +31,45 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     public DedicatedPlayerList(DedicatedServer par1DedicatedServer)
     {
         super(par1DedicatedServer);
-        this.opsList = par1DedicatedServer.getFile("ops.txt");
-        this.ownersList = par1DedicatedServer.getFile("owners.txt");
-        this.whiteList = par1DedicatedServer.getFile("white-list.txt");
+        opsList = par1DedicatedServer.getFile("ops.txt");
+        ownersList = par1DedicatedServer.getFile("owners.txt");
+        whiteList = par1DedicatedServer.getFile("white-list.txt");
         motdFile = par1DedicatedServer.getFile("motd.txt");
-        this.viewDistance = par1DedicatedServer.getIntProperty("view-distance", 10);
-        this.maxPlayers = par1DedicatedServer.getIntProperty("max-players", 20);
-        this.setWhiteListEnabled(par1DedicatedServer.getBooleanProperty("white-list", false));
+        viewDistance = par1DedicatedServer.getIntProperty("view-distance", 10);
+        maxPlayers = par1DedicatedServer.getIntProperty("max-players", 20);
+        setWhiteListEnabled(par1DedicatedServer.getBooleanProperty("white-list", false));
 
         if (!par1DedicatedServer.isSinglePlayer())
         {
-            this.getBannedPlayers().setListActive(true);
-            this.getBannedIPs().setListActive(true);
+            getBannedPlayers().setListActive(true);
+            getBannedIPs().setListActive(true);
         }
 
-        this.getBannedPlayers().loadBanList();
-        this.getBannedPlayers().saveToFileWithHeader();
-        this.getBannedIPs().loadBanList();
-        this.getBannedIPs().saveToFileWithHeader();
-        this.loadOpsList();
-        this.loadOwnersList();
-        this.readWhiteList();
-        this.readMotd();
-        this.saveOpsList();
+        getBannedPlayers().loadBanList();
+        getBannedPlayers().saveToFileWithHeader();
+        getBannedIPs().loadBanList();
+        getBannedIPs().saveToFileWithHeader();
+        loadOpsList();
+        loadOwnersList();
+        readWhiteList();
+        readMotd();
+        saveOpsList();
 
-        if (!this.whiteList.exists())
+        if (!whiteList.exists())
         {
-            this.saveWhiteList();
+            saveWhiteList();
         }
-        if (!this.ownersList.exists())
+        if (!ownersList.exists())
         {
-            this.saveOwnersList();
+            saveOwnersList();
         }
     }
 
     public void setWhiteListEnabled(boolean par1)
     {
         super.setWhiteListEnabled(par1);
-        this.getServerInstance().setProperty("white-list", Boolean.valueOf(par1));
-        this.getServerInstance().saveProperties();
+        getServerInstance().setProperty("white-list", Boolean.valueOf(par1));
+        getServerInstance().saveProperties();
     }
 
     /**
@@ -78,7 +78,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     public void addOp(String par1Str)
     {
         super.addOp(par1Str);
-        this.saveOpsList();
+        saveOpsList();
     }
 
     /**
@@ -87,19 +87,19 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     public void removeOp(String par1Str)
     {
         super.removeOp(par1Str);
-        this.saveOpsList();
+        saveOpsList();
     }
 
     public void addOwner(String par1Str)
     {
         super.addOwner(par1Str);
-        this.saveOwnersList();
+        saveOwnersList();
     }
 
     public void removeOwner(String par1Str)
     {
         super.removeOwner(par1Str);
-        this.saveOwnersList();
+        saveOwnersList();
     }
 
     /**
@@ -108,7 +108,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     public void removeFromWhitelist(String par1Str)
     {
         super.removeFromWhitelist(par1Str);
-        this.saveWhiteList();
+        saveWhiteList();
     }
 
     /**
@@ -117,7 +117,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     public void addToWhiteList(String par1Str)
     {
         super.addToWhiteList(par1Str);
-        this.saveWhiteList();
+        saveWhiteList();
     }
 
     /**
@@ -125,20 +125,20 @@ public class DedicatedPlayerList extends ServerConfigurationManager
      */
     public void loadWhiteList()
     {
-        this.readWhiteList();
+        readWhiteList();
     }
 
     private void loadOpsList()
     {
         try
         {
-            this.getOps().clear();
-            BufferedReader var1 = new BufferedReader(new FileReader(this.opsList));
+            getOps().clear();
+            BufferedReader var1 = new BufferedReader(new FileReader(opsList));
             String var2 = "";
 
             while ((var2 = var1.readLine()) != null)
             {
-                this.getOps().add(var2.trim().toLowerCase());
+                getOps().add(var2.trim().toLowerCase());
             }
 
             var1.close();
@@ -153,8 +153,8 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            PrintWriter var1 = new PrintWriter(new FileWriter(this.opsList, false));
-            Iterator var2 = this.getOps().iterator();
+            PrintWriter var1 = new PrintWriter(new FileWriter(opsList, false));
+            Iterator var2 = getOps().iterator();
 
             while (var2.hasNext())
             {
@@ -174,13 +174,13 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            this.getOwners().clear();
-            BufferedReader var1 = new BufferedReader(new FileReader(this.ownersList));
+            getOwners().clear();
+            BufferedReader var1 = new BufferedReader(new FileReader(ownersList));
             String var2 = "";
 
             while ((var2 = var1.readLine()) != null)
             {
-                this.getOwners().add(var2.trim().toLowerCase());
+                getOwners().add(var2.trim().toLowerCase());
                 System.out.println("added owner " + var2.trim().toLowerCase());
             }
 
@@ -196,8 +196,8 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            PrintWriter var1 = new PrintWriter(new FileWriter(this.ownersList, false));
-            Iterator var2 = this.getOwners().iterator();
+            PrintWriter var1 = new PrintWriter(new FileWriter(ownersList, false));
+            Iterator var2 = getOwners().iterator();
 
             while (var2.hasNext())
             {
@@ -217,13 +217,13 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            this.getWhiteListedPlayers().clear();
-            BufferedReader var1 = new BufferedReader(new FileReader(this.whiteList));
+            getWhiteListedPlayers().clear();
+            BufferedReader var1 = new BufferedReader(new FileReader(whiteList));
             String var2 = "";
 
             while ((var2 = var1.readLine()) != null)
             {
-                this.getWhiteListedPlayers().add(var2.trim().toLowerCase());
+                getWhiteListedPlayers().add(var2.trim().toLowerCase());
             }
 
             var1.close();
@@ -238,8 +238,8 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            PrintWriter var1 = new PrintWriter(new FileWriter(this.whiteList, false));
-            Iterator var2 = this.getWhiteListedPlayers().iterator();
+            PrintWriter var1 = new PrintWriter(new FileWriter(whiteList, false));
+            Iterator var2 = getWhiteListedPlayers().iterator();
 
             while (var2.hasNext())
             {
@@ -262,14 +262,14 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     public boolean isAllowedToLogin(String par1Str)
     {
         par1Str = par1Str.trim().toLowerCase();
-        return !this.isWhiteListEnabled() || this.isPlayerOpped(par1Str) || this.getWhiteListedPlayers().contains(par1Str);
+        return !isWhiteListEnabled() || isPlayerOpped(par1Str) || getWhiteListedPlayers().contains(par1Str);
     }
 
     public DedicatedServer getServerInstance()
     {
         return (DedicatedServer)super.getServerInstance();
     }
-    
+
     public void readMotd()
     {
         try
@@ -284,7 +284,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             }
 
             reader.close();
-            
+
             longMotd = lines.toArray(new String[lines.size()]);
         }
         catch (Exception e)
@@ -294,12 +294,12 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             createMotdFile();
         }
     }
-    
+
     private void createMotdFile()
     {
         try
         {
-            PrintWriter writer = new PrintWriter(new FileWriter(this.motdFile, false));
+            PrintWriter writer = new PrintWriter(new FileWriter(motdFile, false));
             writer.close();
         }
         catch (Exception e)
@@ -307,7 +307,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             field_164439_d.warn("Failed to create motd file: " + e);
         }
     }
-    
+
     public String[] getMotd()
     {
         return longMotd;

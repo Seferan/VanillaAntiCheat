@@ -28,7 +28,7 @@ public class SaveFormatOld implements ISaveFormat
             par1File.mkdirs();
         }
 
-        this.savesDirectory = par1File;
+        savesDirectory = par1File;
     }
 
     public void flushCache()
@@ -40,7 +40,7 @@ public class SaveFormatOld implements ISaveFormat
      */
     public WorldInfo getWorldInfo(String par1Str)
     {
-        File var2 = new File(this.savesDirectory, par1Str);
+        File var2 = new File(savesDirectory, par1Str);
 
         if (!var2.exists())
         {
@@ -93,7 +93,7 @@ public class SaveFormatOld implements ISaveFormat
      */
     public boolean deleteWorldDirectory(String par1Str)
     {
-        File var2 = new File(this.savesDirectory, par1Str);
+        File var2 = new File(savesDirectory, par1Str);
 
         if (!var2.exists())
         {
@@ -163,7 +163,7 @@ public class SaveFormatOld implements ISaveFormat
      */
     public ISaveHandler getSaveLoader(String par1Str, boolean par2)
     {
-        return new SaveHandler(this.savesDirectory, par1Str, par2);
+        return new SaveHandler(savesDirectory, par1Str, par2);
     }
 
     /**

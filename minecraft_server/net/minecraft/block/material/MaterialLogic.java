@@ -7,7 +7,7 @@ public class MaterialLogic extends Material
     public MaterialLogic(MapColor par1MapColor)
     {
         super(par1MapColor);
-        this.setAdventureModeExempt();
+        setAdventureModeExempt();
     }
 
     public boolean isSolid()

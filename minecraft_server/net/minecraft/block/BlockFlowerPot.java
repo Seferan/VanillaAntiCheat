@@ -20,7 +20,7 @@ public class BlockFlowerPot extends BlockContainer
     public BlockFlowerPot()
     {
         super(Material.circuits);
-        this.setBlockBoundsForItemRender();
+        setBlockBoundsForItemRender();
     }
 
     /**
@@ -30,7 +30,7 @@ public class BlockFlowerPot extends BlockContainer
     {
         float var1 = 0.375F;
         float var2 = var1 / 2.0F;
-        this.setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, var1, 0.5F + var2);
+        setBlockBounds(0.5F - var2, 0.0F, 0.5F - var2, 0.5F + var2, var1, 0.5F + var2);
     }
 
     public boolean isOpaqueCube()
@@ -66,13 +66,13 @@ public class BlockFlowerPot extends BlockContainer
             }
             else
             {
-                TileEntityFlowerPot var11 = this.func_149929_e(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
+                TileEntityFlowerPot var11 = func_149929_e(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
 
                 if (var11 != null)
                 {
                     Block var12 = Block.getBlockFromItem(var10.getItem());
 
-                    if (!this.func_149928_a(var12, var10.getItemDamage()))
+                    if (!func_149928_a(var12, var10.getItemDamage()))
                     {
                         return false;
                     }
@@ -116,7 +116,7 @@ public class BlockFlowerPot extends BlockContainer
      */
     public int getDamageValue(World p_149643_1_, int p_149643_2_, int p_149643_3_, int p_149643_4_)
     {
-        TileEntityFlowerPot var5 = this.func_149929_e(p_149643_1_, p_149643_2_, p_149643_3_, p_149643_4_);
+        TileEntityFlowerPot var5 = func_149929_e(p_149643_1_, p_149643_2_, p_149643_3_, p_149643_4_);
         return var5 != null && var5.func_145965_a() != null ? var5.func_145966_b() : 0;
     }
 
@@ -129,7 +129,7 @@ public class BlockFlowerPot extends BlockContainer
     {
         if (!World.doesBlockHaveSolidTopSurface(p_149695_1_, p_149695_2_, p_149695_3_ - 1, p_149695_4_))
         {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
+            dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
     }
@@ -141,21 +141,21 @@ public class BlockFlowerPot extends BlockContainer
     public void dropBlockAsItemWithChance(World p_149690_1_, int p_149690_2_, int p_149690_3_, int p_149690_4_, int p_149690_5_, float p_149690_6_, int p_149690_7_)
     {
         super.dropBlockAsItemWithChance(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, p_149690_5_, p_149690_6_, p_149690_7_);
-        TileEntityFlowerPot var8 = this.func_149929_e(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_);
+        TileEntityFlowerPot var8 = func_149929_e(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_);
 
         if (var8 != null && var8.func_145965_a() != null)
         {
-            this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var8.func_145965_a(), 1, var8.func_145966_b()));
+            dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var8.func_145965_a(), 1, var8.func_145966_b()));
         }
     }
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        TileEntityFlowerPot var7 = this.func_149929_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
+        TileEntityFlowerPot var7 = func_149929_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
 
         if (var7 != null && var7.func_145965_a() != null)
         {
-            this.dropBlockAsItem_do(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, new ItemStack(var7.func_145965_a(), 1, var7.func_145966_b()));
+            dropBlockAsItem_do(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, new ItemStack(var7.func_145965_a(), 1, var7.func_145966_b()));
         }
 
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
@@ -170,7 +170,7 @@ public class BlockFlowerPot extends BlockContainer
 
         if (p_149681_6_.capabilities.isCreativeMode)
         {
-            TileEntityFlowerPot var7 = this.func_149929_e(p_149681_1_, p_149681_2_, p_149681_3_, p_149681_4_);
+            TileEntityFlowerPot var7 = func_149929_e(p_149681_1_, p_149681_2_, p_149681_3_, p_149681_4_);
 
             if (var7 != null)
             {

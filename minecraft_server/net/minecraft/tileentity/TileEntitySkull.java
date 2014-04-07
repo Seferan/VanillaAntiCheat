@@ -14,20 +14,20 @@ public class TileEntitySkull extends TileEntity
     public void writeToNBT(NBTTagCompound p_145841_1_)
     {
         super.writeToNBT(p_145841_1_);
-        p_145841_1_.setByte("SkullType", (byte)(this.field_145908_a & 255));
-        p_145841_1_.setByte("Rot", (byte)(this.field_145910_i & 255));
-        p_145841_1_.setString("ExtraType", this.field_145909_j);
+        p_145841_1_.setByte("SkullType", (byte)(field_145908_a & 255));
+        p_145841_1_.setByte("Rot", (byte)(field_145910_i & 255));
+        p_145841_1_.setString("ExtraType", field_145909_j);
     }
 
     public void readFromNBT(NBTTagCompound p_145839_1_)
     {
         super.readFromNBT(p_145839_1_);
-        this.field_145908_a = p_145839_1_.getByte("SkullType");
-        this.field_145910_i = p_145839_1_.getByte("Rot");
+        field_145908_a = p_145839_1_.getByte("SkullType");
+        field_145910_i = p_145839_1_.getByte("Rot");
 
         if (p_145839_1_.func_150297_b("ExtraType", 8))
         {
-            this.field_145909_j = p_145839_1_.getString("ExtraType");
+            field_145909_j = p_145839_1_.getString("ExtraType");
         }
     }
 
@@ -37,28 +37,28 @@ public class TileEntitySkull extends TileEntity
     public Packet getDescriptionPacket()
     {
         NBTTagCompound var1 = new NBTTagCompound();
-        this.writeToNBT(var1);
-        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 4, var1);
+        writeToNBT(var1);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 4, var1);
     }
 
     public void func_145905_a(int p_145905_1_, String p_145905_2_)
     {
-        this.field_145908_a = p_145905_1_;
-        this.field_145909_j = p_145905_2_;
+        field_145908_a = p_145905_1_;
+        field_145909_j = p_145905_2_;
     }
 
     public int func_145904_a()
     {
-        return this.field_145908_a;
+        return field_145908_a;
     }
 
     public void func_145903_a(int p_145903_1_)
     {
-        this.field_145910_i = p_145903_1_;
+        field_145910_i = p_145903_1_;
     }
 
     public String func_145907_c()
     {
-        return this.field_145909_j;
+        return field_145909_j;
     }
 }

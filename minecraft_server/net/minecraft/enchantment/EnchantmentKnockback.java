@@ -7,7 +7,7 @@ public class EnchantmentKnockback extends Enchantment
     protected EnchantmentKnockback(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.weapon);
-        this.setName("knockback");
+        setName("knockback");
     }
 
     /**

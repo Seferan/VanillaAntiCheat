@@ -22,10 +22,10 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
 
     public EntityAIMoveTowardsTarget(EntityCreature par1EntityCreature, double par2, float par4)
     {
-        this.theEntity = par1EntityCreature;
-        this.speed = par2;
-        this.maxTargetDistance = par4;
-        this.setMutexBits(1);
+        theEntity = par1EntityCreature;
+        speed = par2;
+        maxTargetDistance = par4;
+        setMutexBits(1);
     }
 
     /**
@@ -33,19 +33,19 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        this.targetEntity = this.theEntity.getAttackTarget();
+        targetEntity = theEntity.getAttackTarget();
 
-        if (this.targetEntity == null)
+        if (targetEntity == null)
         {
             return false;
         }
-        else if (this.targetEntity.getDistanceSqToEntity(this.theEntity) > (double)(this.maxTargetDistance * this.maxTargetDistance))
+        else if (targetEntity.getDistanceSqToEntity(theEntity) > maxTargetDistance * maxTargetDistance)
         {
             return false;
         }
         else
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTargetBlockTowards(this.theEntity, 16, 7, this.theEntity.worldObj.getWorldVec3Pool().getVecFromPool(this.targetEntity.posX, this.targetEntity.posY, this.targetEntity.posZ));
+            Vec3 var1 = RandomPositionGenerator.findRandomTargetBlockTowards(theEntity, 16, 7, theEntity.worldObj.getWorldVec3Pool().getVecFromPool(targetEntity.posX, targetEntity.posY, targetEntity.posZ));
 
             if (var1 == null)
             {
@@ -53,9 +53,9 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
             }
             else
             {
-                this.movePosX = var1.xCoord;
-                this.movePosY = var1.yCoord;
-                this.movePosZ = var1.zCoord;
+                movePosX = var1.xCoord;
+                movePosY = var1.yCoord;
+                movePosZ = var1.zCoord;
                 return true;
             }
         }
@@ -66,7 +66,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.theEntity.getNavigator().noPath() && this.targetEntity.isEntityAlive() && this.targetEntity.getDistanceSqToEntity(this.theEntity) < (double)(this.maxTargetDistance * this.maxTargetDistance);
+        return !theEntity.getNavigator().noPath() && targetEntity.isEntityAlive() && targetEntity.getDistanceSqToEntity(theEntity) < maxTargetDistance * maxTargetDistance;
     }
 
     /**
@@ -74,7 +74,7 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public void resetTask()
     {
-        this.targetEntity = null;
+        targetEntity = null;
     }
 
     /**
@@ -82,6 +82,6 @@ public class EntityAIMoveTowardsTarget extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.theEntity.getNavigator().tryMoveToXYZ(this.movePosX, this.movePosY, this.movePosZ, this.speed);
+        theEntity.getNavigator().tryMoveToXYZ(movePosX, movePosY, movePosZ, speed);
     }
 }

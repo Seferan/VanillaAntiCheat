@@ -12,8 +12,8 @@ public class BlockPackedIce extends Block
     public BlockPackedIce()
     {
         super(Material.field_151598_x);
-        this.slipperiness = 0.98F;
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        slipperiness = 0.98F;
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

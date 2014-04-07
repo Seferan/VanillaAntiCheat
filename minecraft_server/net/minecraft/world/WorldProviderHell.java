@@ -14,10 +14,10 @@ public class WorldProviderHell extends WorldProvider
      */
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.hell, 0.0F);
-        this.isHellWorld = true;
-        this.hasNoSky = true;
-        this.dimensionId = -1;
+        worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.hell, 0.0F);
+        isHellWorld = true;
+        hasNoSky = true;
+        dimensionId = -1;
     }
 
     /**
@@ -29,8 +29,8 @@ public class WorldProviderHell extends WorldProvider
 
         for (int var2 = 0; var2 <= 15; ++var2)
         {
-            float var3 = 1.0F - (float)var2 / 15.0F;
-            this.lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
+            float var3 = 1.0F - var2 / 15.0F;
+            lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
         }
     }
 
@@ -39,7 +39,7 @@ public class WorldProviderHell extends WorldProvider
      */
     public IChunkProvider createChunkGenerator()
     {
-        return new ChunkProviderHell(this.worldObj, this.worldObj.getSeed());
+        return new ChunkProviderHell(worldObj, worldObj.getSeed());
     }
 
     /**

@@ -25,7 +25,7 @@ public class S37PacketStatistics extends Packet
 
     public S37PacketStatistics(Map p_i45173_1_)
     {
-        this.field_148976_a = p_i45173_1_;
+        field_148976_a = p_i45173_1_;
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148975_1_)
@@ -39,7 +39,7 @@ public class S37PacketStatistics extends Packet
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
         int var2 = p_148837_1_.readVarIntFromBuffer();
-        this.field_148976_a = Maps.newHashMap();
+        field_148976_a = Maps.newHashMap();
 
         for (int var3 = 0; var3 < var2; ++var3)
         {
@@ -48,7 +48,7 @@ public class S37PacketStatistics extends Packet
 
             if (var4 != null)
             {
-                this.field_148976_a.put(var4, Integer.valueOf(var5));
+                field_148976_a.put(var4, Integer.valueOf(var5));
             }
         }
     }
@@ -58,8 +58,8 @@ public class S37PacketStatistics extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeVarIntToBuffer(this.field_148976_a.size());
-        Iterator var2 = this.field_148976_a.entrySet().iterator();
+        p_148840_1_.writeVarIntToBuffer(field_148976_a.size());
+        Iterator var2 = field_148976_a.entrySet().iterator();
 
         while (var2.hasNext())
         {
@@ -75,7 +75,7 @@ public class S37PacketStatistics extends Packet
      */
     public String serialize()
     {
-        return String.format("count=%d", new Object[] {Integer.valueOf(this.field_148976_a.size())});
+        return String.format("count=%d", new Object[] {Integer.valueOf(field_148976_a.size())});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

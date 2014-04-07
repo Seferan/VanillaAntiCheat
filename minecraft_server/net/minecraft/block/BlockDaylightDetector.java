@@ -20,13 +20,13 @@ public class BlockDaylightDetector extends BlockContainer
     public BlockDaylightDetector()
     {
         super(Material.wood);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
+        setcreativeTab(CreativeTabs.tabRedstone);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.375F, 1.0F);
     }
 
     public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
@@ -66,7 +66,7 @@ public class BlockDaylightDetector extends BlockContainer
                 var7 += (((float)Math.PI * 2F) - var7) * 0.2F;
             }
 
-            var6 = Math.round((float)var6 * MathHelper.cos(var7));
+            var6 = Math.round(var6 * MathHelper.cos(var7));
 
             if (var6 < 0)
             {

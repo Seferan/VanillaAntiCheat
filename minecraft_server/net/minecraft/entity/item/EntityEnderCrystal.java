@@ -18,11 +18,11 @@ public class EntityEnderCrystal extends Entity
     public EntityEnderCrystal(World par1World)
     {
         super(par1World);
-        this.preventEntitySpawning = true;
-        this.setSize(2.0F, 2.0F);
-        this.yOffset = this.height / 2.0F;
-        this.health = 5;
-        this.innerRotation = this.rand.nextInt(100000);
+        preventEntitySpawning = true;
+        setSize(2.0F, 2.0F);
+        yOffset = height / 2.0F;
+        health = 5;
+        innerRotation = rand.nextInt(100000);
     }
 
     /**
@@ -36,7 +36,7 @@ public class EntityEnderCrystal extends Entity
 
     protected void entityInit()
     {
-        this.dataWatcher.addObject(8, Integer.valueOf(this.health));
+        dataWatcher.addObject(8, Integer.valueOf(health));
     }
 
     /**
@@ -44,18 +44,18 @@ public class EntityEnderCrystal extends Entity
      */
     public void onUpdate()
     {
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
-        ++this.innerRotation;
-        this.dataWatcher.updateObject(8, Integer.valueOf(this.health));
-        int var1 = MathHelper.floor_double(this.posX);
-        int var2 = MathHelper.floor_double(this.posY);
-        int var3 = MathHelper.floor_double(this.posZ);
+        prevPosX = posX;
+        prevPosY = posY;
+        prevPosZ = posZ;
+        ++innerRotation;
+        dataWatcher.updateObject(8, Integer.valueOf(health));
+        int var1 = MathHelper.floor_double(posX);
+        int var2 = MathHelper.floor_double(posY);
+        int var3 = MathHelper.floor_double(posZ);
 
-        if (this.worldObj.provider instanceof WorldProviderEnd && this.worldObj.getBlock(var1, var2, var3) != Blocks.fire)
+        if (worldObj.provider instanceof WorldProviderEnd && worldObj.getBlock(var1, var2, var3) != Blocks.fire)
         {
-            this.worldObj.setBlock(var1, var2, var3, Blocks.fire);
+            worldObj.setBlock(var1, var2, var3, Blocks.fire);
         }
     }
 
@@ -87,23 +87,23 @@ public class EntityEnderCrystal extends Entity
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.isEntityInvulnerable())
+        if (isEntityInvulnerable())
         {
             return false;
         }
         else
         {
-            if (!this.isDead && !this.worldObj.isClient)
+            if (!isDead && !worldObj.isClient)
             {
-                this.health = 0;
+                health = 0;
 
-                if (this.health <= 0)
+                if (health <= 0)
                 {
-                    this.setDead();
+                    setDead();
 
-                    if (!this.worldObj.isClient)
+                    if (!worldObj.isClient)
                     {
-                        this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 6.0F, true);
+                        worldObj.createExplosion((Entity)null, posX, posY, posZ, 6.0F, true);
                     }
                 }
             }

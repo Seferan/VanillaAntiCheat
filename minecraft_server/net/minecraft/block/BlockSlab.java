@@ -17,25 +17,25 @@ public abstract class BlockSlab extends Block
     public BlockSlab(boolean p_i45410_1_, Material p_i45410_2_)
     {
         super(p_i45410_2_);
-        this.field_150004_a = p_i45410_1_;
+        field_150004_a = p_i45410_1_;
 
         if (p_i45410_1_)
         {
-            this.opaque = true;
+            opaque = true;
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         }
 
-        this.setLightOpacity(255);
+        setLightOpacity(255);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        if (this.field_150004_a)
+        if (field_150004_a)
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
         else
         {
@@ -43,11 +43,11 @@ public abstract class BlockSlab extends Block
 
             if (var5)
             {
-                this.setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+                setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
             }
             else
             {
-                this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+                setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
             }
         }
     }
@@ -57,30 +57,30 @@ public abstract class BlockSlab extends Block
      */
     public void setBlockBoundsForItemRender()
     {
-        if (this.field_150004_a)
+        if (field_150004_a)
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         }
     }
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        this.setBlockBoundsBasedOnState(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
+        setBlockBoundsBasedOnState(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
     }
 
     public boolean isOpaqueCube()
     {
-        return this.field_150004_a;
+        return field_150004_a;
     }
 
     public int onBlockPlaced(World p_149660_1_, int p_149660_2_, int p_149660_3_, int p_149660_4_, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
     {
-        return this.field_150004_a ? p_149660_9_ : (p_149660_5_ != 0 && (p_149660_5_ == 1 || (double)p_149660_7_ <= 0.5D) ? p_149660_9_ : p_149660_9_ | 8);
+        return field_150004_a ? p_149660_9_ : (p_149660_5_ != 0 && (p_149660_5_ == 1 || p_149660_7_ <= 0.5D) ? p_149660_9_ : p_149660_9_ | 8);
     }
 
     /**
@@ -88,7 +88,7 @@ public abstract class BlockSlab extends Block
      */
     public int quantityDropped(Random p_149745_1_)
     {
-        return this.field_150004_a ? 2 : 1;
+        return field_150004_a ? 2 : 1;
     }
 
     /**
@@ -102,7 +102,7 @@ public abstract class BlockSlab extends Block
 
     public boolean renderAsNormalBlock()
     {
-        return this.field_150004_a;
+        return field_150004_a;
     }
 
     public abstract String func_150002_b(int var1);

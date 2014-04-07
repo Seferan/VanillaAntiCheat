@@ -15,9 +15,9 @@ public class ItemBow extends Item
 
     public ItemBow()
     {
-        this.maxStackSize = 1;
-        this.setMaxDamage(384);
-        this.setCreativeTab(CreativeTabs.tabCombat);
+        maxStackSize = 1;
+        setMaxDamage(384);
+        setCreativeTab(CreativeTabs.tabCombat);
     }
 
     /**
@@ -30,11 +30,11 @@ public class ItemBow extends Item
 
         if (var5 || par3EntityPlayer.inventory.func_146028_b(Items.arrow))
         {
-            int var6 = this.getMaxItemUseDuration(par1ItemStack) - par4;
-            float var7 = (float)var6 / 20.0F;
+            int var6 = getMaxItemUseDuration(par1ItemStack) - par4;
+            float var7 = var6 / 20.0F;
             var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
 
-            if ((double)var7 < 0.1D) { return; }
+            if (var7 < 0.1D) { return; }
 
             if (var7 > 1.0F)
             {
@@ -52,7 +52,7 @@ public class ItemBow extends Item
 
             if (var9 > 0)
             {
-                var8.setDamage(var8.getDamage() + (double)var9 * 0.5D + 0.5D);
+                var8.setDamage(var8.getDamage() + var9 * 0.5D + 0.5D);
             }
 
             int var10 = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);
@@ -116,7 +116,7 @@ public class ItemBow extends Item
     {
         if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.func_146028_b(Items.arrow))
         {
-            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+            par3EntityPlayer.setItemInUse(par1ItemStack, getMaxItemUseDuration(par1ItemStack));
         }
 
         return par1ItemStack;

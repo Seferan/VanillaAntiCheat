@@ -20,7 +20,7 @@ public class S02PacketLoginSuccess extends Packet
 
     public S02PacketLoginSuccess(GameProfile p_i45267_1_)
     {
-        this.field_149602_a = p_i45267_1_;
+        field_149602_a = p_i45267_1_;
     }
 
     /**
@@ -30,7 +30,7 @@ public class S02PacketLoginSuccess extends Packet
     {
         String var2 = p_148837_1_.readStringFromBuffer(36);
         String var3 = p_148837_1_.readStringFromBuffer(16);
-        this.field_149602_a = new GameProfile(var2, var3);
+        field_149602_a = new GameProfile(var2, var3);
     }
 
     /**
@@ -38,8 +38,8 @@ public class S02PacketLoginSuccess extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149602_a.getId());
-        p_148840_1_.writeStringToBuffer(this.field_149602_a.getName());
+        p_148840_1_.writeStringToBuffer(field_149602_a.getId());
+        p_148840_1_.writeStringToBuffer(field_149602_a.getName());
     }
 
     public void func_148833_a(INetHandlerLoginClient p_149601_1_)

@@ -18,16 +18,16 @@ public class InventoryEnderChest extends InventoryBasic
 
     public void func_146031_a(TileEntityEnderChest p_146031_1_)
     {
-        this.associatedChest = p_146031_1_;
+        associatedChest = p_146031_1_;
     }
 
     public void loadInventoryFromNBT(NBTTagList par1NBTTagList)
     {
         int var2;
 
-        for (var2 = 0; var2 < this.getSizeInventory(); ++var2)
+        for (var2 = 0; var2 < getSizeInventory(); ++var2)
         {
-            this.setInventorySlotContents(var2, (ItemStack)null);
+            setInventorySlotContents(var2, (ItemStack)null);
         }
 
         for (var2 = 0; var2 < par1NBTTagList.tagCount(); ++var2)
@@ -35,9 +35,9 @@ public class InventoryEnderChest extends InventoryBasic
             NBTTagCompound var3 = par1NBTTagList.getCompoundTagAt(var2);
             int var4 = var3.getByte("Slot") & 255;
 
-            if (var4 >= 0 && var4 < this.getSizeInventory())
+            if (var4 >= 0 && var4 < getSizeInventory())
             {
-                this.setInventorySlotContents(var4, ItemStack.loadItemStackFromNBT(var3));
+                setInventorySlotContents(var4, ItemStack.loadItemStackFromNBT(var3));
             }
         }
     }
@@ -46,9 +46,9 @@ public class InventoryEnderChest extends InventoryBasic
     {
         NBTTagList var1 = new NBTTagList();
 
-        for (int var2 = 0; var2 < this.getSizeInventory(); ++var2)
+        for (int var2 = 0; var2 < getSizeInventory(); ++var2)
         {
-            ItemStack var3 = this.getStackInSlot(var2);
+            ItemStack var3 = getStackInSlot(var2);
 
             if (var3 != null)
             {
@@ -68,14 +68,14 @@ public class InventoryEnderChest extends InventoryBasic
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.associatedChest != null && !this.associatedChest.func_145971_a(par1EntityPlayer) ? false : super.isUseableByPlayer(par1EntityPlayer);
+        return associatedChest != null && !associatedChest.func_145971_a(par1EntityPlayer) ? false : super.isUseableByPlayer(par1EntityPlayer);
     }
 
     public void openChest()
     {
-        if (this.associatedChest != null)
+        if (associatedChest != null)
         {
-            this.associatedChest.func_145969_a();
+            associatedChest.func_145969_a();
         }
 
         super.openChest();
@@ -83,12 +83,12 @@ public class InventoryEnderChest extends InventoryBasic
 
     public void closeChest()
     {
-        if (this.associatedChest != null)
+        if (associatedChest != null)
         {
-            this.associatedChest.func_145970_b();
+            associatedChest.func_145970_b();
         }
 
         super.closeChest();
-        this.associatedChest = null;
+        associatedChest = null;
     }
 }

@@ -13,7 +13,7 @@ public class RecipesWeapons
 
     public RecipesWeapons()
     {
-        this.recipeItems = new Object[][] { {Blocks.planks, Blocks.cobblestone, Items.iron_ingot, Items.diamond, Items.gold_ingot}, {Items.wooden_sword, Items.stone_sword, Items.iron_sword, Items.diamond_sword, Items.golden_sword}};
+        recipeItems = new Object[][] { {Blocks.planks, Blocks.cobblestone, Items.iron_ingot, Items.diamond, Items.gold_ingot}, {Items.wooden_sword, Items.stone_sword, Items.iron_sword, Items.diamond_sword, Items.golden_sword}};
     }
 
     /**
@@ -21,14 +21,14 @@ public class RecipesWeapons
      */
     public void addRecipes(CraftingManager par1CraftingManager)
     {
-        for (int var2 = 0; var2 < this.recipeItems[0].length; ++var2)
+        for (int var2 = 0; var2 < recipeItems[0].length; ++var2)
         {
-            Object var3 = this.recipeItems[0][var2];
+            Object var3 = recipeItems[0][var2];
 
-            for (int var4 = 0; var4 < this.recipeItems.length - 1; ++var4)
+            for (int var4 = 0; var4 < recipeItems.length - 1; ++var4)
             {
-                Item var5 = (Item)this.recipeItems[var4 + 1][var2];
-                par1CraftingManager.addRecipe(new ItemStack(var5), new Object[] {this.recipePatterns[var4], '#', Items.stick, 'X', var3});
+                Item var5 = (Item)recipeItems[var4 + 1][var2];
+                par1CraftingManager.addRecipe(new ItemStack(var5), new Object[] {recipePatterns[var4], '#', Items.stick, 'X', var3});
             }
         }
 

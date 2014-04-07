@@ -11,8 +11,8 @@ public class ItemBucketMilk extends Item
 
     public ItemBucketMilk()
     {
-        this.setMaxStackSize(1);
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        setMaxStackSize(1);
+        setCreativeTab(CreativeTabs.tabMisc);
     }
 
     public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
@@ -53,7 +53,7 @@ public class ItemBucketMilk extends Item
      */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
-        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        par3EntityPlayer.setItemInUse(par1ItemStack, getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
 }

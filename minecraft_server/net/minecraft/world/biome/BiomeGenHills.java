@@ -23,23 +23,23 @@ public class BiomeGenHills extends BiomeGenBase
     protected BiomeGenHills(int p_i45373_1_, boolean p_i45373_2_)
     {
         super(p_i45373_1_);
-        this.theWorldGenerator = new WorldGenMinable(Blocks.monster_egg, 8);
-        this.field_150634_aD = new WorldGenTaiga2(false);
-        this.field_150635_aE = 0;
-        this.field_150636_aF = 1;
-        this.field_150637_aG = 2;
-        this.field_150638_aH = this.field_150635_aE;
+        theWorldGenerator = new WorldGenMinable(Blocks.monster_egg, 8);
+        field_150634_aD = new WorldGenTaiga2(false);
+        field_150635_aE = 0;
+        field_150636_aF = 1;
+        field_150637_aG = 2;
+        field_150638_aH = field_150635_aE;
 
         if (p_i45373_2_)
         {
-            this.theBiomeDecorator.treesPerChunk = 3;
-            this.field_150638_aH = this.field_150636_aF;
+            theBiomeDecorator.treesPerChunk = 3;
+            field_150638_aH = field_150636_aF;
         }
     }
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(p_150567_1_.nextInt(3) > 0 ? this.field_150634_aD : super.func_150567_a(p_150567_1_));
+        return p_150567_1_.nextInt(3) > 0 ? field_150634_aD : super.func_150567_a(p_150567_1_);
     }
 
     public void decorate(World par1World, Random par2Random, int par3, int par4)
@@ -67,42 +67,42 @@ public class BiomeGenHills extends BiomeGenBase
             var6 = par3 + par2Random.nextInt(16);
             var7 = par2Random.nextInt(64);
             var8 = par4 + par2Random.nextInt(16);
-            this.theWorldGenerator.generate(par1World, par2Random, var6, var7, var8);
+            theWorldGenerator.generate(par1World, par2Random, var6, var7, var8);
         }
     }
 
     public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
     {
-        this.topBlock = Blocks.grass;
-        this.field_150604_aj = 0;
-        this.fillerBlock = Blocks.dirt;
+        topBlock = Blocks.grass;
+        field_150604_aj = 0;
+        fillerBlock = Blocks.dirt;
 
-        if ((p_150573_7_ < -1.0D || p_150573_7_ > 2.0D) && this.field_150638_aH == this.field_150637_aG)
+        if ((p_150573_7_ < -1.0D || p_150573_7_ > 2.0D) && field_150638_aH == field_150637_aG)
         {
-            this.topBlock = Blocks.gravel;
-            this.fillerBlock = Blocks.gravel;
+            topBlock = Blocks.gravel;
+            fillerBlock = Blocks.gravel;
         }
-        else if (p_150573_7_ > 1.0D && this.field_150638_aH != this.field_150636_aF)
+        else if (p_150573_7_ > 1.0D && field_150638_aH != field_150636_aF)
         {
-            this.topBlock = Blocks.stone;
-            this.fillerBlock = Blocks.stone;
+            topBlock = Blocks.stone;
+            fillerBlock = Blocks.stone;
         }
 
-        this.func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
     }
 
     private BiomeGenHills func_150633_b(BiomeGenBase p_150633_1_)
     {
-        this.field_150638_aH = this.field_150637_aG;
-        this.func_150557_a(p_150633_1_.color, true);
-        this.setBiomeName(p_150633_1_.biomeName + " M");
-        this.func_150570_a(new BiomeGenBase.Height(p_150633_1_.minHeight, p_150633_1_.maxHeight));
-        this.setTemperatureRainfall(p_150633_1_.temperature, p_150633_1_.rainfall);
+        field_150638_aH = field_150637_aG;
+        func_150557_a(p_150633_1_.color, true);
+        setBiomeName(p_150633_1_.biomeName + " M");
+        func_150570_a(new BiomeGenBase.Height(p_150633_1_.minHeight, p_150633_1_.maxHeight));
+        setTemperatureRainfall(p_150633_1_.temperature, p_150633_1_.rainfall);
         return this;
     }
 
     protected BiomeGenBase func_150566_k()
     {
-        return (new BiomeGenHills(this.biomeID + 128, false)).func_150633_b(this);
+        return (new BiomeGenHills(biomeID + 128, false)).func_150633_b(this);
     }
 }

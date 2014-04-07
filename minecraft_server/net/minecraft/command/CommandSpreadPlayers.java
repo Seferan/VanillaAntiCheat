@@ -88,7 +88,7 @@ public class CommandSpreadPlayers extends CommandBase
                 if (var13.isEmpty()) { throw new PlayerNotFoundException(); }
 
                 par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.spreadplayers.spreading." + (var12 ? "teams" : "players"), new Object[] {Integer.valueOf(var13.size()), Double.valueOf(var10), Double.valueOf(var4), Double.valueOf(var6), Double.valueOf(var8)}));
-                this.func_110669_a(par1ICommandSender, var13, new CommandSpreadPlayers.Position(var4, var6), var8, var10, ((EntityLivingBase)var13.get(0)).worldObj, var12);
+                func_110669_a(par1ICommandSender, var13, new CommandSpreadPlayers.Position(var4, var6), var8, var10, ((EntityLivingBase)var13.get(0)).worldObj, var12);
                 return;
             }
         }
@@ -101,9 +101,9 @@ public class CommandSpreadPlayers extends CommandBase
         double var13 = par3CommandSpreadPlayersPosition.field_111100_b - par6;
         double var15 = par3CommandSpreadPlayersPosition.field_111101_a + par6;
         double var17 = par3CommandSpreadPlayersPosition.field_111100_b + par6;
-        CommandSpreadPlayers.Position[] var19 = this.func_110670_a(var10, par9 ? this.func_110667_a(par2List) : par2List.size(), var11, var13, var15, var17);
-        int var20 = this.func_110668_a(par3CommandSpreadPlayersPosition, par4, par8World, var10, var11, var13, var15, var17, var19, par9);
-        double var21 = this.func_110671_a(par2List, par8World, var19, par9);
+        CommandSpreadPlayers.Position[] var19 = func_110670_a(var10, par9 ? func_110667_a(par2List) : par2List.size(), var11, var13, var15, var17);
+        int var20 = func_110668_a(par3CommandSpreadPlayersPosition, par4, par8World, var10, var11, var13, var15, var17, var19, par9);
+        double var21 = func_110671_a(par2List, par8World, var19, par9);
         notifyAdmins(par1ICommandSender, "commands.spreadplayers.success." + (par9 ? "teams" : "players"), new Object[] {Integer.valueOf(var19.length), Double.valueOf(par3CommandSpreadPlayersPosition.field_111101_a), Double.valueOf(par3CommandSpreadPlayersPosition.field_111100_b)});
 
         if (var19.length > 1)
@@ -172,9 +172,9 @@ public class CommandSpreadPlayers extends CommandBase
 
                 if (var22 > 0)
                 {
-                    var23.field_111101_a /= (double)var22;
-                    var23.field_111100_b /= (double)var22;
-                    double var30 = (double)var23.func_111096_b();
+                    var23.field_111101_a /= var22;
+                    var23.field_111100_b /= var22;
+                    double var30 = var23.func_111096_b();
 
                     if (var30 > 0.0D)
                     {
@@ -250,7 +250,7 @@ public class CommandSpreadPlayers extends CommandBase
                 var11 = par3ArrayOfCommandSpreadPlayersPosition[var7++];
             }
 
-            var10.setPositionAndUpdate((double)((float)MathHelper.floor_double(var11.field_111101_a) + 0.5F), (double)var11.func_111092_a(par2World), (double)MathHelper.floor_double(var11.field_111100_b) + 0.5D);
+            var10.setPositionAndUpdate(MathHelper.floor_double(var11.field_111101_a) + 0.5F, var11.func_111092_a(par2World), MathHelper.floor_double(var11.field_111100_b) + 0.5D);
             double var17 = Double.MAX_VALUE;
 
             for (int var14 = 0; var14 < par3ArrayOfCommandSpreadPlayersPosition.length; ++var14)
@@ -265,7 +265,7 @@ public class CommandSpreadPlayers extends CommandBase
             var5 += var17;
         }
 
-        var5 /= (double)par1List.size();
+        var5 /= par1List.size();
         return var5;
     }
 
@@ -295,58 +295,58 @@ public class CommandSpreadPlayers extends CommandBase
 
         Position(double par1, double par3)
         {
-            this.field_111101_a = par1;
-            this.field_111100_b = par3;
+            field_111101_a = par1;
+            field_111100_b = par3;
         }
 
         double func_111099_a(CommandSpreadPlayers.Position par1CommandSpreadPlayersPosition)
         {
-            double var2 = this.field_111101_a - par1CommandSpreadPlayersPosition.field_111101_a;
-            double var4 = this.field_111100_b - par1CommandSpreadPlayersPosition.field_111100_b;
+            double var2 = field_111101_a - par1CommandSpreadPlayersPosition.field_111101_a;
+            double var4 = field_111100_b - par1CommandSpreadPlayersPosition.field_111100_b;
             return Math.sqrt(var2 * var2 + var4 * var4);
         }
 
         void func_111095_a()
         {
-            double var1 = (double)this.func_111096_b();
-            this.field_111101_a /= var1;
-            this.field_111100_b /= var1;
+            double var1 = func_111096_b();
+            field_111101_a /= var1;
+            field_111100_b /= var1;
         }
 
         float func_111096_b()
         {
-            return MathHelper.sqrt_double(this.field_111101_a * this.field_111101_a + this.field_111100_b * this.field_111100_b);
+            return MathHelper.sqrt_double(field_111101_a * field_111101_a + field_111100_b * field_111100_b);
         }
 
         public void func_111094_b(CommandSpreadPlayers.Position par1CommandSpreadPlayersPosition)
         {
-            this.field_111101_a -= par1CommandSpreadPlayersPosition.field_111101_a;
-            this.field_111100_b -= par1CommandSpreadPlayersPosition.field_111100_b;
+            field_111101_a -= par1CommandSpreadPlayersPosition.field_111101_a;
+            field_111100_b -= par1CommandSpreadPlayersPosition.field_111100_b;
         }
 
         public boolean func_111093_a(double par1, double par3, double par5, double par7)
         {
             boolean var9 = false;
 
-            if (this.field_111101_a < par1)
+            if (field_111101_a < par1)
             {
-                this.field_111101_a = par1;
+                field_111101_a = par1;
                 var9 = true;
             }
-            else if (this.field_111101_a > par5)
+            else if (field_111101_a > par5)
             {
-                this.field_111101_a = par5;
+                field_111101_a = par5;
                 var9 = true;
             }
 
-            if (this.field_111100_b < par3)
+            if (field_111100_b < par3)
             {
-                this.field_111100_b = par3;
+                field_111100_b = par3;
                 var9 = true;
             }
-            else if (this.field_111100_b > par7)
+            else if (field_111100_b > par7)
             {
-                this.field_111100_b = par7;
+                field_111100_b = par7;
                 var9 = true;
             }
 
@@ -355,8 +355,8 @@ public class CommandSpreadPlayers extends CommandBase
 
         public int func_111092_a(World par1World)
         {
-            int var2 = MathHelper.floor_double(this.field_111101_a);
-            int var3 = MathHelper.floor_double(this.field_111100_b);
+            int var2 = MathHelper.floor_double(field_111101_a);
+            int var3 = MathHelper.floor_double(field_111100_b);
 
             for (int var4 = 256; var4 > 0; --var4)
             {
@@ -368,8 +368,8 @@ public class CommandSpreadPlayers extends CommandBase
 
         public boolean func_111098_b(World par1World)
         {
-            int var2 = MathHelper.floor_double(this.field_111101_a);
-            int var3 = MathHelper.floor_double(this.field_111100_b);
+            int var2 = MathHelper.floor_double(field_111101_a);
+            int var3 = MathHelper.floor_double(field_111100_b);
             short var4 = 256;
 
             if (var4 <= 0)
@@ -385,8 +385,8 @@ public class CommandSpreadPlayers extends CommandBase
 
         public void func_111097_a(Random par1Random, double par2, double par4, double par6, double par8)
         {
-            this.field_111101_a = MathHelper.getRandomDoubleInRange(par1Random, par2, par6);
-            this.field_111100_b = MathHelper.getRandomDoubleInRange(par1Random, par4, par8);
+            field_111101_a = MathHelper.getRandomDoubleInRange(par1Random, par2, par6);
+            field_111100_b = MathHelper.getRandomDoubleInRange(par1Random, par4, par8);
         }
     }
 }

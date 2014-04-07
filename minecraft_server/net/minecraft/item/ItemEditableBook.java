@@ -11,7 +11,7 @@ public class ItemEditableBook extends Item
 
     public ItemEditableBook()
     {
-        this.setMaxStackSize(1);
+        setMaxStackSize(1);
     }
 
     public static boolean validBookTagContents(NBTTagCompound par0NBTTagCompound)

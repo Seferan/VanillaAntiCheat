@@ -20,16 +20,16 @@ public class Path
         }
         else
         {
-            if (this.count == this.pathPoints.length)
+            if (count == pathPoints.length)
             {
-                PathPoint[] var2 = new PathPoint[this.count << 1];
-                System.arraycopy(this.pathPoints, 0, var2, 0, this.count);
-                this.pathPoints = var2;
+                PathPoint[] var2 = new PathPoint[count << 1];
+                System.arraycopy(pathPoints, 0, var2, 0, count);
+                pathPoints = var2;
             }
 
-            this.pathPoints[this.count] = par1PathPoint;
-            par1PathPoint.index = this.count;
-            this.sortBack(this.count++);
+            pathPoints[count] = par1PathPoint;
+            par1PathPoint.index = count;
+            sortBack(count++);
             return par1PathPoint;
         }
     }
@@ -39,7 +39,7 @@ public class Path
      */
     public void clearPath()
     {
-        this.count = 0;
+        count = 0;
     }
 
     /**
@@ -47,13 +47,13 @@ public class Path
      */
     public PathPoint dequeue()
     {
-        PathPoint var1 = this.pathPoints[0];
-        this.pathPoints[0] = this.pathPoints[--this.count];
-        this.pathPoints[this.count] = null;
+        PathPoint var1 = pathPoints[0];
+        pathPoints[0] = pathPoints[--count];
+        pathPoints[count] = null;
 
-        if (this.count > 0)
+        if (count > 0)
         {
-            this.sortForward(0);
+            sortForward(0);
         }
 
         var1.index = -1;
@@ -70,11 +70,11 @@ public class Path
 
         if (par2 < var3)
         {
-            this.sortBack(par1PathPoint.index);
+            sortBack(par1PathPoint.index);
         }
         else
         {
-            this.sortForward(par1PathPoint.index);
+            sortForward(par1PathPoint.index);
         }
     }
 
@@ -83,24 +83,24 @@ public class Path
      */
     private void sortBack(int par1)
     {
-        PathPoint var2 = this.pathPoints[par1];
+        PathPoint var2 = pathPoints[par1];
         int var4;
 
         for (float var3 = var2.distanceToTarget; par1 > 0; par1 = var4)
         {
             var4 = par1 - 1 >> 1;
-            PathPoint var5 = this.pathPoints[var4];
+                PathPoint var5 = pathPoints[var4];
 
-            if (var3 >= var5.distanceToTarget)
-            {
-                break;
-            }
+                if (var3 >= var5.distanceToTarget)
+                {
+                    break;
+                }
 
-            this.pathPoints[par1] = var5;
-            var5.index = par1;
+                pathPoints[par1] = var5;
+                var5.index = par1;
         }
 
-        this.pathPoints[par1] = var2;
+        pathPoints[par1] = var2;
         var2.index = par1;
     }
 
@@ -109,7 +109,7 @@ public class Path
      */
     private void sortForward(int par1)
     {
-        PathPoint var2 = this.pathPoints[par1];
+        PathPoint var2 = pathPoints[par1];
         float var3 = var2.distanceToTarget;
 
         while (true)
@@ -117,24 +117,24 @@ public class Path
             int var4 = 1 + (par1 << 1);
             int var5 = var4 + 1;
 
-            if (var4 >= this.count)
+            if (var4 >= count)
             {
                 break;
             }
 
-            PathPoint var6 = this.pathPoints[var4];
+            PathPoint var6 = pathPoints[var4];
             float var7 = var6.distanceToTarget;
             PathPoint var8;
             float var9;
 
-            if (var5 >= this.count)
+            if (var5 >= count)
             {
                 var8 = null;
                 var9 = Float.POSITIVE_INFINITY;
             }
             else
             {
-                var8 = this.pathPoints[var5];
+                var8 = pathPoints[var5];
                 var9 = var8.distanceToTarget;
             }
 
@@ -145,7 +145,7 @@ public class Path
                     break;
                 }
 
-                this.pathPoints[par1] = var6;
+                pathPoints[par1] = var6;
                 var6.index = par1;
                 par1 = var4;
             }
@@ -156,13 +156,13 @@ public class Path
                     break;
                 }
 
-                this.pathPoints[par1] = var8;
+                pathPoints[par1] = var8;
                 var8.index = par1;
                 par1 = var5;
             }
         }
 
-        this.pathPoints[par1] = var2;
+        pathPoints[par1] = var2;
         var2.index = par1;
     }
 
@@ -171,6 +171,6 @@ public class Path
      */
     public boolean isPathEmpty()
     {
-        return this.count == 0;
+        return count == 0;
     }
 }

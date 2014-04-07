@@ -30,10 +30,10 @@ public class ItemPotion extends Item
 
     public ItemPotion()
     {
-        this.setMaxStackSize(1);
-        this.setHasSubtypes(true);
-        this.setMaxDamage(0);
-        this.setCreativeTab(CreativeTabs.tabBrewing);
+        setMaxStackSize(1);
+        setHasSubtypes(true);
+        setMaxDamage(0);
+        setCreativeTab(CreativeTabs.tabBrewing);
     }
 
     /**
@@ -61,12 +61,12 @@ public class ItemPotion extends Item
         }
         else
         {
-            List var2 = (List)this.effectCache.get(Integer.valueOf(par1ItemStack.getItemDamage()));
+            List var2 = (List)effectCache.get(Integer.valueOf(par1ItemStack.getItemDamage()));
 
             if (var2 == null)
             {
                 var2 = PotionHelper.getPotionEffects(par1ItemStack.getItemDamage(), false);
-                this.effectCache.put(Integer.valueOf(par1ItemStack.getItemDamage()), var2);
+                effectCache.put(Integer.valueOf(par1ItemStack.getItemDamage()), var2);
             }
 
             return var2;
@@ -78,12 +78,12 @@ public class ItemPotion extends Item
      */
     public List getEffects(int par1)
     {
-        List var2 = (List)this.effectCache.get(Integer.valueOf(par1));
+        List var2 = (List)effectCache.get(Integer.valueOf(par1));
 
         if (var2 == null)
         {
             var2 = PotionHelper.getPotionEffects(par1, false);
-            this.effectCache.put(Integer.valueOf(par1), var2);
+            effectCache.put(Integer.valueOf(par1), var2);
         }
 
         return var2;
@@ -163,7 +163,7 @@ public class ItemPotion extends Item
         }
         else
         {
-            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+            par3EntityPlayer.setItemInUse(par1ItemStack, getMaxItemUseDuration(par1ItemStack));
             return par1ItemStack;
         }
     }

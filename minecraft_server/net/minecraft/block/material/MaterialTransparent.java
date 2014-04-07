@@ -7,7 +7,7 @@ public class MaterialTransparent extends Material
     public MaterialTransparent(MapColor par1MapColor)
     {
         super(par1MapColor);
-        this.setReplaceable();
+        setReplaceable();
     }
 
     public boolean isSolid()

@@ -47,9 +47,9 @@ public class CommandTestForBlock extends CommandBase
             int var3 = par1ICommandSender.getCommandSenderPosition().posX;
             int var4 = par1ICommandSender.getCommandSenderPosition().posY;
             int var5 = par1ICommandSender.getCommandSenderPosition().posZ;
-            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var3, par2ArrayOfStr[0]));
-            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var4, par2ArrayOfStr[1]));
-            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var5, par2ArrayOfStr[2]));
+            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender, var3, par2ArrayOfStr[0]));
+            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender, var4, par2ArrayOfStr[1]));
+            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender, var5, par2ArrayOfStr[2]));
             Block var6 = Block.getBlockFromName(par2ArrayOfStr[3]);
 
             if (var6 == null)
@@ -119,7 +119,7 @@ public class CommandTestForBlock extends CommandBase
                             NBTTagCompound var13 = new NBTTagCompound();
                             var17.writeToNBT(var13);
 
-                            if (!this.func_147181_a(var9, var13)) { throw new CommandException("commands.testforblock.failed.nbt", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5)}); }
+                            if (!func_147181_a(var9, var13)) { throw new CommandException("commands.testforblock.failed.nbt", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5)}); }
                         }
 
                         par1ICommandSender.addChatMessage(new ChatComponentTranslation("commands.testforblock.success", new Object[] {Integer.valueOf(var3), Integer.valueOf(var4), Integer.valueOf(var5)}));
@@ -165,7 +165,7 @@ public class CommandTestForBlock extends CommandBase
 
                 var6 = (String)var5.next();
                 var7 = var3.getTag(var6);
-            } while (this.func_147181_a(var7, var4.getTag(var6)));
+            } while (func_147181_a(var7, var4.getTag(var6)));
 
             return false;
         }

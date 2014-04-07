@@ -19,8 +19,8 @@ public class EntityMinecartCommandBlock extends EntityMinecart
 
         public void func_145756_e()
         {
-            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(23, this.func_145753_i());
-            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(this.func_145749_h()));
+            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(23, func_145753_i());
+            EntityMinecartCommandBlock.this.getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(func_145749_h()));
         }
 
         public ChunkCoordinates getCommandSenderPosition()
@@ -49,8 +49,8 @@ public class EntityMinecartCommandBlock extends EntityMinecart
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataWatcher().addObject(23, "");
-        this.getDataWatcher().addObject(24, "");
+        getDataWatcher().addObject(23, "");
+        getDataWatcher().addObject(24, "");
     }
 
     /**
@@ -59,9 +59,9 @@ public class EntityMinecartCommandBlock extends EntityMinecart
     protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.field_145824_a.func_145759_b(par1NBTTagCompound);
-        this.getDataWatcher().updateObject(23, this.func_145822_e().func_145753_i());
-        this.getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(this.func_145822_e().func_145749_h()));
+        field_145824_a.func_145759_b(par1NBTTagCompound);
+        getDataWatcher().updateObject(23, func_145822_e().func_145753_i());
+        getDataWatcher().updateObject(24, IChatComponent.Serializer.func_150696_a(func_145822_e().func_145749_h()));
     }
 
     /**
@@ -70,7 +70,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        this.field_145824_a.func_145758_a(par1NBTTagCompound);
+        field_145824_a.func_145758_a(par1NBTTagCompound);
     }
 
     public int getMinecartType()
@@ -85,7 +85,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
 
     public CommandBlockLogic func_145822_e()
     {
-        return this.field_145824_a;
+        return field_145824_a;
     }
 
     /**
@@ -94,10 +94,10 @@ public class EntityMinecartCommandBlock extends EntityMinecart
      */
     public void onActivatorRailPass(int par1, int par2, int par3, boolean par4)
     {
-        if (par4 && this.ticksExisted - this.field_145823_b >= 4)
+        if (par4 && ticksExisted - field_145823_b >= 4)
         {
-            this.func_145822_e().func_145755_a(this.worldObj);
-            this.field_145823_b = this.ticksExisted;
+            func_145822_e().func_145755_a(worldObj);
+            field_145823_b = ticksExisted;
         }
     }
 
@@ -106,9 +106,9 @@ public class EntityMinecartCommandBlock extends EntityMinecart
      */
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
-        if (this.worldObj.isClient)
+        if (worldObj.isClient)
         {
-            par1EntityPlayer.func_146095_a(this.func_145822_e());
+            par1EntityPlayer.func_146095_a(func_145822_e());
         }
 
         return super.interactFirst(par1EntityPlayer);
@@ -122,7 +122,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
         {
             try
             {
-                this.field_145824_a.func_145750_b(IChatComponent.Serializer.func_150699_a(this.getDataWatcher().getWatchableObjectString(24)));
+                field_145824_a.func_145750_b(IChatComponent.Serializer.func_150699_a(getDataWatcher().getWatchableObjectString(24)));
             }
             catch (Throwable var3)
             {
@@ -131,7 +131,7 @@ public class EntityMinecartCommandBlock extends EntityMinecart
         }
         else if (p_145781_1_ == 23)
         {
-            this.field_145824_a.func_145752_a(this.getDataWatcher().getWatchableObjectString(23));
+            field_145824_a.func_145752_a(getDataWatcher().getWatchableObjectString(23));
         }
     }
 }

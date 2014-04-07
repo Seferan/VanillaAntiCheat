@@ -15,14 +15,14 @@ public class WorldGenForest extends WorldGenAbstractTree
     public WorldGenForest(boolean p_i45449_1_, boolean p_i45449_2_)
     {
         super(p_i45449_1_);
-        this.field_150531_a = p_i45449_2_;
+        field_150531_a = p_i45449_2_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
         int var6 = par2Random.nextInt(3) + 5;
 
-        if (this.field_150531_a)
+        if (field_150531_a)
         {
             var6 += par2Random.nextInt(7);
         }
@@ -56,7 +56,7 @@ public class WorldGenForest extends WorldGenAbstractTree
                         {
                             Block var12 = par1World.getBlock(var10, var8, var11);
 
-                            if (!this.func_150523_a(var12))
+                            if (!func_150523_a(var12))
                             {
                                 var7 = false;
                             }
@@ -79,7 +79,7 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                 if ((var17 == Blocks.grass || var17 == Blocks.dirt || var17 == Blocks.farmland) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
+                    func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
                     int var19;
 
                     for (var19 = par4 - 3 + var6; var19 <= par4 + var6; ++var19)
@@ -101,7 +101,7 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                                     if (var16.getMaterial() == Material.air || var16.getMaterial() == Material.field_151584_j)
                                     {
-                                        this.func_150516_a(par1World, var20, var19, var14, Blocks.leaves, 2);
+                                        func_150516_a(par1World, var20, var19, var14, Blocks.leaves, 2);
                                     }
                                 }
                             }
@@ -114,7 +114,7 @@ public class WorldGenForest extends WorldGenAbstractTree
 
                         if (var18.getMaterial() == Material.air || var18.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, par3, par4 + var19, par5, Blocks.log, 2);
+                            func_150516_a(par1World, par3, par4 + var19, par5, Blocks.log, 2);
                         }
                     }
 

@@ -17,7 +17,7 @@ public class BlockPressurePlate extends BlockBasePressurePlate
     protected BlockPressurePlate(String p_i45418_1_, Material p_i45418_2_, BlockPressurePlate.Sensitivity p_i45418_3_)
     {
         super(p_i45418_1_, p_i45418_2_);
-        this.field_150069_a = p_i45418_3_;
+        field_150069_a = p_i45418_3_;
     }
 
     protected int func_150066_d(int p_150066_1_)
@@ -34,19 +34,19 @@ public class BlockPressurePlate extends BlockBasePressurePlate
     {
         List var5 = null;
 
-        if (this.field_150069_a == BlockPressurePlate.Sensitivity.everything)
+        if (field_150069_a == BlockPressurePlate.Sensitivity.everything)
         {
-            var5 = p_150065_1_.getEntitiesWithinAABBExcludingEntity((Entity)null, this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
+            var5 = p_150065_1_.getEntitiesWithinAABBExcludingEntity((Entity)null, func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
         }
 
-        if (this.field_150069_a == BlockPressurePlate.Sensitivity.mobs)
+        if (field_150069_a == BlockPressurePlate.Sensitivity.mobs)
         {
-            var5 = p_150065_1_.getEntitiesWithinAABB(EntityLivingBase.class, this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
+            var5 = p_150065_1_.getEntitiesWithinAABB(EntityLivingBase.class, func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
         }
 
-        if (this.field_150069_a == BlockPressurePlate.Sensitivity.players)
+        if (field_150069_a == BlockPressurePlate.Sensitivity.players)
         {
-            var5 = p_150065_1_.getEntitiesWithinAABB(EntityPlayer.class, this.func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
+            var5 = p_150065_1_.getEntitiesWithinAABB(EntityPlayer.class, func_150061_a(p_150065_2_, p_150065_3_, p_150065_4_));
         }
 
         if (var5 != null && !var5.isEmpty())

@@ -11,7 +11,7 @@ public class BlockWood extends Block
     public BlockWood()
     {
         super(Material.wood);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

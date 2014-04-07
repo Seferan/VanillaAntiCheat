@@ -16,8 +16,8 @@ public class EntityAIFollowGolem extends EntityAIBase
 
     public EntityAIFollowGolem(EntityVillager par1EntityVillager)
     {
-        this.theVillager = par1EntityVillager;
-        this.setMutexBits(3);
+        theVillager = par1EntityVillager;
+        setMutexBits(3);
     }
 
     /**
@@ -25,17 +25,17 @@ public class EntityAIFollowGolem extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.theVillager.getGrowingAge() >= 0)
+        if (theVillager.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if (!this.theVillager.worldObj.isDaytime())
+        else if (!theVillager.worldObj.isDaytime())
         {
             return false;
         }
         else
         {
-            List var1 = this.theVillager.worldObj.getEntitiesWithinAABB(EntityIronGolem.class, this.theVillager.boundingBox.expand(6.0D, 2.0D, 6.0D));
+            List var1 = theVillager.worldObj.getEntitiesWithinAABB(EntityIronGolem.class, theVillager.boundingBox.expand(6.0D, 2.0D, 6.0D));
 
             if (var1.isEmpty())
             {
@@ -51,12 +51,12 @@ public class EntityAIFollowGolem extends EntityAIBase
 
                     if (var3.getHoldRoseTick() > 0)
                     {
-                        this.theGolem = var3;
+                        theGolem = var3;
                         break;
                     }
                 }
 
-                return this.theGolem != null;
+                return theGolem != null;
             }
         }
     }
@@ -66,7 +66,7 @@ public class EntityAIFollowGolem extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return this.theGolem.getHoldRoseTick() > 0;
+        return theGolem.getHoldRoseTick() > 0;
     }
 
     /**
@@ -74,9 +74,9 @@ public class EntityAIFollowGolem extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.takeGolemRoseTick = this.theVillager.getRNG().nextInt(320);
-        this.tookGolemRose = false;
-        this.theGolem.getNavigator().clearPathEntity();
+        takeGolemRoseTick = theVillager.getRNG().nextInt(320);
+        tookGolemRose = false;
+        theGolem.getNavigator().clearPathEntity();
     }
 
     /**
@@ -84,8 +84,8 @@ public class EntityAIFollowGolem extends EntityAIBase
      */
     public void resetTask()
     {
-        this.theGolem = null;
-        this.theVillager.getNavigator().clearPathEntity();
+        theGolem = null;
+        theVillager.getNavigator().clearPathEntity();
     }
 
     /**
@@ -93,18 +93,18 @@ public class EntityAIFollowGolem extends EntityAIBase
      */
     public void updateTask()
     {
-        this.theVillager.getLookHelper().setLookPositionWithEntity(this.theGolem, 30.0F, 30.0F);
+        theVillager.getLookHelper().setLookPositionWithEntity(theGolem, 30.0F, 30.0F);
 
-        if (this.theGolem.getHoldRoseTick() == this.takeGolemRoseTick)
+        if (theGolem.getHoldRoseTick() == takeGolemRoseTick)
         {
-            this.theVillager.getNavigator().tryMoveToEntityLiving(this.theGolem, 0.5D);
-            this.tookGolemRose = true;
+            theVillager.getNavigator().tryMoveToEntityLiving(theGolem, 0.5D);
+            tookGolemRose = true;
         }
 
-        if (this.tookGolemRose && this.theVillager.getDistanceSqToEntity(this.theGolem) < 4.0D)
+        if (tookGolemRose && theVillager.getDistanceSqToEntity(theGolem) < 4.0D)
         {
-            this.theGolem.setHoldingRose(false);
-            this.theVillager.getNavigator().clearPathEntity();
+            theGolem.setHoldingRose(false);
+            theVillager.getNavigator().clearPathEntity();
         }
     }
 }

@@ -20,8 +20,8 @@ public class S0BPacketAnimation extends Packet
 
     public S0BPacketAnimation(Entity p_i45172_1_, int p_i45172_2_)
     {
-        this.field_148981_a = p_i45172_1_.getEntityId();
-        this.field_148980_b = p_i45172_2_;
+        field_148981_a = p_i45172_1_.getEntityId();
+        field_148980_b = p_i45172_2_;
     }
 
     /**
@@ -29,8 +29,8 @@ public class S0BPacketAnimation extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148981_a = p_148837_1_.readVarIntFromBuffer();
-        this.field_148980_b = p_148837_1_.readUnsignedByte();
+        field_148981_a = p_148837_1_.readVarIntFromBuffer();
+        field_148980_b = p_148837_1_.readUnsignedByte();
     }
 
     /**
@@ -38,8 +38,8 @@ public class S0BPacketAnimation extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeVarIntToBuffer(this.field_148981_a);
-        p_148840_1_.writeByte(this.field_148980_b);
+        p_148840_1_.writeVarIntToBuffer(field_148981_a);
+        p_148840_1_.writeByte(field_148980_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148979_1_)
@@ -53,7 +53,7 @@ public class S0BPacketAnimation extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d, type=%d", new Object[] {Integer.valueOf(this.field_148981_a), Integer.valueOf(this.field_148980_b)});
+        return String.format("id=%d, type=%d", new Object[] {Integer.valueOf(field_148981_a), Integer.valueOf(field_148980_b)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

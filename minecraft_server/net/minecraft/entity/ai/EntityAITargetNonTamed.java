@@ -10,7 +10,7 @@ public class EntityAITargetNonTamed extends EntityAINearestAttackableTarget
     public EntityAITargetNonTamed(EntityTameable par1EntityTameable, Class par2Class, int par3, boolean par4)
     {
         super(par1EntityTameable, par2Class, par3, par4);
-        this.theTameable = par1EntityTameable;
+        theTameable = par1EntityTameable;
     }
 
     /**
@@ -18,6 +18,6 @@ public class EntityAITargetNonTamed extends EntityAINearestAttackableTarget
      */
     public boolean shouldExecute()
     {
-        return !this.theTameable.isTamed() && super.shouldExecute();
+        return !theTameable.isTamed() && super.shouldExecute();
     }
 }

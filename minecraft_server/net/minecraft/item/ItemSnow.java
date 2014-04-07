@@ -38,9 +38,9 @@ public class ItemSnow extends ItemBlockWithMetadata
                 int var12 = par3World.getBlockMetadata(par4, par5, par6);
                 int var13 = var12 & 7;
 
-                if (var13 <= 6 && par3World.checkNoEntityCollision(this.field_150939_a.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlockMetadata(par4, par5, par6, var13 + 1 | var12 & -8, 2))
+                if (var13 <= 6 && par3World.checkNoEntityCollision(field_150939_a.getCollisionBoundingBoxFromPool(par3World, par4, par5, par6)) && par3World.setBlockMetadata(par4, par5, par6, var13 + 1 | var12 & -8, 2))
                 {
-                    par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), this.field_150939_a.stepSound.func_150496_b(), (this.field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F, this.field_150939_a.stepSound.getFrequency() * 0.8F);
+                    par3World.playSoundEffect(par4 + 0.5F, par5 + 0.5F, par6 + 0.5F, field_150939_a.stepSound.func_150496_b(), (field_150939_a.stepSound.getVolume() + 1.0F) / 2.0F, field_150939_a.stepSound.getFrequency() * 0.8F);
                     --par1ItemStack.stackSize;
                     return true;
                 }

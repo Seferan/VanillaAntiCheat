@@ -49,7 +49,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                         {
                             Block var12 = par1World.getBlock(var10, var8, var11);
 
-                            if (!this.func_150523_a(var12))
+                            if (!func_150523_a(var12))
                             {
                                 var7 = false;
                             }
@@ -72,10 +72,10 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 
                 if ((var20 == Blocks.grass || var20 == Blocks.dirt) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
-                    this.func_150515_a(par1World, par3 + 1, par4 - 1, par5, Blocks.dirt);
-                    this.func_150515_a(par1World, par3 + 1, par4 - 1, par5 + 1, Blocks.dirt);
-                    this.func_150515_a(par1World, par3, par4 - 1, par5 + 1, Blocks.dirt);
+                    func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
+                    func_150515_a(par1World, par3 + 1, par4 - 1, par5, Blocks.dirt);
+                    func_150515_a(par1World, par3 + 1, par4 - 1, par5 + 1, Blocks.dirt);
+                    func_150515_a(par1World, par3, par4 - 1, par5 + 1, Blocks.dirt);
                     int var21 = par2Random.nextInt(4);
                     var10 = var6 - par2Random.nextInt(4);
                     var11 = 2 - par2Random.nextInt(3);
@@ -100,10 +100,10 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 
                         if (var17.getMaterial() == Material.air || var17.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, var22, var16, var13, Blocks.log2, 1);
-                            this.func_150516_a(par1World, var22 + 1, var16, var13, Blocks.log2, 1);
-                            this.func_150516_a(par1World, var22, var16, var13 + 1, Blocks.log2, 1);
-                            this.func_150516_a(par1World, var22 + 1, var16, var13 + 1, Blocks.log2, 1);
+                            func_150516_a(par1World, var22, var16, var13, Blocks.log2, 1);
+                            func_150516_a(par1World, var22 + 1, var16, var13, Blocks.log2, 1);
+                            func_150516_a(par1World, var22, var16, var13 + 1, Blocks.log2, 1);
+                            func_150516_a(par1World, var22 + 1, var16, var13 + 1, Blocks.log2, 1);
                             var14 = var16;
                         }
                     }
@@ -113,28 +113,28 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                         for (var16 = -2; var16 <= 0; ++var16)
                         {
                             byte var25 = -1;
-                            this.func_150526_a(par1World, var22 + var15, var14 + var25, var13 + var16);
-                            this.func_150526_a(par1World, 1 + var22 - var15, var14 + var25, var13 + var16);
-                            this.func_150526_a(par1World, var22 + var15, var14 + var25, 1 + var13 - var16);
-                            this.func_150526_a(par1World, 1 + var22 - var15, var14 + var25, 1 + var13 - var16);
+                            func_150526_a(par1World, var22 + var15, var14 + var25, var13 + var16);
+                            func_150526_a(par1World, 1 + var22 - var15, var14 + var25, var13 + var16);
+                            func_150526_a(par1World, var22 + var15, var14 + var25, 1 + var13 - var16);
+                            func_150526_a(par1World, 1 + var22 - var15, var14 + var25, 1 + var13 - var16);
 
                             if ((var15 > -2 || var16 > -1) && (var15 != -1 || var16 != -2))
                             {
                                 byte var24 = 1;
-                                this.func_150526_a(par1World, var22 + var15, var14 + var24, var13 + var16);
-                                this.func_150526_a(par1World, 1 + var22 - var15, var14 + var24, var13 + var16);
-                                this.func_150526_a(par1World, var22 + var15, var14 + var24, 1 + var13 - var16);
-                                this.func_150526_a(par1World, 1 + var22 - var15, var14 + var24, 1 + var13 - var16);
+                                func_150526_a(par1World, var22 + var15, var14 + var24, var13 + var16);
+                                func_150526_a(par1World, 1 + var22 - var15, var14 + var24, var13 + var16);
+                                func_150526_a(par1World, var22 + var15, var14 + var24, 1 + var13 - var16);
+                                func_150526_a(par1World, 1 + var22 - var15, var14 + var24, 1 + var13 - var16);
                             }
                         }
                     }
 
                     if (par2Random.nextBoolean())
                     {
-                        this.func_150526_a(par1World, var22, var14 + 2, var13);
-                        this.func_150526_a(par1World, var22 + 1, var14 + 2, var13);
-                        this.func_150526_a(par1World, var22 + 1, var14 + 2, var13 + 1);
-                        this.func_150526_a(par1World, var22, var14 + 2, var13 + 1);
+                        func_150526_a(par1World, var22, var14 + 2, var13);
+                        func_150526_a(par1World, var22 + 1, var14 + 2, var13);
+                        func_150526_a(par1World, var22 + 1, var14 + 2, var13 + 1);
+                        func_150526_a(par1World, var22, var14 + 2, var13 + 1);
                     }
 
                     for (var15 = -3; var15 <= 4; ++var15)
@@ -143,7 +143,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                         {
                             if ((var15 != -3 || var16 != -3) && (var15 != -3 || var16 != 4) && (var15 != 4 || var16 != -3) && (var15 != 4 || var16 != 4) && (Math.abs(var15) < 3 || Math.abs(var16) < 3))
                             {
-                                this.func_150526_a(par1World, var22 + var15, var14, var13 + var16);
+                                func_150526_a(par1World, var22 + var15, var14, var13 + var16);
                             }
                         }
                     }
@@ -159,7 +159,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 
                                 for (var18 = 0; var18 < var23; ++var18)
                                 {
-                                    this.func_150516_a(par1World, par3 + var15, var14 - var18 - 1, par5 + var16, Blocks.log2, 1);
+                                    func_150516_a(par1World, par3 + var15, var14 - var18 - 1, par5 + var16, Blocks.log2, 1);
                                 }
 
                                 int var19;
@@ -168,7 +168,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                                 {
                                     for (var19 = -1; var19 <= 1; ++var19)
                                     {
-                                        this.func_150526_a(par1World, var22 + var15 + var18, var14 - 0, var13 + var16 + var19);
+                                        func_150526_a(par1World, var22 + var15 + var18, var14 - 0, var13 + var16 + var19);
                                     }
                                 }
 
@@ -178,7 +178,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
                                     {
                                         if (Math.abs(var18) != 2 || Math.abs(var19) != 2)
                                         {
-                                            this.func_150526_a(par1World, var22 + var15 + var18, var14 - 1, var13 + var16 + var19);
+                                            func_150526_a(par1World, var22 + var15 + var18, var14 - 1, var13 + var16 + var19);
                                         }
                                     }
                                 }
@@ -206,7 +206,7 @@ public class WorldGenCanopyTree extends WorldGenAbstractTree
 
         if (var5.getMaterial() == Material.air)
         {
-            this.func_150516_a(p_150526_1_, p_150526_2_, p_150526_3_, p_150526_4_, Blocks.leaves2, 1);
+            func_150516_a(p_150526_1_, p_150526_2_, p_150526_3_, p_150526_4_, Blocks.leaves2, 1);
         }
     }
 }

@@ -18,9 +18,9 @@ public class EntityAILeapAtTarget extends EntityAIBase
 
     public EntityAILeapAtTarget(EntityLiving par1EntityLiving, float par2)
     {
-        this.leaper = par1EntityLiving;
-        this.leapMotionY = par2;
-        this.setMutexBits(5);
+        leaper = par1EntityLiving;
+        leapMotionY = par2;
+        setMutexBits(5);
     }
 
     /**
@@ -28,16 +28,16 @@ public class EntityAILeapAtTarget extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        this.leapTarget = this.leaper.getAttackTarget();
+        leapTarget = leaper.getAttackTarget();
 
-        if (this.leapTarget == null)
+        if (leapTarget == null)
         {
             return false;
         }
         else
         {
-            double var1 = this.leaper.getDistanceSqToEntity(this.leapTarget);
-            return var1 >= 4.0D && var1 <= 16.0D ? (!this.leaper.onGround ? false : this.leaper.getRNG().nextInt(5) == 0) : false;
+            double var1 = leaper.getDistanceSqToEntity(leapTarget);
+            return var1 >= 4.0D && var1 <= 16.0D ? (!leaper.onGround ? false : leaper.getRNG().nextInt(5) == 0) : false;
         }
     }
 
@@ -46,7 +46,7 @@ public class EntityAILeapAtTarget extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.leaper.onGround;
+        return !leaper.onGround;
     }
 
     /**
@@ -54,11 +54,11 @@ public class EntityAILeapAtTarget extends EntityAIBase
      */
     public void startExecuting()
     {
-        double var1 = this.leapTarget.posX - this.leaper.posX;
-        double var3 = this.leapTarget.posZ - this.leaper.posZ;
+        double var1 = leapTarget.posX - leaper.posX;
+        double var3 = leapTarget.posZ - leaper.posZ;
         float var5 = MathHelper.sqrt_double(var1 * var1 + var3 * var3);
-        this.leaper.motionX += var1 / (double)var5 * 0.5D * 0.800000011920929D + this.leaper.motionX * 0.20000000298023224D;
-        this.leaper.motionZ += var3 / (double)var5 * 0.5D * 0.800000011920929D + this.leaper.motionZ * 0.20000000298023224D;
-        this.leaper.motionY = (double)this.leapMotionY;
+        leaper.motionX += var1 / var5 * 0.5D * 0.800000011920929D + leaper.motionX * 0.20000000298023224D;
+        leaper.motionZ += var3 / var5 * 0.5D * 0.800000011920929D + leaper.motionZ * 0.20000000298023224D;
+        leaper.motionY = leapMotionY;
     }
 }

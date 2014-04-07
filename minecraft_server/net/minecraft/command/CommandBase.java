@@ -39,7 +39,7 @@ public abstract class CommandBase implements ICommand
      */
     public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
     {
-        return par1ICommandSender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
+        return par1ICommandSender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
     }
 
     /**
@@ -320,9 +320,9 @@ public abstract class CommandBase implements ICommand
 
             if (par4 != 0 || par5 != 0)
             {
-                if (var7 < (double)par4) { throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[] {Double.valueOf(var7), Integer.valueOf(par4)}); }
+                if (var7 < par4) { throw new NumberInvalidException("commands.generic.double.tooSmall", new Object[] {Double.valueOf(var7), Integer.valueOf(par4)}); }
 
-                if (var7 > (double)par5) { throw new NumberInvalidException("commands.generic.double.tooBig", new Object[] {Double.valueOf(var7), Integer.valueOf(par5)}); }
+                if (var7 > par5) { throw new NumberInvalidException("commands.generic.double.tooBig", new Object[] {Double.valueOf(var7), Integer.valueOf(par5)}); }
             }
 
             return var7;
@@ -572,7 +572,7 @@ public abstract class CommandBase implements ICommand
 
     public int compareTo(ICommand par1ICommand)
     {
-        return this.getCommandName().compareTo(par1ICommand.getCommandName());
+        return getCommandName().compareTo(par1ICommand.getCommandName());
     }
 
     public int compareTo(Object par1Obj)
@@ -582,6 +582,6 @@ public abstract class CommandBase implements ICommand
 
     public boolean isTargetOp(EntityPlayerMP target, ICommandSender sender)
     {
-        return !target.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName()) && !MinecraftServer.isPlayerOwner(sender);
+        return !target.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName()) && !MinecraftServer.isPlayerOwner(sender);
     }
 }

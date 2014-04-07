@@ -29,7 +29,7 @@ public class CommandToggleDownfall extends CommandBase
     {
         if (MinecraftServer.isPlayerOwner(par1ICommandSender))
         {
-            this.toggleDownfall();
+            toggleDownfall();
             notifyAdmins(par1ICommandSender, "commands.downfall.success", new Object[0]);
         }
         else

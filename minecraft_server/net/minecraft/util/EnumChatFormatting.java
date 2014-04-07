@@ -46,9 +46,9 @@ public enum EnumChatFormatting
 
     private EnumChatFormatting(char par3, boolean par4)
     {
-        this.formattingCode = par3;
-        this.fancyStyling = par4;
-        this.controlString = "\u00a7" + par3;
+        formattingCode = par3;
+        fancyStyling = par4;
+        controlString = "\u00a7" + par3;
     }
 
     /**
@@ -56,7 +56,7 @@ public enum EnumChatFormatting
      */
     public char getFormattingCode()
     {
-        return this.formattingCode;
+        return formattingCode;
     }
 
     /**
@@ -64,7 +64,7 @@ public enum EnumChatFormatting
      */
     public boolean isFancyStyling()
     {
-        return this.fancyStyling;
+        return fancyStyling;
     }
 
     /**
@@ -72,7 +72,7 @@ public enum EnumChatFormatting
      */
     public boolean Checks()
     {
-        return !this.fancyStyling && this != RESET;
+        return !fancyStyling && this != RESET;
     }
 
     /**
@@ -80,12 +80,12 @@ public enum EnumChatFormatting
      */
     public String getFriendlyName()
     {
-        return this.name().toLowerCase();
+        return name().toLowerCase();
     }
 
     public String toString()
     {
-        return this.controlString;
+        return controlString;
     }
 
     /**

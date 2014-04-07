@@ -18,7 +18,7 @@ public class BlockDropper extends BlockDispenser
 
     protected IBehaviorDispenseItem func_149940_a(ItemStack p_149940_1_)
     {
-        return this.field_149947_P;
+        return field_149947_P;
     }
 
     /**
@@ -47,7 +47,7 @@ public class BlockDropper extends BlockDispenser
             {
                 ItemStack var8 = var6.getStackInSlot(var7);
                 int var9 = p_149941_1_.getBlockMetadata(p_149941_2_, p_149941_3_, p_149941_4_) & 7;
-                IInventory var10 = TileEntityHopper.func_145893_b(p_149941_1_, (double)(p_149941_2_ + Facing.offsetsXForSide[var9]), (double)(p_149941_3_ + Facing.offsetsYForSide[var9]), (double)(p_149941_4_ + Facing.offsetsZForSide[var9]));
+                IInventory var10 = TileEntityHopper.func_145893_b(p_149941_1_, p_149941_2_ + Facing.offsetsXForSide[var9], p_149941_3_ + Facing.offsetsYForSide[var9], p_149941_4_ + Facing.offsetsZForSide[var9]);
                 ItemStack var11;
 
                 if (var10 != null)
@@ -70,7 +70,7 @@ public class BlockDropper extends BlockDispenser
                 }
                 else
                 {
-                    var11 = this.field_149947_P.dispense(var5, var8);
+                    var11 = field_149947_P.dispense(var5, var8);
 
                     if (var11 != null && var11.stackSize == 0)
                     {

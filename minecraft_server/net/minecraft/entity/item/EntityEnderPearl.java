@@ -29,34 +29,34 @@ public class EntityEnderPearl extends EntityThrowable
     {
         if (par1MovingObjectPosition.entityHit != null)
         {
-            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0.0F);
+            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), 0.0F);
         }
 
         for (int var2 = 0; var2 < 32; ++var2)
         {
-            this.worldObj.spawnParticle("portal", this.posX, this.posY + this.rand.nextDouble() * 2.0D, this.posZ, this.rand.nextGaussian(), 0.0D, this.rand.nextGaussian());
+            worldObj.spawnParticle("portal", posX, posY + rand.nextDouble() * 2.0D, posZ, rand.nextGaussian(), 0.0D, rand.nextGaussian());
         }
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            if (this.getThrower() != null && this.getThrower() instanceof EntityPlayerMP)
+            if (getThrower() != null && getThrower() instanceof EntityPlayerMP)
             {
-                EntityPlayerMP var3 = (EntityPlayerMP)this.getThrower();
+                EntityPlayerMP var3 = (EntityPlayerMP)getThrower();
 
-                if (var3.playerNetServerHandler.func_147362_b().isChannelOpen() && var3.worldObj == this.worldObj)
+                if (var3.playerNetServerHandler.func_147362_b().isChannelOpen() && var3.worldObj == worldObj)
                 {
-                    if (this.getThrower().isRiding())
+                    if (getThrower().isRiding())
                     {
-                        this.getThrower().mountEntity((Entity)null);
+                        getThrower().mountEntity((Entity)null);
                     }
 
-                    this.getThrower().setPositionAndUpdate(this.posX, this.posY, this.posZ);
-                    this.getThrower().fallDistance = 0.0F;
-                    this.getThrower().attackEntityFrom(DamageSource.fall, 5.0F);
+                    getThrower().setPositionAndUpdate(posX, posY, posZ);
+                    getThrower().fallDistance = 0.0F;
+                    getThrower().attackEntityFrom(DamageSource.fall, 5.0F);
                 }
             }
 
-            this.setDead();
+            setDead();
         }
     }
 }

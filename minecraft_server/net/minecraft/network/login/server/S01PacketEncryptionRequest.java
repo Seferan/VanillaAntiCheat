@@ -22,9 +22,9 @@ public class S01PacketEncryptionRequest extends Packet
 
     public S01PacketEncryptionRequest(String p_i45268_1_, PublicKey p_i45268_2_, byte[] p_i45268_3_)
     {
-        this.field_149612_a = p_i45268_1_;
-        this.field_149610_b = p_i45268_2_;
-        this.field_149611_c = p_i45268_3_;
+        field_149612_a = p_i45268_1_;
+        field_149610_b = p_i45268_2_;
+        field_149611_c = p_i45268_3_;
     }
 
     /**
@@ -32,9 +32,9 @@ public class S01PacketEncryptionRequest extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149612_a = p_148837_1_.readStringFromBuffer(20);
-        this.field_149610_b = CryptManager.decodePublicKey(readBlob(p_148837_1_));
-        this.field_149611_c = readBlob(p_148837_1_);
+        field_149612_a = p_148837_1_.readStringFromBuffer(20);
+        field_149610_b = CryptManager.decodePublicKey(readBlob(p_148837_1_));
+        field_149611_c = readBlob(p_148837_1_);
     }
 
     /**
@@ -42,9 +42,9 @@ public class S01PacketEncryptionRequest extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149612_a);
-        writeBlob(p_148840_1_, this.field_149610_b.getEncoded());
-        writeBlob(p_148840_1_, this.field_149611_c);
+        p_148840_1_.writeStringToBuffer(field_149612_a);
+        writeBlob(p_148840_1_, field_149610_b.getEncoded());
+        writeBlob(p_148840_1_, field_149611_c);
     }
 
     public void func_148833_a(INetHandlerLoginClient p_149606_1_)

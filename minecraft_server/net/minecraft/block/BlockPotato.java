@@ -31,7 +31,7 @@ public class BlockPotato extends BlockCrops
         {
             if (p_149690_5_ >= 7 && p_149690_1_.rand.nextInt(50) == 0)
             {
-                this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(Items.poisonous_potato));
+                dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(Items.poisonous_potato));
             }
         }
     }

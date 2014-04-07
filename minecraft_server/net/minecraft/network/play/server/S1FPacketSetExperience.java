@@ -20,9 +20,9 @@ public class S1FPacketSetExperience extends Packet
 
     public S1FPacketSetExperience(float p_i45222_1_, int p_i45222_2_, int p_i45222_3_)
     {
-        this.field_149401_a = p_i45222_1_;
-        this.field_149399_b = p_i45222_2_;
-        this.field_149400_c = p_i45222_3_;
+        field_149401_a = p_i45222_1_;
+        field_149399_b = p_i45222_2_;
+        field_149400_c = p_i45222_3_;
     }
 
     /**
@@ -30,9 +30,9 @@ public class S1FPacketSetExperience extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149401_a = p_148837_1_.readFloat();
-        this.field_149400_c = p_148837_1_.readShort();
-        this.field_149399_b = p_148837_1_.readShort();
+        field_149401_a = p_148837_1_.readFloat();
+        field_149400_c = p_148837_1_.readShort();
+        field_149399_b = p_148837_1_.readShort();
     }
 
     /**
@@ -40,9 +40,9 @@ public class S1FPacketSetExperience extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeFloat(this.field_149401_a);
-        p_148840_1_.writeShort(this.field_149400_c);
-        p_148840_1_.writeShort(this.field_149399_b);
+        p_148840_1_.writeFloat(field_149401_a);
+        p_148840_1_.writeShort(field_149400_c);
+        p_148840_1_.writeShort(field_149399_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149398_1_)

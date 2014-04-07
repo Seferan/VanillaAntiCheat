@@ -16,7 +16,7 @@ public class BlockStoneSlab extends BlockSlab
     public BlockStoneSlab(boolean p_i45431_1_)
     {
         super(p_i45431_1_, Material.rock);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)

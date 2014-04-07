@@ -14,9 +14,9 @@ public class EntityAIWander extends EntityAIBase
 
     public EntityAIWander(EntityCreature par1EntityCreature, double par2)
     {
-        this.entity = par1EntityCreature;
-        this.speed = par2;
-        this.setMutexBits(1);
+        entity = par1EntityCreature;
+        speed = par2;
+        setMutexBits(1);
     }
 
     /**
@@ -24,17 +24,17 @@ public class EntityAIWander extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.entity.getAge() >= 100)
+        if (entity.getAge() >= 100)
         {
             return false;
         }
-        else if (this.entity.getRNG().nextInt(120) != 0)
+        else if (entity.getRNG().nextInt(120) != 0)
         {
             return false;
         }
         else
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
+            Vec3 var1 = RandomPositionGenerator.findRandomTarget(entity, 10, 7);
 
             if (var1 == null)
             {
@@ -42,9 +42,9 @@ public class EntityAIWander extends EntityAIBase
             }
             else
             {
-                this.xPosition = var1.xCoord;
-                this.yPosition = var1.yCoord;
-                this.zPosition = var1.zCoord;
+                xPosition = var1.xCoord;
+                yPosition = var1.yCoord;
+                zPosition = var1.zCoord;
                 return true;
             }
         }
@@ -55,7 +55,7 @@ public class EntityAIWander extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.entity.getNavigator().noPath();
+        return !entity.getNavigator().noPath();
     }
 
     /**
@@ -63,6 +63,6 @@ public class EntityAIWander extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.entity.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);
+        entity.getNavigator().tryMoveToXYZ(xPosition, yPosition, zPosition, speed);
     }
 }

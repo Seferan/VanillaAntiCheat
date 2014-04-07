@@ -27,15 +27,15 @@ public class EntityLargeFireball extends EntityFireball
      */
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
             if (par1MovingObjectPosition.entityHit != null)
             {
-                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), 6.0F);
+                par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, shootingEntity), 6.0F);
             }
 
-            this.worldObj.newExplosion((Entity)null, this.posX, this.posY, this.posZ, (float)this.field_92057_e, true, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
-            this.setDead();
+            worldObj.newExplosion((Entity)null, posX, posY, posZ, field_92057_e, true, worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
+            setDead();
         }
     }
 
@@ -45,7 +45,7 @@ public class EntityLargeFireball extends EntityFireball
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("ExplosionPower", this.field_92057_e);
+        par1NBTTagCompound.setInteger("ExplosionPower", field_92057_e);
     }
 
     /**
@@ -57,7 +57,7 @@ public class EntityLargeFireball extends EntityFireball
 
         if (par1NBTTagCompound.func_150297_b("ExplosionPower", 99))
         {
-            this.field_92057_e = par1NBTTagCompound.getInteger("ExplosionPower");
+            field_92057_e = par1NBTTagCompound.getInteger("ExplosionPower");
         }
     }
 }

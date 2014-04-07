@@ -7,7 +7,7 @@ public class EnchantmentArrowKnockback extends Enchantment
     public EnchantmentArrowKnockback(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.bow);
-        this.setName("arrowKnockback");
+        setName("arrowKnockback");
     }
 
     /**
@@ -25,7 +25,7 @@ public class EnchantmentArrowKnockback extends Enchantment
      */
     public int getMaxEnchantability(int par1)
     {
-        return this.getMinEnchantability(par1) + 25;
+        return getMinEnchantability(par1) + 25;
     }
 
     /**

@@ -51,24 +51,24 @@ public class ExtendedBlockStorage
 
     public ExtendedBlockStorage(int par1, boolean par2)
     {
-        this.yBase = par1;
-        this.blockLSBArray = new byte[4096];
-        this.blockMetadataArray = new NibbleArray(this.blockLSBArray.length, 4);
-        this.blocklightArray = new NibbleArray(this.blockLSBArray.length, 4);
+        yBase = par1;
+        blockLSBArray = new byte[4096];
+        blockMetadataArray = new NibbleArray(blockLSBArray.length, 4);
+        blocklightArray = new NibbleArray(blockLSBArray.length, 4);
 
         if (par2)
         {
-            this.skylightArray = new NibbleArray(this.blockLSBArray.length, 4);
+            skylightArray = new NibbleArray(blockLSBArray.length, 4);
         }
     }
 
     public Block func_150819_a(int p_150819_1_, int p_150819_2_, int p_150819_3_)
     {
-        int var4 = this.blockLSBArray[p_150819_2_ << 8 | p_150819_3_ << 4 | p_150819_1_] & 255;
+        int var4 = blockLSBArray[p_150819_2_ << 8 | p_150819_3_ << 4 | p_150819_1_] & 255;
 
-        if (this.blockMSBArray != null)
+        if (blockMSBArray != null)
         {
-            var4 |= this.blockMSBArray.get(p_150819_1_, p_150819_2_, p_150819_3_) << 8;
+            var4 |= blockMSBArray.get(p_150819_1_, p_150819_2_, p_150819_3_) << 8;
         }
 
         return Block.getBlockById(var4);
@@ -76,50 +76,50 @@ public class ExtendedBlockStorage
 
     public void func_150818_a(int p_150818_1_, int p_150818_2_, int p_150818_3_, Block p_150818_4_)
     {
-        int var5 = this.blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4 | p_150818_1_] & 255;
+        int var5 = blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4 | p_150818_1_] & 255;
 
-        if (this.blockMSBArray != null)
+        if (blockMSBArray != null)
         {
-            var5 |= this.blockMSBArray.get(p_150818_1_, p_150818_2_, p_150818_3_) << 8;
+            var5 |= blockMSBArray.get(p_150818_1_, p_150818_2_, p_150818_3_) << 8;
         }
 
         Block var6 = Block.getBlockById(var5);
 
         if (var6 != Blocks.air)
         {
-            --this.blockRefCount;
+            --blockRefCount;
 
             if (var6.getTickRandomly())
             {
-                --this.tickRefCount;
+                --tickRefCount;
             }
         }
 
         if (p_150818_4_ != Blocks.air)
         {
-            ++this.blockRefCount;
+            ++blockRefCount;
 
             if (p_150818_4_.getTickRandomly())
             {
-                ++this.tickRefCount;
+                ++tickRefCount;
             }
         }
 
         int var7 = Block.getIdFromBlock(p_150818_4_);
-        this.blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4 | p_150818_1_] = (byte)(var7 & 255);
+        blockLSBArray[p_150818_2_ << 8 | p_150818_3_ << 4 | p_150818_1_] = (byte)(var7 & 255);
 
         if (var7 > 255)
         {
-            if (this.blockMSBArray == null)
+            if (blockMSBArray == null)
             {
-                this.blockMSBArray = new NibbleArray(this.blockLSBArray.length, 4);
+                blockMSBArray = new NibbleArray(blockLSBArray.length, 4);
             }
 
-            this.blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_, (var7 & 3840) >> 8);
+            blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_, (var7 & 3840) >> 8);
         }
-        else if (this.blockMSBArray != null)
+        else if (blockMSBArray != null)
         {
-            this.blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_, 0);
+            blockMSBArray.set(p_150818_1_, p_150818_2_, p_150818_3_, 0);
         }
     }
 
@@ -129,7 +129,7 @@ public class ExtendedBlockStorage
      */
     public int getExtBlockMetadata(int par1, int par2, int par3)
     {
-        return this.blockMetadataArray.get(par1, par2, par3);
+        return blockMetadataArray.get(par1, par2, par3);
     }
 
     /**
@@ -138,7 +138,7 @@ public class ExtendedBlockStorage
      */
     public void setExtBlockMetadata(int par1, int par2, int par3, int par4)
     {
-        this.blockMetadataArray.set(par1, par2, par3, par4);
+        blockMetadataArray.set(par1, par2, par3, par4);
     }
 
     /**
@@ -147,7 +147,7 @@ public class ExtendedBlockStorage
      */
     public boolean isEmpty()
     {
-        return this.blockRefCount == 0;
+        return blockRefCount == 0;
     }
 
     /**
@@ -157,7 +157,7 @@ public class ExtendedBlockStorage
      */
     public boolean getNeedsRandomTick()
     {
-        return this.tickRefCount > 0;
+        return tickRefCount > 0;
     }
 
     /**
@@ -165,7 +165,7 @@ public class ExtendedBlockStorage
      */
     public int getYLocation()
     {
-        return this.yBase;
+        return yBase;
     }
 
     /**
@@ -173,7 +173,7 @@ public class ExtendedBlockStorage
      */
     public void setExtSkylightValue(int par1, int par2, int par3, int par4)
     {
-        this.skylightArray.set(par1, par2, par3, par4);
+        skylightArray.set(par1, par2, par3, par4);
     }
 
     /**
@@ -181,7 +181,7 @@ public class ExtendedBlockStorage
      */
     public int getExtSkylightValue(int par1, int par2, int par3)
     {
-        return this.skylightArray.get(par1, par2, par3);
+        return skylightArray.get(par1, par2, par3);
     }
 
     /**
@@ -189,7 +189,7 @@ public class ExtendedBlockStorage
      */
     public void setExtBlocklightValue(int par1, int par2, int par3, int par4)
     {
-        this.blocklightArray.set(par1, par2, par3, par4);
+        blocklightArray.set(par1, par2, par3, par4);
     }
 
     /**
@@ -197,13 +197,13 @@ public class ExtendedBlockStorage
      */
     public int getExtBlocklightValue(int par1, int par2, int par3)
     {
-        return this.blocklightArray.get(par1, par2, par3);
+        return blocklightArray.get(par1, par2, par3);
     }
 
     public void removeInvalidBlocks()
     {
-        this.blockRefCount = 0;
-        this.tickRefCount = 0;
+        blockRefCount = 0;
+        tickRefCount = 0;
 
         for (int var1 = 0; var1 < 16; ++var1)
         {
@@ -211,15 +211,15 @@ public class ExtendedBlockStorage
             {
                 for (int var3 = 0; var3 < 16; ++var3)
                 {
-                    Block var4 = this.func_150819_a(var1, var2, var3);
+                    Block var4 = func_150819_a(var1, var2, var3);
 
                     if (var4 != Blocks.air)
                     {
-                        ++this.blockRefCount;
+                        ++blockRefCount;
 
                         if (var4.getTickRandomly())
                         {
-                            ++this.tickRefCount;
+                            ++tickRefCount;
                         }
                     }
                 }
@@ -229,7 +229,7 @@ public class ExtendedBlockStorage
 
     public byte[] getBlockLSBArray()
     {
-        return this.blockLSBArray;
+        return blockLSBArray;
     }
 
     /**
@@ -238,12 +238,12 @@ public class ExtendedBlockStorage
      */
     public NibbleArray getBlockMSBArray()
     {
-        return this.blockMSBArray;
+        return blockMSBArray;
     }
 
     public NibbleArray getMetadataArray()
     {
-        return this.blockMetadataArray;
+        return blockMetadataArray;
     }
 
     /**
@@ -251,7 +251,7 @@ public class ExtendedBlockStorage
      */
     public NibbleArray getBlocklightArray()
     {
-        return this.blocklightArray;
+        return blocklightArray;
     }
 
     /**
@@ -259,7 +259,7 @@ public class ExtendedBlockStorage
      */
     public NibbleArray getSkylightArray()
     {
-        return this.skylightArray;
+        return skylightArray;
     }
 
     /**
@@ -268,7 +268,7 @@ public class ExtendedBlockStorage
      */
     public void setBlockLSBArray(byte[] par1ArrayOfByte)
     {
-        this.blockLSBArray = par1ArrayOfByte;
+        blockLSBArray = par1ArrayOfByte;
     }
 
     /**
@@ -277,7 +277,7 @@ public class ExtendedBlockStorage
      */
     public void setBlockMSBArray(NibbleArray par1NibbleArray)
     {
-        this.blockMSBArray = par1NibbleArray;
+        blockMSBArray = par1NibbleArray;
     }
 
     /**
@@ -286,7 +286,7 @@ public class ExtendedBlockStorage
      */
     public void setBlockMetadataArray(NibbleArray par1NibbleArray)
     {
-        this.blockMetadataArray = par1NibbleArray;
+        blockMetadataArray = par1NibbleArray;
     }
 
     /**
@@ -295,7 +295,7 @@ public class ExtendedBlockStorage
      */
     public void setBlocklightArray(NibbleArray par1NibbleArray)
     {
-        this.blocklightArray = par1NibbleArray;
+        blocklightArray = par1NibbleArray;
     }
 
     /**
@@ -304,6 +304,6 @@ public class ExtendedBlockStorage
      */
     public void setSkylightArray(NibbleArray par1NibbleArray)
     {
-        this.skylightArray = par1NibbleArray;
+        skylightArray = par1NibbleArray;
     }
 }

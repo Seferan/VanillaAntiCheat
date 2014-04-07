@@ -16,7 +16,7 @@ public class WorldGenLakes extends WorldGenerator
 
     public WorldGenLakes(Block p_i45455_1_)
     {
-        this.field_150556_a = p_i45455_1_;
+        field_150556_a = p_i45455_1_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -54,9 +54,9 @@ public class WorldGenLakes extends WorldGenerator
                     {
                         for (int var23 = 1; var23 < 7; ++var23)
                         {
-                            double var24 = ((double)var21 - var15) / (var9 / 2.0D);
-                            double var26 = ((double)var23 - var17) / (var11 / 2.0D);
-                            double var28 = ((double)var22 - var19) / (var13 / 2.0D);
+                            double var24 = (var21 - var15) / (var9 / 2.0D);
+                            double var26 = (var23 - var17) / (var11 / 2.0D);
+                            double var28 = (var22 - var19) / (var13 / 2.0D);
                             double var30 = var24 * var24 + var26 * var26 + var28 * var28;
 
                             if (var30 < 1.0D)
@@ -86,7 +86,7 @@ public class WorldGenLakes extends WorldGenerator
 
                             if (var10 >= 4 && var12.isLiquid()) { return false; }
 
-                            if (var10 < 4 && !var12.isSolid() && par1World.getBlock(par3 + var8, par4 + var10, par5 + var32) != this.field_150556_a) { return false; }
+                            if (var10 < 4 && !var12.isSolid() && par1World.getBlock(par3 + var8, par4 + var10, par5 + var32) != field_150556_a) { return false; }
                         }
                     }
                 }
@@ -100,7 +100,7 @@ public class WorldGenLakes extends WorldGenerator
                     {
                         if (var6[(var8 * 16 + var32) * 8 + var10])
                         {
-                            par1World.setBlock(par3 + var8, par4 + var10, par5 + var32, var10 >= 4 ? Blocks.air : this.field_150556_a, 0, 2);
+                            par1World.setBlock(par3 + var8, par4 + var10, par5 + var32, var10 >= 4 ? Blocks.air : field_150556_a, 0, 2);
                         }
                     }
                 }
@@ -129,7 +129,7 @@ public class WorldGenLakes extends WorldGenerator
                 }
             }
 
-            if (this.field_150556_a.getMaterial() == Material.field_151587_i)
+            if (field_150556_a.getMaterial() == Material.field_151587_i)
             {
                 for (var8 = 0; var8 < 16; ++var8)
                 {
@@ -148,7 +148,7 @@ public class WorldGenLakes extends WorldGenerator
                 }
             }
 
-            if (this.field_150556_a.getMaterial() == Material.field_151586_h)
+            if (field_150556_a.getMaterial() == Material.field_151586_h)
             {
                 for (var8 = 0; var8 < 16; ++var8)
                 {

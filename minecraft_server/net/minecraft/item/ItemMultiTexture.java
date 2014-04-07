@@ -11,10 +11,10 @@ public class ItemMultiTexture extends ItemBlock
     public ItemMultiTexture(Block p_i45346_1_, Block p_i45346_2_, String[] p_i45346_3_)
     {
         super(p_i45346_1_);
-        this.field_150941_b = p_i45346_2_;
-        this.field_150942_c = p_i45346_3_;
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
+        field_150941_b = p_i45346_2_;
+        field_150942_c = p_i45346_3_;
+        setMaxDamage(0);
+        setHasSubtypes(true);
     }
 
     /**
@@ -34,11 +34,11 @@ public class ItemMultiTexture extends ItemBlock
     {
         int var2 = par1ItemStack.getItemDamage();
 
-        if (var2 < 0 || var2 >= this.field_150942_c.length)
+        if (var2 < 0 || var2 >= field_150942_c.length)
         {
             var2 = 0;
         }
 
-        return super.getUnlocalizedName() + "." + this.field_150942_c[var2];
+        return super.getUnlocalizedName() + "." + field_150942_c[var2];
     }
 }

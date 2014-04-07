@@ -19,16 +19,16 @@ public class S03PacketTimeUpdate extends Packet
 
     public S03PacketTimeUpdate(long p_i45230_1_, long p_i45230_3_, boolean p_i45230_5_)
     {
-        this.field_149369_a = p_i45230_1_;
-        this.field_149368_b = p_i45230_3_;
+        field_149369_a = p_i45230_1_;
+        field_149368_b = p_i45230_3_;
 
         if (!p_i45230_5_)
         {
-            this.field_149368_b = -this.field_149368_b;
+            field_149368_b = -field_149368_b;
 
-            if (this.field_149368_b == 0L)
+            if (field_149368_b == 0L)
             {
-                this.field_149368_b = -1L;
+                field_149368_b = -1L;
             }
         }
     }
@@ -38,8 +38,8 @@ public class S03PacketTimeUpdate extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149369_a = p_148837_1_.readLong();
-        this.field_149368_b = p_148837_1_.readLong();
+        field_149369_a = p_148837_1_.readLong();
+        field_149368_b = p_148837_1_.readLong();
     }
 
     /**
@@ -47,8 +47,8 @@ public class S03PacketTimeUpdate extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeLong(this.field_149369_a);
-        p_148840_1_.writeLong(this.field_149368_b);
+        p_148840_1_.writeLong(field_149369_a);
+        p_148840_1_.writeLong(field_149368_b);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149367_1_)
@@ -62,7 +62,7 @@ public class S03PacketTimeUpdate extends Packet
      */
     public String serialize()
     {
-        return String.format("time=%d,dtime=%d", new Object[] {Long.valueOf(this.field_149369_a), Long.valueOf(this.field_149368_b)});
+        return String.format("time=%d,dtime=%d", new Object[] {Long.valueOf(field_149369_a), Long.valueOf(field_149368_b)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

@@ -7,7 +7,7 @@ public class EnchantmentFireAspect extends Enchantment
     protected EnchantmentFireAspect(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.weapon);
-        this.setName("fire");
+        setName("fire");
     }
 
     /**

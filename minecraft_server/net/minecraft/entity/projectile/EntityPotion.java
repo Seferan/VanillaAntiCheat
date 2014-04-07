@@ -34,13 +34,13 @@ public class EntityPotion extends EntityThrowable
     public EntityPotion(World par1World, EntityLivingBase par2EntityLivingBase, ItemStack par3ItemStack)
     {
         super(par1World, par2EntityLivingBase);
-        this.potionDamage = par3ItemStack;
+        potionDamage = par3ItemStack;
     }
 
     public EntityPotion(World par1World, double par2, double par4, double par6, ItemStack par8ItemStack)
     {
         super(par1World, par2, par4, par6);
-        this.potionDamage = par8ItemStack;
+        potionDamage = par8ItemStack;
     }
 
     /**
@@ -63,12 +63,12 @@ public class EntityPotion extends EntityThrowable
 
     public void setPotionDamage(int par1)
     {
-        if (this.potionDamage == null)
+        if (potionDamage == null)
         {
-            this.potionDamage = new ItemStack(Items.potionitem, 1, 0);
+            potionDamage = new ItemStack(Items.potionitem, 1, 0);
         }
 
-        this.potionDamage.setItemDamage(par1);
+        potionDamage.setItemDamage(par1);
     }
 
     /**
@@ -77,12 +77,12 @@ public class EntityPotion extends EntityThrowable
      */
     public int getPotionDamage()
     {
-        if (this.potionDamage == null)
+        if (potionDamage == null)
         {
-            this.potionDamage = new ItemStack(Items.potionitem, 1, 0);
+            potionDamage = new ItemStack(Items.potionitem, 1, 0);
         }
 
-        return this.potionDamage.getItemDamage();
+        return potionDamage.getItemDamage();
     }
 
     /**
@@ -90,14 +90,14 @@ public class EntityPotion extends EntityThrowable
      */
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            List var2 = Items.potionitem.getEffects(this.potionDamage);
+            List var2 = Items.potionitem.getEffects(potionDamage);
 
             if (var2 != null && !var2.isEmpty())
             {
-                AxisAlignedBB var3 = this.boundingBox.expand(4.0D, 2.0D, 4.0D);
-                List var4 = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, var3);
+                AxisAlignedBB var3 = boundingBox.expand(4.0D, 2.0D, 4.0D);
+                List var4 = worldObj.getEntitiesWithinAABB(EntityLivingBase.class, var3);
 
                 if (var4 != null && !var4.isEmpty())
                 {
@@ -106,7 +106,7 @@ public class EntityPotion extends EntityThrowable
                     while (var5.hasNext())
                     {
                         EntityLivingBase var6 = (EntityLivingBase)var5.next();
-                        double var7 = this.getDistanceSqToEntity(var6);
+                        double var7 = getDistanceSqToEntity(var6);
 
                         if (var7 < 16.0D)
                         {
@@ -126,11 +126,11 @@ public class EntityPotion extends EntityThrowable
 
                                 if (Potion.potionTypes[var13].isInstant())
                                 {
-                                    Potion.potionTypes[var13].affectEntity(this.getThrower(), var6, var12.getAmplifier(), var9);
+                                    Potion.potionTypes[var13].affectEntity(getThrower(), var6, var12.getAmplifier(), var9);
                                 }
                                 else
                                 {
-                                    int var14 = (int)(var9 * (double)var12.getDuration() + 0.5D);
+                                    int var14 = (int)(var9 * var12.getDuration() + 0.5D);
 
                                     if (var14 > 20)
                                     {
@@ -143,8 +143,8 @@ public class EntityPotion extends EntityThrowable
                 }
             }
 
-            this.worldObj.playAuxSFX(2002, (int)Math.round(this.posX), (int)Math.round(this.posY), (int)Math.round(this.posZ), this.getPotionDamage());
-            this.setDead();
+            worldObj.playAuxSFX(2002, (int)Math.round(posX), (int)Math.round(posY), (int)Math.round(posZ), getPotionDamage());
+            setDead();
         }
     }
 
@@ -157,16 +157,16 @@ public class EntityPotion extends EntityThrowable
 
         if (par1NBTTagCompound.func_150297_b("Potion", 10))
         {
-            this.potionDamage = ItemStack.loadItemStackFromNBT(par1NBTTagCompound.getCompoundTag("Potion"));
+            potionDamage = ItemStack.loadItemStackFromNBT(par1NBTTagCompound.getCompoundTag("Potion"));
         }
         else
         {
-            this.setPotionDamage(par1NBTTagCompound.getInteger("potionValue"));
+            setPotionDamage(par1NBTTagCompound.getInteger("potionValue"));
         }
 
-        if (this.potionDamage == null)
+        if (potionDamage == null)
         {
-            this.setDead();
+            setDead();
         }
     }
 
@@ -177,9 +177,9 @@ public class EntityPotion extends EntityThrowable
     {
         super.writeEntityToNBT(par1NBTTagCompound);
 
-        if (this.potionDamage != null)
+        if (potionDamage != null)
         {
-            par1NBTTagCompound.setTag("Potion", this.potionDamage.writeToNBT(new NBTTagCompound()));
+            par1NBTTagCompound.setTag("Potion", potionDamage.writeToNBT(new NBTTagCompound()));
         }
     }
 }

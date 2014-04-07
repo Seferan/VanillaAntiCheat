@@ -13,37 +13,37 @@ public class LowerStringMap implements Map
 
     public int size()
     {
-        return this.internalMap.size();
+        return internalMap.size();
     }
 
     public boolean isEmpty()
     {
-        return this.internalMap.isEmpty();
+        return internalMap.isEmpty();
     }
 
     public boolean containsKey(Object par1Obj)
     {
-        return this.internalMap.containsKey(par1Obj.toString().toLowerCase());
+        return internalMap.containsKey(par1Obj.toString().toLowerCase());
     }
 
     public boolean containsValue(Object par1Obj)
     {
-        return this.internalMap.containsKey(par1Obj);
+        return internalMap.containsKey(par1Obj);
     }
 
     public Object get(Object par1Obj)
     {
-        return this.internalMap.get(par1Obj.toString().toLowerCase());
+        return internalMap.get(par1Obj.toString().toLowerCase());
     }
 
     public Object put(String par1Str, Object par2Obj)
     {
-        return this.internalMap.put(par1Str.toLowerCase(), par2Obj);
+        return internalMap.put(par1Str.toLowerCase(), par2Obj);
     }
 
     public Object remove(Object par1Obj)
     {
-        return this.internalMap.remove(par1Obj.toString().toLowerCase());
+        return internalMap.remove(par1Obj.toString().toLowerCase());
     }
 
     public void putAll(Map par1Map)
@@ -59,22 +59,22 @@ public class LowerStringMap implements Map
 
     public void clear()
     {
-        this.internalMap.clear();
+        internalMap.clear();
     }
 
     public Set keySet()
     {
-        return this.internalMap.keySet();
+        return internalMap.keySet();
     }
 
     public Collection values()
     {
-        return this.internalMap.values();
+        return internalMap.values();
     }
 
     public Set entrySet()
     {
-        return this.internalMap.entrySet();
+        return internalMap.entrySet();
     }
 
     public Object put(Object par1Obj, Object par2Obj)

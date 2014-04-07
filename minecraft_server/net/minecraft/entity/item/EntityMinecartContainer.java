@@ -35,19 +35,19 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     {
         super.killMinecart(par1DamageSource);
 
-        for (int var2 = 0; var2 < this.getSizeInventory(); ++var2)
+        for (int var2 = 0; var2 < getSizeInventory(); ++var2)
         {
-            ItemStack var3 = this.getStackInSlot(var2);
+            ItemStack var3 = getStackInSlot(var2);
 
             if (var3 != null)
             {
-                float var4 = this.rand.nextFloat() * 0.8F + 0.1F;
-                float var5 = this.rand.nextFloat() * 0.8F + 0.1F;
-                float var6 = this.rand.nextFloat() * 0.8F + 0.1F;
+                float var4 = rand.nextFloat() * 0.8F + 0.1F;
+                float var5 = rand.nextFloat() * 0.8F + 0.1F;
+                float var6 = rand.nextFloat() * 0.8F + 0.1F;
 
                 while (var3.stackSize > 0)
                 {
-                    int var7 = this.rand.nextInt(21) + 10;
+                    int var7 = rand.nextInt(21) + 10;
 
                     if (var7 > var3.stackSize)
                     {
@@ -55,12 +55,12 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
                     }
 
                     var3.stackSize -= var7;
-                    EntityItem var8 = new EntityItem(this.worldObj, this.posX + (double)var4, this.posY + (double)var5, this.posZ + (double)var6, new ItemStack(var3.getItem(), var7, var3.getItemDamage()));
+                    EntityItem var8 = new EntityItem(worldObj, posX + var4, posY + var5, posZ + var6, new ItemStack(var3.getItem(), var7, var3.getItemDamage()));
                     float var9 = 0.05F;
-                    var8.motionX = (double)((float)this.rand.nextGaussian() * var9);
-                    var8.motionY = (double)((float)this.rand.nextGaussian() * var9 + 0.2F);
-                    var8.motionZ = (double)((float)this.rand.nextGaussian() * var9);
-                    this.worldObj.spawnEntityInWorld(var8);
+                    var8.motionX = (float)rand.nextGaussian() * var9;
+                    var8.motionY = (float)rand.nextGaussian() * var9 + 0.2F;
+                    var8.motionZ = (float)rand.nextGaussian() * var9;
+                    worldObj.spawnEntityInWorld(var8);
                 }
             }
         }
@@ -71,7 +71,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return this.minecartContainerItems[par1];
+        return minecartContainerItems[par1];
     }
 
     /**
@@ -80,23 +80,23 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (this.minecartContainerItems[par1] != null)
+        if (minecartContainerItems[par1] != null)
         {
             ItemStack var3;
 
-            if (this.minecartContainerItems[par1].stackSize <= par2)
+            if (minecartContainerItems[par1].stackSize <= par2)
             {
-                var3 = this.minecartContainerItems[par1];
-                this.minecartContainerItems[par1] = null;
+                var3 = minecartContainerItems[par1];
+                minecartContainerItems[par1] = null;
                 return var3;
             }
             else
             {
-                var3 = this.minecartContainerItems[par1].splitStack(par2);
+                var3 = minecartContainerItems[par1].splitStack(par2);
 
-                if (this.minecartContainerItems[par1].stackSize == 0)
+                if (minecartContainerItems[par1].stackSize == 0)
                 {
-                    this.minecartContainerItems[par1] = null;
+                    minecartContainerItems[par1] = null;
                 }
 
                 return var3;
@@ -115,10 +115,10 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        if (this.minecartContainerItems[par1] != null)
+        if (minecartContainerItems[par1] != null)
         {
-            ItemStack var2 = this.minecartContainerItems[par1];
-            this.minecartContainerItems[par1] = null;
+            ItemStack var2 = minecartContainerItems[par1];
+            minecartContainerItems[par1] = null;
             return var2;
         }
         else
@@ -133,11 +133,11 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
-        this.minecartContainerItems[par1] = par2ItemStack;
+        minecartContainerItems[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > getInventoryStackLimit())
         {
-            par2ItemStack.stackSize = this.getInventoryStackLimit();
+            par2ItemStack.stackSize = getInventoryStackLimit();
         }
     }
 
@@ -154,7 +154,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.isDead ? false : par1EntityPlayer.getDistanceSqToEntity(this) <= 64.0D;
+        return isDead ? false : par1EntityPlayer.getDistanceSqToEntity(this) <= 64.0D;
     }
 
     public void openChest()
@@ -179,7 +179,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public String getInventoryName()
     {
-        return this.isInventoryNameLocalized() ? this.func_95999_t() : "container.minecart";
+        return isInventoryNameLocalized() ? func_95999_t() : "container.minecart";
     }
 
     /**
@@ -197,7 +197,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public void travelToDimension(int par1)
     {
-        this.dropContentsWhenDead = false;
+        dropContentsWhenDead = false;
         super.travelToDimension(par1);
     }
 
@@ -206,21 +206,21 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public void setDead()
     {
-        if (this.dropContentsWhenDead)
+        if (dropContentsWhenDead)
         {
-            for (int var1 = 0; var1 < this.getSizeInventory(); ++var1)
+            for (int var1 = 0; var1 < getSizeInventory(); ++var1)
             {
-                ItemStack var2 = this.getStackInSlot(var1);
+                ItemStack var2 = getStackInSlot(var1);
 
                 if (var2 != null)
                 {
-                    float var3 = this.rand.nextFloat() * 0.8F + 0.1F;
-                    float var4 = this.rand.nextFloat() * 0.8F + 0.1F;
-                    float var5 = this.rand.nextFloat() * 0.8F + 0.1F;
+                    float var3 = rand.nextFloat() * 0.8F + 0.1F;
+                    float var4 = rand.nextFloat() * 0.8F + 0.1F;
+                    float var5 = rand.nextFloat() * 0.8F + 0.1F;
 
                     while (var2.stackSize > 0)
                     {
-                        int var6 = this.rand.nextInt(21) + 10;
+                        int var6 = rand.nextInt(21) + 10;
 
                         if (var6 > var2.stackSize)
                         {
@@ -228,7 +228,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
                         }
 
                         var2.stackSize -= var6;
-                        EntityItem var7 = new EntityItem(this.worldObj, this.posX + (double)var3, this.posY + (double)var4, this.posZ + (double)var5, new ItemStack(var2.getItem(), var6, var2.getItemDamage()));
+                        EntityItem var7 = new EntityItem(worldObj, posX + var3, posY + var4, posZ + var5, new ItemStack(var2.getItem(), var6, var2.getItemDamage()));
 
                         if (var2.hasTagCompound())
                         {
@@ -236,10 +236,10 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
                         }
 
                         float var8 = 0.05F;
-                        var7.motionX = (double)((float)this.rand.nextGaussian() * var8);
-                        var7.motionY = (double)((float)this.rand.nextGaussian() * var8 + 0.2F);
-                        var7.motionZ = (double)((float)this.rand.nextGaussian() * var8);
-                        this.worldObj.spawnEntityInWorld(var7);
+                        var7.motionX = (float)rand.nextGaussian() * var8;
+                        var7.motionY = (float)rand.nextGaussian() * var8 + 0.2F;
+                        var7.motionZ = (float)rand.nextGaussian() * var8;
+                        worldObj.spawnEntityInWorld(var7);
                     }
                 }
             }
@@ -256,13 +256,13 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
         super.writeEntityToNBT(par1NBTTagCompound);
         NBTTagList var2 = new NBTTagList();
 
-        for (int var3 = 0; var3 < this.minecartContainerItems.length; ++var3)
+        for (int var3 = 0; var3 < minecartContainerItems.length; ++var3)
         {
-            if (this.minecartContainerItems[var3] != null)
+            if (minecartContainerItems[var3] != null)
             {
                 NBTTagCompound var4 = new NBTTagCompound();
                 var4.setByte("Slot", (byte)var3);
-                this.minecartContainerItems[var3].writeToNBT(var4);
+                minecartContainerItems[var3].writeToNBT(var4);
                 var2.appendTag(var4);
             }
         }
@@ -277,16 +277,16 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     {
         super.readEntityFromNBT(par1NBTTagCompound);
         NBTTagList var2 = par1NBTTagCompound.getTagList("Items", 10);
-        this.minecartContainerItems = new ItemStack[this.getSizeInventory()];
+        minecartContainerItems = new ItemStack[getSizeInventory()];
 
         for (int var3 = 0; var3 < var2.tagCount(); ++var3)
         {
             NBTTagCompound var4 = var2.getCompoundTagAt(var3);
             int var5 = var4.getByte("Slot") & 255;
 
-            if (var5 >= 0 && var5 < this.minecartContainerItems.length)
+            if (var5 >= 0 && var5 < minecartContainerItems.length)
             {
-                this.minecartContainerItems[var5] = ItemStack.loadItemStackFromNBT(var4);
+                minecartContainerItems[var5] = ItemStack.loadItemStackFromNBT(var4);
             }
         }
     }
@@ -296,7 +296,7 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
      */
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
             par1EntityPlayer.displayGUIChest(this);
         }
@@ -307,9 +307,9 @@ public abstract class EntityMinecartContainer extends EntityMinecart implements 
     protected void applyDrag()
     {
         int var1 = 15 - Container.calcRedstoneFromInventory(this);
-        float var2 = 0.98F + (float)var1 * 0.001F;
-        this.motionX *= (double)var2;
-        this.motionY *= 0.0D;
-        this.motionZ *= (double)var2;
+        float var2 = 0.98F + var1 * 0.001F;
+        motionX *= var2;
+        motionY *= 0.0D;
+        motionZ *= var2;
     }
 }

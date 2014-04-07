@@ -23,19 +23,19 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
     public WorldGenHugeTrees(boolean p_i45458_1_, int p_i45458_2_, int p_i45458_3_, int p_i45458_4_, int p_i45458_5_)
     {
         super(p_i45458_1_);
-        this.baseHeight = p_i45458_2_;
-        this.field_150538_d = p_i45458_3_;
-        this.woodMetadata = p_i45458_4_;
-        this.leavesMetadata = p_i45458_5_;
+        baseHeight = p_i45458_2_;
+        field_150538_d = p_i45458_3_;
+        woodMetadata = p_i45458_4_;
+        leavesMetadata = p_i45458_5_;
     }
 
     protected int func_150533_a(Random p_150533_1_)
     {
-        int var2 = p_150533_1_.nextInt(3) + this.baseHeight;
+        int var2 = p_150533_1_.nextInt(3) + baseHeight;
 
-        if (this.field_150538_d > 1)
+        if (field_150538_d > 1)
         {
-            var2 += p_150533_1_.nextInt(this.field_150538_d);
+            var2 += p_150533_1_.nextInt(field_150538_d);
         }
 
         return var2;
@@ -69,7 +69,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
                         {
                             Block var12 = p_150536_1_.getBlock(var10, var8, var11);
 
-                            if (!this.func_150523_a(var12))
+                            if (!func_150523_a(var12))
                             {
                                 var7 = false;
                             }
@@ -110,7 +110,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
 
     protected boolean func_150537_a(World p_150537_1_, Random p_150537_2_, int p_150537_3_, int p_150537_4_, int p_150537_5_, int p_150537_6_)
     {
-        return this.func_150536_b(p_150537_1_, p_150537_2_, p_150537_3_, p_150537_4_, p_150537_5_, p_150537_6_) && this.func_150532_c(p_150537_1_, p_150537_2_, p_150537_3_, p_150537_4_, p_150537_5_);
+        return func_150536_b(p_150537_1_, p_150537_2_, p_150537_3_, p_150537_4_, p_150537_5_, p_150537_6_) && func_150532_c(p_150537_1_, p_150537_2_, p_150537_3_, p_150537_4_, p_150537_5_);
     }
 
     protected void func_150535_a(World p_150535_1_, int p_150535_2_, int p_150535_3_, int p_150535_4_, int p_150535_5_, Random p_150535_6_)
@@ -133,7 +133,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
 
                     if (var14.getMaterial() == Material.air || var14.getMaterial() == Material.field_151584_j)
                     {
-                        this.func_150516_a(p_150535_1_, var8, p_150535_3_, var10, Blocks.leaves, this.leavesMetadata);
+                        func_150516_a(p_150535_1_, var8, p_150535_3_, var10, Blocks.leaves, leavesMetadata);
                     }
                 }
             }
@@ -158,7 +158,7 @@ public abstract class WorldGenHugeTrees extends WorldGenAbstractTree
 
                     if (var12.getMaterial() == Material.air || var12.getMaterial() == Material.field_151584_j)
                     {
-                        this.func_150516_a(p_150534_1_, var8, p_150534_3_, var10, Blocks.leaves, this.leavesMetadata);
+                        func_150516_a(p_150534_1_, var8, p_150534_3_, var10, Blocks.leaves, leavesMetadata);
                     }
                 }
             }

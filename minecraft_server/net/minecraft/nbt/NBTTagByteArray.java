@@ -17,7 +17,7 @@ public class NBTTagByteArray extends NBTBase
 
     public NBTTagByteArray(byte[] p_i45128_1_)
     {
-        this.byteArray = p_i45128_1_;
+        byteArray = p_i45128_1_;
     }
 
     /**
@@ -26,8 +26,8 @@ public class NBTTagByteArray extends NBTBase
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
-        par1DataOutput.writeInt(this.byteArray.length);
-        par1DataOutput.write(this.byteArray);
+        par1DataOutput.writeInt(byteArray.length);
+        par1DataOutput.write(byteArray);
     }
 
     /**
@@ -37,8 +37,8 @@ public class NBTTagByteArray extends NBTBase
     void load(DataInput par1DataInput, int par2) throws IOException
     {
         int var3 = par1DataInput.readInt();
-        this.byteArray = new byte[var3];
-        par1DataInput.readFully(this.byteArray);
+        byteArray = new byte[var3];
+        par1DataInput.readFully(byteArray);
     }
 
     /**
@@ -51,7 +51,7 @@ public class NBTTagByteArray extends NBTBase
 
     public String toString()
     {
-        return "[" + this.byteArray.length + " bytes]";
+        return "[" + byteArray.length + " bytes]";
     }
 
     /**
@@ -59,23 +59,23 @@ public class NBTTagByteArray extends NBTBase
      */
     public NBTBase copy()
     {
-        byte[] var1 = new byte[this.byteArray.length];
-        System.arraycopy(this.byteArray, 0, var1, 0, this.byteArray.length);
+        byte[] var1 = new byte[byteArray.length];
+        System.arraycopy(byteArray, 0, var1, 0, byteArray.length);
         return new NBTTagByteArray(var1);
     }
 
     public boolean equals(Object par1Obj)
     {
-        return super.equals(par1Obj) ? Arrays.equals(this.byteArray, ((NBTTagByteArray)par1Obj).byteArray) : false;
+        return super.equals(par1Obj) ? Arrays.equals(byteArray, ((NBTTagByteArray)par1Obj).byteArray) : false;
     }
 
     public int hashCode()
     {
-        return super.hashCode() ^ Arrays.hashCode(this.byteArray);
+        return super.hashCode() ^ Arrays.hashCode(byteArray);
     }
 
     public byte[] func_150292_c()
     {
-        return this.byteArray;
+        return byteArray;
     }
 }

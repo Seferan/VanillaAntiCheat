@@ -24,12 +24,12 @@ public class C15PacketClientSettings extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149530_a = p_148837_1_.readStringFromBuffer(7);
-        this.field_149528_b = p_148837_1_.readByte();
-        this.field_149529_c = EntityPlayer.EnumChatVisibility.func_151426_a(p_148837_1_.readByte());
-        this.field_149526_d = p_148837_1_.readBoolean();
-        this.field_149527_e = EnumDifficulty.func_151523_a(p_148837_1_.readByte());
-        this.field_149525_f = p_148837_1_.readBoolean();
+        field_149530_a = p_148837_1_.readStringFromBuffer(7);
+        field_149528_b = p_148837_1_.readByte();
+        field_149529_c = EntityPlayer.EnumChatVisibility.func_151426_a(p_148837_1_.readByte());
+        field_149526_d = p_148837_1_.readBoolean();
+        field_149527_e = EnumDifficulty.func_151523_a(p_148837_1_.readByte());
+        field_149525_f = p_148837_1_.readBoolean();
     }
 
     /**
@@ -37,12 +37,12 @@ public class C15PacketClientSettings extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149530_a);
-        p_148840_1_.writeByte(this.field_149528_b);
-        p_148840_1_.writeByte(this.field_149529_c.func_151428_a());
-        p_148840_1_.writeBoolean(this.field_149526_d);
-        p_148840_1_.writeByte(this.field_149527_e.func_151525_a());
-        p_148840_1_.writeBoolean(this.field_149525_f);
+        p_148840_1_.writeStringToBuffer(field_149530_a);
+        p_148840_1_.writeByte(field_149528_b);
+        p_148840_1_.writeByte(field_149529_c.func_151428_a());
+        p_148840_1_.writeBoolean(field_149526_d);
+        p_148840_1_.writeByte(field_149527_e.func_151525_a());
+        p_148840_1_.writeBoolean(field_149525_f);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149522_1_)
@@ -52,32 +52,32 @@ public class C15PacketClientSettings extends Packet
 
     public String func_149524_c()
     {
-        return this.field_149530_a;
+        return field_149530_a;
     }
 
     public int func_149521_d()
     {
-        return this.field_149528_b;
+        return field_149528_b;
     }
 
     public EntityPlayer.EnumChatVisibility func_149523_e()
     {
-        return this.field_149529_c;
+        return field_149529_c;
     }
 
     public boolean func_149520_f()
     {
-        return this.field_149526_d;
+        return field_149526_d;
     }
 
     public EnumDifficulty func_149518_g()
     {
-        return this.field_149527_e;
+        return field_149527_e;
     }
 
     public boolean func_149519_h()
     {
-        return this.field_149525_f;
+        return field_149525_f;
     }
 
     /**
@@ -86,7 +86,7 @@ public class C15PacketClientSettings extends Packet
      */
     public String serialize()
     {
-        return String.format("lang=\'%s\', view=%d, chat=%s, col=%b, difficulty=%s, cape=%b", new Object[] {this.field_149530_a, Integer.valueOf(this.field_149528_b), this.field_149529_c, Boolean.valueOf(this.field_149526_d), this.field_149527_e, Boolean.valueOf(this.field_149525_f)});
+        return String.format("lang=\'%s\', view=%d, chat=%s, col=%b, difficulty=%s, cape=%b", new Object[] {field_149530_a, Integer.valueOf(field_149528_b), field_149529_c, Boolean.valueOf(field_149526_d), field_149527_e, Boolean.valueOf(field_149525_f)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

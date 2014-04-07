@@ -25,7 +25,7 @@ public abstract class EntityWaterMob extends EntityCreature implements IAnimals
      */
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.checkNoEntityCollision(this.boundingBox);
+        return worldObj.checkNoEntityCollision(boundingBox);
     }
 
     /**
@@ -50,7 +50,7 @@ public abstract class EntityWaterMob extends EntityCreature implements IAnimals
      */
     protected int getExperiencePoints(EntityPlayer par1EntityPlayer)
     {
-        return 1 + this.worldObj.rand.nextInt(3);
+        return 1 + worldObj.rand.nextInt(3);
     }
 
     /**
@@ -58,23 +58,23 @@ public abstract class EntityWaterMob extends EntityCreature implements IAnimals
      */
     public void onEntityUpdate()
     {
-        int var1 = this.getAir();
+        int var1 = getAir();
         super.onEntityUpdate();
 
-        if (this.isEntityAlive() && !this.isInWater())
+        if (isEntityAlive() && !isInWater())
         {
             --var1;
-            this.setAir(var1);
+            setAir(var1);
 
-            if (this.getAir() == -20)
+            if (getAir() == -20)
             {
-                this.setAir(0);
-                this.attackEntityFrom(DamageSource.drown, 2.0F);
+                setAir(0);
+                attackEntityFrom(DamageSource.drown, 2.0F);
             }
         }
         else
         {
-            this.setAir(300);
+            setAir(300);
         }
     }
 }

@@ -17,8 +17,8 @@ public class BlockReed extends Block
     {
         super(Material.plants);
         float var1 = 0.375F;
-        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 1.0F, 0.5F + var1);
-        this.setTickRandomly(true);
+        setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, 1.0F, 0.5F + var1);
+        setTickRandomly(true);
     }
 
     /**
@@ -26,7 +26,7 @@ public class BlockReed extends Block
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_ - 1, p_149674_4_) == Blocks.reeds || this.func_150170_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_))
+        if (p_149674_1_.getBlock(p_149674_2_, p_149674_3_ - 1, p_149674_4_) == Blocks.reeds || func_150170_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_))
         {
             if (p_149674_1_.isAirBlock(p_149674_2_, p_149674_3_ + 1, p_149674_4_))
             {
@@ -63,14 +63,14 @@ public class BlockReed extends Block
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        this.func_150170_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+        func_150170_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
     }
 
     protected final boolean func_150170_e(World p_150170_1_, int p_150170_2_, int p_150170_3_, int p_150170_4_)
     {
-        if (!this.canBlockStay(p_150170_1_, p_150170_2_, p_150170_3_, p_150170_4_))
+        if (!canBlockStay(p_150170_1_, p_150170_2_, p_150170_3_, p_150170_4_))
         {
-            this.dropBlockAsItem(p_150170_1_, p_150170_2_, p_150170_3_, p_150170_4_, p_150170_1_.getBlockMetadata(p_150170_2_, p_150170_3_, p_150170_4_), 0);
+            dropBlockAsItem(p_150170_1_, p_150170_2_, p_150170_3_, p_150170_4_, p_150170_1_.getBlockMetadata(p_150170_2_, p_150170_3_, p_150170_4_), 0);
             p_150170_1_.setBlockToAir(p_150170_2_, p_150170_3_, p_150170_4_);
             return false;
         }
@@ -86,7 +86,7 @@ public class BlockReed extends Block
      */
     public boolean canBlockStay(World p_149718_1_, int p_149718_2_, int p_149718_3_, int p_149718_4_)
     {
-        return this.canPlaceBlockAt(p_149718_1_, p_149718_2_, p_149718_3_, p_149718_4_);
+        return canPlaceBlockAt(p_149718_1_, p_149718_2_, p_149718_3_, p_149718_4_);
     }
 
     /**

@@ -16,9 +16,9 @@ public class StructureMineshaftStart extends StructureStart
     {
         super(par3, par4);
         StructureMineshaftPieces.Room var5 = new StructureMineshaftPieces.Room(0, par2Random, (par3 << 4) + 2, (par4 << 4) + 2);
-        this.components.add(var5);
-        var5.buildComponent(var5, this.components, par2Random);
-        this.updateBoundingBox();
-        this.markAvailableHeight(par1World, par2Random, 10);
+        components.add(var5);
+        var5.buildComponent(var5, components, par2Random);
+        updateBoundingBox();
+        markAvailableHeight(par1World, par2Random, 10);
     }
 }

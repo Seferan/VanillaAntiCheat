@@ -14,7 +14,7 @@ public class BlockStainedGlass extends BlockBreakable
     public BlockStainedGlass(Material p_i45427_1_)
     {
         super("glass", p_i45427_1_, false);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

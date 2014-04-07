@@ -20,7 +20,7 @@ public class BlockEndPortal extends BlockContainer
     protected BlockEndPortal(Material p_i45404_1_)
     {
         super(p_i45404_1_);
-        this.setLightLevel(1.0F);
+        setLightLevel(1.0F);
     }
 
     /**
@@ -35,7 +35,7 @@ public class BlockEndPortal extends BlockContainer
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
         float var5 = 0.0625F;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var5, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var5, 1.0F);
     }
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)

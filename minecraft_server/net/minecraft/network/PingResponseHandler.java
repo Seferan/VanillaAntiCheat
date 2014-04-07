@@ -23,7 +23,7 @@ public class PingResponseHandler extends ChannelInboundHandlerAdapter
 
     public PingResponseHandler(NetworkSystem p_i45286_1_)
     {
-        this.field_151257_b = p_i45286_1_;
+        field_151257_b = p_i45286_1_;
     }
 
     public void channelRead(ChannelHandlerContext p_channelRead_1_, Object p_channelRead_2_)
@@ -37,7 +37,7 @@ public class PingResponseHandler extends ChannelInboundHandlerAdapter
             if (var3.readUnsignedByte() == 254)
             {
                 InetSocketAddress var5 = (InetSocketAddress)p_channelRead_1_.channel().remoteAddress();
-                MinecraftServer var6 = this.field_151257_b.func_151267_d();
+                MinecraftServer var6 = field_151257_b.func_151267_d();
                 int var7 = var3.readableBytes();
                 String var8;
 
@@ -46,7 +46,7 @@ public class PingResponseHandler extends ChannelInboundHandlerAdapter
                 case 0:
                     logger.debug("Ping: (<1.3.x) from {}:{}", new Object[] {var5.getAddress(), Integer.valueOf(var5.getPort())});
                     var8 = String.format("%s\u00a7%d\u00a7%d", new Object[] {var6.getMOTD(), Integer.valueOf(var6.getCurrentPlayerCount()), Integer.valueOf(var6.getMaxPlayers())});
-                    this.func_151256_a(p_channelRead_1_, this.func_151255_a(var8));
+                    func_151256_a(p_channelRead_1_, func_151255_a(var8));
                     break;
 
                 case 1:
@@ -54,7 +54,7 @@ public class PingResponseHandler extends ChannelInboundHandlerAdapter
 
                     logger.debug("Ping: (1.4-1.5.x) from {}:{}", new Object[] {var5.getAddress(), Integer.valueOf(var5.getPort())});
                     var8 = String.format("\u00a71\u0000%d\u0000%s\u0000%s\u0000%d\u0000%d", new Object[] {Integer.valueOf(127), var6.getMinecraftVersion(), var6.getMOTD(), Integer.valueOf(var6.getCurrentPlayerCount()), Integer.valueOf(var6.getMaxPlayers())});
-                    this.func_151256_a(p_channelRead_1_, this.func_151255_a(var8));
+                    func_151256_a(p_channelRead_1_, func_151255_a(var8));
                     break;
 
                 default:
@@ -71,7 +71,7 @@ public class PingResponseHandler extends ChannelInboundHandlerAdapter
 
                     logger.debug("Ping: (1.6) from {}:{}", new Object[] {var5.getAddress(), Integer.valueOf(var5.getPort())});
                     String var10 = String.format("\u00a71\u0000%d\u0000%s\u0000%s\u0000%d\u0000%d", new Object[] {Integer.valueOf(127), var6.getMinecraftVersion(), var6.getMOTD(), Integer.valueOf(var6.getCurrentPlayerCount()), Integer.valueOf(var6.getMaxPlayers())});
-                    this.func_151256_a(p_channelRead_1_, this.func_151255_a(var10));
+                    func_151256_a(p_channelRead_1_, func_151255_a(var10));
                 }
 
                 var3.release();

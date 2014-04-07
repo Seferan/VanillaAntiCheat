@@ -26,8 +26,8 @@ public class BlockSapling extends BlockBush implements IGrowable
     protected BlockSapling()
     {
         float var1 = 0.4F;
-        this.setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var1 * 2.0F, 0.5F + var1);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setBlockBounds(0.5F - var1, 0.0F, 0.5F - var1, 0.5F + var1, var1 * 2.0F, 0.5F + var1);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -41,7 +41,7 @@ public class BlockSapling extends BlockBush implements IGrowable
 
             if (p_149674_1_.getBlockLightValue(p_149674_2_, p_149674_3_ + 1, p_149674_4_) >= 9 && p_149674_5_.nextInt(7) == 0)
             {
-                this.func_149879_c(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
+                func_149879_c(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_5_);
             }
         }
     }
@@ -56,7 +56,7 @@ public class BlockSapling extends BlockBush implements IGrowable
         }
         else
         {
-            this.func_149878_d(p_149879_1_, p_149879_2_, p_149879_3_, p_149879_4_, p_149879_5_);
+            func_149878_d(p_149879_1_, p_149879_2_, p_149879_3_, p_149879_4_, p_149879_5_);
         }
     }
 
@@ -79,7 +79,7 @@ public class BlockSapling extends BlockBush implements IGrowable
             {
                 for (var9 = 0; var9 >= -1; --var9)
                 {
-                    if (this.func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9, 1) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9, 1) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9 + 1, 1) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9 + 1, 1))
+                    if (func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9, 1) && func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9, 1) && func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9 + 1, 1) && func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9 + 1, 1))
                     {
                         var7 = new WorldGenMegaPineTree(false, p_149878_5_.nextBoolean());
                         var10 = true;
@@ -88,14 +88,14 @@ public class BlockSapling extends BlockBush implements IGrowable
                 }
             }
 
-            if (!var10)
-            {
-                var9 = 0;
-                var8 = 0;
-                var7 = new WorldGenTaiga2(true);
-            }
+        if (!var10)
+        {
+            var9 = 0;
+            var8 = 0;
+            var7 = new WorldGenTaiga2(true);
+        }
 
-            break;
+        break;
 
         case 2:
             var7 = new WorldGenForest(true, false);
@@ -106,7 +106,7 @@ public class BlockSapling extends BlockBush implements IGrowable
             {
                 for (var9 = 0; var9 >= -1; --var9)
                 {
-                    if (this.func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9, 3) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9, 3) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9 + 1, 3) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9 + 1, 3))
+                    if (func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9, 3) && func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9, 3) && func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9 + 1, 3) && func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9 + 1, 3))
                     {
                         var7 = new WorldGenMegaJungle(true, 10, 20, 3, 3);
                         var10 = true;
@@ -115,14 +115,14 @@ public class BlockSapling extends BlockBush implements IGrowable
                 }
             }
 
-            if (!var10)
-            {
-                var9 = 0;
-                var8 = 0;
-                var7 = new WorldGenTrees(true, 4 + p_149878_5_.nextInt(7), 3, 3, false);
-            }
+        if (!var10)
+        {
+            var9 = 0;
+            var8 = 0;
+            var7 = new WorldGenTrees(true, 4 + p_149878_5_.nextInt(7), 3, 3, false);
+        }
 
-            break;
+        break;
 
         case 4:
             var7 = new WorldGenSavannaTree(true);
@@ -133,7 +133,7 @@ public class BlockSapling extends BlockBush implements IGrowable
             {
                 for (var9 = 0; var9 >= -1; --var9)
                 {
-                    if (this.func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9, 5) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9, 5) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9 + 1, 5) && this.func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9 + 1, 5))
+                    if (func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9, 5) && func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9, 5) && func_149880_a(p_149878_1_, p_149878_2_ + var8, p_149878_3_, p_149878_4_ + var9 + 1, 5) && func_149880_a(p_149878_1_, p_149878_2_ + var8 + 1, p_149878_3_, p_149878_4_ + var9 + 1, 5))
                     {
                         var7 = new WorldGenCanopyTree(true);
                         var10 = true;
@@ -142,7 +142,7 @@ public class BlockSapling extends BlockBush implements IGrowable
                 }
             }
 
-            if (!var10) { return; }
+        if (!var10) { return; }
         }
 
         Block var11 = Blocks.air;
@@ -196,11 +196,11 @@ public class BlockSapling extends BlockBush implements IGrowable
 
     public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_)
     {
-        return (double)p_149852_1_.rand.nextFloat() < 0.45D;
+        return p_149852_1_.rand.nextFloat() < 0.45D;
     }
 
     public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
     {
-        this.func_149879_c(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, p_149853_2_);
+        func_149879_c(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, p_149853_2_);
     }
 }

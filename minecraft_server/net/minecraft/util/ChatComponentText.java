@@ -9,7 +9,7 @@ public class ChatComponentText extends ChatComponentStyle
 
     public ChatComponentText(String p_i45159_1_)
     {
-        this.text = p_i45159_1_;
+        text = p_i45159_1_;
     }
 
     /**
@@ -20,7 +20,7 @@ public class ChatComponentText extends ChatComponentStyle
      */
     public String getChatComponentText_TextValue()
     {
-        return this.text;
+        return text;
     }
 
     /**
@@ -29,7 +29,7 @@ public class ChatComponentText extends ChatComponentStyle
      */
     public String getUnformattedTextForChat()
     {
-        return this.text;
+        return text;
     }
 
     /**
@@ -38,9 +38,9 @@ public class ChatComponentText extends ChatComponentStyle
      */
     public ChatComponentText createCopy()
     {
-        ChatComponentText var1 = new ChatComponentText(this.text);
-        var1.setChatStyle(this.getChatStyle().createShallowCopy());
-        Iterator var2 = this.getSiblings().iterator();
+        ChatComponentText var1 = new ChatComponentText(text);
+        var1.setChatStyle(getChatStyle().createShallowCopy());
+        Iterator var2 = getSiblings().iterator();
 
         while (var2.hasNext())
         {
@@ -64,12 +64,12 @@ public class ChatComponentText extends ChatComponentStyle
         else
         {
             ChatComponentText var2 = (ChatComponentText)par1Obj;
-            return this.text.equals(var2.getChatComponentText_TextValue()) && super.equals(par1Obj);
+            return text.equals(var2.getChatComponentText_TextValue()) && super.equals(par1Obj);
         }
     }
 
     public String toString()
     {
-        return "TextComponent{text=\'" + this.text + '\'' + ", siblings=" + this.siblings + ", style=" + this.getChatStyle() + '}';
+        return "TextComponent{text=\'" + text + '\'' + ", siblings=" + siblings + ", style=" + getChatStyle() + '}';
     }
 }

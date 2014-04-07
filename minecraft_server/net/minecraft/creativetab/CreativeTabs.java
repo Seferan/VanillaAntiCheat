@@ -67,32 +67,32 @@ public abstract class CreativeTabs
 
     public CreativeTabs(int par1, String par2Str)
     {
-        this.tabIndex = par1;
-        this.tabLabel = par2Str;
+        tabIndex = par1;
+        tabLabel = par2Str;
         creativeTabArray[par1] = this;
     }
 
     public CreativeTabs setBackgroundImageName(String par1Str)
     {
-        this.theTexture = par1Str;
+        theTexture = par1Str;
         return this;
     }
 
     public CreativeTabs setNoTitle()
     {
-        this.drawTitle = false;
+        drawTitle = false;
         return this;
     }
 
     public CreativeTabs setNoScrollbar()
     {
-        this.hasScrollbar = false;
+        hasScrollbar = false;
         return this;
     }
 
     public CreativeTabs func_111229_a(EnumEnchantmentType... par1ArrayOfEnumEnchantmentType)
     {
-        this.field_111230_s = par1ArrayOfEnumEnchantmentType;
+        field_111230_s = par1ArrayOfEnumEnchantmentType;
         return this;
     }
 }

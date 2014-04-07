@@ -27,7 +27,7 @@ public class ServersideAttributeMap extends BaseAttributeMap
 
         if (var2 == null)
         {
-            var2 = (IAttributeInstance)this.descriptionToAttributeInstanceMap.get(par1Str);
+            var2 = (IAttributeInstance)descriptionToAttributeInstanceMap.get(par1Str);
         }
 
         return (ModifiableAttributeInstance)var2;
@@ -39,21 +39,21 @@ public class ServersideAttributeMap extends BaseAttributeMap
      */
     public IAttributeInstance registerAttribute(IAttribute par1Attribute)
     {
-        if (this.attributesByName.containsKey(par1Attribute.getAttributeUnlocalizedName()))
+        if (attributesByName.containsKey(par1Attribute.getAttributeUnlocalizedName()))
         {
             throw new IllegalArgumentException("Attribute is already registered!");
         }
         else
         {
             ModifiableAttributeInstance var2 = new ModifiableAttributeInstance(this, par1Attribute);
-            this.attributesByName.put(par1Attribute.getAttributeUnlocalizedName(), var2);
+            attributesByName.put(par1Attribute.getAttributeUnlocalizedName(), var2);
 
             if (par1Attribute instanceof RangedAttribute && ((RangedAttribute)par1Attribute).getDescription() != null)
             {
-                this.descriptionToAttributeInstanceMap.put(((RangedAttribute)par1Attribute).getDescription(), var2);
+                descriptionToAttributeInstanceMap.put(((RangedAttribute)par1Attribute).getDescription(), var2);
             }
 
-            this.attributes.put(par1Attribute, var2);
+            attributes.put(par1Attribute, var2);
             return var2;
         }
     }
@@ -62,19 +62,19 @@ public class ServersideAttributeMap extends BaseAttributeMap
     {
         if (par1ModifiableAttributeInstance.getAttribute().getShouldWatch())
         {
-            this.attributeInstanceSet.add(par1ModifiableAttributeInstance);
+            attributeInstanceSet.add(par1ModifiableAttributeInstance);
         }
     }
 
     public Set getAttributeInstanceSet()
     {
-        return this.attributeInstanceSet;
+        return attributeInstanceSet;
     }
 
     public Collection getWatchedAttributes()
     {
         HashSet var1 = Sets.newHashSet();
-        Iterator var2 = this.getAllAttributes().iterator();
+        Iterator var2 = getAllAttributes().iterator();
 
         while (var2.hasNext())
         {

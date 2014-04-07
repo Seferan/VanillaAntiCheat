@@ -24,42 +24,42 @@ public class ServerStatusResponse
 
     public IChatComponent func_151317_a()
     {
-        return this.field_151326_a;
+        return field_151326_a;
     }
 
     public void func_151315_a(IChatComponent p_151315_1_)
     {
-        this.field_151326_a = p_151315_1_;
+        field_151326_a = p_151315_1_;
     }
 
     public ServerStatusResponse.PlayerCountData func_151318_b()
     {
-        return this.field_151324_b;
+        return field_151324_b;
     }
 
     public void func_151319_a(ServerStatusResponse.PlayerCountData p_151319_1_)
     {
-        this.field_151324_b = p_151319_1_;
+        field_151324_b = p_151319_1_;
     }
 
     public ServerStatusResponse.MinecraftProtocolVersionIdentifier func_151322_c()
     {
-        return this.field_151325_c;
+        return field_151325_c;
     }
 
     public void func_151321_a(ServerStatusResponse.MinecraftProtocolVersionIdentifier p_151321_1_)
     {
-        this.field_151325_c = p_151321_1_;
+        field_151325_c = p_151321_1_;
     }
 
     public void func_151320_a(String p_151320_1_)
     {
-        this.field_151323_d = p_151320_1_;
+        field_151323_d = p_151320_1_;
     }
 
     public String func_151316_d()
     {
-        return this.field_151323_d;
+        return field_151323_d;
     }
 
     public static class PlayerCountData
@@ -71,28 +71,28 @@ public class ServerStatusResponse
 
         public PlayerCountData(int p_i45274_1_, int p_i45274_2_)
         {
-            this.field_151336_a = p_i45274_1_;
-            this.field_151334_b = p_i45274_2_;
+            field_151336_a = p_i45274_1_;
+            field_151334_b = p_i45274_2_;
         }
 
         public int func_151332_a()
         {
-            return this.field_151336_a;
+            return field_151336_a;
         }
 
         public int func_151333_b()
         {
-            return this.field_151334_b;
+            return field_151334_b;
         }
 
         public GameProfile[] func_151331_c()
         {
-            return this.field_151335_c;
+            return field_151335_c;
         }
 
         public void func_151330_a(GameProfile[] p_151330_1_)
         {
-            this.field_151335_c = p_151330_1_;
+            field_151335_c = p_151330_1_;
         }
 
         public static class Serializer implements JsonDeserializer, JsonSerializer
@@ -164,18 +164,18 @@ public class ServerStatusResponse
 
         public MinecraftProtocolVersionIdentifier(String p_i45275_1_, int p_i45275_2_)
         {
-            this.field_151306_a = p_i45275_1_;
-            this.field_151305_b = p_i45275_2_;
+            field_151306_a = p_i45275_1_;
+            field_151305_b = p_i45275_2_;
         }
 
         public String func_151303_a()
         {
-            return this.field_151306_a;
+            return field_151306_a;
         }
 
         public int func_151304_b()
         {
-            return this.field_151305_b;
+            return field_151305_b;
         }
 
         public static class Serializer implements JsonDeserializer, JsonSerializer

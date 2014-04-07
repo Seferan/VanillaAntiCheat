@@ -20,9 +20,9 @@ public class S06PacketUpdateHealth extends Packet
 
     public S06PacketUpdateHealth(float p_i45223_1_, int p_i45223_2_, float p_i45223_3_)
     {
-        this.field_149336_a = p_i45223_1_;
-        this.field_149334_b = p_i45223_2_;
-        this.field_149335_c = p_i45223_3_;
+        field_149336_a = p_i45223_1_;
+        field_149334_b = p_i45223_2_;
+        field_149335_c = p_i45223_3_;
     }
 
     /**
@@ -30,9 +30,9 @@ public class S06PacketUpdateHealth extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149336_a = p_148837_1_.readFloat();
-        this.field_149334_b = p_148837_1_.readShort();
-        this.field_149335_c = p_148837_1_.readFloat();
+        field_149336_a = p_148837_1_.readFloat();
+        field_149334_b = p_148837_1_.readShort();
+        field_149335_c = p_148837_1_.readFloat();
     }
 
     /**
@@ -40,9 +40,9 @@ public class S06PacketUpdateHealth extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeFloat(this.field_149336_a);
-        p_148840_1_.writeShort(this.field_149334_b);
-        p_148840_1_.writeFloat(this.field_149335_c);
+        p_148840_1_.writeFloat(field_149336_a);
+        p_148840_1_.writeShort(field_149334_b);
+        p_148840_1_.writeFloat(field_149335_c);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149333_1_)

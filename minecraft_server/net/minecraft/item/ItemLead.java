@@ -17,7 +17,7 @@ public class ItemLead extends Item
 
     public ItemLead()
     {
-        this.setCreativeTab(CreativeTabs.tabTools);
+        setCreativeTab(CreativeTabs.tabTools);
     }
 
     /**
@@ -52,7 +52,7 @@ public class ItemLead extends Item
         EntityLeashKnot var5 = EntityLeashKnot.getKnotForBlock(p_150909_1_, p_150909_2_, p_150909_3_, p_150909_4_);
         boolean var6 = false;
         double var7 = 7.0D;
-        List var9 = p_150909_1_.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getAABBPool().getAABB((double)p_150909_2_ - var7, (double)p_150909_3_ - var7, (double)p_150909_4_ - var7, (double)p_150909_2_ + var7, (double)p_150909_3_ + var7, (double)p_150909_4_ + var7));
+        List var9 = p_150909_1_.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getAABBPool().getAABB(p_150909_2_ - var7, p_150909_3_ - var7, p_150909_4_ - var7, p_150909_2_ + var7, p_150909_3_ + var7, p_150909_4_ + var7));
 
         if (var9 != null)
         {

@@ -22,7 +22,7 @@ public class C0DPacketCloseWindow extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149556_a = p_148837_1_.readByte();
+        field_149556_a = p_148837_1_.readByte();
     }
 
     /**
@@ -30,7 +30,7 @@ public class C0DPacketCloseWindow extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149556_a);
+        p_148840_1_.writeByte(field_149556_a);
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

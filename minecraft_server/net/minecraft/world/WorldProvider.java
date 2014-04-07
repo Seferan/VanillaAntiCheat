@@ -50,11 +50,11 @@ public abstract class WorldProvider
      */
     public final void registerWorld(World par1World)
     {
-        this.worldObj = par1World;
-        this.terrainType = par1World.getWorldInfo().getTerrainType();
-        this.field_82913_c = par1World.getWorldInfo().getGeneratorOptions();
-        this.registerWorldChunkManager();
-        this.generateLightBrightnessTable();
+        worldObj = par1World;
+        terrainType = par1World.getWorldInfo().getTerrainType();
+        field_82913_c = par1World.getWorldInfo().getGeneratorOptions();
+        registerWorldChunkManager();
+        generateLightBrightnessTable();
     }
 
     /**
@@ -66,8 +66,8 @@ public abstract class WorldProvider
 
         for (int var2 = 0; var2 <= 15; ++var2)
         {
-            float var3 = 1.0F - (float)var2 / 15.0F;
-            this.lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
+            float var3 = 1.0F - var2 / 15.0F;
+            lightBrightnessTable[var2] = (1.0F - var3) / (var3 * 3.0F + 1.0F) * (1.0F - var1) + var1;
         }
     }
 
@@ -76,14 +76,14 @@ public abstract class WorldProvider
      */
     protected void registerWorldChunkManager()
     {
-        if (this.worldObj.getWorldInfo().getTerrainType() == WorldType.FLAT)
+        if (worldObj.getWorldInfo().getTerrainType() == WorldType.FLAT)
         {
-            FlatGeneratorInfo var1 = FlatGeneratorInfo.createFlatGeneratorFromString(this.worldObj.getWorldInfo().getGeneratorOptions());
-            this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.func_150568_d(var1.getBiome()), 0.5F);
+            FlatGeneratorInfo var1 = FlatGeneratorInfo.createFlatGeneratorFromString(worldObj.getWorldInfo().getGeneratorOptions());
+            worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.func_150568_d(var1.getBiome()), 0.5F);
         }
         else
         {
-            this.worldChunkMgr = new WorldChunkManager(this.worldObj);
+            worldChunkMgr = new WorldChunkManager(worldObj);
         }
     }
 
@@ -92,7 +92,7 @@ public abstract class WorldProvider
      */
     public IChunkProvider createChunkGenerator()
     {
-        return (IChunkProvider)(this.terrainType == WorldType.FLAT ? new ChunkProviderFlat(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.field_82913_c) : new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled()));
+        return terrainType == WorldType.FLAT ? new ChunkProviderFlat(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled(), field_82913_c) : new ChunkProviderGenerate(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled());
     }
 
     /**
@@ -101,7 +101,7 @@ public abstract class WorldProvider
      */
     public boolean canCoordinateBeSpawn(int par1, int par2)
     {
-        return this.worldObj.getTopBlock(par1, par2) == Blocks.grass;
+        return worldObj.getTopBlock(par1, par2) == Blocks.grass;
     }
 
     /**
@@ -111,7 +111,7 @@ public abstract class WorldProvider
     public float calculateCelestialAngle(long par1, float par3)
     {
         int var4 = (int)(par1 % 24000L);
-        float var5 = ((float)var4 + par3) / 24000.0F - 0.25F;
+        float var5 = (var4 + par3) / 24000.0F - 0.25F;
 
         if (var5 < 0.0F)
         {
@@ -124,7 +124,7 @@ public abstract class WorldProvider
         }
 
         float var6 = var5;
-        var5 = 1.0F - (float)((Math.cos((double)var5 * Math.PI) + 1.0D) / 2.0D);
+        var5 = 1.0F - (float)((Math.cos(var5 * Math.PI) + 1.0D) / 2.0D);
         var5 = var6 + (var5 - var6) / 3.0F;
         return var5;
     }
@@ -154,7 +154,7 @@ public abstract class WorldProvider
 
     public static WorldProvider getProviderForDimension(int par0)
     {
-        return (WorldProvider)(par0 == -1 ? new WorldProviderHell() : (par0 == 0 ? new WorldProviderSurface() : (par0 == 1 ? new WorldProviderEnd() : null)));
+        return par0 == -1 ? new WorldProviderHell() : (par0 == 0 ? new WorldProviderSurface() : (par0 == 1 ? new WorldProviderEnd() : null));
     }
 
     /**
@@ -167,7 +167,7 @@ public abstract class WorldProvider
 
     public int getAverageGroundLevel()
     {
-        return this.terrainType == WorldType.FLAT ? 4 : 64;
+        return terrainType == WorldType.FLAT ? 4 : 64;
     }
 
     /**

@@ -18,13 +18,13 @@ public class EntityWitherSkull extends EntityFireball
     public EntityWitherSkull(World par1World)
     {
         super(par1World);
-        this.setSize(0.3125F, 0.3125F);
+        setSize(0.3125F, 0.3125F);
     }
 
     public EntityWitherSkull(World par1World, EntityLivingBase par2EntityLivingBase, double par3, double par5, double par7)
     {
         super(par1World, par2EntityLivingBase, par3, par5, par7);
-        this.setSize(0.3125F, 0.3125F);
+        setSize(0.3125F, 0.3125F);
     }
 
     /**
@@ -33,7 +33,7 @@ public class EntityWitherSkull extends EntityFireball
      */
     protected float getMotionFactor()
     {
-        return this.isInvulnerable() ? 0.73F : super.getMotionFactor();
+        return isInvulnerable() ? 0.73F : super.getMotionFactor();
     }
 
     /**
@@ -49,7 +49,7 @@ public class EntityWitherSkull extends EntityFireball
     {
         float var7 = super.func_145772_a(p_145772_1_, p_145772_2_, p_145772_3_, p_145772_4_, p_145772_5_, p_145772_6_);
 
-        if (this.isInvulnerable() && p_145772_6_ != Blocks.bedrock && p_145772_6_ != Blocks.end_portal && p_145772_6_ != Blocks.end_portal_frame && p_145772_6_ != Blocks.command_block)
+        if (isInvulnerable() && p_145772_6_ != Blocks.bedrock && p_145772_6_ != Blocks.end_portal && p_145772_6_ != Blocks.end_portal_frame && p_145772_6_ != Blocks.command_block)
         {
             var7 = Math.min(0.8F, var7);
         }
@@ -62,15 +62,15 @@ public class EntityWitherSkull extends EntityFireball
      */
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition)
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
             if (par1MovingObjectPosition.entityHit != null)
             {
-                if (this.shootingEntity != null)
+                if (shootingEntity != null)
                 {
-                    if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeMobDamage(this.shootingEntity), 8.0F) && !par1MovingObjectPosition.entityHit.isEntityAlive())
+                    if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 8.0F) && !par1MovingObjectPosition.entityHit.isEntityAlive())
                     {
-                        this.shootingEntity.heal(5.0F);
+                        shootingEntity.heal(5.0F);
                     }
                 }
                 else
@@ -82,11 +82,11 @@ public class EntityWitherSkull extends EntityFireball
                 {
                     byte var2 = 0;
 
-                    if (this.worldObj.difficultySetting == EnumDifficulty.NORMAL)
+                    if (worldObj.difficultySetting == EnumDifficulty.NORMAL)
                     {
                         var2 = 10;
                     }
-                    else if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
+                    else if (worldObj.difficultySetting == EnumDifficulty.HARD)
                     {
                         var2 = 40;
                     }
@@ -98,8 +98,8 @@ public class EntityWitherSkull extends EntityFireball
                 }
             }
 
-            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 1.0F, false, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
-            this.setDead();
+            worldObj.newExplosion(this, posX, posY, posZ, 1.0F, false, worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
+            setDead();
         }
     }
 
@@ -122,7 +122,7 @@ public class EntityWitherSkull extends EntityFireball
 
     protected void entityInit()
     {
-        this.dataWatcher.addObject(10, Byte.valueOf((byte)0));
+        dataWatcher.addObject(10, Byte.valueOf((byte)0));
     }
 
     /**
@@ -130,7 +130,7 @@ public class EntityWitherSkull extends EntityFireball
      */
     public boolean isInvulnerable()
     {
-        return this.dataWatcher.getWatchableObjectByte(10) == 1;
+        return dataWatcher.getWatchableObjectByte(10) == 1;
     }
 
     /**
@@ -138,6 +138,6 @@ public class EntityWitherSkull extends EntityFireball
      */
     public void setInvulnerable(boolean par1)
     {
-        this.dataWatcher.updateObject(10, Byte.valueOf((byte)(par1 ? 1 : 0)));
+        dataWatcher.updateObject(10, Byte.valueOf((byte)(par1 ? 1 : 0)));
     }
 }

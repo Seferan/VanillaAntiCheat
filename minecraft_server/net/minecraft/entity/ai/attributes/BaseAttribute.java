@@ -9,35 +9,35 @@ public abstract class BaseAttribute implements IAttribute
 
     protected BaseAttribute(String par1Str, double par2)
     {
-        this.unlocalizedName = par1Str;
-        this.defaultValue = par2;
+        unlocalizedName = par1Str;
+        defaultValue = par2;
 
         if (par1Str == null) { throw new IllegalArgumentException("Name cannot be null!"); }
     }
 
     public String getAttributeUnlocalizedName()
     {
-        return this.unlocalizedName;
+        return unlocalizedName;
     }
 
     public double getDefaultValue()
     {
-        return this.defaultValue;
+        return defaultValue;
     }
 
     public boolean getShouldWatch()
     {
-        return this.shouldWatch;
+        return shouldWatch;
     }
 
     public BaseAttribute setShouldWatch(boolean par1)
     {
-        this.shouldWatch = par1;
+        shouldWatch = par1;
         return this;
     }
 
     public int hashCode()
     {
-        return this.unlocalizedName.hashCode();
+        return unlocalizedName.hashCode();
     }
 }

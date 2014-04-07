@@ -22,8 +22,8 @@ public class BlockEnderChest extends BlockContainer
     protected BlockEnderChest()
     {
         super(Material.rock);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
-        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
+        setcreativeTab(CreativeTabs.tabDecorations);
+        setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
     }
 
     public boolean isOpaqueCube()
@@ -68,7 +68,7 @@ public class BlockEnderChest extends BlockContainer
     public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
         byte var7 = 0;
-        int var8 = MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int var8 = MathHelper.floor_double(p_149689_5_.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         if (var8 == 0)
         {

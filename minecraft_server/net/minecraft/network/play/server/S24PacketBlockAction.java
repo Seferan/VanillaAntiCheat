@@ -24,12 +24,12 @@ public class S24PacketBlockAction extends Packet
 
     public S24PacketBlockAction(int p_i45176_1_, int p_i45176_2_, int p_i45176_3_, Block p_i45176_4_, int p_i45176_5_, int p_i45176_6_)
     {
-        this.field_148876_a = p_i45176_1_;
-        this.field_148874_b = p_i45176_2_;
-        this.field_148875_c = p_i45176_3_;
-        this.field_148872_d = p_i45176_5_;
-        this.field_148873_e = p_i45176_6_;
-        this.field_148871_f = p_i45176_4_;
+        field_148876_a = p_i45176_1_;
+        field_148874_b = p_i45176_2_;
+        field_148875_c = p_i45176_3_;
+        field_148872_d = p_i45176_5_;
+        field_148873_e = p_i45176_6_;
+        field_148871_f = p_i45176_4_;
     }
 
     /**
@@ -37,12 +37,12 @@ public class S24PacketBlockAction extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148876_a = p_148837_1_.readInt();
-        this.field_148874_b = p_148837_1_.readShort();
-        this.field_148875_c = p_148837_1_.readInt();
-        this.field_148872_d = p_148837_1_.readUnsignedByte();
-        this.field_148873_e = p_148837_1_.readUnsignedByte();
-        this.field_148871_f = Block.getBlockById(p_148837_1_.readVarIntFromBuffer() & 4095);
+        field_148876_a = p_148837_1_.readInt();
+        field_148874_b = p_148837_1_.readShort();
+        field_148875_c = p_148837_1_.readInt();
+        field_148872_d = p_148837_1_.readUnsignedByte();
+        field_148873_e = p_148837_1_.readUnsignedByte();
+        field_148871_f = Block.getBlockById(p_148837_1_.readVarIntFromBuffer() & 4095);
     }
 
     /**
@@ -50,12 +50,12 @@ public class S24PacketBlockAction extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_148876_a);
-        p_148840_1_.writeShort(this.field_148874_b);
-        p_148840_1_.writeInt(this.field_148875_c);
-        p_148840_1_.writeByte(this.field_148872_d);
-        p_148840_1_.writeByte(this.field_148873_e);
-        p_148840_1_.writeVarIntToBuffer(Block.getIdFromBlock(this.field_148871_f) & 4095);
+        p_148840_1_.writeInt(field_148876_a);
+        p_148840_1_.writeShort(field_148874_b);
+        p_148840_1_.writeInt(field_148875_c);
+        p_148840_1_.writeByte(field_148872_d);
+        p_148840_1_.writeByte(field_148873_e);
+        p_148840_1_.writeVarIntToBuffer(Block.getIdFromBlock(field_148871_f) & 4095);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148870_1_)

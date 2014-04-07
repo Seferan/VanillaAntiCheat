@@ -24,10 +24,10 @@ public class S07PacketRespawn extends Packet
 
     public S07PacketRespawn(int p_i45213_1_, EnumDifficulty p_i45213_2_, WorldType p_i45213_3_, WorldSettings.GameType p_i45213_4_)
     {
-        this.field_149088_a = p_i45213_1_;
-        this.field_149086_b = p_i45213_2_;
-        this.field_149087_c = p_i45213_4_;
-        this.field_149085_d = p_i45213_3_;
+        field_149088_a = p_i45213_1_;
+        field_149086_b = p_i45213_2_;
+        field_149087_c = p_i45213_4_;
+        field_149085_d = p_i45213_3_;
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149084_1_)
@@ -40,14 +40,14 @@ public class S07PacketRespawn extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149088_a = p_148837_1_.readInt();
-        this.field_149086_b = EnumDifficulty.func_151523_a(p_148837_1_.readUnsignedByte());
-        this.field_149087_c = WorldSettings.GameType.getByID(p_148837_1_.readUnsignedByte());
-        this.field_149085_d = WorldType.parseWorldType(p_148837_1_.readStringFromBuffer(16));
+        field_149088_a = p_148837_1_.readInt();
+        field_149086_b = EnumDifficulty.func_151523_a(p_148837_1_.readUnsignedByte());
+        field_149087_c = WorldSettings.GameType.getByID(p_148837_1_.readUnsignedByte());
+        field_149085_d = WorldType.parseWorldType(p_148837_1_.readStringFromBuffer(16));
 
-        if (this.field_149085_d == null)
+        if (field_149085_d == null)
         {
-            this.field_149085_d = WorldType.DEFAULT;
+            field_149085_d = WorldType.DEFAULT;
         }
     }
 
@@ -56,10 +56,10 @@ public class S07PacketRespawn extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149088_a);
-        p_148840_1_.writeByte(this.field_149086_b.func_151525_a());
-        p_148840_1_.writeByte(this.field_149087_c.getID());
-        p_148840_1_.writeStringToBuffer(this.field_149085_d.getWorldTypeName());
+        p_148840_1_.writeInt(field_149088_a);
+        p_148840_1_.writeByte(field_149086_b.func_151525_a());
+        p_148840_1_.writeByte(field_149087_c.getID());
+        p_148840_1_.writeStringToBuffer(field_149085_d.getWorldTypeName());
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

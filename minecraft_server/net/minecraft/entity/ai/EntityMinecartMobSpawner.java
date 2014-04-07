@@ -68,7 +68,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
     protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.mobSpawnerLogic.readFromNBT(par1NBTTagCompound);
+        mobSpawnerLogic.readFromNBT(par1NBTTagCompound);
     }
 
     /**
@@ -77,7 +77,7 @@ public class EntityMinecartMobSpawner extends EntityMinecart
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
-        this.mobSpawnerLogic.writeToNBT(par1NBTTagCompound);
+        mobSpawnerLogic.writeToNBT(par1NBTTagCompound);
     }
 
     /**
@@ -86,6 +86,6 @@ public class EntityMinecartMobSpawner extends EntityMinecart
     public void onUpdate()
     {
         super.onUpdate();
-        this.mobSpawnerLogic.updateSpawner();
+        mobSpawnerLogic.updateSpawner();
     }
 }

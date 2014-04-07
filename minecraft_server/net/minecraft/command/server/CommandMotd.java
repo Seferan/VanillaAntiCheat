@@ -35,7 +35,7 @@ public class CommandMotd extends CommandBase
             par1ICommandSender.addChatMessage("(No motd)");
             return;
         }
-        
+
         boolean first = true;
         for(String line : MinecraftServer.getServer().getConfigurationManager().getMotd())
         {
@@ -44,7 +44,7 @@ public class CommandMotd extends CommandBase
             {
                 String[] parts = line.split("\\\\!");
                 message = new ChatComponentText(parts[0]);
-                
+
                 ChatComponentText sibling = new ChatComponentText(parts[1]);
                 sibling.getChatStyle().setBold(true);
                 message.appendSibling(sibling);
@@ -61,7 +61,7 @@ public class CommandMotd extends CommandBase
                     sibling = new ChatComponentText(line.substring(3));
                 }
                 sibling.getChatStyle().setColor(EnumChatFormatting.RED);
-                
+
                 message = new ChatComponentText("- ");
                 message.getChatStyle().setColor(EnumChatFormatting.GRAY);
                 message.appendSibling(sibling);
@@ -71,7 +71,7 @@ public class CommandMotd extends CommandBase
                 message.getChatStyle().setColor(EnumChatFormatting.GOLD);
                 first = false;
             }
-            par1ICommandSender.addChatMessage(message);   
+            par1ICommandSender.addChatMessage(message);
         }
     }
 

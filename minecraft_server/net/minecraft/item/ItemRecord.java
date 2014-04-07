@@ -17,9 +17,9 @@ public class ItemRecord extends Item
 
     protected ItemRecord(String p_i45350_1_)
     {
-        this.field_150929_a = p_i45350_1_;
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        field_150929_a = p_i45350_1_;
+        maxStackSize = 1;
+        setCreativeTab(CreativeTabs.tabMisc);
         field_150928_b.put(p_i45350_1_, this);
     }
 

@@ -17,8 +17,8 @@ public class WorldGenSand extends WorldGenerator
 
     public WorldGenSand(Block p_i45462_1_, int p_i45462_2_)
     {
-        this.field_150517_a = p_i45462_1_;
-        this.radius = p_i45462_2_;
+        field_150517_a = p_i45462_1_;
+        radius = p_i45462_2_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -29,7 +29,7 @@ public class WorldGenSand extends WorldGenerator
         }
         else
         {
-            int var6 = par2Random.nextInt(this.radius - 2) + 2;
+            int var6 = par2Random.nextInt(radius - 2) + 2;
             byte var7 = 2;
 
             for (int var8 = par3 - var6; var8 <= par3 + var6; ++var8)
@@ -47,7 +47,7 @@ public class WorldGenSand extends WorldGenerator
 
                             if (var13 == Blocks.dirt || var13 == Blocks.grass)
                             {
-                                par1World.setBlock(var8, var12, var9, this.field_150517_a, 0, 2);
+                                par1World.setBlock(var8, var12, var9, field_150517_a, 0, 2);
                             }
                         }
                     }

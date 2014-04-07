@@ -17,7 +17,7 @@ public class NBTTagIntArray extends NBTBase
 
     public NBTTagIntArray(int[] p_i45132_1_)
     {
-        this.intArray = p_i45132_1_;
+        intArray = p_i45132_1_;
     }
 
     /**
@@ -26,11 +26,11 @@ public class NBTTagIntArray extends NBTBase
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
-        par1DataOutput.writeInt(this.intArray.length);
+        par1DataOutput.writeInt(intArray.length);
 
-        for (int var2 = 0; var2 < this.intArray.length; ++var2)
+        for (int var2 = 0; var2 < intArray.length; ++var2)
         {
-            par1DataOutput.writeInt(this.intArray[var2]);
+            par1DataOutput.writeInt(intArray[var2]);
         }
     }
 
@@ -41,11 +41,11 @@ public class NBTTagIntArray extends NBTBase
     void load(DataInput par1DataInput, int par2) throws IOException
     {
         int var3 = par1DataInput.readInt();
-        this.intArray = new int[var3];
+        intArray = new int[var3];
 
         for (int var4 = 0; var4 < var3; ++var4)
         {
-            this.intArray[var4] = par1DataInput.readInt();
+            intArray[var4] = par1DataInput.readInt();
         }
     }
 
@@ -60,7 +60,7 @@ public class NBTTagIntArray extends NBTBase
     public String toString()
     {
         String var1 = "[";
-        int[] var2 = this.intArray;
+        int[] var2 = intArray;
         int var3 = var2.length;
 
         for (int var4 = 0; var4 < var3; ++var4)
@@ -77,23 +77,23 @@ public class NBTTagIntArray extends NBTBase
      */
     public NBTBase copy()
     {
-        int[] var1 = new int[this.intArray.length];
-        System.arraycopy(this.intArray, 0, var1, 0, this.intArray.length);
+        int[] var1 = new int[intArray.length];
+        System.arraycopy(intArray, 0, var1, 0, intArray.length);
         return new NBTTagIntArray(var1);
     }
 
     public boolean equals(Object par1Obj)
     {
-        return super.equals(par1Obj) ? Arrays.equals(this.intArray, ((NBTTagIntArray)par1Obj).intArray) : false;
+        return super.equals(par1Obj) ? Arrays.equals(intArray, ((NBTTagIntArray)par1Obj).intArray) : false;
     }
 
     public int hashCode()
     {
-        return super.hashCode() ^ Arrays.hashCode(this.intArray);
+        return super.hashCode() ^ Arrays.hashCode(intArray);
     }
 
     public int[] func_150302_c()
     {
-        return this.intArray;
+        return intArray;
     }
 }

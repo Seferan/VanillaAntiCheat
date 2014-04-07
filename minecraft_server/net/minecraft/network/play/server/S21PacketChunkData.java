@@ -32,21 +32,21 @@ public class S21PacketChunkData extends Packet
 
     public S21PacketChunkData(Chunk p_i45196_1_, boolean p_i45196_2_, int p_i45196_3_)
     {
-        this.field_149284_a = p_i45196_1_.xPosition;
-        this.field_149282_b = p_i45196_1_.zPosition;
-        this.field_149279_g = p_i45196_2_;
+        field_149284_a = p_i45196_1_.xPosition;
+        field_149282_b = p_i45196_1_.zPosition;
+        field_149279_g = p_i45196_2_;
         S21PacketChunkData.Extracted var4 = func_149269_a(p_i45196_1_, p_i45196_2_, p_i45196_3_);
         Deflater var5 = new Deflater(-1);
-        this.field_149280_d = var4.field_150281_c;
-        this.field_149283_c = var4.field_150280_b;
+        field_149280_d = var4.field_150281_c;
+        field_149283_c = var4.field_150280_b;
 
         try
         {
-            this.field_149278_f = var4.field_150282_a;
+            field_149278_f = var4.field_150282_a;
             var5.setInput(var4.field_150282_a, 0, var4.field_150282_a.length);
             var5.finish();
-            this.field_149281_e = new byte[var4.field_150282_a.length];
-            this.field_149285_h = var5.deflate(this.field_149281_e);
+            field_149281_e = new byte[var4.field_150282_a.length];
+            field_149285_h = var5.deflate(field_149281_e);
         }
         finally
         {
@@ -64,41 +64,41 @@ public class S21PacketChunkData extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149284_a = p_148837_1_.readInt();
-        this.field_149282_b = p_148837_1_.readInt();
-        this.field_149279_g = p_148837_1_.readBoolean();
-        this.field_149283_c = p_148837_1_.readShort();
-        this.field_149280_d = p_148837_1_.readShort();
-        this.field_149285_h = p_148837_1_.readInt();
+        field_149284_a = p_148837_1_.readInt();
+        field_149282_b = p_148837_1_.readInt();
+        field_149279_g = p_148837_1_.readBoolean();
+        field_149283_c = p_148837_1_.readShort();
+        field_149280_d = p_148837_1_.readShort();
+        field_149285_h = p_148837_1_.readInt();
 
-        if (field_149286_i.length < this.field_149285_h)
+        if (field_149286_i.length < field_149285_h)
         {
-            field_149286_i = new byte[this.field_149285_h];
+            field_149286_i = new byte[field_149285_h];
         }
 
-        p_148837_1_.readBytes(field_149286_i, 0, this.field_149285_h);
+        p_148837_1_.readBytes(field_149286_i, 0, field_149285_h);
         int var2 = 0;
         int var3;
 
         for (var3 = 0; var3 < 16; ++var3)
         {
-            var2 += this.field_149283_c >> var3 & 1;
+            var2 += field_149283_c >> var3 & 1;
         }
 
         var3 = 12288 * var2;
 
-        if (this.field_149279_g)
+        if (field_149279_g)
         {
             var3 += 256;
         }
 
-        this.field_149278_f = new byte[var3];
+        field_149278_f = new byte[var3];
         Inflater var4 = new Inflater();
-        var4.setInput(field_149286_i, 0, this.field_149285_h);
+        var4.setInput(field_149286_i, 0, field_149285_h);
 
         try
         {
-            var4.inflate(this.field_149278_f);
+            var4.inflate(field_149278_f);
         }
         catch (DataFormatException var9)
         {
@@ -115,13 +115,13 @@ public class S21PacketChunkData extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149284_a);
-        p_148840_1_.writeInt(this.field_149282_b);
-        p_148840_1_.writeBoolean(this.field_149279_g);
-        p_148840_1_.writeShort((short)(this.field_149283_c & 65535));
-        p_148840_1_.writeShort((short)(this.field_149280_d & 65535));
-        p_148840_1_.writeInt(this.field_149285_h);
-        p_148840_1_.writeBytes(this.field_149281_e, 0, this.field_149285_h);
+        p_148840_1_.writeInt(field_149284_a);
+        p_148840_1_.writeInt(field_149282_b);
+        p_148840_1_.writeBoolean(field_149279_g);
+        p_148840_1_.writeShort((short)(field_149283_c & 65535));
+        p_148840_1_.writeShort((short)(field_149280_d & 65535));
+        p_148840_1_.writeInt(field_149285_h);
+        p_148840_1_.writeBytes(field_149281_e, 0, field_149285_h);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149277_1_)
@@ -135,7 +135,7 @@ public class S21PacketChunkData extends Packet
      */
     public String serialize()
     {
-        return String.format("x=%d, z=%d, full=%b, sects=%d, add=%d, size=%d", new Object[] {Integer.valueOf(this.field_149284_a), Integer.valueOf(this.field_149282_b), Boolean.valueOf(this.field_149279_g), Integer.valueOf(this.field_149283_c), Integer.valueOf(this.field_149280_d), Integer.valueOf(this.field_149285_h)});
+        return String.format("x=%d, z=%d, full=%b, sects=%d, add=%d, size=%d", new Object[] {Integer.valueOf(field_149284_a), Integer.valueOf(field_149282_b), Boolean.valueOf(field_149279_g), Integer.valueOf(field_149283_c), Integer.valueOf(field_149280_d), Integer.valueOf(field_149285_h)});
     }
 
     public static S21PacketChunkData.Extracted func_149269_a(Chunk p_149269_0_, boolean p_149269_1_, int p_149269_2_)

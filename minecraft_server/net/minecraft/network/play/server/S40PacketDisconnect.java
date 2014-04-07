@@ -19,7 +19,7 @@ public class S40PacketDisconnect extends Packet
 
     public S40PacketDisconnect(IChatComponent p_i45191_1_)
     {
-        this.field_149167_a = p_i45191_1_;
+        field_149167_a = p_i45191_1_;
     }
 
     /**
@@ -27,7 +27,7 @@ public class S40PacketDisconnect extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149167_a = IChatComponent.Serializer.func_150699_a(p_148837_1_.readStringFromBuffer(32767));
+        field_149167_a = IChatComponent.Serializer.func_150699_a(p_148837_1_.readStringFromBuffer(32767));
     }
 
     /**
@@ -35,7 +35,7 @@ public class S40PacketDisconnect extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(IChatComponent.Serializer.func_150696_a(this.field_149167_a));
+        p_148840_1_.writeStringToBuffer(IChatComponent.Serializer.func_150696_a(field_149167_a));
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149166_1_)

@@ -16,8 +16,8 @@ public class EntityAIFollowParent extends EntityAIBase
 
     public EntityAIFollowParent(EntityAnimal par1EntityAnimal, double par2)
     {
-        this.childAnimal = par1EntityAnimal;
-        this.field_75347_c = par2;
+        childAnimal = par1EntityAnimal;
+        field_75347_c = par2;
     }
 
     /**
@@ -25,13 +25,13 @@ public class EntityAIFollowParent extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.childAnimal.getGrowingAge() >= 0)
+        if (childAnimal.getGrowingAge() >= 0)
         {
             return false;
         }
         else
         {
-            List var1 = this.childAnimal.worldObj.getEntitiesWithinAABB(this.childAnimal.getClass(), this.childAnimal.boundingBox.expand(8.0D, 4.0D, 8.0D));
+            List var1 = childAnimal.worldObj.getEntitiesWithinAABB(childAnimal.getClass(), childAnimal.boundingBox.expand(8.0D, 4.0D, 8.0D));
             EntityAnimal var2 = null;
             double var3 = Double.MAX_VALUE;
             Iterator var5 = var1.iterator();
@@ -42,7 +42,7 @@ public class EntityAIFollowParent extends EntityAIBase
 
                 if (var6.getGrowingAge() >= 0)
                 {
-                    double var7 = this.childAnimal.getDistanceSqToEntity(var6);
+                    double var7 = childAnimal.getDistanceSqToEntity(var6);
 
                     if (var7 <= var3)
                     {
@@ -62,7 +62,7 @@ public class EntityAIFollowParent extends EntityAIBase
             }
             else
             {
-                this.parentAnimal = var2;
+                parentAnimal = var2;
                 return true;
             }
         }
@@ -73,13 +73,13 @@ public class EntityAIFollowParent extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        if (!this.parentAnimal.isEntityAlive())
+        if (!parentAnimal.isEntityAlive())
         {
             return false;
         }
         else
         {
-            double var1 = this.childAnimal.getDistanceSqToEntity(this.parentAnimal);
+            double var1 = childAnimal.getDistanceSqToEntity(parentAnimal);
             return var1 >= 9.0D && var1 <= 256.0D;
         }
     }
@@ -89,7 +89,7 @@ public class EntityAIFollowParent extends EntityAIBase
      */
     public void startExecuting()
     {
-        this.field_75345_d = 0;
+        field_75345_d = 0;
     }
 
     /**
@@ -97,7 +97,7 @@ public class EntityAIFollowParent extends EntityAIBase
      */
     public void resetTask()
     {
-        this.parentAnimal = null;
+        parentAnimal = null;
     }
 
     /**
@@ -105,10 +105,10 @@ public class EntityAIFollowParent extends EntityAIBase
      */
     public void updateTask()
     {
-        if (--this.field_75345_d <= 0)
+        if (--field_75345_d <= 0)
         {
-            this.field_75345_d = 10;
-            this.childAnimal.getNavigator().tryMoveToEntityLiving(this.parentAnimal, this.field_75347_c);
+            field_75345_d = 10;
+            childAnimal.getNavigator().tryMoveToEntityLiving(parentAnimal, field_75347_c);
         }
     }
 }

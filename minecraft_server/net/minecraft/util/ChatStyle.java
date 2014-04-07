@@ -143,7 +143,7 @@ public class ChatStyle
      */
     public EnumChatFormatting getColor()
     {
-        return this.color == null ? this.getParent().getColor() : this.color;
+        return color == null ? getParent().getColor() : color;
     }
 
     /**
@@ -151,7 +151,7 @@ public class ChatStyle
      */
     public boolean getBold()
     {
-        return this.bold == null ? this.getParent().getBold() : this.bold.booleanValue();
+        return bold == null ? getParent().getBold() : bold.booleanValue();
     }
 
     /**
@@ -159,7 +159,7 @@ public class ChatStyle
      */
     public boolean getItalic()
     {
-        return this.italic == null ? this.getParent().getItalic() : this.italic.booleanValue();
+        return italic == null ? getParent().getItalic() : italic.booleanValue();
     }
 
     /**
@@ -167,7 +167,7 @@ public class ChatStyle
      */
     public boolean getStrikethrough()
     {
-        return this.strikethrough == null ? this.getParent().getStrikethrough() : this.strikethrough.booleanValue();
+        return strikethrough == null ? getParent().getStrikethrough() : strikethrough.booleanValue();
     }
 
     /**
@@ -175,7 +175,7 @@ public class ChatStyle
      */
     public boolean getUnderlined()
     {
-        return this.underlined == null ? this.getParent().getUnderlined() : this.underlined.booleanValue();
+        return underlined == null ? getParent().getUnderlined() : underlined.booleanValue();
     }
 
     /**
@@ -183,7 +183,7 @@ public class ChatStyle
      */
     public boolean getObfuscated()
     {
-        return this.obfuscated == null ? this.getParent().getObfuscated() : this.obfuscated.booleanValue();
+        return obfuscated == null ? getParent().getObfuscated() : obfuscated.booleanValue();
     }
 
     /**
@@ -191,7 +191,7 @@ public class ChatStyle
      */
     public boolean isEmpty()
     {
-        return this.bold == null && this.italic == null && this.strikethrough == null && this.underlined == null && this.obfuscated == null && this.color == null && this.chatClickEvent == null && this.chatHoverEvent == null;
+        return bold == null && italic == null && strikethrough == null && underlined == null && obfuscated == null && color == null && chatClickEvent == null && chatHoverEvent == null;
     }
 
     /**
@@ -199,7 +199,7 @@ public class ChatStyle
      */
     public ClickEvent getChatClickEvent()
     {
-        return this.chatClickEvent == null ? this.getParent().getChatClickEvent() : this.chatClickEvent;
+        return chatClickEvent == null ? getParent().getChatClickEvent() : chatClickEvent;
     }
 
     /**
@@ -207,7 +207,7 @@ public class ChatStyle
      */
     public HoverEvent getChatHoverEvent()
     {
-        return this.chatHoverEvent == null ? this.getParent().getChatHoverEvent() : this.chatHoverEvent;
+        return chatHoverEvent == null ? getParent().getChatHoverEvent() : chatHoverEvent;
     }
 
     /**
@@ -216,7 +216,7 @@ public class ChatStyle
      */
     public ChatStyle setColor(EnumChatFormatting p_150238_1_)
     {
-        this.color = p_150238_1_;
+        color = p_150238_1_;
         return this;
     }
 
@@ -227,7 +227,7 @@ public class ChatStyle
      */
     public ChatStyle setBold(Boolean p_150227_1_)
     {
-        this.bold = p_150227_1_;
+        bold = p_150227_1_;
         return this;
     }
 
@@ -238,7 +238,7 @@ public class ChatStyle
      */
     public ChatStyle setItalic(Boolean p_150217_1_)
     {
-        this.italic = p_150217_1_;
+        italic = p_150217_1_;
         return this;
     }
 
@@ -249,7 +249,7 @@ public class ChatStyle
      */
     public ChatStyle setStrikethrough(Boolean p_150225_1_)
     {
-        this.strikethrough = p_150225_1_;
+        strikethrough = p_150225_1_;
         return this;
     }
 
@@ -260,7 +260,7 @@ public class ChatStyle
      */
     public ChatStyle setUnderlined(Boolean p_150228_1_)
     {
-        this.underlined = p_150228_1_;
+        underlined = p_150228_1_;
         return this;
     }
 
@@ -271,7 +271,7 @@ public class ChatStyle
      */
     public ChatStyle setObfuscated(Boolean p_150237_1_)
     {
-        this.obfuscated = p_150237_1_;
+        obfuscated = p_150237_1_;
         return this;
     }
 
@@ -281,7 +281,7 @@ public class ChatStyle
      */
     public ChatStyle setChatClickEvent(ClickEvent p_150241_1_)
     {
-        this.chatClickEvent = p_150241_1_;
+        chatClickEvent = p_150241_1_;
         return this;
     }
 
@@ -291,7 +291,7 @@ public class ChatStyle
      */
     public ChatStyle setChatHoverEvent(HoverEvent p_150209_1_)
     {
-        this.chatHoverEvent = p_150209_1_;
+        chatHoverEvent = p_150209_1_;
         return this;
     }
 
@@ -302,7 +302,7 @@ public class ChatStyle
      */
     public ChatStyle setParentStyle(ChatStyle p_150221_1_)
     {
-        this.parentStyle = p_150221_1_;
+        parentStyle = p_150221_1_;
         return this;
     }
 
@@ -311,12 +311,12 @@ public class ChatStyle
      */
     private ChatStyle getParent()
     {
-        return this.parentStyle == null ? rootStyle : this.parentStyle;
+        return parentStyle == null ? rootStyle : parentStyle;
     }
 
     public String toString()
     {
-        return "Style{hasParent=" + (this.parentStyle != null) + ", color=" + this.color + ", bold=" + this.bold + ", italic=" + this.italic + ", underlined=" + this.underlined + ", obfuscated=" + this.obfuscated + ", clickEvent=" + this.getChatClickEvent() + ", hoverEvent=" + this.getChatHoverEvent() + '}';
+        return "Style{hasParent=" + (parentStyle != null) + ", color=" + color + ", bold=" + bold + ", italic=" + italic + ", underlined=" + underlined + ", obfuscated=" + obfuscated + ", clickEvent=" + getChatClickEvent() + ", hoverEvent=" + getChatHoverEvent() + '}';
     }
 
     public boolean equals(Object par1Obj)
@@ -334,36 +334,36 @@ public class ChatStyle
             ChatStyle var2 = (ChatStyle)par1Obj;
             boolean var10000;
 
-            if (this.getBold() == var2.getBold() && this.getColor() == var2.getColor() && this.getItalic() == var2.getItalic() && this.getObfuscated() == var2.getObfuscated() && this.getStrikethrough() == var2.getStrikethrough() && this.getUnderlined() == var2.getUnderlined())
+            if (getBold() == var2.getBold() && getColor() == var2.getColor() && getItalic() == var2.getItalic() && getObfuscated() == var2.getObfuscated() && getStrikethrough() == var2.getStrikethrough() && getUnderlined() == var2.getUnderlined())
             {
                 label56:
                 {
-                    if (this.getChatClickEvent() != null)
-                    {
-                        if (!this.getChatClickEvent().equals(var2.getChatClickEvent()))
-                        {
-                            break label56;
-                        }
-                    }
-                    else if (var2.getChatClickEvent() != null)
+                if (getChatClickEvent() != null)
+                {
+                    if (!getChatClickEvent().equals(var2.getChatClickEvent()))
                     {
                         break label56;
                     }
+                }
+                else if (var2.getChatClickEvent() != null)
+                {
+                    break label56;
+                }
 
-                    if (this.getChatHoverEvent() != null)
-                    {
-                        if (!this.getChatHoverEvent().equals(var2.getChatHoverEvent()))
-                        {
-                            break label56;
-                        }
-                    }
-                    else if (var2.getChatHoverEvent() != null)
+                if (getChatHoverEvent() != null)
+                {
+                    if (!getChatHoverEvent().equals(var2.getChatHoverEvent()))
                     {
                         break label56;
                     }
+                }
+                else if (var2.getChatHoverEvent() != null)
+                {
+                    break label56;
+                }
 
-                    var10000 = true;
-                    return var10000;
+                var10000 = true;
+                return var10000;
                 }
             }
 
@@ -374,14 +374,14 @@ public class ChatStyle
 
     public int hashCode()
     {
-        int var1 = this.color.hashCode();
-        var1 = 31 * var1 + this.bold.hashCode();
-        var1 = 31 * var1 + this.italic.hashCode();
-        var1 = 31 * var1 + this.underlined.hashCode();
-        var1 = 31 * var1 + this.strikethrough.hashCode();
-        var1 = 31 * var1 + this.obfuscated.hashCode();
-        var1 = 31 * var1 + this.chatClickEvent.hashCode();
-        var1 = 31 * var1 + this.chatHoverEvent.hashCode();
+        int var1 = color.hashCode();
+        var1 = 31 * var1 + bold.hashCode();
+        var1 = 31 * var1 + italic.hashCode();
+        var1 = 31 * var1 + underlined.hashCode();
+        var1 = 31 * var1 + strikethrough.hashCode();
+        var1 = 31 * var1 + obfuscated.hashCode();
+        var1 = 31 * var1 + chatClickEvent.hashCode();
+        var1 = 31 * var1 + chatHoverEvent.hashCode();
         return var1;
     }
 
@@ -394,15 +394,15 @@ public class ChatStyle
     public ChatStyle createShallowCopy()
     {
         ChatStyle var1 = new ChatStyle();
-        var1.bold = this.bold;
-        var1.italic = this.italic;
-        var1.strikethrough = this.strikethrough;
-        var1.underlined = this.underlined;
-        var1.obfuscated = this.obfuscated;
-        var1.color = this.color;
-        var1.chatClickEvent = this.chatClickEvent;
-        var1.chatHoverEvent = this.chatHoverEvent;
-        var1.parentStyle = this.parentStyle;
+        var1.bold = bold;
+        var1.italic = italic;
+        var1.strikethrough = strikethrough;
+        var1.underlined = underlined;
+        var1.obfuscated = obfuscated;
+        var1.color = color;
+        var1.chatClickEvent = chatClickEvent;
+        var1.chatHoverEvent = chatHoverEvent;
+        var1.parentStyle = parentStyle;
         return var1;
     }
 
@@ -413,14 +413,14 @@ public class ChatStyle
     public ChatStyle createDeepCopy()
     {
         ChatStyle var1 = new ChatStyle();
-        var1.setBold(Boolean.valueOf(this.getBold()));
-        var1.setItalic(Boolean.valueOf(this.getItalic()));
-        var1.setStrikethrough(Boolean.valueOf(this.getStrikethrough()));
-        var1.setUnderlined(Boolean.valueOf(this.getUnderlined()));
-        var1.setObfuscated(Boolean.valueOf(this.getObfuscated()));
-        var1.setColor(this.getColor());
-        var1.setChatClickEvent(this.getChatClickEvent());
-        var1.setChatHoverEvent(this.getChatHoverEvent());
+        var1.setBold(Boolean.valueOf(getBold()));
+        var1.setItalic(Boolean.valueOf(getItalic()));
+        var1.setStrikethrough(Boolean.valueOf(getStrikethrough()));
+        var1.setUnderlined(Boolean.valueOf(getUnderlined()));
+        var1.setObfuscated(Boolean.valueOf(getObfuscated()));
+        var1.setColor(getColor());
+        var1.setChatClickEvent(getChatClickEvent());
+        var1.setChatHoverEvent(getChatHoverEvent());
         return var1;
     }
 

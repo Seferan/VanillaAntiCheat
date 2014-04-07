@@ -23,11 +23,11 @@ public class S35PacketUpdateTileEntity extends Packet
 
     public S35PacketUpdateTileEntity(int p_i45175_1_, int p_i45175_2_, int p_i45175_3_, int p_i45175_4_, NBTTagCompound p_i45175_5_)
     {
-        this.field_148863_a = p_i45175_1_;
-        this.field_148861_b = p_i45175_2_;
-        this.field_148862_c = p_i45175_3_;
-        this.field_148859_d = p_i45175_4_;
-        this.field_148860_e = p_i45175_5_;
+        field_148863_a = p_i45175_1_;
+        field_148861_b = p_i45175_2_;
+        field_148862_c = p_i45175_3_;
+        field_148859_d = p_i45175_4_;
+        field_148860_e = p_i45175_5_;
     }
 
     /**
@@ -35,11 +35,11 @@ public class S35PacketUpdateTileEntity extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_148863_a = p_148837_1_.readInt();
-        this.field_148861_b = p_148837_1_.readShort();
-        this.field_148862_c = p_148837_1_.readInt();
-        this.field_148859_d = p_148837_1_.readUnsignedByte();
-        this.field_148860_e = p_148837_1_.readNBTTagCompoundFromBuffer();
+        field_148863_a = p_148837_1_.readInt();
+        field_148861_b = p_148837_1_.readShort();
+        field_148862_c = p_148837_1_.readInt();
+        field_148859_d = p_148837_1_.readUnsignedByte();
+        field_148860_e = p_148837_1_.readNBTTagCompoundFromBuffer();
     }
 
     /**
@@ -47,11 +47,11 @@ public class S35PacketUpdateTileEntity extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_148863_a);
-        p_148840_1_.writeShort(this.field_148861_b);
-        p_148840_1_.writeInt(this.field_148862_c);
-        p_148840_1_.writeByte((byte)this.field_148859_d);
-        p_148840_1_.writeNBTTagCompoundToBuffer(this.field_148860_e);
+        p_148840_1_.writeInt(field_148863_a);
+        p_148840_1_.writeShort(field_148861_b);
+        p_148840_1_.writeInt(field_148862_c);
+        p_148840_1_.writeByte((byte)field_148859_d);
+        p_148840_1_.writeNBTTagCompoundToBuffer(field_148860_e);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_148858_1_)

@@ -39,13 +39,13 @@ public class ChunkProviderEnd implements IChunkProvider
 
     public ChunkProviderEnd(World par1World, long par2)
     {
-        this.endWorld = par1World;
-        this.endRNG = new Random(par2);
-        this.noiseGen1 = new NoiseGeneratorOctaves(this.endRNG, 16);
-        this.noiseGen2 = new NoiseGeneratorOctaves(this.endRNG, 16);
-        this.noiseGen3 = new NoiseGeneratorOctaves(this.endRNG, 8);
-        this.noiseGen4 = new NoiseGeneratorOctaves(this.endRNG, 10);
-        this.noiseGen5 = new NoiseGeneratorOctaves(this.endRNG, 16);
+        endWorld = par1World;
+        endRNG = new Random(par2);
+        noiseGen1 = new NoiseGeneratorOctaves(endRNG, 16);
+        noiseGen2 = new NoiseGeneratorOctaves(endRNG, 16);
+        noiseGen3 = new NoiseGeneratorOctaves(endRNG, 8);
+        noiseGen4 = new NoiseGeneratorOctaves(endRNG, 10);
+        noiseGen5 = new NoiseGeneratorOctaves(endRNG, 16);
     }
 
     public void func_147420_a(int p_147420_1_, int p_147420_2_, Block[] p_147420_3_, BiomeGenBase[] p_147420_4_)
@@ -54,7 +54,7 @@ public class ChunkProviderEnd implements IChunkProvider
         int var6 = var5 + 1;
         byte var7 = 33;
         int var8 = var5 + 1;
-        this.densities = this.initializeNoiseField(this.densities, p_147420_1_ * var5, 0, p_147420_2_ * var5, var6, var7, var8);
+        densities = initializeNoiseField(densities, p_147420_1_ * var5, 0, p_147420_2_ * var5, var6, var7, var8);
 
         for (int var9 = 0; var9 < var5; ++var9)
         {
@@ -63,14 +63,14 @@ public class ChunkProviderEnd implements IChunkProvider
                 for (int var11 = 0; var11 < 32; ++var11)
                 {
                     double var12 = 0.25D;
-                    double var14 = this.densities[((var9 + 0) * var8 + var10 + 0) * var7 + var11 + 0];
-                    double var16 = this.densities[((var9 + 0) * var8 + var10 + 1) * var7 + var11 + 0];
-                    double var18 = this.densities[((var9 + 1) * var8 + var10 + 0) * var7 + var11 + 0];
-                    double var20 = this.densities[((var9 + 1) * var8 + var10 + 1) * var7 + var11 + 0];
-                    double var22 = (this.densities[((var9 + 0) * var8 + var10 + 0) * var7 + var11 + 1] - var14) * var12;
-                    double var24 = (this.densities[((var9 + 0) * var8 + var10 + 1) * var7 + var11 + 1] - var16) * var12;
-                    double var26 = (this.densities[((var9 + 1) * var8 + var10 + 0) * var7 + var11 + 1] - var18) * var12;
-                    double var28 = (this.densities[((var9 + 1) * var8 + var10 + 1) * var7 + var11 + 1] - var20) * var12;
+                    double var14 = densities[((var9 + 0) * var8 + var10 + 0) * var7 + var11 + 0];
+                    double var16 = densities[((var9 + 0) * var8 + var10 + 1) * var7 + var11 + 0];
+                    double var18 = densities[((var9 + 1) * var8 + var10 + 0) * var7 + var11 + 0];
+                    double var20 = densities[((var9 + 1) * var8 + var10 + 1) * var7 + var11 + 0];
+                    double var22 = (densities[((var9 + 0) * var8 + var10 + 0) * var7 + var11 + 1] - var14) * var12;
+                    double var24 = (densities[((var9 + 0) * var8 + var10 + 1) * var7 + var11 + 1] - var16) * var12;
+                    double var26 = (densities[((var9 + 1) * var8 + var10 + 0) * var7 + var11 + 1] - var18) * var12;
+                    double var28 = (densities[((var9 + 1) * var8 + var10 + 1) * var7 + var11 + 1] - var20) * var12;
 
                     for (int var30 = 0; var30 < 4; ++var30)
                     {
@@ -176,7 +176,7 @@ public class ChunkProviderEnd implements IChunkProvider
      */
     public Chunk loadChunk(int par1, int par2)
     {
-        return this.provideChunk(par1, par2);
+        return provideChunk(par1, par2);
     }
 
     /**
@@ -186,17 +186,17 @@ public class ChunkProviderEnd implements IChunkProvider
      */
     public Chunk provideChunk(int par1, int par2)
     {
-        this.endRNG.setSeed((long)par1 * 341873128712L + (long)par2 * 132897987541L);
+        endRNG.setSeed(par1 * 341873128712L + par2 * 132897987541L);
         Block[] var3 = new Block[32768];
-        this.biomesForGeneration = this.endWorld.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
-        this.func_147420_a(par1, par2, var3, this.biomesForGeneration);
-        this.func_147421_b(par1, par2, var3, this.biomesForGeneration);
-        Chunk var4 = new Chunk(this.endWorld, var3, par1, par2);
+        biomesForGeneration = endWorld.getWorldChunkManager().loadBlockGeneratorData(biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
+        func_147420_a(par1, par2, var3, biomesForGeneration);
+        func_147421_b(par1, par2, var3, biomesForGeneration);
+        Chunk var4 = new Chunk(endWorld, var3, par1, par2);
         byte[] var5 = var4.getBiomeArray();
 
         for (int var6 = 0; var6 < var5.length; ++var6)
         {
-            var5[var6] = (byte)this.biomesForGeneration[var6].biomeID;
+            var5[var6] = (byte)biomesForGeneration[var6].biomeID;
         }
 
         var4.generateSkylightMap();
@@ -216,12 +216,12 @@ public class ChunkProviderEnd implements IChunkProvider
 
         double var8 = 684.412D;
         double var10 = 684.412D;
-        this.noiseData4 = this.noiseGen4.generateNoiseOctaves(this.noiseData4, par2, par4, par5, par7, 1.121D, 1.121D, 0.5D);
-        this.noiseData5 = this.noiseGen5.generateNoiseOctaves(this.noiseData5, par2, par4, par5, par7, 200.0D, 200.0D, 0.5D);
+        noiseData4 = noiseGen4.generateNoiseOctaves(noiseData4, par2, par4, par5, par7, 1.121D, 1.121D, 0.5D);
+        noiseData5 = noiseGen5.generateNoiseOctaves(noiseData5, par2, par4, par5, par7, 200.0D, 200.0D, 0.5D);
         var8 *= 2.0D;
-        this.noiseData1 = this.noiseGen3.generateNoiseOctaves(this.noiseData1, par2, par3, par4, par5, par6, par7, var8 / 80.0D, var10 / 160.0D, var8 / 80.0D);
-        this.noiseData2 = this.noiseGen1.generateNoiseOctaves(this.noiseData2, par2, par3, par4, par5, par6, par7, var8, var10, var8);
-        this.noiseData3 = this.noiseGen2.generateNoiseOctaves(this.noiseData3, par2, par3, par4, par5, par6, par7, var8, var10, var8);
+        noiseData1 = noiseGen3.generateNoiseOctaves(noiseData1, par2, par3, par4, par5, par6, par7, var8 / 80.0D, var10 / 160.0D, var8 / 80.0D);
+        noiseData2 = noiseGen1.generateNoiseOctaves(noiseData2, par2, par3, par4, par5, par6, par7, var8, var10, var8);
+        noiseData3 = noiseGen2.generateNoiseOctaves(noiseData3, par2, par3, par4, par5, par6, par7, var8, var10, var8);
         int var12 = 0;
         int var13 = 0;
 
@@ -229,14 +229,14 @@ public class ChunkProviderEnd implements IChunkProvider
         {
             for (int var15 = 0; var15 < par7; ++var15)
             {
-                double var16 = (this.noiseData4[var13] + 256.0D) / 512.0D;
+                double var16 = (noiseData4[var13] + 256.0D) / 512.0D;
 
                 if (var16 > 1.0D)
                 {
                     var16 = 1.0D;
                 }
 
-                double var18 = this.noiseData5[var13] / 8000.0D;
+                double var18 = noiseData5[var13] / 8000.0D;
 
                 if (var18 < 0.0D)
                 {
@@ -244,8 +244,8 @@ public class ChunkProviderEnd implements IChunkProvider
                 }
 
                 var18 = var18 * 3.0D - 2.0D;
-                float var20 = (float)(var14 + par2 - 0) / 1.0F;
-                float var21 = (float)(var15 + par4 - 0) / 1.0F;
+                float var20 = (var14 + par2 - 0) / 1.0F;
+                float var21 = (var15 + par4 - 0) / 1.0F;
                 float var22 = 100.0F - MathHelper.sqrt_float(var20 * var20 + var21 * var21) * 8.0F;
 
                 if (var22 > 80.0F)
@@ -272,23 +272,23 @@ public class ChunkProviderEnd implements IChunkProvider
                 }
 
                 var16 += 0.5D;
-                var18 = var18 * (double)par6 / 16.0D;
+                var18 = var18 * par6 / 16.0D;
                 ++var13;
-                double var23 = (double)par6 / 2.0D;
+                double var23 = par6 / 2.0D;
 
                 for (int var25 = 0; var25 < par6; ++var25)
                 {
                     double var26 = 0.0D;
-                    double var28 = ((double)var25 - var23) * 8.0D / var16;
+                    double var28 = (var25 - var23) * 8.0D / var16;
 
                     if (var28 < 0.0D)
                     {
                         var28 *= -1.0D;
                     }
 
-                    double var30 = this.noiseData2[var12] / 512.0D;
-                    double var32 = this.noiseData3[var12] / 512.0D;
-                    double var34 = (this.noiseData1[var12] / 10.0D + 1.0D) / 2.0D;
+                    double var30 = noiseData2[var12] / 512.0D;
+                    double var32 = noiseData3[var12] / 512.0D;
+                    double var34 = (noiseData1[var12] / 10.0D + 1.0D) / 2.0D;
 
                     if (var34 < 0.0D)
                     {
@@ -304,13 +304,13 @@ public class ChunkProviderEnd implements IChunkProvider
                     }
 
                     var26 -= 8.0D;
-                    var26 += (double)var22;
+                    var26 += var22;
                     byte var36 = 2;
                     double var37;
 
                     if (var25 > par6 / 2 - var36)
                     {
-                        var37 = (double)((float)(var25 - (par6 / 2 - var36)) / 64.0F);
+                        var37 = (var25 - (par6 / 2 - var36)) / 64.0F;
 
                         if (var37 < 0.0D)
                         {
@@ -329,7 +329,7 @@ public class ChunkProviderEnd implements IChunkProvider
 
                     if (var25 < var36)
                     {
-                        var37 = (double)((float)(var36 - var25) / ((float)var36 - 1.0F));
+                        var37 = (var36 - var25) / (var36 - 1.0F);
                         var26 = var26 * (1.0D - var37) + -30.0D * var37;
                     }
 
@@ -358,8 +358,8 @@ public class ChunkProviderEnd implements IChunkProvider
         BlockFalling.fallInstantly = true;
         int var4 = par2 * 16;
         int var5 = par3 * 16;
-        BiomeGenBase var6 = this.endWorld.getBiomeGenForCoords(var4 + 16, var5 + 16);
-        var6.decorate(this.endWorld, this.endWorld.rand, var4, var5);
+        BiomeGenBase var6 = endWorld.getBiomeGenForCoords(var4 + 16, var5 + 16);
+        var6.decorate(endWorld, endWorld.rand, var4, var5);
         BlockFalling.fallInstantly = false;
     }
 
@@ -412,7 +412,7 @@ public class ChunkProviderEnd implements IChunkProvider
      */
     public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
     {
-        BiomeGenBase var5 = this.endWorld.getBiomeGenForCoords(par2, par4);
+        BiomeGenBase var5 = endWorld.getBiomeGenForCoords(par2, par4);
         return var5.getSpawnableList(par1EnumCreatureType);
     }
 

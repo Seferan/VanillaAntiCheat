@@ -15,7 +15,7 @@ public class BlockLadder extends Block
     protected BlockLadder()
     {
         super(Material.circuits);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -24,13 +24,13 @@ public class BlockLadder extends Block
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
         return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        this.func_149797_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
+        func_149797_b(p_149719_1_.getBlockMetadata(p_149719_2_, p_149719_3_, p_149719_4_));
     }
 
     public void func_149797_b(int p_149797_1_)
@@ -39,22 +39,22 @@ public class BlockLadder extends Block
 
         if (p_149797_1_ == 2)
         {
-            this.setBlockBounds(0.0F, 0.0F, 1.0F - var3, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 1.0F - var3, 1.0F, 1.0F, 1.0F);
         }
 
         if (p_149797_1_ == 3)
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var3);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var3);
         }
 
         if (p_149797_1_ == 4)
         {
-            this.setBlockBounds(1.0F - var3, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(1.0F - var3, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
 
         if (p_149797_1_ == 5)
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, var3, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, var3, 1.0F, 1.0F);
         }
     }
 
@@ -135,7 +135,7 @@ public class BlockLadder extends Block
 
         if (!var7)
         {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
+            dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
 

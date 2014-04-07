@@ -20,8 +20,8 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(17, "");
+        dataWatcher.addObject(16, Byte.valueOf((byte)0));
+        dataWatcher.addObject(17, "");
     }
 
     /**
@@ -31,16 +31,16 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
     {
         super.writeEntityToNBT(par1NBTTagCompound);
 
-        if (this.getOwnerName() == null)
+        if (getOwnerName() == null)
         {
             par1NBTTagCompound.setString("Owner", "");
         }
         else
         {
-            par1NBTTagCompound.setString("Owner", this.getOwnerName());
+            par1NBTTagCompound.setString("Owner", getOwnerName());
         }
 
-        par1NBTTagCompound.setBoolean("Sitting", this.isSitting());
+        par1NBTTagCompound.setBoolean("Sitting", isSitting());
     }
 
     /**
@@ -53,12 +53,12 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 
         if (var2.length() > 0)
         {
-            this.setOwner(var2);
-            this.setTamed(true);
+            setOwner(var2);
+            setTamed(true);
         }
 
-        this.aiSit.setSitting(par1NBTTagCompound.getBoolean("Sitting"));
-        this.setSitting(par1NBTTagCompound.getBoolean("Sitting"));
+        aiSit.setSitting(par1NBTTagCompound.getBoolean("Sitting"));
+        setSitting(par1NBTTagCompound.getBoolean("Sitting"));
     }
 
     /**
@@ -76,69 +76,69 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 
         for (int var3 = 0; var3 < 7; ++var3)
         {
-            double var4 = this.rand.nextGaussian() * 0.02D;
-            double var6 = this.rand.nextGaussian() * 0.02D;
-            double var8 = this.rand.nextGaussian() * 0.02D;
-            this.worldObj.spawnParticle(var2, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, var4, var6, var8);
+            double var4 = rand.nextGaussian() * 0.02D;
+            double var6 = rand.nextGaussian() * 0.02D;
+            double var8 = rand.nextGaussian() * 0.02D;
+            worldObj.spawnParticle(var2, posX + rand.nextFloat() * width * 2.0F - width, posY + 0.5D + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, var4, var6, var8);
         }
     }
 
     public boolean isTamed()
     {
-        return (this.dataWatcher.getWatchableObjectByte(16) & 4) != 0;
+        return (dataWatcher.getWatchableObjectByte(16) & 4) != 0;
     }
 
     public void setTamed(boolean par1)
     {
-        byte var2 = this.dataWatcher.getWatchableObjectByte(16);
+        byte var2 = dataWatcher.getWatchableObjectByte(16);
 
         if (par1)
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 | 4)));
+            dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 | 4)));
         }
         else
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 & -5)));
+            dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 & -5)));
         }
     }
 
     public boolean isSitting()
     {
-        return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+        return (dataWatcher.getWatchableObjectByte(16) & 1) != 0;
     }
 
     public void setSitting(boolean par1)
     {
-        byte var2 = this.dataWatcher.getWatchableObjectByte(16);
+        byte var2 = dataWatcher.getWatchableObjectByte(16);
 
         if (par1)
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 | 1)));
+            dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 | 1)));
         }
         else
         {
-            this.dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 & -2)));
+            dataWatcher.updateObject(16, Byte.valueOf((byte)(var2 & -2)));
         }
     }
 
     public String getOwnerName()
     {
-        return this.dataWatcher.getWatchableObjectString(17);
+        return dataWatcher.getWatchableObjectString(17);
     }
 
     public void setOwner(String par1Str)
     {
-        this.dataWatcher.updateObject(17, par1Str);
+        dataWatcher.updateObject(17, par1Str);
     }
 
     public EntityLivingBase getOwner()
     {
-        return this.worldObj.getPlayerEntityByName(this.getOwnerName());
+        return worldObj.getPlayerEntityByName(getOwnerName());
     }
 
     public EntityAISit func_70907_r()
     {
-        return this.aiSit;
+        return aiSit;
     }
 
     public boolean func_142018_a(EntityLivingBase par1EntityLivingBase, EntityLivingBase par2EntityLivingBase)
@@ -148,9 +148,9 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 
     public Team getTeam()
     {
-        if (this.isTamed())
+        if (isTamed())
         {
-            EntityLivingBase var1 = this.getOwner();
+            EntityLivingBase var1 = getOwner();
 
             if (var1 != null) { return var1.getTeam(); }
         }
@@ -160,9 +160,9 @@ public abstract class EntityTameable extends EntityAnimal implements IEntityOwna
 
     public boolean isOnSameTeam(EntityLivingBase par1EntityLivingBase)
     {
-        if (this.isTamed())
+        if (isTamed())
         {
-            EntityLivingBase var2 = this.getOwner();
+            EntityLivingBase var2 = getOwner();
 
             if (par1EntityLivingBase == var2) { return true; }
 

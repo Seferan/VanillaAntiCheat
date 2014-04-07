@@ -43,21 +43,21 @@ public class EntityCreeper extends EntityMob
     public EntityCreeper(World par1World)
     {
         super(par1World);
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAICreeperSwell(this));
-        this.tasks.addTask(3, new EntityAIAvoidEntity(this, EntityOcelot.class, 6.0F, 1.0D, 1.2D));
-        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, false));
-        this.tasks.addTask(5, new EntityAIWander(this, 0.8D));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+        tasks.addTask(1, new EntityAISwimming(this));
+        tasks.addTask(2, new EntityAICreeperSwell(this));
+        tasks.addTask(3, new EntityAIAvoidEntity(this, EntityOcelot.class, 6.0F, 1.0D, 1.2D));
+        tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0D, false));
+        tasks.addTask(5, new EntityAIWander(this, 0.8D));
+        tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        tasks.addTask(6, new EntityAILookIdle(this));
+        targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+        targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
     }
 
     /**
@@ -74,7 +74,7 @@ public class EntityCreeper extends EntityMob
      */
     public int getMaxSafePointTries()
     {
-        return this.getAttackTarget() == null ? 3 : 3 + (int)(this.getHealth() - 1.0F);
+        return getAttackTarget() == null ? 3 : 3 + (int)(getHealth() - 1.0F);
     }
 
     /**
@@ -83,20 +83,20 @@ public class EntityCreeper extends EntityMob
     protected void fall(float par1)
     {
         super.fall(par1);
-        this.timeSinceIgnited = (int)((float)this.timeSinceIgnited + par1 * 1.5F);
+        timeSinceIgnited = (int)(timeSinceIgnited + par1 * 1.5F);
 
-        if (this.timeSinceIgnited > this.fuseTime - 5)
+        if (timeSinceIgnited > fuseTime - 5)
         {
-            this.timeSinceIgnited = this.fuseTime - 5;
+            timeSinceIgnited = fuseTime - 5;
         }
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, Byte.valueOf((byte)-1));
-        this.dataWatcher.addObject(17, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+        dataWatcher.addObject(16, Byte.valueOf((byte)-1));
+        dataWatcher.addObject(17, Byte.valueOf((byte)0));
+        dataWatcher.addObject(18, Byte.valueOf((byte)0));
     }
 
     /**
@@ -106,14 +106,14 @@ public class EntityCreeper extends EntityMob
     {
         super.writeEntityToNBT(par1NBTTagCompound);
 
-        if (this.dataWatcher.getWatchableObjectByte(17) == 1)
+        if (dataWatcher.getWatchableObjectByte(17) == 1)
         {
             par1NBTTagCompound.setBoolean("powered", true);
         }
 
-        par1NBTTagCompound.setShort("Fuse", (short)this.fuseTime);
-        par1NBTTagCompound.setByte("ExplosionRadius", (byte)this.explosionRadius);
-        par1NBTTagCompound.setBoolean("ignited", this.func_146078_ca());
+        par1NBTTagCompound.setShort("Fuse", (short)fuseTime);
+        par1NBTTagCompound.setByte("ExplosionRadius", (byte)explosionRadius);
+        par1NBTTagCompound.setBoolean("ignited", func_146078_ca());
     }
 
     /**
@@ -122,21 +122,21 @@ public class EntityCreeper extends EntityMob
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)(par1NBTTagCompound.getBoolean("powered") ? 1 : 0)));
+        dataWatcher.updateObject(17, Byte.valueOf((byte)(par1NBTTagCompound.getBoolean("powered") ? 1 : 0)));
 
         if (par1NBTTagCompound.func_150297_b("Fuse", 99))
         {
-            this.fuseTime = par1NBTTagCompound.getShort("Fuse");
+            fuseTime = par1NBTTagCompound.getShort("Fuse");
         }
 
         if (par1NBTTagCompound.func_150297_b("ExplosionRadius", 99))
         {
-            this.explosionRadius = par1NBTTagCompound.getByte("ExplosionRadius");
+            explosionRadius = par1NBTTagCompound.getByte("ExplosionRadius");
         }
 
         if (par1NBTTagCompound.getBoolean("ignited"))
         {
-            this.func_146079_cb();
+            func_146079_cb();
         }
     }
 
@@ -145,33 +145,33 @@ public class EntityCreeper extends EntityMob
      */
     public void onUpdate()
     {
-        if (this.isEntityAlive())
+        if (isEntityAlive())
         {
-            this.lastActiveTime = this.timeSinceIgnited;
+            lastActiveTime = timeSinceIgnited;
 
-            if (this.func_146078_ca())
+            if (func_146078_ca())
             {
-                this.setCreeperState(1);
+                setCreeperState(1);
             }
 
-            int var1 = this.getCreeperState();
+            int var1 = getCreeperState();
 
-            if (var1 > 0 && this.timeSinceIgnited == 0)
+            if (var1 > 0 && timeSinceIgnited == 0)
             {
-                this.playSound("creeper.primed", 1.0F, 0.5F);
+                playSound("creeper.primed", 1.0F, 0.5F);
             }
 
-            this.timeSinceIgnited += var1;
+            timeSinceIgnited += var1;
 
-            if (this.timeSinceIgnited < 0)
+            if (timeSinceIgnited < 0)
             {
-                this.timeSinceIgnited = 0;
+                timeSinceIgnited = 0;
             }
 
-            if (this.timeSinceIgnited >= this.fuseTime)
+            if (timeSinceIgnited >= fuseTime)
             {
-                this.timeSinceIgnited = this.fuseTime;
-                this.func_146077_cc();
+                timeSinceIgnited = fuseTime;
+                func_146077_cc();
             }
         }
 
@@ -205,8 +205,8 @@ public class EntityCreeper extends EntityMob
         {
             int var2 = Item.getIdFromItem(Items.record_13);
             int var3 = Item.getIdFromItem(Items.record_wait);
-            int var4 = var2 + this.rand.nextInt(var3 - var2 + 1);
-            this.func_145779_a(Item.getItemById(var4), 1);
+            int var4 = var2 + rand.nextInt(var3 - var2 + 1);
+            func_145779_a(Item.getItemById(var4), 1);
         }
     }
 
@@ -220,7 +220,7 @@ public class EntityCreeper extends EntityMob
      */
     public boolean getPowered()
     {
-        return this.dataWatcher.getWatchableObjectByte(17) == 1;
+        return dataWatcher.getWatchableObjectByte(17) == 1;
     }
 
     protected Item func_146068_u()
@@ -233,7 +233,7 @@ public class EntityCreeper extends EntityMob
      */
     public int getCreeperState()
     {
-        return this.dataWatcher.getWatchableObjectByte(16);
+        return dataWatcher.getWatchableObjectByte(16);
     }
 
     /**
@@ -241,7 +241,7 @@ public class EntityCreeper extends EntityMob
      */
     public void setCreeperState(int par1)
     {
-        this.dataWatcher.updateObject(16, Byte.valueOf((byte)par1));
+        dataWatcher.updateObject(16, Byte.valueOf((byte)par1));
     }
 
     /**
@@ -250,7 +250,7 @@ public class EntityCreeper extends EntityMob
     public void onStruckByLightning(EntityLightningBolt par1EntityLightningBolt)
     {
         super.onStruckByLightning(par1EntityLightningBolt);
-        this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
+        dataWatcher.updateObject(17, Byte.valueOf((byte)1));
     }
 
     /**
@@ -263,12 +263,12 @@ public class EntityCreeper extends EntityMob
 
         if (var2 != null && var2.getItem() == Items.flint_and_steel)
         {
-            this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.ignite", 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
+            worldObj.playSoundEffect(posX + 0.5D, posY + 0.5D, posZ + 0.5D, "fire.ignite", 1.0F, rand.nextFloat() * 0.4F + 0.8F);
             par1EntityPlayer.swingItem();
 
-            if (!this.worldObj.isClient)
+            if (!worldObj.isClient)
             {
-                this.func_146079_cb();
+                func_146079_cb();
                 var2.damageItem(1, par1EntityPlayer);
                 return true;
             }
@@ -279,30 +279,30 @@ public class EntityCreeper extends EntityMob
 
     private void func_146077_cc()
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            boolean var1 = this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
+            boolean var1 = worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing");
 
-            if (this.getPowered())
+            if (getPowered())
             {
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)(this.explosionRadius * 2), var1);
+                worldObj.createExplosion(this, posX, posY, posZ, explosionRadius * 2, var1);
             }
             else
             {
-                this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, (float)this.explosionRadius, var1);
+                worldObj.createExplosion(this, posX, posY, posZ, explosionRadius, var1);
             }
 
-            this.setDead();
+            setDead();
         }
     }
 
     public boolean func_146078_ca()
     {
-        return this.dataWatcher.getWatchableObjectByte(18) != 0;
+        return dataWatcher.getWatchableObjectByte(18) != 0;
     }
 
     public void func_146079_cb()
     {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte)1));
+        dataWatcher.updateObject(18, Byte.valueOf((byte)1));
     }
 }

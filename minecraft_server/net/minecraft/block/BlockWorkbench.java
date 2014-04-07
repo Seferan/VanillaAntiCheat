@@ -12,7 +12,7 @@ public class BlockWorkbench extends Block
     protected BlockWorkbench()
     {
         super(Material.wood);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**

@@ -40,7 +40,7 @@ public class MathHelper
 
     public static final float sqrt_float(float par0)
     {
-        return (float)Math.sqrt((double)par0);
+        return (float)Math.sqrt(par0);
     }
 
     public static final float sqrt_double(double par0)
@@ -54,7 +54,7 @@ public class MathHelper
     public static int floor_float(float par0)
     {
         int var1 = (int)par0;
-        return par0 < (float)var1 ? var1 - 1 : var1;
+        return par0 < var1 ? var1 - 1 : var1;
     }
 
     /**
@@ -63,7 +63,7 @@ public class MathHelper
     public static int floor_double(double par0)
     {
         int var2 = (int)par0;
-        return par0 < (double)var2 ? var2 - 1 : var2;
+        return par0 < var2 ? var2 - 1 : var2;
     }
 
     /**
@@ -72,7 +72,7 @@ public class MathHelper
     public static long floor_double_long(double par0)
     {
         long var2 = (long)par0;
-        return par0 < (double)var2 ? var2 - 1L : var2;
+        return par0 < var2 ? var2 - 1L : var2;
     }
 
     public static float abs(float par0)
@@ -91,13 +91,13 @@ public class MathHelper
     public static int ceiling_float_int(float par0)
     {
         int var1 = (int)par0;
-        return par0 > (float)var1 ? var1 + 1 : var1;
+        return par0 > var1 ? var1 + 1 : var1;
     }
 
     public static int ceiling_double_int(double par0)
     {
         int var2 = (int)par0;
-        return par0 > (double)var2 ? var2 + 1 : var2;
+        return par0 > var2 ? var2 + 1 : var2;
     }
 
     /**
@@ -306,7 +306,7 @@ public class MathHelper
     {
         for (int var0 = 0; var0 < 65536; ++var0)
         {
-            SIN_TABLE[var0] = (float)Math.sin((double)var0 * Math.PI * 2.0D / 65536.0D);
+            SIN_TABLE[var0] = (float)Math.sin(var0 * Math.PI * 2.0D / 65536.0D);
         }
 
         multiplyDeBruijnBitPosition = new int[] {0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9};

@@ -25,13 +25,13 @@ public class EntityItemFrame extends EntityHanging
     public EntityItemFrame(World par1World, int par2, int par3, int par4, int par5)
     {
         super(par1World, par2, par3, par4, par5);
-        this.setDirection(par5);
+        setDirection(par5);
     }
 
     protected void entityInit()
     {
-        this.getDataWatcher().addObjectByDataType(2, 5);
-        this.getDataWatcher().addObject(3, Byte.valueOf((byte)0));
+        getDataWatcher().addObjectByDataType(2, 5);
+        getDataWatcher().addObject(3, Byte.valueOf((byte)0));
     }
 
     /**
@@ -39,16 +39,16 @@ public class EntityItemFrame extends EntityHanging
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
-        if (this.isEntityInvulnerable())
+        if (isEntityInvulnerable())
         {
             return false;
         }
-        else if (this.getDisplayedItem() != null)
+        else if (getDisplayedItem() != null)
         {
-            if (!this.worldObj.isClient)
+            if (!worldObj.isClient)
             {
-                this.func_146065_b(par1DamageSource.getEntity(), false);
-                this.setDisplayedItem((ItemStack)null);
+                func_146065_b(par1DamageSource.getEntity(), false);
+                setDisplayedItem((ItemStack)null);
             }
 
             return true;
@@ -74,12 +74,12 @@ public class EntityItemFrame extends EntityHanging
      */
     public void onBroken(Entity par1Entity)
     {
-        this.func_146065_b(par1Entity, true);
+        func_146065_b(par1Entity, true);
     }
 
     public void func_146065_b(Entity p_146065_1_, boolean p_146065_2_)
     {
-        ItemStack var3 = this.getDisplayedItem();
+        ItemStack var3 = getDisplayedItem();
 
         if (p_146065_1_ instanceof EntityPlayer)
         {
@@ -87,21 +87,21 @@ public class EntityItemFrame extends EntityHanging
 
             if (var4.capabilities.isCreativeMode)
             {
-                this.removeFrameFromMap(var3);
+                removeFrameFromMap(var3);
                 return;
             }
         }
 
         if (p_146065_2_)
         {
-            this.entityDropItem(new ItemStack(Items.item_frame), 0.0F);
+            entityDropItem(new ItemStack(Items.item_frame), 0.0F);
         }
 
-        if (var3 != null && this.rand.nextFloat() < this.itemDropChance)
+        if (var3 != null && rand.nextFloat() < itemDropChance)
         {
             var3 = var3.copy();
-            this.removeFrameFromMap(var3);
-            this.entityDropItem(var3, 0.0F);
+            removeFrameFromMap(var3);
+            entityDropItem(var3, 0.0F);
         }
     }
 
@@ -115,8 +115,8 @@ public class EntityItemFrame extends EntityHanging
         {
             if (par1ItemStack.getItem() == Items.filled_map)
             {
-                MapData var2 = ((ItemMap)par1ItemStack.getItem()).getMapData(par1ItemStack, this.worldObj);
-                var2.playersVisibleOnMap.remove("frame-" + this.getEntityId());
+                MapData var2 = ((ItemMap)par1ItemStack.getItem()).getMapData(par1ItemStack, worldObj);
+                var2.playersVisibleOnMap.remove("frame-" + getEntityId());
             }
 
             par1ItemStack.setItemFrame((EntityItemFrame)null);
@@ -125,7 +125,7 @@ public class EntityItemFrame extends EntityHanging
 
     public ItemStack getDisplayedItem()
     {
-        return this.getDataWatcher().getWatchableObjectItemStack(2);
+        return getDataWatcher().getWatchableObjectItemStack(2);
     }
 
     public void setDisplayedItem(ItemStack par1ItemStack)
@@ -137,8 +137,8 @@ public class EntityItemFrame extends EntityHanging
             par1ItemStack.setItemFrame(this);
         }
 
-        this.getDataWatcher().updateObject(2, par1ItemStack);
-        this.getDataWatcher().setObjectWatched(2);
+        getDataWatcher().updateObject(2, par1ItemStack);
+        getDataWatcher().setObjectWatched(2);
     }
 
     /**
@@ -146,12 +146,12 @@ public class EntityItemFrame extends EntityHanging
      */
     public int getRotation()
     {
-        return this.getDataWatcher().getWatchableObjectByte(3);
+        return getDataWatcher().getWatchableObjectByte(3);
     }
 
     public void setItemRotation(int par1)
     {
-        this.getDataWatcher().updateObject(3, Byte.valueOf((byte)(par1 % 4)));
+        getDataWatcher().updateObject(3, Byte.valueOf((byte)(par1 % 4)));
     }
 
     /**
@@ -159,11 +159,11 @@ public class EntityItemFrame extends EntityHanging
      */
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        if (this.getDisplayedItem() != null)
+        if (getDisplayedItem() != null)
         {
-            par1NBTTagCompound.setTag("Item", this.getDisplayedItem().writeToNBT(new NBTTagCompound()));
-            par1NBTTagCompound.setByte("ItemRotation", (byte)this.getRotation());
-            par1NBTTagCompound.setFloat("ItemDropChance", this.itemDropChance);
+            par1NBTTagCompound.setTag("Item", getDisplayedItem().writeToNBT(new NBTTagCompound()));
+            par1NBTTagCompound.setByte("ItemRotation", (byte)getRotation());
+            par1NBTTagCompound.setFloat("ItemDropChance", itemDropChance);
         }
 
         super.writeEntityToNBT(par1NBTTagCompound);
@@ -178,12 +178,12 @@ public class EntityItemFrame extends EntityHanging
 
         if (var2 != null && !var2.hasNoTags())
         {
-            this.setDisplayedItem(ItemStack.loadItemStackFromNBT(var2));
-            this.setItemRotation(par1NBTTagCompound.getByte("ItemRotation"));
+            setDisplayedItem(ItemStack.loadItemStackFromNBT(var2));
+            setItemRotation(par1NBTTagCompound.getByte("ItemRotation"));
 
             if (par1NBTTagCompound.func_150297_b("ItemDropChance", 99))
             {
-                this.itemDropChance = par1NBTTagCompound.getFloat("ItemDropChance");
+                itemDropChance = par1NBTTagCompound.getFloat("ItemDropChance");
             }
         }
 
@@ -195,13 +195,13 @@ public class EntityItemFrame extends EntityHanging
      */
     public boolean interactFirst(EntityPlayer par1EntityPlayer)
     {
-        if (this.getDisplayedItem() == null)
+        if (getDisplayedItem() == null)
         {
             ItemStack var2 = par1EntityPlayer.getHeldItem();
 
-            if (var2 != null && !this.worldObj.isClient)
+            if (var2 != null && !worldObj.isClient)
             {
-                this.setDisplayedItem(var2);
+                setDisplayedItem(var2);
 
                 if (!par1EntityPlayer.capabilities.isCreativeMode && --var2.stackSize <= 0)
                 {
@@ -209,9 +209,9 @@ public class EntityItemFrame extends EntityHanging
                 }
             }
         }
-        else if (!this.worldObj.isClient)
+        else if (!worldObj.isClient)
         {
-            this.setItemRotation(this.getRotation() + 1);
+            setItemRotation(getRotation() + 1);
         }
 
         return true;

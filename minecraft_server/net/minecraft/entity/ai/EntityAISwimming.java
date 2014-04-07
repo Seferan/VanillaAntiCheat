@@ -9,8 +9,8 @@ public class EntityAISwimming extends EntityAIBase
 
     public EntityAISwimming(EntityLiving par1EntityLiving)
     {
-        this.theEntity = par1EntityLiving;
-        this.setMutexBits(4);
+        theEntity = par1EntityLiving;
+        setMutexBits(4);
         par1EntityLiving.getNavigator().setCanSwim(true);
     }
 
@@ -19,7 +19,7 @@ public class EntityAISwimming extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        return this.theEntity.isInWater() || this.theEntity.handleLavaMovement();
+        return theEntity.isInWater() || theEntity.handleLavaMovement();
     }
 
     /**
@@ -27,9 +27,9 @@ public class EntityAISwimming extends EntityAIBase
      */
     public void updateTask()
     {
-        if (this.theEntity.getRNG().nextFloat() < 0.8F)
+        if (theEntity.getRNG().nextFloat() < 0.8F)
         {
-            this.theEntity.getJumpHelper().setJumping();
+            theEntity.getJumpHelper().setJumping();
         }
     }
 }

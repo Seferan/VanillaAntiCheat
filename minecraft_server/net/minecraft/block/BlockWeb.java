@@ -17,7 +17,7 @@ public class BlockWeb extends Block
     public BlockWeb()
     {
         super(Material.field_151569_G);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity p_149670_5_)

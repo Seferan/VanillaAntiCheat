@@ -29,7 +29,7 @@ public class CommandPlaySound extends CommandBase
     {
         if (par2ArrayOfStr.length < 2)
         {
-            throw new WrongUsageException(this.getCommandUsage(par1ICommandSender), new Object[0]);
+            throw new WrongUsageException(getCommandUsage(par1ICommandSender), new Object[0]);
         }
         else
         {
@@ -37,9 +37,9 @@ public class CommandPlaySound extends CommandBase
             int var36 = var3 + 1;
             String var4 = par2ArrayOfStr[var3];
             EntityPlayerMP var5 = getPlayer(par1ICommandSender, par2ArrayOfStr[var36++]);
-            double var6 = (double)var5.getCommandSenderPosition().posX;
-            double var8 = (double)var5.getCommandSenderPosition().posY;
-            double var10 = (double)var5.getCommandSenderPosition().posZ;
+            double var6 = var5.getCommandSenderPosition().posX;
+            double var8 = var5.getCommandSenderPosition().posY;
+            double var10 = var5.getCommandSenderPosition().posZ;
             double var12 = 1.0D;
             double var14 = 1.0D;
             double var16 = 0.0D;

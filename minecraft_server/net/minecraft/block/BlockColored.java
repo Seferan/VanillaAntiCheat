@@ -11,7 +11,7 @@ public class BlockColored extends Block
     public BlockColored(Material p_i45398_1_)
     {
         super(p_i45398_1_);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

@@ -24,7 +24,7 @@ public class AnvilSaveHandler extends SaveHandler
      */
     public IChunkLoader getChunkLoader(WorldProvider par1WorldProvider)
     {
-        File var2 = this.getWorldDirectory();
+        File var2 = getWorldDirectory();
         File var3;
 
         if (par1WorldProvider instanceof WorldProviderHell)

@@ -24,9 +24,9 @@ public class C0FPacketConfirmTransaction extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149536_a = p_148837_1_.readByte();
-        this.field_149534_b = p_148837_1_.readShort();
-        this.field_149535_c = p_148837_1_.readByte() != 0;
+        field_149536_a = p_148837_1_.readByte();
+        field_149534_b = p_148837_1_.readShort();
+        field_149535_c = p_148837_1_.readByte() != 0;
     }
 
     /**
@@ -34,9 +34,9 @@ public class C0FPacketConfirmTransaction extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149536_a);
-        p_148840_1_.writeShort(this.field_149534_b);
-        p_148840_1_.writeByte(this.field_149535_c ? 1 : 0);
+        p_148840_1_.writeByte(field_149536_a);
+        p_148840_1_.writeShort(field_149534_b);
+        p_148840_1_.writeByte(field_149535_c ? 1 : 0);
     }
 
     /**
@@ -45,17 +45,17 @@ public class C0FPacketConfirmTransaction extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d, uid=%d, accepted=%b", new Object[] {Integer.valueOf(this.field_149536_a), Short.valueOf(this.field_149534_b), Boolean.valueOf(this.field_149535_c)});
+        return String.format("id=%d, uid=%d, accepted=%b", new Object[] {Integer.valueOf(field_149536_a), Short.valueOf(field_149534_b), Boolean.valueOf(field_149535_c)});
     }
 
     public int func_149532_c()
     {
-        return this.field_149536_a;
+        return field_149536_a;
     }
 
     public short func_149533_d()
     {
-        return this.field_149534_b;
+        return field_149534_b;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

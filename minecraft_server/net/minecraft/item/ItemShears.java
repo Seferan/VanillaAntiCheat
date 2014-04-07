@@ -13,9 +13,9 @@ public class ItemShears extends Item
 
     public ItemShears()
     {
-        this.setMaxStackSize(1);
-        this.setMaxDamage(238);
-        this.setCreativeTab(CreativeTabs.tabTools);
+        setMaxStackSize(1);
+        setMaxDamage(238);
+        setCreativeTab(CreativeTabs.tabTools);
     }
 
     public boolean onBlockDestroyed(ItemStack p_150894_1_, World p_150894_2_, Block p_150894_3_, int p_150894_4_, int p_150894_5_, int p_150894_6_, EntityLivingBase p_150894_7_)

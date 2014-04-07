@@ -23,31 +23,31 @@ public class BiomeGenJungle extends BiomeGenBase
     public BiomeGenJungle(int p_i45379_1_, boolean p_i45379_2_)
     {
         super(p_i45379_1_);
-        this.field_150614_aC = p_i45379_2_;
+        field_150614_aC = p_i45379_2_;
 
         if (p_i45379_2_)
         {
-            this.theBiomeDecorator.treesPerChunk = 2;
+            theBiomeDecorator.treesPerChunk = 2;
         }
         else
         {
-            this.theBiomeDecorator.treesPerChunk = 50;
+            theBiomeDecorator.treesPerChunk = 50;
         }
 
-        this.theBiomeDecorator.grassPerChunk = 25;
-        this.theBiomeDecorator.flowersPerChunk = 4;
+        theBiomeDecorator.grassPerChunk = 25;
+        theBiomeDecorator.flowersPerChunk = 4;
 
         if (!p_i45379_2_)
         {
-            this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityOcelot.class, 2, 1, 1));
+            spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityOcelot.class, 2, 1, 1));
         }
 
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityChicken.class, 10, 4, 4));
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityChicken.class, 10, 4, 4));
     }
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(p_150567_1_.nextInt(10) == 0 ? this.worldGeneratorBigTree : (p_150567_1_.nextInt(2) == 0 ? new WorldGenShrub(3, 0) : (!this.field_150614_aC && p_150567_1_.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, 3, 3) : new WorldGenTrees(false, 4 + p_150567_1_.nextInt(7), 3, 3, true))));
+        return p_150567_1_.nextInt(10) == 0 ? worldGeneratorBigTree : (p_150567_1_.nextInt(2) == 0 ? new WorldGenShrub(3, 0) : (!field_150614_aC && p_150567_1_.nextInt(3) == 0 ? new WorldGenMegaJungle(false, 10, 20, 3, 3) : new WorldGenTrees(false, 4 + p_150567_1_.nextInt(7), 3, 3, true)));
     }
 
     /**

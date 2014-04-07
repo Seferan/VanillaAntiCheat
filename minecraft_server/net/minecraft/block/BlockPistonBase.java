@@ -25,10 +25,10 @@ public class BlockPistonBase extends Block
     public BlockPistonBase(boolean p_i45443_1_)
     {
         super(Material.piston);
-        this.field_150082_a = p_i45443_1_;
-        this.setStepSound(soundTypePiston);
-        this.setHardness(0.5F);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
+        field_150082_a = p_i45443_1_;
+        setStepSound(soundTypePiston);
+        setHardness(0.5F);
+        setcreativeTab(CreativeTabs.tabRedstone);
     }
 
     /**
@@ -62,7 +62,7 @@ public class BlockPistonBase extends Block
 
         if (!p_149689_1_.isClient)
         {
-            this.func_150078_e(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_);
+            func_150078_e(p_149689_1_, p_149689_2_, p_149689_3_, p_149689_4_);
         }
     }
 
@@ -70,7 +70,7 @@ public class BlockPistonBase extends Block
     {
         if (!p_149695_1_.isClient)
         {
-            this.func_150078_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
+            func_150078_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_);
         }
     }
 
@@ -78,7 +78,7 @@ public class BlockPistonBase extends Block
     {
         if (!p_149726_1_.isClient && p_149726_1_.getTileEntity(p_149726_2_, p_149726_3_, p_149726_4_) == null)
         {
-            this.func_150078_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
+            func_150078_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
         }
     }
 
@@ -89,7 +89,7 @@ public class BlockPistonBase extends Block
 
         if (var6 != 7)
         {
-            boolean var7 = this.func_150072_a(p_150078_1_, p_150078_2_, p_150078_3_, p_150078_4_, var6);
+            boolean var7 = func_150072_a(p_150078_1_, p_150078_2_, p_150078_3_, p_150078_4_, var6);
 
             if (var7 && !func_150075_c(var5))
             {
@@ -115,7 +115,7 @@ public class BlockPistonBase extends Block
     {
         if (!p_149696_1_.isClient)
         {
-            boolean var7 = this.func_150072_a(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_);
+            boolean var7 = func_150072_a(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_);
 
             if (var7 && p_149696_5_ == 1)
             {
@@ -128,10 +128,10 @@ public class BlockPistonBase extends Block
 
         if (p_149696_5_ == 0)
         {
-            if (!this.func_150079_i(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_)) { return false; }
+            if (!func_150079_i(p_149696_1_, p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_)) { return false; }
 
             p_149696_1_.setBlockMetadata(p_149696_2_, p_149696_3_, p_149696_4_, p_149696_6_ | 8, 2);
-            p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D, (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D, "tile.piston.out", 0.5F, p_149696_1_.rand.nextFloat() * 0.25F + 0.6F);
+            p_149696_1_.playSoundEffect(p_149696_2_ + 0.5D, p_149696_3_ + 0.5D, p_149696_4_ + 0.5D, "tile.piston.out", 0.5F, p_149696_1_.rand.nextFloat() * 0.25F + 0.6F);
         }
         else if (p_149696_5_ == 1)
         {
@@ -145,7 +145,7 @@ public class BlockPistonBase extends Block
             p_149696_1_.setBlock(p_149696_2_, p_149696_3_, p_149696_4_, Blocks.piston_extension, p_149696_6_, 3);
             p_149696_1_.setTileEntity(p_149696_2_, p_149696_3_, p_149696_4_, BlockPistonMoving.func_149962_a(this, p_149696_6_, p_149696_6_, false, true));
 
-            if (this.field_150082_a)
+            if (field_150082_a)
             {
                 int var8 = p_149696_2_ + Facing.offsetsXForSide[p_149696_6_] * 2;
                 int var9 = p_149696_3_ + Facing.offsetsYForSide[p_149696_6_] * 2;
@@ -191,7 +191,7 @@ public class BlockPistonBase extends Block
                 p_149696_1_.setBlockToAir(p_149696_2_ + Facing.offsetsXForSide[p_149696_6_], p_149696_3_ + Facing.offsetsYForSide[p_149696_6_], p_149696_4_ + Facing.offsetsZForSide[p_149696_6_]);
             }
 
-            p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D, (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D, "tile.piston.in", 0.5F, p_149696_1_.rand.nextFloat() * 0.15F + 0.6F);
+            p_149696_1_.playSoundEffect(p_149696_2_ + 0.5D, p_149696_3_ + 0.5D, p_149696_4_ + 0.5D, "tile.piston.in", 0.5F, p_149696_1_.rand.nextFloat() * 0.15F + 0.6F);
         }
 
         return true;
@@ -208,32 +208,32 @@ public class BlockPistonBase extends Block
             switch (func_150076_b(var5))
             {
             case 0:
-                this.setBlockBounds(0.0F, 0.25F, 0.0F, 1.0F, 1.0F, 1.0F);
+                setBlockBounds(0.0F, 0.25F, 0.0F, 1.0F, 1.0F, 1.0F);
                 break;
 
             case 1:
-                this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
+                setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
                 break;
 
             case 2:
-                this.setBlockBounds(0.0F, 0.0F, 0.25F, 1.0F, 1.0F, 1.0F);
+                setBlockBounds(0.0F, 0.0F, 0.25F, 1.0F, 1.0F, 1.0F);
                 break;
 
             case 3:
-                this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.75F);
+                setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.75F);
                 break;
 
             case 4:
-                this.setBlockBounds(0.25F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+                setBlockBounds(0.25F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
                 break;
 
             case 5:
-                this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.75F, 1.0F, 1.0F);
+                setBlockBounds(0.0F, 0.0F, 0.0F, 0.75F, 1.0F, 1.0F);
             }
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
     }
 
@@ -242,12 +242,12 @@ public class BlockPistonBase extends Block
      */
     public void setBlockBoundsForItemRender()
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
     }
 
@@ -257,7 +257,7 @@ public class BlockPistonBase extends Block
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
         return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 
@@ -278,16 +278,16 @@ public class BlockPistonBase extends Block
 
     public static int func_150071_a(World p_150071_0_, int p_150071_1_, int p_150071_2_, int p_150071_3_, EntityLivingBase p_150071_4_)
     {
-        if (MathHelper.abs((float)p_150071_4_.posX - (float)p_150071_1_) < 2.0F && MathHelper.abs((float)p_150071_4_.posZ - (float)p_150071_3_) < 2.0F)
+        if (MathHelper.abs((float)p_150071_4_.posX - p_150071_1_) < 2.0F && MathHelper.abs((float)p_150071_4_.posZ - p_150071_3_) < 2.0F)
         {
-            double var5 = p_150071_4_.posY + 1.82D - (double)p_150071_4_.yOffset;
+            double var5 = p_150071_4_.posY + 1.82D - p_150071_4_.yOffset;
 
-            if (var5 - (double)p_150071_2_ > 2.0D) { return 1; }
+            if (var5 - p_150071_2_ > 2.0D) { return 1; }
 
-            if ((double)p_150071_2_ - var5 > 0.0D) { return 0; }
+            if (p_150071_2_ - var5 > 0.0D) { return 0; }
         }
 
-        int var7 = MathHelper.floor_double((double)(p_150071_4_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int var7 = MathHelper.floor_double(p_150071_4_.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         return var7 == 0 ? 2 : (var7 == 1 ? 5 : (var7 == 2 ? 3 : (var7 == 3 ? 4 : 0)));
     }
 
@@ -408,8 +408,8 @@ public class BlockPistonBase extends Block
 
                 if (var17 == this && var14 == p_150079_2_ && var15 == p_150079_3_ && var16 == p_150079_4_)
                 {
-                    p_150079_1_.setBlock(var6, var7, var8, Blocks.piston_extension, p_150079_5_ | (this.field_150082_a ? 8 : 0), 4);
-                    p_150079_1_.setTileEntity(var6, var7, var8, BlockPistonMoving.func_149962_a(Blocks.piston_head, p_150079_5_ | (this.field_150082_a ? 8 : 0), p_150079_5_, true, false));
+                    p_150079_1_.setBlock(var6, var7, var8, Blocks.piston_extension, p_150079_5_ | (field_150082_a ? 8 : 0), 4);
+                    p_150079_1_.setTileEntity(var6, var7, var8, BlockPistonMoving.func_149962_a(Blocks.piston_head, p_150079_5_ | (field_150082_a ? 8 : 0), p_150079_5_, true, false));
                 }
                 else
                 {

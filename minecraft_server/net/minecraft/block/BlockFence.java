@@ -20,16 +20,16 @@ public class BlockFence extends Block
     public BlockFence(String p_i45406_1_, Material p_i45406_2_)
     {
         super(p_i45406_2_);
-        this.field_149827_a = p_i45406_1_;
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        field_149827_a = p_i45406_1_;
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        boolean var8 = this.func_149826_e(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_ - 1);
-        boolean var9 = this.func_149826_e(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_ + 1);
-        boolean var10 = this.func_149826_e(p_149743_1_, p_149743_2_ - 1, p_149743_3_, p_149743_4_);
-        boolean var11 = this.func_149826_e(p_149743_1_, p_149743_2_ + 1, p_149743_3_, p_149743_4_);
+        boolean var8 = func_149826_e(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_ - 1);
+        boolean var9 = func_149826_e(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_ + 1);
+        boolean var10 = func_149826_e(p_149743_1_, p_149743_2_ - 1, p_149743_3_, p_149743_4_);
+        boolean var11 = func_149826_e(p_149743_1_, p_149743_2_ + 1, p_149743_3_, p_149743_4_);
         float var12 = 0.375F;
         float var13 = 0.625F;
         float var14 = 0.375F;
@@ -47,7 +47,7 @@ public class BlockFence extends Block
 
         if (var8 || var9)
         {
-            this.setBlockBounds(var12, 0.0F, var14, var13, 1.5F, var15);
+            setBlockBounds(var12, 0.0F, var14, var13, 1.5F, var15);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         }
 
@@ -66,7 +66,7 @@ public class BlockFence extends Block
 
         if (var10 || var11 || !var8 && !var9)
         {
-            this.setBlockBounds(var12, 0.0F, var14, var13, 1.5F, var15);
+            setBlockBounds(var12, 0.0F, var14, var13, 1.5F, var15);
             super.addCollisionBoxesToList(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_, p_149743_5_, p_149743_6_, p_149743_7_);
         }
 
@@ -80,15 +80,15 @@ public class BlockFence extends Block
             var15 = 1.0F;
         }
 
-        this.setBlockBounds(var12, 0.0F, var14, var13, 1.0F, var15);
+        setBlockBounds(var12, 0.0F, var14, var13, 1.0F, var15);
     }
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        boolean var5 = this.func_149826_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ - 1);
-        boolean var6 = this.func_149826_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ + 1);
-        boolean var7 = this.func_149826_e(p_149719_1_, p_149719_2_ - 1, p_149719_3_, p_149719_4_);
-        boolean var8 = this.func_149826_e(p_149719_1_, p_149719_2_ + 1, p_149719_3_, p_149719_4_);
+        boolean var5 = func_149826_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ - 1);
+        boolean var6 = func_149826_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ + 1);
+        boolean var7 = func_149826_e(p_149719_1_, p_149719_2_ - 1, p_149719_3_, p_149719_4_);
+        boolean var8 = func_149826_e(p_149719_1_, p_149719_2_ + 1, p_149719_3_, p_149719_4_);
         float var9 = 0.375F;
         float var10 = 0.625F;
         float var11 = 0.375F;
@@ -114,7 +114,7 @@ public class BlockFence extends Block
             var10 = 1.0F;
         }
 
-        this.setBlockBounds(var9, 0.0F, var11, var10, 1.0F, var12);
+        setBlockBounds(var9, 0.0F, var11, var10, 1.0F, var12);
     }
 
     public boolean isOpaqueCube()

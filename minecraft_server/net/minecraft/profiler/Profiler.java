@@ -35,9 +35,9 @@ public class Profiler
      */
     public void clearProfiling()
     {
-        this.profilingMap.clear();
-        this.profilingSection = "";
-        this.sectionList.clear();
+        profilingMap.clear();
+        profilingSection = "";
+        sectionList.clear();
     }
 
     /**
@@ -45,16 +45,16 @@ public class Profiler
      */
     public void startSection(String par1Str)
     {
-        if (this.profilingEnabled)
+        if (profilingEnabled)
         {
-            if (this.profilingSection.length() > 0)
+            if (profilingSection.length() > 0)
             {
-                this.profilingSection = this.profilingSection + ".";
+                profilingSection = profilingSection + ".";
             }
 
-            this.profilingSection = this.profilingSection + par1Str;
-            this.sectionList.add(this.profilingSection);
-            this.timestampList.add(Long.valueOf(System.nanoTime()));
+            profilingSection = profilingSection + par1Str;
+            sectionList.add(profilingSection);
+            timestampList.add(Long.valueOf(System.nanoTime()));
         }
     }
 
@@ -63,28 +63,28 @@ public class Profiler
      */
     public void endSection()
     {
-        if (this.profilingEnabled)
+        if (profilingEnabled)
         {
             long var1 = System.nanoTime();
-            long var3 = ((Long)this.timestampList.remove(this.timestampList.size() - 1)).longValue();
-            this.sectionList.remove(this.sectionList.size() - 1);
+            long var3 = ((Long)timestampList.remove(timestampList.size() - 1)).longValue();
+            sectionList.remove(sectionList.size() - 1);
             long var5 = var1 - var3;
 
-            if (this.profilingMap.containsKey(this.profilingSection))
+            if (profilingMap.containsKey(profilingSection))
             {
-                this.profilingMap.put(this.profilingSection, Long.valueOf(((Long)this.profilingMap.get(this.profilingSection)).longValue() + var5));
+                profilingMap.put(profilingSection, Long.valueOf(((Long)profilingMap.get(profilingSection)).longValue() + var5));
             }
             else
             {
-                this.profilingMap.put(this.profilingSection, Long.valueOf(var5));
+                profilingMap.put(profilingSection, Long.valueOf(var5));
             }
 
             if (var5 > 100000000L)
             {
-                logger.warn("Something\'s taking too long! \'" + this.profilingSection + "\' took aprox " + (double)var5 / 1000000.0D + " ms");
+                logger.warn("Something\'s taking too long! \'" + profilingSection + "\' took aprox " + var5 / 1000000.0D + " ms");
             }
 
-            this.profilingSection = !this.sectionList.isEmpty() ? (String)this.sectionList.get(this.sectionList.size() - 1) : "";
+            profilingSection = !sectionList.isEmpty() ? (String)sectionList.get(sectionList.size() - 1) : "";
         }
     }
 
@@ -93,14 +93,14 @@ public class Profiler
      */
     public List getProfilingData(String par1Str)
     {
-        if (!this.profilingEnabled)
+        if (!profilingEnabled)
         {
             return null;
         }
         else
         {
-            long var3 = this.profilingMap.containsKey("root") ? ((Long)this.profilingMap.get("root")).longValue() : 0L;
-            long var5 = this.profilingMap.containsKey(par1Str) ? ((Long)this.profilingMap.get(par1Str)).longValue() : -1L;
+            long var3 = profilingMap.containsKey("root") ? ((Long)profilingMap.get("root")).longValue() : 0L;
+            long var5 = profilingMap.containsKey(par1Str) ? ((Long)profilingMap.get(par1Str)).longValue() : -1L;
             ArrayList var7 = new ArrayList();
 
             if (par1Str.length() > 0)
@@ -109,7 +109,7 @@ public class Profiler
             }
 
             long var8 = 0L;
-            Iterator var10 = this.profilingMap.keySet().iterator();
+            Iterator var10 = profilingMap.keySet().iterator();
 
             while (var10.hasNext())
             {
@@ -117,11 +117,11 @@ public class Profiler
 
                 if (var11.length() > par1Str.length() && var11.startsWith(par1Str) && var11.indexOf(".", par1Str.length() + 1) < 0)
                 {
-                    var8 += ((Long)this.profilingMap.get(var11)).longValue();
+                    var8 += ((Long)profilingMap.get(var11)).longValue();
                 }
             }
 
-            float var21 = (float)var8;
+            float var21 = var8;
 
             if (var8 < var5)
             {
@@ -133,7 +133,7 @@ public class Profiler
                 var3 = var8;
             }
 
-            Iterator var20 = this.profilingMap.keySet().iterator();
+            Iterator var20 = profilingMap.keySet().iterator();
             String var12;
 
             while (var20.hasNext())
@@ -142,29 +142,29 @@ public class Profiler
 
                 if (var12.length() > par1Str.length() && var12.startsWith(par1Str) && var12.indexOf(".", par1Str.length() + 1) < 0)
                 {
-                    long var13 = ((Long)this.profilingMap.get(var12)).longValue();
-                    double var15 = (double)var13 * 100.0D / (double)var8;
-                    double var17 = (double)var13 * 100.0D / (double)var3;
+                    long var13 = ((Long)profilingMap.get(var12)).longValue();
+                    double var15 = var13 * 100.0D / var8;
+                    double var17 = var13 * 100.0D / var3;
                     String var19 = var12.substring(par1Str.length());
                     var7.add(new Profiler.Result(var19, var15, var17));
                 }
             }
 
-            var20 = this.profilingMap.keySet().iterator();
+            var20 = profilingMap.keySet().iterator();
 
             while (var20.hasNext())
             {
                 var12 = (String)var20.next();
-                this.profilingMap.put(var12, Long.valueOf(((Long)this.profilingMap.get(var12)).longValue() * 999L / 1000L));
+                profilingMap.put(var12, Long.valueOf(((Long)profilingMap.get(var12)).longValue() * 999L / 1000L));
             }
 
-            if ((float)var8 > var21)
+            if (var8 > var21)
             {
-                var7.add(new Profiler.Result("unspecified", (double)((float)var8 - var21) * 100.0D / (double)var8, (double)((float)var8 - var21) * 100.0D / (double)var3));
+                var7.add(new Profiler.Result("unspecified", (var8 - var21) * 100.0D / var8, (var8 - var21) * 100.0D / var3));
             }
 
             Collections.sort(var7);
-            var7.add(0, new Profiler.Result(par1Str, 100.0D, (double)var8 * 100.0D / (double)var3));
+            var7.add(0, new Profiler.Result(par1Str, 100.0D, var8 * 100.0D / var3));
             return var7;
         }
     }
@@ -174,13 +174,13 @@ public class Profiler
      */
     public void endStartSection(String par1Str)
     {
-        this.endSection();
-        this.startSection(par1Str);
+        endSection();
+        startSection(par1Str);
     }
 
     public String getNameOfLastSection()
     {
-        return this.sectionList.size() == 0 ? "[UNKNOWN]" : (String)this.sectionList.get(this.sectionList.size() - 1);
+        return sectionList.size() == 0 ? "[UNKNOWN]" : (String)sectionList.get(sectionList.size() - 1);
     }
 
     public static final class Result implements Comparable
@@ -192,14 +192,14 @@ public class Profiler
 
         public Result(String par1Str, double par2, double par4)
         {
-            this.field_76331_c = par1Str;
-            this.field_76332_a = par2;
-            this.field_76330_b = par4;
+            field_76331_c = par1Str;
+            field_76332_a = par2;
+            field_76330_b = par4;
         }
 
         public int compareTo(Profiler.Result par1ProfilerResult)
         {
-            return par1ProfilerResult.field_76332_a < this.field_76332_a ? -1 : (par1ProfilerResult.field_76332_a > this.field_76332_a ? 1 : par1ProfilerResult.field_76331_c.compareTo(this.field_76331_c));
+            return par1ProfilerResult.field_76332_a < field_76332_a ? -1 : (par1ProfilerResult.field_76332_a > field_76332_a ? 1 : par1ProfilerResult.field_76331_c.compareTo(field_76331_c));
         }
 
         public int compareTo(Object par1Obj)

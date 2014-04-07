@@ -16,7 +16,7 @@ public class WorldGenBigMushroom extends WorldGenerator
     public WorldGenBigMushroom(int par1)
     {
         super(true);
-        this.mushroomType = par1;
+        mushroomType = par1;
     }
 
     public WorldGenBigMushroom()
@@ -28,9 +28,9 @@ public class WorldGenBigMushroom extends WorldGenerator
     {
         int var6 = par2Random.nextInt(2);
 
-        if (this.mushroomType >= 0)
+        if (mushroomType >= 0)
         {
-            var6 = this.mushroomType;
+            var6 = mushroomType;
         }
 
         int var7 = par2Random.nextInt(3) + 4;
@@ -187,7 +187,7 @@ public class WorldGenBigMushroom extends WorldGenerator
 
                                 if ((var15 != 0 || par4 >= par4 + var7 - 1) && !par1World.getBlock(var19, var11, var14).func_149730_j())
                                 {
-                                    this.func_150516_a(par1World, var19, var11, var14, Block.getBlockById(Block.getIdFromBlock(Blocks.brown_mushroom_block) + var6), var15);
+                                    func_150516_a(par1World, var19, var11, var14, Block.getBlockById(Block.getIdFromBlock(Blocks.brown_mushroom_block) + var6), var15);
                                 }
                             }
                         }
@@ -199,7 +199,7 @@ public class WorldGenBigMushroom extends WorldGenerator
 
                         if (!var18.func_149730_j())
                         {
-                            this.func_150516_a(par1World, par3, par4 + var11, par5, Block.getBlockById(Block.getIdFromBlock(Blocks.brown_mushroom_block) + var6), 10);
+                            func_150516_a(par1World, par3, par4 + var11, par5, Block.getBlockById(Block.getIdFromBlock(Blocks.brown_mushroom_block) + var6), 10);
                         }
                     }
 

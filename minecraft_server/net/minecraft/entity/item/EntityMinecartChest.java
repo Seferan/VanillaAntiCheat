@@ -23,7 +23,7 @@ public class EntityMinecartChest extends EntityMinecartContainer
     public void killMinecart(DamageSource par1DamageSource)
     {
         super.killMinecart(par1DamageSource);
-        this.func_145778_a(Item.getItemFromBlock(Blocks.chest), 1, 0.0F);
+        func_145778_a(Item.getItemFromBlock(Blocks.chest), 1, 0.0F);
     }
 
     /**

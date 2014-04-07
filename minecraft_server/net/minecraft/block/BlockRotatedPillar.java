@@ -69,6 +69,6 @@ public abstract class BlockRotatedPillar extends Block
      */
     protected ItemStack createStackedBlock(int p_149644_1_)
     {
-        return new ItemStack(Item.getItemFromBlock(this), 1, this.func_150162_k(p_149644_1_));
+        return new ItemStack(Item.getItemFromBlock(this), 1, func_150162_k(p_149644_1_));
     }
 }

@@ -32,7 +32,7 @@ public class BlockDispenser extends BlockContainer
     protected BlockDispenser()
     {
         super(Material.rock);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
+        setcreativeTab(CreativeTabs.tabRedstone);
     }
 
     public int func_149738_a(World p_149738_1_)
@@ -43,7 +43,7 @@ public class BlockDispenser extends BlockContainer
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
-        this.func_149938_m(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
+        func_149938_m(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
     }
 
     private void func_149938_m(World p_149938_1_, int p_149938_2_, int p_149938_3_, int p_149938_4_)
@@ -118,7 +118,7 @@ public class BlockDispenser extends BlockContainer
             else
             {
                 ItemStack var8 = var6.getStackInSlot(var7);
-                IBehaviorDispenseItem var9 = this.func_149940_a(var8);
+                IBehaviorDispenseItem var9 = func_149940_a(var8);
 
                 if (var9 != IBehaviorDispenseItem.itemDispenseBehaviorProvider)
                 {
@@ -142,7 +142,7 @@ public class BlockDispenser extends BlockContainer
 
         if (var6 && !var8)
         {
-            p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, this.func_149738_a(p_149695_1_));
+            p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, func_149738_a(p_149695_1_));
             p_149695_1_.setBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_, var7 | 8, 4);
         }
         else if (!var6 && var8)
@@ -158,7 +158,7 @@ public class BlockDispenser extends BlockContainer
     {
         if (!p_149674_1_.isClient)
         {
-            this.func_149941_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+            func_149941_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
         }
     }
 
@@ -197,13 +197,13 @@ public class BlockDispenser extends BlockContainer
 
                 if (var9 != null)
                 {
-                    float var10 = this.field_149942_b.nextFloat() * 0.8F + 0.1F;
-                    float var11 = this.field_149942_b.nextFloat() * 0.8F + 0.1F;
-                    float var12 = this.field_149942_b.nextFloat() * 0.8F + 0.1F;
+                    float var10 = field_149942_b.nextFloat() * 0.8F + 0.1F;
+                    float var11 = field_149942_b.nextFloat() * 0.8F + 0.1F;
+                    float var12 = field_149942_b.nextFloat() * 0.8F + 0.1F;
 
                     while (var9.stackSize > 0)
                     {
-                        int var13 = this.field_149942_b.nextInt(21) + 10;
+                        int var13 = field_149942_b.nextInt(21) + 10;
 
                         if (var13 > var9.stackSize)
                         {
@@ -211,7 +211,7 @@ public class BlockDispenser extends BlockContainer
                         }
 
                         var9.stackSize -= var13;
-                        EntityItem var14 = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + var10), (double)((float)p_149749_3_ + var11), (double)((float)p_149749_4_ + var12), new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
+                        EntityItem var14 = new EntityItem(p_149749_1_, p_149749_2_ + var10, p_149749_3_ + var11, p_149749_4_ + var12, new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
 
                         if (var9.hasTagCompound())
                         {
@@ -219,9 +219,9 @@ public class BlockDispenser extends BlockContainer
                         }
 
                         float var15 = 0.05F;
-                        var14.motionX = (double)((float)this.field_149942_b.nextGaussian() * var15);
-                        var14.motionY = (double)((float)this.field_149942_b.nextGaussian() * var15 + 0.2F);
-                        var14.motionZ = (double)((float)this.field_149942_b.nextGaussian() * var15);
+                        var14.motionX = (float)field_149942_b.nextGaussian() * var15;
+                        var14.motionY = (float)field_149942_b.nextGaussian() * var15 + 0.2F;
+                        var14.motionZ = (float)field_149942_b.nextGaussian() * var15;
                         p_149749_1_.spawnEntityInWorld(var14);
                     }
                 }
@@ -236,9 +236,9 @@ public class BlockDispenser extends BlockContainer
     public static IPosition func_149939_a(IBlockSource p_149939_0_)
     {
         EnumFacing var1 = func_149937_b(p_149939_0_.getBlockMetadata());
-        double var2 = p_149939_0_.getX() + 0.7D * (double)var1.getFrontOffsetX();
-        double var4 = p_149939_0_.getY() + 0.7D * (double)var1.getFrontOffsetY();
-        double var6 = p_149939_0_.getZ() + 0.7D * (double)var1.getFrontOffsetZ();
+        double var2 = p_149939_0_.getX() + 0.7D * var1.getFrontOffsetX();
+        double var4 = p_149939_0_.getY() + 0.7D * var1.getFrontOffsetY();
+        double var6 = p_149939_0_.getZ() + 0.7D * var1.getFrontOffsetZ();
         return new PositionImpl(var2, var4, var6);
     }
 

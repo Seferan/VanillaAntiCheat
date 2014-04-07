@@ -41,26 +41,26 @@ public class StatisticsFile extends StatFileWriter
 
     public StatisticsFile(MinecraftServer p_i45306_1_, File p_i45306_2_)
     {
-        this.field_150890_c = p_i45306_1_;
-        this.field_150887_d = p_i45306_2_;
+        field_150890_c = p_i45306_1_;
+        field_150887_d = p_i45306_2_;
     }
 
     public void func_150882_a()
     {
-        if (this.field_150887_d.isFile())
+        if (field_150887_d.isFile())
         {
             try
             {
-                this.field_150875_a.clear();
-                this.field_150875_a.putAll(this.func_150881_a(FileUtils.readFileToString(this.field_150887_d)));
+                field_150875_a.clear();
+                field_150875_a.putAll(func_150881_a(FileUtils.readFileToString(field_150887_d)));
             }
             catch (IOException var2)
             {
-                logger.error("Couldn\'t read statistics file " + this.field_150887_d, var2);
+                logger.error("Couldn\'t read statistics file " + field_150887_d, var2);
             }
             catch (JsonParseException var3)
             {
-                logger.error("Couldn\'t parse statistics file " + this.field_150887_d, var3);
+                logger.error("Couldn\'t parse statistics file " + field_150887_d, var3);
             }
         }
     }
@@ -69,7 +69,7 @@ public class StatisticsFile extends StatFileWriter
     {
         try
         {
-            FileUtils.writeStringToFile(this.field_150887_d, func_150880_a(this.field_150875_a));
+            FileUtils.writeStringToFile(field_150887_d, func_150880_a(field_150875_a));
         }
         catch (IOException var2)
         {
@@ -79,26 +79,26 @@ public class StatisticsFile extends StatFileWriter
 
     public void func_150873_a(EntityPlayer p_150873_1_, StatBase p_150873_2_, int p_150873_3_)
     {
-        int var4 = p_150873_2_.func_75967_d() ? this.func_77444_a(p_150873_2_) : 0;
+        int var4 = p_150873_2_.func_75967_d() ? func_77444_a(p_150873_2_) : 0;
         super.func_150873_a(p_150873_1_, p_150873_2_, p_150873_3_);
-        this.field_150888_e.add(p_150873_2_);
+        field_150888_e.add(p_150873_2_);
 
         if (p_150873_2_.func_75967_d() && var4 == 0 && p_150873_3_ > 0)
         {
-            this.field_150886_g = true;
+            field_150886_g = true;
 
-            if (this.field_150890_c.func_147136_ar())
+            if (field_150890_c.func_147136_ar())
             {
-                this.field_150890_c.getConfigurationManager().func_148539_a(new ChatComponentTranslation("chat.type.achievement", new Object[] {p_150873_1_.getUsernameAsIChatComponent(), p_150873_2_.func_150955_j()}));
+                field_150890_c.getConfigurationManager().func_148539_a(new ChatComponentTranslation("chat.type.achievement", new Object[] {p_150873_1_.getUsernameAsIChatComponent(), p_150873_2_.func_150955_j()}));
             }
         }
     }
 
     public Set func_150878_c()
     {
-        HashSet var1 = Sets.newHashSet(this.field_150888_e);
-        this.field_150888_e.clear();
-        this.field_150886_g = false;
+        HashSet var1 = Sets.newHashSet(field_150888_e);
+        field_150888_e.clear();
+        field_150886_g = false;
         return var1;
     }
 
@@ -148,7 +148,7 @@ public class StatisticsFile extends StatFileWriter
                             }
                             catch (Throwable var12)
                             {
-                                logger.warn("Invalid statistic progress in " + this.field_150887_d, var12);
+                                logger.warn("Invalid statistic progress in " + field_150887_d, var12);
                             }
                         }
                     }
@@ -157,7 +157,7 @@ public class StatisticsFile extends StatFileWriter
                 }
                 else
                 {
-                    logger.warn("Invalid statistic in " + this.field_150887_d + ": Don\'t know what " + (String)var6.getKey() + " is");
+                    logger.warn("Invalid statistic in " + field_150887_d + ": Don\'t know what " + (String)var6.getKey() + " is");
                 }
             }
 
@@ -201,29 +201,29 @@ public class StatisticsFile extends StatFileWriter
 
     public void func_150877_d()
     {
-        Iterator var1 = this.field_150875_a.keySet().iterator();
+        Iterator var1 = field_150875_a.keySet().iterator();
 
         while (var1.hasNext())
         {
             StatBase var2 = (StatBase)var1.next();
-            this.field_150888_e.add(var2);
+            field_150888_e.add(var2);
         }
     }
 
     public void func_150876_a(EntityPlayerMP p_150876_1_)
     {
-        int var2 = this.field_150890_c.getTickCounter();
+        int var2 = field_150890_c.getTickCounter();
         HashMap var3 = Maps.newHashMap();
 
-        if (this.field_150886_g || var2 - this.field_150885_f > 300)
+        if (field_150886_g || var2 - field_150885_f > 300)
         {
-            this.field_150885_f = var2;
-            Iterator var4 = this.func_150878_c().iterator();
+            field_150885_f = var2;
+            Iterator var4 = func_150878_c().iterator();
 
             while (var4.hasNext())
             {
                 StatBase var5 = (StatBase)var4.next();
-                var3.put(var5, Integer.valueOf(this.func_77444_a(var5)));
+                var3.put(var5, Integer.valueOf(func_77444_a(var5)));
             }
         }
 
@@ -239,10 +239,10 @@ public class StatisticsFile extends StatFileWriter
         {
             Achievement var4 = (Achievement)var3.next();
 
-            if (this.func_77443_a(var4))
+            if (func_77443_a(var4))
             {
-                var2.put(var4, Integer.valueOf(this.func_77444_a(var4)));
-                this.field_150888_e.remove(var4);
+                var2.put(var4, Integer.valueOf(func_77444_a(var4)));
+                field_150888_e.remove(var4);
             }
         }
 
@@ -251,6 +251,6 @@ public class StatisticsFile extends StatFileWriter
 
     public boolean func_150879_e()
     {
-        return this.field_150886_g;
+        return field_150886_g;
     }
 }

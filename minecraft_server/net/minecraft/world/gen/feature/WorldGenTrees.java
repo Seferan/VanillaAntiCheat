@@ -31,15 +31,15 @@ public class WorldGenTrees extends WorldGenAbstractTree
     public WorldGenTrees(boolean par1, int par2, int par3, int par4, boolean par5)
     {
         super(par1);
-        this.minTreeHeight = par2;
-        this.metaWood = par3;
-        this.metaLeaves = par4;
-        this.vinesGrow = par5;
+        minTreeHeight = par2;
+        metaWood = par3;
+        metaLeaves = par4;
+        vinesGrow = par5;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
     {
-        int var6 = par2Random.nextInt(3) + this.minTreeHeight;
+        int var6 = par2Random.nextInt(3) + minTreeHeight;
         boolean var7 = true;
 
         if (par4 >= 1 && par4 + var6 + 1 <= 256)
@@ -70,7 +70,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
                         {
                             var12 = par1World.getBlock(var10, var8, var11);
 
-                            if (!this.func_150523_a(var12))
+                            if (!func_150523_a(var12))
                             {
                                 var7 = false;
                             }
@@ -93,7 +93,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                 if ((var19 == Blocks.grass || var19 == Blocks.dirt || var19 == Blocks.farmland) && par4 < 256 - var6 - 1)
                 {
-                    this.func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
+                    func_150515_a(par1World, par3, par4 - 1, par5, Blocks.dirt);
                     var9 = 3;
                     byte var20 = 0;
                     int var13;
@@ -120,7 +120,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                                     if (var18.getMaterial() == Material.air || var18.getMaterial() == Material.field_151584_j)
                                     {
-                                        this.func_150516_a(par1World, var14, var11, var16, Blocks.leaves, this.metaLeaves);
+                                        func_150516_a(par1World, var14, var11, var16, Blocks.leaves, metaLeaves);
                                     }
                                 }
                             }
@@ -133,34 +133,34 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
                         if (var12.getMaterial() == Material.air || var12.getMaterial() == Material.field_151584_j)
                         {
-                            this.func_150516_a(par1World, par3, par4 + var11, par5, Blocks.log, this.metaWood);
+                            func_150516_a(par1World, par3, par4 + var11, par5, Blocks.log, metaWood);
 
-                            if (this.vinesGrow && var11 > 0)
+                            if (vinesGrow && var11 > 0)
                             {
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3 - 1, par4 + var11, par5))
                                 {
-                                    this.func_150516_a(par1World, par3 - 1, par4 + var11, par5, Blocks.vine, 8);
+                                    func_150516_a(par1World, par3 - 1, par4 + var11, par5, Blocks.vine, 8);
                                 }
 
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3 + 1, par4 + var11, par5))
                                 {
-                                    this.func_150516_a(par1World, par3 + 1, par4 + var11, par5, Blocks.vine, 2);
+                                    func_150516_a(par1World, par3 + 1, par4 + var11, par5, Blocks.vine, 2);
                                 }
 
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3, par4 + var11, par5 - 1))
                                 {
-                                    this.func_150516_a(par1World, par3, par4 + var11, par5 - 1, Blocks.vine, 1);
+                                    func_150516_a(par1World, par3, par4 + var11, par5 - 1, Blocks.vine, 1);
                                 }
 
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3, par4 + var11, par5 + 1))
                                 {
-                                    this.func_150516_a(par1World, par3, par4 + var11, par5 + 1, Blocks.vine, 4);
+                                    func_150516_a(par1World, par3, par4 + var11, par5 + 1, Blocks.vine, 4);
                                 }
                             }
                         }
                     }
 
-                    if (this.vinesGrow)
+                    if (vinesGrow)
                     {
                         for (var11 = par4 - 3 + var6; var11 <= par4 + var6; ++var11)
                         {
@@ -175,22 +175,22 @@ public class WorldGenTrees extends WorldGenAbstractTree
                                     {
                                         if (par2Random.nextInt(4) == 0 && par1World.getBlock(var14 - 1, var11, var15).getMaterial() == Material.air)
                                         {
-                                            this.growVines(par1World, var14 - 1, var11, var15, 8);
+                                            growVines(par1World, var14 - 1, var11, var15, 8);
                                         }
 
                                         if (par2Random.nextInt(4) == 0 && par1World.getBlock(var14 + 1, var11, var15).getMaterial() == Material.air)
                                         {
-                                            this.growVines(par1World, var14 + 1, var11, var15, 2);
+                                            growVines(par1World, var14 + 1, var11, var15, 2);
                                         }
 
                                         if (par2Random.nextInt(4) == 0 && par1World.getBlock(var14, var11, var15 - 1).getMaterial() == Material.air)
                                         {
-                                            this.growVines(par1World, var14, var11, var15 - 1, 1);
+                                            growVines(par1World, var14, var11, var15 - 1, 1);
                                         }
 
                                         if (par2Random.nextInt(4) == 0 && par1World.getBlock(var14, var11, var15 + 1).getMaterial() == Material.air)
                                         {
-                                            this.growVines(par1World, var14, var11, var15 + 1, 4);
+                                            growVines(par1World, var14, var11, var15 + 1, 4);
                                         }
                                     }
                                 }
@@ -206,7 +206,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
                                     if (par2Random.nextInt(4 - var11) == 0)
                                     {
                                         var13 = par2Random.nextInt(3);
-                                        this.func_150516_a(par1World, par3 + Direction.offsetX[Direction.rotateOpposite[var21]], par4 + var6 - 5 + var11, par5 + Direction.offsetZ[Direction.rotateOpposite[var21]], Blocks.cocoa, var13 << 2 | var21);
+                                        func_150516_a(par1World, par3 + Direction.offsetX[Direction.rotateOpposite[var21]], par4 + var6 - 5 + var11, par5 + Direction.offsetZ[Direction.rotateOpposite[var21]], Blocks.cocoa, var13 << 2 | var21);
                                     }
                                 }
                             }
@@ -233,7 +233,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
      */
     private void growVines(World par1World, int par2, int par3, int par4, int par5)
     {
-        this.func_150516_a(par1World, par2, par3, par4, Blocks.vine, par5);
+        func_150516_a(par1World, par2, par3, par4, Blocks.vine, par5);
         int var6 = 4;
 
         while (true)
@@ -242,7 +242,7 @@ public class WorldGenTrees extends WorldGenAbstractTree
 
             if (par1World.getBlock(par2, par3, par4).getMaterial() != Material.air || var6 <= 0) { return; }
 
-            this.func_150516_a(par1World, par2, par3, par4, Blocks.vine, par5);
+            func_150516_a(par1World, par2, par3, par4, Blocks.vine, par5);
             --var6;
         }
     }

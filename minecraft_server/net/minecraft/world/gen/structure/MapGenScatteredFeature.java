@@ -29,10 +29,10 @@ public class MapGenScatteredFeature extends MapGenStructure
 
     public MapGenScatteredFeature()
     {
-        this.scatteredFeatureSpawnList = new ArrayList();
-        this.maxDistanceBetweenScatteredFeatures = 32;
-        this.minDistanceBetweenScatteredFeatures = 8;
-        this.scatteredFeatureSpawnList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 1, 1, 1));
+        scatteredFeatureSpawnList = new ArrayList();
+        maxDistanceBetweenScatteredFeatures = 32;
+        minDistanceBetweenScatteredFeatures = 8;
+        scatteredFeatureSpawnList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 1, 1, 1));
     }
 
     public MapGenScatteredFeature(Map par1Map)
@@ -46,7 +46,7 @@ public class MapGenScatteredFeature extends MapGenStructure
 
             if (((String)var3.getKey()).equals("distance"))
             {
-                this.maxDistanceBetweenScatteredFeatures = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), this.maxDistanceBetweenScatteredFeatures, this.minDistanceBetweenScatteredFeatures + 1);
+                maxDistanceBetweenScatteredFeatures = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), maxDistanceBetweenScatteredFeatures, minDistanceBetweenScatteredFeatures + 1);
             }
         }
     }
@@ -63,25 +63,25 @@ public class MapGenScatteredFeature extends MapGenStructure
 
         if (par1 < 0)
         {
-            par1 -= this.maxDistanceBetweenScatteredFeatures - 1;
+            par1 -= maxDistanceBetweenScatteredFeatures - 1;
         }
 
         if (par2 < 0)
         {
-            par2 -= this.maxDistanceBetweenScatteredFeatures - 1;
+            par2 -= maxDistanceBetweenScatteredFeatures - 1;
         }
 
-        int var5 = par1 / this.maxDistanceBetweenScatteredFeatures;
-        int var6 = par2 / this.maxDistanceBetweenScatteredFeatures;
-        Random var7 = this.worldObj.setRandomSeed(var5, var6, 14357617);
-        var5 *= this.maxDistanceBetweenScatteredFeatures;
-        var6 *= this.maxDistanceBetweenScatteredFeatures;
-        var5 += var7.nextInt(this.maxDistanceBetweenScatteredFeatures - this.minDistanceBetweenScatteredFeatures);
-        var6 += var7.nextInt(this.maxDistanceBetweenScatteredFeatures - this.minDistanceBetweenScatteredFeatures);
+        int var5 = par1 / maxDistanceBetweenScatteredFeatures;
+        int var6 = par2 / maxDistanceBetweenScatteredFeatures;
+        Random var7 = worldObj.setRandomSeed(var5, var6, 14357617);
+        var5 *= maxDistanceBetweenScatteredFeatures;
+        var6 *= maxDistanceBetweenScatteredFeatures;
+        var5 += var7.nextInt(maxDistanceBetweenScatteredFeatures - minDistanceBetweenScatteredFeatures);
+        var6 += var7.nextInt(maxDistanceBetweenScatteredFeatures - minDistanceBetweenScatteredFeatures);
 
         if (var3 == var5 && var4 == var6)
         {
-            BiomeGenBase var8 = this.worldObj.getWorldChunkManager().getBiomeGenAt(var3 * 16 + 8, var4 * 16 + 8);
+            BiomeGenBase var8 = worldObj.getWorldChunkManager().getBiomeGenAt(var3 * 16 + 8, var4 * 16 + 8);
             Iterator var9 = biomelist.iterator();
 
             while (var9.hasNext())
@@ -97,12 +97,12 @@ public class MapGenScatteredFeature extends MapGenStructure
 
     protected StructureStart getStructureStart(int par1, int par2)
     {
-        return new MapGenScatteredFeature.Start(this.worldObj, this.rand, par1, par2);
+        return new MapGenScatteredFeature.Start(worldObj, rand, par1, par2);
     }
 
     public boolean func_143030_a(int par1, int par2, int par3)
     {
-        StructureStart var4 = this.func_143028_c(par1, par2, par3);
+        StructureStart var4 = func_143028_c(par1, par2, par3);
 
         if (var4 != null && var4 instanceof MapGenScatteredFeature.Start && !var4.components.isEmpty())
         {
@@ -120,7 +120,7 @@ public class MapGenScatteredFeature extends MapGenStructure
      */
     public List getScatteredFeatureSpawnList()
     {
-        return this.scatteredFeatureSpawnList;
+        return scatteredFeatureSpawnList;
     }
 
     public static class Start extends StructureStart
@@ -141,21 +141,21 @@ public class MapGenScatteredFeature extends MapGenStructure
                 if (var5 == BiomeGenBase.swampland)
                 {
                     ComponentScatteredFeaturePieces.SwampHut var8 = new ComponentScatteredFeaturePieces.SwampHut(par2Random, par3 * 16, par4 * 16);
-                    this.components.add(var8);
+                    components.add(var8);
                 }
                 else
                 {
                     ComponentScatteredFeaturePieces.DesertPyramid var7 = new ComponentScatteredFeaturePieces.DesertPyramid(par2Random, par3 * 16, par4 * 16);
-                    this.components.add(var7);
+                    components.add(var7);
                 }
             }
             else
             {
                 ComponentScatteredFeaturePieces.JunglePyramid var6 = new ComponentScatteredFeaturePieces.JunglePyramid(par2Random, par3 * 16, par4 * 16);
-                this.components.add(var6);
+                components.add(var6);
             }
 
-            this.updateBoundingBox();
+            updateBoundingBox();
         }
     }
 }

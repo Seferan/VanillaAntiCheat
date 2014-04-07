@@ -27,12 +27,12 @@ public class EntityAITasks
 
     public EntityAITasks(Profiler par1Profiler)
     {
-        this.theProfiler = par1Profiler;
+        theProfiler = par1Profiler;
     }
 
     public void addTask(int par1, EntityAIBase par2EntityAIBase)
     {
-        this.taskEntries.add(new EntityAITasks.EntityAITaskEntry(par1, par2EntityAIBase));
+        taskEntries.add(new EntityAITasks.EntityAITaskEntry(par1, par2EntityAIBase));
     }
 
     /**
@@ -40,7 +40,7 @@ public class EntityAITasks
      */
     public void removeTask(EntityAIBase par1EntityAIBase)
     {
-        Iterator var2 = this.taskEntries.iterator();
+        Iterator var2 = taskEntries.iterator();
 
         while (var2.hasNext())
         {
@@ -49,10 +49,10 @@ public class EntityAITasks
 
             if (var4 == par1EntityAIBase)
             {
-                if (this.executingTaskEntries.contains(var3))
+                if (executingTaskEntries.contains(var3))
                 {
                     var4.resetTask();
-                    this.executingTaskEntries.remove(var3);
+                    executingTaskEntries.remove(var3);
                 }
 
                 var2.remove();
@@ -66,36 +66,36 @@ public class EntityAITasks
         Iterator var2;
         EntityAITasks.EntityAITaskEntry var3;
 
-        if (this.tickCount++ % this.tickRate == 0)
+        if (tickCount++ % tickRate == 0)
         {
-            var2 = this.taskEntries.iterator();
+            var2 = taskEntries.iterator();
 
             while (var2.hasNext())
             {
                 var3 = (EntityAITasks.EntityAITaskEntry)var2.next();
-                boolean var4 = this.executingTaskEntries.contains(var3);
+                boolean var4 = executingTaskEntries.contains(var3);
 
                 if (var4)
                 {
-                    if (this.canUse(var3) && this.canContinue(var3))
+                    if (canUse(var3) && canContinue(var3))
                     {
                         continue;
                     }
 
                     var3.action.resetTask();
-                    this.executingTaskEntries.remove(var3);
+                    executingTaskEntries.remove(var3);
                 }
 
-                if (this.canUse(var3) && var3.action.shouldExecute())
+                if (canUse(var3) && var3.action.shouldExecute())
                 {
                     var1.add(var3);
-                    this.executingTaskEntries.add(var3);
+                    executingTaskEntries.add(var3);
                 }
             }
         }
         else
         {
-            var2 = this.executingTaskEntries.iterator();
+            var2 = executingTaskEntries.iterator();
 
             while (var2.hasNext())
             {
@@ -109,20 +109,20 @@ public class EntityAITasks
             }
         }
 
-        this.theProfiler.startSection("goalStart");
+        theProfiler.startSection("goalStart");
         var2 = var1.iterator();
 
         while (var2.hasNext())
         {
             var3 = (EntityAITasks.EntityAITaskEntry)var2.next();
-            this.theProfiler.startSection(var3.action.getClass().getSimpleName());
+            theProfiler.startSection(var3.action.getClass().getSimpleName());
             var3.action.startExecuting();
-            this.theProfiler.endSection();
+            theProfiler.endSection();
         }
 
-        this.theProfiler.endSection();
-        this.theProfiler.startSection("goalTick");
-        var2 = this.executingTaskEntries.iterator();
+        theProfiler.endSection();
+        theProfiler.startSection("goalTick");
+        var2 = executingTaskEntries.iterator();
 
         while (var2.hasNext())
         {
@@ -130,7 +130,7 @@ public class EntityAITasks
             var3.action.updateTask();
         }
 
-        this.theProfiler.endSection();
+        theProfiler.endSection();
     }
 
     /**
@@ -138,9 +138,9 @@ public class EntityAITasks
      */
     private boolean canContinue(EntityAITasks.EntityAITaskEntry par1EntityAITaskEntry)
     {
-        this.theProfiler.startSection("canContinue");
+        theProfiler.startSection("canContinue");
         boolean var2 = par1EntityAITaskEntry.action.continueExecuting();
-        this.theProfiler.endSection();
+        theProfiler.endSection();
         return var2;
     }
 
@@ -151,8 +151,8 @@ public class EntityAITasks
      */
     private boolean canUse(EntityAITasks.EntityAITaskEntry par1EntityAITaskEntry)
     {
-        this.theProfiler.startSection("canUse");
-        Iterator var2 = this.taskEntries.iterator();
+        theProfiler.startSection("canUse");
+        Iterator var2 = taskEntries.iterator();
 
         while (var2.hasNext())
         {
@@ -162,21 +162,21 @@ public class EntityAITasks
             {
                 if (par1EntityAITaskEntry.priority >= var3.priority)
                 {
-                    if (this.executingTaskEntries.contains(var3) && !this.areTasksCompatible(par1EntityAITaskEntry, var3))
+                    if (executingTaskEntries.contains(var3) && !areTasksCompatible(par1EntityAITaskEntry, var3))
                     {
-                        this.theProfiler.endSection();
+                        theProfiler.endSection();
                         return false;
                     }
                 }
-                else if (this.executingTaskEntries.contains(var3) && !var3.action.isContinuous())
+                else if (executingTaskEntries.contains(var3) && !var3.action.isContinuous())
                 {
-                    this.theProfiler.endSection();
+                    theProfiler.endSection();
                     return false;
                 }
             }
         }
 
-        this.theProfiler.endSection();
+        theProfiler.endSection();
         return true;
     }
 
@@ -196,8 +196,8 @@ public class EntityAITasks
 
         public EntityAITaskEntry(int par2, EntityAIBase par3EntityAIBase)
         {
-            this.priority = par2;
-            this.action = par3EntityAIBase;
+            priority = par2;
+            action = par3EntityAIBase;
         }
     }
 }

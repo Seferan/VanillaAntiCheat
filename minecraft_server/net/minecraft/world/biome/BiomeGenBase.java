@@ -189,39 +189,39 @@ public abstract class BiomeGenBase
 
     protected BiomeGenBase(int par1)
     {
-        this.topBlock = Blocks.grass;
-        this.field_150604_aj = 0;
-        this.fillerBlock = Blocks.dirt;
-        this.field_76754_C = 5169201;
-        this.minHeight = field_150596_a.field_150777_a;
-        this.maxHeight = field_150596_a.field_150776_b;
-        this.temperature = 0.5F;
-        this.rainfall = 0.5F;
-        this.waterColorMultiplier = 16777215;
-        this.spawnableMonsterList = new ArrayList();
-        this.spawnableCreatureList = new ArrayList();
-        this.spawnableWaterCreatureList = new ArrayList();
-        this.spawnableCaveCreatureList = new ArrayList();
-        this.enableRain = true;
-        this.worldGeneratorTrees = new WorldGenTrees(false);
-        this.worldGeneratorBigTree = new WorldGenBigTree(false);
-        this.worldGeneratorSwamp = new WorldGenSwamp();
-        this.biomeID = par1;
+        topBlock = Blocks.grass;
+        field_150604_aj = 0;
+        fillerBlock = Blocks.dirt;
+        field_76754_C = 5169201;
+        minHeight = field_150596_a.field_150777_a;
+        maxHeight = field_150596_a.field_150776_b;
+        temperature = 0.5F;
+        rainfall = 0.5F;
+        waterColorMultiplier = 16777215;
+        spawnableMonsterList = new ArrayList();
+        spawnableCreatureList = new ArrayList();
+        spawnableWaterCreatureList = new ArrayList();
+        spawnableCaveCreatureList = new ArrayList();
+        enableRain = true;
+        worldGeneratorTrees = new WorldGenTrees(false);
+        worldGeneratorBigTree = new WorldGenBigTree(false);
+        worldGeneratorSwamp = new WorldGenSwamp();
+        biomeID = par1;
         biomeList[par1] = this;
-        this.theBiomeDecorator = this.createBiomeDecorator();
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 12, 4, 4));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPig.class, 10, 4, 4));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityChicken.class, 10, 4, 4));
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityCow.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySpider.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityZombie.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCreeper.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlime.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
-        this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 5, 1, 1));
-        this.spawnableWaterCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySquid.class, 10, 4, 4));
-        this.spawnableCaveCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 10, 8, 8));
+        theBiomeDecorator = createBiomeDecorator();
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySheep.class, 12, 4, 4));
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityPig.class, 10, 4, 4));
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityChicken.class, 10, 4, 4));
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityCow.class, 8, 4, 4));
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySpider.class, 100, 4, 4));
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityZombie.class, 100, 4, 4));
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityCreeper.class, 100, 4, 4));
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySlime.class, 100, 4, 4));
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityEnderman.class, 10, 1, 4));
+        spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntityWitch.class, 5, 1, 1));
+        spawnableWaterCreatureList.add(new BiomeGenBase.SpawnListEntry(EntitySquid.class, 10, 4, 4));
+        spawnableCaveCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityBat.class, 10, 8, 8));
     }
 
     /**
@@ -243,16 +243,16 @@ public abstract class BiomeGenBase
         }
         else
         {
-            this.temperature = par1;
-            this.rainfall = par2;
+            temperature = par1;
+            rainfall = par2;
             return this;
         }
     }
 
     protected final BiomeGenBase func_150570_a(BiomeGenBase.Height p_150570_1_)
     {
-        this.minHeight = p_150570_1_.field_150777_a;
-        this.maxHeight = p_150570_1_.field_150776_b;
+        minHeight = p_150570_1_.field_150777_a;
+        maxHeight = p_150570_1_.field_150776_b;
         return this;
     }
 
@@ -261,13 +261,13 @@ public abstract class BiomeGenBase
      */
     protected BiomeGenBase setDisableRain()
     {
-        this.enableRain = false;
+        enableRain = false;
         return this;
     }
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(p_150567_1_.nextInt(10) == 0 ? this.worldGeneratorBigTree : this.worldGeneratorTrees);
+        return p_150567_1_.nextInt(10) == 0 ? worldGeneratorBigTree : worldGeneratorTrees;
     }
 
     /**
@@ -289,45 +289,45 @@ public abstract class BiomeGenBase
      */
     protected BiomeGenBase setEnableSnow()
     {
-        this.enableSnow = true;
+        enableSnow = true;
         return this;
     }
 
     protected BiomeGenBase setBiomeName(String par1Str)
     {
-        this.biomeName = par1Str;
+        biomeName = par1Str;
         return this;
     }
 
     protected BiomeGenBase func_76733_a(int par1)
     {
-        this.field_76754_C = par1;
+        field_76754_C = par1;
         return this;
     }
 
     protected BiomeGenBase setColor(int par1)
     {
-        this.func_150557_a(par1, false);
+        func_150557_a(par1, false);
         return this;
     }
 
     protected BiomeGenBase func_150563_c(int p_150563_1_)
     {
-        this.field_150609_ah = p_150563_1_;
+        field_150609_ah = p_150563_1_;
         return this;
     }
 
     protected BiomeGenBase func_150557_a(int p_150557_1_, boolean p_150557_2_)
     {
-        this.color = p_150557_1_;
+        color = p_150557_1_;
 
         if (p_150557_2_)
         {
-            this.field_150609_ah = (p_150557_1_ & 16711422) >> 1;
+            field_150609_ah = (p_150557_1_ & 16711422) >> 1;
         }
         else
         {
-            this.field_150609_ah = p_150557_1_;
+            field_150609_ah = p_150557_1_;
         }
 
         return this;
@@ -338,7 +338,7 @@ public abstract class BiomeGenBase
      */
     public List getSpawnableList(EnumCreatureType par1EnumCreatureType)
     {
-        return par1EnumCreatureType == EnumCreatureType.monster ? this.spawnableMonsterList : (par1EnumCreatureType == EnumCreatureType.creature ? this.spawnableCreatureList : (par1EnumCreatureType == EnumCreatureType.waterCreature ? this.spawnableWaterCreatureList : (par1EnumCreatureType == EnumCreatureType.ambient ? this.spawnableCaveCreatureList : null)));
+        return par1EnumCreatureType == EnumCreatureType.monster ? spawnableMonsterList : (par1EnumCreatureType == EnumCreatureType.creature ? spawnableCreatureList : (par1EnumCreatureType == EnumCreatureType.waterCreature ? spawnableWaterCreatureList : (par1EnumCreatureType == EnumCreatureType.ambient ? spawnableCaveCreatureList : null)));
     }
 
     /**
@@ -346,7 +346,7 @@ public abstract class BiomeGenBase
      */
     public boolean getEnableSnow()
     {
-        return this.func_150559_j();
+        return func_150559_j();
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BiomeGenBase
      */
     public boolean canSpawnLightningBolt()
     {
-        return this.func_150559_j() ? false : this.enableRain;
+        return func_150559_j() ? false : enableRain;
     }
 
     /**
@@ -363,7 +363,7 @@ public abstract class BiomeGenBase
      */
     public boolean isHighHumidity()
     {
-        return this.rainfall > 0.85F;
+        return rainfall > 0.85F;
     }
 
     /**
@@ -379,43 +379,43 @@ public abstract class BiomeGenBase
      */
     public final int getIntRainfall()
     {
-        return (int)(this.rainfall * 65536.0F);
+        return (int)(rainfall * 65536.0F);
     }
 
     public final float func_150564_a(int p_150564_1_, int p_150564_2_, int p_150564_3_)
     {
         if (p_150564_2_ > 64)
         {
-            float var4 = (float)field_150605_ac.func_151601_a((double)p_150564_1_ * 1.0D / 8.0D, (double)p_150564_3_ * 1.0D / 8.0D) * 4.0F;
-            return this.temperature - (var4 + (float)p_150564_2_ - 64.0F) * 0.05F / 30.0F;
+            float var4 = (float)field_150605_ac.func_151601_a(p_150564_1_ * 1.0D / 8.0D, p_150564_3_ * 1.0D / 8.0D) * 4.0F;
+            return temperature - (var4 + p_150564_2_ - 64.0F) * 0.05F / 30.0F;
         }
         else
         {
-            return this.temperature;
+            return temperature;
         }
     }
 
     public void decorate(World par1World, Random par2Random, int par3, int par4)
     {
-        this.theBiomeDecorator.func_150512_a(par1World, par2Random, this, par3, par4);
+        theBiomeDecorator.func_150512_a(par1World, par2Random, this, par3, par4);
     }
 
     public boolean func_150559_j()
     {
-        return this.enableSnow;
+        return enableSnow;
     }
 
     public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
     {
-        this.func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
     }
 
     public final void func_150560_b(World p_150560_1_, Random p_150560_2_, Block[] p_150560_3_, byte[] p_150560_4_, int p_150560_5_, int p_150560_6_, double p_150560_7_)
     {
         boolean var9 = true;
-        Block var10 = this.topBlock;
-        byte var11 = (byte)(this.field_150604_aj & 255);
-        Block var12 = this.fillerBlock;
+        Block var10 = topBlock;
+        byte var11 = (byte)(field_150604_aj & 255);
+        Block var12 = fillerBlock;
         int var13 = -1;
         int var14 = (int)(p_150560_7_ / 3.0D + 3.0D + p_150560_2_.nextDouble() * 0.25D);
         int var15 = p_150560_5_ & 15;
@@ -448,14 +448,14 @@ public abstract class BiomeGenBase
                             }
                             else if (var18 >= 59 && var18 <= 64)
                             {
-                                var10 = this.topBlock;
-                                var11 = (byte)(this.field_150604_aj & 255);
-                                var12 = this.fillerBlock;
+                                var10 = topBlock;
+                                var11 = (byte)(field_150604_aj & 255);
+                                var12 = fillerBlock;
                             }
 
                             if (var18 < 63 && (var10 == null || var10.getMaterial() == Material.air))
                             {
-                                if (this.func_150564_a(p_150560_5_, var18, p_150560_6_) < 0.15F)
+                                if (func_150564_a(p_150560_5_, var18, p_150560_6_) < 0.15F)
                                 {
                                     var10 = Blocks.ice;
                                     var11 = 0;
@@ -508,7 +508,7 @@ public abstract class BiomeGenBase
 
     protected BiomeGenBase func_150566_k()
     {
-        return new BiomeGenMutated(this.biomeID + 128, this);
+        return new BiomeGenMutated(biomeID + 128, this);
     }
 
     public Class func_150562_l()
@@ -518,12 +518,12 @@ public abstract class BiomeGenBase
 
     public boolean func_150569_a(BiomeGenBase p_150569_1_)
     {
-        return p_150569_1_ == this ? true : (p_150569_1_ == null ? false : this.func_150562_l() == p_150569_1_.func_150562_l());
+        return p_150569_1_ == this ? true : (p_150569_1_ == null ? false : func_150562_l() == p_150569_1_.func_150562_l());
     }
 
     public BiomeGenBase.TempCategory func_150561_m()
     {
-        return (double)this.temperature < 0.2D ? BiomeGenBase.TempCategory.COLD : ((double)this.temperature < 1.0D ? BiomeGenBase.TempCategory.MEDIUM : BiomeGenBase.TempCategory.WARM);
+        return temperature < 0.2D ? BiomeGenBase.TempCategory.COLD : (temperature < 1.0D ? BiomeGenBase.TempCategory.MEDIUM : BiomeGenBase.TempCategory.WARM);
     }
 
     public static BiomeGenBase[] registerStructurePiece()
@@ -597,14 +597,14 @@ public abstract class BiomeGenBase
         public SpawnListEntry(Class par1Class, int par2, int par3, int par4)
         {
             super(par2);
-            this.entityClass = par1Class;
-            this.minGroupCount = par3;
-            this.maxGroupCount = par4;
+            entityClass = par1Class;
+            minGroupCount = par3;
+            maxGroupCount = par4;
         }
 
         public String toString()
         {
-            return this.entityClass.getSimpleName() + "*(" + this.minGroupCount + "-" + this.maxGroupCount + "):" + this.itemWeight;
+            return entityClass.getSimpleName() + "*(" + minGroupCount + "-" + maxGroupCount + "):" + itemWeight;
         }
     }
 
@@ -616,13 +616,13 @@ public abstract class BiomeGenBase
 
         public Height(float p_i45371_1_, float p_i45371_2_)
         {
-            this.field_150777_a = p_i45371_1_;
-            this.field_150776_b = p_i45371_2_;
+            field_150777_a = p_i45371_1_;
+            field_150776_b = p_i45371_2_;
         }
 
         public BiomeGenBase.Height func_150775_a()
         {
-            return new BiomeGenBase.Height(this.field_150777_a * 0.8F, this.field_150776_b * 0.6F);
+            return new BiomeGenBase.Height(field_150777_a * 0.8F, field_150776_b * 0.6F);
         }
     }
 

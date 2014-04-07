@@ -18,9 +18,9 @@ public class ItemSkull extends Item
 
     public ItemSkull()
     {
-        this.setCreativeTab(CreativeTabs.tabDecorations);
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
+        setCreativeTab(CreativeTabs.tabDecorations);
+        setMaxDamage(0);
+        setHasSubtypes(true);
     }
 
     /**
@@ -80,7 +80,7 @@ public class ItemSkull extends Item
 
                 if (par7 == 1)
                 {
-                    var11 = MathHelper.floor_double((double)(par2EntityPlayer.rotationYaw * 16.0F / 360.0F) + 0.5D) & 15;
+                    var11 = MathHelper.floor_double(par2EntityPlayer.rotationYaw * 16.0F / 360.0F + 0.5D) & 15;
                 }
 
                 TileEntity var12 = par3World.getTileEntity(par4, par5, par6);

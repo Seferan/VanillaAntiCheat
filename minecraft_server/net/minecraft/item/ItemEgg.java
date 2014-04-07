@@ -11,8 +11,8 @@ public class ItemEgg extends Item
 
     public ItemEgg()
     {
-        this.maxStackSize = 16;
-        this.setCreativeTab(CreativeTabs.tabMaterials);
+        maxStackSize = 16;
+        setCreativeTab(CreativeTabs.tabMaterials);
     }
 
     /**

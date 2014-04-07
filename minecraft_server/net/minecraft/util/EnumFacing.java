@@ -19,11 +19,11 @@ public enum EnumFacing
 
     private EnumFacing(int par3, int par4, int par5, int par6, int par7)
     {
-        this.order_a = par3;
-        this.order_b = par4;
-        this.frontOffsetX = par5;
-        this.frontOffsetY = par6;
-        this.frontOffsetZ = par7;
+        order_a = par3;
+        order_b = par4;
+        frontOffsetX = par5;
+        frontOffsetY = par6;
+        frontOffsetZ = par7;
     }
 
     /**
@@ -31,12 +31,12 @@ public enum EnumFacing
      */
     public int getFrontOffsetX()
     {
-        return this.frontOffsetX;
+        return frontOffsetX;
     }
 
     public int getFrontOffsetY()
     {
-        return this.frontOffsetY;
+        return frontOffsetY;
     }
 
     /**
@@ -44,7 +44,7 @@ public enum EnumFacing
      */
     public int getFrontOffsetZ()
     {
-        return this.frontOffsetZ;
+        return frontOffsetZ;
     }
 
     /**

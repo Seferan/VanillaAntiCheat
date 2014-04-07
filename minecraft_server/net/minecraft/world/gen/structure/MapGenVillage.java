@@ -25,8 +25,8 @@ public class MapGenVillage extends MapGenStructure
 
     public MapGenVillage()
     {
-        this.field_82665_g = 32;
-        this.field_82666_h = 8;
+        field_82665_g = 32;
+        field_82666_h = 8;
     }
 
     public MapGenVillage(Map par1Map)
@@ -40,11 +40,11 @@ public class MapGenVillage extends MapGenStructure
 
             if (((String)var3.getKey()).equals("size"))
             {
-                this.terrainType = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), this.terrainType, 0);
+                terrainType = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), terrainType, 0);
             }
             else if (((String)var3.getKey()).equals("distance"))
             {
-                this.field_82665_g = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), this.field_82665_g, this.field_82666_h + 1);
+                field_82665_g = MathHelper.parseIntWithDefaultAndMax((String)var3.getValue(), field_82665_g, field_82666_h + 1);
             }
         }
     }
@@ -61,25 +61,25 @@ public class MapGenVillage extends MapGenStructure
 
         if (par1 < 0)
         {
-            par1 -= this.field_82665_g - 1;
+            par1 -= field_82665_g - 1;
         }
 
         if (par2 < 0)
         {
-            par2 -= this.field_82665_g - 1;
+            par2 -= field_82665_g - 1;
         }
 
-        int var5 = par1 / this.field_82665_g;
-        int var6 = par2 / this.field_82665_g;
-        Random var7 = this.worldObj.setRandomSeed(var5, var6, 10387312);
-        var5 *= this.field_82665_g;
-        var6 *= this.field_82665_g;
-        var5 += var7.nextInt(this.field_82665_g - this.field_82666_h);
-        var6 += var7.nextInt(this.field_82665_g - this.field_82666_h);
+        int var5 = par1 / field_82665_g;
+        int var6 = par2 / field_82665_g;
+        Random var7 = worldObj.setRandomSeed(var5, var6, 10387312);
+        var5 *= field_82665_g;
+        var6 *= field_82665_g;
+        var5 += var7.nextInt(field_82665_g - field_82666_h);
+        var6 += var7.nextInt(field_82665_g - field_82666_h);
 
         if (var3 == var5 && var4 == var6)
         {
-            boolean var8 = this.worldObj.getWorldChunkManager().areBiomesViable(var3 * 16 + 8, var4 * 16 + 8, 0, villageSpawnBiomes);
+            boolean var8 = worldObj.getWorldChunkManager().areBiomesViable(var3 * 16 + 8, var4 * 16 + 8, 0, villageSpawnBiomes);
 
             if (var8) { return true; }
         }
@@ -89,7 +89,7 @@ public class MapGenVillage extends MapGenStructure
 
     protected StructureStart getStructureStart(int par1, int par2)
     {
-        return new MapGenVillage.Start(this.worldObj, this.rand, par1, par2, this.terrainType);
+        return new MapGenVillage.Start(worldObj, rand, par1, par2, terrainType);
     }
 
     public static class Start extends StructureStart
@@ -106,8 +106,8 @@ public class MapGenVillage extends MapGenStructure
             super(par3, par4);
             List var6 = StructureVillagePieces.getStructureVillageWeightedPieceList(par2Random, par5);
             StructureVillagePieces.Start var7 = new StructureVillagePieces.Start(par1World.getWorldChunkManager(), 0, par2Random, (par3 << 4) + 2, (par4 << 4) + 2, var6, par5);
-            this.components.add(var7);
-            var7.buildComponent(var7, this.components, par2Random);
+            components.add(var7);
+            var7.buildComponent(var7, components, par2Random);
             List var8 = var7.field_74930_j;
             List var9 = var7.field_74932_i;
             int var10;
@@ -120,19 +120,19 @@ public class MapGenVillage extends MapGenStructure
                 {
                     var10 = par2Random.nextInt(var9.size());
                     var11 = (StructureComponent)var9.remove(var10);
-                    var11.buildComponent(var7, this.components, par2Random);
+                    var11.buildComponent(var7, components, par2Random);
                 }
                 else
                 {
                     var10 = par2Random.nextInt(var8.size());
                     var11 = (StructureComponent)var8.remove(var10);
-                    var11.buildComponent(var7, this.components, par2Random);
+                    var11.buildComponent(var7, components, par2Random);
                 }
             }
 
-            this.updateBoundingBox();
+            updateBoundingBox();
             var10 = 0;
-            Iterator var13 = this.components.iterator();
+            Iterator var13 = components.iterator();
 
             while (var13.hasNext())
             {
@@ -144,24 +144,24 @@ public class MapGenVillage extends MapGenStructure
                 }
             }
 
-            this.hasMoreThanTwoComponents = var10 > 2;
+            hasMoreThanTwoComponents = var10 > 2;
         }
 
         public boolean isSizeableStructure()
         {
-            return this.hasMoreThanTwoComponents;
+            return hasMoreThanTwoComponents;
         }
 
         public void func_143022_a(NBTTagCompound par1NBTTagCompound)
         {
             super.func_143022_a(par1NBTTagCompound);
-            par1NBTTagCompound.setBoolean("Valid", this.hasMoreThanTwoComponents);
+            par1NBTTagCompound.setBoolean("Valid", hasMoreThanTwoComponents);
         }
 
         public void func_143017_b(NBTTagCompound par1NBTTagCompound)
         {
             super.func_143017_b(par1NBTTagCompound);
-            this.hasMoreThanTwoComponents = par1NBTTagCompound.getBoolean("Valid");
+            hasMoreThanTwoComponents = par1NBTTagCompound.getBoolean("Valid");
         }
     }
 }

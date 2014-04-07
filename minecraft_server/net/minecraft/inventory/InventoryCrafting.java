@@ -21,9 +21,9 @@ public class InventoryCrafting implements IInventory
     public InventoryCrafting(Container par1Container, int par2, int par3)
     {
         int var4 = par2 * par3;
-        this.stackList = new ItemStack[var4];
-        this.eventHandler = par1Container;
-        this.inventoryWidth = par2;
+        stackList = new ItemStack[var4];
+        eventHandler = par1Container;
+        inventoryWidth = par2;
     }
 
     /**
@@ -31,7 +31,7 @@ public class InventoryCrafting implements IInventory
      */
     public int getSizeInventory()
     {
-        return this.stackList.length;
+        return stackList.length;
     }
 
     /**
@@ -39,7 +39,7 @@ public class InventoryCrafting implements IInventory
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return par1 >= this.getSizeInventory() ? null : this.stackList[par1];
+        return par1 >= getSizeInventory() ? null : stackList[par1];
     }
 
     /**
@@ -48,10 +48,10 @@ public class InventoryCrafting implements IInventory
      */
     public ItemStack getStackInRowAndColumn(int par1, int par2)
     {
-        if (par1 >= 0 && par1 < this.inventoryWidth)
+        if (par1 >= 0 && par1 < inventoryWidth)
         {
-            int var3 = par1 + par2 * this.inventoryWidth;
-            return this.getStackInSlot(var3);
+            int var3 = par1 + par2 * inventoryWidth;
+            return getStackInSlot(var3);
         }
         else
         {
@@ -82,10 +82,10 @@ public class InventoryCrafting implements IInventory
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        if (this.stackList[par1] != null)
+        if (stackList[par1] != null)
         {
-            ItemStack var2 = this.stackList[par1];
-            this.stackList[par1] = null;
+            ItemStack var2 = stackList[par1];
+            stackList[par1] = null;
             return var2;
         }
         else
@@ -100,27 +100,27 @@ public class InventoryCrafting implements IInventory
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (this.stackList[par1] != null)
+        if (stackList[par1] != null)
         {
             ItemStack var3;
 
-            if (this.stackList[par1].stackSize <= par2)
+            if (stackList[par1].stackSize <= par2)
             {
-                var3 = this.stackList[par1];
-                this.stackList[par1] = null;
-                this.eventHandler.onCraftMatrixChanged(this);
+                var3 = stackList[par1];
+                stackList[par1] = null;
+                eventHandler.onCraftMatrixChanged(this);
                 return var3;
             }
             else
             {
-                var3 = this.stackList[par1].splitStack(par2);
+                var3 = stackList[par1].splitStack(par2);
 
-                if (this.stackList[par1].stackSize == 0)
+                if (stackList[par1].stackSize == 0)
                 {
-                    this.stackList[par1] = null;
+                    stackList[par1] = null;
                 }
 
-                this.eventHandler.onCraftMatrixChanged(this);
+                eventHandler.onCraftMatrixChanged(this);
                 return var3;
             }
         }
@@ -136,8 +136,8 @@ public class InventoryCrafting implements IInventory
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
-        this.stackList[par1] = par2ItemStack;
-        this.eventHandler.onCraftMatrixChanged(this);
+        stackList[par1] = par2ItemStack;
+        eventHandler.onCraftMatrixChanged(this);
     }
 
     /**

@@ -20,9 +20,9 @@ public class ScorePlayerTeam extends Team
 
     public ScorePlayerTeam(Scoreboard par1Scoreboard, String par2Str)
     {
-        this.theScoreboard = par1Scoreboard;
-        this.field_96675_b = par2Str;
-        this.teamNameSPT = par2Str;
+        theScoreboard = par1Scoreboard;
+        field_96675_b = par2Str;
+        teamNameSPT = par2Str;
     }
 
     /**
@@ -30,12 +30,12 @@ public class ScorePlayerTeam extends Team
      */
     public String getRegisteredName()
     {
-        return this.field_96675_b;
+        return field_96675_b;
     }
 
     public String func_96669_c()
     {
-        return this.teamNameSPT;
+        return teamNameSPT;
     }
 
     public void setTeamName(String par1Str)
@@ -46,14 +46,14 @@ public class ScorePlayerTeam extends Team
         }
         else
         {
-            this.teamNameSPT = par1Str;
-            this.theScoreboard.broadcastTeamRemoved(this);
+            teamNameSPT = par1Str;
+            theScoreboard.broadcastTeamRemoved(this);
         }
     }
 
     public Collection getMembershipCollection()
     {
-        return this.membershipSet;
+        return membershipSet;
     }
 
     /**
@@ -61,7 +61,7 @@ public class ScorePlayerTeam extends Team
      */
     public String getColorPrefix()
     {
-        return this.namePrefixSPT;
+        return namePrefixSPT;
     }
 
     public void setNamePrefix(String par1Str)
@@ -72,8 +72,8 @@ public class ScorePlayerTeam extends Team
         }
         else
         {
-            this.namePrefixSPT = par1Str;
-            this.theScoreboard.broadcastTeamRemoved(this);
+            namePrefixSPT = par1Str;
+            theScoreboard.broadcastTeamRemoved(this);
         }
     }
 
@@ -82,7 +82,7 @@ public class ScorePlayerTeam extends Team
      */
     public String getColorSuffix()
     {
-        return this.colorSuffix;
+        return colorSuffix;
     }
 
     public void setNameSuffix(String par1Str)
@@ -93,14 +93,14 @@ public class ScorePlayerTeam extends Team
         }
         else
         {
-            this.colorSuffix = par1Str;
-            this.theScoreboard.broadcastTeamRemoved(this);
+            colorSuffix = par1Str;
+            theScoreboard.broadcastTeamRemoved(this);
         }
     }
 
     public String formatString(String par1Str)
     {
-        return this.getColorPrefix() + par1Str + this.getColorSuffix();
+        return getColorPrefix() + par1Str + getColorSuffix();
     }
 
     /**
@@ -113,36 +113,36 @@ public class ScorePlayerTeam extends Team
 
     public boolean getAllowFriendlyFire()
     {
-        return this.allowFriendlyFire;
+        return allowFriendlyFire;
     }
 
     public void setAllowFriendlyFire(boolean par1)
     {
-        this.allowFriendlyFire = par1;
-        this.theScoreboard.broadcastTeamRemoved(this);
+        allowFriendlyFire = par1;
+        theScoreboard.broadcastTeamRemoved(this);
     }
 
     public boolean func_98297_h()
     {
-        return this.canSeeFriendlyInvisibles;
+        return canSeeFriendlyInvisibles;
     }
 
     public void setSeeFriendlyInvisiblesEnabled(boolean par1)
     {
-        this.canSeeFriendlyInvisibles = par1;
-        this.theScoreboard.broadcastTeamRemoved(this);
+        canSeeFriendlyInvisibles = par1;
+        theScoreboard.broadcastTeamRemoved(this);
     }
 
     public int func_98299_i()
     {
         int var1 = 0;
 
-        if (this.getAllowFriendlyFire())
+        if (getAllowFriendlyFire())
         {
             var1 |= 1;
         }
 
-        if (this.func_98297_h())
+        if (func_98297_h())
         {
             var1 |= 2;
         }

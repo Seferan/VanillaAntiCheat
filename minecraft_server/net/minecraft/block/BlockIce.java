@@ -19,9 +19,9 @@ public class BlockIce extends BlockBreakable
     public BlockIce()
     {
         super("ice", Material.field_151588_w, false);
-        this.slipperiness = 0.98F;
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        slipperiness = 0.98F;
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public void harvestBlock(World p_149636_1_, EntityPlayer p_149636_2_, int p_149636_3_, int p_149636_4_, int p_149636_5_, int p_149636_6_)
@@ -29,13 +29,13 @@ public class BlockIce extends BlockBreakable
         p_149636_2_.addStat(StatList.mineBlockStatArray[Block.getIdFromBlock(this)], 1);
         p_149636_2_.addExhaustion(0.025F);
 
-        if (this.canSilkHarvest() && EnchantmentHelper.getSilkTouchModifier(p_149636_2_))
+        if (canSilkHarvest() && EnchantmentHelper.getSilkTouchModifier(p_149636_2_))
         {
-            ItemStack var9 = this.createStackedBlock(p_149636_6_);
+            ItemStack var9 = createStackedBlock(p_149636_6_);
 
             if (var9 != null)
             {
-                this.dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, var9);
+                dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, var9);
             }
         }
         else
@@ -47,7 +47,7 @@ public class BlockIce extends BlockBreakable
             }
 
             int var7 = EnchantmentHelper.getFortuneModifier(p_149636_2_);
-            this.dropBlockAsItem(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_, var7);
+            dropBlockAsItem(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_, var7);
             Material var8 = p_149636_1_.getBlock(p_149636_3_, p_149636_4_ - 1, p_149636_5_).getMaterial();
 
             if (var8.blocksMovement() || var8.isLiquid())
@@ -70,7 +70,7 @@ public class BlockIce extends BlockBreakable
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
-        if (p_149674_1_.getSavedLightValue(EnumSkyBlock.Block, p_149674_2_, p_149674_3_, p_149674_4_) > 11 - this.getLightOpacity())
+        if (p_149674_1_.getSavedLightValue(EnumSkyBlock.Block, p_149674_2_, p_149674_3_, p_149674_4_) > 11 - getLightOpacity())
         {
             if (p_149674_1_.provider.isHellWorld)
             {
@@ -78,7 +78,7 @@ public class BlockIce extends BlockBreakable
                 return;
             }
 
-            this.dropBlockAsItem(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_), 0);
+            dropBlockAsItem(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_, p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_), 0);
             p_149674_1_.setBlock(p_149674_2_, p_149674_3_, p_149674_4_, Blocks.water);
         }
     }

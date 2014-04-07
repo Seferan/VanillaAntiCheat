@@ -14,54 +14,54 @@ public class BlockSourceImpl implements IBlockSource
 
     public BlockSourceImpl(World par1World, int par2, int par3, int par4)
     {
-        this.worldObj = par1World;
-        this.xPos = par2;
-        this.yPos = par3;
-        this.zPos = par4;
+        worldObj = par1World;
+        xPos = par2;
+        yPos = par3;
+        zPos = par4;
     }
 
     public World getWorld()
     {
-        return this.worldObj;
+        return worldObj;
     }
 
     public double getX()
     {
-        return (double)this.xPos + 0.5D;
+        return xPos + 0.5D;
     }
 
     public double getY()
     {
-        return (double)this.yPos + 0.5D;
+        return yPos + 0.5D;
     }
 
     public double getZ()
     {
-        return (double)this.zPos + 0.5D;
+        return zPos + 0.5D;
     }
 
     public int getXInt()
     {
-        return this.xPos;
+        return xPos;
     }
 
     public int getYInt()
     {
-        return this.yPos;
+        return yPos;
     }
 
     public int getZInt()
     {
-        return this.zPos;
+        return zPos;
     }
 
     public int getBlockMetadata()
     {
-        return this.worldObj.getBlockMetadata(this.xPos, this.yPos, this.zPos);
+        return worldObj.getBlockMetadata(xPos, yPos, zPos);
     }
 
     public TileEntity getBlockTileEntity()
     {
-        return this.worldObj.getTileEntity(this.xPos, this.yPos, this.zPos);
+        return worldObj.getTileEntity(xPos, yPos, zPos);
     }
 }

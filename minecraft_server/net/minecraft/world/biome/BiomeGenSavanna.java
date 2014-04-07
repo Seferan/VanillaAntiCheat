@@ -17,23 +17,23 @@ public class BiomeGenSavanna extends BiomeGenBase
     protected BiomeGenSavanna(int p_i45383_1_)
     {
         super(p_i45383_1_);
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 1, 2, 6));
-        this.theBiomeDecorator.treesPerChunk = 1;
-        this.theBiomeDecorator.flowersPerChunk = 4;
-        this.theBiomeDecorator.grassPerChunk = 20;
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 1, 2, 6));
+        theBiomeDecorator.treesPerChunk = 1;
+        theBiomeDecorator.flowersPerChunk = 4;
+        theBiomeDecorator.grassPerChunk = 20;
     }
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)(p_150567_1_.nextInt(5) > 0 ? field_150627_aC : this.worldGeneratorTrees);
+        return p_150567_1_.nextInt(5) > 0 ? field_150627_aC : worldGeneratorTrees;
     }
 
     protected BiomeGenBase func_150566_k()
     {
-        BiomeGenSavanna.Mutated var1 = new BiomeGenSavanna.Mutated(this.biomeID + 128, this);
-        var1.temperature = (this.temperature + 1.0F) * 0.5F;
-        var1.minHeight = this.minHeight * 0.5F + 0.3F;
-        var1.maxHeight = this.maxHeight * 0.5F + 1.2F;
+        BiomeGenSavanna.Mutated var1 = new BiomeGenSavanna.Mutated(biomeID + 128, this);
+        var1.temperature = (temperature + 1.0F) * 0.5F;
+        var1.minHeight = minHeight * 0.5F + 0.3F;
+        var1.maxHeight = maxHeight * 0.5F + 1.2F;
         return var1;
     }
 
@@ -59,34 +59,34 @@ public class BiomeGenSavanna extends BiomeGenBase
         public Mutated(int p_i45382_1_, BiomeGenBase p_i45382_2_)
         {
             super(p_i45382_1_, p_i45382_2_);
-            this.theBiomeDecorator.treesPerChunk = 2;
-            this.theBiomeDecorator.flowersPerChunk = 2;
-            this.theBiomeDecorator.grassPerChunk = 5;
+            theBiomeDecorator.treesPerChunk = 2;
+            theBiomeDecorator.flowersPerChunk = 2;
+            theBiomeDecorator.grassPerChunk = 5;
         }
 
         public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
         {
-            this.topBlock = Blocks.grass;
-            this.field_150604_aj = 0;
-            this.fillerBlock = Blocks.dirt;
+            topBlock = Blocks.grass;
+            field_150604_aj = 0;
+            fillerBlock = Blocks.dirt;
 
             if (p_150573_7_ > 1.75D)
             {
-                this.topBlock = Blocks.stone;
-                this.fillerBlock = Blocks.stone;
+                topBlock = Blocks.stone;
+                fillerBlock = Blocks.stone;
             }
             else if (p_150573_7_ > -0.5D)
             {
-                this.topBlock = Blocks.dirt;
-                this.field_150604_aj = 1;
+                topBlock = Blocks.dirt;
+                field_150604_aj = 1;
             }
 
-            this.func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+            func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
         }
 
         public void decorate(World par1World, Random par2Random, int par3, int par4)
         {
-            this.theBiomeDecorator.func_150512_a(par1World, par2Random, this, par3, par4);
+            theBiomeDecorator.func_150512_a(par1World, par2Random, this, par3, par4);
         }
     }
 }

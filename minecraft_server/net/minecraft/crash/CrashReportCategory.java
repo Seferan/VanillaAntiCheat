@@ -17,8 +17,8 @@ public class CrashReportCategory
 
     public CrashReportCategory(CrashReport par1CrashReport, String par2Str)
     {
-        this.theCrashReport = par1CrashReport;
-        this.field_85076_b = par2Str;
+        theCrashReport = par1CrashReport;
+        field_85076_b = par2Str;
     }
 
     /**
@@ -98,11 +98,11 @@ public class CrashReportCategory
     {
         try
         {
-            this.addCrashSection(par1Str, par2Callable.call());
+            addCrashSection(par1Str, par2Callable.call());
         }
         catch (Throwable var4)
         {
-            this.addCrashSectionThrowable(par1Str, var4);
+            addCrashSectionThrowable(par1Str, var4);
         }
     }
 
@@ -112,7 +112,7 @@ public class CrashReportCategory
      */
     public void addCrashSection(String par1Str, Object par2Obj)
     {
-        this.field_85077_c.add(new CrashReportCategory.Entry(par1Str, par2Obj));
+        field_85077_c.add(new CrashReportCategory.Entry(par1Str, par2Obj));
     }
 
     /**
@@ -120,7 +120,7 @@ public class CrashReportCategory
      */
     public void addCrashSectionThrowable(String par1Str, Throwable par2Throwable)
     {
-        this.addCrashSection(par1Str, par2Throwable);
+        addCrashSection(par1Str, par2Throwable);
     }
 
     /**
@@ -139,9 +139,9 @@ public class CrashReportCategory
         }
         else
         {
-            this.stackTrace = new StackTraceElement[var2.length - 3 - par1];
-            System.arraycopy(var2, 3 + par1, this.stackTrace, 0, this.stackTrace.length);
-            return this.stackTrace.length;
+            stackTrace = new StackTraceElement[var2.length - 3 - par1];
+            System.arraycopy(var2, 3 + par1, stackTrace, 0, stackTrace.length);
+            return stackTrace.length;
         }
     }
 
@@ -151,23 +151,23 @@ public class CrashReportCategory
      */
     public boolean firstTwoElementsOfStackTraceMatch(StackTraceElement par1StackTraceElement, StackTraceElement par2StackTraceElement)
     {
-        if (this.stackTrace.length != 0 && par1StackTraceElement != null)
+        if (stackTrace.length != 0 && par1StackTraceElement != null)
         {
-            StackTraceElement var3 = this.stackTrace[0];
+            StackTraceElement var3 = stackTrace[0];
 
             if (var3.isNativeMethod() == par1StackTraceElement.isNativeMethod() && var3.getClassName().equals(par1StackTraceElement.getClassName()) && var3.getFileName().equals(par1StackTraceElement.getFileName()) && var3.getMethodName().equals(par1StackTraceElement.getMethodName()))
             {
-                if (par2StackTraceElement != null != this.stackTrace.length > 1)
+                if (par2StackTraceElement != null != stackTrace.length > 1)
                 {
                     return false;
                 }
-                else if (par2StackTraceElement != null && !this.stackTrace[1].equals(par2StackTraceElement))
+                else if (par2StackTraceElement != null && !stackTrace[1].equals(par2StackTraceElement))
                 {
                     return false;
                 }
                 else
                 {
-                    this.stackTrace[0] = par1StackTraceElement;
+                    stackTrace[0] = par1StackTraceElement;
                     return true;
                 }
             }
@@ -187,16 +187,16 @@ public class CrashReportCategory
      */
     public void trimStackTraceEntriesFromBottom(int par1)
     {
-        StackTraceElement[] var2 = new StackTraceElement[this.stackTrace.length - par1];
-        System.arraycopy(this.stackTrace, 0, var2, 0, var2.length);
-        this.stackTrace = var2;
+        StackTraceElement[] var2 = new StackTraceElement[stackTrace.length - par1];
+        System.arraycopy(stackTrace, 0, var2, 0, var2.length);
+        stackTrace = var2;
     }
 
     public void appendToStringBuilder(StringBuilder par1StringBuilder)
     {
-        par1StringBuilder.append("-- ").append(this.field_85076_b).append(" --\n");
+        par1StringBuilder.append("-- ").append(field_85076_b).append(" --\n");
         par1StringBuilder.append("Details:");
-        Iterator var2 = this.field_85077_c.iterator();
+        Iterator var2 = field_85077_c.iterator();
 
         while (var2.hasNext())
         {
@@ -207,10 +207,10 @@ public class CrashReportCategory
             par1StringBuilder.append(var3.func_85090_b());
         }
 
-        if (this.stackTrace != null && this.stackTrace.length > 0)
+        if (stackTrace != null && stackTrace.length > 0)
         {
             par1StringBuilder.append("\nStacktrace:");
-            StackTraceElement[] var6 = this.stackTrace;
+            StackTraceElement[] var6 = stackTrace;
             int var7 = var6.length;
 
             for (int var4 = 0; var4 < var7; ++var4)
@@ -224,7 +224,7 @@ public class CrashReportCategory
 
     public StackTraceElement[] func_147152_a()
     {
-        return this.stackTrace;
+        return stackTrace;
     }
 
     public static void func_147153_a(CrashReportCategory p_147153_0_, final int p_147153_1_, final int p_147153_2_, final int p_147153_3_, final Block p_147153_4_, final int p_147153_5_)
@@ -282,31 +282,31 @@ public class CrashReportCategory
 
         public Entry(String par1Str, Object par2Obj)
         {
-            this.field_85092_a = par1Str;
+            field_85092_a = par1Str;
 
             if (par2Obj == null)
             {
-                this.field_85091_b = "~~NULL~~";
+                field_85091_b = "~~NULL~~";
             }
             else if (par2Obj instanceof Throwable)
             {
                 Throwable var3 = (Throwable)par2Obj;
-                this.field_85091_b = "~~ERROR~~ " + var3.getClass().getSimpleName() + ": " + var3.getMessage();
+                field_85091_b = "~~ERROR~~ " + var3.getClass().getSimpleName() + ": " + var3.getMessage();
             }
             else
             {
-                this.field_85091_b = par2Obj.toString();
+                field_85091_b = par2Obj.toString();
             }
         }
 
         public String func_85089_a()
         {
-            return this.field_85092_a;
+            return field_85092_a;
         }
 
         public String func_85090_b()
         {
-            return this.field_85091_b;
+            return field_85091_b;
         }
     }
 }

@@ -15,8 +15,8 @@ public class BlockMycelium extends Block
     protected BlockMycelium()
     {
         super(Material.field_151577_b);
-        this.setTickRandomly(true);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setTickRandomly(true);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

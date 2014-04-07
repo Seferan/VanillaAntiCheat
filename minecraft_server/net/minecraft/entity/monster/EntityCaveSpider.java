@@ -16,13 +16,13 @@ public class EntityCaveSpider extends EntitySpider
     public EntityCaveSpider(World par1World)
     {
         super(par1World);
-        this.setSize(0.7F, 0.5F);
+        setSize(0.7F, 0.5F);
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12.0D);
     }
 
     public boolean attackEntityAsMob(Entity par1Entity)
@@ -33,11 +33,11 @@ public class EntityCaveSpider extends EntitySpider
             {
                 byte var2 = 0;
 
-                if (this.worldObj.difficultySetting == EnumDifficulty.NORMAL)
+                if (worldObj.difficultySetting == EnumDifficulty.NORMAL)
                 {
                     var2 = 7;
                 }
-                else if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
+                else if (worldObj.difficultySetting == EnumDifficulty.HARD)
                 {
                     var2 = 15;
                 }

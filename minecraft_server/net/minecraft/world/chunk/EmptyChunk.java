@@ -26,7 +26,7 @@ public class EmptyChunk extends Chunk
      */
     public boolean isAtLocation(int par1, int par2)
     {
-        return par1 == this.xPosition && par2 == this.zPosition;
+        return par1 == xPosition && par2 == zPosition;
     }
 
     /**
@@ -196,7 +196,7 @@ public class EmptyChunk extends Chunk
 
     public Random getRandomWithSeed(long par1)
     {
-        return new Random(this.worldObj.getSeed() + (long)(this.xPosition * this.xPosition * 4987142) + (long)(this.xPosition * 5947611) + (long)(this.zPosition * this.zPosition) * 4392871L + (long)(this.zPosition * 389711) ^ par1);
+        return new Random(worldObj.getSeed() + xPosition * xPosition * 4987142 + xPosition * 5947611 + zPosition * zPosition * 4392871L + zPosition * 389711 ^ par1);
     }
 
     public boolean isEmpty()

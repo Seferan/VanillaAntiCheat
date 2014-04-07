@@ -426,7 +426,7 @@ public class EnchantmentHelper
             var4 = 1 + par0Random.nextInt((var4 >> 1) + 1) + par0Random.nextInt((var4 >> 1) + 1);
             int var5 = var4 + par2;
             float var6 = (par0Random.nextFloat() + par0Random.nextFloat() - 1.0F) * 0.15F;
-            int var7 = (int)((float)var5 * (1.0F + var6) + 0.5F);
+            int var7 = (int)(var5 * (1.0F + var6) + 0.5F);
 
             if (var7 < 1)
             {
@@ -544,7 +544,7 @@ public class EnchantmentHelper
 
         public void calculateModifier(Enchantment par1Enchantment, int par2)
         {
-            this.damageModifier += par1Enchantment.calcModifierDamage(par2, this.source);
+            damageModifier += par1Enchantment.calcModifierDamage(par2, source);
         }
 
         ModifierDamage(Object par1Empty3)
@@ -565,7 +565,7 @@ public class EnchantmentHelper
 
         public void calculateModifier(Enchantment par1Enchantment, int par2)
         {
-            this.livingModifier += par1Enchantment.calcModifierLiving(par2, this.entityLiving);
+            livingModifier += par1Enchantment.calcModifierLiving(par2, entityLiving);
         }
 
         ModifierLiving(Object par1Empty3)
@@ -586,7 +586,7 @@ public class EnchantmentHelper
 
         public void calculateModifier(Enchantment par1Enchantment, int par2)
         {
-            par1Enchantment.func_151367_b(this.field_151364_a, this.field_151363_b, par2);
+            par1Enchantment.func_151367_b(field_151364_a, field_151363_b, par2);
         }
 
         HurtIterator(Object p_i45360_1_)
@@ -607,7 +607,7 @@ public class EnchantmentHelper
 
         public void calculateModifier(Enchantment par1Enchantment, int par2)
         {
-            par1Enchantment.func_151368_a(this.field_151366_a, this.field_151365_b, par2);
+            par1Enchantment.func_151368_a(field_151366_a, field_151365_b, par2);
         }
 
         DamageIterator(Object p_i45359_1_)

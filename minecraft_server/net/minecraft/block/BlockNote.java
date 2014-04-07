@@ -14,7 +14,7 @@ public class BlockNote extends BlockContainer
     public BlockNote()
     {
         super(Material.wood);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
+        setcreativeTab(CreativeTabs.tabRedstone);
     }
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
@@ -83,7 +83,7 @@ public class BlockNote extends BlockContainer
 
     public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_)
     {
-        float var7 = (float)Math.pow(2.0D, (double)(p_149696_6_ - 12) / 12.0D);
+        float var7 = (float)Math.pow(2.0D, (p_149696_6_ - 12) / 12.0D);
         String var8 = "harp";
 
         if (p_149696_5_ == 1)
@@ -106,8 +106,8 @@ public class BlockNote extends BlockContainer
             var8 = "bassattack";
         }
 
-        p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D, (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D, "note." + var8, 3.0F, var7);
-        p_149696_1_.spawnParticle("note", (double)p_149696_2_ + 0.5D, (double)p_149696_3_ + 1.2D, (double)p_149696_4_ + 0.5D, (double)p_149696_6_ / 24.0D, 0.0D, 0.0D);
+        p_149696_1_.playSoundEffect(p_149696_2_ + 0.5D, p_149696_3_ + 0.5D, p_149696_4_ + 0.5D, "note." + var8, 3.0F, var7);
+        p_149696_1_.spawnParticle("note", p_149696_2_ + 0.5D, p_149696_3_ + 1.2D, p_149696_4_ + 0.5D, p_149696_6_ / 24.0D, 0.0D, 0.0D);
         return true;
     }
 }

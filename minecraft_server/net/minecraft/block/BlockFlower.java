@@ -14,7 +14,7 @@ public class BlockFlower extends BlockBush
     protected BlockFlower(int par1)
     {
         super(Material.plants);
-        this.field_149862_O = par1;
+        field_149862_O = par1;
     }
 
     /**

@@ -17,7 +17,7 @@ public class InventoryLargeChest implements IInventory
 
     public InventoryLargeChest(String par1Str, IInventory par2IInventory, IInventory par3IInventory)
     {
-        this.name = par1Str;
+        name = par1Str;
 
         if (par2IInventory == null)
         {
@@ -29,8 +29,8 @@ public class InventoryLargeChest implements IInventory
             par3IInventory = par2IInventory;
         }
 
-        this.upperChest = par2IInventory;
-        this.lowerChest = par3IInventory;
+        upperChest = par2IInventory;
+        lowerChest = par3IInventory;
     }
 
     /**
@@ -38,7 +38,7 @@ public class InventoryLargeChest implements IInventory
      */
     public int getSizeInventory()
     {
-        return this.upperChest.getSizeInventory() + this.lowerChest.getSizeInventory();
+        return upperChest.getSizeInventory() + lowerChest.getSizeInventory();
     }
 
     /**
@@ -46,7 +46,7 @@ public class InventoryLargeChest implements IInventory
      */
     public boolean isPartOfLargeChest(IInventory par1IInventory)
     {
-        return this.upperChest == par1IInventory || this.lowerChest == par1IInventory;
+        return upperChest == par1IInventory || lowerChest == par1IInventory;
     }
 
     /**
@@ -54,7 +54,7 @@ public class InventoryLargeChest implements IInventory
      */
     public String getInventoryName()
     {
-        return this.upperChest.isInventoryNameLocalized() ? this.upperChest.getInventoryName() : (this.lowerChest.isInventoryNameLocalized() ? this.lowerChest.getInventoryName() : this.name);
+        return upperChest.isInventoryNameLocalized() ? upperChest.getInventoryName() : (lowerChest.isInventoryNameLocalized() ? lowerChest.getInventoryName() : name);
     }
 
     /**
@@ -62,7 +62,7 @@ public class InventoryLargeChest implements IInventory
      */
     public boolean isInventoryNameLocalized()
     {
-        return this.upperChest.isInventoryNameLocalized() || this.lowerChest.isInventoryNameLocalized();
+        return upperChest.isInventoryNameLocalized() || lowerChest.isInventoryNameLocalized();
     }
 
     /**
@@ -70,7 +70,7 @@ public class InventoryLargeChest implements IInventory
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest.getStackInSlot(par1 - this.upperChest.getSizeInventory()) : this.upperChest.getStackInSlot(par1);
+        return par1 >= upperChest.getSizeInventory() ? lowerChest.getStackInSlot(par1 - upperChest.getSizeInventory()) : upperChest.getStackInSlot(par1);
     }
 
     /**
@@ -79,7 +79,7 @@ public class InventoryLargeChest implements IInventory
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest.decrStackSize(par1 - this.upperChest.getSizeInventory(), par2) : this.upperChest.decrStackSize(par1, par2);
+        return par1 >= upperChest.getSizeInventory() ? lowerChest.decrStackSize(par1 - upperChest.getSizeInventory(), par2) : upperChest.decrStackSize(par1, par2);
     }
 
     /**
@@ -89,7 +89,7 @@ public class InventoryLargeChest implements IInventory
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        return par1 >= this.upperChest.getSizeInventory() ? this.lowerChest.getStackInSlotOnClosing(par1 - this.upperChest.getSizeInventory()) : this.upperChest.getStackInSlotOnClosing(par1);
+        return par1 >= upperChest.getSizeInventory() ? lowerChest.getStackInSlotOnClosing(par1 - upperChest.getSizeInventory()) : upperChest.getStackInSlotOnClosing(par1);
     }
 
     /**
@@ -98,13 +98,13 @@ public class InventoryLargeChest implements IInventory
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
-        if (par1 >= this.upperChest.getSizeInventory())
+        if (par1 >= upperChest.getSizeInventory())
         {
-            this.lowerChest.setInventorySlotContents(par1 - this.upperChest.getSizeInventory(), par2ItemStack);
+            lowerChest.setInventorySlotContents(par1 - upperChest.getSizeInventory(), par2ItemStack);
         }
         else
         {
-            this.upperChest.setInventorySlotContents(par1, par2ItemStack);
+            upperChest.setInventorySlotContents(par1, par2ItemStack);
         }
     }
 
@@ -114,7 +114,7 @@ public class InventoryLargeChest implements IInventory
      */
     public int getInventoryStackLimit()
     {
-        return this.upperChest.getInventoryStackLimit();
+        return upperChest.getInventoryStackLimit();
     }
 
     /**
@@ -122,8 +122,8 @@ public class InventoryLargeChest implements IInventory
      */
     public void onInventoryChanged()
     {
-        this.upperChest.onInventoryChanged();
-        this.lowerChest.onInventoryChanged();
+        upperChest.onInventoryChanged();
+        lowerChest.onInventoryChanged();
     }
 
     /**
@@ -132,19 +132,19 @@ public class InventoryLargeChest implements IInventory
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.upperChest.isUseableByPlayer(par1EntityPlayer) && this.lowerChest.isUseableByPlayer(par1EntityPlayer);
+        return upperChest.isUseableByPlayer(par1EntityPlayer) && lowerChest.isUseableByPlayer(par1EntityPlayer);
     }
 
     public void openChest()
     {
-        this.upperChest.openChest();
-        this.lowerChest.openChest();
+        upperChest.openChest();
+        lowerChest.openChest();
     }
 
     public void closeChest()
     {
-        this.upperChest.closeChest();
-        this.lowerChest.closeChest();
+        upperChest.closeChest();
+        lowerChest.closeChest();
     }
 
     /**

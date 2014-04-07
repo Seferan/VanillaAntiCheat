@@ -14,10 +14,10 @@ public class ItemHoe extends Item
 
     public ItemHoe(Item.ToolMaterial p_i45343_1_)
     {
-        this.theToolMaterial = p_i45343_1_;
-        this.maxStackSize = 1;
-        this.setMaxDamage(p_i45343_1_.getMaxUses());
-        this.setCreativeTab(CreativeTabs.tabTools);
+        theToolMaterial = p_i45343_1_;
+        maxStackSize = 1;
+        setMaxDamage(p_i45343_1_.getMaxUses());
+        setCreativeTab(CreativeTabs.tabTools);
     }
 
     /**
@@ -38,7 +38,7 @@ public class ItemHoe extends Item
             if (par7 != 0 && par3World.getBlock(par4, par5 + 1, par6).getMaterial() == Material.air && (var11 == Blocks.grass || var11 == Blocks.dirt))
             {
                 Block var12 = Blocks.farmland;
-                par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), var12.stepSound.getStepResourcePath(), (var12.stepSound.getVolume() + 1.0F) / 2.0F, var12.stepSound.getFrequency() * 0.8F);
+                par3World.playSoundEffect(par4 + 0.5F, par5 + 0.5F, par6 + 0.5F, var12.stepSound.getStepResourcePath(), (var12.stepSound.getVolume() + 1.0F) / 2.0F, var12.stepSound.getFrequency() * 0.8F);
 
                 if (par3World.isClient)
                 {
@@ -64,6 +64,6 @@ public class ItemHoe extends Item
      */
     public String getMaterialName()
     {
-        return this.theToolMaterial.toString();
+        return theToolMaterial.toString();
     }
 }

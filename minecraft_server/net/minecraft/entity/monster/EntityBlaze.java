@@ -23,20 +23,20 @@ public class EntityBlaze extends EntityMob
     public EntityBlaze(World par1World)
     {
         super(par1World);
-        this.isImmuneToFire = true;
-        this.experienceValue = 10;
+        isImmuneToFire = true;
+        experienceValue = 10;
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
+        getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte)0));
+        dataWatcher.addObject(16, new Byte((byte)0));
     }
 
     /**
@@ -78,40 +78,40 @@ public class EntityBlaze extends EntityMob
      */
     public void onLivingUpdate()
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            if (this.isWet())
+            if (isWet())
             {
-                this.attackEntityFrom(DamageSource.drown, 1.0F);
+                attackEntityFrom(DamageSource.drown, 1.0F);
             }
 
-            --this.heightOffsetUpdateTime;
+            --heightOffsetUpdateTime;
 
-            if (this.heightOffsetUpdateTime <= 0)
+            if (heightOffsetUpdateTime <= 0)
             {
-                this.heightOffsetUpdateTime = 100;
-                this.heightOffset = 0.5F + (float)this.rand.nextGaussian() * 3.0F;
+                heightOffsetUpdateTime = 100;
+                heightOffset = 0.5F + (float)rand.nextGaussian() * 3.0F;
             }
 
-            if (this.getEntityToAttack() != null && this.getEntityToAttack().posY + (double)this.getEntityToAttack().getEyeHeight() > this.posY + (double)this.getEyeHeight() + (double)this.heightOffset)
+            if (getEntityToAttack() != null && getEntityToAttack().posY + getEntityToAttack().getEyeHeight() > posY + getEyeHeight() + heightOffset)
             {
-                this.motionY += (0.30000001192092896D - this.motionY) * 0.30000001192092896D;
+                motionY += (0.30000001192092896D - motionY) * 0.30000001192092896D;
             }
         }
 
-        if (this.rand.nextInt(24) == 0)
+        if (rand.nextInt(24) == 0)
         {
-            this.worldObj.playSoundEffect(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, "fire.fire", 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F);
+            worldObj.playSoundEffect(posX + 0.5D, posY + 0.5D, posZ + 0.5D, "fire.fire", 1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F);
         }
 
-        if (!this.onGround && this.motionY < 0.0D)
+        if (!onGround && motionY < 0.0D)
         {
-            this.motionY *= 0.6D;
+            motionY *= 0.6D;
         }
 
         for (int var1 = 0; var1 < 2; ++var1)
         {
-            this.worldObj.spawnParticle("largesmoke", this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+            worldObj.spawnParticle("largesmoke", posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height, posZ + (rand.nextDouble() - 0.5D) * width, 0.0D, 0.0D, 0.0D);
         }
 
         super.onLivingUpdate();
@@ -123,53 +123,53 @@ public class EntityBlaze extends EntityMob
      */
     protected void attackEntity(Entity par1Entity, float par2)
     {
-        if (this.attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > this.boundingBox.minY && par1Entity.boundingBox.minY < this.boundingBox.maxY)
+        if (attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > boundingBox.minY && par1Entity.boundingBox.minY < boundingBox.maxY)
         {
-            this.attackTime = 20;
-            this.attackEntityAsMob(par1Entity);
+            attackTime = 20;
+            attackEntityAsMob(par1Entity);
         }
         else if (par2 < 30.0F)
         {
-            double var3 = par1Entity.posX - this.posX;
-            double var5 = par1Entity.boundingBox.minY + (double)(par1Entity.height / 2.0F) - (this.posY + (double)(this.height / 2.0F));
-            double var7 = par1Entity.posZ - this.posZ;
+            double var3 = par1Entity.posX - posX;
+            double var5 = par1Entity.boundingBox.minY + par1Entity.height / 2.0F - (posY + height / 2.0F);
+            double var7 = par1Entity.posZ - posZ;
 
-            if (this.attackTime == 0)
+            if (attackTime == 0)
             {
-                ++this.field_70846_g;
+                ++field_70846_g;
 
-                if (this.field_70846_g == 1)
+                if (field_70846_g == 1)
                 {
-                    this.attackTime = 60;
-                    this.func_70844_e(true);
+                    attackTime = 60;
+                    func_70844_e(true);
                 }
-                else if (this.field_70846_g <= 4)
+                else if (field_70846_g <= 4)
                 {
-                    this.attackTime = 6;
+                    attackTime = 6;
                 }
                 else
                 {
-                    this.attackTime = 100;
-                    this.field_70846_g = 0;
-                    this.func_70844_e(false);
+                    attackTime = 100;
+                    field_70846_g = 0;
+                    func_70844_e(false);
                 }
 
-                if (this.field_70846_g > 1)
+                if (field_70846_g > 1)
                 {
                     float var9 = MathHelper.sqrt_float(par2) * 0.5F;
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)posX, (int)posY, (int)posZ, 0);
 
                     for (int var10 = 0; var10 < 1; ++var10)
                     {
-                        EntitySmallFireball var11 = new EntitySmallFireball(this.worldObj, this, var3 + this.rand.nextGaussian() * (double)var9, var5, var7 + this.rand.nextGaussian() * (double)var9);
-                        var11.posY = this.posY + (double)(this.height / 2.0F) + 0.5D;
-                        this.worldObj.spawnEntityInWorld(var11);
+                        EntitySmallFireball var11 = new EntitySmallFireball(worldObj, this, var3 + rand.nextGaussian() * var9, var5, var7 + rand.nextGaussian() * var9);
+                        var11.posY = posY + height / 2.0F + 0.5D;
+                        worldObj.spawnEntityInWorld(var11);
                     }
                 }
             }
 
-            this.rotationYaw = (float)(Math.atan2(var7, var3) * 180.0D / Math.PI) - 90.0F;
-            this.hasAttacked = true;
+            rotationYaw = (float)(Math.atan2(var7, var3) * 180.0D / Math.PI) - 90.0F;
+            hasAttacked = true;
         }
     }
 
@@ -191,7 +191,7 @@ public class EntityBlaze extends EntityMob
      */
     public boolean isBurning()
     {
-        return this.func_70845_n();
+        return func_70845_n();
     }
 
     /**
@@ -201,23 +201,23 @@ public class EntityBlaze extends EntityMob
     {
         if (par1)
         {
-            int var3 = this.rand.nextInt(2 + par2);
+            int var3 = rand.nextInt(2 + par2);
 
             for (int var4 = 0; var4 < var3; ++var4)
             {
-                this.func_145779_a(Items.blaze_rod, 1);
+                func_145779_a(Items.blaze_rod, 1);
             }
         }
     }
 
     public boolean func_70845_n()
     {
-        return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+        return (dataWatcher.getWatchableObjectByte(16) & 1) != 0;
     }
 
     public void func_70844_e(boolean par1)
     {
-        byte var2 = this.dataWatcher.getWatchableObjectByte(16);
+        byte var2 = dataWatcher.getWatchableObjectByte(16);
 
         if (par1)
         {
@@ -228,7 +228,7 @@ public class EntityBlaze extends EntityMob
             var2 &= -2;
         }
 
-        this.dataWatcher.updateObject(16, Byte.valueOf(var2));
+        dataWatcher.updateObject(16, Byte.valueOf(var2));
     }
 
     /**

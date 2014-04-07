@@ -27,7 +27,7 @@ public class BlockFurnace extends BlockContainer
     protected BlockFurnace(boolean p_i45407_1_)
     {
         super(Material.rock);
-        this.field_149932_b = p_i45407_1_;
+        field_149932_b = p_i45407_1_;
     }
 
     public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
@@ -38,7 +38,7 @@ public class BlockFurnace extends BlockContainer
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
         super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
-        this.func_149930_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
+        func_149930_e(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
     }
 
     private void func_149930_e(World p_149930_1_, int p_149930_2_, int p_149930_3_, int p_149930_4_)
@@ -136,7 +136,7 @@ public class BlockFurnace extends BlockContainer
      */
     public void onBlockPlacedBy(World p_149689_1_, int p_149689_2_, int p_149689_3_, int p_149689_4_, EntityLivingBase p_149689_5_, ItemStack p_149689_6_)
     {
-        int var7 = MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int var7 = MathHelper.floor_double(p_149689_5_.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         if (var7 == 0)
         {
@@ -178,13 +178,13 @@ public class BlockFurnace extends BlockContainer
 
                     if (var9 != null)
                     {
-                        float var10 = this.field_149933_a.nextFloat() * 0.8F + 0.1F;
-                        float var11 = this.field_149933_a.nextFloat() * 0.8F + 0.1F;
-                        float var12 = this.field_149933_a.nextFloat() * 0.8F + 0.1F;
+                        float var10 = field_149933_a.nextFloat() * 0.8F + 0.1F;
+                        float var11 = field_149933_a.nextFloat() * 0.8F + 0.1F;
+                        float var12 = field_149933_a.nextFloat() * 0.8F + 0.1F;
 
                         while (var9.stackSize > 0)
                         {
-                            int var13 = this.field_149933_a.nextInt(21) + 10;
+                            int var13 = field_149933_a.nextInt(21) + 10;
 
                             if (var13 > var9.stackSize)
                             {
@@ -192,7 +192,7 @@ public class BlockFurnace extends BlockContainer
                             }
 
                             var9.stackSize -= var13;
-                            EntityItem var14 = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + var10), (double)((float)p_149749_3_ + var11), (double)((float)p_149749_4_ + var12), new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
+                            EntityItem var14 = new EntityItem(p_149749_1_, p_149749_2_ + var10, p_149749_3_ + var11, p_149749_4_ + var12, new ItemStack(var9.getItem(), var13, var9.getItemDamage()));
 
                             if (var9.hasTagCompound())
                             {
@@ -200,9 +200,9 @@ public class BlockFurnace extends BlockContainer
                             }
 
                             float var15 = 0.05F;
-                            var14.motionX = (double)((float)this.field_149933_a.nextGaussian() * var15);
-                            var14.motionY = (double)((float)this.field_149933_a.nextGaussian() * var15 + 0.2F);
-                            var14.motionZ = (double)((float)this.field_149933_a.nextGaussian() * var15);
+                            var14.motionX = (float)field_149933_a.nextGaussian() * var15;
+                            var14.motionY = (float)field_149933_a.nextGaussian() * var15 + 0.2F;
+                            var14.motionZ = (float)field_149933_a.nextGaussian() * var15;
                             p_149749_1_.spawnEntityInWorld(var14);
                         }
                     }

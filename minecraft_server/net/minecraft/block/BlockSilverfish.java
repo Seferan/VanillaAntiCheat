@@ -19,8 +19,8 @@ public class BlockSilverfish extends Block
     public BlockSilverfish()
     {
         super(Material.field_151571_B);
-        this.setHardness(0.0F);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setHardness(0.0F);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     public void onBlockDestroyedByPlayer(World p_149664_1_, int p_149664_2_, int p_149664_3_, int p_149664_4_, int p_149664_5_)
@@ -28,7 +28,7 @@ public class BlockSilverfish extends Block
         if (!p_149664_1_.isClient)
         {
             EntitySilverfish var6 = new EntitySilverfish(p_149664_1_);
-            var6.setLocationAndAngles((double)p_149664_2_ + 0.5D, (double)p_149664_3_, (double)p_149664_4_ + 0.5D, 0.0F, 0.0F);
+            var6.setLocationAndAngles(p_149664_2_ + 0.5D, p_149664_3_, p_149664_4_ + 0.5D, 0.0F, 0.0F);
             p_149664_1_.spawnEntityInWorld(var6);
             var6.spawnExplosionParticle();
         }
@@ -138,7 +138,7 @@ public class BlockSilverfish extends Block
         if (!p_149690_1_.isClient)
         {
             EntitySilverfish var8 = new EntitySilverfish(p_149690_1_);
-            var8.setLocationAndAngles((double)p_149690_2_ + 0.5D, (double)p_149690_3_, (double)p_149690_4_ + 0.5D, 0.0F, 0.0F);
+            var8.setLocationAndAngles(p_149690_2_ + 0.5D, p_149690_3_, p_149690_4_ + 0.5D, 0.0F, 0.0F);
             p_149690_1_.spawnEntityInWorld(var8);
             var8.spawnExplosionParticle();
         }

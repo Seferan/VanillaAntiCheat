@@ -57,8 +57,8 @@ public class NetworkSystem
 
     public NetworkSystem(MinecraftServer p_i45292_1_)
     {
-        this.mcServer = p_i45292_1_;
-        this.isAlive = true;
+        mcServer = p_i45292_1_;
+        isAlive = true;
     }
 
     /**
@@ -66,11 +66,11 @@ public class NetworkSystem
      */
     public void addLanEndpoint(InetAddress p_151265_1_, int p_151265_2_) throws IOException
     {
-        List var3 = this.endpoints;
+        List var3 = endpoints;
 
-        synchronized (this.endpoints)
+        synchronized (endpoints)
         {
-            this.endpoints.add(((ServerBootstrap)((ServerBootstrap)(new ServerBootstrap()).channel(NioServerSocketChannel.class)).childHandler(new ChannelInitializer()
+            endpoints.add((new ServerBootstrap()).channel(NioServerSocketChannel.class).childHandler(new ChannelInitializer()
             {
                 private static final String __OBFID = "CL_00001448";
 
@@ -96,11 +96,11 @@ public class NetworkSystem
 
                     p_initChannel_1_.pipeline().addLast("timeout", new ReadTimeoutHandler(30)).addLast("legacy_query", new PingResponseHandler(NetworkSystem.this)).addLast("splitter", new MessageDeserializer2()).addLast("decoder", new MessageDeserializer()).addLast("prepender", new MessageSerializer2()).addLast("encoder", new MessageSerializer());
                     NetworkManager var2 = new NetworkManager(false);
-                    NetworkSystem.this.networkManagers.add(var2);
+                    networkManagers.add(var2);
                     p_initChannel_1_.pipeline().addLast("packet_handler", var2);
-                    var2.setNetHandler(new NetHandlerHandshakeTCP(NetworkSystem.this.mcServer, var2));
+                    var2.setNetHandler(new NetHandlerHandshakeTCP(mcServer, var2));
                 }
-            }).group(eventLoops).localAddress(p_151265_1_, p_151265_2_)).bind().syncUninterruptibly());
+            }).group(eventLoops).localAddress(p_151265_1_, p_151265_2_).bind().syncUninterruptibly());
         }
     }
 
@@ -109,8 +109,8 @@ public class NetworkSystem
      */
     public void terminateEndpoints()
     {
-        this.isAlive = false;
-        Iterator var1 = this.endpoints.iterator();
+        isAlive = false;
+        Iterator var1 = endpoints.iterator();
 
         while (var1.hasNext())
         {
@@ -125,11 +125,11 @@ public class NetworkSystem
      */
     public void networkTick()
     {
-        List var1 = this.networkManagers;
+        List var1 = networkManagers;
 
-        synchronized (this.networkManagers)
+        synchronized (networkManagers)
         {
-            Iterator var2 = this.networkManagers.iterator();
+            Iterator var2 = networkManagers.iterator();
 
             while (var2.hasNext())
             {
@@ -192,6 +192,6 @@ public class NetworkSystem
 
     public MinecraftServer func_151267_d()
     {
-        return this.mcServer;
+        return mcServer;
     }
 }

@@ -25,14 +25,14 @@ public class S2CPacketSpawnGlobalEntity extends Packet
 
     public S2CPacketSpawnGlobalEntity(Entity p_i45191_1_)
     {
-        this.field_149059_a = p_i45191_1_.getEntityId();
-        this.field_149057_b = MathHelper.floor_double(p_i45191_1_.posX * 32.0D);
-        this.field_149058_c = MathHelper.floor_double(p_i45191_1_.posY * 32.0D);
-        this.field_149055_d = MathHelper.floor_double(p_i45191_1_.posZ * 32.0D);
+        field_149059_a = p_i45191_1_.getEntityId();
+        field_149057_b = MathHelper.floor_double(p_i45191_1_.posX * 32.0D);
+        field_149058_c = MathHelper.floor_double(p_i45191_1_.posY * 32.0D);
+        field_149055_d = MathHelper.floor_double(p_i45191_1_.posZ * 32.0D);
 
         if (p_i45191_1_ instanceof EntityLightningBolt)
         {
-            this.field_149056_e = 1;
+            field_149056_e = 1;
         }
     }
 
@@ -41,11 +41,11 @@ public class S2CPacketSpawnGlobalEntity extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149059_a = p_148837_1_.readVarIntFromBuffer();
-        this.field_149056_e = p_148837_1_.readByte();
-        this.field_149057_b = p_148837_1_.readInt();
-        this.field_149058_c = p_148837_1_.readInt();
-        this.field_149055_d = p_148837_1_.readInt();
+        field_149059_a = p_148837_1_.readVarIntFromBuffer();
+        field_149056_e = p_148837_1_.readByte();
+        field_149057_b = p_148837_1_.readInt();
+        field_149058_c = p_148837_1_.readInt();
+        field_149055_d = p_148837_1_.readInt();
     }
 
     /**
@@ -53,11 +53,11 @@ public class S2CPacketSpawnGlobalEntity extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeVarIntToBuffer(this.field_149059_a);
-        p_148840_1_.writeByte(this.field_149056_e);
-        p_148840_1_.writeInt(this.field_149057_b);
-        p_148840_1_.writeInt(this.field_149058_c);
-        p_148840_1_.writeInt(this.field_149055_d);
+        p_148840_1_.writeVarIntToBuffer(field_149059_a);
+        p_148840_1_.writeByte(field_149056_e);
+        p_148840_1_.writeInt(field_149057_b);
+        p_148840_1_.writeInt(field_149058_c);
+        p_148840_1_.writeInt(field_149055_d);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149054_1_)
@@ -71,7 +71,7 @@ public class S2CPacketSpawnGlobalEntity extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f", new Object[] {Integer.valueOf(this.field_149059_a), Integer.valueOf(this.field_149056_e), Float.valueOf((float)this.field_149057_b / 32.0F), Float.valueOf((float)this.field_149058_c / 32.0F), Float.valueOf((float)this.field_149055_d / 32.0F)});
+        return String.format("id=%d, type=%d, x=%.2f, y=%.2f, z=%.2f", new Object[] {Integer.valueOf(field_149059_a), Integer.valueOf(field_149056_e), Float.valueOf(field_149057_b / 32.0F), Float.valueOf(field_149058_c / 32.0F), Float.valueOf(field_149055_d / 32.0F)});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

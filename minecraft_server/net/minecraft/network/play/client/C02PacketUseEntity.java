@@ -20,8 +20,8 @@ public class C02PacketUseEntity extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149567_a = p_148837_1_.readInt();
-        this.field_149566_b = C02PacketUseEntity.Action.field_151421_c[p_148837_1_.readByte() % C02PacketUseEntity.Action.field_151421_c.length];
+        field_149567_a = p_148837_1_.readInt();
+        field_149566_b = C02PacketUseEntity.Action.field_151421_c[p_148837_1_.readByte() % C02PacketUseEntity.Action.field_151421_c.length];
     }
 
     /**
@@ -29,8 +29,8 @@ public class C02PacketUseEntity extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149567_a);
-        p_148840_1_.writeByte(this.field_149566_b.field_151418_d);
+        p_148840_1_.writeInt(field_149567_a);
+        p_148840_1_.writeByte(field_149566_b.field_151418_d);
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149563_1_)
@@ -40,12 +40,12 @@ public class C02PacketUseEntity extends Packet
 
     public Entity getEntity(World p_149564_1_)
     {
-        return p_149564_1_.getEntityByID(this.field_149567_a);
+        return p_149564_1_.getEntityByID(field_149567_a);
     }
 
     public C02PacketUseEntity.Action getAction()
     {
-        return this.field_149566_b;
+        return field_149566_b;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)
@@ -64,7 +64,7 @@ public class C02PacketUseEntity extends Packet
 
         private Action(String p_i45250_1_, int p_i45250_2_, int p_i45250_3_)
         {
-            this.field_151418_d = p_i45250_3_;
+            field_151418_d = p_i45250_3_;
         }
 
         static

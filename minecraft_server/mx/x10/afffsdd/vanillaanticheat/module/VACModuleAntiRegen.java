@@ -14,14 +14,14 @@ public class VACModuleAntiRegen implements IVacModule
      * Whether the player regenerating health too fast was already logged or not.
      */
     boolean logged;
-    
+
     public VACModuleAntiRegen()
     {
         ticksSince = -1;
         firstHeal = true;
         logged = false;
     }
-    
+
     public String getModuleName()
     {
         return "Anti-Regen";
@@ -31,18 +31,18 @@ public class VACModuleAntiRegen implements IVacModule
     {
         if (!firstHeal) ticksSince++;
     }
-    
+
     public long getTicksSinceLastHeal()
     {
         return ticksSince;
     }
-    
+
     public void heal()
     {
         ticksSince = 0;
         if (firstHeal) firstHeal = false;
     }
-    
+
     /**
      * Set logged to true;
      */
@@ -50,7 +50,7 @@ public class VACModuleAntiRegen implements IVacModule
     {
         logged = true;
     }
-    
+
     /**
      * Returns logged.
      * @return logged

@@ -8,6 +8,6 @@ public enum EnumSkyBlock
 
     private EnumSkyBlock(int par3)
     {
-        this.defaultLightValue = par3;
+        defaultLightValue = par3;
     }
 }

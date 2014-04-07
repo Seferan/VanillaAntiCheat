@@ -8,8 +8,8 @@ public class GenLayerEdge extends GenLayer
     public GenLayerEdge(long p_i45474_1_, GenLayer p_i45474_3_, GenLayerEdge.Mode p_i45474_4_)
     {
         super(p_i45474_1_);
-        this.parent = p_i45474_3_;
-        this.field_151627_c = p_i45474_4_;
+        parent = p_i45474_3_;
+        field_151627_c = p_i45474_4_;
     }
 
     /**
@@ -19,17 +19,17 @@ public class GenLayerEdge extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        switch (GenLayerEdge.SwitchMode.field_151642_a[this.field_151627_c.ordinal()])
+        switch (GenLayerEdge.SwitchMode.field_151642_a[field_151627_c.ordinal()])
         {
         case 1:
         default:
-            return this.func_151626_c(par1, par2, par3, par4);
+            return func_151626_c(par1, par2, par3, par4);
 
         case 2:
-            return this.func_151624_d(par1, par2, par3, par4);
+            return func_151624_d(par1, par2, par3, par4);
 
         case 3:
-            return this.func_151625_e(par1, par2, par3, par4);
+            return func_151625_e(par1, par2, par3, par4);
         }
     }
 
@@ -39,14 +39,14 @@ public class GenLayerEdge extends GenLayer
         int var6 = p_151626_2_ - 1;
         int var7 = 1 + p_151626_3_ + 1;
         int var8 = 1 + p_151626_4_ + 1;
-        int[] var9 = this.parent.getInts(var5, var6, var7, var8);
+        int[] var9 = parent.getInts(var5, var6, var7, var8);
         int[] var10 = IntCache.getIntCache(p_151626_3_ * p_151626_4_);
 
         for (int var11 = 0; var11 < p_151626_4_; ++var11)
         {
             for (int var12 = 0; var12 < p_151626_3_; ++var12)
             {
-                this.initChunkSeed((long)(var12 + p_151626_1_), (long)(var11 + p_151626_2_));
+                initChunkSeed(var12 + p_151626_1_, var11 + p_151626_2_);
                 int var13 = var9[var12 + 1 + (var11 + 1) * var7];
 
                 if (var13 == 1)
@@ -77,7 +77,7 @@ public class GenLayerEdge extends GenLayer
         int var6 = p_151624_2_ - 1;
         int var7 = 1 + p_151624_3_ + 1;
         int var8 = 1 + p_151624_4_ + 1;
-        int[] var9 = this.parent.getInts(var5, var6, var7, var8);
+        int[] var9 = parent.getInts(var5, var6, var7, var8);
         int[] var10 = IntCache.getIntCache(p_151624_3_ * p_151624_4_);
 
         for (int var11 = 0; var11 < p_151624_4_; ++var11)
@@ -110,19 +110,19 @@ public class GenLayerEdge extends GenLayer
 
     private int[] func_151625_e(int p_151625_1_, int p_151625_2_, int p_151625_3_, int p_151625_4_)
     {
-        int[] var5 = this.parent.getInts(p_151625_1_, p_151625_2_, p_151625_3_, p_151625_4_);
+        int[] var5 = parent.getInts(p_151625_1_, p_151625_2_, p_151625_3_, p_151625_4_);
         int[] var6 = IntCache.getIntCache(p_151625_3_ * p_151625_4_);
 
         for (int var7 = 0; var7 < p_151625_4_; ++var7)
         {
             for (int var8 = 0; var8 < p_151625_3_; ++var8)
             {
-                this.initChunkSeed((long)(var8 + p_151625_1_), (long)(var7 + p_151625_2_));
+                initChunkSeed(var8 + p_151625_1_, var7 + p_151625_2_);
                 int var9 = var5[var8 + var7 * p_151625_3_];
 
-                if (var9 != 0 && this.nextInt(13) == 0)
+                if (var9 != 0 && nextInt(13) == 0)
                 {
-                    var9 |= 1 + this.nextInt(15) << 8 & 3840;
+                    var9 |= 1 + nextInt(15) << 8 & 3840;
                 }
 
                 var6[var8 + var7 * p_151625_3_] = var9;

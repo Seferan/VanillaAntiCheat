@@ -82,13 +82,13 @@ public class RecipesArmorDyes implements IRecipe
                     if (var6.hasColor(var8))
                     {
                         var9 = var6.getColor(var2);
-                        var10 = (float)(var9 >> 16 & 255) / 255.0F;
-                        var11 = (float)(var9 >> 8 & 255) / 255.0F;
-                        float var12 = (float)(var9 & 255) / 255.0F;
-                        var4 = (int)((float)var4 + Math.max(var10, Math.max(var11, var12)) * 255.0F);
-                        var3[0] = (int)((float)var3[0] + var10 * 255.0F);
-                        var3[1] = (int)((float)var3[1] + var11 * 255.0F);
-                        var3[2] = (int)((float)var3[2] + var12 * 255.0F);
+                        var10 = (var9 >> 16 & 255) / 255.0F;
+                        var11 = (var9 >> 8 & 255) / 255.0F;
+                        float var12 = (var9 & 255) / 255.0F;
+                        var4 = (int)(var4 + Math.max(var10, Math.max(var11, var12)) * 255.0F);
+                        var3[0] = (int)(var3[0] + var10 * 255.0F);
+                        var3[1] = (int)(var3[1] + var11 * 255.0F);
+                        var3[2] = (int)(var3[2] + var12 * 255.0F);
                         ++var5;
                     }
                 }
@@ -119,10 +119,10 @@ public class RecipesArmorDyes implements IRecipe
             int var13 = var3[1] / var5;
             var9 = var3[2] / var5;
             var10 = (float)var4 / (float)var5;
-            var11 = (float)Math.max(var7, Math.max(var13, var9));
-            var7 = (int)((float)var7 * var10 / var11);
-            var13 = (int)((float)var13 * var10 / var11);
-            var9 = (int)((float)var9 * var10 / var11);
+            var11 = Math.max(var7, Math.max(var13, var9));
+            var7 = (int)(var7 * var10 / var11);
+            var13 = (int)(var13 * var10 / var11);
+            var9 = (int)(var9 * var10 / var11);
             var17 = (var7 << 8) + var13;
             var17 = (var17 << 8) + var9;
             var6.func_82813_b(var2, var17);

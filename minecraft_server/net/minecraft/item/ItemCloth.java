@@ -10,8 +10,8 @@ public class ItemCloth extends ItemBlock
     public ItemCloth(Block p_i45358_1_)
     {
         super(p_i45358_1_);
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
+        setMaxDamage(0);
+        setHasSubtypes(true);
     }
 
     /**

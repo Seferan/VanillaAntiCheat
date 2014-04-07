@@ -56,7 +56,7 @@ public class CommandXP extends CommandBase
             if (par2ArrayOfStr.length > 1)
             {
                 var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
-                if (this.isTargetOp(var3, par1ICommandSender))
+                if (isTargetOp(var3, par1ICommandSender))
                 {
                     String message = "Tried to give " + Integer.valueOf(var6) + " ";
                     message += var5 ? "levels" : "experience";
@@ -99,7 +99,7 @@ public class CommandXP extends CommandBase
      */
     public List addTabCompletionOptions(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        return par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, this.getAllUsernames()) : null;
+        return par2ArrayOfStr.length == 2 ? getListOfStringsMatchingLastWord(par2ArrayOfStr, getAllUsernames()) : null;
     }
 
     protected String[] getAllUsernames()

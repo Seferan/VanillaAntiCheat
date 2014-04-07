@@ -35,10 +35,10 @@ public class EntityLightningBolt extends EntityWeatherEffect
     public EntityLightningBolt(World par1World, double par2, double par4, double par6)
     {
         super(par1World);
-        this.setLocationAndAngles(par2, par4, par6, 0.0F, 0.0F);
-        this.lightningState = 2;
-        this.boltVertex = this.rand.nextLong();
-        this.boltLivingTime = this.rand.nextInt(3) + 1;
+        setLocationAndAngles(par2, par4, par6, 0.0F, 0.0F);
+        lightningState = 2;
+        boltVertex = rand.nextLong();
+        boltLivingTime = rand.nextInt(3) + 1;
 
         if (!par1World.isClient && par1World.getGameRules().getGameRuleBooleanValue("doFireTick") && (par1World.difficultySetting == EnumDifficulty.NORMAL || par1World.difficultySetting == EnumDifficulty.HARD) && par1World.doChunksNearChunkExist(MathHelper.floor_double(par2), MathHelper.floor_double(par4), MathHelper.floor_double(par6), 10))
         {
@@ -53,9 +53,9 @@ public class EntityLightningBolt extends EntityWeatherEffect
 
             for (var8 = 0; var8 < 4; ++var8)
             {
-                var9 = MathHelper.floor_double(par2) + this.rand.nextInt(3) - 1;
-                var10 = MathHelper.floor_double(par4) + this.rand.nextInt(3) - 1;
-                int var11 = MathHelper.floor_double(par6) + this.rand.nextInt(3) - 1;
+                var9 = MathHelper.floor_double(par2) + rand.nextInt(3) - 1;
+                var10 = MathHelper.floor_double(par4) + rand.nextInt(3) - 1;
+                int var11 = MathHelper.floor_double(par6) + rand.nextInt(3) - 1;
 
                 if (par1World.getBlock(var9, var10, var11).getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(par1World, var9, var10, var11))
                 {
@@ -72,50 +72,50 @@ public class EntityLightningBolt extends EntityWeatherEffect
     {
         super.onUpdate();
 
-        if (this.lightningState == 2)
+        if (lightningState == 2)
         {
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "ambient.weather.thunder", 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
-            this.worldObj.playSoundEffect(this.posX, this.posY, this.posZ, "random.explode", 2.0F, 0.5F + this.rand.nextFloat() * 0.2F);
+            worldObj.playSoundEffect(posX, posY, posZ, "ambient.weather.thunder", 10000.0F, 0.8F + rand.nextFloat() * 0.2F);
+            worldObj.playSoundEffect(posX, posY, posZ, "random.explode", 2.0F, 0.5F + rand.nextFloat() * 0.2F);
         }
 
-        --this.lightningState;
+        --lightningState;
 
-        if (this.lightningState < 0)
+        if (lightningState < 0)
         {
-            if (this.boltLivingTime == 0)
+            if (boltLivingTime == 0)
             {
-                this.setDead();
+                setDead();
             }
-            else if (this.lightningState < -this.rand.nextInt(10))
+            else if (lightningState < -rand.nextInt(10))
             {
-                --this.boltLivingTime;
-                this.lightningState = 1;
-                this.boltVertex = this.rand.nextLong();
+                --boltLivingTime;
+                lightningState = 1;
+                boltVertex = rand.nextLong();
 
-                if (!this.worldObj.isClient && this.worldObj.getGameRules().getGameRuleBooleanValue("doFireTick") && this.worldObj.doChunksNearChunkExist(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ), 10))
+                if (!worldObj.isClient && worldObj.getGameRules().getGameRuleBooleanValue("doFireTick") && worldObj.doChunksNearChunkExist(MathHelper.floor_double(posX), MathHelper.floor_double(posY), MathHelper.floor_double(posZ), 10))
                 {
-                    int var1 = MathHelper.floor_double(this.posX);
-                    int var2 = MathHelper.floor_double(this.posY);
-                    int var3 = MathHelper.floor_double(this.posZ);
+                    int var1 = MathHelper.floor_double(posX);
+                    int var2 = MathHelper.floor_double(posY);
+                    int var3 = MathHelper.floor_double(posZ);
 
-                    if (this.worldObj.getBlock(var1, var2, var3).getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(this.worldObj, var1, var2, var3))
+                    if (worldObj.getBlock(var1, var2, var3).getMaterial() == Material.air && Blocks.fire.canPlaceBlockAt(worldObj, var1, var2, var3))
                     {
-                        this.worldObj.setBlock(var1, var2, var3, Blocks.fire);
+                        worldObj.setBlock(var1, var2, var3, Blocks.fire);
                     }
                 }
             }
         }
 
-        if (this.lightningState >= 0)
+        if (lightningState >= 0)
         {
-            if (this.worldObj.isClient)
+            if (worldObj.isClient)
             {
-                this.worldObj.lastLightningBolt = 2;
+                worldObj.lastLightningBolt = 2;
             }
             else
             {
                 double var6 = 3.0D;
-                List var7 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getAABBPool().getAABB(this.posX - var6, this.posY - var6, this.posZ - var6, this.posX + var6, this.posY + 6.0D + var6, this.posZ + var6));
+                List var7 = worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getAABBPool().getAABB(posX - var6, posY - var6, posZ - var6, posX + var6, posY + 6.0D + var6, posZ + var6));
 
                 for (int var4 = 0; var4 < var7.size(); ++var4)
                 {

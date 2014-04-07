@@ -16,7 +16,7 @@ public class BlockFalling extends Block
     public BlockFalling()
     {
         super(Material.field_151595_p);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public BlockFalling(Material p_i45405_1_)
@@ -26,12 +26,12 @@ public class BlockFalling extends Block
 
     public void onBlockAdded(World p_149726_1_, int p_149726_2_, int p_149726_3_, int p_149726_4_)
     {
-        p_149726_1_.scheduleBlockUpdate(p_149726_2_, p_149726_3_, p_149726_4_, this, this.func_149738_a(p_149726_1_));
+        p_149726_1_.scheduleBlockUpdate(p_149726_2_, p_149726_3_, p_149726_4_, this, func_149738_a(p_149726_1_));
     }
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, this.func_149738_a(p_149695_1_));
+        p_149695_1_.scheduleBlockUpdate(p_149695_2_, p_149695_3_, p_149695_4_, this, func_149738_a(p_149695_1_));
     }
 
     /**
@@ -41,7 +41,7 @@ public class BlockFalling extends Block
     {
         if (!p_149674_1_.isClient)
         {
-            this.func_149830_m(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+            func_149830_m(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
         }
     }
 
@@ -55,8 +55,8 @@ public class BlockFalling extends Block
             {
                 if (!p_149830_1_.isClient)
                 {
-                    EntityFallingBlock var9 = new EntityFallingBlock(p_149830_1_, (double)((float)p_149830_2_ + 0.5F), (double)((float)p_149830_3_ + 0.5F), (double)((float)p_149830_4_ + 0.5F), this, p_149830_1_.getBlockMetadata(p_149830_2_, p_149830_3_, p_149830_4_));
-                    this.func_149829_a(var9);
+                    EntityFallingBlock var9 = new EntityFallingBlock(p_149830_1_, p_149830_2_ + 0.5F, p_149830_3_ + 0.5F, p_149830_4_ + 0.5F, this, p_149830_1_.getBlockMetadata(p_149830_2_, p_149830_3_, p_149830_4_));
+                    func_149829_a(var9);
                     p_149830_1_.spawnEntityInWorld(var9);
                 }
             }

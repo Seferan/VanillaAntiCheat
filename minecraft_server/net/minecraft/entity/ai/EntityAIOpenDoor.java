@@ -11,8 +11,8 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
     public EntityAIOpenDoor(EntityLiving par1EntityLiving, boolean par2)
     {
         super(par1EntityLiving);
-        this.theEntity = par1EntityLiving;
-        this.field_75361_i = par2;
+        theEntity = par1EntityLiving;
+        field_75361_i = par2;
     }
 
     /**
@@ -20,7 +20,7 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
      */
     public boolean continueExecuting()
     {
-        return this.field_75361_i && this.field_75360_j > 0 && super.continueExecuting();
+        return field_75361_i && field_75360_j > 0 && super.continueExecuting();
     }
 
     /**
@@ -28,8 +28,8 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
      */
     public void startExecuting()
     {
-        this.field_75360_j = 20;
-        this.field_151504_e.func_150014_a(this.theEntity.worldObj, this.entityPosX, this.entityPosY, this.entityPosZ, true);
+        field_75360_j = 20;
+        field_151504_e.func_150014_a(theEntity.worldObj, entityPosX, entityPosY, entityPosZ, true);
     }
 
     /**
@@ -37,9 +37,9 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
      */
     public void resetTask()
     {
-        if (this.field_75361_i)
+        if (field_75361_i)
         {
-            this.field_151504_e.func_150014_a(this.theEntity.worldObj, this.entityPosX, this.entityPosY, this.entityPosZ, false);
+            field_151504_e.func_150014_a(theEntity.worldObj, entityPosX, entityPosY, entityPosZ, false);
         }
     }
 
@@ -48,7 +48,7 @@ public class EntityAIOpenDoor extends EntityAIDoorInteract
      */
     public void updateTask()
     {
-        --this.field_75360_j;
+        --field_75360_j;
         super.updateTask();
     }
 }

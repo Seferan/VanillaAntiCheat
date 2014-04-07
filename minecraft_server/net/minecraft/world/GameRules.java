@@ -13,17 +13,17 @@ public class GameRules
 
     public GameRules()
     {
-        this.addGameRule("doFireTick", "true");
-        this.addGameRule("doFireSpread", "true");
-        this.addGameRule("mobGriefing", "true");
-        this.addGameRule("keepInventory", "false");
-        this.addGameRule("doMobSpawning", "true");
-        this.addGameRule("doMobLoot", "true");
-        this.addGameRule("doTileDrops", "true");
-        this.addGameRule("commandBlockOutput", "true");
-        this.addGameRule("naturalRegeneration", "true");
-        this.addGameRule("doDaylightCycle", "true");
-        this.addGameRule("adminsKeepInventory", "false");
+        addGameRule("doFireTick", "true");
+        addGameRule("doFireSpread", "true");
+        addGameRule("mobGriefing", "true");
+        addGameRule("keepInventory", "false");
+        addGameRule("doMobSpawning", "true");
+        addGameRule("doMobLoot", "true");
+        addGameRule("doTileDrops", "true");
+        addGameRule("commandBlockOutput", "true");
+        addGameRule("naturalRegeneration", "true");
+        addGameRule("doDaylightCycle", "true");
+        addGameRule("adminsKeepInventory", "false");
     }
 
     /**
@@ -31,12 +31,12 @@ public class GameRules
      */
     public void addGameRule(String par1Str, String par2Str)
     {
-        this.theGameRules.put(par1Str, new GameRules.Value(par2Str));
+        theGameRules.put(par1Str, new GameRules.Value(par2Str));
     }
 
     public void setOrCreateGameRule(String par1Str, String par2Str)
     {
-        GameRules.Value var3 = (GameRules.Value)this.theGameRules.get(par1Str);
+        GameRules.Value var3 = (GameRules.Value)theGameRules.get(par1Str);
 
         if (var3 != null)
         {
@@ -44,7 +44,7 @@ public class GameRules
         }
         else
         {
-            this.addGameRule(par1Str, par2Str);
+            addGameRule(par1Str, par2Str);
         }
     }
 
@@ -53,7 +53,7 @@ public class GameRules
      */
     public String getGameRuleStringValue(String par1Str)
     {
-        GameRules.Value var2 = (GameRules.Value)this.theGameRules.get(par1Str);
+        GameRules.Value var2 = (GameRules.Value)theGameRules.get(par1Str);
         return var2 != null ? var2.getGameRuleStringValue() : "";
     }
 
@@ -62,7 +62,7 @@ public class GameRules
      */
     public boolean getGameRuleBooleanValue(String par1Str)
     {
-        GameRules.Value var2 = (GameRules.Value)this.theGameRules.get(par1Str);
+        GameRules.Value var2 = (GameRules.Value)theGameRules.get(par1Str);
         return var2 != null ? var2.getGameRuleBooleanValue() : false;
     }
 
@@ -72,12 +72,12 @@ public class GameRules
     public NBTTagCompound writeGameRulesToNBT()
     {
         NBTTagCompound var1 = new NBTTagCompound();
-        Iterator var2 = this.theGameRules.keySet().iterator();
+        Iterator var2 = theGameRules.keySet().iterator();
 
         while (var2.hasNext())
         {
             String var3 = (String)var2.next();
-            GameRules.Value var4 = (GameRules.Value)this.theGameRules.get(var3);
+            GameRules.Value var4 = (GameRules.Value)theGameRules.get(var3);
             var1.setString(var3, var4.getGameRuleStringValue());
         }
 
@@ -96,7 +96,7 @@ public class GameRules
         {
             String var4 = (String)var3.next();
             String var6 = par1NBTTagCompound.getString(var4);
-            this.setOrCreateGameRule(var4, var6);
+            setOrCreateGameRule(var4, var6);
         }
     }
 
@@ -105,7 +105,7 @@ public class GameRules
      */
     public String[] getRules()
     {
-        return (String[])this.theGameRules.keySet().toArray(new String[0]);
+        return (String[])theGameRules.keySet().toArray(new String[0]);
     }
 
     /**
@@ -113,7 +113,7 @@ public class GameRules
      */
     public boolean hasRule(String par1Str)
     {
-        return this.theGameRules.containsKey(par1Str);
+        return theGameRules.containsKey(par1Str);
     }
 
     static class Value
@@ -126,17 +126,17 @@ public class GameRules
 
         public Value(String par1Str)
         {
-            this.setValue(par1Str);
+            setValue(par1Str);
         }
 
         public void setValue(String par1Str)
         {
-            this.valueString = par1Str;
-            this.valueBoolean = Boolean.parseBoolean(par1Str);
+            valueString = par1Str;
+            valueBoolean = Boolean.parseBoolean(par1Str);
 
             try
             {
-                this.valueInteger = Integer.parseInt(par1Str);
+                valueInteger = Integer.parseInt(par1Str);
             }
             catch (NumberFormatException var4)
             {
@@ -145,7 +145,7 @@ public class GameRules
 
             try
             {
-                this.valueDouble = Double.parseDouble(par1Str);
+                valueDouble = Double.parseDouble(par1Str);
             }
             catch (NumberFormatException var3)
             {
@@ -155,12 +155,12 @@ public class GameRules
 
         public String getGameRuleStringValue()
         {
-            return this.valueString;
+            return valueString;
         }
 
         public boolean getGameRuleBooleanValue()
         {
-            return this.valueBoolean;
+            return valueBoolean;
         }
     }
 }

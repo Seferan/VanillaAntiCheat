@@ -26,15 +26,15 @@ public class MerchantRecipe
 
     public MerchantRecipe(NBTTagCompound par1NBTTagCompound)
     {
-        this.readFromTags(par1NBTTagCompound);
+        readFromTags(par1NBTTagCompound);
     }
 
     public MerchantRecipe(ItemStack par1ItemStack, ItemStack par2ItemStack, ItemStack par3ItemStack)
     {
-        this.itemToBuy = par1ItemStack;
-        this.secondItemToBuy = par2ItemStack;
-        this.itemToSell = par3ItemStack;
-        this.maxTradeUses = 7;
+        itemToBuy = par1ItemStack;
+        secondItemToBuy = par2ItemStack;
+        itemToSell = par3ItemStack;
+        maxTradeUses = 7;
     }
 
     public MerchantRecipe(ItemStack par1ItemStack, ItemStack par2ItemStack)
@@ -52,7 +52,7 @@ public class MerchantRecipe
      */
     public ItemStack getItemToBuy()
     {
-        return this.itemToBuy;
+        return itemToBuy;
     }
 
     /**
@@ -60,7 +60,7 @@ public class MerchantRecipe
      */
     public ItemStack getSecondItemToBuy()
     {
-        return this.secondItemToBuy;
+        return secondItemToBuy;
     }
 
     /**
@@ -68,7 +68,7 @@ public class MerchantRecipe
      */
     public boolean hasSecondItemToBuy()
     {
-        return this.secondItemToBuy != null;
+        return secondItemToBuy != null;
     }
 
     /**
@@ -76,7 +76,7 @@ public class MerchantRecipe
      */
     public ItemStack getItemToSell()
     {
-        return this.itemToSell;
+        return itemToSell;
     }
 
     /**
@@ -84,7 +84,7 @@ public class MerchantRecipe
      */
     public boolean hasSameIDsAs(MerchantRecipe par1MerchantRecipe)
     {
-        return this.itemToBuy.getItem() == par1MerchantRecipe.itemToBuy.getItem() && this.itemToSell.getItem() == par1MerchantRecipe.itemToSell.getItem() ? this.secondItemToBuy == null && par1MerchantRecipe.secondItemToBuy == null || this.secondItemToBuy != null && par1MerchantRecipe.secondItemToBuy != null && this.secondItemToBuy.getItem() == par1MerchantRecipe.secondItemToBuy.getItem() : false;
+        return itemToBuy.getItem() == par1MerchantRecipe.itemToBuy.getItem() && itemToSell.getItem() == par1MerchantRecipe.itemToSell.getItem() ? secondItemToBuy == null && par1MerchantRecipe.secondItemToBuy == null || secondItemToBuy != null && par1MerchantRecipe.secondItemToBuy != null && secondItemToBuy.getItem() == par1MerchantRecipe.secondItemToBuy.getItem() : false;
     }
 
     /**
@@ -92,64 +92,64 @@ public class MerchantRecipe
      */
     public boolean hasSameItemsAs(MerchantRecipe par1MerchantRecipe)
     {
-        return this.hasSameIDsAs(par1MerchantRecipe) && (this.itemToBuy.stackSize < par1MerchantRecipe.itemToBuy.stackSize || this.secondItemToBuy != null && this.secondItemToBuy.stackSize < par1MerchantRecipe.secondItemToBuy.stackSize);
+        return hasSameIDsAs(par1MerchantRecipe) && (itemToBuy.stackSize < par1MerchantRecipe.itemToBuy.stackSize || secondItemToBuy != null && secondItemToBuy.stackSize < par1MerchantRecipe.secondItemToBuy.stackSize);
     }
 
     public void incrementToolUses()
     {
-        ++this.toolUses;
+        ++toolUses;
     }
 
     public void func_82783_a(int par1)
     {
-        this.maxTradeUses += par1;
+        maxTradeUses += par1;
     }
 
     public boolean func_82784_g()
     {
-        return this.toolUses >= this.maxTradeUses;
+        return toolUses >= maxTradeUses;
     }
 
     public void readFromTags(NBTTagCompound par1NBTTagCompound)
     {
         NBTTagCompound var2 = par1NBTTagCompound.getCompoundTag("buy");
-        this.itemToBuy = ItemStack.loadItemStackFromNBT(var2);
+        itemToBuy = ItemStack.loadItemStackFromNBT(var2);
         NBTTagCompound var3 = par1NBTTagCompound.getCompoundTag("sell");
-        this.itemToSell = ItemStack.loadItemStackFromNBT(var3);
+        itemToSell = ItemStack.loadItemStackFromNBT(var3);
 
         if (par1NBTTagCompound.func_150297_b("buyB", 10))
         {
-            this.secondItemToBuy = ItemStack.loadItemStackFromNBT(par1NBTTagCompound.getCompoundTag("buyB"));
+            secondItemToBuy = ItemStack.loadItemStackFromNBT(par1NBTTagCompound.getCompoundTag("buyB"));
         }
 
         if (par1NBTTagCompound.func_150297_b("uses", 99))
         {
-            this.toolUses = par1NBTTagCompound.getInteger("uses");
+            toolUses = par1NBTTagCompound.getInteger("uses");
         }
 
         if (par1NBTTagCompound.func_150297_b("maxUses", 99))
         {
-            this.maxTradeUses = par1NBTTagCompound.getInteger("maxUses");
+            maxTradeUses = par1NBTTagCompound.getInteger("maxUses");
         }
         else
         {
-            this.maxTradeUses = 7;
+            maxTradeUses = 7;
         }
     }
 
     public NBTTagCompound writeToTags()
     {
         NBTTagCompound var1 = new NBTTagCompound();
-        var1.setTag("buy", this.itemToBuy.writeToNBT(new NBTTagCompound()));
-        var1.setTag("sell", this.itemToSell.writeToNBT(new NBTTagCompound()));
+        var1.setTag("buy", itemToBuy.writeToNBT(new NBTTagCompound()));
+        var1.setTag("sell", itemToSell.writeToNBT(new NBTTagCompound()));
 
-        if (this.secondItemToBuy != null)
+        if (secondItemToBuy != null)
         {
-            var1.setTag("buyB", this.secondItemToBuy.writeToNBT(new NBTTagCompound()));
+            var1.setTag("buyB", secondItemToBuy.writeToNBT(new NBTTagCompound()));
         }
 
-        var1.setInteger("uses", this.toolUses);
-        var1.setInteger("maxUses", this.maxTradeUses);
+        var1.setInteger("uses", toolUses);
+        var1.setInteger("maxUses", maxTradeUses);
         return var1;
     }
 }

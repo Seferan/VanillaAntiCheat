@@ -30,7 +30,7 @@ public class EntityLookHelper
 
     public EntityLookHelper(EntityLiving par1EntityLiving)
     {
-        this.entity = par1EntityLiving;
+        entity = par1EntityLiving;
     }
 
     /**
@@ -38,21 +38,21 @@ public class EntityLookHelper
      */
     public void setLookPositionWithEntity(Entity par1Entity, float par2, float par3)
     {
-        this.posX = par1Entity.posX;
+        posX = par1Entity.posX;
 
         if (par1Entity instanceof EntityLivingBase)
         {
-            this.posY = par1Entity.posY + (double)par1Entity.getEyeHeight();
+            posY = par1Entity.posY + par1Entity.getEyeHeight();
         }
         else
         {
-            this.posY = (par1Entity.boundingBox.minY + par1Entity.boundingBox.maxY) / 2.0D;
+            posY = (par1Entity.boundingBox.minY + par1Entity.boundingBox.maxY) / 2.0D;
         }
 
-        this.posZ = par1Entity.posZ;
-        this.deltaLookYaw = par2;
-        this.deltaLookPitch = par3;
-        this.isLooking = true;
+        posZ = par1Entity.posZ;
+        deltaLookYaw = par2;
+        deltaLookPitch = par3;
+        isLooking = true;
     }
 
     /**
@@ -60,12 +60,12 @@ public class EntityLookHelper
      */
     public void setLookPosition(double par1, double par3, double par5, float par7, float par8)
     {
-        this.posX = par1;
-        this.posY = par3;
-        this.posZ = par5;
-        this.deltaLookYaw = par7;
-        this.deltaLookPitch = par8;
-        this.isLooking = true;
+        posX = par1;
+        posY = par3;
+        posZ = par5;
+        deltaLookYaw = par7;
+        deltaLookPitch = par8;
+        isLooking = true;
     }
 
     /**
@@ -73,37 +73,37 @@ public class EntityLookHelper
      */
     public void onUpdateLook()
     {
-        this.entity.rotationPitch = 0.0F;
+        entity.rotationPitch = 0.0F;
 
-        if (this.isLooking)
+        if (isLooking)
         {
-            this.isLooking = false;
-            double var1 = this.posX - this.entity.posX;
-            double var3 = this.posY - (this.entity.posY + (double)this.entity.getEyeHeight());
-            double var5 = this.posZ - this.entity.posZ;
-            double var7 = (double)MathHelper.sqrt_double(var1 * var1 + var5 * var5);
+            isLooking = false;
+            double var1 = posX - entity.posX;
+            double var3 = posY - (entity.posY + entity.getEyeHeight());
+            double var5 = posZ - entity.posZ;
+            double var7 = MathHelper.sqrt_double(var1 * var1 + var5 * var5);
             float var9 = (float)(Math.atan2(var5, var1) * 180.0D / Math.PI) - 90.0F;
             float var10 = (float)(-(Math.atan2(var3, var7) * 180.0D / Math.PI));
-            this.entity.rotationPitch = this.updateRotation(this.entity.rotationPitch, var10, this.deltaLookPitch);
-            this.entity.rotationYawHead = this.updateRotation(this.entity.rotationYawHead, var9, this.deltaLookYaw);
+            entity.rotationPitch = updateRotation(entity.rotationPitch, var10, deltaLookPitch);
+            entity.rotationYawHead = updateRotation(entity.rotationYawHead, var9, deltaLookYaw);
         }
         else
         {
-            this.entity.rotationYawHead = this.updateRotation(this.entity.rotationYawHead, this.entity.renderYawOffset, 10.0F);
+            entity.rotationYawHead = updateRotation(entity.rotationYawHead, entity.renderYawOffset, 10.0F);
         }
 
-        float var11 = MathHelper.wrapAngleTo180_float(this.entity.rotationYawHead - this.entity.renderYawOffset);
+        float var11 = MathHelper.wrapAngleTo180_float(entity.rotationYawHead - entity.renderYawOffset);
 
-        if (!this.entity.getNavigator().noPath())
+        if (!entity.getNavigator().noPath())
         {
             if (var11 < -75.0F)
             {
-                this.entity.rotationYawHead = this.entity.renderYawOffset - 75.0F;
+                entity.rotationYawHead = entity.renderYawOffset - 75.0F;
             }
 
             if (var11 > 75.0F)
             {
-                this.entity.rotationYawHead = this.entity.renderYawOffset + 75.0F;
+                entity.rotationYawHead = entity.renderYawOffset + 75.0F;
             }
         }
     }

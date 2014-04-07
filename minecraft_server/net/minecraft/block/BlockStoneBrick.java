@@ -12,7 +12,7 @@ public class BlockStoneBrick extends Block
     public BlockStoneBrick()
     {
         super(Material.rock);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**

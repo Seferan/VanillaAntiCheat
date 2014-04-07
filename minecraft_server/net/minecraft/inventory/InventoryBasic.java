@@ -17,25 +17,25 @@ public class InventoryBasic implements IInventory
 
     public InventoryBasic(String par1Str, boolean par2, int par3)
     {
-        this.inventoryTitle = par1Str;
-        this.field_94051_e = par2;
-        this.slotsCount = par3;
-        this.inventoryContents = new ItemStack[par3];
+        inventoryTitle = par1Str;
+        field_94051_e = par2;
+        slotsCount = par3;
+        inventoryContents = new ItemStack[par3];
     }
 
     public void func_110134_a(IInvBasic par1IInvBasic)
     {
-        if (this.field_70480_d == null)
+        if (field_70480_d == null)
         {
-            this.field_70480_d = new ArrayList();
+            field_70480_d = new ArrayList();
         }
 
-        this.field_70480_d.add(par1IInvBasic);
+        field_70480_d.add(par1IInvBasic);
     }
 
     public void func_110132_b(IInvBasic par1IInvBasic)
     {
-        this.field_70480_d.remove(par1IInvBasic);
+        field_70480_d.remove(par1IInvBasic);
     }
 
     /**
@@ -43,7 +43,7 @@ public class InventoryBasic implements IInventory
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return this.inventoryContents[par1];
+        return inventoryContents[par1];
     }
 
     /**
@@ -52,27 +52,27 @@ public class InventoryBasic implements IInventory
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (this.inventoryContents[par1] != null)
+        if (inventoryContents[par1] != null)
         {
             ItemStack var3;
 
-            if (this.inventoryContents[par1].stackSize <= par2)
+            if (inventoryContents[par1].stackSize <= par2)
             {
-                var3 = this.inventoryContents[par1];
-                this.inventoryContents[par1] = null;
-                this.onInventoryChanged();
+                var3 = inventoryContents[par1];
+                inventoryContents[par1] = null;
+                onInventoryChanged();
                 return var3;
             }
             else
             {
-                var3 = this.inventoryContents[par1].splitStack(par2);
+                var3 = inventoryContents[par1].splitStack(par2);
 
-                if (this.inventoryContents[par1].stackSize == 0)
+                if (inventoryContents[par1].stackSize == 0)
                 {
-                    this.inventoryContents[par1] = null;
+                    inventoryContents[par1] = null;
                 }
 
-                this.onInventoryChanged();
+                onInventoryChanged();
                 return var3;
             }
         }
@@ -89,10 +89,10 @@ public class InventoryBasic implements IInventory
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        if (this.inventoryContents[par1] != null)
+        if (inventoryContents[par1] != null)
         {
-            ItemStack var2 = this.inventoryContents[par1];
-            this.inventoryContents[par1] = null;
+            ItemStack var2 = inventoryContents[par1];
+            inventoryContents[par1] = null;
             return var2;
         }
         else
@@ -107,14 +107,14 @@ public class InventoryBasic implements IInventory
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
-        this.inventoryContents[par1] = par2ItemStack;
+        inventoryContents[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > getInventoryStackLimit())
         {
-            par2ItemStack.stackSize = this.getInventoryStackLimit();
+            par2ItemStack.stackSize = getInventoryStackLimit();
         }
 
-        this.onInventoryChanged();
+        onInventoryChanged();
     }
 
     /**
@@ -122,7 +122,7 @@ public class InventoryBasic implements IInventory
      */
     public int getSizeInventory()
     {
-        return this.slotsCount;
+        return slotsCount;
     }
 
     /**
@@ -130,7 +130,7 @@ public class InventoryBasic implements IInventory
      */
     public String getInventoryName()
     {
-        return this.inventoryTitle;
+        return inventoryTitle;
     }
 
     /**
@@ -138,13 +138,13 @@ public class InventoryBasic implements IInventory
      */
     public boolean isInventoryNameLocalized()
     {
-        return this.field_94051_e;
+        return field_94051_e;
     }
 
     public void func_110133_a(String par1Str)
     {
-        this.field_94051_e = true;
-        this.inventoryTitle = par1Str;
+        field_94051_e = true;
+        inventoryTitle = par1Str;
     }
 
     /**
@@ -161,11 +161,11 @@ public class InventoryBasic implements IInventory
      */
     public void onInventoryChanged()
     {
-        if (this.field_70480_d != null)
+        if (field_70480_d != null)
         {
-            for (int var1 = 0; var1 < this.field_70480_d.size(); ++var1)
+            for (int var1 = 0; var1 < field_70480_d.size(); ++var1)
             {
-                ((IInvBasic)this.field_70480_d.get(var1)).onInventoryChanged(this);
+                ((IInvBasic)field_70480_d.get(var1)).onInventoryChanged(this);
             }
         }
     }

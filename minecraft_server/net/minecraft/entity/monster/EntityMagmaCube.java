@@ -13,13 +13,13 @@ public class EntityMagmaCube extends EntitySlime
     public EntityMagmaCube(World par1World)
     {
         super(par1World);
-        this.isImmuneToFire = true;
+        isImmuneToFire = true;
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
     }
 
     /**
@@ -28,7 +28,7 @@ public class EntityMagmaCube extends EntitySlime
      */
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return worldObj.difficultySetting != EnumDifficulty.PEACEFUL && worldObj.checkNoEntityCollision(boundingBox) && worldObj.getCollidingBoundingBoxes(this, boundingBox).isEmpty() && !worldObj.isAnyLiquid(boundingBox);
     }
 
     /**
@@ -37,7 +37,7 @@ public class EntityMagmaCube extends EntitySlime
      */
     public int getTotalArmorValue()
     {
-        return this.getSlimeSize() * 3;
+        return getSlimeSize() * 3;
     }
 
     /**
@@ -59,7 +59,7 @@ public class EntityMagmaCube extends EntitySlime
 
     protected EntitySlime createInstance()
     {
-        return new EntityMagmaCube(this.worldObj);
+        return new EntityMagmaCube(worldObj);
     }
 
     protected Item func_146068_u()
@@ -72,20 +72,20 @@ public class EntityMagmaCube extends EntitySlime
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-        Item var3 = this.func_146068_u();
+        Item var3 = func_146068_u();
 
-        if (var3 != null && this.getSlimeSize() > 1)
+        if (var3 != null && getSlimeSize() > 1)
         {
-            int var4 = this.rand.nextInt(4) - 2;
+            int var4 = rand.nextInt(4) - 2;
 
             if (par2 > 0)
             {
-                var4 += this.rand.nextInt(par2 + 1);
+                var4 += rand.nextInt(par2 + 1);
             }
 
             for (int var5 = 0; var5 < var4; ++var5)
             {
-                this.func_145779_a(var3, 1);
+                func_145779_a(var3, 1);
             }
         }
     }
@@ -109,7 +109,7 @@ public class EntityMagmaCube extends EntitySlime
 
     protected void alterSquishAmount()
     {
-        this.squishAmount *= 0.9F;
+        squishAmount *= 0.9F;
     }
 
     /**
@@ -117,8 +117,8 @@ public class EntityMagmaCube extends EntitySlime
      */
     protected void jump()
     {
-        this.motionY = (double)(0.42F + (float)this.getSlimeSize() * 0.1F);
-        this.isAirBorne = true;
+        motionY = 0.42F + getSlimeSize() * 0.1F;
+        isAirBorne = true;
     }
 
     /**
@@ -151,7 +151,7 @@ public class EntityMagmaCube extends EntitySlime
      */
     protected String getJumpSound()
     {
-        return this.getSlimeSize() > 1 ? "mob.magmacube.big" : "mob.magmacube.small";
+        return getSlimeSize() > 1 ? "mob.magmacube.big" : "mob.magmacube.small";
     }
 
     /**

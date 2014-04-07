@@ -81,7 +81,7 @@ public class Material
 
     public Material(MapColor par1MapColor)
     {
-        this.materialMapColor = par1MapColor;
+        materialMapColor = par1MapColor;
     }
 
     /**
@@ -119,7 +119,7 @@ public class Material
      */
     private Material setTranslucent()
     {
-        this.isTranslucent = true;
+        isTranslucent = true;
         return this;
     }
 
@@ -128,7 +128,7 @@ public class Material
      */
     protected Material setRequiresTool()
     {
-        this.requiresNoTool = false;
+        requiresNoTool = false;
         return this;
     }
 
@@ -137,7 +137,7 @@ public class Material
      */
     protected Material setBurning()
     {
-        this.canBurn = true;
+        canBurn = true;
         return this;
     }
 
@@ -146,7 +146,7 @@ public class Material
      */
     public boolean getCanBurn()
     {
-        return this.canBurn;
+        return canBurn;
     }
 
     /**
@@ -154,7 +154,7 @@ public class Material
      */
     public Material setReplaceable()
     {
-        this.replaceable = true;
+        replaceable = true;
         return this;
     }
 
@@ -164,7 +164,7 @@ public class Material
      */
     public boolean isReplaceable()
     {
-        return this.replaceable;
+        return replaceable;
     }
 
     /**
@@ -172,7 +172,7 @@ public class Material
      */
     public boolean isOpaque()
     {
-        return this.isTranslucent ? false : this.blocksMovement();
+        return isTranslucent ? false : blocksMovement();
     }
 
     /**
@@ -181,7 +181,7 @@ public class Material
      */
     public boolean isToolNotRequired()
     {
-        return this.requiresNoTool;
+        return requiresNoTool;
     }
 
     /**
@@ -190,7 +190,7 @@ public class Material
      */
     public int getMaterialMobility()
     {
-        return this.mobilityFlag;
+        return mobilityFlag;
     }
 
     /**
@@ -198,7 +198,7 @@ public class Material
      */
     protected Material setNoPushMobility()
     {
-        this.mobilityFlag = 1;
+        mobilityFlag = 1;
         return this;
     }
 
@@ -207,7 +207,7 @@ public class Material
      */
     protected Material setImmovableMobility()
     {
-        this.mobilityFlag = 2;
+        mobilityFlag = 2;
         return this;
     }
 
@@ -216,7 +216,7 @@ public class Material
      */
     protected Material setAdventureModeExempt()
     {
-        this.isAdventureModeExempt = true;
+        isAdventureModeExempt = true;
         return this;
     }
 
@@ -226,11 +226,11 @@ public class Material
      */
     public boolean isAdventureModeExempt()
     {
-        return this.isAdventureModeExempt;
+        return isAdventureModeExempt;
     }
 
     public MapColor getMaterialMapColor()
     {
-        return this.materialMapColor;
+        return materialMapColor;
     }
 }

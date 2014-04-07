@@ -35,8 +35,8 @@ public class AABBPool
 
     public AABBPool(int par1, int par2)
     {
-        this.maxNumCleans = par1;
-        this.numEntriesToRemove = par2;
+        maxNumCleans = par1;
+        numEntriesToRemove = par2;
     }
 
     /**
@@ -49,18 +49,18 @@ public class AABBPool
     {
         AxisAlignedBB var13;
 
-        if (this.nextPoolIndex >= this.listAABB.size())
+        if (nextPoolIndex >= listAABB.size())
         {
             var13 = new AxisAlignedBB(par1, par3, par5, par7, par9, par11);
-            this.listAABB.add(var13);
+            listAABB.add(var13);
         }
         else
         {
-            var13 = (AxisAlignedBB)this.listAABB.get(this.nextPoolIndex);
+            var13 = (AxisAlignedBB)listAABB.get(nextPoolIndex);
             var13.setBounds(par1, par3, par5, par7, par9, par11);
         }
 
-        ++this.nextPoolIndex;
+        ++nextPoolIndex;
         return var13;
     }
 
@@ -70,34 +70,34 @@ public class AABBPool
      */
     public void cleanPool()
     {
-        if (this.nextPoolIndex > this.maxPoolIndex)
+        if (nextPoolIndex > maxPoolIndex)
         {
-            this.maxPoolIndex = this.nextPoolIndex;
+            maxPoolIndex = nextPoolIndex;
         }
 
-        if (this.numCleans++ == this.maxNumCleans)
+        if (numCleans++ == maxNumCleans)
         {
-            int var1 = Math.max(this.maxPoolIndex, this.listAABB.size() - this.numEntriesToRemove);
+            int var1 = Math.max(maxPoolIndex, listAABB.size() - numEntriesToRemove);
 
-            while (this.listAABB.size() > var1)
+            while (listAABB.size() > var1)
             {
-                this.listAABB.remove(var1);
+                listAABB.remove(var1);
             }
 
-            this.maxPoolIndex = 0;
-            this.numCleans = 0;
+            maxPoolIndex = 0;
+            numCleans = 0;
         }
 
-        this.nextPoolIndex = 0;
+        nextPoolIndex = 0;
     }
 
     public int getlistAABBsize()
     {
-        return this.listAABB.size();
+        return listAABB.size();
     }
 
     public int getnextPoolIndex()
     {
-        return this.nextPoolIndex;
+        return nextPoolIndex;
     }
 }

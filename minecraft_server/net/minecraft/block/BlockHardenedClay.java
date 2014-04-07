@@ -11,7 +11,7 @@ public class BlockHardenedClay extends Block
     public BlockHardenedClay()
     {
         super(Material.rock);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     public MapColor getMapColor(int p_149728_1_)

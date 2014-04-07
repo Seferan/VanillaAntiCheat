@@ -27,26 +27,26 @@ public enum EnumCreatureType
 
     private EnumCreatureType(Class par3Class, int par4, Material par5Material, boolean par6, boolean par7)
     {
-        this.creatureClass = par3Class;
-        this.maxNumberOfCreature = par4;
-        this.creatureMaterial = par5Material;
-        this.isPeacefulCreature = par6;
-        this.isAnimal = par7;
+        creatureClass = par3Class;
+        maxNumberOfCreature = par4;
+        creatureMaterial = par5Material;
+        isPeacefulCreature = par6;
+        isAnimal = par7;
     }
 
     public Class getCreatureClass()
     {
-        return this.creatureClass;
+        return creatureClass;
     }
 
     public int getMaxNumberOfCreature()
     {
-        return this.maxNumberOfCreature;
+        return maxNumberOfCreature;
     }
 
     public Material getCreatureMaterial()
     {
-        return this.creatureMaterial;
+        return creatureMaterial;
     }
 
     /**
@@ -54,7 +54,7 @@ public enum EnumCreatureType
      */
     public boolean getPeacefulCreature()
     {
-        return this.isPeacefulCreature;
+        return isPeacefulCreature;
     }
 
     /**
@@ -62,6 +62,6 @@ public enum EnumCreatureType
      */
     public boolean getAnimal()
     {
-        return this.isAnimal;
+        return isAnimal;
     }
 }

@@ -19,7 +19,7 @@ public class EntitySenses
 
     public EntitySenses(EntityLiving par1EntityLiving)
     {
-        this.entityObj = par1EntityLiving;
+        entityObj = par1EntityLiving;
     }
 
     /**
@@ -27,8 +27,8 @@ public class EntitySenses
      */
     public void clearSensingCache()
     {
-        this.seenEntities.clear();
-        this.unseenEntities.clear();
+        seenEntities.clear();
+        unseenEntities.clear();
     }
 
     /**
@@ -37,27 +37,27 @@ public class EntitySenses
      */
     public boolean canSee(Entity par1Entity)
     {
-        if (this.seenEntities.contains(par1Entity))
+        if (seenEntities.contains(par1Entity))
         {
             return true;
         }
-        else if (this.unseenEntities.contains(par1Entity))
+        else if (unseenEntities.contains(par1Entity))
         {
             return false;
         }
         else
         {
-            this.entityObj.worldObj.theProfiler.startSection("canSee");
-            boolean var2 = this.entityObj.canEntityBeSeen(par1Entity);
-            this.entityObj.worldObj.theProfiler.endSection();
+            entityObj.worldObj.theProfiler.startSection("canSee");
+            boolean var2 = entityObj.canEntityBeSeen(par1Entity);
+            entityObj.worldObj.theProfiler.endSection();
 
             if (var2)
             {
-                this.seenEntities.add(par1Entity);
+                seenEntities.add(par1Entity);
             }
             else
             {
-                this.unseenEntities.add(par1Entity);
+                unseenEntities.add(par1Entity);
             }
 
             return var2;

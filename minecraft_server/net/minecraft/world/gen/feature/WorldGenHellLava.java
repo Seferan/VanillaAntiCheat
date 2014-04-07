@@ -15,8 +15,8 @@ public class WorldGenHellLava extends WorldGenerator
 
     public WorldGenHellLava(Block p_i45453_1_, boolean p_i45453_2_)
     {
-        this.field_150553_a = p_i45453_1_;
-        this.field_94524_b = p_i45453_2_;
+        field_150553_a = p_i45453_1_;
+        field_94524_b = p_i45453_2_;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5)
@@ -85,11 +85,11 @@ public class WorldGenHellLava extends WorldGenerator
                 ++var7;
             }
 
-            if (!this.field_94524_b && var6 == 4 && var7 == 1 || var6 == 5)
+            if (!field_94524_b && var6 == 4 && var7 == 1 || var6 == 5)
             {
-                par1World.setBlock(par3, par4, par5, this.field_150553_a, 0, 2);
+                par1World.setBlock(par3, par4, par5, field_150553_a, 0, 2);
                 par1World.scheduledUpdatesAreImmediate = true;
-                this.field_150553_a.updateTick(par1World, par3, par4, par5, par2Random);
+                field_150553_a.updateTick(par1World, par3, par4, par5, par2Random);
                 par1World.scheduledUpdatesAreImmediate = false;
             }
 

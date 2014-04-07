@@ -17,7 +17,7 @@ public class ItemFirework extends Item
     {
         if (!par3World.isClient)
         {
-            EntityFireworkRocket var11 = new EntityFireworkRocket(par3World, (double)((float)par4 + par8), (double)((float)par5 + par9), (double)((float)par6 + par10), par1ItemStack);
+            EntityFireworkRocket var11 = new EntityFireworkRocket(par3World, par4 + par8, par5 + par9, par6 + par10, par1ItemStack);
             par3World.spawnEntityInWorld(var11);
 
             if (!par2EntityPlayer.capabilities.isCreativeMode)

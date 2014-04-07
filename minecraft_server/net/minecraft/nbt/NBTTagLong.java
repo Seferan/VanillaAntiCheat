@@ -16,7 +16,7 @@ public class NBTTagLong extends NBTBase.NBTPrimitive
 
     public NBTTagLong(long p_i45134_1_)
     {
-        this.data = p_i45134_1_;
+        data = p_i45134_1_;
     }
 
     /**
@@ -25,7 +25,7 @@ public class NBTTagLong extends NBTBase.NBTPrimitive
      */
     void write(DataOutput par1DataOutput) throws IOException
     {
-        par1DataOutput.writeLong(this.data);
+        par1DataOutput.writeLong(data);
     }
 
     /**
@@ -34,7 +34,7 @@ public class NBTTagLong extends NBTBase.NBTPrimitive
      */
     void load(DataInput par1DataInput, int par2) throws IOException
     {
-        this.data = par1DataInput.readLong();
+        data = par1DataInput.readLong();
     }
 
     /**
@@ -47,7 +47,7 @@ public class NBTTagLong extends NBTBase.NBTPrimitive
 
     public String toString()
     {
-        return "" + this.data + "L";
+        return "" + data + "L";
     }
 
     /**
@@ -55,7 +55,7 @@ public class NBTTagLong extends NBTBase.NBTPrimitive
      */
     public NBTBase copy()
     {
-        return new NBTTagLong(this.data);
+        return new NBTTagLong(data);
     }
 
     public boolean equals(Object par1Obj)
@@ -63,7 +63,7 @@ public class NBTTagLong extends NBTBase.NBTPrimitive
         if (super.equals(par1Obj))
         {
             NBTTagLong var2 = (NBTTagLong)par1Obj;
-            return this.data == var2.data;
+            return data == var2.data;
         }
         else
         {
@@ -73,36 +73,36 @@ public class NBTTagLong extends NBTBase.NBTPrimitive
 
     public int hashCode()
     {
-        return super.hashCode() ^ (int)(this.data ^ this.data >>> 32);
+        return super.hashCode() ^ (int)(data ^ data >>> 32);
     }
 
     public long func_150291_c()
     {
-        return this.data;
+        return data;
     }
 
     public int func_150287_d()
     {
-        return (int)(this.data & -1L);
+        return (int)(data & -1L);
     }
 
     public short func_150289_e()
     {
-        return (short)((int)(this.data & 65535L));
+        return (short)((int)(data & 65535L));
     }
 
     public byte func_150290_f()
     {
-        return (byte)((int)(this.data & 255L));
+        return (byte)((int)(data & 255L));
     }
 
     public double func_150286_g()
     {
-        return (double)this.data;
+        return data;
     }
 
     public float func_150288_h()
     {
-        return (float)this.data;
+        return data;
     }
 }

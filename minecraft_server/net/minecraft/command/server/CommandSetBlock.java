@@ -44,9 +44,9 @@ public class CommandSetBlock extends CommandBase
             int var3 = par1ICommandSender.getCommandSenderPosition().posX;
             int var4 = par1ICommandSender.getCommandSenderPosition().posY;
             int var5 = par1ICommandSender.getCommandSenderPosition().posZ;
-            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var3, par2ArrayOfStr[0]));
-            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var4, par2ArrayOfStr[1]));
-            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender, (double)var5, par2ArrayOfStr[2]));
+            var3 = MathHelper.floor_double(func_110666_a(par1ICommandSender, var3, par2ArrayOfStr[0]));
+            var4 = MathHelper.floor_double(func_110666_a(par1ICommandSender, var4, par2ArrayOfStr[1]));
+            var5 = MathHelper.floor_double(func_110666_a(par1ICommandSender, var5, par2ArrayOfStr[2]));
             Block var6 = CommandBase.getBlockByText(par1ICommandSender, par2ArrayOfStr[3]);
             int var7 = 0;
 

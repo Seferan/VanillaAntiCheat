@@ -62,7 +62,7 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
 
     public boolean func_149910_g(IBlockAccess p_149910_1_, int p_149910_2_, int p_149910_3_, int p_149910_4_, int p_149910_5_)
     {
-        return this.func_149902_h(p_149910_1_, p_149910_2_, p_149910_3_, p_149910_4_, p_149910_5_) > 0;
+        return func_149902_h(p_149910_1_, p_149910_2_, p_149910_3_, p_149910_4_, p_149910_5_) > 0;
     }
 
     protected boolean func_149908_a(Block p_149908_1_)
@@ -73,6 +73,6 @@ public class BlockRedstoneRepeater extends BlockRedstoneDiode
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
-        this.func_149911_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
+        func_149911_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
     }
 }

@@ -11,7 +11,7 @@ public enum EnumRarity
 
     private EnumRarity(EnumChatFormatting p_i45349_3_, String p_i45349_4_)
     {
-        this.field_77937_e = p_i45349_3_;
-        this.field_77934_f = p_i45349_4_;
+        field_77937_e = p_i45349_3_;
+        field_77934_f = p_i45349_4_;
     }
 }

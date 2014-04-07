@@ -17,7 +17,7 @@ public class BlockLever extends Block
     protected BlockLever()
     {
         super(Material.circuits);
-        this.setcreativeTab(CreativeTabs.tabRedstone);
+        setcreativeTab(CreativeTabs.tabRedstone);
     }
 
     /**
@@ -111,7 +111,7 @@ public class BlockLever extends Block
 
         if (var8 == func_149819_b(1))
         {
-            if ((MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 1) == 0)
+            if ((MathHelper.floor_double(p_149689_5_.rotationYaw * 4.0F / 360.0F + 0.5D) & 1) == 0)
             {
                 p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_, 5 | var9, 2);
             }
@@ -122,7 +122,7 @@ public class BlockLever extends Block
         }
         else if (var8 == func_149819_b(0))
         {
-            if ((MathHelper.floor_double((double)(p_149689_5_.rotationYaw * 4.0F / 360.0F) + 0.5D) & 1) == 0)
+            if ((MathHelper.floor_double(p_149689_5_.rotationYaw * 4.0F / 360.0F + 0.5D) & 1) == 0)
             {
                 p_149689_1_.setBlockMetadata(p_149689_2_, p_149689_3_, p_149689_4_, 7 | var9, 2);
             }
@@ -162,7 +162,7 @@ public class BlockLever extends Block
 
     public void onNeighborBlockChange(World p_149695_1_, int p_149695_2_, int p_149695_3_, int p_149695_4_, Block p_149695_5_)
     {
-        if (this.func_149820_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
+        if (func_149820_e(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_))
         {
             int var6 = p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_) & 7;
             boolean var7 = false;
@@ -209,7 +209,7 @@ public class BlockLever extends Block
 
             if (var7)
             {
-                this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
+                dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, p_149695_1_.getBlockMetadata(p_149695_2_, p_149695_3_, p_149695_4_), 0);
                 p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
             }
         }
@@ -217,9 +217,9 @@ public class BlockLever extends Block
 
     private boolean func_149820_e(World p_149820_1_, int p_149820_2_, int p_149820_3_, int p_149820_4_)
     {
-        if (!this.canPlaceBlockAt(p_149820_1_, p_149820_2_, p_149820_3_, p_149820_4_))
+        if (!canPlaceBlockAt(p_149820_1_, p_149820_2_, p_149820_3_, p_149820_4_))
         {
-            this.dropBlockAsItem(p_149820_1_, p_149820_2_, p_149820_3_, p_149820_4_, p_149820_1_.getBlockMetadata(p_149820_2_, p_149820_3_, p_149820_4_), 0);
+            dropBlockAsItem(p_149820_1_, p_149820_2_, p_149820_3_, p_149820_4_, p_149820_1_.getBlockMetadata(p_149820_2_, p_149820_3_, p_149820_4_), 0);
             p_149820_1_.setBlockToAir(p_149820_2_, p_149820_3_, p_149820_4_);
             return false;
         }
@@ -236,32 +236,32 @@ public class BlockLever extends Block
 
         if (var5 == 1)
         {
-            this.setBlockBounds(0.0F, 0.2F, 0.5F - var6, var6 * 2.0F, 0.8F, 0.5F + var6);
+            setBlockBounds(0.0F, 0.2F, 0.5F - var6, var6 * 2.0F, 0.8F, 0.5F + var6);
         }
         else if (var5 == 2)
         {
-            this.setBlockBounds(1.0F - var6 * 2.0F, 0.2F, 0.5F - var6, 1.0F, 0.8F, 0.5F + var6);
+            setBlockBounds(1.0F - var6 * 2.0F, 0.2F, 0.5F - var6, 1.0F, 0.8F, 0.5F + var6);
         }
         else if (var5 == 3)
         {
-            this.setBlockBounds(0.5F - var6, 0.2F, 0.0F, 0.5F + var6, 0.8F, var6 * 2.0F);
+            setBlockBounds(0.5F - var6, 0.2F, 0.0F, 0.5F + var6, 0.8F, var6 * 2.0F);
         }
         else if (var5 == 4)
         {
-            this.setBlockBounds(0.5F - var6, 0.2F, 1.0F - var6 * 2.0F, 0.5F + var6, 0.8F, 1.0F);
+            setBlockBounds(0.5F - var6, 0.2F, 1.0F - var6 * 2.0F, 0.5F + var6, 0.8F, 1.0F);
         }
         else if (var5 != 5 && var5 != 6)
         {
             if (var5 == 0 || var5 == 7)
             {
                 var6 = 0.25F;
-                this.setBlockBounds(0.5F - var6, 0.4F, 0.5F - var6, 0.5F + var6, 1.0F, 0.5F + var6);
+                setBlockBounds(0.5F - var6, 0.4F, 0.5F - var6, 0.5F + var6, 1.0F, 0.5F + var6);
             }
         }
         else
         {
             var6 = 0.25F;
-            this.setBlockBounds(0.5F - var6, 0.0F, 0.5F - var6, 0.5F + var6, 0.6F, 0.5F + var6);
+            setBlockBounds(0.5F - var6, 0.0F, 0.5F - var6, 0.5F + var6, 0.6F, 0.5F + var6);
         }
     }
 
@@ -280,7 +280,7 @@ public class BlockLever extends Block
             int var11 = var10 & 7;
             int var12 = 8 - (var10 & 8);
             p_149727_1_.setBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_, var11 + var12, 3);
-            p_149727_1_.playSoundEffect((double)p_149727_2_ + 0.5D, (double)p_149727_3_ + 0.5D, (double)p_149727_4_ + 0.5D, "random.click", 0.3F, var12 > 0 ? 0.6F : 0.5F);
+            p_149727_1_.playSoundEffect(p_149727_2_ + 0.5D, p_149727_3_ + 0.5D, p_149727_4_ + 0.5D, "random.click", 0.3F, var12 > 0 ? 0.6F : 0.5F);
             p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_, p_149727_3_, p_149727_4_, this);
 
             if (var11 == 1)

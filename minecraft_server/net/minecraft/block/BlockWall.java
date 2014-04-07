@@ -15,10 +15,10 @@ public class BlockWall extends Block
     public BlockWall(Block p_i45435_1_)
     {
         super(p_i45435_1_.blockMaterial);
-        this.setHardness(p_i45435_1_.blockHardness);
-        this.setResistance(p_i45435_1_.blockResistance / 3.0F);
-        this.setStepSound(p_i45435_1_.stepSound);
-        this.setcreativeTab(CreativeTabs.tabBlock);
+        setHardness(p_i45435_1_.blockHardness);
+        setResistance(p_i45435_1_.blockResistance / 3.0F);
+        setStepSound(p_i45435_1_.stepSound);
+        setcreativeTab(CreativeTabs.tabBlock);
     }
 
     /**
@@ -46,10 +46,10 @@ public class BlockWall extends Block
 
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
     {
-        boolean var5 = this.func_150091_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ - 1);
-        boolean var6 = this.func_150091_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ + 1);
-        boolean var7 = this.func_150091_e(p_149719_1_, p_149719_2_ - 1, p_149719_3_, p_149719_4_);
-        boolean var8 = this.func_150091_e(p_149719_1_, p_149719_2_ + 1, p_149719_3_, p_149719_4_);
+        boolean var5 = func_150091_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ - 1);
+        boolean var6 = func_150091_e(p_149719_1_, p_149719_2_, p_149719_3_, p_149719_4_ + 1);
+        boolean var7 = func_150091_e(p_149719_1_, p_149719_2_ - 1, p_149719_3_, p_149719_4_);
+        boolean var8 = func_150091_e(p_149719_1_, p_149719_2_ + 1, p_149719_3_, p_149719_4_);
         float var9 = 0.25F;
         float var10 = 0.75F;
         float var11 = 0.25F;
@@ -89,7 +89,7 @@ public class BlockWall extends Block
             var12 = 0.6875F;
         }
 
-        this.setBlockBounds(var9, 0.0F, var11, var10, var13, var12);
+        setBlockBounds(var9, 0.0F, var11, var10, var13, var12);
     }
 
     /**
@@ -98,8 +98,8 @@ public class BlockWall extends Block
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
-        this.maxY = 1.5D;
+        setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        maxY = 1.5D;
         return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 

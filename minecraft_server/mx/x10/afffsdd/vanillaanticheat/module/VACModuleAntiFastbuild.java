@@ -16,12 +16,12 @@ public class VACModuleAntiFastbuild implements IVacModule
         blockCount = 0;
         kicked = false;
     }
-    
+
     public String getModuleName()
     {
         return "Anti-Fastbuild";
     }
-    
+
     public void updateState()
     {
         if (blockCount > 0) --blockCount;

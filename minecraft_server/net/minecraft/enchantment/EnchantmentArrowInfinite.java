@@ -7,7 +7,7 @@ public class EnchantmentArrowInfinite extends Enchantment
     public EnchantmentArrowInfinite(int par1, int par2)
     {
         super(par1, par2, EnumEnchantmentType.bow);
-        this.setName("arrowInfinite");
+        setName("arrowInfinite");
     }
 
     /**

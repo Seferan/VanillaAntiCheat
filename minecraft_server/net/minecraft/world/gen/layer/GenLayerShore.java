@@ -11,7 +11,7 @@ public class GenLayerShore extends GenLayer
     public GenLayerShore(long par1, GenLayer par3GenLayer)
     {
         super(par1);
-        this.parent = par3GenLayer;
+        parent = par3GenLayer;
     }
 
     /**
@@ -21,14 +21,14 @@ public class GenLayerShore extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        int[] var5 = this.parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
+        int[] var5 = parent.getInts(par1 - 1, par2 - 1, par3 + 2, par4 + 2);
         int[] var6 = IntCache.getIntCache(par3 * par4);
 
         for (int var7 = 0; var7 < par4; ++var7)
         {
             for (int var8 = 0; var8 < par3; ++var8)
             {
-                this.initChunkSeed((long)(var8 + par1), (long)(var7 + par2));
+                initChunkSeed(var8 + par1, var7 + par2);
                 int var9 = var5[var8 + 1 + (var7 + 1) * (par3 + 2)];
                 BiomeGenBase var10 = BiomeGenBase.func_150568_d(var9);
                 int var11;
@@ -59,7 +59,7 @@ public class GenLayerShore extends GenLayer
                     var13 = var5[var8 + 1 - 1 + (var7 + 1) * (par3 + 2)];
                     var14 = var5[var8 + 1 + (var7 + 1 + 1) * (par3 + 2)];
 
-                    if (this.func_151631_c(var11) && this.func_151631_c(var12) && this.func_151631_c(var13) && this.func_151631_c(var14))
+                    if (func_151631_c(var11) && func_151631_c(var12) && func_151631_c(var13) && func_151631_c(var14))
                     {
                         if (!func_151618_b(var11) && !func_151618_b(var12) && !func_151618_b(var13) && !func_151618_b(var14))
                         {
@@ -79,7 +79,7 @@ public class GenLayerShore extends GenLayer
                 {
                     if (var10 != null && var10.func_150559_j())
                     {
-                        this.func_151632_a(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150577_O.biomeID);
+                        func_151632_a(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150577_O.biomeID);
                     }
                     else if (var9 != BiomeGenBase.field_150589_Z.biomeID && var9 != BiomeGenBase.field_150607_aa.biomeID)
                     {
@@ -113,7 +113,7 @@ public class GenLayerShore extends GenLayer
 
                         if (!func_151618_b(var11) && !func_151618_b(var12) && !func_151618_b(var13) && !func_151618_b(var14))
                         {
-                            if (this.func_151633_d(var11) && this.func_151633_d(var12) && this.func_151633_d(var13) && this.func_151633_d(var14))
+                            if (func_151633_d(var11) && func_151633_d(var12) && func_151633_d(var13) && func_151633_d(var14))
                             {
                                 var6[var8 + var7 * par3] = var9;
                             }
@@ -130,7 +130,7 @@ public class GenLayerShore extends GenLayer
                 }
                 else
                 {
-                    this.func_151632_a(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150576_N.biomeID);
+                    func_151632_a(var5, var6, var8, var7, par3, var9, BiomeGenBase.field_150576_N.biomeID);
                 }
             }
         }

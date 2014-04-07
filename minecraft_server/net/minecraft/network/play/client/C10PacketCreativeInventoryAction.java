@@ -24,8 +24,8 @@ public class C10PacketCreativeInventoryAction extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149629_a = p_148837_1_.readShort();
-        this.field_149628_b = p_148837_1_.readItemStackFromBuffer();
+        field_149629_a = p_148837_1_.readShort();
+        field_149628_b = p_148837_1_.readItemStackFromBuffer();
     }
 
     /**
@@ -33,18 +33,18 @@ public class C10PacketCreativeInventoryAction extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeShort(this.field_149629_a);
-        p_148840_1_.writeItemStackToBuffer(this.field_149628_b);
+        p_148840_1_.writeShort(field_149629_a);
+        p_148840_1_.writeItemStackToBuffer(field_149628_b);
     }
 
     public int func_149627_c()
     {
-        return this.field_149629_a;
+        return field_149629_a;
     }
 
     public ItemStack func_149625_d()
     {
-        return this.field_149628_b;
+        return field_149628_b;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

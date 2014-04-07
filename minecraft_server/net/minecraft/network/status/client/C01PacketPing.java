@@ -17,7 +17,7 @@ public class C01PacketPing extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149290_a = p_148837_1_.readLong();
+        field_149290_a = p_148837_1_.readLong();
     }
 
     /**
@@ -25,7 +25,7 @@ public class C01PacketPing extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeLong(this.field_149290_a);
+        p_148840_1_.writeLong(field_149290_a);
     }
 
     public void func_148833_a(INetHandlerStatusServer p_149288_1_)
@@ -45,7 +45,7 @@ public class C01PacketPing extends Packet
 
     public long func_149289_c()
     {
-        return this.field_149290_a;
+        return field_149290_a;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

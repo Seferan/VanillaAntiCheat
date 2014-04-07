@@ -30,7 +30,7 @@ public class ChunkLoader
         }
         catch (ClassCastException var5)
         {
-            var3.lastUpdated = (long)par0NBTTagCompound.getInteger("LastUpdate");
+            var3.lastUpdated = par0NBTTagCompound.getInteger("LastUpdate");
         }
 
         return var3;
@@ -159,8 +159,8 @@ public class ChunkLoader
 
         public AnvilConverterData(int par1, int par2)
         {
-            this.x = par1;
-            this.z = par2;
+            x = par1;
+            z = par2;
         }
     }
 }

@@ -23,15 +23,15 @@ public class ShapedRecipes implements IRecipe
 
     public ShapedRecipes(int par1, int par2, ItemStack[] par3ArrayOfItemStack, ItemStack par4ItemStack)
     {
-        this.recipeWidth = par1;
-        this.recipeHeight = par2;
-        this.recipeItems = par3ArrayOfItemStack;
-        this.recipeOutput = par4ItemStack;
+        recipeWidth = par1;
+        recipeHeight = par2;
+        recipeItems = par3ArrayOfItemStack;
+        recipeOutput = par4ItemStack;
     }
 
     public ItemStack getRecipeOutput()
     {
-        return this.recipeOutput;
+        return recipeOutput;
     }
 
     /**
@@ -39,13 +39,13 @@ public class ShapedRecipes implements IRecipe
      */
     public boolean matches(InventoryCrafting par1InventoryCrafting, World par2World)
     {
-        for (int var3 = 0; var3 <= 3 - this.recipeWidth; ++var3)
+        for (int var3 = 0; var3 <= 3 - recipeWidth; ++var3)
         {
-            for (int var4 = 0; var4 <= 3 - this.recipeHeight; ++var4)
+            for (int var4 = 0; var4 <= 3 - recipeHeight; ++var4)
             {
-                if (this.checkMatch(par1InventoryCrafting, var3, var4, true)) { return true; }
+                if (checkMatch(par1InventoryCrafting, var3, var4, true)) { return true; }
 
-                if (this.checkMatch(par1InventoryCrafting, var3, var4, false)) { return true; }
+                if (checkMatch(par1InventoryCrafting, var3, var4, false)) { return true; }
             }
         }
 
@@ -65,15 +65,15 @@ public class ShapedRecipes implements IRecipe
                 int var8 = var6 - par3;
                 ItemStack var9 = null;
 
-                if (var7 >= 0 && var8 >= 0 && var7 < this.recipeWidth && var8 < this.recipeHeight)
+                if (var7 >= 0 && var8 >= 0 && var7 < recipeWidth && var8 < recipeHeight)
                 {
                     if (par4)
                     {
-                        var9 = this.recipeItems[this.recipeWidth - var7 - 1 + var8 * this.recipeWidth];
+                        var9 = recipeItems[recipeWidth - var7 - 1 + var8 * recipeWidth];
                     }
                     else
                     {
-                        var9 = this.recipeItems[var7 + var8 * this.recipeWidth];
+                        var9 = recipeItems[var7 + var8 * recipeWidth];
                     }
                 }
 
@@ -98,9 +98,9 @@ public class ShapedRecipes implements IRecipe
      */
     public ItemStack getCraftingResult(InventoryCrafting par1InventoryCrafting)
     {
-        ItemStack var2 = this.getRecipeOutput().copy();
+        ItemStack var2 = getRecipeOutput().copy();
 
-        if (this.field_92101_f)
+        if (field_92101_f)
         {
             for (int var3 = 0; var3 < par1InventoryCrafting.getSizeInventory(); ++var3)
             {
@@ -121,12 +121,12 @@ public class ShapedRecipes implements IRecipe
      */
     public int getRecipeSize()
     {
-        return this.recipeWidth * this.recipeHeight;
+        return recipeWidth * recipeHeight;
     }
 
     public ShapedRecipes func_92100_c()
     {
-        this.field_92101_f = true;
+        field_92101_f = true;
         return this;
     }
 }

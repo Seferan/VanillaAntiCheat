@@ -163,32 +163,32 @@ public class Block
 
     public boolean func_149730_j()
     {
-        return this.opaque;
+        return opaque;
     }
 
     public int getLightOpacity()
     {
-        return this.lightOpacity;
+        return lightOpacity;
     }
 
     public int getLightValue()
     {
-        return this.lightValue;
+        return lightValue;
     }
 
     public boolean func_149710_n()
     {
-        return this.field_149783_u;
+        return field_149783_u;
     }
 
     public Material getMaterial()
     {
-        return this.blockMaterial;
+        return blockMaterial;
     }
 
     public MapColor getMapColor(int p_149728_1_)
     {
-        return this.getMaterial().getMaterialMapColor();
+        return getMaterial().getMaterialMapColor();
     }
 
     public static void registerBlocks()
@@ -405,14 +405,14 @@ public class Block
 
     protected Block(Material p_i45394_1_)
     {
-        this.stepSound = soundTypeStone;
-        this.blockParticleGravity = 1.0F;
-        this.slipperiness = 0.6F;
-        this.blockMaterial = p_i45394_1_;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-        this.opaque = this.isOpaqueCube();
-        this.lightOpacity = this.isOpaqueCube() ? 255 : 0;
-        this.canBlockGrass = !p_i45394_1_.getCanBlockGrass();
+        stepSound = soundTypeStone;
+        blockParticleGravity = 1.0F;
+        slipperiness = 0.6F;
+        blockMaterial = p_i45394_1_;
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+        opaque = isOpaqueCube();
+        lightOpacity = isOpaqueCube() ? 255 : 0;
+        canBlockGrass = !p_i45394_1_.getCanBlockGrass();
     }
 
     /**
@@ -421,7 +421,7 @@ public class Block
      */
     protected Block setStepSound(Block.SoundType p_149672_1_)
     {
-        this.stepSound = p_149672_1_;
+        stepSound = p_149672_1_;
         return this;
     }
 
@@ -431,7 +431,7 @@ public class Block
      */
     protected Block setLightOpacity(int p_149713_1_)
     {
-        this.lightOpacity = p_149713_1_;
+        lightOpacity = p_149713_1_;
         return this;
     }
 
@@ -441,7 +441,7 @@ public class Block
      */
     protected Block setLightLevel(float p_149715_1_)
     {
-        this.lightValue = (int)(15.0F * p_149715_1_);
+        lightValue = (int)(15.0F * p_149715_1_);
         return this;
     }
 
@@ -451,13 +451,13 @@ public class Block
      */
     protected Block setResistance(float p_149752_1_)
     {
-        this.blockResistance = p_149752_1_ * 3.0F;
+        blockResistance = p_149752_1_ * 3.0F;
         return this;
     }
 
     public boolean isNormalCube()
     {
-        return this.blockMaterial.isOpaque() && this.renderAsNormalBlock() && !this.canProvidePower();
+        return blockMaterial.isOpaque() && renderAsNormalBlock() && !canProvidePower();
     }
 
     public boolean renderAsNormalBlock()
@@ -467,7 +467,7 @@ public class Block
 
     public boolean getBlocksMovement(IBlockAccess p_149655_1_, int p_149655_2_, int p_149655_3_, int p_149655_4_)
     {
-        return !this.blockMaterial.blocksMovement();
+        return !blockMaterial.blocksMovement();
     }
 
     /**
@@ -483,11 +483,11 @@ public class Block
      */
     protected Block setHardness(float p_149711_1_)
     {
-        this.blockHardness = p_149711_1_;
+        blockHardness = p_149711_1_;
 
-        if (this.blockResistance < p_149711_1_ * 5.0F)
+        if (blockResistance < p_149711_1_ * 5.0F)
         {
-            this.blockResistance = p_149711_1_ * 5.0F;
+            blockResistance = p_149711_1_ * 5.0F;
         }
 
         return this;
@@ -495,13 +495,13 @@ public class Block
 
     protected Block setBlockUnbreakable()
     {
-        this.setHardness(-1.0F);
+        setHardness(-1.0F);
         return this;
     }
 
     public float getBlockHardness(World p_149712_1_, int p_149712_2_, int p_149712_3_, int p_149712_4_)
     {
-        return this.blockHardness;
+        return blockHardness;
     }
 
     /**
@@ -509,7 +509,7 @@ public class Block
      */
     protected Block setTickRandomly(boolean p_149675_1_)
     {
-        this.needsRandomTick = p_149675_1_;
+        needsRandomTick = p_149675_1_;
         return this;
     }
 
@@ -521,22 +521,22 @@ public class Block
      */
     public boolean getTickRandomly()
     {
-        return this.needsRandomTick;
+        return needsRandomTick;
     }
 
     public boolean hasTileEntity()
     {
-        return this.isBlockContainer;
+        return isBlockContainer;
     }
 
     protected final void setBlockBounds(float p_149676_1_, float p_149676_2_, float p_149676_3_, float p_149676_4_, float p_149676_5_, float p_149676_6_)
     {
-        this.minX = (double)p_149676_1_;
-        this.minY = (double)p_149676_2_;
-        this.minZ = (double)p_149676_3_;
-        this.maxX = (double)p_149676_4_;
-        this.maxY = (double)p_149676_5_;
-        this.maxZ = (double)p_149676_6_;
+        minX = p_149676_1_;
+        minY = p_149676_2_;
+        minZ = p_149676_3_;
+        maxX = p_149676_4_;
+        maxY = p_149676_5_;
+        maxZ = p_149676_6_;
     }
 
     public boolean isBlockSolid(IBlockAccess p_149747_1_, int p_149747_2_, int p_149747_3_, int p_149747_4_, int p_149747_5_)
@@ -546,7 +546,7 @@ public class Block
 
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {
-        AxisAlignedBB var8 = this.getCollisionBoundingBoxFromPool(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
+        AxisAlignedBB var8 = getCollisionBoundingBoxFromPool(p_149743_1_, p_149743_2_, p_149743_3_, p_149743_4_);
 
         if (var8 != null && p_149743_5_.intersectsWith(var8))
         {
@@ -560,7 +560,7 @@ public class Block
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
     {
-        return AxisAlignedBB.getAABBPool().getAABB((double)p_149668_2_ + this.minX, (double)p_149668_3_ + this.minY, (double)p_149668_4_ + this.minZ, (double)p_149668_2_ + this.maxX, (double)p_149668_3_ + this.maxY, (double)p_149668_4_ + this.maxZ);
+        return AxisAlignedBB.getAABBPool().getAABB(p_149668_2_ + minX, p_149668_3_ + minY, p_149668_4_ + minZ, p_149668_2_ + maxX, p_149668_3_ + maxY, p_149668_4_ + maxZ);
     }
 
     public boolean isOpaqueCube()
@@ -575,7 +575,7 @@ public class Block
      */
     public boolean canCollideCheck(int p_149678_1_, boolean p_149678_2_)
     {
-        return this.isCollidable();
+        return isCollidable();
     }
 
     public boolean isCollidable()
@@ -626,7 +626,7 @@ public class Block
 
     public float getPlayerRelativeBlockHardness(EntityPlayer p_149737_1_, World p_149737_2_, int p_149737_3_, int p_149737_4_, int p_149737_5_)
     {
-        float var6 = this.getBlockHardness(p_149737_2_, p_149737_3_, p_149737_4_, p_149737_5_);
+        float var6 = getBlockHardness(p_149737_2_, p_149737_3_, p_149737_4_, p_149737_5_);
         return var6 < 0.0F ? 0.0F : (!p_149737_1_.canHarvestBlock(this) ? p_149737_1_.getCurrentPlayerStrVsBlock(this, false) / var6 / 100.0F : p_149737_1_.getCurrentPlayerStrVsBlock(this, true) / var6 / 30.0F);
     }
 
@@ -635,7 +635,7 @@ public class Block
      */
     public final void dropBlockAsItem(World p_149697_1_, int p_149697_2_, int p_149697_3_, int p_149697_4_, int p_149697_5_, int p_149697_6_)
     {
-        this.dropBlockAsItemWithChance(p_149697_1_, p_149697_2_, p_149697_3_, p_149697_4_, p_149697_5_, 1.0F, p_149697_6_);
+        dropBlockAsItemWithChance(p_149697_1_, p_149697_2_, p_149697_3_, p_149697_4_, p_149697_5_, 1.0F, p_149697_6_);
     }
 
     /**
@@ -646,17 +646,17 @@ public class Block
     {
         if (!p_149690_1_.isClient)
         {
-            int var8 = this.quantityDroppedWithBonus(p_149690_7_, p_149690_1_.rand);
+            int var8 = quantityDroppedWithBonus(p_149690_7_, p_149690_1_.rand);
 
             for (int var9 = 0; var9 < var8; ++var9)
             {
                 if (p_149690_1_.rand.nextFloat() <= p_149690_6_)
                 {
-                    Item var10 = this.getItemDropped(p_149690_5_, p_149690_1_.rand, p_149690_7_);
+                    Item var10 = getItemDropped(p_149690_5_, p_149690_1_.rand, p_149690_7_);
 
                     if (var10 != null)
                     {
-                        this.dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var10, 1, this.damageDropped(p_149690_5_)));
+                        dropBlockAsItem_do(p_149690_1_, p_149690_2_, p_149690_3_, p_149690_4_, new ItemStack(var10, 1, damageDropped(p_149690_5_)));
                     }
                 }
             }
@@ -672,10 +672,10 @@ public class Block
         if (!p_149642_1_.isClient && p_149642_1_.getGameRules().getGameRuleBooleanValue("doTileDrops"))
         {
             float var6 = 0.7F;
-            double var7 = (double)(p_149642_1_.rand.nextFloat() * var6) + (double)(1.0F - var6) * 0.5D;
-            double var9 = (double)(p_149642_1_.rand.nextFloat() * var6) + (double)(1.0F - var6) * 0.5D;
-            double var11 = (double)(p_149642_1_.rand.nextFloat() * var6) + (double)(1.0F - var6) * 0.5D;
-            EntityItem var13 = new EntityItem(p_149642_1_, (double)p_149642_2_ + var7, (double)p_149642_3_ + var9, (double)p_149642_4_ + var11, p_149642_5_);
+            double var7 = p_149642_1_.rand.nextFloat() * var6 + (1.0F - var6) * 0.5D;
+            double var9 = p_149642_1_.rand.nextFloat() * var6 + (1.0F - var6) * 0.5D;
+            double var11 = p_149642_1_.rand.nextFloat() * var6 + (1.0F - var6) * 0.5D;
+            EntityItem var13 = new EntityItem(p_149642_1_, p_149642_2_ + var7, p_149642_3_ + var9, p_149642_4_ + var11, p_149642_5_);
             var13.delayBeforeCanPickup = 10;
             p_149642_1_.spawnEntityInWorld(var13);
         }
@@ -689,7 +689,7 @@ public class Block
             {
                 int var6 = EntityXPOrb.getXPSplit(p_149657_5_);
                 p_149657_5_ -= var6;
-                p_149657_1_.spawnEntityInWorld(new EntityXPOrb(p_149657_1_, (double)p_149657_2_ + 0.5D, (double)p_149657_3_ + 0.5D, (double)p_149657_4_ + 0.5D, var6));
+                p_149657_1_.spawnEntityInWorld(new EntityXPOrb(p_149657_1_, p_149657_2_ + 0.5D, p_149657_3_ + 0.5D, p_149657_4_ + 0.5D, var6));
             }
         }
     }
@@ -709,47 +709,47 @@ public class Block
      */
     public float getExplosionResistance(Entity p_149638_1_)
     {
-        return this.blockResistance / 5.0F;
+        return blockResistance / 5.0F;
     }
 
     public MovingObjectPosition collisionRayTrace(World p_149731_1_, int p_149731_2_, int p_149731_3_, int p_149731_4_, Vec3 p_149731_5_, Vec3 p_149731_6_)
     {
-        this.setBlockBoundsBasedOnState(p_149731_1_, p_149731_2_, p_149731_3_, p_149731_4_);
-        p_149731_5_ = p_149731_5_.addVector((double)(-p_149731_2_), (double)(-p_149731_3_), (double)(-p_149731_4_));
-        p_149731_6_ = p_149731_6_.addVector((double)(-p_149731_2_), (double)(-p_149731_3_), (double)(-p_149731_4_));
-        Vec3 var7 = p_149731_5_.getIntermediateWithXValue(p_149731_6_, this.minX);
-        Vec3 var8 = p_149731_5_.getIntermediateWithXValue(p_149731_6_, this.maxX);
-        Vec3 var9 = p_149731_5_.getIntermediateWithYValue(p_149731_6_, this.minY);
-        Vec3 var10 = p_149731_5_.getIntermediateWithYValue(p_149731_6_, this.maxY);
-        Vec3 var11 = p_149731_5_.getIntermediateWithZValue(p_149731_6_, this.minZ);
-        Vec3 var12 = p_149731_5_.getIntermediateWithZValue(p_149731_6_, this.maxZ);
+        setBlockBoundsBasedOnState(p_149731_1_, p_149731_2_, p_149731_3_, p_149731_4_);
+        p_149731_5_ = p_149731_5_.addVector((-p_149731_2_), (-p_149731_3_), (-p_149731_4_));
+        p_149731_6_ = p_149731_6_.addVector((-p_149731_2_), (-p_149731_3_), (-p_149731_4_));
+        Vec3 var7 = p_149731_5_.getIntermediateWithXValue(p_149731_6_, minX);
+        Vec3 var8 = p_149731_5_.getIntermediateWithXValue(p_149731_6_, maxX);
+        Vec3 var9 = p_149731_5_.getIntermediateWithYValue(p_149731_6_, minY);
+        Vec3 var10 = p_149731_5_.getIntermediateWithYValue(p_149731_6_, maxY);
+        Vec3 var11 = p_149731_5_.getIntermediateWithZValue(p_149731_6_, minZ);
+        Vec3 var12 = p_149731_5_.getIntermediateWithZValue(p_149731_6_, maxZ);
 
-        if (!this.isVecInsideYZBounds(var7))
+        if (!isVecInsideYZBounds(var7))
         {
             var7 = null;
         }
 
-        if (!this.isVecInsideYZBounds(var8))
+        if (!isVecInsideYZBounds(var8))
         {
             var8 = null;
         }
 
-        if (!this.isVecInsideXZBounds(var9))
+        if (!isVecInsideXZBounds(var9))
         {
             var9 = null;
         }
 
-        if (!this.isVecInsideXZBounds(var10))
+        if (!isVecInsideXZBounds(var10))
         {
             var10 = null;
         }
 
-        if (!this.isVecInsideXYBounds(var11))
+        if (!isVecInsideXYBounds(var11))
         {
             var11 = null;
         }
 
-        if (!this.isVecInsideXYBounds(var12))
+        if (!isVecInsideXYBounds(var12))
         {
             var12 = null;
         }
@@ -824,7 +824,7 @@ public class Block
                 var14 = 3;
             }
 
-            return new MovingObjectPosition(p_149731_2_, p_149731_3_, p_149731_4_, var14, var13.addVector((double)p_149731_2_, (double)p_149731_3_, (double)p_149731_4_));
+            return new MovingObjectPosition(p_149731_2_, p_149731_3_, p_149731_4_, var14, var13.addVector(p_149731_2_, p_149731_3_, p_149731_4_));
         }
     }
 
@@ -833,7 +833,7 @@ public class Block
      */
     private boolean isVecInsideYZBounds(Vec3 p_149654_1_)
     {
-        return p_149654_1_ == null ? false : p_149654_1_.yCoord >= this.minY && p_149654_1_.yCoord <= this.maxY && p_149654_1_.zCoord >= this.minZ && p_149654_1_.zCoord <= this.maxZ;
+        return p_149654_1_ == null ? false : p_149654_1_.yCoord >= minY && p_149654_1_.yCoord <= maxY && p_149654_1_.zCoord >= minZ && p_149654_1_.zCoord <= maxZ;
     }
 
     /**
@@ -841,7 +841,7 @@ public class Block
      */
     private boolean isVecInsideXZBounds(Vec3 p_149687_1_)
     {
-        return p_149687_1_ == null ? false : p_149687_1_.xCoord >= this.minX && p_149687_1_.xCoord <= this.maxX && p_149687_1_.zCoord >= this.minZ && p_149687_1_.zCoord <= this.maxZ;
+        return p_149687_1_ == null ? false : p_149687_1_.xCoord >= minX && p_149687_1_.xCoord <= maxX && p_149687_1_.zCoord >= minZ && p_149687_1_.zCoord <= maxZ;
     }
 
     /**
@@ -849,7 +849,7 @@ public class Block
      */
     private boolean isVecInsideXYBounds(Vec3 p_149661_1_)
     {
-        return p_149661_1_ == null ? false : p_149661_1_.xCoord >= this.minX && p_149661_1_.xCoord <= this.maxX && p_149661_1_.yCoord >= this.minY && p_149661_1_.yCoord <= this.maxY;
+        return p_149661_1_ == null ? false : p_149661_1_.xCoord >= minX && p_149661_1_.xCoord <= maxX && p_149661_1_.yCoord >= minY && p_149661_1_.yCoord <= maxY;
     }
 
     /**
@@ -861,7 +861,7 @@ public class Block
 
     public boolean canReplace(World p_149705_1_, int p_149705_2_, int p_149705_3_, int p_149705_4_, int p_149705_5_, ItemStack p_149705_6_)
     {
-        return this.canPlaceBlockOnSide(p_149705_1_, p_149705_2_, p_149705_3_, p_149705_4_, p_149705_5_);
+        return canPlaceBlockOnSide(p_149705_1_, p_149705_2_, p_149705_3_, p_149705_4_, p_149705_5_);
     }
 
     /**
@@ -870,7 +870,7 @@ public class Block
      */
     public boolean canPlaceBlockOnSide(World p_149707_1_, int p_149707_2_, int p_149707_3_, int p_149707_4_, int p_149707_5_)
     {
-        return this.canPlaceBlockAt(p_149707_1_, p_149707_2_, p_149707_3_, p_149707_4_);
+        return canPlaceBlockAt(p_149707_1_, p_149707_2_, p_149707_3_, p_149707_4_);
     }
 
     public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
@@ -915,7 +915,7 @@ public class Block
      */
     public final double getBlockBoundsMinX()
     {
-        return this.minX;
+        return minX;
     }
 
     /**
@@ -923,7 +923,7 @@ public class Block
      */
     public final double getBlockBoundsMaxX()
     {
-        return this.maxX;
+        return maxX;
     }
 
     /**
@@ -931,7 +931,7 @@ public class Block
      */
     public final double getBlockBoundsMinY()
     {
-        return this.minY;
+        return minY;
     }
 
     /**
@@ -939,7 +939,7 @@ public class Block
      */
     public final double getBlockBoundsMaxY()
     {
-        return this.maxY;
+        return maxY;
     }
 
     /**
@@ -947,7 +947,7 @@ public class Block
      */
     public final double getBlockBoundsMinZ()
     {
-        return this.minZ;
+        return minZ;
     }
 
     /**
@@ -955,7 +955,7 @@ public class Block
      */
     public final double getBlockBoundsMaxZ()
     {
-        return this.maxZ;
+        return maxZ;
     }
 
     public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
@@ -993,25 +993,25 @@ public class Block
         p_149636_2_.addStat(StatList.mineBlockStatArray[getIdFromBlock(this)], 1);
         p_149636_2_.addExhaustion(0.025F);
 
-        if (this.canSilkHarvest() && EnchantmentHelper.getSilkTouchModifier(p_149636_2_))
+        if (canSilkHarvest() && EnchantmentHelper.getSilkTouchModifier(p_149636_2_))
         {
-            ItemStack var8 = this.createStackedBlock(p_149636_6_);
+            ItemStack var8 = createStackedBlock(p_149636_6_);
 
             if (var8 != null)
             {
-                this.dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, var8);
+                dropBlockAsItem_do(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, var8);
             }
         }
         else
         {
             int var7 = EnchantmentHelper.getFortuneModifier(p_149636_2_);
-            this.dropBlockAsItem(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_, var7);
+            dropBlockAsItem(p_149636_1_, p_149636_3_, p_149636_4_, p_149636_5_, p_149636_6_, var7);
         }
     }
 
     protected boolean canSilkHarvest()
     {
-        return this.renderAsNormalBlock() && !this.isBlockContainer;
+        return renderAsNormalBlock() && !isBlockContainer;
     }
 
     /**
@@ -1039,7 +1039,7 @@ public class Block
      */
     public int quantityDroppedWithBonus(int p_149679_1_, Random p_149679_2_)
     {
-        return this.quantityDropped(p_149679_2_);
+        return quantityDropped(p_149679_2_);
     }
 
     /**
@@ -1067,7 +1067,7 @@ public class Block
 
     public Block setUnlocalizedName(String p_149663_1_)
     {
-        this.unlocalizedName = p_149663_1_;
+        unlocalizedName = p_149663_1_;
         return this;
     }
 
@@ -1076,7 +1076,7 @@ public class Block
      */
     public String getLocalizedName()
     {
-        return StatCollector.translateToLocal(this.getUnlocalizedName() + ".name");
+        return StatCollector.translateToLocal(getUnlocalizedName() + ".name");
     }
 
     /**
@@ -1085,7 +1085,7 @@ public class Block
      */
     public String getUnlocalizedName()
     {
-        return "tile." + this.unlocalizedName;
+        return "tile." + unlocalizedName;
     }
 
     public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_, int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_)
@@ -1099,18 +1099,18 @@ public class Block
      */
     public boolean getEnableStats()
     {
-        return this.enableStats;
+        return enableStats;
     }
 
     protected Block disableStats()
     {
-        this.enableStats = false;
+        enableStats = false;
         return this;
     }
 
     public int getMobilityFlag()
     {
-        return this.blockMaterial.getMaterialMobility();
+        return blockMaterial.getMaterialMobility();
     }
 
     /**
@@ -1125,12 +1125,12 @@ public class Block
      */
     public int getDamageValue(World p_149643_1_, int p_149643_2_, int p_149643_3_, int p_149643_4_)
     {
-        return this.damageDropped(p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_, p_149643_4_));
+        return damageDropped(p_149643_1_.getBlockMetadata(p_149643_2_, p_149643_3_, p_149643_4_));
     }
 
     public Block setcreativeTab(CreativeTabs p_149647_1_)
     {
-        this.displayOnCreativeTab = p_149647_1_;
+        displayOnCreativeTab = p_149647_1_;
         return this;
     }
 
@@ -1187,7 +1187,7 @@ public class Block
 
     protected Block func_149658_d(String p_149658_1_)
     {
-        this.textureName = p_149658_1_;
+        textureName = p_149658_1_;
         return this;
     }
 
@@ -1205,34 +1205,34 @@ public class Block
 
         public SoundType(String p_i45393_1_, float p_i45393_2_, float p_i45393_3_)
         {
-            this.soundName = p_i45393_1_;
-            this.volume = p_i45393_2_;
-            this.frequency = p_i45393_3_;
+            soundName = p_i45393_1_;
+            volume = p_i45393_2_;
+            frequency = p_i45393_3_;
         }
 
         public float getVolume()
         {
-            return this.volume;
+            return volume;
         }
 
         public float getFrequency()
         {
-            return this.frequency;
+            return frequency;
         }
 
         public String getDigResourcePath()
         {
-            return "dig." + this.soundName;
+            return "dig." + soundName;
         }
 
         public String getStepResourcePath()
         {
-            return "step." + this.soundName;
+            return "step." + soundName;
         }
 
         public String func_150496_b()
         {
-            return this.getDigResourcePath();
+            return getDigResourcePath();
         }
     }
 }

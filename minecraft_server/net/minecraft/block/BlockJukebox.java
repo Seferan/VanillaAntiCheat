@@ -18,7 +18,7 @@ public class BlockJukebox extends BlockContainer
     protected BlockJukebox()
     {
         super(Material.wood);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -32,7 +32,7 @@ public class BlockJukebox extends BlockContainer
         }
         else
         {
-            this.func_149925_e(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
+            func_149925_e(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_);
             return true;
         }
     }
@@ -68,11 +68,11 @@ public class BlockJukebox extends BlockContainer
                     var5.func_145857_a((ItemStack)null);
                     p_149925_1_.setBlockMetadata(p_149925_2_, p_149925_3_, p_149925_4_, 0, 2);
                     float var7 = 0.7F;
-                    double var8 = (double)(p_149925_1_.rand.nextFloat() * var7) + (double)(1.0F - var7) * 0.5D;
-                    double var10 = (double)(p_149925_1_.rand.nextFloat() * var7) + (double)(1.0F - var7) * 0.2D + 0.6D;
-                    double var12 = (double)(p_149925_1_.rand.nextFloat() * var7) + (double)(1.0F - var7) * 0.5D;
+                    double var8 = p_149925_1_.rand.nextFloat() * var7 + (1.0F - var7) * 0.5D;
+                    double var10 = p_149925_1_.rand.nextFloat() * var7 + (1.0F - var7) * 0.2D + 0.6D;
+                    double var12 = p_149925_1_.rand.nextFloat() * var7 + (1.0F - var7) * 0.5D;
                     ItemStack var14 = var6.copy();
-                    EntityItem var15 = new EntityItem(p_149925_1_, (double)p_149925_2_ + var8, (double)p_149925_3_ + var10, (double)p_149925_4_ + var12, var14);
+                    EntityItem var15 = new EntityItem(p_149925_1_, p_149925_2_ + var8, p_149925_3_ + var10, p_149925_4_ + var12, var14);
                     var15.delayBeforeCanPickup = 10;
                     p_149925_1_.spawnEntityInWorld(var15);
                 }
@@ -82,7 +82,7 @@ public class BlockJukebox extends BlockContainer
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        this.func_149925_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
+        func_149925_e(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_);
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
 
@@ -129,11 +129,11 @@ public class BlockJukebox extends BlockContainer
 
             if (p_145839_1_.func_150297_b("RecordItem", 10))
             {
-                this.func_145857_a(ItemStack.loadItemStackFromNBT(p_145839_1_.getCompoundTag("RecordItem")));
+                func_145857_a(ItemStack.loadItemStackFromNBT(p_145839_1_.getCompoundTag("RecordItem")));
             }
             else if (p_145839_1_.getInteger("Record") > 0)
             {
-                this.func_145857_a(new ItemStack(Item.getItemById(p_145839_1_.getInteger("Record")), 1, 0));
+                func_145857_a(new ItemStack(Item.getItemById(p_145839_1_.getInteger("Record")), 1, 0));
             }
         }
 
@@ -141,22 +141,22 @@ public class BlockJukebox extends BlockContainer
         {
             super.writeToNBT(p_145841_1_);
 
-            if (this.func_145856_a() != null)
+            if (func_145856_a() != null)
             {
-                p_145841_1_.setTag("RecordItem", this.func_145856_a().writeToNBT(new NBTTagCompound()));
-                p_145841_1_.setInteger("Record", Item.getIdFromItem(this.func_145856_a().getItem()));
+                p_145841_1_.setTag("RecordItem", func_145856_a().writeToNBT(new NBTTagCompound()));
+                p_145841_1_.setInteger("Record", Item.getIdFromItem(func_145856_a().getItem()));
             }
         }
 
         public ItemStack func_145856_a()
         {
-            return this.field_145858_a;
+            return field_145858_a;
         }
 
         public void func_145857_a(ItemStack p_145857_1_)
         {
-            this.field_145858_a = p_145857_1_;
-            this.onInventoryChanged();
+            field_145858_a = p_145857_1_;
+            onInventoryChanged();
         }
     }
 }

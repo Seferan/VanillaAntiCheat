@@ -10,8 +10,8 @@ public class RangedAttribute extends BaseAttribute
     public RangedAttribute(String par1Str, double par2, double par4, double par6)
     {
         super(par1Str, par2);
-        this.minimumValue = par4;
-        this.maximumValue = par6;
+        minimumValue = par4;
+        maximumValue = par6;
 
         if (par4 > par6)
         {
@@ -26,25 +26,25 @@ public class RangedAttribute extends BaseAttribute
 
     public RangedAttribute setDescription(String par1Str)
     {
-        this.description = par1Str;
+        description = par1Str;
         return this;
     }
 
     public String getDescription()
     {
-        return this.description;
+        return description;
     }
 
     public double clampValue(double par1)
     {
-        if (par1 < this.minimumValue)
+        if (par1 < minimumValue)
         {
-            par1 = this.minimumValue;
+            par1 = minimumValue;
         }
 
-        if (par1 > this.maximumValue)
+        if (par1 > maximumValue)
         {
-            par1 = this.maximumValue;
+            par1 = maximumValue;
         }
 
         return par1;

@@ -11,12 +11,12 @@ public class ItemColored extends ItemBlock
     public ItemColored(Block p_i45332_1_, boolean p_i45332_2_)
     {
         super(p_i45332_1_);
-        this.field_150944_b = p_i45332_1_;
+        field_150944_b = p_i45332_1_;
 
         if (p_i45332_2_)
         {
-            this.setMaxDamage(0);
-            this.setHasSubtypes(true);
+            setMaxDamage(0);
+            setHasSubtypes(true);
         }
     }
 
@@ -30,7 +30,7 @@ public class ItemColored extends ItemBlock
 
     public ItemColored func_150943_a(String[] p_150943_1_)
     {
-        this.field_150945_c = p_150943_1_;
+        field_150945_c = p_150943_1_;
         return this;
     }
 
@@ -41,14 +41,14 @@ public class ItemColored extends ItemBlock
      */
     public String getUnlocalizedName(ItemStack par1ItemStack)
     {
-        if (this.field_150945_c == null)
+        if (field_150945_c == null)
         {
             return super.getUnlocalizedName(par1ItemStack);
         }
         else
         {
             int var2 = par1ItemStack.getItemDamage();
-            return var2 >= 0 && var2 < this.field_150945_c.length ? super.getUnlocalizedName(par1ItemStack) + "." + this.field_150945_c[var2] : super.getUnlocalizedName(par1ItemStack);
+            return var2 >= 0 && var2 < field_150945_c.length ? super.getUnlocalizedName(par1ItemStack) + "." + field_150945_c[var2] : super.getUnlocalizedName(par1ItemStack);
         }
     }
 }

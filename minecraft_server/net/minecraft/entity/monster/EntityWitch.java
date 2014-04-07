@@ -47,19 +47,19 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
     public EntityWitch(World par1World)
     {
         super(par1World);
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIArrowAttack(this, 1.0D, 60, 10.0F));
-        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(3, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+        tasks.addTask(1, new EntityAISwimming(this));
+        tasks.addTask(2, new EntityAIArrowAttack(this, 1.0D, 60, 10.0F));
+        tasks.addTask(2, new EntityAIWander(this, 1.0D));
+        tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        tasks.addTask(3, new EntityAILookIdle(this));
+        targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataWatcher().addObject(21, Byte.valueOf((byte)0));
+        getDataWatcher().addObject(21, Byte.valueOf((byte)0));
     }
 
     /**
@@ -91,7 +91,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
      */
     public void setAggressive(boolean par1)
     {
-        this.getDataWatcher().updateObject(21, Byte.valueOf((byte)(par1 ? 1 : 0)));
+        getDataWatcher().updateObject(21, Byte.valueOf((byte)(par1 ? 1 : 0)));
     }
 
     /**
@@ -99,14 +99,14 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
      */
     public boolean getAggressive()
     {
-        return this.getDataWatcher().getWatchableObjectByte(21) == 1;
+        return getDataWatcher().getWatchableObjectByte(21) == 1;
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(26.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(26.0D);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
     }
 
     /**
@@ -124,15 +124,15 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
      */
     public void onLivingUpdate()
     {
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            if (this.getAggressive())
+            if (getAggressive())
             {
-                if (this.witchAttackTimer-- <= 0)
+                if (witchAttackTimer-- <= 0)
                 {
-                    this.setAggressive(false);
-                    ItemStack var1 = this.getHeldItem();
-                    this.setCurrentItemOrArmor(0, (ItemStack)null);
+                    setAggressive(false);
+                    ItemStack var1 = getHeldItem();
+                    setCurrentItemOrArmor(0, (ItemStack)null);
 
                     if (var1 != null && var1.getItem() == Items.potionitem)
                     {
@@ -145,53 +145,53 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
                             while (var3.hasNext())
                             {
                                 PotionEffect var4 = (PotionEffect)var3.next();
-                                this.addPotionEffect(new PotionEffect(var4));
+                                addPotionEffect(new PotionEffect(var4));
                             }
                         }
                     }
 
-                    this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(field_110185_bq);
+                    getEntityAttribute(SharedMonsterAttributes.movementSpeed).removeModifier(field_110185_bq);
                 }
             }
             else
             {
                 short var5 = -1;
 
-                if (this.rand.nextFloat() < 0.15F && this.isInsideOfMaterial(Material.field_151586_h) && !this.isPotionActive(Potion.waterBreathing))
+                if (rand.nextFloat() < 0.15F && isInsideOfMaterial(Material.field_151586_h) && !this.isPotionActive(Potion.waterBreathing))
                 {
                     var5 = 8237;
                 }
-                else if (this.rand.nextFloat() < 0.15F && this.isBurning() && !this.isPotionActive(Potion.fireResistance))
+                else if (rand.nextFloat() < 0.15F && isBurning() && !this.isPotionActive(Potion.fireResistance))
                 {
                     var5 = 16307;
                 }
-                else if (this.rand.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth())
+                else if (rand.nextFloat() < 0.05F && getHealth() < getMaxHealth())
                 {
                     var5 = 16341;
                 }
-                else if (this.rand.nextFloat() < 0.25F && this.getAttackTarget() != null && !this.isPotionActive(Potion.moveSpeed) && this.getAttackTarget().getDistanceSqToEntity(this) > 121.0D)
+                else if (rand.nextFloat() < 0.25F && getAttackTarget() != null && !this.isPotionActive(Potion.moveSpeed) && getAttackTarget().getDistanceSqToEntity(this) > 121.0D)
                 {
                     var5 = 16274;
                 }
-                else if (this.rand.nextFloat() < 0.25F && this.getAttackTarget() != null && !this.isPotionActive(Potion.moveSpeed) && this.getAttackTarget().getDistanceSqToEntity(this) > 121.0D)
+                else if (rand.nextFloat() < 0.25F && getAttackTarget() != null && !this.isPotionActive(Potion.moveSpeed) && getAttackTarget().getDistanceSqToEntity(this) > 121.0D)
                 {
                     var5 = 16274;
                 }
 
                 if (var5 > -1)
                 {
-                    this.setCurrentItemOrArmor(0, new ItemStack(Items.potionitem, 1, var5));
-                    this.witchAttackTimer = this.getHeldItem().getMaxItemUseDuration();
-                    this.setAggressive(true);
-                    IAttributeInstance var6 = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+                    setCurrentItemOrArmor(0, new ItemStack(Items.potionitem, 1, var5));
+                    witchAttackTimer = getHeldItem().getMaxItemUseDuration();
+                    setAggressive(true);
+                    IAttributeInstance var6 = getEntityAttribute(SharedMonsterAttributes.movementSpeed);
                     var6.removeModifier(field_110185_bq);
                     var6.applyModifier(field_110185_bq);
                 }
             }
 
-            if (this.rand.nextFloat() < 7.5E-4F)
+            if (rand.nextFloat() < 7.5E-4F)
             {
-                this.worldObj.setEntityState(this, (byte)15);
+                worldObj.setEntityState(this, (byte)15);
             }
         }
 
@@ -212,7 +212,7 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
 
         if (par1DamageSource.isMagicDamage())
         {
-            par2 = (float)((double)par2 * 0.15D);
+            par2 = (float)(par2 * 0.15D);
         }
 
         return par2;
@@ -223,21 +223,21 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
      */
     protected void dropFewItems(boolean par1, int par2)
     {
-        int var3 = this.rand.nextInt(3) + 1;
+        int var3 = rand.nextInt(3) + 1;
 
         for (int var4 = 0; var4 < var3; ++var4)
         {
-            int var5 = this.rand.nextInt(3);
-            Item var6 = witchDrops[this.rand.nextInt(witchDrops.length)];
+            int var5 = rand.nextInt(3);
+            Item var6 = witchDrops[rand.nextInt(witchDrops.length)];
 
             if (par2 > 0)
             {
-                var5 += this.rand.nextInt(par2 + 1);
+                var5 += rand.nextInt(par2 + 1);
             }
 
             for (int var7 = 0; var7 < var5; ++var7)
             {
-                this.func_145779_a(var6, 1);
+                func_145779_a(var6, 1);
             }
         }
     }
@@ -247,13 +247,13 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
      */
     public void attackEntityWithRangedAttack(EntityLivingBase par1EntityLivingBase, float par2)
     {
-        if (!this.getAggressive())
+        if (!getAggressive())
         {
-            EntityPotion var3 = new EntityPotion(this.worldObj, this, 32732);
+            EntityPotion var3 = new EntityPotion(worldObj, this, 32732);
             var3.rotationPitch -= -20.0F;
-            double var4 = par1EntityLivingBase.posX + par1EntityLivingBase.motionX - this.posX;
-            double var6 = par1EntityLivingBase.posY + (double)par1EntityLivingBase.getEyeHeight() - 1.100000023841858D - this.posY;
-            double var8 = par1EntityLivingBase.posZ + par1EntityLivingBase.motionZ - this.posZ;
+            double var4 = par1EntityLivingBase.posX + par1EntityLivingBase.motionX - posX;
+            double var6 = par1EntityLivingBase.posY + par1EntityLivingBase.getEyeHeight() - 1.100000023841858D - posY;
+            double var8 = par1EntityLivingBase.posZ + par1EntityLivingBase.motionZ - posZ;
             float var10 = MathHelper.sqrt_double(var4 * var4 + var8 * var8);
 
             if (var10 >= 8.0F && !par1EntityLivingBase.isPotionActive(Potion.moveSlowdown))
@@ -264,13 +264,13 @@ public class EntityWitch extends EntityMob implements IRangedAttackMob
             {
                 var3.setPotionDamage(32660);
             }
-            else if (var10 <= 3.0F && !par1EntityLivingBase.isPotionActive(Potion.weakness) && this.rand.nextFloat() < 0.25F)
+            else if (var10 <= 3.0F && !par1EntityLivingBase.isPotionActive(Potion.weakness) && rand.nextFloat() < 0.25F)
             {
                 var3.setPotionDamage(32696);
             }
 
-            var3.setThrowableHeading(var4, var6 + (double)(var10 * 0.2F), var8, 0.75F, 8.0F);
-            this.worldObj.spawnEntityInWorld(var3);
+            var3.setThrowableHeading(var4, var6 + var10 * 0.2F, var8, 0.75F, 8.0F);
+            worldObj.spawnEntityInWorld(var3);
         }
     }
 }

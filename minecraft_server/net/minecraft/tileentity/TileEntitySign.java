@@ -16,24 +16,24 @@ public class TileEntitySign extends TileEntity
     public void writeToNBT(NBTTagCompound p_145841_1_)
     {
         super.writeToNBT(p_145841_1_);
-        p_145841_1_.setString("Text1", this.field_145915_a[0]);
-        p_145841_1_.setString("Text2", this.field_145915_a[1]);
-        p_145841_1_.setString("Text3", this.field_145915_a[2]);
-        p_145841_1_.setString("Text4", this.field_145915_a[3]);
+        p_145841_1_.setString("Text1", field_145915_a[0]);
+        p_145841_1_.setString("Text2", field_145915_a[1]);
+        p_145841_1_.setString("Text3", field_145915_a[2]);
+        p_145841_1_.setString("Text4", field_145915_a[3]);
     }
 
     public void readFromNBT(NBTTagCompound p_145839_1_)
     {
-        this.field_145916_j = false;
+        field_145916_j = false;
         super.readFromNBT(p_145839_1_);
 
         for (int var2 = 0; var2 < 4; ++var2)
         {
-            this.field_145915_a[var2] = p_145839_1_.getString("Text" + (var2 + 1));
+            field_145915_a[var2] = p_145839_1_.getString("Text" + (var2 + 1));
 
-            if (this.field_145915_a[var2].length() > 15)
+            if (field_145915_a[var2].length() > 15)
             {
-                this.field_145915_a[var2] = this.field_145915_a[var2].substring(0, 15);
+                field_145915_a[var2] = field_145915_a[var2].substring(0, 15);
             }
         }
     }
@@ -44,22 +44,22 @@ public class TileEntitySign extends TileEntity
     public Packet getDescriptionPacket()
     {
         String[] var1 = new String[4];
-        System.arraycopy(this.field_145915_a, 0, var1, 0, 4);
-        return new S33PacketUpdateSign(this.xCoord, this.yCoord, this.zCoord, var1);
+        System.arraycopy(field_145915_a, 0, var1, 0, 4);
+        return new S33PacketUpdateSign(xCoord, yCoord, zCoord, var1);
     }
 
     public boolean func_145914_a()
     {
-        return this.field_145916_j;
+        return field_145916_j;
     }
 
     public void func_145912_a(EntityPlayer p_145912_1_)
     {
-        this.field_145917_k = p_145912_1_;
+        field_145917_k = p_145912_1_;
     }
 
     public EntityPlayer func_145911_b()
     {
-        return this.field_145917_k;
+        return field_145917_k;
     }
 }

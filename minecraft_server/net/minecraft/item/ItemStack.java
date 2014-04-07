@@ -79,13 +79,13 @@ public final class ItemStack
 
     public ItemStack(Item par1Item, int par2, int par3)
     {
-        this.item = par1Item;
-        this.stackSize = par2;
-        this.itemDamage = par3;
+        item = par1Item;
+        stackSize = par2;
+        itemDamage = par3;
 
-        if (this.itemDamage < 0)
+        if (itemDamage < 0)
         {
-            this.itemDamage = 0;
+            itemDamage = 0;
         }
     }
 
@@ -106,14 +106,14 @@ public final class ItemStack
      */
     public ItemStack splitStack(int par1)
     {
-        ItemStack var2 = new ItemStack(this.item, par1, this.itemDamage);
+        ItemStack var2 = new ItemStack(item, par1, itemDamage);
 
-        if (this.stackTagCompound != null)
+        if (stackTagCompound != null)
         {
-            var2.stackTagCompound = (NBTTagCompound)this.stackTagCompound.copy();
+            var2.stackTagCompound = (NBTTagCompound)stackTagCompound.copy();
         }
 
-        this.stackSize -= par1;
+        stackSize -= par1;
         return var2;
     }
 
@@ -122,16 +122,16 @@ public final class ItemStack
      */
     public Item getItem()
     {
-        return this.item;
+        return item;
     }
 
     public boolean tryPlaceItemIntoWorld(EntityPlayer par1EntityPlayer, World par2World, int par3, int par4, int par5, int par6, float par7, float par8, float par9)
     {
-        boolean var10 = this.getItem().onItemUse(this, par1EntityPlayer, par2World, par3, par4, par5, par6, par7, par8, par9);
+        boolean var10 = getItem().onItemUse(this, par1EntityPlayer, par2World, par3, par4, par5, par6, par7, par8, par9);
 
         if (var10)
         {
-            par1EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(this.item)], 1);
+            par1EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(item)], 1);
         }
 
         return var10;
@@ -139,7 +139,7 @@ public final class ItemStack
 
     public float func_150997_a(Block p_150997_1_)
     {
-        return this.getItem().func_150893_a(this, p_150997_1_);
+        return getItem().func_150893_a(this, p_150997_1_);
     }
 
     /**
@@ -149,12 +149,12 @@ public final class ItemStack
      */
     public ItemStack useItemRightClick(World par1World, EntityPlayer par2EntityPlayer)
     {
-        return this.getItem().onItemRightClick(this, par1World, par2EntityPlayer);
+        return getItem().onItemRightClick(this, par1World, par2EntityPlayer);
     }
 
     public ItemStack onFoodEaten(World par1World, EntityPlayer par2EntityPlayer)
     {
-        return this.getItem().onEaten(this, par1World, par2EntityPlayer);
+        return getItem().onEaten(this, par1World, par2EntityPlayer);
     }
 
     /**
@@ -162,13 +162,13 @@ public final class ItemStack
      */
     public NBTTagCompound writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        par1NBTTagCompound.setShort("id", (short)Item.getIdFromItem(this.item));
-        par1NBTTagCompound.setByte("Count", (byte)this.stackSize);
-        par1NBTTagCompound.setShort("Damage", (short)this.itemDamage);
+        par1NBTTagCompound.setShort("id", (short)Item.getIdFromItem(item));
+        par1NBTTagCompound.setByte("Count", (byte)stackSize);
+        par1NBTTagCompound.setShort("Damage", (short)itemDamage);
 
-        if (this.stackTagCompound != null)
+        if (stackTagCompound != null)
         {
-            par1NBTTagCompound.setTag("tag", this.stackTagCompound);
+            par1NBTTagCompound.setTag("tag", stackTagCompound);
         }
 
         return par1NBTTagCompound;
@@ -179,18 +179,18 @@ public final class ItemStack
      */
     public void readFromNBT(NBTTagCompound par1NBTTagCompound)
     {
-        this.item = Item.getItemById(par1NBTTagCompound.getShort("id"));
-        this.stackSize = par1NBTTagCompound.getByte("Count");
-        this.itemDamage = par1NBTTagCompound.getShort("Damage");
+        item = Item.getItemById(par1NBTTagCompound.getShort("id"));
+        stackSize = par1NBTTagCompound.getByte("Count");
+        itemDamage = par1NBTTagCompound.getShort("Damage");
 
-        if (this.itemDamage < 0)
+        if (itemDamage < 0)
         {
-            this.itemDamage = 0;
+            itemDamage = 0;
         }
 
         if (par1NBTTagCompound.func_150297_b("tag", 10))
         {
-            this.stackTagCompound = par1NBTTagCompound.getCompoundTag("tag");
+            stackTagCompound = par1NBTTagCompound.getCompoundTag("tag");
         }
     }
 
@@ -199,7 +199,7 @@ public final class ItemStack
      */
     public int getMaxStackSize()
     {
-        return this.getItem().getItemStackLimit();
+        return getItem().getItemStackLimit();
     }
 
     /**
@@ -207,7 +207,7 @@ public final class ItemStack
      */
     public boolean isStackable()
     {
-        return this.getMaxStackSize() > 1 && (!this.isItemStackDamageable() || !this.isItemDamaged());
+        return getMaxStackSize() > 1 && (!isItemStackDamageable() || !isItemDamaged());
     }
 
     /**
@@ -215,12 +215,12 @@ public final class ItemStack
      */
     public boolean isItemStackDamageable()
     {
-        return this.item.getMaxDamage() <= 0 ? false : !this.hasTagCompound() || !this.getTagCompound().getBoolean("Unbreakable");
+        return item.getMaxDamage() <= 0 ? false : !hasTagCompound() || !getTagCompound().getBoolean("Unbreakable");
     }
 
     public boolean getHasSubtypes()
     {
-        return this.item.getHasSubtypes();
+        return item.getHasSubtypes();
     }
 
     /**
@@ -228,7 +228,7 @@ public final class ItemStack
      */
     public boolean isItemDamaged()
     {
-        return this.isItemStackDamageable() && this.itemDamage > 0;
+        return isItemStackDamageable() && itemDamage > 0;
     }
 
     /**
@@ -236,7 +236,7 @@ public final class ItemStack
      */
     public int getItemDamageForDisplay()
     {
-        return this.itemDamage;
+        return itemDamage;
     }
 
     /**
@@ -244,7 +244,7 @@ public final class ItemStack
      */
     public int getItemDamage()
     {
-        return this.itemDamage;
+        return itemDamage;
     }
 
     /**
@@ -252,11 +252,11 @@ public final class ItemStack
      */
     public void setItemDamage(int par1)
     {
-        this.itemDamage = par1;
+        itemDamage = par1;
 
-        if (this.itemDamage < 0)
+        if (itemDamage < 0)
         {
-            this.itemDamage = 0;
+            itemDamage = 0;
         }
     }
 
@@ -265,7 +265,7 @@ public final class ItemStack
      */
     public int getMaxDamage()
     {
-        return this.item.getMaxDamage();
+        return item.getMaxDamage();
     }
 
     /**
@@ -277,7 +277,7 @@ public final class ItemStack
      */
     public boolean attemptDamageItem(int par1, Random par2Random)
     {
-        if (!this.isItemStackDamageable())
+        if (!isItemStackDamageable())
         {
             return false;
         }
@@ -301,8 +301,8 @@ public final class ItemStack
                 if (par1 <= 0) { return false; }
             }
 
-            this.itemDamage += par1;
-            return this.itemDamage > this.getMaxDamage();
+            itemDamage += par1;
+            return itemDamage > getMaxDamage();
         }
     }
 
@@ -313,30 +313,30 @@ public final class ItemStack
     {
         if (!(par2EntityLivingBase instanceof EntityPlayer) || !((EntityPlayer)par2EntityLivingBase).capabilities.isCreativeMode)
         {
-            if (this.isItemStackDamageable())
+            if (isItemStackDamageable())
             {
-                if (this.attemptDamageItem(par1, par2EntityLivingBase.getRNG()))
+                if (attemptDamageItem(par1, par2EntityLivingBase.getRNG()))
                 {
                     par2EntityLivingBase.renderBrokenItemStack(this);
-                    --this.stackSize;
+                    --stackSize;
 
                     if (par2EntityLivingBase instanceof EntityPlayer)
                     {
                         EntityPlayer var3 = (EntityPlayer)par2EntityLivingBase;
-                        var3.addStat(StatList.objectBreakStats[Item.getIdFromItem(this.item)], 1);
+                        var3.addStat(StatList.objectBreakStats[Item.getIdFromItem(item)], 1);
 
-                        if (this.stackSize == 0 && this.getItem() instanceof ItemBow)
+                        if (stackSize == 0 && getItem() instanceof ItemBow)
                         {
                             var3.destroyCurrentEquippedItem();
                         }
                     }
 
-                    if (this.stackSize < 0)
+                    if (stackSize < 0)
                     {
-                        this.stackSize = 0;
+                        stackSize = 0;
                     }
 
-                    this.itemDamage = 0;
+                    itemDamage = 0;
                 }
             }
         }
@@ -347,32 +347,32 @@ public final class ItemStack
      */
     public void hitEntity(EntityLivingBase par1EntityLivingBase, EntityPlayer par2EntityPlayer)
     {
-        boolean var3 = this.item.hitEntity(this, par1EntityLivingBase, par2EntityPlayer);
+        boolean var3 = item.hitEntity(this, par1EntityLivingBase, par2EntityPlayer);
 
         if (var3)
         {
-            par2EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(this.item)], 1);
+            par2EntityPlayer.addStat(StatList.objectUseStats[Item.getIdFromItem(item)], 1);
         }
     }
 
     public void func_150999_a(World p_150999_1_, Block p_150999_2_, int p_150999_3_, int p_150999_4_, int p_150999_5_, EntityPlayer p_150999_6_)
     {
-        boolean var7 = this.item.onBlockDestroyed(this, p_150999_1_, p_150999_2_, p_150999_3_, p_150999_4_, p_150999_5_, p_150999_6_);
+        boolean var7 = item.onBlockDestroyed(this, p_150999_1_, p_150999_2_, p_150999_3_, p_150999_4_, p_150999_5_, p_150999_6_);
 
         if (var7)
         {
-            p_150999_6_.addStat(StatList.objectUseStats[Item.getIdFromItem(this.item)], 1);
+            p_150999_6_.addStat(StatList.objectUseStats[Item.getIdFromItem(item)], 1);
         }
     }
 
     public boolean func_150998_b(Block p_150998_1_)
     {
-        return this.item.func_150897_b(p_150998_1_);
+        return item.func_150897_b(p_150998_1_);
     }
 
     public boolean interactWithEntity(EntityPlayer par1EntityPlayer, EntityLivingBase par2EntityLivingBase)
     {
-        return this.item.itemInteractionForEntity(this, par1EntityPlayer, par2EntityLivingBase);
+        return item.itemInteractionForEntity(this, par1EntityPlayer, par2EntityLivingBase);
     }
 
     /**
@@ -380,11 +380,11 @@ public final class ItemStack
      */
     public ItemStack copy()
     {
-        ItemStack var1 = new ItemStack(this.item, this.stackSize, this.itemDamage);
+        ItemStack var1 = new ItemStack(item, stackSize, itemDamage);
 
-        if (this.stackTagCompound != null)
+        if (stackTagCompound != null)
         {
-            var1.stackTagCompound = (NBTTagCompound)this.stackTagCompound.copy();
+            var1.stackTagCompound = (NBTTagCompound)stackTagCompound.copy();
         }
 
         return var1;
@@ -410,7 +410,7 @@ public final class ItemStack
      */
     private boolean isItemStackEqual(ItemStack par1ItemStack)
     {
-        return this.stackSize != par1ItemStack.stackSize ? false : (this.item != par1ItemStack.item ? false : (this.itemDamage != par1ItemStack.itemDamage ? false : (this.stackTagCompound == null && par1ItemStack.stackTagCompound != null ? false : this.stackTagCompound == null || this.stackTagCompound.equals(par1ItemStack.stackTagCompound))));
+        return stackSize != par1ItemStack.stackSize ? false : (item != par1ItemStack.item ? false : (itemDamage != par1ItemStack.itemDamage ? false : (stackTagCompound == null && par1ItemStack.stackTagCompound != null ? false : stackTagCompound == null || stackTagCompound.equals(par1ItemStack.stackTagCompound))));
     }
 
     /**
@@ -419,12 +419,12 @@ public final class ItemStack
      */
     public boolean isItemEqual(ItemStack par1ItemStack)
     {
-        return this.item == par1ItemStack.item && this.itemDamage == par1ItemStack.itemDamage;
+        return item == par1ItemStack.item && itemDamage == par1ItemStack.itemDamage;
     }
 
     public String getUnlocalizedName()
     {
-        return this.item.getUnlocalizedName(this);
+        return item.getUnlocalizedName(this);
     }
 
     /**
@@ -437,7 +437,7 @@ public final class ItemStack
 
     public String toString()
     {
-        return this.stackSize + "x" + this.item.getUnlocalizedName() + "@" + this.itemDamage;
+        return stackSize + "x" + item.getUnlocalizedName() + "@" + itemDamage;
     }
 
     /**
@@ -446,28 +446,28 @@ public final class ItemStack
      */
     public void updateAnimation(World par1World, Entity par2Entity, int par3, boolean par4)
     {
-        if (this.animationsToGo > 0)
+        if (animationsToGo > 0)
         {
-            --this.animationsToGo;
+            --animationsToGo;
         }
 
-        this.item.onUpdate(this, par1World, par2Entity, par3, par4);
+        item.onUpdate(this, par1World, par2Entity, par3, par4);
     }
 
     public void onCrafting(World par1World, EntityPlayer par2EntityPlayer, int par3)
     {
-        par2EntityPlayer.addStat(StatList.objectCraftStats[Item.getIdFromItem(this.item)], par3);
-        this.item.onCreated(this, par1World, par2EntityPlayer);
+        par2EntityPlayer.addStat(StatList.objectCraftStats[Item.getIdFromItem(item)], par3);
+        item.onCreated(this, par1World, par2EntityPlayer);
     }
 
     public int getMaxItemUseDuration()
     {
-        return this.getItem().getMaxItemUseDuration(this);
+        return getItem().getMaxItemUseDuration(this);
     }
 
     public EnumAction getItemUseAction()
     {
-        return this.getItem().getItemUseAction(this);
+        return getItem().getItemUseAction(this);
     }
 
     /**
@@ -476,7 +476,7 @@ public final class ItemStack
      */
     public void onPlayerStoppedUsing(World par1World, EntityPlayer par2EntityPlayer, int par3)
     {
-        this.getItem().onPlayerStoppedUsing(this, par1World, par2EntityPlayer, par3);
+        getItem().onPlayerStoppedUsing(this, par1World, par2EntityPlayer, par3);
     }
 
     /**
@@ -485,7 +485,7 @@ public final class ItemStack
      */
     public boolean hasTagCompound()
     {
-        return this.stackTagCompound != null;
+        return stackTagCompound != null;
     }
 
     /**
@@ -493,12 +493,12 @@ public final class ItemStack
      */
     public NBTTagCompound getTagCompound()
     {
-        return this.stackTagCompound;
+        return stackTagCompound;
     }
 
     public NBTTagList getEnchantmentTagList()
     {
-        return this.stackTagCompound == null ? null : this.stackTagCompound.getTagList("ench", 10);
+        return stackTagCompound == null ? null : stackTagCompound.getTagList("ench", 10);
     }
 
     /**
@@ -507,7 +507,7 @@ public final class ItemStack
      */
     public void setTagCompound(NBTTagCompound par1NBTTagCompound)
     {
-        this.stackTagCompound = par1NBTTagCompound;
+        stackTagCompound = par1NBTTagCompound;
     }
 
     /**
@@ -515,11 +515,11 @@ public final class ItemStack
      */
     public String getDisplayName()
     {
-        String var1 = this.getItem().getItemStackDisplayName(this);
+        String var1 = getItem().getItemStackDisplayName(this);
 
-        if (this.stackTagCompound != null && this.stackTagCompound.func_150297_b("display", 10))
+        if (stackTagCompound != null && stackTagCompound.func_150297_b("display", 10))
         {
-            NBTTagCompound var2 = this.stackTagCompound.getCompoundTag("display");
+            NBTTagCompound var2 = stackTagCompound.getCompoundTag("display");
 
             if (var2.func_150297_b("Name", 8))
             {
@@ -532,36 +532,36 @@ public final class ItemStack
 
     public ItemStack setStackDisplayName(String p_151001_1_)
     {
-        if (this.stackTagCompound == null)
+        if (stackTagCompound == null)
         {
-            this.stackTagCompound = new NBTTagCompound();
+            stackTagCompound = new NBTTagCompound();
         }
 
-        if (!this.stackTagCompound.func_150297_b("display", 10))
+        if (!stackTagCompound.func_150297_b("display", 10))
         {
-            this.stackTagCompound.setTag("display", new NBTTagCompound());
+            stackTagCompound.setTag("display", new NBTTagCompound());
         }
 
-        this.stackTagCompound.getCompoundTag("display").setString("Name", p_151001_1_);
+        stackTagCompound.getCompoundTag("display").setString("Name", p_151001_1_);
         return this;
     }
 
     public void func_135074_t()
     {
-        if (this.stackTagCompound != null)
+        if (stackTagCompound != null)
         {
-            if (this.stackTagCompound.func_150297_b("display", 10))
+            if (stackTagCompound.func_150297_b("display", 10))
             {
-                NBTTagCompound var1 = this.stackTagCompound.getCompoundTag("display");
+                NBTTagCompound var1 = stackTagCompound.getCompoundTag("display");
                 var1.removeTag("Name");
 
                 if (var1.hasNoTags())
                 {
-                    this.stackTagCompound.removeTag("display");
+                    stackTagCompound.removeTag("display");
 
-                    if (this.stackTagCompound.hasNoTags())
+                    if (stackTagCompound.hasNoTags())
                     {
-                        this.setTagCompound((NBTTagCompound)null);
+                        setTagCompound((NBTTagCompound)null);
                     }
                 }
             }
@@ -573,12 +573,12 @@ public final class ItemStack
      */
     public boolean hasDisplayName()
     {
-        return this.stackTagCompound == null ? false : (!this.stackTagCompound.func_150297_b("display", 10) ? false : this.stackTagCompound.getCompoundTag("display").func_150297_b("Name", 8));
+        return stackTagCompound == null ? false : (!stackTagCompound.func_150297_b("display", 10) ? false : stackTagCompound.getCompoundTag("display").func_150297_b("Name", 8));
     }
 
     public EnumRarity func_77953_t()
     {
-        return this.getItem().func_77613_e(this);
+        return getItem().func_77613_e(this);
     }
 
     /**
@@ -586,7 +586,7 @@ public final class ItemStack
      */
     public boolean isItemEnchantable()
     {
-        return !this.getItem().isItemTool(this) ? false : !this.isItemEnchanted();
+        return !getItem().isItemTool(this) ? false : !isItemEnchanted();
     }
 
     /**
@@ -594,20 +594,20 @@ public final class ItemStack
      */
     public void addEnchantment(Enchantment par1Enchantment, int par2)
     {
-        if (this.stackTagCompound == null)
+        if (stackTagCompound == null)
         {
-            this.setTagCompound(new NBTTagCompound());
+            setTagCompound(new NBTTagCompound());
         }
 
-        if (!this.stackTagCompound.func_150297_b("ench", 9))
+        if (!stackTagCompound.func_150297_b("ench", 9))
         {
-            this.stackTagCompound.setTag("ench", new NBTTagList());
+            stackTagCompound.setTag("ench", new NBTTagList());
         }
 
-        NBTTagList var3 = this.stackTagCompound.getTagList("ench", 10);
+        NBTTagList var3 = stackTagCompound.getTagList("ench", 10);
         NBTTagCompound var4 = new NBTTagCompound();
         var4.setShort("id", (short)par1Enchantment.effectId);
-        var4.setShort("lvl", (short)((byte)par2));
+        var4.setShort("lvl", ((byte)par2));
         var3.appendTag(var4);
     }
 
@@ -616,22 +616,22 @@ public final class ItemStack
      */
     public boolean isItemEnchanted()
     {
-        return this.stackTagCompound != null && this.stackTagCompound.func_150297_b("ench", 9);
+        return stackTagCompound != null && stackTagCompound.func_150297_b("ench", 9);
     }
 
     public void setTagInfo(String par1Str, NBTBase par2NBTBase)
     {
-        if (this.stackTagCompound == null)
+        if (stackTagCompound == null)
         {
-            this.setTagCompound(new NBTTagCompound());
+            setTagCompound(new NBTTagCompound());
         }
 
-        this.stackTagCompound.setTag(par1Str, par2NBTBase);
+        stackTagCompound.setTag(par1Str, par2NBTBase);
     }
 
     public boolean canEditBlocks()
     {
-        return this.getItem().canItemEditBlocks();
+        return getItem().canItemEditBlocks();
     }
 
     /**
@@ -639,7 +639,7 @@ public final class ItemStack
      */
     public boolean isOnItemFrame()
     {
-        return this.itemFrame != null;
+        return itemFrame != null;
     }
 
     /**
@@ -647,7 +647,7 @@ public final class ItemStack
      */
     public void setItemFrame(EntityItemFrame par1EntityItemFrame)
     {
-        this.itemFrame = par1EntityItemFrame;
+        itemFrame = par1EntityItemFrame;
     }
 
     /**
@@ -656,7 +656,7 @@ public final class ItemStack
      */
     public EntityItemFrame getItemFrame()
     {
-        return this.itemFrame;
+        return itemFrame;
     }
 
     /**
@@ -664,7 +664,7 @@ public final class ItemStack
      */
     public int getRepairCost()
     {
-        return this.hasTagCompound() && this.stackTagCompound.func_150297_b("RepairCost", 3) ? this.stackTagCompound.getInteger("RepairCost") : 0;
+        return hasTagCompound() && stackTagCompound.func_150297_b("RepairCost", 3) ? stackTagCompound.getInteger("RepairCost") : 0;
     }
 
     /**
@@ -672,12 +672,12 @@ public final class ItemStack
      */
     public void setRepairCost(int par1)
     {
-        if (!this.hasTagCompound())
+        if (!hasTagCompound())
         {
-            this.stackTagCompound = new NBTTagCompound();
+            stackTagCompound = new NBTTagCompound();
         }
 
-        this.stackTagCompound.setInteger("RepairCost", par1);
+        stackTagCompound.setInteger("RepairCost", par1);
     }
 
     /**
@@ -688,10 +688,10 @@ public final class ItemStack
     {
         Object var1;
 
-        if (this.hasTagCompound() && this.stackTagCompound.func_150297_b("AttributeModifiers", 9))
+        if (hasTagCompound() && stackTagCompound.func_150297_b("AttributeModifiers", 9))
         {
             var1 = HashMultimap.create();
-            NBTTagList var2 = this.stackTagCompound.getTagList("AttributeModifiers", 10);
+            NBTTagList var2 = stackTagCompound.getTagList("AttributeModifiers", 10);
 
             for (int var3 = 0; var3 < var2.tagCount(); ++var3)
             {
@@ -706,7 +706,7 @@ public final class ItemStack
         }
         else
         {
-            var1 = this.getItem().getItemAttributeModifiers();
+            var1 = getItem().getItemAttributeModifiers();
         }
 
         return (Multimap)var1;
@@ -714,19 +714,19 @@ public final class ItemStack
 
     public void func_150996_a(Item p_150996_1_)
     {
-        this.item = p_150996_1_;
+        item = p_150996_1_;
     }
 
     public IChatComponent func_151000_E()
     {
-        IChatComponent var1 = (new ChatComponentText("[")).appendText(this.getDisplayName()).appendText("]");
+        IChatComponent var1 = (new ChatComponentText("[")).appendText(getDisplayName()).appendText("]");
 
-        if (this.item != null)
+        if (item != null)
         {
             NBTTagCompound var2 = new NBTTagCompound();
-            this.writeToNBT(var2);
+            writeToNBT(var2);
             var1.getChatStyle().setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM, new ChatComponentText(var2.toString())));
-            var1.getChatStyle().setColor(this.func_77953_t().field_77937_e);
+            var1.getChatStyle().setColor(func_77953_t().field_77937_e);
         }
 
         return var1;
@@ -735,6 +735,6 @@ public final class ItemStack
     // who the fuck thought of this jesus christ just let me get the item id
     public int getItemId()
     {
-        return Item.getIdFromItem(this.getItem());
+        return Item.getIdFromItem(getItem());
     }
 }

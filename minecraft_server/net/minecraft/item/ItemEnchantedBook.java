@@ -23,7 +23,7 @@ public class ItemEnchantedBook extends Item
 
     public EnumRarity func_77613_e(ItemStack p_77613_1_)
     {
-        return this.func_92110_g(p_77613_1_).tagCount() > 0 ? EnumRarity.uncommon : super.func_77613_e(p_77613_1_);
+        return func_92110_g(p_77613_1_).tagCount() > 0 ? EnumRarity.uncommon : super.func_77613_e(p_77613_1_);
     }
 
     public NBTTagList func_92110_g(ItemStack par1ItemStack)
@@ -36,7 +36,7 @@ public class ItemEnchantedBook extends Item
      */
     public void addEnchantment(ItemStack par1ItemStack, EnchantmentData par2EnchantmentData)
     {
-        NBTTagList var3 = this.func_92110_g(par1ItemStack);
+        NBTTagList var3 = func_92110_g(par1ItemStack);
         boolean var4 = true;
 
         for (int var5 = 0; var5 < var3.tagCount(); ++var5)
@@ -77,13 +77,13 @@ public class ItemEnchantedBook extends Item
     public ItemStack getEnchantedItemStack(EnchantmentData par1EnchantmentData)
     {
         ItemStack var2 = new ItemStack(this);
-        this.addEnchantment(var2, par1EnchantmentData);
+        addEnchantment(var2, par1EnchantmentData);
         return var2;
     }
 
     public WeightedRandomChestContent func_92114_b(Random par1Random)
     {
-        return this.func_92112_a(par1Random, 1, 1, 1);
+        return func_92112_a(par1Random, 1, 1, 1);
     }
 
     public WeightedRandomChestContent func_92112_a(Random par1Random, int par2, int par3, int par4)

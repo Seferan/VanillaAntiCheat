@@ -30,7 +30,7 @@ public class C03PacketPlayer extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149474_g = p_148837_1_.readUnsignedByte() != 0;
+        field_149474_g = p_148837_1_.readUnsignedByte() != 0;
     }
 
     /**
@@ -38,57 +38,57 @@ public class C03PacketPlayer extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149474_g ? 1 : 0);
+        p_148840_1_.writeByte(field_149474_g ? 1 : 0);
     }
 
     public double getX()
     {
-        return this.field_149479_a;
+        return field_149479_a;
     }
 
     public double getY()
     {
-        return this.field_149477_b;
+        return field_149477_b;
     }
 
     public double getZ()
     {
-        return this.field_149478_c;
+        return field_149478_c;
     }
 
     public double getStance()
     {
-        return this.field_149475_d;
+        return field_149475_d;
     }
 
     public float yaw()
     {
-        return this.field_149476_e;
+        return field_149476_e;
     }
 
     public float pitch()
     {
-        return this.field_149473_f;
+        return field_149473_f;
     }
 
     public boolean getOnGround()
     {
-        return this.field_149474_g;
+        return field_149474_g;
     }
 
     public boolean getMoving()
     {
-        return this.field_149480_h;
+        return field_149480_h;
     }
 
     public boolean rotating()
     {
-        return this.field_149481_i;
+        return field_149481_i;
     }
 
     public void setMoving(boolean p_149469_1_)
     {
-        this.field_149480_h = p_149469_1_;
+        field_149480_h = p_149469_1_;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)
@@ -102,29 +102,29 @@ public class C03PacketPlayer extends Packet
 
         public C06PacketPlayerPosLook()
         {
-            this.field_149480_h = true;
-            this.field_149481_i = true;
+            field_149480_h = true;
+            field_149481_i = true;
         }
 
         public void readPacketData(PacketBuffer p_148837_1_) throws IOException
         {
-            this.field_149479_a = p_148837_1_.readDouble();
-            this.field_149477_b = p_148837_1_.readDouble();
-            this.field_149475_d = p_148837_1_.readDouble();
-            this.field_149478_c = p_148837_1_.readDouble();
-            this.field_149476_e = p_148837_1_.readFloat();
-            this.field_149473_f = p_148837_1_.readFloat();
+            field_149479_a = p_148837_1_.readDouble();
+            field_149477_b = p_148837_1_.readDouble();
+            field_149475_d = p_148837_1_.readDouble();
+            field_149478_c = p_148837_1_.readDouble();
+            field_149476_e = p_148837_1_.readFloat();
+            field_149473_f = p_148837_1_.readFloat();
             super.readPacketData(p_148837_1_);
         }
 
         public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
-            p_148840_1_.writeDouble(this.field_149479_a);
-            p_148840_1_.writeDouble(this.field_149477_b);
-            p_148840_1_.writeDouble(this.field_149475_d);
-            p_148840_1_.writeDouble(this.field_149478_c);
-            p_148840_1_.writeFloat(this.field_149476_e);
-            p_148840_1_.writeFloat(this.field_149473_f);
+            p_148840_1_.writeDouble(field_149479_a);
+            p_148840_1_.writeDouble(field_149477_b);
+            p_148840_1_.writeDouble(field_149475_d);
+            p_148840_1_.writeDouble(field_149478_c);
+            p_148840_1_.writeFloat(field_149476_e);
+            p_148840_1_.writeFloat(field_149473_f);
             super.writePacketData(p_148840_1_);
         }
 
@@ -140,20 +140,20 @@ public class C03PacketPlayer extends Packet
 
         public C05PacketPlayerLook()
         {
-            this.field_149481_i = true;
+            field_149481_i = true;
         }
 
         public void readPacketData(PacketBuffer p_148837_1_) throws IOException
         {
-            this.field_149476_e = p_148837_1_.readFloat();
-            this.field_149473_f = p_148837_1_.readFloat();
+            field_149476_e = p_148837_1_.readFloat();
+            field_149473_f = p_148837_1_.readFloat();
             super.readPacketData(p_148837_1_);
         }
 
         public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
-            p_148840_1_.writeFloat(this.field_149476_e);
-            p_148840_1_.writeFloat(this.field_149473_f);
+            p_148840_1_.writeFloat(field_149476_e);
+            p_148840_1_.writeFloat(field_149473_f);
             super.writePacketData(p_148840_1_);
         }
 
@@ -169,24 +169,24 @@ public class C03PacketPlayer extends Packet
 
         public C04PacketPlayerPosition()
         {
-            this.field_149480_h = true;
+            field_149480_h = true;
         }
 
         public void readPacketData(PacketBuffer p_148837_1_) throws IOException
         {
-            this.field_149479_a = p_148837_1_.readDouble();
-            this.field_149477_b = p_148837_1_.readDouble();
-            this.field_149475_d = p_148837_1_.readDouble();
-            this.field_149478_c = p_148837_1_.readDouble();
+            field_149479_a = p_148837_1_.readDouble();
+            field_149477_b = p_148837_1_.readDouble();
+            field_149475_d = p_148837_1_.readDouble();
+            field_149478_c = p_148837_1_.readDouble();
             super.readPacketData(p_148837_1_);
         }
 
         public void writePacketData(PacketBuffer p_148840_1_) throws IOException
         {
-            p_148840_1_.writeDouble(this.field_149479_a);
-            p_148840_1_.writeDouble(this.field_149477_b);
-            p_148840_1_.writeDouble(this.field_149475_d);
-            p_148840_1_.writeDouble(this.field_149478_c);
+            p_148840_1_.writeDouble(field_149479_a);
+            p_148840_1_.writeDouble(field_149477_b);
+            p_148840_1_.writeDouble(field_149475_d);
+            p_148840_1_.writeDouble(field_149478_c);
             super.writePacketData(p_148840_1_);
         }
 

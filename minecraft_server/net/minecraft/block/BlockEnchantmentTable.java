@@ -16,9 +16,9 @@ public class BlockEnchantmentTable extends BlockContainer
     protected BlockEnchantmentTable()
     {
         super(Material.rock);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
-        this.setLightOpacity(0);
-        this.setcreativeTab(CreativeTabs.tabDecorations);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
+        setLightOpacity(0);
+        setcreativeTab(CreativeTabs.tabDecorations);
     }
 
     public boolean renderAsNormalBlock()

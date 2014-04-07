@@ -43,16 +43,16 @@ public class WorldType
 
     private WorldType(int par1, String par2Str, int par3)
     {
-        this.worldType = par2Str;
-        this.generatorVersion = par3;
-        this.canBeCreated = true;
-        this.worldTypeId = par1;
+        worldType = par2Str;
+        generatorVersion = par3;
+        canBeCreated = true;
+        worldTypeId = par1;
         worldTypes[par1] = this;
     }
 
     public String getWorldTypeName()
     {
-        return this.worldType;
+        return worldType;
     }
 
     /**
@@ -60,7 +60,7 @@ public class WorldType
      */
     public int getGeneratorVersion()
     {
-        return this.generatorVersion;
+        return generatorVersion;
     }
 
     public WorldType getWorldTypeForGeneratorVersion(int par1)
@@ -73,7 +73,7 @@ public class WorldType
      */
     private WorldType setCanBeCreated(boolean par1)
     {
-        this.canBeCreated = par1;
+        canBeCreated = par1;
         return this;
     }
 
@@ -82,7 +82,7 @@ public class WorldType
      */
     private WorldType setVersioned()
     {
-        this.isWorldTypeVersioned = true;
+        isWorldTypeVersioned = true;
         return this;
     }
 
@@ -91,7 +91,7 @@ public class WorldType
      */
     public boolean isVersioned()
     {
-        return this.isWorldTypeVersioned;
+        return isWorldTypeVersioned;
     }
 
     public static WorldType parseWorldType(String par0Str)
@@ -106,12 +106,12 @@ public class WorldType
 
     public int getWorldTypeID()
     {
-        return this.worldTypeId;
+        return worldTypeId;
     }
 
     private WorldType func_151358_j()
     {
-        this.field_151361_l = true;
+        field_151361_l = true;
         return this;
     }
 }

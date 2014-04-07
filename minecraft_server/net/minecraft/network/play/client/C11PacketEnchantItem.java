@@ -23,8 +23,8 @@ public class C11PacketEnchantItem extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149541_a = p_148837_1_.readByte();
-        this.field_149540_b = p_148837_1_.readByte();
+        field_149541_a = p_148837_1_.readByte();
+        field_149540_b = p_148837_1_.readByte();
     }
 
     /**
@@ -32,8 +32,8 @@ public class C11PacketEnchantItem extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeByte(this.field_149541_a);
-        p_148840_1_.writeByte(this.field_149540_b);
+        p_148840_1_.writeByte(field_149541_a);
+        p_148840_1_.writeByte(field_149540_b);
     }
 
     /**
@@ -42,17 +42,17 @@ public class C11PacketEnchantItem extends Packet
      */
     public String serialize()
     {
-        return String.format("id=%d, button=%d", new Object[] {Integer.valueOf(this.field_149541_a), Integer.valueOf(this.field_149540_b)});
+        return String.format("id=%d, button=%d", new Object[] {Integer.valueOf(field_149541_a), Integer.valueOf(field_149540_b)});
     }
 
     public int func_149539_c()
     {
-        return this.field_149541_a;
+        return field_149541_a;
     }
 
     public int func_149537_d()
     {
-        return this.field_149540_b;
+        return field_149540_b;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

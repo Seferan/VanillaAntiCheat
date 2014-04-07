@@ -107,13 +107,13 @@ public abstract class GenLayer
 
     public GenLayer(long par1)
     {
-        this.baseSeed = par1;
-        this.baseSeed *= this.baseSeed * 6364136223846793005L + 1442695040888963407L;
-        this.baseSeed += par1;
-        this.baseSeed *= this.baseSeed * 6364136223846793005L + 1442695040888963407L;
-        this.baseSeed += par1;
-        this.baseSeed *= this.baseSeed * 6364136223846793005L + 1442695040888963407L;
-        this.baseSeed += par1;
+        baseSeed = par1;
+        baseSeed *= baseSeed * 6364136223846793005L + 1442695040888963407L;
+        baseSeed += par1;
+        baseSeed *= baseSeed * 6364136223846793005L + 1442695040888963407L;
+        baseSeed += par1;
+        baseSeed *= baseSeed * 6364136223846793005L + 1442695040888963407L;
+        baseSeed += par1;
     }
 
     /**
@@ -122,19 +122,19 @@ public abstract class GenLayer
      */
     public void initWorldGenSeed(long par1)
     {
-        this.worldGenSeed = par1;
+        worldGenSeed = par1;
 
-        if (this.parent != null)
+        if (parent != null)
         {
-            this.parent.initWorldGenSeed(par1);
+            parent.initWorldGenSeed(par1);
         }
 
-        this.worldGenSeed *= this.worldGenSeed * 6364136223846793005L + 1442695040888963407L;
-        this.worldGenSeed += this.baseSeed;
-        this.worldGenSeed *= this.worldGenSeed * 6364136223846793005L + 1442695040888963407L;
-        this.worldGenSeed += this.baseSeed;
-        this.worldGenSeed *= this.worldGenSeed * 6364136223846793005L + 1442695040888963407L;
-        this.worldGenSeed += this.baseSeed;
+        worldGenSeed *= worldGenSeed * 6364136223846793005L + 1442695040888963407L;
+        worldGenSeed += baseSeed;
+        worldGenSeed *= worldGenSeed * 6364136223846793005L + 1442695040888963407L;
+        worldGenSeed += baseSeed;
+        worldGenSeed *= worldGenSeed * 6364136223846793005L + 1442695040888963407L;
+        worldGenSeed += baseSeed;
     }
 
     /**
@@ -143,15 +143,15 @@ public abstract class GenLayer
      */
     public void initChunkSeed(long par1, long par3)
     {
-        this.chunkSeed = this.worldGenSeed;
-        this.chunkSeed *= this.chunkSeed * 6364136223846793005L + 1442695040888963407L;
-        this.chunkSeed += par1;
-        this.chunkSeed *= this.chunkSeed * 6364136223846793005L + 1442695040888963407L;
-        this.chunkSeed += par3;
-        this.chunkSeed *= this.chunkSeed * 6364136223846793005L + 1442695040888963407L;
-        this.chunkSeed += par1;
-        this.chunkSeed *= this.chunkSeed * 6364136223846793005L + 1442695040888963407L;
-        this.chunkSeed += par3;
+        chunkSeed = worldGenSeed;
+        chunkSeed *= chunkSeed * 6364136223846793005L + 1442695040888963407L;
+        chunkSeed += par1;
+        chunkSeed *= chunkSeed * 6364136223846793005L + 1442695040888963407L;
+        chunkSeed += par3;
+        chunkSeed *= chunkSeed * 6364136223846793005L + 1442695040888963407L;
+        chunkSeed += par1;
+        chunkSeed *= chunkSeed * 6364136223846793005L + 1442695040888963407L;
+        chunkSeed += par3;
     }
 
     /**
@@ -159,15 +159,15 @@ public abstract class GenLayer
      */
     protected int nextInt(int par1)
     {
-        int var2 = (int)((this.chunkSeed >> 24) % (long)par1);
+        int var2 = (int)((chunkSeed >> 24) % par1);
 
         if (var2 < 0)
         {
             var2 += par1;
         }
 
-        this.chunkSeed *= this.chunkSeed * 6364136223846793005L + 1442695040888963407L;
-        this.chunkSeed += this.worldGenSeed;
+        chunkSeed *= chunkSeed * 6364136223846793005L + 1442695040888963407L;
+        chunkSeed += worldGenSeed;
         return var2;
     }
 
@@ -230,11 +230,11 @@ public abstract class GenLayer
 
     protected int func_151619_a(int... p_151619_1_)
     {
-        return p_151619_1_[this.nextInt(p_151619_1_.length)];
+        return p_151619_1_[nextInt(p_151619_1_.length)];
     }
 
     protected int func_151617_b(int p_151617_1_, int p_151617_2_, int p_151617_3_, int p_151617_4_)
     {
-        return p_151617_2_ == p_151617_3_ && p_151617_3_ == p_151617_4_ ? p_151617_2_ : (p_151617_1_ == p_151617_2_ && p_151617_1_ == p_151617_3_ ? p_151617_1_ : (p_151617_1_ == p_151617_2_ && p_151617_1_ == p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_3_ && p_151617_1_ == p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_2_ && p_151617_3_ != p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_3_ && p_151617_2_ != p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_4_ && p_151617_2_ != p_151617_3_ ? p_151617_1_ : (p_151617_2_ == p_151617_3_ && p_151617_1_ != p_151617_4_ ? p_151617_2_ : (p_151617_2_ == p_151617_4_ && p_151617_1_ != p_151617_3_ ? p_151617_2_ : (p_151617_3_ == p_151617_4_ && p_151617_1_ != p_151617_2_ ? p_151617_3_ : this.func_151619_a(new int[] {p_151617_1_, p_151617_2_, p_151617_3_, p_151617_4_}))))))))));
+        return p_151617_2_ == p_151617_3_ && p_151617_3_ == p_151617_4_ ? p_151617_2_ : (p_151617_1_ == p_151617_2_ && p_151617_1_ == p_151617_3_ ? p_151617_1_ : (p_151617_1_ == p_151617_2_ && p_151617_1_ == p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_3_ && p_151617_1_ == p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_2_ && p_151617_3_ != p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_3_ && p_151617_2_ != p_151617_4_ ? p_151617_1_ : (p_151617_1_ == p_151617_4_ && p_151617_2_ != p_151617_3_ ? p_151617_1_ : (p_151617_2_ == p_151617_3_ && p_151617_1_ != p_151617_4_ ? p_151617_2_ : (p_151617_2_ == p_151617_4_ && p_151617_1_ != p_151617_3_ ? p_151617_2_ : (p_151617_3_ == p_151617_4_ && p_151617_1_ != p_151617_2_ ? p_151617_3_ : func_151619_a(new int[] {p_151617_1_, p_151617_2_, p_151617_3_, p_151617_4_}))))))))));
     }
 }

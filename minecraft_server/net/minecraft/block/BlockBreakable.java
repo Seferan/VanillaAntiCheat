@@ -11,8 +11,8 @@ public class BlockBreakable extends Block
     protected BlockBreakable(String p_i45411_1_, Material p_i45411_2_, boolean p_i45411_3_)
     {
         super(p_i45411_2_);
-        this.field_149996_a = p_i45411_3_;
-        this.field_149995_b = p_i45411_1_;
+        field_149996_a = p_i45411_3_;
+        field_149995_b = p_i45411_1_;
     }
 
     public boolean isOpaqueCube()

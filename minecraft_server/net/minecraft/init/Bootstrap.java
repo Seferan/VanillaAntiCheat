@@ -115,7 +115,7 @@ public class Bootstrap
                     {
                         return super.func_82500_b() * 1.25F;
                     }
-                }).dispense(par1IBlockSource, par2ItemStack) : this.field_150843_b.dispense(par1IBlockSource, par2ItemStack);
+                }).dispense(par1IBlockSource, par2ItemStack) : field_150843_b.dispense(par1IBlockSource, par2ItemStack);
             }
         });
         BlockDispenser.field_149943_a.putObject(Items.spawn_egg, new BehaviorDefaultDispenseItem()
@@ -125,9 +125,9 @@ public class Bootstrap
             public ItemStack dispenseStack(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
             {
                 EnumFacing var3 = BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata());
-                double var4 = par1IBlockSource.getX() + (double)var3.getFrontOffsetX();
-                double var6 = (double)((float)par1IBlockSource.getYInt() + 0.2F);
-                double var8 = par1IBlockSource.getZ() + (double)var3.getFrontOffsetZ();
+                double var4 = par1IBlockSource.getX() + var3.getFrontOffsetX();
+                double var6 = par1IBlockSource.getYInt() + 0.2F;
+                double var8 = par1IBlockSource.getZ() + var3.getFrontOffsetZ();
                 Entity var10 = ItemMonsterPlacer.spawnCreature(par1IBlockSource.getWorld(), par2ItemStack.getItemDamage(), var4, var6, var8);
 
                 if (var10 instanceof EntityLivingBase && par2ItemStack.hasDisplayName())
@@ -146,9 +146,9 @@ public class Bootstrap
             public ItemStack dispenseStack(IBlockSource par1IBlockSource, ItemStack par2ItemStack)
             {
                 EnumFacing var3 = BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata());
-                double var4 = par1IBlockSource.getX() + (double)var3.getFrontOffsetX();
-                double var6 = (double)((float)par1IBlockSource.getYInt() + 0.2F);
-                double var8 = par1IBlockSource.getZ() + (double)var3.getFrontOffsetZ();
+                double var4 = par1IBlockSource.getX() + var3.getFrontOffsetX();
+                double var6 = par1IBlockSource.getYInt() + 0.2F;
+                double var8 = par1IBlockSource.getZ() + var3.getFrontOffsetZ();
                 EntityFireworkRocket var10 = new EntityFireworkRocket(par1IBlockSource.getWorld(), var4, var6, var8, par2ItemStack);
                 par1IBlockSource.getWorld().spawnEntityInWorld(var10);
                 par2ItemStack.splitStack(1);
@@ -168,14 +168,14 @@ public class Bootstrap
             {
                 EnumFacing var3 = BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata());
                 IPosition var4 = BlockDispenser.func_149939_a(par1IBlockSource);
-                double var5 = var4.getX() + (double)((float)var3.getFrontOffsetX() * 0.3F);
-                double var7 = var4.getY() + (double)((float)var3.getFrontOffsetX() * 0.3F);
-                double var9 = var4.getZ() + (double)((float)var3.getFrontOffsetZ() * 0.3F);
+                double var5 = var4.getX() + var3.getFrontOffsetX() * 0.3F;
+                double var7 = var4.getY() + var3.getFrontOffsetX() * 0.3F;
+                double var9 = var4.getZ() + var3.getFrontOffsetZ() * 0.3F;
                 World var11 = par1IBlockSource.getWorld();
                 Random var12 = var11.rand;
-                double var13 = var12.nextGaussian() * 0.05D + (double)var3.getFrontOffsetX();
-                double var15 = var12.nextGaussian() * 0.05D + (double)var3.getFrontOffsetY();
-                double var17 = var12.nextGaussian() * 0.05D + (double)var3.getFrontOffsetZ();
+                double var13 = var12.nextGaussian() * 0.05D + var3.getFrontOffsetX();
+                double var15 = var12.nextGaussian() * 0.05D + var3.getFrontOffsetY();
+                double var17 = var12.nextGaussian() * 0.05D + var3.getFrontOffsetZ();
                 var11.spawnEntityInWorld(new EntitySmallFireball(var11, var5, var7, var9, var13, var15, var17));
                 par2ItemStack.splitStack(1);
                 return par2ItemStack;
@@ -195,9 +195,9 @@ public class Bootstrap
             {
                 EnumFacing var3 = BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata());
                 World var4 = par1IBlockSource.getWorld();
-                double var5 = par1IBlockSource.getX() + (double)((float)var3.getFrontOffsetX() * 1.125F);
-                double var7 = par1IBlockSource.getY() + (double)((float)var3.getFrontOffsetY() * 1.125F);
-                double var9 = par1IBlockSource.getZ() + (double)((float)var3.getFrontOffsetZ() * 1.125F);
+                double var5 = par1IBlockSource.getX() + var3.getFrontOffsetX() * 1.125F;
+                double var7 = par1IBlockSource.getY() + var3.getFrontOffsetY() * 1.125F;
+                double var9 = par1IBlockSource.getZ() + var3.getFrontOffsetZ() * 1.125F;
                 int var11 = par1IBlockSource.getXInt() + var3.getFrontOffsetX();
                 int var12 = par1IBlockSource.getYInt() + var3.getFrontOffsetY();
                 int var13 = par1IBlockSource.getZInt() + var3.getFrontOffsetZ();
@@ -210,7 +210,7 @@ public class Bootstrap
                 }
                 else
                 {
-                    if (!Material.air.equals(var14) || !Material.field_151586_h.equals(var4.getBlock(var11, var12 - 1, var13).getMaterial())) { return this.field_150842_b.dispense(par1IBlockSource, par2ItemStack); }
+                    if (!Material.air.equals(var14) || !Material.field_151586_h.equals(var4.getBlock(var11, var12 - 1, var13).getMaterial())) { return field_150842_b.dispense(par1IBlockSource, par2ItemStack); }
 
                     var15 = 0.0D;
                 }
@@ -247,7 +247,7 @@ public class Bootstrap
                 }
                 else
                 {
-                    return this.field_150841_b.dispense(par1IBlockSource, par2ItemStack);
+                    return field_150841_b.dispense(par1IBlockSource, par2ItemStack);
                 }
             }
         };
@@ -289,7 +289,7 @@ public class Bootstrap
                 }
                 else if (((TileEntityDispenser)par1IBlockSource.getBlockTileEntity()).func_146019_a(new ItemStack(var10)) < 0)
                 {
-                    this.field_150840_b.dispense(par1IBlockSource, new ItemStack(var10));
+                    field_150840_b.dispense(par1IBlockSource, new ItemStack(var10));
                 }
 
                 return par2ItemStack;
@@ -324,7 +324,7 @@ public class Bootstrap
                 }
                 else
                 {
-                    this.field_150839_b = false;
+                    field_150839_b = false;
                 }
 
                 return par2ItemStack;
@@ -332,7 +332,7 @@ public class Bootstrap
 
             protected void playDispenseSound(IBlockSource par1IBlockSource)
             {
-                if (this.field_150839_b)
+                if (field_150839_b)
                 {
                     par1IBlockSource.getWorld().playAuxSFX(1000, par1IBlockSource.getXInt(), par1IBlockSource.getYInt(), par1IBlockSource.getZInt(), 0);
                 }
@@ -366,7 +366,7 @@ public class Bootstrap
                     }
                     else
                     {
-                        this.field_150838_b = false;
+                        field_150838_b = false;
                     }
 
                     return par2ItemStack;
@@ -379,7 +379,7 @@ public class Bootstrap
 
             protected void playDispenseSound(IBlockSource par1IBlockSource)
             {
-                if (this.field_150838_b)
+                if (field_150838_b)
                 {
                     par1IBlockSource.getWorld().playAuxSFX(1000, par1IBlockSource.getXInt(), par1IBlockSource.getYInt(), par1IBlockSource.getZInt(), 0);
                 }
@@ -400,7 +400,7 @@ public class Bootstrap
                 int var5 = par1IBlockSource.getXInt() + var3.getFrontOffsetX();
                 int var6 = par1IBlockSource.getYInt() + var3.getFrontOffsetY();
                 int var7 = par1IBlockSource.getZInt() + var3.getFrontOffsetZ();
-                EntityTNTPrimed var8 = new EntityTNTPrimed(var4, (double)((float)var5 + 0.5F), (double)((float)var6 + 0.5F), (double)((float)var7 + 0.5F), (EntityLivingBase)null);
+                EntityTNTPrimed var8 = new EntityTNTPrimed(var4, var5 + 0.5F, var6 + 0.5F, var7 + 0.5F, (EntityLivingBase)null);
                 var4.spawnEntityInWorld(var8);
                 --par2ItemStack.stackSize;
                 return par2ItemStack;

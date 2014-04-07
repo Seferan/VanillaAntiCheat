@@ -10,13 +10,13 @@ public class VACModuleDiamondNotifications implements IVacModule
      * The number of diamond veins the player has mined in total.
      */
     private int veinsMined;
-    
+
     public VACModuleDiamondNotifications()
     {
         ticksSinceLastOre = 0;
         veinsMined = 0;
     }
-    
+
     public String getModuleName()
     {
         return "Diamond Notifications";
@@ -26,7 +26,7 @@ public class VACModuleDiamondNotifications implements IVacModule
     {
         ticksSinceLastOre++;
     }
-    
+
     /**
      * Reset ticksSinceLastOre to 0.
      */
@@ -34,7 +34,7 @@ public class VACModuleDiamondNotifications implements IVacModule
     {
         ticksSinceLastOre = 0;
     }
-    
+
     /**
      * Increment the number of veins mined by 1.
      */
@@ -42,12 +42,12 @@ public class VACModuleDiamondNotifications implements IVacModule
     {
         veinsMined++;
     }
-    
+
     public int getNumberOfVeins()
     {
         return veinsMined;
     }
-    
+
     /**
      * Returns true if the player is mining a new vein.
      * @return whether the player is mining a new vein or not.

@@ -11,8 +11,8 @@ public class GenLayerRiverMix extends GenLayer
     public GenLayerRiverMix(long par1, GenLayer par3GenLayer, GenLayer par4GenLayer)
     {
         super(par1);
-        this.biomePatternGeneratorChain = par3GenLayer;
-        this.riverPatternGeneratorChain = par4GenLayer;
+        biomePatternGeneratorChain = par3GenLayer;
+        riverPatternGeneratorChain = par4GenLayer;
     }
 
     /**
@@ -21,8 +21,8 @@ public class GenLayerRiverMix extends GenLayer
      */
     public void initWorldGenSeed(long par1)
     {
-        this.biomePatternGeneratorChain.initWorldGenSeed(par1);
-        this.riverPatternGeneratorChain.initWorldGenSeed(par1);
+        biomePatternGeneratorChain.initWorldGenSeed(par1);
+        riverPatternGeneratorChain.initWorldGenSeed(par1);
         super.initWorldGenSeed(par1);
     }
 
@@ -33,8 +33,8 @@ public class GenLayerRiverMix extends GenLayer
      */
     public int[] getInts(int par1, int par2, int par3, int par4)
     {
-        int[] var5 = this.biomePatternGeneratorChain.getInts(par1, par2, par3, par4);
-        int[] var6 = this.riverPatternGeneratorChain.getInts(par1, par2, par3, par4);
+        int[] var5 = biomePatternGeneratorChain.getInts(par1, par2, par3, par4);
+        int[] var6 = riverPatternGeneratorChain.getInts(par1, par2, par3, par4);
         int[] var7 = IntCache.getIntCache(par3 * par4);
 
         for (int var8 = 0; var8 < par3 * par4; ++var8)

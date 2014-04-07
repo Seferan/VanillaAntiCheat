@@ -22,8 +22,8 @@ public class BlockTripWire extends Block
     public BlockTripWire()
     {
         super(Material.circuits);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.15625F, 1.0F);
-        this.setTickRandomly(true);
+        setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.15625F, 1.0F);
+        setTickRandomly(true);
     }
 
     public int func_149738_a(World p_149738_1_)
@@ -71,7 +71,7 @@ public class BlockTripWire extends Block
 
         if (var7 != var8)
         {
-            this.dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
+            dropBlockAsItem(p_149695_1_, p_149695_2_, p_149695_3_, p_149695_4_, var6, 0);
             p_149695_1_.setBlockToAir(p_149695_2_, p_149695_3_, p_149695_4_);
         }
     }
@@ -84,15 +84,15 @@ public class BlockTripWire extends Block
 
         if (!var7)
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.09375F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.09375F, 1.0F);
         }
         else if (!var6)
         {
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         }
         else
         {
-            this.setBlockBounds(0.0F, 0.0625F, 0.0F, 1.0F, 0.15625F, 1.0F);
+            setBlockBounds(0.0F, 0.0625F, 0.0F, 1.0F, 0.15625F, 1.0F);
         }
     }
 
@@ -100,12 +100,12 @@ public class BlockTripWire extends Block
     {
         int var5 = World.doesBlockHaveSolidTopSurface(p_149726_1_, p_149726_2_, p_149726_3_ - 1, p_149726_4_) ? 0 : 2;
         p_149726_1_.setBlockMetadata(p_149726_2_, p_149726_3_, p_149726_4_, var5, 3);
-        this.func_150138_a(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_, var5);
+        func_150138_a(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_, var5);
     }
 
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
-        this.func_150138_a(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_6_ | 1);
+        func_150138_a(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_6_ | 1);
     }
 
     /**
@@ -166,7 +166,7 @@ public class BlockTripWire extends Block
         {
             if ((p_149670_1_.getBlockMetadata(p_149670_2_, p_149670_3_, p_149670_4_) & 1) != 1)
             {
-                this.func_150140_e(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_);
+                func_150140_e(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_);
             }
         }
     }
@@ -180,7 +180,7 @@ public class BlockTripWire extends Block
         {
             if ((p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_) & 1) == 1)
             {
-                this.func_150140_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
+                func_150140_e(p_149674_1_, p_149674_2_, p_149674_3_, p_149674_4_);
             }
         }
     }
@@ -190,7 +190,7 @@ public class BlockTripWire extends Block
         int var5 = p_150140_1_.getBlockMetadata(p_150140_2_, p_150140_3_, p_150140_4_);
         boolean var6 = (var5 & 1) == 1;
         boolean var7 = false;
-        List var8 = p_150140_1_.getEntitiesWithinAABBExcludingEntity((Entity)null, AxisAlignedBB.getAABBPool().getAABB((double)p_150140_2_ + this.minX, (double)p_150140_3_ + this.minY, (double)p_150140_4_ + this.minZ, (double)p_150140_2_ + this.maxX, (double)p_150140_3_ + this.maxY, (double)p_150140_4_ + this.maxZ));
+        List var8 = p_150140_1_.getEntitiesWithinAABBExcludingEntity((Entity)null, AxisAlignedBB.getAABBPool().getAABB(p_150140_2_ + minX, p_150140_3_ + minY, p_150140_4_ + minZ, p_150140_2_ + maxX, p_150140_3_ + maxY, p_150140_4_ + maxZ));
 
         if (!var8.isEmpty())
         {
@@ -221,12 +221,12 @@ public class BlockTripWire extends Block
         if (var7 != var6)
         {
             p_150140_1_.setBlockMetadata(p_150140_2_, p_150140_3_, p_150140_4_, var5, 3);
-            this.func_150138_a(p_150140_1_, p_150140_2_, p_150140_3_, p_150140_4_, var5);
+            func_150138_a(p_150140_1_, p_150140_2_, p_150140_3_, p_150140_4_, var5);
         }
 
         if (var7)
         {
-            p_150140_1_.scheduleBlockUpdate(p_150140_2_, p_150140_3_, p_150140_4_, this, this.func_149738_a(p_150140_1_));
+            p_150140_1_.scheduleBlockUpdate(p_150140_2_, p_150140_3_, p_150140_4_, this, func_149738_a(p_150140_1_));
         }
     }
 }

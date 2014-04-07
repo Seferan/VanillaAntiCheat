@@ -27,17 +27,17 @@ public class BanList
 
     public BanList(File par1File)
     {
-        this.fileName = par1File;
+        fileName = par1File;
     }
 
     public boolean isListActive()
     {
-        return this.listActive;
+        return listActive;
     }
 
     public void setListActive(boolean par1)
     {
-        this.listActive = par1;
+        listActive = par1;
     }
 
     /**
@@ -45,38 +45,38 @@ public class BanList
      */
     public Map getBannedList()
     {
-        this.removeExpiredBans();
-        return this.theBanList;
+        removeExpiredBans();
+        return theBanList;
     }
 
     public boolean isBanned(String par1Str)
     {
-        if (!this.isListActive())
+        if (!isListActive())
         {
             return false;
         }
         else
         {
-            this.removeExpiredBans();
-            return this.theBanList.containsKey(par1Str);
+            removeExpiredBans();
+            return theBanList.containsKey(par1Str);
         }
     }
 
     public void put(BanEntry par1BanEntry)
     {
-        this.theBanList.put(par1BanEntry.getBannedUsername(), par1BanEntry);
-        this.saveToFileWithHeader();
+        theBanList.put(par1BanEntry.getBannedUsername(), par1BanEntry);
+        saveToFileWithHeader();
     }
 
     public void remove(String par1Str)
     {
-        this.theBanList.remove(par1Str);
-        this.saveToFileWithHeader();
+        theBanList.remove(par1Str);
+        saveToFileWithHeader();
     }
 
     public void removeExpiredBans()
     {
-        Iterator var1 = this.theBanList.values().iterator();
+        Iterator var1 = theBanList.values().iterator();
 
         while (var1.hasNext())
         {
@@ -95,13 +95,13 @@ public class BanList
      */
     public void loadBanList()
     {
-        if (this.fileName.isFile())
+        if (fileName.isFile())
         {
             BufferedReader var1;
 
             try
             {
-                var1 = new BufferedReader(new FileReader(this.fileName));
+                var1 = new BufferedReader(new FileReader(fileName));
             }
             catch (FileNotFoundException var4)
             {
@@ -120,7 +120,7 @@ public class BanList
 
                         if (var3 != null)
                         {
-                            this.theBanList.put(var3.getBannedUsername(), var3);
+                            theBanList.put(var3.getBannedUsername(), var3);
                         }
                     }
                 }
@@ -134,7 +134,7 @@ public class BanList
 
     public void saveToFileWithHeader()
     {
-        this.saveToFile(true);
+        saveToFile(true);
     }
 
     /**
@@ -142,11 +142,11 @@ public class BanList
      */
     public void saveToFile(boolean par1)
     {
-        this.removeExpiredBans();
+        removeExpiredBans();
 
         try
         {
-            PrintWriter var2 = new PrintWriter(new FileWriter(this.fileName, false));
+            PrintWriter var2 = new PrintWriter(new FileWriter(fileName, false));
 
             if (par1)
             {
@@ -155,7 +155,7 @@ public class BanList
                 var2.println();
             }
 
-            Iterator var3 = this.theBanList.values().iterator();
+            Iterator var3 = theBanList.values().iterator();
 
             while (var3.hasNext())
             {

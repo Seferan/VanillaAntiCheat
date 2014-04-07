@@ -19,13 +19,13 @@ public class C17PacketCustomPayload extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149562_a = p_148837_1_.readStringFromBuffer(20);
-        this.field_149560_b = p_148837_1_.readShort();
+        field_149562_a = p_148837_1_.readStringFromBuffer(20);
+        field_149560_b = p_148837_1_.readShort();
 
-        if (this.field_149560_b > 0 && this.field_149560_b < 32767)
+        if (field_149560_b > 0 && field_149560_b < 32767)
         {
-            this.field_149561_c = new byte[this.field_149560_b];
-            p_148837_1_.readBytes(this.field_149561_c);
+            field_149561_c = new byte[field_149560_b];
+            p_148837_1_.readBytes(field_149561_c);
         }
     }
 
@@ -34,12 +34,12 @@ public class C17PacketCustomPayload extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeStringToBuffer(this.field_149562_a);
-        p_148840_1_.writeShort((short)this.field_149560_b);
+        p_148840_1_.writeStringToBuffer(field_149562_a);
+        p_148840_1_.writeShort((short)field_149560_b);
 
-        if (this.field_149561_c != null)
+        if (field_149561_c != null)
         {
-            p_148840_1_.writeBytes(this.field_149561_c);
+            p_148840_1_.writeBytes(field_149561_c);
         }
     }
 
@@ -50,12 +50,12 @@ public class C17PacketCustomPayload extends Packet
 
     public String func_149559_c()
     {
-        return this.field_149562_a;
+        return field_149562_a;
     }
 
     public byte[] func_149558_e()
     {
-        return this.field_149561_c;
+        return field_149561_c;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

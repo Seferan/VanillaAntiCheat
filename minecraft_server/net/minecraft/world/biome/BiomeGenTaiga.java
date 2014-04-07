@@ -27,26 +27,26 @@ public class BiomeGenTaiga extends BiomeGenBase
     public BiomeGenTaiga(int p_i45385_1_, int p_i45385_2_)
     {
         super(p_i45385_1_);
-        this.field_150644_aH = p_i45385_2_;
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 8, 4, 4));
-        this.theBiomeDecorator.treesPerChunk = 10;
+        field_150644_aH = p_i45385_2_;
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityWolf.class, 8, 4, 4));
+        theBiomeDecorator.treesPerChunk = 10;
 
         if (p_i45385_2_ != 1 && p_i45385_2_ != 2)
         {
-            this.theBiomeDecorator.grassPerChunk = 1;
-            this.theBiomeDecorator.mushroomsPerChunk = 1;
+            theBiomeDecorator.grassPerChunk = 1;
+            theBiomeDecorator.mushroomsPerChunk = 1;
         }
         else
         {
-            this.theBiomeDecorator.grassPerChunk = 7;
-            this.theBiomeDecorator.deadBushPerChunk = 1;
-            this.theBiomeDecorator.mushroomsPerChunk = 3;
+            theBiomeDecorator.grassPerChunk = 7;
+            theBiomeDecorator.deadBushPerChunk = 1;
+            theBiomeDecorator.mushroomsPerChunk = 3;
         }
     }
 
     public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
     {
-        return (WorldGenAbstractTree)((this.field_150644_aH == 1 || this.field_150644_aH == 2) && p_150567_1_.nextInt(3) == 0 ? (this.field_150644_aH != 2 && p_150567_1_.nextInt(13) != 0 ? field_150641_aE : field_150642_aF) : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC : field_150640_aD));
+        return (field_150644_aH == 1 || field_150644_aH == 2) && p_150567_1_.nextInt(3) == 0 ? (field_150644_aH != 2 && p_150567_1_.nextInt(13) != 0 ? field_150641_aE : field_150642_aF) : (p_150567_1_.nextInt(3) == 0 ? field_150639_aC : field_150640_aD);
     }
 
     /**
@@ -64,7 +64,7 @@ public class BiomeGenTaiga extends BiomeGenBase
         int var7;
         int var8;
 
-        if (this.field_150644_aH == 1 || this.field_150644_aH == 2)
+        if (field_150644_aH == 1 || field_150644_aH == 2)
         {
             var5 = par2Random.nextInt(3);
 
@@ -92,29 +92,29 @@ public class BiomeGenTaiga extends BiomeGenBase
 
     public void func_150573_a(World p_150573_1_, Random p_150573_2_, Block[] p_150573_3_, byte[] p_150573_4_, int p_150573_5_, int p_150573_6_, double p_150573_7_)
     {
-        if (this.field_150644_aH == 1 || this.field_150644_aH == 2)
+        if (field_150644_aH == 1 || field_150644_aH == 2)
         {
-            this.topBlock = Blocks.grass;
-            this.field_150604_aj = 0;
-            this.fillerBlock = Blocks.dirt;
+            topBlock = Blocks.grass;
+            field_150604_aj = 0;
+            fillerBlock = Blocks.dirt;
 
             if (p_150573_7_ > 1.75D)
             {
-                this.topBlock = Blocks.dirt;
-                this.field_150604_aj = 1;
+                topBlock = Blocks.dirt;
+                field_150604_aj = 1;
             }
             else if (p_150573_7_ > -0.95D)
             {
-                this.topBlock = Blocks.dirt;
-                this.field_150604_aj = 2;
+                topBlock = Blocks.dirt;
+                field_150604_aj = 2;
             }
         }
 
-        this.func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
+        func_150560_b(p_150573_1_, p_150573_2_, p_150573_3_, p_150573_4_, p_150573_5_, p_150573_6_, p_150573_7_);
     }
 
     protected BiomeGenBase func_150566_k()
     {
-        return this.biomeID == BiomeGenBase.field_150578_U.biomeID ? (new BiomeGenTaiga(this.biomeID + 128, 2)).func_150557_a(5858897, true).setBiomeName("Mega Spruce Taiga").func_76733_a(5159473).setTemperatureRainfall(0.25F, 0.8F).func_150570_a(new BiomeGenBase.Height(this.minHeight, this.maxHeight)) : super.func_150566_k();
+        return biomeID == BiomeGenBase.field_150578_U.biomeID ? (new BiomeGenTaiga(biomeID + 128, 2)).func_150557_a(5858897, true).setBiomeName("Mega Spruce Taiga").func_76733_a(5159473).setTemperatureRainfall(0.25F, 0.8F).func_150570_a(new BiomeGenBase.Height(minHeight, maxHeight)) : super.func_150566_k();
     }
 }

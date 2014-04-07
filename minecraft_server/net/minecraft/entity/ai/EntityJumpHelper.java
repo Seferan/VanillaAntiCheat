@@ -10,12 +10,12 @@ public class EntityJumpHelper
 
     public EntityJumpHelper(EntityLiving par1EntityLiving)
     {
-        this.entity = par1EntityLiving;
+        entity = par1EntityLiving;
     }
 
     public void setJumping()
     {
-        this.isJumping = true;
+        isJumping = true;
     }
 
     /**
@@ -23,7 +23,7 @@ public class EntityJumpHelper
      */
     public void doJump()
     {
-        this.entity.setJumping(this.isJumping);
-        this.isJumping = false;
+        entity.setJumping(isJumping);
+        isJumping = false;
     }
 }

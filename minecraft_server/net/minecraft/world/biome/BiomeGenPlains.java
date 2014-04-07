@@ -14,17 +14,17 @@ public class BiomeGenPlains extends BiomeGenBase
     protected BiomeGenPlains(int par1)
     {
         super(par1);
-        this.setTemperatureRainfall(0.8F, 0.4F);
-        this.func_150570_a(field_150593_e);
-        this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 5, 2, 6));
-        this.theBiomeDecorator.treesPerChunk = -999;
-        this.theBiomeDecorator.flowersPerChunk = 4;
-        this.theBiomeDecorator.grassPerChunk = 10;
+        setTemperatureRainfall(0.8F, 0.4F);
+        func_150570_a(field_150593_e);
+        spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(EntityHorse.class, 5, 2, 6));
+        theBiomeDecorator.treesPerChunk = -999;
+        theBiomeDecorator.flowersPerChunk = 4;
+        theBiomeDecorator.grassPerChunk = 10;
     }
 
     public String func_150572_a(Random p_150572_1_, int p_150572_2_, int p_150572_3_, int p_150572_4_)
     {
-        double var5 = field_150606_ad.func_151601_a((double)p_150572_2_ / 200.0D, (double)p_150572_4_ / 200.0D);
+        double var5 = field_150606_ad.func_151601_a(p_150572_2_ / 200.0D, p_150572_4_ / 200.0D);
         int var7;
 
         if (var5 < -0.8D)
@@ -45,7 +45,7 @@ public class BiomeGenPlains extends BiomeGenBase
 
     public void decorate(World par1World, Random par2Random, int par3, int par4)
     {
-        double var5 = field_150606_ad.func_151601_a((double)(par3 + 8) / 200.0D, (double)(par4 + 8) / 200.0D);
+        double var5 = field_150606_ad.func_151601_a((par3 + 8) / 200.0D, (par4 + 8) / 200.0D);
         int var7;
         int var8;
         int var9;
@@ -53,13 +53,13 @@ public class BiomeGenPlains extends BiomeGenBase
 
         if (var5 < -0.8D)
         {
-            this.theBiomeDecorator.flowersPerChunk = 15;
-            this.theBiomeDecorator.grassPerChunk = 5;
+            theBiomeDecorator.flowersPerChunk = 15;
+            theBiomeDecorator.grassPerChunk = 5;
         }
         else
         {
-            this.theBiomeDecorator.flowersPerChunk = 4;
-            this.theBiomeDecorator.grassPerChunk = 10;
+            theBiomeDecorator.flowersPerChunk = 4;
+            theBiomeDecorator.grassPerChunk = 10;
             field_150610_ae.func_150548_a(2);
 
             for (var7 = 0; var7 < 7; ++var7)
@@ -71,7 +71,7 @@ public class BiomeGenPlains extends BiomeGenBase
             }
         }
 
-        if (this.field_150628_aC)
+        if (field_150628_aC)
         {
             field_150610_ae.func_150548_a(0);
 
@@ -89,7 +89,7 @@ public class BiomeGenPlains extends BiomeGenBase
 
     protected BiomeGenBase func_150566_k()
     {
-        BiomeGenPlains var1 = new BiomeGenPlains(this.biomeID + 128);
+        BiomeGenPlains var1 = new BiomeGenPlains(biomeID + 128);
         var1.setBiomeName("Sunflower Plains");
         var1.field_150628_aC = true;
         var1.setColor(9286496);

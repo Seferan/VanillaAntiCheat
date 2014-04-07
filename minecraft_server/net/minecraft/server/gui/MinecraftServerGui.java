@@ -88,14 +88,14 @@ public class MinecraftServerGui extends JComponent
 
     public MinecraftServerGui(DedicatedServer par1DedicatedServer)
     {
-        this.field_120021_b = par1DedicatedServer;
-        this.setPreferredSize(new Dimension(854, 480));
-        this.setLayout(new BorderLayout());
+        field_120021_b = par1DedicatedServer;
+        setPreferredSize(new Dimension(854, 480));
+        setLayout(new BorderLayout());
 
         try
         {
-            this.add(this.getLogComponent(), "Center");
-            this.add(this.getStatsComponent(), "West");
+            this.add(getLogComponent(), "Center");
+            this.add(getStatsComponent(), "West");
         }
         catch (Exception var3)
         {
@@ -109,8 +109,8 @@ public class MinecraftServerGui extends JComponent
     private JComponent getStatsComponent()
     {
         JPanel var1 = new JPanel(new BorderLayout());
-        var1.add(new StatsComponent(this.field_120021_b), "North");
-        var1.add(this.getPlayerListComponent(), "Center");
+        var1.add(new StatsComponent(field_120021_b), "North");
+        var1.add(getPlayerListComponent(), "Center");
         var1.setBorder(new TitledBorder(new EtchedBorder(), "Stats"));
         return var1;
     }
@@ -120,7 +120,7 @@ public class MinecraftServerGui extends JComponent
      */
     private JComponent getPlayerListComponent()
     {
-        PlayerListComponent var1 = new PlayerListComponent(this.field_120021_b);
+        PlayerListComponent var1 = new PlayerListComponent(field_120021_b);
         JScrollPane var2 = new JScrollPane(var1, 22, 30);
         var2.setBorder(new TitledBorder(new EtchedBorder(), "Players"));
         return var2;
@@ -144,7 +144,7 @@ public class MinecraftServerGui extends JComponent
 
                 if (var2.length() > 0)
                 {
-                    MinecraftServerGui.this.field_120021_b.addPendingCommand(var2, MinecraftServer.getServer());
+                    field_120021_b.addPendingCommand(var2, MinecraftServer.getServer());
                 }
 
                 var4.setText("");
@@ -202,7 +202,7 @@ public class MinecraftServerGui extends JComponent
 
             if (p_164247_2_.getViewport().getView() == p_164247_1_)
             {
-                var6 = (double)var5.getValue() + var5.getSize().getHeight() + (double)(field_164249_a.getSize() * 4) > (double)var5.getMaximum();
+                var6 = var5.getValue() + var5.getSize().getHeight() + field_164249_a.getSize() * 4 > var5.getMaximum();
             }
 
             try

@@ -22,13 +22,13 @@ public class EntitySpider extends EntityMob
     public EntitySpider(World par1World)
     {
         super(par1World);
-        this.setSize(1.4F, 0.9F);
+        setSize(1.4F, 0.9F);
     }
 
     protected void entityInit()
     {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte)0));
+        dataWatcher.addObject(16, new Byte((byte)0));
     }
 
     /**
@@ -38,17 +38,17 @@ public class EntitySpider extends EntityMob
     {
         super.onUpdate();
 
-        if (!this.worldObj.isClient)
+        if (!worldObj.isClient)
         {
-            this.setBesideClimbableBlock(this.isCollidedHorizontally);
+            setBesideClimbableBlock(isCollidedHorizontally);
         }
     }
 
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(16.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.800000011920929D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(16.0D);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.800000011920929D);
     }
 
     /**
@@ -58,12 +58,12 @@ public class EntitySpider extends EntityMob
      */
     protected Entity findPlayerToAttack()
     {
-        float var1 = this.getBrightness(1.0F);
+        float var1 = getBrightness(1.0F);
 
         if (var1 < 0.5F)
         {
             double var2 = 16.0D;
-            return this.worldObj.getClosestVulnerablePlayerToEntity(this, var2);
+            return worldObj.getClosestVulnerablePlayerToEntity(this, var2);
         }
         else
         {
@@ -97,7 +97,7 @@ public class EntitySpider extends EntityMob
 
     protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
     {
-        this.playSound("mob.spider.step", 0.15F, 1.0F);
+        playSound("mob.spider.step", 0.15F, 1.0F);
     }
 
     /**
@@ -106,24 +106,24 @@ public class EntitySpider extends EntityMob
      */
     protected void attackEntity(Entity par1Entity, float par2)
     {
-        float var3 = this.getBrightness(1.0F);
+        float var3 = getBrightness(1.0F);
 
-        if (var3 > 0.5F && this.rand.nextInt(100) == 0)
+        if (var3 > 0.5F && rand.nextInt(100) == 0)
         {
-            this.entityToAttack = null;
+            entityToAttack = null;
         }
         else
         {
-            if (par2 > 2.0F && par2 < 6.0F && this.rand.nextInt(10) == 0)
+            if (par2 > 2.0F && par2 < 6.0F && rand.nextInt(10) == 0)
             {
-                if (this.onGround)
+                if (onGround)
                 {
-                    double var4 = par1Entity.posX - this.posX;
-                    double var6 = par1Entity.posZ - this.posZ;
+                    double var4 = par1Entity.posX - posX;
+                    double var6 = par1Entity.posZ - posZ;
                     float var8 = MathHelper.sqrt_double(var4 * var4 + var6 * var6);
-                    this.motionX = var4 / (double)var8 * 0.5D * 0.800000011920929D + this.motionX * 0.20000000298023224D;
-                    this.motionZ = var6 / (double)var8 * 0.5D * 0.800000011920929D + this.motionZ * 0.20000000298023224D;
-                    this.motionY = 0.4000000059604645D;
+                    motionX = var4 / var8 * 0.5D * 0.800000011920929D + motionX * 0.20000000298023224D;
+                    motionZ = var6 / var8 * 0.5D * 0.800000011920929D + motionZ * 0.20000000298023224D;
+                    motionY = 0.4000000059604645D;
                 }
             }
             else
@@ -145,9 +145,9 @@ public class EntitySpider extends EntityMob
     {
         super.dropFewItems(par1, par2);
 
-        if (par1 && (this.rand.nextInt(3) == 0 || this.rand.nextInt(1 + par2) > 0))
+        if (par1 && (rand.nextInt(3) == 0 || rand.nextInt(1 + par2) > 0))
         {
-            this.func_145779_a(Items.spider_eye, 1);
+            func_145779_a(Items.spider_eye, 1);
         }
     }
 
@@ -156,7 +156,7 @@ public class EntitySpider extends EntityMob
      */
     public boolean isOnLadder()
     {
-        return this.isBesideClimbableBlock();
+        return isBesideClimbableBlock();
     }
 
     /**
@@ -185,7 +185,7 @@ public class EntitySpider extends EntityMob
      */
     public boolean isBesideClimbableBlock()
     {
-        return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+        return (dataWatcher.getWatchableObjectByte(16) & 1) != 0;
     }
 
     /**
@@ -194,7 +194,7 @@ public class EntitySpider extends EntityMob
      */
     public void setBesideClimbableBlock(boolean par1)
     {
-        byte var2 = this.dataWatcher.getWatchableObjectByte(16);
+        byte var2 = dataWatcher.getWatchableObjectByte(16);
 
         if (par1)
         {
@@ -205,19 +205,19 @@ public class EntitySpider extends EntityMob
             var2 &= -2;
         }
 
-        this.dataWatcher.updateObject(16, Byte.valueOf(var2));
+        dataWatcher.updateObject(16, Byte.valueOf(var2));
     }
 
     public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData)
     {
         Object par1EntityLivingData1 = super.onSpawnWithEgg(par1EntityLivingData);
 
-        if (this.worldObj.rand.nextInt(100) == 0)
+        if (worldObj.rand.nextInt(100) == 0)
         {
-            EntitySkeleton var2 = new EntitySkeleton(this.worldObj);
-            var2.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+            EntitySkeleton var2 = new EntitySkeleton(worldObj);
+            var2.setLocationAndAngles(posX, posY, posZ, rotationYaw, 0.0F);
             var2.onSpawnWithEgg((IEntityLivingData)null);
-            this.worldObj.spawnEntityInWorld(var2);
+            worldObj.spawnEntityInWorld(var2);
             var2.mountEntity(this);
         }
 
@@ -225,9 +225,9 @@ public class EntitySpider extends EntityMob
         {
             par1EntityLivingData1 = new EntitySpider.GroupData();
 
-            if (this.worldObj.difficultySetting == EnumDifficulty.HARD && this.worldObj.rand.nextFloat() < 0.1F * this.worldObj.func_147462_b(this.posX, this.posY, this.posZ))
+            if (worldObj.difficultySetting == EnumDifficulty.HARD && worldObj.rand.nextFloat() < 0.1F * worldObj.func_147462_b(posX, posY, posZ))
             {
-                ((EntitySpider.GroupData)par1EntityLivingData1).func_111104_a(this.worldObj.rand);
+                ((EntitySpider.GroupData)par1EntityLivingData1).func_111104_a(worldObj.rand);
             }
         }
 
@@ -237,7 +237,7 @@ public class EntitySpider extends EntityMob
 
             if (var4 > 0 && Potion.potionTypes[var4] != null)
             {
-                this.addPotionEffect(new PotionEffect(var4, Integer.MAX_VALUE));
+                addPotionEffect(new PotionEffect(var4, Integer.MAX_VALUE));
             }
         }
 
@@ -255,19 +255,19 @@ public class EntitySpider extends EntityMob
 
             if (var2 <= 1)
             {
-                this.field_111105_a = Potion.moveSpeed.id;
+                field_111105_a = Potion.moveSpeed.id;
             }
             else if (var2 <= 2)
             {
-                this.field_111105_a = Potion.damageBoost.id;
+                field_111105_a = Potion.damageBoost.id;
             }
             else if (var2 <= 3)
             {
-                this.field_111105_a = Potion.regeneration.id;
+                field_111105_a = Potion.regeneration.id;
             }
             else if (var2 <= 4)
             {
-                this.field_111105_a = Potion.invisibility.id;
+                field_111105_a = Potion.invisibility.id;
             }
         }
     }

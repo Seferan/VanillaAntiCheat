@@ -344,11 +344,11 @@ public class EntityList
 
         public EntityEggInfo(int par1, int par2, int par3)
         {
-            this.spawnedID = par1;
-            this.primaryColor = par2;
-            this.secondaryColor = par3;
-            this.field_151512_d = StatList.func_151182_a(this);
-            this.field_151513_e = StatList.func_151176_b(this);
+            spawnedID = par1;
+            primaryColor = par2;
+            secondaryColor = par3;
+            field_151512_d = StatList.func_151182_a(this);
+            field_151513_e = StatList.func_151176_b(this);
         }
     }
 }

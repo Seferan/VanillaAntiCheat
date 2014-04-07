@@ -25,14 +25,14 @@ public class C08PacketPlayerBlockPlacement extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.x = p_148837_1_.readInt();
-        this.y = p_148837_1_.readUnsignedByte();
-        this.z = p_148837_1_.readInt();
-        this.side = p_148837_1_.readUnsignedByte();
-        this.field_149580_e = p_148837_1_.readItemStackFromBuffer();
-        this.xOffset = (float)p_148837_1_.readUnsignedByte() / 16.0F;
-        this.yOffset = (float)p_148837_1_.readUnsignedByte() / 16.0F;
-        this.field_149584_h = (float)p_148837_1_.readUnsignedByte() / 16.0F;
+        x = p_148837_1_.readInt();
+        y = p_148837_1_.readUnsignedByte();
+        z = p_148837_1_.readInt();
+        side = p_148837_1_.readUnsignedByte();
+        field_149580_e = p_148837_1_.readItemStackFromBuffer();
+        xOffset = p_148837_1_.readUnsignedByte() / 16.0F;
+        yOffset = p_148837_1_.readUnsignedByte() / 16.0F;
+        field_149584_h = p_148837_1_.readUnsignedByte() / 16.0F;
     }
 
     /**
@@ -40,14 +40,14 @@ public class C08PacketPlayerBlockPlacement extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.x);
-        p_148840_1_.writeByte(this.y);
-        p_148840_1_.writeInt(this.z);
-        p_148840_1_.writeByte(this.side);
-        p_148840_1_.writeItemStackToBuffer(this.field_149580_e);
-        p_148840_1_.writeByte((int)(this.xOffset * 16.0F));
-        p_148840_1_.writeByte((int)(this.yOffset * 16.0F));
-        p_148840_1_.writeByte((int)(this.field_149584_h * 16.0F));
+        p_148840_1_.writeInt(x);
+        p_148840_1_.writeByte(y);
+        p_148840_1_.writeInt(z);
+        p_148840_1_.writeByte(side);
+        p_148840_1_.writeItemStackToBuffer(field_149580_e);
+        p_148840_1_.writeByte((int)(xOffset * 16.0F));
+        p_148840_1_.writeByte((int)(yOffset * 16.0F));
+        p_148840_1_.writeByte((int)(field_149584_h * 16.0F));
     }
 
     public void func_148833_a(INetHandlerPlayServer p_149572_1_)
@@ -57,42 +57,42 @@ public class C08PacketPlayerBlockPlacement extends Packet
 
     public int getX()
     {
-        return this.x;
+        return x;
     }
 
     public int getY()
     {
-        return this.y;
+        return y;
     }
 
     public int getZ()
     {
-        return this.z;
+        return z;
     }
 
     public int getSide()
     {
-        return this.side;
+        return side;
     }
 
     public ItemStack func_149574_g()
     {
-        return this.field_149580_e;
+        return field_149580_e;
     }
 
     public float getXOffset()
     {
-        return this.xOffset;
+        return xOffset;
     }
 
     public float getYOffset()
     {
-        return this.yOffset;
+        return yOffset;
     }
 
     public float getZOffset()
     {
-        return this.field_149584_h;
+        return field_149584_h;
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

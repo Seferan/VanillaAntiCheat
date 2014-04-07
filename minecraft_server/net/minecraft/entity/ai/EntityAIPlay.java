@@ -17,9 +17,9 @@ public class EntityAIPlay extends EntityAIBase
 
     public EntityAIPlay(EntityVillager par1EntityVillager, double par2)
     {
-        this.villagerObj = par1EntityVillager;
-        this.field_75261_c = par2;
-        this.setMutexBits(1);
+        villagerObj = par1EntityVillager;
+        field_75261_c = par2;
+        setMutexBits(1);
     }
 
     /**
@@ -27,17 +27,17 @@ public class EntityAIPlay extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        if (this.villagerObj.getGrowingAge() >= 0)
+        if (villagerObj.getGrowingAge() >= 0)
         {
             return false;
         }
-        else if (this.villagerObj.getRNG().nextInt(400) != 0)
+        else if (villagerObj.getRNG().nextInt(400) != 0)
         {
             return false;
         }
         else
         {
-            List var1 = this.villagerObj.worldObj.getEntitiesWithinAABB(EntityVillager.class, this.villagerObj.boundingBox.expand(6.0D, 3.0D, 6.0D));
+            List var1 = villagerObj.worldObj.getEntitiesWithinAABB(EntityVillager.class, villagerObj.boundingBox.expand(6.0D, 3.0D, 6.0D));
             double var2 = Double.MAX_VALUE;
             Iterator var4 = var1.iterator();
 
@@ -45,21 +45,21 @@ public class EntityAIPlay extends EntityAIBase
             {
                 EntityVillager var5 = (EntityVillager)var4.next();
 
-                if (var5 != this.villagerObj && !var5.isPlaying() && var5.getGrowingAge() < 0)
+                if (var5 != villagerObj && !var5.isPlaying() && var5.getGrowingAge() < 0)
                 {
-                    double var6 = var5.getDistanceSqToEntity(this.villagerObj);
+                    double var6 = var5.getDistanceSqToEntity(villagerObj);
 
                     if (var6 <= var2)
                     {
                         var2 = var6;
-                        this.targetVillager = var5;
+                        targetVillager = var5;
                     }
                 }
             }
 
-            if (this.targetVillager == null)
+            if (targetVillager == null)
             {
-                Vec3 var8 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+                Vec3 var8 = RandomPositionGenerator.findRandomTarget(villagerObj, 16, 3);
 
                 if (var8 == null) { return false; }
             }
@@ -73,7 +73,7 @@ public class EntityAIPlay extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return this.playTime > 0;
+        return playTime > 0;
     }
 
     /**
@@ -81,12 +81,12 @@ public class EntityAIPlay extends EntityAIBase
      */
     public void startExecuting()
     {
-        if (this.targetVillager != null)
+        if (targetVillager != null)
         {
-            this.villagerObj.setPlaying(true);
+            villagerObj.setPlaying(true);
         }
 
-        this.playTime = 1000;
+        playTime = 1000;
     }
 
     /**
@@ -94,8 +94,8 @@ public class EntityAIPlay extends EntityAIBase
      */
     public void resetTask()
     {
-        this.villagerObj.setPlaying(false);
-        this.targetVillager = null;
+        villagerObj.setPlaying(false);
+        targetVillager = null;
     }
 
     /**
@@ -103,22 +103,22 @@ public class EntityAIPlay extends EntityAIBase
      */
     public void updateTask()
     {
-        --this.playTime;
+        --playTime;
 
-        if (this.targetVillager != null)
+        if (targetVillager != null)
         {
-            if (this.villagerObj.getDistanceSqToEntity(this.targetVillager) > 4.0D)
+            if (villagerObj.getDistanceSqToEntity(targetVillager) > 4.0D)
             {
-                this.villagerObj.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.field_75261_c);
+                villagerObj.getNavigator().tryMoveToEntityLiving(targetVillager, field_75261_c);
             }
         }
-        else if (this.villagerObj.getNavigator().noPath())
+        else if (villagerObj.getNavigator().noPath())
         {
-            Vec3 var1 = RandomPositionGenerator.findRandomTarget(this.villagerObj, 16, 3);
+            Vec3 var1 = RandomPositionGenerator.findRandomTarget(villagerObj, 16, 3);
 
             if (var1 == null) { return; }
 
-            this.villagerObj.getNavigator().tryMoveToXYZ(var1.xCoord, var1.yCoord, var1.zCoord, this.field_75261_c);
+            villagerObj.getNavigator().tryMoveToXYZ(var1.xCoord, var1.yCoord, var1.zCoord, field_75261_c);
         }
     }
 }

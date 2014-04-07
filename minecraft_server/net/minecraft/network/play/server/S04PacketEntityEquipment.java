@@ -21,9 +21,9 @@ public class S04PacketEntityEquipment extends Packet
 
     public S04PacketEntityEquipment(int p_i45221_1_, int p_i45221_2_, ItemStack p_i45221_3_)
     {
-        this.field_149394_a = p_i45221_1_;
-        this.field_149392_b = p_i45221_2_;
-        this.field_149393_c = p_i45221_3_ == null ? null : p_i45221_3_.copy();
+        field_149394_a = p_i45221_1_;
+        field_149392_b = p_i45221_2_;
+        field_149393_c = p_i45221_3_ == null ? null : p_i45221_3_.copy();
     }
 
     /**
@@ -31,9 +31,9 @@ public class S04PacketEntityEquipment extends Packet
      */
     public void readPacketData(PacketBuffer p_148837_1_) throws IOException
     {
-        this.field_149394_a = p_148837_1_.readInt();
-        this.field_149392_b = p_148837_1_.readShort();
-        this.field_149393_c = p_148837_1_.readItemStackFromBuffer();
+        field_149394_a = p_148837_1_.readInt();
+        field_149392_b = p_148837_1_.readShort();
+        field_149393_c = p_148837_1_.readItemStackFromBuffer();
     }
 
     /**
@@ -41,9 +41,9 @@ public class S04PacketEntityEquipment extends Packet
      */
     public void writePacketData(PacketBuffer p_148840_1_) throws IOException
     {
-        p_148840_1_.writeInt(this.field_149394_a);
-        p_148840_1_.writeShort(this.field_149392_b);
-        p_148840_1_.writeItemStackToBuffer(this.field_149393_c);
+        p_148840_1_.writeInt(field_149394_a);
+        p_148840_1_.writeShort(field_149392_b);
+        p_148840_1_.writeItemStackToBuffer(field_149393_c);
     }
 
     public void func_148833_a(INetHandlerPlayClient p_149391_1_)
@@ -57,7 +57,7 @@ public class S04PacketEntityEquipment extends Packet
      */
     public String serialize()
     {
-        return String.format("entity=%d, slot=%d, item=%s", new Object[] {Integer.valueOf(this.field_149394_a), Integer.valueOf(this.field_149392_b), this.field_149393_c});
+        return String.format("entity=%d, slot=%d, item=%s", new Object[] {Integer.valueOf(field_149394_a), Integer.valueOf(field_149392_b), field_149393_c});
     }
 
     public void func_148833_a(INetHandler p_148833_1_)

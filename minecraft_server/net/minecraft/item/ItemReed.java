@@ -13,7 +13,7 @@ public class ItemReed extends Item
 
     public ItemReed(Block p_i45329_1_)
     {
-        this.field_150935_a = p_i45329_1_;
+        field_150935_a = p_i45329_1_;
     }
 
     /**
@@ -72,19 +72,19 @@ public class ItemReed extends Item
         }
         else
         {
-            if (par3World.func_147472_a(this.field_150935_a, par4, par5, par6, false, par7, (Entity)null, par1ItemStack))
+            if (par3World.func_147472_a(field_150935_a, par4, par5, par6, false, par7, (Entity)null, par1ItemStack))
             {
-                int var12 = this.field_150935_a.onBlockPlaced(par3World, par4, par5, par6, par7, par8, par9, par10, 0);
+                int var12 = field_150935_a.onBlockPlaced(par3World, par4, par5, par6, par7, par8, par9, par10, 0);
 
-                if (par3World.setBlock(par4, par5, par6, this.field_150935_a, var12, 3))
+                if (par3World.setBlock(par4, par5, par6, field_150935_a, var12, 3))
                 {
-                    if (par3World.getBlock(par4, par5, par6) == this.field_150935_a)
+                    if (par3World.getBlock(par4, par5, par6) == field_150935_a)
                     {
-                        this.field_150935_a.onBlockPlacedBy(par3World, par4, par5, par6, par2EntityPlayer, par1ItemStack);
-                        this.field_150935_a.onPostBlockPlaced(par3World, par4, par5, par6, var12);
+                        field_150935_a.onBlockPlacedBy(par3World, par4, par5, par6, par2EntityPlayer, par1ItemStack);
+                        field_150935_a.onPostBlockPlaced(par3World, par4, par5, par6, var12);
                     }
 
-                    par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), this.field_150935_a.stepSound.func_150496_b(), (this.field_150935_a.stepSound.getVolume() + 1.0F) / 2.0F, this.field_150935_a.stepSound.getFrequency() * 0.8F);
+                    par3World.playSoundEffect(par4 + 0.5F, par5 + 0.5F, par6 + 0.5F, field_150935_a.stepSound.func_150496_b(), (field_150935_a.stepSound.getVolume() + 1.0F) / 2.0F, field_150935_a.stepSound.getFrequency() * 0.8F);
                     --par1ItemStack.stackSize;
                 }
             }
