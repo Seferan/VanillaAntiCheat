@@ -37,7 +37,7 @@ public class CommandMotd extends CommandBase
         }
 
         boolean first = true;
-        for(String line : MinecraftServer.getServer().getConfigurationManager().getMotd())
+        for (String line : MinecraftServer.getServer().getConfigurationManager().getMotd())
         {
             ChatComponentText message = new ChatComponentText(line);
             if (line.contains("\\!"))

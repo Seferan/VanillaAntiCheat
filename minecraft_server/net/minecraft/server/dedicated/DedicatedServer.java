@@ -92,12 +92,12 @@ public class DedicatedServer extends MinecraftServer implements IServer
         getSpeedhackRatioKickThreshold();
         getSpeedLimit(false, false, false); // I'm sorry.
         getSpeedLimit(false, false, true);
-        getSpeedLimit(false, true,  false);
-        getSpeedLimit(false, true,  true);
-        getSpeedLimit(true,  false, false);
-        getSpeedLimit(true,  false, true);
-        getSpeedLimit(true,  true,  false);
-        getSpeedLimit(true,  true,  true);
+        getSpeedLimit(false, true, false);
+        getSpeedLimit(false, true, true);
+        getSpeedLimit(true, false, false);
+        getSpeedLimit(true, false, true);
+        getSpeedLimit(true, true, false);
+        getSpeedLimit(true, true, true);
         getSneakSpeedLimit();
         getProxyCheckMode();
         shouldCheckProxies();
@@ -606,9 +606,13 @@ public class DedicatedServer extends MinecraftServer implements IServer
 
     /**
      * Get the speed limit for a player with specific conditions.
-     * @param sprinting whether the player is sprinting or not
-     * @param jumping whether the player is jumping or not
-     * @param potion whether the player has a speed potion or not
+     * 
+     * @param sprinting
+     *            whether the player is sprinting or not
+     * @param jumping
+     *            whether the player is jumping or not
+     * @param potion
+     *            whether the player has a speed potion or not
      * @return the speed limit for the player
      */
     public double getSpeedLimit(boolean sprinting, boolean jumping, boolean potion)
@@ -630,8 +634,7 @@ public class DedicatedServer extends MinecraftServer implements IServer
             property += "potion-";
             defaultValue += 0.1;
         }
-        if (property.substring(property.length() - 1) == "-")
-            property = property.substring(0, property.length() - 1);
+        if (property.substring(property.length() - 1) == "-") property = property.substring(0, property.length() - 1);
         return settings.getDoubleProperty(property, defaultValue);
     }
 

@@ -12,7 +12,7 @@ public class VACModuleAntiFastbreak implements IVacModule
      */
     private int deviations;
     /**
-     *  Total number of times the block was mined (even if broken too quickly)
+     * Total number of times the block was mined (even if broken too quickly)
      */
     private int mined;
 
@@ -63,7 +63,8 @@ public class VACModuleAntiFastbreak implements IVacModule
     public void incrementMined()
     {
         mined++;
-        // System.out.println(String.valueOf(totalDeviations) + "/" + String.valueOf(totalMined) + " (" + getDeviationRatio() + ")");
+        // System.out.println(String.valueOf(totalDeviations) + "/" +
+        // String.valueOf(totalMined) + " (" + getDeviationRatio() + ")");
         // Reset the ratio periodically
         if (mined >= 100)
         {
@@ -84,6 +85,7 @@ public class VACModuleAntiFastbreak implements IVacModule
 
     /**
      * Gets the ratio of deviations to mined blocks.
+     * 
      * @return the ratio of deviations to mined blocks.
      */
     public double getDeviationRatio()

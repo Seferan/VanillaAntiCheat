@@ -301,58 +301,58 @@ public class Teleporter
                 var17 = var16 + 0.5D - par1Entity.posZ;
                 label274:
 
-                    for (var19 = worldServerInstance.getActualHeight() - 1; var19 >= 0; --var19)
+                for (var19 = worldServerInstance.getActualHeight() - 1; var19 >= 0; --var19)
+                {
+                    if (worldServerInstance.isAirBlock(var13, var19, var16))
                     {
-                        if (worldServerInstance.isAirBlock(var13, var19, var16))
+                        while (var19 > 0 && worldServerInstance.isAirBlock(var13, var19 - 1, var16))
                         {
-                            while (var19 > 0 && worldServerInstance.isAirBlock(var13, var19 - 1, var16))
+                            --var19;
+                        }
+
+                        for (var20 = var12; var20 < var12 + 4; ++var20)
+                        {
+                            var21 = var20 % 2;
+                            var22 = 1 - var21;
+
+                            if (var20 % 4 >= 2)
                             {
-                                --var19;
+                                var21 = -var21;
+                                var22 = -var22;
                             }
 
-                            for (var20 = var12; var20 < var12 + 4; ++var20)
+                            for (var23 = 0; var23 < 3; ++var23)
                             {
-                                var21 = var20 % 2;
-                                var22 = 1 - var21;
-
-                                if (var20 % 4 >= 2)
+                                for (var24 = 0; var24 < 4; ++var24)
                                 {
-                                    var21 = -var21;
-                                    var22 = -var22;
-                                }
-
-                                for (var23 = 0; var23 < 3; ++var23)
-                                {
-                                    for (var24 = 0; var24 < 4; ++var24)
+                                    for (var25 = -1; var25 < 4; ++var25)
                                     {
-                                        for (var25 = -1; var25 < 4; ++var25)
-                                        {
-                                            var26 = var13 + (var24 - 1) * var21 + var23 * var22;
-                                            var27 = var19 + var25;
-                                            int var28 = var16 + (var24 - 1) * var22 - var23 * var21;
+                                        var26 = var13 + (var24 - 1) * var21 + var23 * var22;
+                                        var27 = var19 + var25;
+                                        int var28 = var16 + (var24 - 1) * var22 - var23 * var21;
 
-                                            if (var25 < 0 && !worldServerInstance.getBlock(var26, var27, var28).getMaterial().isSolid() || var25 >= 0 && !worldServerInstance.isAirBlock(var26, var27, var28))
-                                            {
-                                                continue label274;
-                                            }
+                                        if (var25 < 0 && !worldServerInstance.getBlock(var26, var27, var28).getMaterial().isSolid() || var25 >= 0 && !worldServerInstance.isAirBlock(var26, var27, var28))
+                                        {
+                                            continue label274;
                                         }
                                     }
                                 }
+                            }
 
-                                var32 = var19 + 0.5D - par1Entity.posY;
-                                var31 = var14 * var14 + var32 * var32 + var17 * var17;
+                            var32 = var19 + 0.5D - par1Entity.posY;
+                            var31 = var14 * var14 + var32 * var32 + var17 * var17;
 
-                                if (var3 < 0.0D || var31 < var3)
-                                {
-                                    var3 = var31;
-                                    var8 = var13;
-                                    var9 = var19;
-                                    var10 = var16;
-                                    var11 = var20 % 4;
-                                }
+                            if (var3 < 0.0D || var31 < var3)
+                            {
+                                var3 = var31;
+                                var8 = var13;
+                                var9 = var19;
+                                var10 = var16;
+                                var11 = var20 % 4;
                             }
                         }
                     }
+                }
             }
         }
 
@@ -367,49 +367,49 @@ public class Teleporter
                     var17 = var16 + 0.5D - par1Entity.posZ;
                     label222:
 
-                        for (var19 = worldServerInstance.getActualHeight() - 1; var19 >= 0; --var19)
+                    for (var19 = worldServerInstance.getActualHeight() - 1; var19 >= 0; --var19)
+                    {
+                        if (worldServerInstance.isAirBlock(var13, var19, var16))
                         {
-                            if (worldServerInstance.isAirBlock(var13, var19, var16))
+                            while (var19 > 0 && worldServerInstance.isAirBlock(var13, var19 - 1, var16))
                             {
-                                while (var19 > 0 && worldServerInstance.isAirBlock(var13, var19 - 1, var16))
-                                {
-                                    --var19;
-                                }
+                                --var19;
+                            }
 
-                                for (var20 = var12; var20 < var12 + 2; ++var20)
-                                {
-                                    var21 = var20 % 2;
-                                    var22 = 1 - var21;
+                            for (var20 = var12; var20 < var12 + 2; ++var20)
+                            {
+                                var21 = var20 % 2;
+                                var22 = 1 - var21;
 
-                                    for (var23 = 0; var23 < 4; ++var23)
+                                for (var23 = 0; var23 < 4; ++var23)
+                                {
+                                    for (var24 = -1; var24 < 4; ++var24)
                                     {
-                                        for (var24 = -1; var24 < 4; ++var24)
-                                        {
-                                            var25 = var13 + (var23 - 1) * var21;
-                                            var26 = var19 + var24;
-                                            var27 = var16 + (var23 - 1) * var22;
+                                        var25 = var13 + (var23 - 1) * var21;
+                                        var26 = var19 + var24;
+                                        var27 = var16 + (var23 - 1) * var22;
 
-                                            if (var24 < 0 && !worldServerInstance.getBlock(var25, var26, var27).getMaterial().isSolid() || var24 >= 0 && !worldServerInstance.isAirBlock(var25, var26, var27))
-                                            {
-                                                continue label222;
-                                            }
+                                        if (var24 < 0 && !worldServerInstance.getBlock(var25, var26, var27).getMaterial().isSolid() || var24 >= 0 && !worldServerInstance.isAirBlock(var25, var26, var27))
+                                        {
+                                            continue label222;
                                         }
                                     }
+                                }
 
-                                    var32 = var19 + 0.5D - par1Entity.posY;
-                                    var31 = var14 * var14 + var32 * var32 + var17 * var17;
+                                var32 = var19 + 0.5D - par1Entity.posY;
+                                var31 = var14 * var14 + var32 * var32 + var17 * var17;
 
-                                    if (var3 < 0.0D || var31 < var3)
-                                    {
-                                        var3 = var31;
-                                        var8 = var13;
-                                        var9 = var19;
-                                        var10 = var16;
-                                        var11 = var20 % 2;
-                                    }
+                                if (var3 < 0.0D || var31 < var3)
+                                {
+                                    var3 = var31;
+                                    var8 = var13;
+                                    var9 = var19;
+                                    var10 = var16;
+                                    var11 = var20 % 2;
                                 }
                             }
                         }
+                    }
                 }
             }
         }

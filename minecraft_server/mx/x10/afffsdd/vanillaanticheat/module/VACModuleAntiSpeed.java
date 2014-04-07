@@ -1,6 +1,5 @@
 package mx.x10.afffsdd.vanillaanticheat.module;
 
-
 public class VACModuleAntiSpeed implements IVacModule
 {
     /**
@@ -115,12 +114,14 @@ public class VACModuleAntiSpeed implements IVacModule
      * they started sneaking. This is to give them some time to slow down after
      * sneaking.
      * 
-     * @param isSneaking whether the player is sneaking or not
+     * @param isSneaking
+     *            whether the player is sneaking or not
      */
     public void setSneaking(boolean isSneaking)
     {
         wasSneaking = isSneaking;
-        // This will give the player 1 second to slow down as Minecraft changes the speed gradually
+        // This will give the player 1 second to slow down as Minecraft changes
+        // the speed gradually
         if (timeSinceSneakingStarted >= 10)
             wasSneaking = isSneaking;
         else

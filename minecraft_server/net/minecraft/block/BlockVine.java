@@ -220,25 +220,25 @@ public class BlockVine extends Block
             int var11;
             label134:
 
-                for (var9 = p_149674_2_ - var6; var9 <= p_149674_2_ + var6; ++var9)
+            for (var9 = p_149674_2_ - var6; var9 <= p_149674_2_ + var6; ++var9)
+            {
+                for (var10 = p_149674_4_ - var6; var10 <= p_149674_4_ + var6; ++var10)
                 {
-                    for (var10 = p_149674_4_ - var6; var10 <= p_149674_4_ + var6; ++var10)
+                    for (var11 = p_149674_3_ - 1; var11 <= p_149674_3_ + 1; ++var11)
                     {
-                        for (var11 = p_149674_3_ - 1; var11 <= p_149674_3_ + 1; ++var11)
+                        if (p_149674_1_.getBlock(var9, var11, var10) == this)
                         {
-                            if (p_149674_1_.getBlock(var9, var11, var10) == this)
-                            {
-                                --var7;
+                            --var7;
 
-                                if (var7 <= 0)
-                                {
-                                    var8 = true;
-                                    break label134;
-                                }
+                            if (var7 <= 0)
+                            {
+                                var8 = true;
+                                break label134;
                             }
                         }
                     }
                 }
+            }
 
             var9 = p_149674_1_.getBlockMetadata(p_149674_2_, p_149674_3_, p_149674_4_);
             var10 = p_149674_1_.rand.nextInt(6);

@@ -90,38 +90,38 @@ public final class SpawnerAnimals
                     Iterator var39 = eligibleChunksForSpawning.keySet().iterator();
                     label110:
 
-                        while (var39.hasNext())
+                    while (var39.hasNext())
+                    {
+                        ChunkCoordIntPair var38 = (ChunkCoordIntPair)var39.next();
+
+                        if (!((Boolean)eligibleChunksForSpawning.get(var38)).booleanValue())
                         {
-                            ChunkCoordIntPair var38 = (ChunkCoordIntPair)var39.next();
+                            ChunkPosition var40 = func_151350_a(par1WorldServer, var38.chunkXPos, var38.chunkZPos);
+                            int var14 = var40.chunkPosX;
+                            int var15 = var40.chunkPosY;
+                            int var16 = var40.chunkPosZ;
 
-                            if (!((Boolean)eligibleChunksForSpawning.get(var38)).booleanValue())
+                            if (!par1WorldServer.getBlock(var14, var15, var16).isNormalCube() && par1WorldServer.getBlock(var14, var15, var16).getMaterial() == var37.getCreatureMaterial())
                             {
-                                ChunkPosition var40 = func_151350_a(par1WorldServer, var38.chunkXPos, var38.chunkZPos);
-                                int var14 = var40.chunkPosX;
-                                int var15 = var40.chunkPosY;
-                                int var16 = var40.chunkPosZ;
+                                int var17 = 0;
+                                int var18 = 0;
 
-                                if (!par1WorldServer.getBlock(var14, var15, var16).isNormalCube() && par1WorldServer.getBlock(var14, var15, var16).getMaterial() == var37.getCreatureMaterial())
+                                while (var18 < 3)
                                 {
-                                    int var17 = 0;
-                                    int var18 = 0;
+                                    int var19 = var14;
+                                    int var20 = var15;
+                                    int var21 = var16;
+                                    byte var22 = 6;
+                                    BiomeGenBase.SpawnListEntry var23 = null;
+                                    IEntityLivingData var24 = null;
+                                    int var25 = 0;
 
-                                    while (var18 < 3)
+                                    while (true)
                                     {
-                                        int var19 = var14;
-                                        int var20 = var15;
-                                        int var21 = var16;
-                                        byte var22 = 6;
-                                        BiomeGenBase.SpawnListEntry var23 = null;
-                                        IEntityLivingData var24 = null;
-                                        int var25 = 0;
-
-                                        while (true)
+                                        if (var25 < 4)
                                         {
-                                            if (var25 < 4)
+                                            label103:
                                             {
-                                                label103:
-                                                {
                                                 var19 += par1WorldServer.rand.nextInt(var22) - par1WorldServer.rand.nextInt(var22);
                                                 var20 += par1WorldServer.rand.nextInt(1) - par1WorldServer.rand.nextInt(1);
                                                 var21 += par1WorldServer.rand.nextInt(var22) - par1WorldServer.rand.nextInt(var22);
@@ -184,16 +184,16 @@ public final class SpawnerAnimals
 
                                                 ++var25;
                                                 continue;
-                                                }
                                             }
-
-                                            ++var18;
-                                            break;
                                         }
+
+                                        ++var18;
+                                        break;
                                     }
                                 }
                             }
                         }
+                    }
                 }
             }
 

@@ -482,9 +482,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
     {
         mcServer.getConfigurationManager().func_148539_a(func_110142_aN().func_151521_b());
 
-        if (!worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")
-                && !(worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory")
-                        && MinecraftServer.isPlayerOpped(getUsername())))
+        if (!worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") && !(worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory") && MinecraftServer.isPlayerOpped(getUsername())))
         {
             inventory.dropAllItems();
         }
@@ -1155,20 +1153,20 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         translator = p_147100_1_.func_149524_c();
         int var2 = 256 >> p_147100_1_.func_149521_d();
 
-            if (var2 > 3 && var2 < 15)
-            {
-                renderDistance = var2;
-            }
+        if (var2 > 3 && var2 < 15)
+        {
+            renderDistance = var2;
+        }
 
-            chatVisibility = p_147100_1_.func_149523_e();
-            chatColours = p_147100_1_.func_149520_f();
+        chatVisibility = p_147100_1_.func_149523_e();
+        chatColours = p_147100_1_.func_149520_f();
 
-            if (mcServer.isSinglePlayer() && mcServer.getServerOwner().equals(getUsername()))
-            {
-                mcServer.func_147139_a(p_147100_1_.func_149518_g());
-            }
+        if (mcServer.isSinglePlayer() && mcServer.getServerOwner().equals(getUsername()))
+        {
+            mcServer.func_147139_a(p_147100_1_.func_149518_g());
+        }
 
-            setHideCape(1, !p_147100_1_.func_149519_h());
+        setHideCape(1, !p_147100_1_.func_149519_h());
     }
 
     public EntityPlayer.EnumChatVisibility func_147096_v()

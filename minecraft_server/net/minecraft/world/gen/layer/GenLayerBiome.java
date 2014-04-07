@@ -43,64 +43,64 @@ public class GenLayerBiome extends GenLayer
                 initChunkSeed(var8 + par1, var7 + par2);
                 int var9 = var5[var8 + var7 * par3];
                 int var10 = (var9 & 3840) >> 8;
-            var9 &= -3841;
+                var9 &= -3841;
 
-            if (func_151618_b(var9))
-            {
-                var6[var8 + var7 * par3] = var9;
-            }
-            else if (var9 == BiomeGenBase.mushroomIsland.biomeID)
-            {
-                var6[var8 + var7 * par3] = var9;
-            }
-            else if (var9 == 1)
-            {
-                if (var10 > 0)
+                if (func_151618_b(var9))
                 {
-                    if (nextInt(3) == 0)
+                    var6[var8 + var7 * par3] = var9;
+                }
+                else if (var9 == BiomeGenBase.mushroomIsland.biomeID)
+                {
+                    var6[var8 + var7 * par3] = var9;
+                }
+                else if (var9 == 1)
+                {
+                    if (var10 > 0)
                     {
-                        var6[var8 + var7 * par3] = BiomeGenBase.field_150608_ab.biomeID;
+                        if (nextInt(3) == 0)
+                        {
+                            var6[var8 + var7 * par3] = BiomeGenBase.field_150608_ab.biomeID;
+                        }
+                        else
+                        {
+                            var6[var8 + var7 * par3] = BiomeGenBase.field_150607_aa.biomeID;
+                        }
                     }
                     else
                     {
-                        var6[var8 + var7 * par3] = BiomeGenBase.field_150607_aa.biomeID;
+                        var6[var8 + var7 * par3] = field_151623_c[nextInt(field_151623_c.length)].biomeID;
                     }
                 }
+                else if (var9 == 2)
+                {
+                    if (var10 > 0)
+                    {
+                        var6[var8 + var7 * par3] = BiomeGenBase.jungle.biomeID;
+                    }
+                    else
+                    {
+                        var6[var8 + var7 * par3] = field_151621_d[nextInt(field_151621_d.length)].biomeID;
+                    }
+                }
+                else if (var9 == 3)
+                {
+                    if (var10 > 0)
+                    {
+                        var6[var8 + var7 * par3] = BiomeGenBase.field_150578_U.biomeID;
+                    }
+                    else
+                    {
+                        var6[var8 + var7 * par3] = field_151622_e[nextInt(field_151622_e.length)].biomeID;
+                    }
+                }
+                else if (var9 == 4)
+                {
+                    var6[var8 + var7 * par3] = field_151620_f[nextInt(field_151620_f.length)].biomeID;
+                }
                 else
                 {
-                    var6[var8 + var7 * par3] = field_151623_c[nextInt(field_151623_c.length)].biomeID;
+                    var6[var8 + var7 * par3] = BiomeGenBase.mushroomIsland.biomeID;
                 }
-            }
-            else if (var9 == 2)
-            {
-                if (var10 > 0)
-                {
-                    var6[var8 + var7 * par3] = BiomeGenBase.jungle.biomeID;
-                }
-                else
-                {
-                    var6[var8 + var7 * par3] = field_151621_d[nextInt(field_151621_d.length)].biomeID;
-                }
-            }
-            else if (var9 == 3)
-            {
-                if (var10 > 0)
-                {
-                    var6[var8 + var7 * par3] = BiomeGenBase.field_150578_U.biomeID;
-                }
-                else
-                {
-                    var6[var8 + var7 * par3] = field_151622_e[nextInt(field_151622_e.length)].biomeID;
-                }
-            }
-            else if (var9 == 4)
-            {
-                var6[var8 + var7 * par3] = field_151620_f[nextInt(field_151620_f.length)].biomeID;
-            }
-            else
-            {
-                var6[var8 + var7 * par3] = BiomeGenBase.mushroomIsland.biomeID;
-            }
             }
         }
 

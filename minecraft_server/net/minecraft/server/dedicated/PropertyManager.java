@@ -81,8 +81,10 @@ public class PropertyManager
 
         try
         {
-            Properties sortedProperties = new Properties() {
-                public synchronized Enumeration<Object> keys() {
+            Properties sortedProperties = new Properties()
+            {
+                public synchronized Enumeration<Object> keys()
+                {
                     return Collections.enumeration(new TreeSet<Object>(super.keySet()));
                 }
             };

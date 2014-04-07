@@ -41,10 +41,10 @@ public class S22PacketMultiBlockChange extends Packet
             for (int var7 = 0; var7 < p_i45181_1_; ++var7)
             {
                 int var8 = p_i45181_2_[var7] >> 12 & 15;
-            int var9 = p_i45181_2_[var7] >> 8 & 15;
-            int var10 = p_i45181_2_[var7] & 255;
-            var6.writeShort(p_i45181_2_[var7]);
-            var6.writeShort((short)((Block.getIdFromBlock(p_i45181_3_.func_150810_a(var8, var10, var9)) & 4095) << 4 | p_i45181_3_.getBlockMetadata(var8, var10, var9) & 15));
+                int var9 = p_i45181_2_[var7] >> 8 & 15;
+                int var10 = p_i45181_2_[var7] & 255;
+                var6.writeShort(p_i45181_2_[var7]);
+                var6.writeShort((short)((Block.getIdFromBlock(p_i45181_3_.func_150810_a(var8, var10, var9)) & 4095) << 4 | p_i45181_3_.getBlockMetadata(var8, var10, var9) & 15));
             }
 
             field_148926_c = var5.toByteArray();

@@ -50,6 +50,7 @@ public class VACModuleDiamondNotifications implements IVacModule
 
     /**
      * Returns true if the player is mining a new vein.
+     * 
      * @return whether the player is mining a new vein or not.
      */
     // TODO: add detection by seeing if blocks are adjacent or not

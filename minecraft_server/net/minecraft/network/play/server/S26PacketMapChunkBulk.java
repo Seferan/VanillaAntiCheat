@@ -133,7 +133,7 @@ public class S26PacketMapChunkBulk extends Packet
             for (var9 = 0; var9 < 16; ++var9)
             {
                 var7 += field_149265_c[var6] >> var9 & 1;
-            var8 += field_149262_d[var6] >> var9 & 1;
+                var8 += field_149262_d[var6] >> var9 & 1;
             }
 
             var9 = 2048 * 4 * var7 + 256;

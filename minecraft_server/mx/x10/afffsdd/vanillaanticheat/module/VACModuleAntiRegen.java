@@ -11,7 +11,8 @@ public class VACModuleAntiRegen implements IVacModule
      */
     boolean firstHeal;
     /**
-     * Whether the player regenerating health too fast was already logged or not.
+     * Whether the player regenerating health too fast was already logged or
+     * not.
      */
     boolean logged;
 
@@ -53,6 +54,7 @@ public class VACModuleAntiRegen implements IVacModule
 
     /**
      * Returns logged.
+     * 
      * @return logged
      */
     public boolean hasBeenLogged()

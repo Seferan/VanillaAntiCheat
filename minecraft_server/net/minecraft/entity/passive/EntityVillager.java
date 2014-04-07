@@ -476,117 +476,117 @@ public class EntityVillager extends EntityAgeable implements IMerchant, INpc
         int var6;
         label50:
 
-            switch (getProfession())
+        switch (getProfession())
+        {
+        case 0:
+            func_146091_a(var2, Items.wheat, rand, adjustProbability(0.9F));
+            func_146091_a(var2, Item.getItemFromBlock(Blocks.wool), rand, adjustProbability(0.5F));
+            func_146091_a(var2, Items.chicken, rand, adjustProbability(0.5F));
+            func_146091_a(var2, Items.cooked_fished, rand, adjustProbability(0.4F));
+            func_146089_b(var2, Items.bread, rand, adjustProbability(0.9F));
+            func_146089_b(var2, Items.melon, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.apple, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.cookie, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.shears, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.flint_and_steel, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.cooked_chicken, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.arrow, rand, adjustProbability(0.5F));
+
+            if (rand.nextFloat() < adjustProbability(0.5F))
             {
-            case 0:
-                func_146091_a(var2, Items.wheat, rand, adjustProbability(0.9F));
-                func_146091_a(var2, Item.getItemFromBlock(Blocks.wool), rand, adjustProbability(0.5F));
-                func_146091_a(var2, Items.chicken, rand, adjustProbability(0.5F));
-                func_146091_a(var2, Items.cooked_fished, rand, adjustProbability(0.4F));
-                func_146089_b(var2, Items.bread, rand, adjustProbability(0.9F));
-                func_146089_b(var2, Items.melon, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.apple, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.cookie, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.shears, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.flint_and_steel, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.cooked_chicken, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.arrow, rand, adjustProbability(0.5F));
-
-                if (rand.nextFloat() < adjustProbability(0.5F))
-                {
-                    var2.add(new MerchantRecipe(new ItemStack(Blocks.gravel, 10), new ItemStack(Items.emerald), new ItemStack(Items.flint, 4 + rand.nextInt(2), 0)));
-                }
-
-                break;
-
-            case 1:
-                func_146091_a(var2, Items.paper, rand, adjustProbability(0.8F));
-                func_146091_a(var2, Items.book, rand, adjustProbability(0.8F));
-                func_146091_a(var2, Items.written_book, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Item.getItemFromBlock(Blocks.bookshelf), rand, adjustProbability(0.8F));
-                func_146089_b(var2, Item.getItemFromBlock(Blocks.glass), rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.compass, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.clock, rand, adjustProbability(0.2F));
-
-                if (rand.nextFloat() < adjustProbability(0.07F))
-                {
-                    Enchantment var8 = Enchantment.enchantmentsBookList[rand.nextInt(Enchantment.enchantmentsBookList.length)];
-                    int var10 = MathHelper.getRandomIntegerInRange(rand, var8.getMinLevel(), var8.getMaxLevel());
-                    ItemStack var11 = Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(var8, var10));
-                    var6 = 2 + rand.nextInt(5 + var10 * 10) + 3 * var10;
-                    var2.add(new MerchantRecipe(new ItemStack(Items.book), new ItemStack(Items.emerald, var6), var11));
-                }
-
-                break;
-
-            case 2:
-                func_146089_b(var2, Items.ender_eye, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.experience_bottle, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.redstone, rand, adjustProbability(0.4F));
-                func_146089_b(var2, Item.getItemFromBlock(Blocks.glowstone), rand, adjustProbability(0.3F));
-                Item[] var3 = new Item[] {Items.iron_sword, Items.diamond_sword, Items.iron_chestplate, Items.diamond_chestplate, Items.iron_axe, Items.diamond_axe, Items.iron_pickaxe, Items.diamond_pickaxe};
-                Item[] var4 = var3;
-                int var5 = var3.length;
-                var6 = 0;
-
-                while (true)
-                {
-                    if (var6 >= var5)
-                    {
-                        break label50;
-                    }
-
-                    Item var7 = var4[var6];
-
-                    if (rand.nextFloat() < adjustProbability(0.05F))
-                    {
-                        var2.add(new MerchantRecipe(new ItemStack(var7, 1, 0), new ItemStack(Items.emerald, 2 + rand.nextInt(3), 0), EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(var7, 1, 0), 5 + rand.nextInt(15))));
-                    }
-
-                    ++var6;
-                }
-
-            case 3:
-                func_146091_a(var2, Items.coal, rand, adjustProbability(0.7F));
-                func_146091_a(var2, Items.iron_ingot, rand, adjustProbability(0.5F));
-                func_146091_a(var2, Items.gold_ingot, rand, adjustProbability(0.5F));
-                func_146091_a(var2, Items.diamond, rand, adjustProbability(0.5F));
-                func_146089_b(var2, Items.iron_sword, rand, adjustProbability(0.5F));
-                func_146089_b(var2, Items.diamond_sword, rand, adjustProbability(0.5F));
-                func_146089_b(var2, Items.iron_axe, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.diamond_axe, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.iron_pickaxe, rand, adjustProbability(0.5F));
-                func_146089_b(var2, Items.diamond_pickaxe, rand, adjustProbability(0.5F));
-                func_146089_b(var2, Items.iron_shovel, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.diamond_shovel, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.iron_hoe, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.diamond_hoe, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.iron_boots, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.diamond_boots, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.iron_helmet, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.diamond_helmet, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.iron_chestplate, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.diamond_chestplate, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.iron_leggings, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.diamond_leggings, rand, adjustProbability(0.2F));
-                func_146089_b(var2, Items.chainmail_boots, rand, adjustProbability(0.1F));
-                func_146089_b(var2, Items.chainmail_helmet, rand, adjustProbability(0.1F));
-                func_146089_b(var2, Items.chainmail_chestplate, rand, adjustProbability(0.1F));
-                func_146089_b(var2, Items.chainmail_leggings, rand, adjustProbability(0.1F));
-                break;
-
-            case 4:
-                func_146091_a(var2, Items.coal, rand, adjustProbability(0.7F));
-                func_146091_a(var2, Items.porkchop, rand, adjustProbability(0.5F));
-                func_146091_a(var2, Items.beef, rand, adjustProbability(0.5F));
-                func_146089_b(var2, Items.saddle, rand, adjustProbability(0.1F));
-                func_146089_b(var2, Items.leather_chestplate, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.leather_boots, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.leather_helmet, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.leather_leggings, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.cooked_porkchop, rand, adjustProbability(0.3F));
-                func_146089_b(var2, Items.cooked_beef, rand, adjustProbability(0.3F));
+                var2.add(new MerchantRecipe(new ItemStack(Blocks.gravel, 10), new ItemStack(Items.emerald), new ItemStack(Items.flint, 4 + rand.nextInt(2), 0)));
             }
+
+            break;
+
+        case 1:
+            func_146091_a(var2, Items.paper, rand, adjustProbability(0.8F));
+            func_146091_a(var2, Items.book, rand, adjustProbability(0.8F));
+            func_146091_a(var2, Items.written_book, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Item.getItemFromBlock(Blocks.bookshelf), rand, adjustProbability(0.8F));
+            func_146089_b(var2, Item.getItemFromBlock(Blocks.glass), rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.compass, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.clock, rand, adjustProbability(0.2F));
+
+            if (rand.nextFloat() < adjustProbability(0.07F))
+            {
+                Enchantment var8 = Enchantment.enchantmentsBookList[rand.nextInt(Enchantment.enchantmentsBookList.length)];
+                int var10 = MathHelper.getRandomIntegerInRange(rand, var8.getMinLevel(), var8.getMaxLevel());
+                ItemStack var11 = Items.enchanted_book.getEnchantedItemStack(new EnchantmentData(var8, var10));
+                var6 = 2 + rand.nextInt(5 + var10 * 10) + 3 * var10;
+                var2.add(new MerchantRecipe(new ItemStack(Items.book), new ItemStack(Items.emerald, var6), var11));
+            }
+
+            break;
+
+        case 2:
+            func_146089_b(var2, Items.ender_eye, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.experience_bottle, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.redstone, rand, adjustProbability(0.4F));
+            func_146089_b(var2, Item.getItemFromBlock(Blocks.glowstone), rand, adjustProbability(0.3F));
+            Item[] var3 = new Item[] {Items.iron_sword, Items.diamond_sword, Items.iron_chestplate, Items.diamond_chestplate, Items.iron_axe, Items.diamond_axe, Items.iron_pickaxe, Items.diamond_pickaxe};
+            Item[] var4 = var3;
+            int var5 = var3.length;
+            var6 = 0;
+
+            while (true)
+            {
+                if (var6 >= var5)
+                {
+                    break label50;
+                }
+
+                Item var7 = var4[var6];
+
+                if (rand.nextFloat() < adjustProbability(0.05F))
+                {
+                    var2.add(new MerchantRecipe(new ItemStack(var7, 1, 0), new ItemStack(Items.emerald, 2 + rand.nextInt(3), 0), EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(var7, 1, 0), 5 + rand.nextInt(15))));
+                }
+
+                ++var6;
+            }
+
+        case 3:
+            func_146091_a(var2, Items.coal, rand, adjustProbability(0.7F));
+            func_146091_a(var2, Items.iron_ingot, rand, adjustProbability(0.5F));
+            func_146091_a(var2, Items.gold_ingot, rand, adjustProbability(0.5F));
+            func_146091_a(var2, Items.diamond, rand, adjustProbability(0.5F));
+            func_146089_b(var2, Items.iron_sword, rand, adjustProbability(0.5F));
+            func_146089_b(var2, Items.diamond_sword, rand, adjustProbability(0.5F));
+            func_146089_b(var2, Items.iron_axe, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.diamond_axe, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.iron_pickaxe, rand, adjustProbability(0.5F));
+            func_146089_b(var2, Items.diamond_pickaxe, rand, adjustProbability(0.5F));
+            func_146089_b(var2, Items.iron_shovel, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.diamond_shovel, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.iron_hoe, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.diamond_hoe, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.iron_boots, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.diamond_boots, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.iron_helmet, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.diamond_helmet, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.iron_chestplate, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.diamond_chestplate, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.iron_leggings, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.diamond_leggings, rand, adjustProbability(0.2F));
+            func_146089_b(var2, Items.chainmail_boots, rand, adjustProbability(0.1F));
+            func_146089_b(var2, Items.chainmail_helmet, rand, adjustProbability(0.1F));
+            func_146089_b(var2, Items.chainmail_chestplate, rand, adjustProbability(0.1F));
+            func_146089_b(var2, Items.chainmail_leggings, rand, adjustProbability(0.1F));
+            break;
+
+        case 4:
+            func_146091_a(var2, Items.coal, rand, adjustProbability(0.7F));
+            func_146091_a(var2, Items.porkchop, rand, adjustProbability(0.5F));
+            func_146091_a(var2, Items.beef, rand, adjustProbability(0.5F));
+            func_146089_b(var2, Items.saddle, rand, adjustProbability(0.1F));
+            func_146089_b(var2, Items.leather_chestplate, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.leather_boots, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.leather_helmet, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.leather_leggings, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.cooked_porkchop, rand, adjustProbability(0.3F));
+            func_146089_b(var2, Items.cooked_beef, rand, adjustProbability(0.3F));
+        }
 
         if (var2.isEmpty())
         {

@@ -1,6 +1,5 @@
 package mx.x10.afffsdd.vanillaanticheat.module;
 
-
 public class VACState implements IVacModule
 {
     /**

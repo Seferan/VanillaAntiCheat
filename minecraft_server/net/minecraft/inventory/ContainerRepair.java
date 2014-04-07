@@ -111,18 +111,18 @@ public class ContainerRepair extends Container
                     int var6 = par2World.getBlockMetadata(par3, par4, par5);
                     int var4 = var6 & 3;
                     int var5 = var6 >> 2;
-                ++var5;
+                    ++var5;
 
-                if (var5 > 2)
-                {
-                    par2World.setBlockToAir(par3, par4, par5);
-                    par2World.playAuxSFX(1020, par3, par4, par5, 0);
-                }
-                else
-                {
-                    par2World.setBlockMetadata(par3, par4, par5, var4 | var5 << 2, 2);
-                    par2World.playAuxSFX(1021, par3, par4, par5, 0);
-                }
+                    if (var5 > 2)
+                    {
+                        par2World.setBlockToAir(par3, par4, par5);
+                        par2World.playAuxSFX(1020, par3, par4, par5, 0);
+                    }
+                    else
+                    {
+                        par2World.setBlockMetadata(par3, par4, par5, var4 | var5 << 2, 2);
+                        par2World.playAuxSFX(1021, par3, par4, par5, 0);
+                    }
                 }
                 else if (!par2World.isClient)
                 {

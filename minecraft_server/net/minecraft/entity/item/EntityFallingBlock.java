@@ -211,17 +211,17 @@ public class EntityFallingBlock extends Entity
                 if (var4 && rand.nextFloat() < 0.05000000074505806D + var2 * 0.05D)
                 {
                     int var8 = field_145814_a >> 2;
-                int var9 = field_145814_a & 3;
-                ++var8;
+                    int var9 = field_145814_a & 3;
+                    ++var8;
 
-                if (var8 > 2)
-                {
-                    field_145808_f = true;
-                }
-                else
-                {
-                    field_145814_a = var9 | var8 << 2;
-                }
+                    if (var8 > 2)
+                    {
+                        field_145808_f = true;
+                    }
+                    else
+                    {
+                        field_145814_a = var9 | var8 << 2;
+                    }
                 }
             }
         }

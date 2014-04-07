@@ -364,19 +364,19 @@ public abstract class World implements IBlockAccess
         if (par5 >= 0 && par2 < 256)
         {
             par1 >>= 4;
-        par3 >>= 4;
-        par4 >>= 4;
-        par6 >>= 4;
+            par3 >>= 4;
+            par4 >>= 4;
+            par6 >>= 4;
 
-        for (int var7 = par1; var7 <= par4; ++var7)
-        {
-            for (int var8 = par3; var8 <= par6; ++var8)
+            for (int var7 = par1; var7 <= par4; ++var7)
             {
-                if (!chunkExists(var7, var8)) { return false; }
+                for (int var8 = par3; var8 <= par6; ++var8)
+                {
+                    if (!chunkExists(var7, var8)) { return false; }
+                }
             }
-        }
 
-        return true;
+            return true;
         }
         else
         {
@@ -897,17 +897,17 @@ public abstract class World implements IBlockAccess
         if (par2 >= -30000000 && par4 >= -30000000 && par2 < 30000000 && par4 < 30000000)
         {
             int var5 = par2 >> 4;
-        int var6 = par4 >> 4;
+            int var6 = par4 >> 4;
 
-        if (!chunkExists(var5, var6))
-        {
-            return par1EnumSkyBlock.defaultLightValue;
-        }
-        else
-        {
-            Chunk var7 = getChunkFromChunkCoords(var5, var6);
-            return var7.getSavedLightValue(par1EnumSkyBlock, par2 & 15, par3, par4 & 15);
-        }
+            if (!chunkExists(var5, var6))
+            {
+                return par1EnumSkyBlock.defaultLightValue;
+            }
+            else
+            {
+                Chunk var7 = getChunkFromChunkCoords(var5, var6);
+                return var7.getSavedLightValue(par1EnumSkyBlock, par2 & 15, par3, par4 & 15);
+            }
         }
         else
         {
@@ -2614,21 +2614,21 @@ public abstract class World implements IBlockAccess
             int var4 = updateLCG >> 2;
             int var5 = var4 & 15;
             int var6 = var4 >> 8 & 15;
-                    int var7 = var4 >> 16 & 255;
-                    Block var8 = p_147467_3_.func_150810_a(var5, var7, var6);
-                    var5 += p_147467_1_;
-                    var6 += p_147467_2_;
+            int var7 = var4 >> 16 & 255;
+            Block var8 = p_147467_3_.func_150810_a(var5, var7, var6);
+            var5 += p_147467_1_;
+            var6 += p_147467_2_;
 
-                    if (var8.getMaterial() == Material.air && getFullBlockLightValue(var5, var7, var6) <= rand.nextInt(8) && getSavedLightValue(EnumSkyBlock.Sky, var5, var7, var6) <= 0)
-                    {
-                        EntityPlayer var9 = getClosestPlayer(var5 + 0.5D, var7 + 0.5D, var6 + 0.5D, 8.0D);
+            if (var8.getMaterial() == Material.air && getFullBlockLightValue(var5, var7, var6) <= rand.nextInt(8) && getSavedLightValue(EnumSkyBlock.Sky, var5, var7, var6) <= 0)
+            {
+                EntityPlayer var9 = getClosestPlayer(var5 + 0.5D, var7 + 0.5D, var6 + 0.5D, 8.0D);
 
-                        if (var9 != null && var9.getDistanceSq(var5 + 0.5D, var7 + 0.5D, var6 + 0.5D) > 4.0D)
-                        {
-                            playSoundEffect(var5 + 0.5D, var7 + 0.5D, var6 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + rand.nextFloat() * 0.2F);
-                            ambientTickCountdown = rand.nextInt(12000) + 6000;
-                        }
-                    }
+                if (var9 != null && var9.getDistanceSq(var5 + 0.5D, var7 + 0.5D, var6 + 0.5D) > 4.0D)
+                {
+                    playSoundEffect(var5 + 0.5D, var7 + 0.5D, var6 + 0.5D, "ambient.cave.cave", 0.7F, 0.8F + rand.nextFloat() * 0.2F);
+                    ambientTickCountdown = rand.nextInt(12000) + 6000;
+                }
+            }
         }
 
         theProfiler.endStartSection("checkLight");
@@ -2840,36 +2840,36 @@ public abstract class World implements IBlockAccess
                     var11 = (var9 >> 6 & 63) - 32 + p_147463_3_;
                     var12 = (var9 >> 12 & 63) - 32 + p_147463_4_;
                     var13 = var9 >> 18 & 15;
-                var14 = getSavedLightValue(p_147463_1_, var10, var11, var12);
+                    var14 = getSavedLightValue(p_147463_1_, var10, var11, var12);
 
-                if (var14 == var13)
-                {
-                    setLightValue(p_147463_1_, var10, var11, var12, 0);
-
-                    if (var13 > 0)
+                    if (var14 == var13)
                     {
-                        var15 = MathHelper.abs_int(var10 - p_147463_2_);
-                        var16 = MathHelper.abs_int(var11 - p_147463_3_);
-                        var17 = MathHelper.abs_int(var12 - p_147463_4_);
+                        setLightValue(p_147463_1_, var10, var11, var12, 0);
 
-                        if (var15 + var16 + var17 < 17)
+                        if (var13 > 0)
                         {
-                            for (int var18 = 0; var18 < 6; ++var18)
-                            {
-                                int var19 = var10 + Facing.offsetsXForSide[var18];
-                                int var20 = var11 + Facing.offsetsYForSide[var18];
-                                int var21 = var12 + Facing.offsetsZForSide[var18];
-                                int var22 = Math.max(1, getBlock(var19, var20, var21).getLightOpacity());
-                                var14 = getSavedLightValue(p_147463_1_, var19, var20, var21);
+                            var15 = MathHelper.abs_int(var10 - p_147463_2_);
+                            var16 = MathHelper.abs_int(var11 - p_147463_3_);
+                            var17 = MathHelper.abs_int(var12 - p_147463_4_);
 
-                                if (var14 == var13 - var22 && var6 < lightUpdateBlockList.length)
+                            if (var15 + var16 + var17 < 17)
+                            {
+                                for (int var18 = 0; var18 < 6; ++var18)
                                 {
-                                    lightUpdateBlockList[var6++] = var19 - p_147463_2_ + 32 | var20 - p_147463_3_ + 32 << 6 | var21 - p_147463_4_ + 32 << 12 | var13 - var22 << 18;
+                                    int var19 = var10 + Facing.offsetsXForSide[var18];
+                                    int var20 = var11 + Facing.offsetsYForSide[var18];
+                                    int var21 = var12 + Facing.offsetsZForSide[var18];
+                                    int var22 = Math.max(1, getBlock(var19, var20, var21).getLightOpacity());
+                                    var14 = getSavedLightValue(p_147463_1_, var19, var20, var21);
+
+                                    if (var14 == var13 - var22 && var6 < lightUpdateBlockList.length)
+                                    {
+                                        lightUpdateBlockList[var6++] = var19 - p_147463_2_ + 32 | var20 - p_147463_3_ + 32 << 6 | var21 - p_147463_4_ + 32 << 12 | var13 - var22 << 18;
+                                    }
                                 }
                             }
                         }
                     }
-                }
                 }
 
                 var5 = 0;

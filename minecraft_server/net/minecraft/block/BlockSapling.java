@@ -88,14 +88,14 @@ public class BlockSapling extends BlockBush implements IGrowable
                 }
             }
 
-        if (!var10)
-        {
-            var9 = 0;
-            var8 = 0;
-            var7 = new WorldGenTaiga2(true);
-        }
+            if (!var10)
+            {
+                var9 = 0;
+                var8 = 0;
+                var7 = new WorldGenTaiga2(true);
+            }
 
-        break;
+            break;
 
         case 2:
             var7 = new WorldGenForest(true, false);
@@ -115,14 +115,14 @@ public class BlockSapling extends BlockBush implements IGrowable
                 }
             }
 
-        if (!var10)
-        {
-            var9 = 0;
-            var8 = 0;
-            var7 = new WorldGenTrees(true, 4 + p_149878_5_.nextInt(7), 3, 3, false);
-        }
+            if (!var10)
+            {
+                var9 = 0;
+                var8 = 0;
+                var7 = new WorldGenTrees(true, 4 + p_149878_5_.nextInt(7), 3, 3, false);
+            }
 
-        break;
+            break;
 
         case 4:
             var7 = new WorldGenSavannaTree(true);
@@ -142,7 +142,7 @@ public class BlockSapling extends BlockBush implements IGrowable
                 }
             }
 
-        if (!var10) { return; }
+            if (!var10) { return; }
         }
 
         Block var11 = Blocks.air;

@@ -327,43 +327,43 @@ public class DataWatcher
             }
 
             int var3 = (var2 & 224) >> 5;
-        int var4 = var2 & 31;
-        DataWatcher.WatchableObject var5 = null;
+            int var4 = var2 & 31;
+            DataWatcher.WatchableObject var5 = null;
 
-        switch (var3)
-        {
-        case 0:
-            var5 = new DataWatcher.WatchableObject(var3, var4, Byte.valueOf(p_151508_0_.readByte()));
-            break;
+            switch (var3)
+            {
+            case 0:
+                var5 = new DataWatcher.WatchableObject(var3, var4, Byte.valueOf(p_151508_0_.readByte()));
+                break;
 
-        case 1:
-            var5 = new DataWatcher.WatchableObject(var3, var4, Short.valueOf(p_151508_0_.readShort()));
-            break;
+            case 1:
+                var5 = new DataWatcher.WatchableObject(var3, var4, Short.valueOf(p_151508_0_.readShort()));
+                break;
 
-        case 2:
-            var5 = new DataWatcher.WatchableObject(var3, var4, Integer.valueOf(p_151508_0_.readInt()));
-            break;
+            case 2:
+                var5 = new DataWatcher.WatchableObject(var3, var4, Integer.valueOf(p_151508_0_.readInt()));
+                break;
 
-        case 3:
-            var5 = new DataWatcher.WatchableObject(var3, var4, Float.valueOf(p_151508_0_.readFloat()));
-            break;
+            case 3:
+                var5 = new DataWatcher.WatchableObject(var3, var4, Float.valueOf(p_151508_0_.readFloat()));
+                break;
 
-        case 4:
-            var5 = new DataWatcher.WatchableObject(var3, var4, p_151508_0_.readStringFromBuffer(32767));
-            break;
+            case 4:
+                var5 = new DataWatcher.WatchableObject(var3, var4, p_151508_0_.readStringFromBuffer(32767));
+                break;
 
-        case 5:
-            var5 = new DataWatcher.WatchableObject(var3, var4, p_151508_0_.readItemStackFromBuffer());
-            break;
+            case 5:
+                var5 = new DataWatcher.WatchableObject(var3, var4, p_151508_0_.readItemStackFromBuffer());
+                break;
 
-        case 6:
-            int var6 = p_151508_0_.readInt();
-            int var7 = p_151508_0_.readInt();
-            int var8 = p_151508_0_.readInt();
-            var5 = new DataWatcher.WatchableObject(var3, var4, new ChunkCoordinates(var6, var7, var8));
-        }
+            case 6:
+                int var6 = p_151508_0_.readInt();
+                int var7 = p_151508_0_.readInt();
+                int var8 = p_151508_0_.readInt();
+                var5 = new DataWatcher.WatchableObject(var3, var4, new ChunkCoordinates(var6, var7, var8));
+            }
 
-        var1.add(var5);
+            var1.add(var5);
         }
 
         return var1;

@@ -299,8 +299,7 @@ public abstract class ServerConfigurationManager
             MinecraftServer.anonymousTell(par1EntityPlayerMP, "This has not been logged, nor will anyone else recieve this message.");
             MinecraftServer.anonymousTell(par1EntityPlayerMP, "Have a good day!");
         }
-        if (mcServer.getConfigurationManager().getMotd().length > 0)
-            par1EntityPlayerMP.addChatMessage("Welcome! Please read the motd using /motd.");
+        if (mcServer.getConfigurationManager().getMotd().length > 0) par1EntityPlayerMP.addChatMessage("Welcome! Please read the motd using /motd.");
     }
 
     /**
@@ -1091,7 +1090,8 @@ public abstract class ServerConfigurationManager
     public void sendChatMessageToAllPlayersAndLog(IChatComponent p_148544_1_, boolean p_148544_2_)
     {
         mcServer.addChatMessage(p_148544_1_); // log it
-        sendPacketToAllPlayers(new S02PacketChat(p_148544_1_, p_148544_2_)); // send it
+        sendPacketToAllPlayers(new S02PacketChat(p_148544_1_, p_148544_2_)); // send
+                                                                             // it
     }
 
     public void func_148539_a(IChatComponent p_148539_1_)

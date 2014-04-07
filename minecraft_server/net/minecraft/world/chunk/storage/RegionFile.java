@@ -129,48 +129,48 @@ public class RegionFile
                 else
                 {
                     int var4 = var3 >> 8;
-            int var5 = var3 & 255;
+                    int var5 = var3 & 255;
 
-            if (var4 + var5 > sectorFree.size())
-            {
-                return null;
-            }
-            else
-            {
-                dataFile.seek(var4 * 4096);
-                int var6 = dataFile.readInt();
-
-                if (var6 > 4096 * var5)
-                {
-                    return null;
-                }
-                else if (var6 <= 0)
-                {
-                    return null;
-                }
-                else
-                {
-                    byte var7 = dataFile.readByte();
-                    byte[] var8;
-
-                    if (var7 == 1)
-                    {
-                        var8 = new byte[var6 - 1];
-                        dataFile.read(var8);
-                        return new DataInputStream(new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(var8))));
-                    }
-                    else if (var7 == 2)
-                    {
-                        var8 = new byte[var6 - 1];
-                        dataFile.read(var8);
-                        return new DataInputStream(new BufferedInputStream(new InflaterInputStream(new ByteArrayInputStream(var8))));
-                    }
-                    else
+                    if (var4 + var5 > sectorFree.size())
                     {
                         return null;
                     }
-                }
-            }
+                    else
+                    {
+                        dataFile.seek(var4 * 4096);
+                        int var6 = dataFile.readInt();
+
+                        if (var6 > 4096 * var5)
+                        {
+                            return null;
+                        }
+                        else if (var6 <= 0)
+                        {
+                            return null;
+                        }
+                        else
+                        {
+                            byte var7 = dataFile.readByte();
+                            byte[] var8;
+
+                            if (var7 == 1)
+                            {
+                                var8 = new byte[var6 - 1];
+                                dataFile.read(var8);
+                                return new DataInputStream(new BufferedInputStream(new GZIPInputStream(new ByteArrayInputStream(var8))));
+                            }
+                            else if (var7 == 2)
+                            {
+                                var8 = new byte[var6 - 1];
+                                dataFile.read(var8);
+                                return new DataInputStream(new BufferedInputStream(new InflaterInputStream(new ByteArrayInputStream(var8))));
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
                 }
             }
             catch (IOException var9)
@@ -198,86 +198,86 @@ public class RegionFile
         {
             int var5 = getOffset(par1, par2);
             int var6 = var5 >> 8;
-                int var7 = var5 & 255;
-                int var8 = (par4 + 5) / 4096 + 1;
+            int var7 = var5 & 255;
+            int var8 = (par4 + 5) / 4096 + 1;
 
-                if (var8 >= 256) { return; }
+            if (var8 >= 256) { return; }
 
-                if (var6 != 0 && var7 == var8)
+            if (var6 != 0 && var7 == var8)
+            {
+                this.write(var6, par3ArrayOfByte, par4);
+            }
+            else
+            {
+                int var9;
+
+                for (var9 = 0; var9 < var7; ++var9)
                 {
+                    sectorFree.set(var6 + var9, Boolean.valueOf(true));
+                }
+
+                var9 = sectorFree.indexOf(Boolean.valueOf(true));
+                int var10 = 0;
+                int var11;
+
+                if (var9 != -1)
+                {
+                    for (var11 = var9; var11 < sectorFree.size(); ++var11)
+                    {
+                        if (var10 != 0)
+                        {
+                            if (((Boolean)sectorFree.get(var11)).booleanValue())
+                            {
+                                ++var10;
+                            }
+                            else
+                            {
+                                var10 = 0;
+                            }
+                        }
+                        else if (((Boolean)sectorFree.get(var11)).booleanValue())
+                        {
+                            var9 = var11;
+                            var10 = 1;
+                        }
+
+                        if (var10 >= var8)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                if (var10 >= var8)
+                {
+                    var6 = var9;
+                    setOffset(par1, par2, var9 << 8 | var8);
+
+                    for (var11 = 0; var11 < var8; ++var11)
+                    {
+                        sectorFree.set(var6 + var11, Boolean.valueOf(false));
+                    }
+
                     this.write(var6, par3ArrayOfByte, par4);
                 }
                 else
                 {
-                    int var9;
+                    dataFile.seek(dataFile.length());
+                    var6 = sectorFree.size();
 
-                    for (var9 = 0; var9 < var7; ++var9)
+                    for (var11 = 0; var11 < var8; ++var11)
                     {
-                        sectorFree.set(var6 + var9, Boolean.valueOf(true));
+                        dataFile.write(emptySector);
+                        sectorFree.add(Boolean.valueOf(false));
                     }
 
-                    var9 = sectorFree.indexOf(Boolean.valueOf(true));
-                    int var10 = 0;
-                    int var11;
-
-                    if (var9 != -1)
-                    {
-                        for (var11 = var9; var11 < sectorFree.size(); ++var11)
-                        {
-                            if (var10 != 0)
-                            {
-                                if (((Boolean)sectorFree.get(var11)).booleanValue())
-                                {
-                                    ++var10;
-                                }
-                                else
-                                {
-                                    var10 = 0;
-                                }
-                            }
-                            else if (((Boolean)sectorFree.get(var11)).booleanValue())
-                            {
-                                var9 = var11;
-                                var10 = 1;
-                            }
-
-                            if (var10 >= var8)
-                            {
-                                break;
-                            }
-                        }
-                    }
-
-                    if (var10 >= var8)
-                    {
-                        var6 = var9;
-                        setOffset(par1, par2, var9 << 8 | var8);
-
-                        for (var11 = 0; var11 < var8; ++var11)
-                        {
-                            sectorFree.set(var6 + var11, Boolean.valueOf(false));
-                        }
-
-                        this.write(var6, par3ArrayOfByte, par4);
-                    }
-                    else
-                    {
-                        dataFile.seek(dataFile.length());
-                        var6 = sectorFree.size();
-
-                        for (var11 = 0; var11 < var8; ++var11)
-                        {
-                            dataFile.write(emptySector);
-                            sectorFree.add(Boolean.valueOf(false));
-                        }
-
-                        sizeDelta += 4096 * var8;
-                        this.write(var6, par3ArrayOfByte, par4);
-                        setOffset(par1, par2, var6 << 8 | var8);
-                    }
+                    sizeDelta += 4096 * var8;
+                    this.write(var6, par3ArrayOfByte, par4);
+                    setOffset(par1, par2, var6 << 8 | var8);
                 }
+            }
 
-                setChunkTimestamp(par1, par2, (int)(MinecraftServer.getCurrentTimeMillis() / 1000L));
+            setChunkTimestamp(par1, par2, (int)(MinecraftServer.getCurrentTimeMillis() / 1000L));
         }
         catch (IOException var12)
         {

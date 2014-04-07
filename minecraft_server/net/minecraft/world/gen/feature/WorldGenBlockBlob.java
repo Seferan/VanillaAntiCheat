@@ -27,18 +27,18 @@ public class WorldGenBlockBlob extends WorldGenerator
             {
                 label63:
                 {
-                if (!par1World.isAirBlock(par3, par4 - 1, par5))
-                {
-                    Block var6 = par1World.getBlock(par3, par4 - 1, par5);
-
-                    if (var6 == Blocks.grass || var6 == Blocks.dirt || var6 == Blocks.stone)
+                    if (!par1World.isAirBlock(par3, par4 - 1, par5))
                     {
-                        break label63;
-                    }
-                }
+                        Block var6 = par1World.getBlock(par3, par4 - 1, par5);
 
-                --par4;
-                continue;
+                        if (var6 == Blocks.grass || var6 == Blocks.dirt || var6 == Blocks.stone)
+                        {
+                            break label63;
+                        }
+                    }
+
+                    --par4;
+                    continue;
                 }
             }
 

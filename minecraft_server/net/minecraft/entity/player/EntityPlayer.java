@@ -673,9 +673,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
             dropItem(new ItemStack(Items.apple, 1), true, false);
         }
 
-        if (!worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")
-                && !(worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory")
-                        && MinecraftServer.isPlayerOpped(getUsername())))
+        if (!worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") && !(worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory") && MinecraftServer.isPlayerOpped(getUsername())))
         {
             inventory.dropAllItems();
         }
@@ -2027,9 +2025,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
      */
     protected int getExperiencePoints(EntityPlayer par1EntityPlayer)
     {
-        if (worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")
-                || (worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory")
-                        && MinecraftServer.isPlayerOpped(getUsername())))
+        if (worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") || (worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory") && MinecraftServer.isPlayerOpped(getUsername())))
         {
             return 0;
         }
@@ -2066,9 +2062,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
             setScore(par1EntityPlayer.getScore());
             teleportDirection = par1EntityPlayer.teleportDirection;
         }
-        else if (worldObj.getGameRules().getGameRuleBooleanValue("keepInventory")
-                || (worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory")
-                        && MinecraftServer.isPlayerOpped(getUsername())))
+        else if (worldObj.getGameRules().getGameRuleBooleanValue("keepInventory") || (worldObj.getGameRules().getGameRuleBooleanValue("adminsKeepInventory") && MinecraftServer.isPlayerOpped(getUsername())))
         {
             inventory.copyInventory(par1EntityPlayer.inventory);
             experienceLevel = par1EntityPlayer.experienceLevel;

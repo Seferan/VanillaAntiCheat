@@ -35,7 +35,9 @@ public class VACModuleAntiFly implements IVacModule
 
     /**
      * Sets the position to reset the player back to
-     * @param player the player to reset later
+     * 
+     * @param player
+     *            the player to reset later
      */
     public void setAntiFlyPosition(EntityPlayerMP player)
     {

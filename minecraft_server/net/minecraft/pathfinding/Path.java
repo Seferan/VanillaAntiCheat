@@ -89,15 +89,15 @@ public class Path
         for (float var3 = var2.distanceToTarget; par1 > 0; par1 = var4)
         {
             var4 = par1 - 1 >> 1;
-                PathPoint var5 = pathPoints[var4];
+            PathPoint var5 = pathPoints[var4];
 
-                if (var3 >= var5.distanceToTarget)
-                {
-                    break;
-                }
+            if (var3 >= var5.distanceToTarget)
+            {
+                break;
+            }
 
-                pathPoints[par1] = var5;
-                var5.index = par1;
+            pathPoints[par1] = var5;
+            var5.index = par1;
         }
 
         pathPoints[par1] = var2;

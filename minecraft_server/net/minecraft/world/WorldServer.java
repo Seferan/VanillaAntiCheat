@@ -350,17 +350,17 @@ public class WorldServer extends World
                     {
                         updateLCG = updateLCG * 3 + 1013904223;
                         int var13 = updateLCG >> 2;
-                    int var14 = var13 & 15;
-                    int var15 = var13 >> 8 & 15;
-                    int var16 = var13 >> 16 & 15;
-                    ++var2;
-                    Block var17 = var20.func_150819_a(var14, var16, var15);
+                        int var14 = var13 & 15;
+                        int var15 = var13 >> 8 & 15;
+                        int var16 = var13 >> 16 & 15;
+                        ++var2;
+                        Block var17 = var20.func_150819_a(var14, var16, var15);
 
-                    if (var17.getTickRandomly())
-                    {
-                        ++var1;
-                        var17.updateTick(this, var14 + var5, var16 + var20.getYLocation(), var15 + var6, rand);
-                    }
+                        if (var17.getTickRandomly())
+                        {
+                            ++var1;
+                            var17.updateTick(this, var14 + var5, var16 + var20.getYLocation(), var15 + var6, rand);
+                        }
                     }
                 }
             }

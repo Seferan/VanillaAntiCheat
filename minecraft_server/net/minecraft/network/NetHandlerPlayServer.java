@@ -209,20 +209,24 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Utility methods
     private double getHorizontalSpeed()
     {
-        if(Double.valueOf(lastPosX) != null && Double.valueOf(lastPosZ) != null)
+        if (Double.valueOf(lastPosX) != null && Double.valueOf(lastPosZ) != null)
         {
             return Math.sqrt(Math.pow((playerEntity.posX - lastPosX), 2.0) + Math.pow((playerEntity.posZ - lastPosZ), 2));
-        } else {
+        }
+        else
+        {
             return 0;
         }
     }
 
     private double getVerticalSpeed()
     {
-        if(Double.valueOf(lastPosY) != null)
+        if (Double.valueOf(lastPosY) != null)
         {
             return Math.abs(playerEntity.posY - lastPosY);
-        } else {
+        }
+        else
+        {
             return 0;
         }
     }
@@ -256,7 +260,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
     private void checkForSneakSprint()
     {
-        if(MinecraftServer.isPlayerOpped(playerEntity)) return;
+        if (MinecraftServer.isPlayerOpped(playerEntity)) return;
 
         // No sneaking and sprinting
         if (playerEntity.isSneaking() && playerEntity.isSprinting())
@@ -322,8 +326,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             speedLimit = MinecraftServer.getServer().getSpeedLimit(sprinting, jumping, potion);
         }
 
-        //        System.out.println(String.valueOf(playerEntity.isSprinting() + " and " + String.valueOf(!playerEntity.onGround)));
-        //        System.out.println(String.valueOf(vacState.aSpeed.timeSinceLastBhop) + ", " + String.valueOf(speed) + "/" + String.valueOf(speedLimit));
+        // System.out.println(String.valueOf(playerEntity.isSprinting() +
+        // " and " + String.valueOf(!playerEntity.onGround)));
+        // System.out.println(String.valueOf(vacState.aSpeed.timeSinceLastBhop)
+        // + ", " + String.valueOf(speed) + "/" + String.valueOf(speedLimit));
 
         if (speed > speedLimit)
         {
@@ -341,7 +347,10 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         vacState.aSpeed.onMove();
 
-        //        System.out.println(playerEntity.getUsername() + ": " + vacState.aSpeed.totalSpeeded + "/" + vacState.aSpeed.totalMoved + " (" + (vacState.aSpeed.totalSpeeded / Math.max((double)vacState.aSpeed.totalMoved, 1.0)));
+        // System.out.println(playerEntity.getUsername() + ": " +
+        // vacState.aSpeed.totalSpeeded + "/" + vacState.aSpeed.totalMoved +
+        // " (" + (vacState.aSpeed.totalSpeeded /
+        // Math.max((double)vacState.aSpeed.totalMoved, 1.0)));
 
         if (vacState.aSpeed.resets() > 5)
         {
@@ -573,7 +582,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     // Where all our hooks will go for flying
     private void processFloating()
     {
-        if(MinecraftServer.isPlayerOpped(playerEntity)) return;
+        if (MinecraftServer.isPlayerOpped(playerEntity)) return;
 
         // System.out.println(this.floatingTickCount);
         int logThreshold = MinecraftServer.getServer().getFlyResetLogThreshold();
@@ -725,7 +734,8 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         // Diamond notification code
         if (block.getBlockId() == 56 && MinecraftServer.getServer().useDiamondNotifications())
         {
-            // Assume any ores mined within 100 ticks of each other are from the same vein
+            // Assume any ores mined within 100 ticks of each other are from the
+            // same vein
             if (vacState.dNotifications.isMiningNewVein())
             {
                 vacState.dNotifications.incrementVeinsMined();

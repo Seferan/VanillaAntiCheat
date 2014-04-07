@@ -167,12 +167,12 @@ public class Chunk
                     {
                         int var11 = var9 >> 4;
 
-                    if (storageArrays[var11] == null)
-                    {
-                        storageArrays[var11] = new ExtendedBlockStorage(var11 << 4, var6);
-                    }
+                        if (storageArrays[var11] == null)
+                        {
+                            storageArrays[var11] = new ExtendedBlockStorage(var11 << 4, var6);
+                        }
 
-                    storageArrays[var11].func_150818_a(var7, var9 & 15, var8, var10);
+                        storageArrays[var11].func_150818_a(var7, var9 & 15, var8, var10);
                     }
                 }
             }
@@ -198,13 +198,13 @@ public class Chunk
                     {
                         int var13 = var10 >> 4;
 
-                if (storageArrays[var13] == null)
-                {
-                    storageArrays[var13] = new ExtendedBlockStorage(var13 << 4, var7);
-                }
+                        if (storageArrays[var13] == null)
+                        {
+                            storageArrays[var13] = new ExtendedBlockStorage(var13 << 4, var7);
+                        }
 
-                storageArrays[var13].func_150818_a(var8, var10 & 15, var9, var12);
-                storageArrays[var13].setExtBlockMetadata(var8, var10 & 15, var9, p_i45447_3_[var11]);
+                        storageArrays[var13].func_150818_a(var8, var10 & 15, var9, var12);
+                        storageArrays[var13].setExtBlockMetadata(var8, var10 & 15, var9, p_i45447_3_[var11]);
                     }
                 }
             }

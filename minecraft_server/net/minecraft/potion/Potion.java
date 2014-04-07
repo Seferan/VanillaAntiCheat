@@ -228,12 +228,12 @@ public class Potion
         else if (id == poison.id)
         {
             var3 = 25 >> par2;
-                return var3 > 0 ? par1 % var3 == 0 : true;
+            return var3 > 0 ? par1 % var3 == 0 : true;
         }
         else if (id == wither.id)
         {
             var3 = 40 >> par2;
-                return var3 > 0 ? par1 % var3 == 0 : true;
+            return var3 > 0 ? par1 % var3 == 0 : true;
         }
         else
         {

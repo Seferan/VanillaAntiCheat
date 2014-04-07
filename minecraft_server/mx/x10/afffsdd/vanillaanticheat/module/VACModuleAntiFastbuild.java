@@ -42,7 +42,9 @@ public class VACModuleAntiFastbuild implements IVacModule
 
     /**
      * Increments blockCount by i
-     * @param i the number to increment blockCount by
+     * 
+     * @param i
+     *            the number to increment blockCount by
      */
     public void incrementBlockCount(int i)
     {
@@ -51,6 +53,7 @@ public class VACModuleAntiFastbuild implements IVacModule
 
     /**
      * Gets the number of blocks the player has built.
+     * 
      * @return the number of blocks the player has built
      */
     public int getBuildCount()

@@ -12,7 +12,9 @@ public class VACUtils
 {
     /**
      * Tell all admins a message and format it.
-     * @param message the message to tell the admins
+     * 
+     * @param message
+     *            the message to tell the admins
      */
     public static void notifyAdmins(String message)
     {
@@ -33,8 +35,11 @@ public class VACUtils
 
     /**
      * Notify all admins of a message from a specific VAC module.
-     * @param module the VAC module the message is from
-     * @param message the message to tell the admins
+     * 
+     * @param module
+     *            the VAC module the message is from
+     * @param message
+     *            the message to tell the admins
      */
     public static void notifyAdmins(IVacModule module, String message)
     {
@@ -43,8 +48,11 @@ public class VACUtils
 
     /**
      * Notify all admins of a message from a specific VAC module and log it.
-     * @param module the VAC module the message is from
-     * @param message the message to tell the admins
+     * 
+     * @param module
+     *            the VAC module the message is from
+     * @param message
+     *            the message to tell the admins
      */
     public static void notifyAndLog(IVacModule module, String message)
     {
@@ -54,7 +62,9 @@ public class VACUtils
 
     /**
      * Notify all admins of a message and log it.
-     * @param message the message to tell the admins
+     * 
+     * @param message
+     *            the message to tell the admins
      */
     public static void notifyAndLog(String message)
     {

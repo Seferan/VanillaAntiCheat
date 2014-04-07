@@ -200,8 +200,8 @@ public class WorldChunkManager
     {
         IntCache.resetIntCache();
         int var5 = par1 - par3 >> 2;
-            int var6 = par2 - par3 >> 2;
-            int var7 = par1 + par3 >> 2;
+        int var6 = par2 - par3 >> 2;
+        int var7 = par1 + par3 >> 2;
         int var8 = par2 + par3 >> 2;
         int var9 = var7 - var5 + 1;
         int var10 = var8 - var6 + 1;
@@ -235,29 +235,29 @@ public class WorldChunkManager
     {
         IntCache.resetIntCache();
         int var6 = p_150795_1_ - p_150795_3_ >> 2;
-            int var7 = p_150795_2_ - p_150795_3_ >> 2;
-            int var8 = p_150795_1_ + p_150795_3_ >> 2;
-            int var9 = p_150795_2_ + p_150795_3_ >> 2;
-            int var10 = var8 - var6 + 1;
-            int var11 = var9 - var7 + 1;
-            int[] var12 = genBiomes.getInts(var6, var7, var10, var11);
-            ChunkPosition var13 = null;
-            int var14 = 0;
+        int var7 = p_150795_2_ - p_150795_3_ >> 2;
+        int var8 = p_150795_1_ + p_150795_3_ >> 2;
+        int var9 = p_150795_2_ + p_150795_3_ >> 2;
+        int var10 = var8 - var6 + 1;
+        int var11 = var9 - var7 + 1;
+        int[] var12 = genBiomes.getInts(var6, var7, var10, var11);
+        ChunkPosition var13 = null;
+        int var14 = 0;
 
-            for (int var15 = 0; var15 < var10 * var11; ++var15)
+        for (int var15 = 0; var15 < var10 * var11; ++var15)
+        {
+            int var16 = var6 + var15 % var10 << 2;
+            int var17 = var7 + var15 / var10 << 2;
+            BiomeGenBase var18 = BiomeGenBase.func_150568_d(var12[var15]);
+
+            if (p_150795_4_.contains(var18) && (var13 == null || p_150795_5_.nextInt(var14 + 1) == 0))
             {
-                int var16 = var6 + var15 % var10 << 2;
-                int var17 = var7 + var15 / var10 << 2;
-                BiomeGenBase var18 = BiomeGenBase.func_150568_d(var12[var15]);
-
-                if (p_150795_4_.contains(var18) && (var13 == null || p_150795_5_.nextInt(var14 + 1) == 0))
-                {
-                    var13 = new ChunkPosition(var16, 0, var17);
-                    ++var14;
-                }
+                var13 = new ChunkPosition(var16, 0, var17);
+                ++var14;
             }
+        }
 
-            return var13;
+        return var13;
     }
 
     /**

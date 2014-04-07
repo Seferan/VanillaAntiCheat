@@ -88,50 +88,50 @@ public class WorldGenDungeons extends WorldGenerator
                     {
                         label101:
                         {
-                        var12 = par3 + par2Random.nextInt(var7 * 2 + 1) - var7;
-                        int var14 = par5 + par2Random.nextInt(var8 * 2 + 1) - var8;
+                            var12 = par3 + par2Random.nextInt(var7 * 2 + 1) - var7;
+                            int var14 = par5 + par2Random.nextInt(var8 * 2 + 1) - var8;
 
-                        if (par1World.isAirBlock(var12, par4, var14))
-                        {
-                            int var15 = 0;
-
-                            if (par1World.getBlock(var12 - 1, par4, var14).getMaterial().isSolid())
+                            if (par1World.isAirBlock(var12, par4, var14))
                             {
-                                ++var15;
-                            }
+                                int var15 = 0;
 
-                            if (par1World.getBlock(var12 + 1, par4, var14).getMaterial().isSolid())
-                            {
-                                ++var15;
-                            }
-
-                            if (par1World.getBlock(var12, par4, var14 - 1).getMaterial().isSolid())
-                            {
-                                ++var15;
-                            }
-
-                            if (par1World.getBlock(var12, par4, var14 + 1).getMaterial().isSolid())
-                            {
-                                ++var15;
-                            }
-
-                            if (var15 == 1)
-                            {
-                                par1World.setBlock(var12, par4, var14, Blocks.chest, 0, 2);
-                                WeightedRandomChestContent[] var16 = WeightedRandomChestContent.func_92080_a(field_111189_a, new WeightedRandomChestContent[] {Items.enchanted_book.func_92114_b(par2Random)});
-                                TileEntityChest var17 = (TileEntityChest)par1World.getTileEntity(var12, par4, var14);
-
-                                if (var17 != null)
+                                if (par1World.getBlock(var12 - 1, par4, var14).getMaterial().isSolid())
                                 {
-                                    WeightedRandomChestContent.generateChestContents(par2Random, var16, var17, 8);
+                                    ++var15;
                                 }
 
-                                break label101;
-                            }
-                        }
+                                if (par1World.getBlock(var12 + 1, par4, var14).getMaterial().isSolid())
+                                {
+                                    ++var15;
+                                }
 
-                        ++var11;
-                        continue;
+                                if (par1World.getBlock(var12, par4, var14 - 1).getMaterial().isSolid())
+                                {
+                                    ++var15;
+                                }
+
+                                if (par1World.getBlock(var12, par4, var14 + 1).getMaterial().isSolid())
+                                {
+                                    ++var15;
+                                }
+
+                                if (var15 == 1)
+                                {
+                                    par1World.setBlock(var12, par4, var14, Blocks.chest, 0, 2);
+                                    WeightedRandomChestContent[] var16 = WeightedRandomChestContent.func_92080_a(field_111189_a, new WeightedRandomChestContent[] {Items.enchanted_book.func_92114_b(par2Random)});
+                                    TileEntityChest var17 = (TileEntityChest)par1World.getTileEntity(var12, par4, var14);
+
+                                    if (var17 != null)
+                                    {
+                                        WeightedRandomChestContent.generateChestContents(par2Random, var16, var17, 8);
+                                    }
+
+                                    break label101;
+                                }
+                            }
+
+                            ++var11;
+                            continue;
                         }
                     }
 

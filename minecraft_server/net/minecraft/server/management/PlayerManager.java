@@ -134,12 +134,12 @@ public class PlayerManager
     {
         int var4 = p_151250_1_ >> 4;
         int var5 = p_151250_3_ >> 4;
-            PlayerManager.PlayerInstance var6 = getPlayerInstance(var4, var5, false);
+        PlayerManager.PlayerInstance var6 = getPlayerInstance(var4, var5, false);
 
-            if (var6 != null)
-            {
-                var6.func_151253_a(p_151250_1_ & 15, p_151250_2_, p_151250_3_ & 15);
-            }
+        if (var6 != null)
+        {
+            var6.func_151253_a(p_151250_1_ & 15, p_151250_2_, p_151250_3_ & 15);
+        }
     }
 
     /**
@@ -175,52 +175,52 @@ public class PlayerManager
         int var3 = 0;
         int var4 = playerViewRadius;
         int var5 = (int)par1EntityPlayerMP.posX >> 4;
-            int var6 = (int)par1EntityPlayerMP.posZ >> 4;
-            int var7 = 0;
-            int var8 = 0;
-            ChunkCoordIntPair var9 = getPlayerInstance(var5, var6, true).currentChunk;
-            par1EntityPlayerMP.loadedChunks.clear();
+        int var6 = (int)par1EntityPlayerMP.posZ >> 4;
+        int var7 = 0;
+        int var8 = 0;
+        ChunkCoordIntPair var9 = getPlayerInstance(var5, var6, true).currentChunk;
+        par1EntityPlayerMP.loadedChunks.clear();
+
+        if (var2.contains(var9))
+        {
+            par1EntityPlayerMP.loadedChunks.add(var9);
+        }
+
+        int var10;
+
+        for (var10 = 1; var10 <= var4 * 2; ++var10)
+        {
+            for (int var11 = 0; var11 < 2; ++var11)
+            {
+                int[] var12 = xzDirectionsConst[var3++ % 4];
+
+                for (int var13 = 0; var13 < var10; ++var13)
+                {
+                    var7 += var12[0];
+                    var8 += var12[1];
+                    var9 = getPlayerInstance(var5 + var7, var6 + var8, true).currentChunk;
+
+                    if (var2.contains(var9))
+                    {
+                        par1EntityPlayerMP.loadedChunks.add(var9);
+                    }
+                }
+            }
+        }
+
+        var3 %= 4;
+
+        for (var10 = 0; var10 < var4 * 2; ++var10)
+        {
+            var7 += xzDirectionsConst[var3][0];
+            var8 += xzDirectionsConst[var3][1];
+            var9 = getPlayerInstance(var5 + var7, var6 + var8, true).currentChunk;
 
             if (var2.contains(var9))
             {
                 par1EntityPlayerMP.loadedChunks.add(var9);
             }
-
-            int var10;
-
-            for (var10 = 1; var10 <= var4 * 2; ++var10)
-            {
-                for (int var11 = 0; var11 < 2; ++var11)
-                {
-                    int[] var12 = xzDirectionsConst[var3++ % 4];
-
-                    for (int var13 = 0; var13 < var10; ++var13)
-                    {
-                        var7 += var12[0];
-                        var8 += var12[1];
-                        var9 = getPlayerInstance(var5 + var7, var6 + var8, true).currentChunk;
-
-                        if (var2.contains(var9))
-                        {
-                            par1EntityPlayerMP.loadedChunks.add(var9);
-                        }
-                    }
-                }
-            }
-
-            var3 %= 4;
-
-            for (var10 = 0; var10 < var4 * 2; ++var10)
-            {
-                var7 += xzDirectionsConst[var3][0];
-                var8 += xzDirectionsConst[var3][1];
-                var9 = getPlayerInstance(var5 + var7, var6 + var8, true).currentChunk;
-
-                if (var2.contains(var9))
-                {
-                    par1EntityPlayerMP.loadedChunks.add(var9);
-                }
-            }
+        }
     }
 
     /**
@@ -229,22 +229,22 @@ public class PlayerManager
     public void removePlayer(EntityPlayerMP par1EntityPlayerMP)
     {
         int var2 = (int)par1EntityPlayerMP.managedPosX >> 4;
-            int var3 = (int)par1EntityPlayerMP.managedPosZ >> 4;
+        int var3 = (int)par1EntityPlayerMP.managedPosZ >> 4;
 
-                for (int var4 = var2 - playerViewRadius; var4 <= var2 + playerViewRadius; ++var4)
+        for (int var4 = var2 - playerViewRadius; var4 <= var2 + playerViewRadius; ++var4)
+        {
+            for (int var5 = var3 - playerViewRadius; var5 <= var3 + playerViewRadius; ++var5)
+            {
+                PlayerManager.PlayerInstance var6 = getPlayerInstance(var4, var5, false);
+
+                if (var6 != null)
                 {
-                    for (int var5 = var3 - playerViewRadius; var5 <= var3 + playerViewRadius; ++var5)
-                    {
-                        PlayerManager.PlayerInstance var6 = getPlayerInstance(var4, var5, false);
-
-                        if (var6 != null)
-                        {
-                            var6.removePlayer(par1EntityPlayerMP);
-                        }
-                    }
+                    var6.removePlayer(par1EntityPlayerMP);
                 }
+            }
+        }
 
-                players.remove(par1EntityPlayerMP);
+        players.remove(par1EntityPlayerMP);
     }
 
     /**

@@ -128,22 +128,22 @@ public class ChunkProviderFlat implements IChunkProvider
             if (var5 != null)
             {
                 var6 = var4 >> 4;
-        ExtendedBlockStorage var7 = var3.getBlockStorageArray()[var6];
+                ExtendedBlockStorage var7 = var3.getBlockStorageArray()[var6];
 
-        if (var7 == null)
-        {
-            var7 = new ExtendedBlockStorage(var4, !worldObj.provider.hasNoSky);
-            var3.getBlockStorageArray()[var6] = var7;
-        }
+                if (var7 == null)
+                {
+                    var7 = new ExtendedBlockStorage(var4, !worldObj.provider.hasNoSky);
+                    var3.getBlockStorageArray()[var6] = var7;
+                }
 
-        for (int var8 = 0; var8 < 16; ++var8)
-        {
-            for (int var9 = 0; var9 < 16; ++var9)
-            {
-                var7.func_150818_a(var8, var4 & 15, var9, var5);
-                var7.setExtBlockMetadata(var8, var4 & 15, var9, cachedBlockMetadata[var4]);
-            }
-        }
+                for (int var8 = 0; var8 < 16; ++var8)
+                {
+                    for (int var9 = 0; var9 < 16; ++var9)
+                    {
+                        var7.func_150818_a(var8, var4 & 15, var9, var5);
+                        var7.setExtBlockMetadata(var8, var4 & 15, var9, cachedBlockMetadata[var4]);
+                    }
+                }
             }
         }
 

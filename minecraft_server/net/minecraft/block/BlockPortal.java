@@ -244,46 +244,46 @@ public class BlockPortal extends BlockBreakable
             int var4;
             label56:
 
-                for (field_150862_g = 0; field_150862_g < 21; ++field_150862_g)
+            for (field_150862_g = 0; field_150862_g < 21; ++field_150862_g)
+            {
+                var1 = field_150861_f.posY + field_150862_g;
+
+                for (var2 = 0; var2 < field_150868_h; ++var2)
                 {
-                    var1 = field_150861_f.posY + field_150862_g;
+                    var3 = field_150861_f.posX + var2 * Direction.offsetX[BlockPortal.field_150001_a[field_150865_b][1]];
+                    var4 = field_150861_f.posZ + var2 * Direction.offsetZ[BlockPortal.field_150001_a[field_150865_b][1]];
+                    Block var5 = field_150867_a.getBlock(var3, var1, var4);
 
-                    for (var2 = 0; var2 < field_150868_h; ++var2)
+                    if (!func_150857_a(var5))
                     {
-                        var3 = field_150861_f.posX + var2 * Direction.offsetX[BlockPortal.field_150001_a[field_150865_b][1]];
-                        var4 = field_150861_f.posZ + var2 * Direction.offsetZ[BlockPortal.field_150001_a[field_150865_b][1]];
-                        Block var5 = field_150867_a.getBlock(var3, var1, var4);
+                        break label56;
+                    }
 
-                        if (!func_150857_a(var5))
+                    if (var5 == Blocks.portal)
+                    {
+                        ++field_150864_e;
+                    }
+
+                    if (var2 == 0)
+                    {
+                        var5 = field_150867_a.getBlock(var3 + Direction.offsetX[BlockPortal.field_150001_a[field_150865_b][0]], var1, var4 + Direction.offsetZ[BlockPortal.field_150001_a[field_150865_b][0]]);
+
+                        if (var5 != Blocks.obsidian)
                         {
                             break label56;
                         }
+                    }
+                    else if (var2 == field_150868_h - 1)
+                    {
+                        var5 = field_150867_a.getBlock(var3 + Direction.offsetX[BlockPortal.field_150001_a[field_150865_b][1]], var1, var4 + Direction.offsetZ[BlockPortal.field_150001_a[field_150865_b][1]]);
 
-                        if (var5 == Blocks.portal)
+                        if (var5 != Blocks.obsidian)
                         {
-                            ++field_150864_e;
-                        }
-
-                        if (var2 == 0)
-                        {
-                            var5 = field_150867_a.getBlock(var3 + Direction.offsetX[BlockPortal.field_150001_a[field_150865_b][0]], var1, var4 + Direction.offsetZ[BlockPortal.field_150001_a[field_150865_b][0]]);
-
-                            if (var5 != Blocks.obsidian)
-                            {
-                                break label56;
-                            }
-                        }
-                        else if (var2 == field_150868_h - 1)
-                        {
-                            var5 = field_150867_a.getBlock(var3 + Direction.offsetX[BlockPortal.field_150001_a[field_150865_b][1]], var1, var4 + Direction.offsetZ[BlockPortal.field_150001_a[field_150865_b][1]]);
-
-                            if (var5 != Blocks.obsidian)
-                            {
-                                break label56;
-                            }
+                            break label56;
                         }
                     }
                 }
+            }
 
             for (var1 = 0; var1 < field_150868_h; ++var1)
             {

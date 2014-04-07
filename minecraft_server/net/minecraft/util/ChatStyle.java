@@ -338,32 +338,32 @@ public class ChatStyle
             {
                 label56:
                 {
-                if (getChatClickEvent() != null)
-                {
-                    if (!getChatClickEvent().equals(var2.getChatClickEvent()))
+                    if (getChatClickEvent() != null)
+                    {
+                        if (!getChatClickEvent().equals(var2.getChatClickEvent()))
+                        {
+                            break label56;
+                        }
+                    }
+                    else if (var2.getChatClickEvent() != null)
                     {
                         break label56;
                     }
-                }
-                else if (var2.getChatClickEvent() != null)
-                {
-                    break label56;
-                }
 
-                if (getChatHoverEvent() != null)
-                {
-                    if (!getChatHoverEvent().equals(var2.getChatHoverEvent()))
+                    if (getChatHoverEvent() != null)
+                    {
+                        if (!getChatHoverEvent().equals(var2.getChatHoverEvent()))
+                        {
+                            break label56;
+                        }
+                    }
+                    else if (var2.getChatHoverEvent() != null)
                     {
                         break label56;
                     }
-                }
-                else if (var2.getChatHoverEvent() != null)
-                {
-                    break label56;
-                }
 
-                var10000 = true;
-                return var10000;
+                    var10000 = true;
+                    return var10000;
                 }
             }
 
