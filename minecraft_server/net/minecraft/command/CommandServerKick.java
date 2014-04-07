@@ -33,8 +33,13 @@ public class CommandServerKick extends CommandBase
     {
         if (par2ArrayOfStr.length > 0 && par2ArrayOfStr[0].length() > 1)
         {
+            boolean ban = MinecraftServer.getServer().shouldKicksBeBans();
+            int banLength = MinecraftServer.getServer().getKickTempbanLength();
             EntityPlayerMP var3 = MinecraftServer.getServer().getConfigurationManager().getPlayerEntity(par2ArrayOfStr[0]);
-            String var4 = "Kicked by an operator. You will be unbanned in 1 minute.";
+            
+            String reason = "Kicked by an operator.";
+            if (ban) reason += " You will be unbanned in " + String.valueOf(banLength) + " minutes.";
+            
             boolean var5 = false;
 
             if (var3 == null)
@@ -45,19 +50,23 @@ public class CommandServerKick extends CommandBase
             {
                 if (par2ArrayOfStr.length >= 2)
                 {
-                    var4 = func_147178_a(par1ICommandSender, par2ArrayOfStr, 1).getUnformattedText();
+                    reason = func_147178_a(par1ICommandSender, par2ArrayOfStr, 1).getUnformattedText();
                     var5 = true;
                 }
 
-                BanEntry banEntry = new BanEntry(par2ArrayOfStr[0]);
-                banEntry.setBannedBy(par1ICommandSender.getUsername());
-                banEntry.setBanEndDate(new Date(new Date().getTime() + 60000L));
-                MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(banEntry);
-                var3.playerNetServerHandler.kickPlayerFromServer(var4);
+                if (ban)
+                {
+                    BanEntry banEntry = new BanEntry(par2ArrayOfStr[0]);
+                    banEntry.setBannedBy(par1ICommandSender.getUsername());
+                    banEntry.setBanReason(reason);
+                    banEntry.setBanEndDate(new Date(new Date().getTime() + banLength * 60000L));
+                    MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(banEntry);   
+                }
+                var3.playerNetServerHandler.kickPlayerFromServer(reason);
 
                 if (var5)
                 {
-                    notifyAdmins(par1ICommandSender, "commands.kick.success.reason", new Object[] {var3.getUsername(), var4});
+                    notifyAdmins(par1ICommandSender, "commands.kick.success.reason", new Object[] {var3.getUsername(), reason});
                 }
                 else
                 {

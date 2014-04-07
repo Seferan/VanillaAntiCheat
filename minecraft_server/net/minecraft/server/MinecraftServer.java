@@ -1586,6 +1586,17 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return if we will check proxies or not.
      */
     public abstract boolean shouldCheckProxies();
+    
+    /**
+     * Return if we will make kicks into tempbans.
+     */
+    public abstract boolean shouldKicksBeBans();
+    
+    /**
+     * Return how long a tempban from a kick will last.
+     */
+    // Int is good enough because it's in minutes not ms
+    public abstract int getKickTempbanLength();
 
     public String getMOTD()
     {

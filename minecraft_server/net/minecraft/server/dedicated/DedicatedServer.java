@@ -625,6 +625,22 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
         return settings.getBooleanProperty("vac-check-proxies", true);
     }
+    
+    /**
+     * Return if we will make kicks into tempbans.
+     */
+    public boolean shouldKicksBeBans()
+    {
+        return settings.getBooleanProperty("tempban-on-kicks", false);
+    }
+    
+    /**
+     * Return how long a tempban from a kick will last in minutes.
+     */
+    public int getKickTempbanLength()
+    {
+        return settings.getIntProperty("kick-tempban-length", 1);
+    }
 
     /**
      * Returns true if a player does not have permission to edit the block at
