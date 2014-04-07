@@ -2,6 +2,7 @@ package net.minecraft.entity.item;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.ITileEntityProvider;

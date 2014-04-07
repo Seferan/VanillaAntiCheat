@@ -1,5 +1,10 @@
 package net.minecraft.network;
 
+import java.lang.reflect.Type;
+
+import net.minecraft.util.IChatComponent;
+import net.minecraft.util.JsonUtils;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -8,9 +13,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.mojang.authlib.GameProfile;
-import java.lang.reflect.Type;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.JsonUtils;
 
 public class ServerStatusResponse
 {

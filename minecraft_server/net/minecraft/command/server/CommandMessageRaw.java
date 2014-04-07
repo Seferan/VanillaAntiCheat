@@ -1,7 +1,7 @@
 package net.minecraft.command.server;
 
-import com.google.gson.JsonParseException;
 import java.util.List;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.SyntaxErrorException;
@@ -9,7 +9,10 @@ import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IChatComponent;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
+
+import com.google.gson.JsonParseException;
 
 public class CommandMessageRaw extends CommandBase
 {

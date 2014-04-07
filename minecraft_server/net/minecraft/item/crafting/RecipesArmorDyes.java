@@ -1,6 +1,7 @@
 package net.minecraft.item.crafting;
 
 import java.util.ArrayList;
+
 import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;

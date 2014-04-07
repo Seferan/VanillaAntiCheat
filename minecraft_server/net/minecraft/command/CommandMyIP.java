@@ -2,10 +2,9 @@ package net.minecraft.command;
 
 import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
 
 public class CommandMyIP extends CommandBase
 {

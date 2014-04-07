@@ -2,7 +2,9 @@ package net.minecraft.network.login.client;
 
 import java.io.IOException;
 import java.security.PrivateKey;
+
 import javax.crypto.SecretKey;
+
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;

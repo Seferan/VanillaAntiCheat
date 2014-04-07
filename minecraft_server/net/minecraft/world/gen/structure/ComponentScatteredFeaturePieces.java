@@ -1,6 +1,7 @@
 package net.minecraft.world.gen.structure;
 
 import java.util.Random;
+
 import net.minecraft.block.BlockLever;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityWitch;

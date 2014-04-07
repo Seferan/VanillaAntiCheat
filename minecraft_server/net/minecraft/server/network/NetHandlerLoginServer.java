@@ -1,9 +1,5 @@
 package net.minecraft.server.network;
 
-import com.google.common.base.Charsets;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
-
 import io.netty.util.concurrent.GenericFutureListener;
 
 import java.math.BigInteger;
@@ -32,6 +28,10 @@ import net.minecraft.util.IChatComponent;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.base.Charsets;
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 
 public class NetHandlerLoginServer implements INetHandlerLoginServer
 {

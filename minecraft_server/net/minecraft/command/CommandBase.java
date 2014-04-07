@@ -1,10 +1,10 @@
 package net.minecraft.command;
 
-import com.google.common.primitives.Doubles;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -13,6 +13,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
+
+import com.google.common.primitives.Doubles;
 
 public abstract class CommandBase implements ICommand
 {

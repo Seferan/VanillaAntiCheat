@@ -1,7 +1,9 @@
 package net.minecraft.server.gui;
 
 import java.util.Vector;
+
 import javax.swing.JList;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 

@@ -1,6 +1,7 @@
 package net.minecraft.enchantment;
 
 import java.util.ArrayList;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;

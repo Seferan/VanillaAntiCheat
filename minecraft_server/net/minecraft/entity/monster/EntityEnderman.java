@@ -1,6 +1,7 @@
 package net.minecraft.entity.monster;
 
 import java.util.UUID;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;

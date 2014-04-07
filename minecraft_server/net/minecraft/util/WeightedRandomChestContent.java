@@ -1,6 +1,7 @@
 package net.minecraft.util;
 
 import java.util.Random;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

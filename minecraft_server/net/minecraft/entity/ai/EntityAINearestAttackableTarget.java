@@ -3,6 +3,7 @@ package net.minecraft.entity.ai;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;

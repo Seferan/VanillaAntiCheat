@@ -3,13 +3,10 @@ package mx.x10.afffsdd.vanillaanticheat;
 import java.util.Iterator;
 
 import mx.x10.afffsdd.vanillaanticheat.module.IVacModule;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.command.CommandBase;
-import net.minecraft.entity.player.EntityPlayerMP;
-
-import java.util.logging.Level;
 
 public class VACUtils
 {

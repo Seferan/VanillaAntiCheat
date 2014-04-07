@@ -1,8 +1,10 @@
 package net.minecraft.event;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+
 import net.minecraft.util.IChatComponent;
+
+import com.google.common.collect.Maps;
 
 public class HoverEvent
 {

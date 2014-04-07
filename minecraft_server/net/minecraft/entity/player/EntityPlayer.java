@@ -1,8 +1,5 @@
 package net.minecraft.entity.player;
 
-import com.google.common.base.Charsets;
-import com.mojang.authlib.GameProfile;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -75,6 +72,9 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.chunk.IChunkProvider;
+
+import com.google.common.base.Charsets;
+import com.mojang.authlib.GameProfile;
 
 public abstract class EntityPlayer extends EntityLivingBase implements ICommandSender
 {

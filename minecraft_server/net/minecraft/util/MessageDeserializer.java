@@ -1,18 +1,22 @@
 package net.minecraft.util;
 
-import com.google.common.collect.BiMap;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
+
 import java.io.IOException;
 import java.util.List;
+
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
+
+import com.google.common.collect.BiMap;
 
 public class MessageDeserializer extends ByteToMessageDecoder
 {

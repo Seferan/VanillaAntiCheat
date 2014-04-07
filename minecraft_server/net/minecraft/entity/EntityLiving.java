@@ -3,6 +3,7 @@ package net.minecraft.entity;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityJumpHelper;

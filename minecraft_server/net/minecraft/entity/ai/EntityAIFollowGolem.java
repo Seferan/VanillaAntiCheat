@@ -2,6 +2,7 @@ package net.minecraft.entity.ai;
 
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.passive.EntityVillager;
 

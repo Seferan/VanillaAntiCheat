@@ -13,6 +13,7 @@ import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Facing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 public class EntitySilverfish extends EntityMob

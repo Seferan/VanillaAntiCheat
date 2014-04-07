@@ -1,11 +1,13 @@
 package net.minecraft.util;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.Iterators;
 import gnu.trove.map.hash.TIntIntHashMap;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterators;
 
 public class ObjectIntIdentityMap implements IObjectIntIterable
 {

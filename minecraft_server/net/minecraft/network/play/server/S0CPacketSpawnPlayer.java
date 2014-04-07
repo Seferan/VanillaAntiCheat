@@ -1,8 +1,8 @@
 package net.minecraft.network.play.server;
 
-import com.mojang.authlib.GameProfile;
 import java.io.IOException;
 import java.util.List;
+
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -12,6 +12,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.MathHelper;
+
+import com.mojang.authlib.GameProfile;
 
 public class S0CPacketSpawnPlayer extends Packet
 {

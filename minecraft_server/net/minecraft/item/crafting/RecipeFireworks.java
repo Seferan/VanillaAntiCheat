@@ -1,6 +1,7 @@
 package net.minecraft.item.crafting;
 
 import java.util.ArrayList;
+
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemDye;

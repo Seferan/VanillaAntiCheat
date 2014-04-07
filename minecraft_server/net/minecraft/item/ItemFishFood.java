@@ -1,12 +1,14 @@
 package net.minecraft.item;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.world.World;
+
+import com.google.common.collect.Maps;
 
 public class ItemFishFood extends ItemFood
 {

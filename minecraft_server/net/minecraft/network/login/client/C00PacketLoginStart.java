@@ -1,11 +1,13 @@
 package net.minecraft.network.login.client;
 
-import com.mojang.authlib.GameProfile;
 import java.io.IOException;
+
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.login.INetHandlerLoginServer;
+
+import com.mojang.authlib.GameProfile;
 
 public class C00PacketLoginStart extends Packet
 {

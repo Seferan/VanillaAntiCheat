@@ -22,7 +22,6 @@ import net.minecraft.network.rcon.RConThreadQuery;
 import net.minecraft.profiler.PlayerUsageSnooper;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.gui.MinecraftServerGui;
-import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.CryptManager;
 import net.minecraft.util.MathHelper;

@@ -1,16 +1,18 @@
 package net.minecraft.network.play.server;
 
-import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.stats.StatBase;
 import net.minecraft.stats.StatList;
+
+import com.google.common.collect.Maps;
 
 public class S37PacketStatistics extends Packet
 {

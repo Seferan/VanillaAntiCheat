@@ -2,6 +2,7 @@ package net.minecraft.block;
 
 import java.util.Iterator;
 import java.util.Random;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;

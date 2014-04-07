@@ -1,12 +1,6 @@
 package net.minecraft.server.management;
 
-import com.google.common.base.Charsets;
-import com.google.common.collect.Maps;
-import com.mojang.authlib.GameProfile;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.net.SocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,10 +9,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
-import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -63,6 +56,10 @@ import net.minecraft.world.storage.IPlayerFileData;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.base.Charsets;
+import com.google.common.collect.Maps;
+import com.mojang.authlib.GameProfile;
 
 public abstract class ServerConfigurationManager
 {

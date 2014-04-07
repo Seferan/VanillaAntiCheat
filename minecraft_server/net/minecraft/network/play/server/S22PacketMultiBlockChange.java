@@ -3,6 +3,7 @@ package net.minecraft.network.play.server;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+
 import net.minecraft.block.Block;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
@@ -10,6 +11,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.chunk.Chunk;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

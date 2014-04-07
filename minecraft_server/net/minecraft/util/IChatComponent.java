@@ -1,5 +1,10 @@
 package net.minecraft.util;
 
+import java.lang.reflect.Type;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -11,10 +16,6 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.lang.reflect.Type;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map.Entry;
 
 public interface IChatComponent extends Iterable
 {

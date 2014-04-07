@@ -3,6 +3,7 @@ package net.minecraft.world.biome;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.world.ChunkPosition;
 
 public class WorldChunkManagerHell extends WorldChunkManager

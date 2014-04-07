@@ -1,6 +1,5 @@
 package mx.x10.afffsdd.vanillaanticheat.module;
 
-import net.minecraft.server.MinecraftServer;
 
 public class VACModuleAntiSpeed implements IVacModule
 {

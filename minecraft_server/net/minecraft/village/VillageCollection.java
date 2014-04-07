@@ -3,6 +3,7 @@ package net.minecraft.village;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;

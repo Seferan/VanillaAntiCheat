@@ -1,6 +1,7 @@
 package net.minecraft.item;
 
 import java.util.List;
+
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.creativetab.CreativeTabs;

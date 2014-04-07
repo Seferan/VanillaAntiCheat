@@ -3,7 +3,6 @@ package net.minecraft.util;
 import mx.x10.afffsdd.vanillaanticheat.VACUtils;
 import mx.x10.afffsdd.vanillaanticheat.module.VACState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

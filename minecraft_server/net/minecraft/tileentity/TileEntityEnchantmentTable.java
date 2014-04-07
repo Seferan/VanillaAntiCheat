@@ -1,6 +1,7 @@
 package net.minecraft.tileentity;
 
 import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 

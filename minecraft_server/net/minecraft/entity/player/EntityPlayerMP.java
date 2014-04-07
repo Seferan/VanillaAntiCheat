@@ -1,8 +1,5 @@
 package net.minecraft.entity.player;
 
-import com.google.common.collect.Sets;
-import com.mojang.authlib.GameProfile;
-
 import io.netty.buffer.Unpooled;
 
 import java.io.IOException;
@@ -104,6 +101,9 @@ import net.minecraft.world.chunk.Chunk;
 import org.apache.commons.io.Charsets;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.common.collect.Sets;
+import com.mojang.authlib.GameProfile;
 
 public class EntityPlayerMP extends EntityPlayer implements ICrafting
 {

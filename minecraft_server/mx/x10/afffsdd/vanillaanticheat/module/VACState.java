@@ -1,6 +1,5 @@
 package mx.x10.afffsdd.vanillaanticheat.module;
 
-import net.minecraft.entity.player.EntityPlayerMP;
 
 public class VACState implements IVacModule
 {

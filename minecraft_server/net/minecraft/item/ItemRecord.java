@@ -2,6 +2,7 @@ package net.minecraft.item;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.block.BlockJukebox;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

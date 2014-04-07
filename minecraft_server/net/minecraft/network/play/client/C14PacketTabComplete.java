@@ -1,10 +1,12 @@
 package net.minecraft.network.play.client;
 
 import java.io.IOException;
+
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.INetHandlerPlayServer;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class C14PacketTabComplete extends Packet

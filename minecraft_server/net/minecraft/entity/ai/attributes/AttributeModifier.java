@@ -1,6 +1,7 @@
 package net.minecraft.entity.ai.attributes;
 
 import java.util.UUID;
+
 import org.apache.commons.lang3.Validate;
 
 public class AttributeModifier

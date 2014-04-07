@@ -2,6 +2,7 @@ package net.minecraft.entity;
 
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

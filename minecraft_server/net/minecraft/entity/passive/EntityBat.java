@@ -1,6 +1,7 @@
 package net.minecraft.entity.passive;
 
 import java.util.Calendar;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;

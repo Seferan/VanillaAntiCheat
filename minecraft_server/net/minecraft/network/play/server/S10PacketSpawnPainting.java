@@ -1,6 +1,7 @@
 package net.minecraft.network.play.server;
 
 import java.io.IOException;
+
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
