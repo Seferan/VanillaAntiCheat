@@ -1561,7 +1561,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return the threshold for the ratio for number of times a playe moved too
      * quickly will be set back for
      */
-    public abstract double getSpeedhackRatioThreshold();
+    public abstract double getSpeedhackRatioKickThreshold();
     
     /**
      * Get the speed limit for a player with specific conditions.

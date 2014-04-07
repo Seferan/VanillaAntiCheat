@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
+
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.ServerCommand;
 import net.minecraft.crash.CrashReport;
@@ -29,6 +30,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.WorldType;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -75,6 +77,35 @@ public class DedicatedServer extends MinecraftServer implements IServer
         };
     }
 
+    private void loadExtraSettings()
+    {
+        shouldLogIps();
+        shouldTellIp();
+        getFastbreakLeeway();
+        getFastbreakRatioThreshold();
+        getBuildhackThreshold();
+        getFloatingTicksThreshold();
+        getFlyResetLogThreshold();
+        getFlyResetKickThreshold();
+        useDiamondNotifications();
+        getHealthRegenTickCount();
+        getSpeedhackLeeway();
+        getSpeedhackRatioKickThreshold();
+        getSpeedLimit(false, false, false); // I'm sorry.
+        getSpeedLimit(false, false, true);
+        getSpeedLimit(false, true,  false);
+        getSpeedLimit(false, true,  true);
+        getSpeedLimit(true,  false, false);
+        getSpeedLimit(true,  false, true);
+        getSpeedLimit(true,  true,  false);
+        getSpeedLimit(true,  true,  true);
+        getSneakSpeedLimit();
+        getProxyCheckMode();
+        shouldCheckProxies();
+        shouldKicksBeBans();
+        getKickTempbanLength();
+    }
+    
     /**
      * Initialises the server and starts it.
      */
@@ -157,7 +188,10 @@ public class DedicatedServer extends MinecraftServer implements IServer
         {
             this.setServerPort(this.settings.getIntProperty("server-port", 25565));
         }
-
+        
+        // Force preload of all extra settings to set defaults.
+        loadExtraSettings();
+        
         field_155771_h.info("Generating keypair");
         this.setKeyPair(CryptManager.generateKeyPair());
         field_155771_h.info("Starting Minecraft server on " + (this.getServerHostname().length() == 0 ? "*" : this.getServerHostname()) + ":" + this.getServerPort());
@@ -566,7 +600,7 @@ public class DedicatedServer extends MinecraftServer implements IServer
      * Return the threshold for the ratio for number of times a playe moved too
      * quickly will be set back for
      */
-    public double getSpeedhackRatioThreshold()
+    public double getSpeedhackRatioKickThreshold()
     {
         return settings.getDoubleProperty("vac-speedhack-ratio-threshold", 0.1);
     }

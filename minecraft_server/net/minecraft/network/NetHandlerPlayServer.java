@@ -331,7 +331,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             {
                 vacState.aSpeed.onSpeeding();
                 // Check if this player is full of it
-                if (vacState.aSpeed.getSpeedingRatio() > MinecraftServer.getServer().getSpeedhackRatioThreshold())
+                if (vacState.aSpeed.getSpeedingRatio() > MinecraftServer.getServer().getSpeedhackRatioKickThreshold())
                 {
                     setBackPlayer();
                     vacState.aSpeed.giveSpeedingTicket();
