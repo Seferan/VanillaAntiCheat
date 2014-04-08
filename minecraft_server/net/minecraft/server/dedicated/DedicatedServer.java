@@ -636,7 +636,12 @@ public class DedicatedServer extends MinecraftServer implements IServer
             property += "potion-";
             defaultValue += 0.1;
         }
-        if (property.substring(property.length() - 1) == "-") property = property.substring(0, property.length() - 1);
+        if (property.substring(property.length() - 1).equals("-"))
+        {
+            System.out.println(property.substring(property.length() - 1));
+            property = property.substring(0, property.length() - 1);
+            System.out.println(property);
+        }
         return settings.getDoubleProperty(property, defaultValue);
     }
 

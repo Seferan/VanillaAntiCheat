@@ -1007,7 +1007,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     return;
                 }
             }
-            
+
             processChat(message);
 
             if (message.startsWith("/"))
@@ -1039,20 +1039,22 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             VACUtils.notifyAndLog(playerEntity.getUsername() + " was kicked for sneaking and chatting!");
             return;
         }
-        
+
         if (vacState.aSpam.messageEqualsLast(message) && !MinecraftServer.isPlayerOpped(playerEntity))
         {
             vacState.aSpam.incrementSpamCount();
-        } else {
+        }
+        else
+        {
             vacState.aSpam.resetSpamCount();
         }
-        
+
         if (vacState.aSpam.getSpamCount() > 2 || vacState.aSpam.isInCooldown())
         {
             playerEntity.addChatMessage("Spamming will result in an automatic ban!");
             playerEntity.addChatMessage("Please wait a few seconds before chatting again.");
         }
-        
+
         chatSpamThresholdCount += 20;
 
         if (chatSpamThresholdCount > 200 && !MinecraftServer.isPlayerOpped(playerEntity))

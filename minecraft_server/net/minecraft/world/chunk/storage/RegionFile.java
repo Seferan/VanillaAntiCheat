@@ -184,6 +184,7 @@ public class RegionFile
      * args: x, z - get an output stream used to write chunk data, data is on
      * disk when the returned stream is closed
      */
+    @SuppressWarnings("resource")
     public DataOutputStream getChunkDataOutputStream(int par1, int par2)
     {
         return outOfBounds(par1, par2) ? null : new DataOutputStream(new DeflaterOutputStream(new RegionFile.ChunkBuffer(par1, par2)));

@@ -183,7 +183,6 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             while ((var2 = var1.readLine()) != null)
             {
                 getOwners().add(var2.trim().toLowerCase());
-                System.out.println("added owner " + var2.trim().toLowerCase());
             }
 
             var1.close();
@@ -329,13 +328,12 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         try
         {
             PrintWriter writer = new PrintWriter(new FileWriter(proxyCheckCacheFile, false));
-            Iterator it = getProxyCheckCache().entrySet().iterator();
+            Iterator it = proxyCheckCache.entrySet().iterator();
             
             while (it.hasNext())
             {
                 Entry pair = (Entry)it.next();
                 writer.println(pair.getKey() + "|" + pair.getValue());
-                it.remove();
             }
             
             writer.close();
