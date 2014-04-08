@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
 
+import mx.x10.afffsdd.vanillaanticheat.VACUtils;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.ServerCommand;
 import net.minecraft.crash.CrashReport;
@@ -135,6 +136,7 @@ public class DedicatedServer extends MinecraftServer implements IServer
         var1.setDaemon(true);
         var1.start();
         field_155771_h.info("Starting minecraft server version 1.7.2");
+        field_155771_h.info("This server is running VanillaAntiCheat " + VACUtils.VACVersion);
 
         if (Runtime.getRuntime().maxMemory() / 1024L / 1024L < 512L)
         {

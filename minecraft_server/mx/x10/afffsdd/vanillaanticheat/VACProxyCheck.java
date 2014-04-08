@@ -48,7 +48,12 @@ public class VACProxyCheck
                 }
             }
         }
-        catch (IOException | ArrayIndexOutOfBoundsException e)
+        catch (IOException e)
+        {
+            MinecraftServer.getServer().logSevere("Could not check if IP " + finalIp + " is a proxy: " + e.getMessage());
+            e.printStackTrace();
+        }
+        catch (ArrayIndexOutOfBoundsException e)
         {
             MinecraftServer.getServer().logSevere("Could not check if IP " + finalIp + " is a proxy: " + e.getMessage());
             e.printStackTrace();

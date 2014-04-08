@@ -913,7 +913,6 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             String message = playerEntity.getUsername() + " was kicked for buildhacking!";
             VACUtils.notifyAndLog(vacState.aFastBuild, message);
             vacState.aFastBuild.kickMe();
-            return;
         }
     }
 
