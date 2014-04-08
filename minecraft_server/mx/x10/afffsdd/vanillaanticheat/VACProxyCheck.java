@@ -31,7 +31,12 @@ public class VACProxyCheck
         {
             if (finalIp.startsWith("/")) finalIp = finalIp.substring(1);
             if (ip.contains(":")) finalIp = finalIp.split(":")[0];
-
+            
+            if (MinecraftServer.getServer().getConfigurationManager().isIpInProxyCheckCache(finalIp))
+            {
+                return MinecraftServer.getServer().getConfigurationManager().getIfIpIsProxy(finalIp);
+            }
+            
             url = new URL("http://www.stopforumspam.com/api?ip=" + finalIp);
             URLConnection connection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -42,9 +47,16 @@ public class VACProxyCheck
                 if (line.contains("<appears>"))
                 {
                     String result = line.split("<appears>")[1].split("</appears>")[0];
-                    if (result == "yes")
+                    if (result.equals("yes"))
+                    {
+                        MinecraftServer.getServer().getConfigurationManager().addIpToProxyCache(finalIp, true);
                         return true;
-                    else if (result == "no") return false;
+                    }
+                    else if (result.equals("no"))
+                    {
+                        MinecraftServer.getServer().getConfigurationManager().addIpToProxyCache(finalIp, false);
+                        return false;
+                    }
                 }
             }
         }

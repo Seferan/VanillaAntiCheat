@@ -6,8 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+
+import com.google.common.hash.BloomFilter;
 
 import net.minecraft.server.management.ServerConfigurationManager;
 
@@ -20,12 +24,8 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     private File opsList;
     private File ownersList;
     private File whiteList;
+    private File proxyCheckCacheFile;
     private static final String __OBFID = "CL_00001783";
-
-    /**
-     * The long MOTD message that is given by /motd.
-     */
-    private String[] longMotd;
     private File motdFile;
 
     public DedicatedPlayerList(DedicatedServer par1DedicatedServer)
@@ -35,6 +35,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         ownersList = par1DedicatedServer.getFile("owners.txt");
         whiteList = par1DedicatedServer.getFile("white-list.txt");
         motdFile = par1DedicatedServer.getFile("motd.txt");
+        proxyCheckCacheFile = par1DedicatedServer.getFile("proxy-check-cache.txt");
         viewDistance = par1DedicatedServer.getIntProperty("view-distance", 10);
         maxPlayers = par1DedicatedServer.getIntProperty("max-players", 20);
         setWhiteListEnabled(par1DedicatedServer.getBooleanProperty("white-list", false));
@@ -53,6 +54,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         loadOwnersList();
         readWhiteList();
         readMotd();
+        loadProxyCache();
         saveOpsList();
 
         if (!whiteList.exists())
@@ -270,7 +272,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         return (DedicatedServer)super.getServerInstance();
     }
 
-    public void readMotd()
+    private void readMotd()
     {
         try
         {
@@ -294,6 +296,55 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             createMotdFile();
         }
     }
+    
+    private void loadProxyCache()
+    {        
+        try
+        {
+            proxyCheckCache = new HashMap<String, Boolean>();
+            BufferedReader reader = new BufferedReader(new FileReader(proxyCheckCacheFile));
+            String line = "";
+
+            while ((line = reader.readLine()) != null)
+            {
+                String[] parts = line.split("|");
+                String ip = parts[0];
+                boolean proxy = Boolean.parseBoolean(parts[1]);
+                proxyCheckCache.put(ip, proxy);
+            }
+
+            reader.close();
+
+        }
+        catch (Exception e)
+        {
+            field_164439_d.warn("Failed to load proxy check cache: " + e);
+            proxyCheckCache = new HashMap<String, Boolean>();
+            createProxyCheckCache();
+        }
+    }
+
+    private void saveProxyCache()
+    {
+        try
+        {
+            PrintWriter writer = new PrintWriter(new FileWriter(proxyCheckCacheFile, false));
+            Iterator it = getProxyCheckCache().entrySet().iterator();
+            
+            while (it.hasNext())
+            {
+                Entry pair = (Entry)it.next();
+                writer.println(pair.getKey() + "|" + pair.getValue());
+                it.remove();
+            }
+            
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            field_164439_d.warn("Failed to save proxy check cache: " + e);
+        }
+    }
 
     private void createMotdFile()
     {
@@ -307,9 +358,23 @@ public class DedicatedPlayerList extends ServerConfigurationManager
             field_164439_d.warn("Failed to create motd file: " + e);
         }
     }
-
-    public String[] getMotd()
+    
+    private void createProxyCheckCache()
     {
-        return longMotd;
+        try
+        {
+            PrintWriter writer = new PrintWriter(new FileWriter(proxyCheckCacheFile, false));
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            field_164439_d.warn("Failed to create proxy check cache: " + e);
+        }
+    }
+    
+    public void addIpToProxyCache(String ip, boolean proxy)
+    {
+        super.addIpToProxyCache(ip, proxy);
+        saveProxyCache();
     }
 }

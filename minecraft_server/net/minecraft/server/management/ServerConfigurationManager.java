@@ -5,6 +5,7 @@ import java.net.SocketAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -59,6 +60,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
+import com.google.common.hash.BloomFilter;
 import com.mojang.authlib.GameProfile;
 
 public abstract class ServerConfigurationManager
@@ -82,6 +84,12 @@ public abstract class ServerConfigurationManager
     /** The Set of all whitelisted players. */
     private final Set whiteListedPlayers = new HashSet();
     private final Map field_148547_k = Maps.newHashMap();
+    
+    /**
+     * The long MOTD message that is given by /motd.
+     */
+    protected String[] longMotd;
+    protected HashMap<String, Boolean> proxyCheckCache;
 
     /** Reference to the PlayerNBTManager object. */
     private IPlayerFileData playerNBTManagerObj;
@@ -1112,6 +1120,29 @@ public abstract class ServerConfigurationManager
 
         return var2;
     }
-
-    public abstract String[] getMotd();
+    
+    public String[] getMotd()
+    {
+        return longMotd;
+    }
+    
+    public HashMap<String, Boolean> getProxyCheckCache()
+    {
+        return proxyCheckCache;
+    }
+    
+    public boolean isIpInProxyCheckCache(String ip)
+    {
+        return proxyCheckCache.containsKey(ip);
+    }
+    
+    public boolean getIfIpIsProxy(String ip)
+    {
+        return proxyCheckCache.get(ip);
+    }
+    
+    public void addIpToProxyCache(String ip, boolean proxy)
+    {
+        proxyCheckCache.put(ip, proxy);
+    }
 }
