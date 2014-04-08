@@ -1049,7 +1049,7 @@ public abstract class ServerConfigurationManager
     {
         return viewDistance;
     }
-
+    
     public MinecraftServer getServerInstance()
     {
         return mcServer;

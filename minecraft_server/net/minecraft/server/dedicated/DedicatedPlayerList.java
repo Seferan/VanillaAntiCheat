@@ -130,7 +130,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         readWhiteList();
     }
 
-    private void loadOpsList()
+    public void loadOpsList()
     {
         try
         {
@@ -172,7 +172,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
     }
 
-    private void loadOwnersList()
+    public void loadOwnersList()
     {
         try
         {
@@ -271,7 +271,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         return (DedicatedServer)super.getServerInstance();
     }
 
-    private void readMotd()
+    public void readMotd()
     {
         try
         {
@@ -296,7 +296,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
     }
     
-    private void loadProxyCache()
+    public void loadProxyCache()
     {        
         try
         {

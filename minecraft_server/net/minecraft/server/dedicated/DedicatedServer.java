@@ -144,40 +144,8 @@ public class DedicatedServer extends MinecraftServer implements IServer
         }
 
         field_155771_h.info("Loading properties");
-        settings = new PropertyManager(new File("server.properties"));
+        loadProperties();
 
-        if (isSinglePlayer())
-        {
-            setHostname("127.0.0.1");
-        }
-        else
-        {
-            setOnlineMode(settings.getBooleanProperty("online-mode", true));
-            setHostname(settings.getStringProperty("server-ip", ""));
-        }
-
-        setCanSpawnAnimals(settings.getBooleanProperty("spawn-animals", true));
-        setCanSpawnNPCs(settings.getBooleanProperty("spawn-npcs", true));
-        setAllowPvp(settings.getBooleanProperty("pvp", true));
-        setAllowFlight(settings.getBooleanProperty("allow-flight", false));
-        func_155759_m(settings.getStringProperty("resource-pack", ""));
-        setMOTD(settings.getStringProperty("motd", "A Minecraft Server"));
-        setForceGamemode(settings.getBooleanProperty("force-gamemode", false));
-        func_143006_e(settings.getIntProperty("player-idle-timeout", 0));
-
-        if (settings.getIntProperty("difficulty", 1) < 0)
-        {
-            settings.setProperty("difficulty", Integer.valueOf(0));
-        }
-        else if (settings.getIntProperty("difficulty", 1) > 3)
-        {
-            settings.setProperty("difficulty", Integer.valueOf(3));
-        }
-
-        canSpawnStructures = settings.getBooleanProperty("generate-structures", true);
-        int var2 = settings.getIntProperty("gamemode", WorldSettings.GameType.SURVIVAL.getID());
-        gameType = WorldSettings.getGameTypeById(var2);
-        field_155771_h.info("Default game type: " + gameType);
         InetAddress var3 = null;
 
         if (getServerHostname().length() > 0)
@@ -189,7 +157,7 @@ public class DedicatedServer extends MinecraftServer implements IServer
         {
             setServerPort(settings.getIntProperty("server-port", 25565));
         }
-
+        
         // Force preload of all extra settings to set defaults.
         loadExtraSettings();
 
@@ -285,6 +253,44 @@ public class DedicatedServer extends MinecraftServer implements IServer
         return true;
     }
 
+    public void loadProperties()
+    {
+        settings = new PropertyManager(new File("server.properties"));
+
+        if (isSinglePlayer())
+        {
+            setHostname("127.0.0.1");
+        }
+        else
+        {
+            setOnlineMode(settings.getBooleanProperty("online-mode", true));
+            setHostname(settings.getStringProperty("server-ip", ""));
+        }
+
+        setCanSpawnAnimals(settings.getBooleanProperty("spawn-animals", true));
+        setCanSpawnNPCs(settings.getBooleanProperty("spawn-npcs", true));
+        setAllowPvp(settings.getBooleanProperty("pvp", true));
+        setAllowFlight(settings.getBooleanProperty("allow-flight", false));
+        func_155759_m(settings.getStringProperty("resource-pack", ""));
+        setMOTD(settings.getStringProperty("motd", "A Minecraft Server"));
+        setForceGamemode(settings.getBooleanProperty("force-gamemode", false));
+        func_143006_e(settings.getIntProperty("player-idle-timeout", 0));
+
+        if (settings.getIntProperty("difficulty", 1) < 0)
+        {
+            settings.setProperty("difficulty", Integer.valueOf(0));
+        }
+        else if (settings.getIntProperty("difficulty", 1) > 3)
+        {
+            settings.setProperty("difficulty", Integer.valueOf(3));
+        }
+
+        canSpawnStructures = settings.getBooleanProperty("generate-structures", true);
+        int var2 = settings.getIntProperty("gamemode", WorldSettings.GameType.SURVIVAL.getID());
+        gameType = WorldSettings.getGameTypeById(var2);
+        field_155771_h.info("Default game type: " + gameType);
+    }
+    
     public boolean canStructuresSpawn()
     {
         return canSpawnStructures;
@@ -636,12 +642,8 @@ public class DedicatedServer extends MinecraftServer implements IServer
             property += "potion-";
             defaultValue += 0.1;
         }
-        if (property.substring(property.length() - 1).equals("-"))
-        {
-            System.out.println(property.substring(property.length() - 1));
-            property = property.substring(0, property.length() - 1);
-            System.out.println(property);
-        }
+        if (property.substring(property.length() - 1).equals("-")) property = property.substring(0, property.length() - 1);
+        
         return settings.getDoubleProperty(property, defaultValue);
     }
 

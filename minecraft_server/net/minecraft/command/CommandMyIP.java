@@ -9,8 +9,6 @@ import net.minecraft.server.MinecraftServer;
 public class CommandMyIP extends CommandBase
 {
 
-    private static final String __OBFID = "CL_00000641";
-
     public List getCommandAliases()
     {
         return Arrays.asList(new String[] {"ip", "whatismyip"});
