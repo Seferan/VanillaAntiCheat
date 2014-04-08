@@ -810,7 +810,6 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         int side = packetPlace.getSide();
         playerEntity.func_143004_u();
 
-        if (itemStack == null) { return; }
         if (packetPlace.getSide() == 255)
         {
             playerEntity.theItemInWorldManager.tryUseItem(playerEntity, world, itemStack);
@@ -898,6 +897,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     private void processBlockPlaced(Block block, ItemStack itemStack)
     {
         if (MinecraftServer.isPlayerOpped(playerEntity)) return;
+        if (itemStack == null) { return; }
 
         boolean isContainer = block instanceof BlockContainer;
 
