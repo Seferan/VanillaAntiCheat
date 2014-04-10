@@ -10,7 +10,7 @@ import net.minecraft.util.EnumChatFormatting;
 
 public class VACUtils
 {
-    public static final String VACVersion = "1.0.2";
+    public static final String VACVersion = "1.0.3";
     
     /**
      * Tell all admins a message and format it.

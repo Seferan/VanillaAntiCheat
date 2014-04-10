@@ -686,6 +686,30 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
         return settings.getIntProperty("kick-tempban-length", 1);
     }
+    
+    /**
+     * Return how many times a player can move wrongly before getting kicked.
+     */
+    public int getWrongMovementThreshold()
+    {
+        return settings.getIntProperty("vac-wrong-movement-threshold", 3);
+    }
+    
+    /**
+     * Return how long a spam autoban lasts in minutes.
+     */
+    public int getSpamAutobanLength()
+    {
+        return settings.getIntProperty("vac-spam-autoban-length", 60);
+    }
+    
+    /**
+     * Return how many times a player can repeat a message in a row without getting a spam cooldown.
+     */
+    public int getSpamCooldownThreshold()
+    {
+        return settings.getIntProperty("vac-spam-cooldown-threshold", 3);
+    }
 
     /**
      * Returns true if a player does not have permission to edit the block at

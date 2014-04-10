@@ -1114,7 +1114,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         }
         else
         {
-            if (!("tell".equals(commandName) || "help".equals(commandName) || "me".equals(commandName) || "myip".equals(commandName) || "motd".equals(commandName)))
+            if (!("tell".equals(commandName) || "help".equals(commandName) || "me".equals(commandName) || "myip".equals(commandName) || "motd".equals(commandName) || "spawn".equals(commandName)))
             {
                 if (mcServer.getConfigurationManager().isPlayerOpped(getUsername()))
                 {

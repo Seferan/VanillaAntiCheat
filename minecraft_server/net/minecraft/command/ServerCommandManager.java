@@ -26,6 +26,7 @@ import net.minecraft.command.server.CommandSaveOn;
 import net.minecraft.command.server.CommandScoreboard;
 import net.minecraft.command.server.CommandSetBlock;
 import net.minecraft.command.server.CommandSetDefaultSpawnpoint;
+import net.minecraft.command.server.CommandSpawn;
 import net.minecraft.command.server.CommandStop;
 import net.minecraft.command.server.CommandSummon;
 import net.minecraft.command.server.CommandTeleport;
@@ -98,6 +99,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             registerCommand(new CommandMotd());
             registerCommand(new CommandReload());
             registerCommand(new CommandButcher());
+            registerCommand(new CommandSpawn());
         }
         else
         {

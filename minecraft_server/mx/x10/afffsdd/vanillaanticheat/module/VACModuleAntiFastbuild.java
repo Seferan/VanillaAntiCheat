@@ -7,14 +7,14 @@ public class VACModuleAntiFastbuild implements IVacModule
      */
     private int blockCount;
     /**
-     * Whether the player has already been kicked for buildhacking.
+     * Whether a warning about the player buildhacking has already been sent or not.
      */
-    private boolean kicked;
+    private boolean warningSent;
 
     public VACModuleAntiFastbuild()
     {
         blockCount = 0;
-        kicked = false;
+        warningSent = false;
     }
 
     public String getModuleName()
@@ -25,19 +25,7 @@ public class VACModuleAntiFastbuild implements IVacModule
     public void updateState()
     {
         if (blockCount > 0) --blockCount;
-    }
-
-    public boolean isAlreadyKicked()
-    {
-        return kicked;
-    }
-
-    /**
-     * Sets kicked to true.
-     */
-    public void kickMe()
-    {
-        kicked = true;
+        if (blockCount == 0) warningSent = false;
     }
 
     /**
@@ -59,5 +47,15 @@ public class VACModuleAntiFastbuild implements IVacModule
     public int getBuildCount()
     {
         return blockCount;
+    }
+    
+    public void sendWarning()
+    {
+        warningSent = true;
+    }
+    
+    public boolean isWarningSent()
+    {
+        return warningSent;
     }
 }

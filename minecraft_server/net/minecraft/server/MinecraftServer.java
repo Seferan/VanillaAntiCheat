@@ -1601,6 +1601,22 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      */
     // Int is good enough because it's in minutes not ms
     public abstract int getKickTempbanLength();
+    
+    /**
+     * Return how many times a player can move wrongly before getting kicked.
+     */
+    public abstract int getWrongMovementThreshold();
+    
+    /**
+     * Return how long a spam autoban lasts in minutes.
+     */
+    public abstract int getSpamAutobanLength();
+    
+    /**
+     * Return how many times a player can repeat a message in a row without getting a spam cooldown.
+     */
+    public abstract int getSpamCooldownThreshold();
+
 
     public String getMOTD()
     {

@@ -302,6 +302,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     {
         // Anti speedhack
         if (MinecraftServer.isPlayerOppedOrCreative(playerEntity)) return;
+        if (playerEntity.ridingEntity != null) return;
         if (Double.valueOf(lastPosX) == null || Double.valueOf(lastPosZ) == null) return;
 
         double speed = getHorizontalSpeed();
@@ -539,8 +540,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 if (velocitySquared > 0.0625D && !playerEntity.isPlayerSleeping() && !playerEntity.theItemInWorldManager.isCreative())
                 {
                     var31 = true;
-                    kickPlayerFromServer("Moved wrongly. ICanHasMovementHax?");
-                    VACUtils.notifyAndLog(playerEntity.getUsername() + " was kicked for moving wrongly!");
+                    vacState.aWrong.incrementCount();
+                    VACUtils.notifyAndLog(playerEntity.getUsername() + " moved wrongly!");
+                    if (vacState.aWrong.getCount() == MinecraftServer.getServer().getWrongMovementThreshold())
+                    {
+                        kickPlayerFromServer("Moved wrongly. ICanHasMovementHax?");
+                    }
                 }
 
                 playerEntity.setPositionAndRotation(x, y, z, var11, var12);
@@ -799,8 +804,6 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
     public void handlePlace(C08PacketPlayerBlockPlacement packetPlace)
     {
-        if (vacState.aFastBuild.isAlreadyKicked()) return;
-
         WorldServer world = serverController.worldServerForDimension(playerEntity.dimension);
         ItemStack itemStack = playerEntity.inventory.getCurrentItem();
         boolean var4 = false;
@@ -823,9 +826,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         else
         {
-            processBlockPlaced(world.getBlock(x, y, z), itemStack);
-
-            if (hasMoved && playerEntity.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) < 64.0D && !serverController.isBlockProtected(world, x, y, z, playerEntity))
+            if (!processBlockPlaced(world.getBlock(x, y, z), itemStack) && hasMoved && playerEntity.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) < 64.0D && !serverController.isBlockProtected(world, x, y, z, playerEntity))
             {
                 playerEntity.theItemInWorldManager.activateBlockOrUseItem(playerEntity, world, itemStack, x, y, z, side, packetPlace.getXOffset(), packetPlace.getYOffset(), packetPlace.getZOffset());
             }
@@ -894,10 +895,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
     }
 
     // Where all our hooks will go for a block being placed
-    private void processBlockPlaced(Block block, ItemStack itemStack)
+    // Returns true if the player should be set back, false if otherwise
+    private boolean processBlockPlaced(Block block, ItemStack itemStack)
     {
-        if (MinecraftServer.isPlayerOpped(playerEntity)) return;
-        if (itemStack == null) { return; }
+        if (MinecraftServer.isPlayerOpped(playerEntity)) return false;
+        if (itemStack == null) { return false; }
 
         boolean isContainer = block instanceof BlockContainer;
 
@@ -909,11 +911,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         if (vacState.aFastBuild.getBuildCount() > MinecraftServer.getServer().getBuildhackThreshold())
         {
-            kickPlayerFromServer("Build hacking detected.");
-            String message = playerEntity.getUsername() + " was kicked for buildhacking!";
-            VACUtils.notifyAndLog(vacState.aFastBuild, message);
-            vacState.aFastBuild.kickMe();
+            if (!vacState.aFastBuild.isWarningSent())
+            {
+                String message = playerEntity.getUsername() + " is buildhacking!";
+                VACUtils.notifyAndLog(vacState.aFastBuild, message);   
+            }
+            vacState.aFastBuild.sendWarning();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -1016,15 +1022,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             }
             else
             {
-                ChatComponentTranslation var5 = new ChatComponentTranslation("chat.type.text", new Object[] {playerEntity.getUsernameAsIChatComponent(), message});
+                ChatComponentText messageCc = new ChatComponentText(message);
+                if (message.startsWith(">"))
+                    messageCc.getChatStyle().setColor(EnumChatFormatting.GREEN);
+                ChatComponentTranslation var5 = new ChatComponentTranslation("chat.type.text", new Object[] {playerEntity.getUsernameAsIChatComponent(), messageCc});
                 serverController.getConfigurationManager().sendChatMessageToAllPlayersAndLog(var5, false);
-            }
-
-            chatSpamThresholdCount += 20;
-
-            if (chatSpamThresholdCount > 200 && !serverController.getConfigurationManager().isPlayerOpped(playerEntity.getUsername()))
-            {
-                kickPlayerFromServer("disconnect.spam");
             }
         }
     }
@@ -1049,7 +1051,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             vacState.aSpam.resetSpamCount();
         }
 
-        if (vacState.aSpam.getSpamCount() > 2 || vacState.aSpam.isInCooldown())
+        if (vacState.aSpam.getSpamCount() > MinecraftServer.getServer().getSpamCooldownThreshold() || vacState.aSpam.isInCooldown())
         {
             playerEntity.addChatMessage("Spamming will result in an automatic ban!");
             playerEntity.addChatMessage("Please wait a few seconds before chatting again.");
@@ -1059,12 +1061,13 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
         if (chatSpamThresholdCount > 200 && !MinecraftServer.isPlayerOpped(playerEntity))
         {
+            int banLength = MinecraftServer.getServer().getSpamAutobanLength();
             BanEntry spamBan = new BanEntry(playerEntity.getUsername());
             spamBan.setBannedBy("Server");
             spamBan.setBanReason("Auto-banned for spamming.");
-            spamBan.setBanEndDate(new Date(new Date().getTime() + 60 * 60000L));
+            spamBan.setBanEndDate(new Date(new Date().getTime() + banLength * 60000L));
             MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().put(spamBan);
-            kickPlayerFromServer("You have been auto-banned for spamming for 1 hour.");
+            kickPlayerFromServer("You have been auto-banned for spamming for " + String.valueOf(banLength) + " minutes.");
             VACUtils.notifyAndLog(vacState.aSpam, playerEntity.getUsername() + " was auto-banned for spamming.");
         }
     }
