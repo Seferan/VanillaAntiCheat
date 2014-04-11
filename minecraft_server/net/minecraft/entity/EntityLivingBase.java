@@ -239,26 +239,26 @@ public abstract class EntityLivingBase extends Entity
 
         if (par3 && fallDistance > 0.0F)
         {
-            int var4 = MathHelper.floor_double(posX);
-            int var5 = MathHelper.floor_double(posY - 0.20000000298023224D - yOffset);
-            int var6 = MathHelper.floor_double(posZ);
-            Block var7 = worldObj.getBlock(var4, var5, var6);
+            int x = MathHelper.floor_double(posX);
+            int y = MathHelper.floor_double(posY - 0.20000000298023224D - yOffset);
+            int z = MathHelper.floor_double(posZ);
+            Block var7 = worldObj.getBlock(x, y, z);
 
             if (var7.getMaterial() == Material.air)
             {
-                int var8 = worldObj.getBlock(var4, var5 - 1, var6).getRenderType();
+                int var8 = worldObj.getBlock(x, y - 1, z).getRenderType();
 
                 if (var8 == 11 || var8 == 32 || var8 == 21)
                 {
-                    var7 = worldObj.getBlock(var4, var5 - 1, var6);
+                    var7 = worldObj.getBlock(x, y - 1, z);
                 }
             }
             else if (!worldObj.isClient && fallDistance > 3.0F)
             {
-                worldObj.playAuxSFX(2006, var4, var5, var6, MathHelper.ceiling_float_int(fallDistance - 3.0F));
+                worldObj.playAuxSFX(2006, x, y, z, MathHelper.ceiling_float_int(fallDistance - 3.0F));
             }
 
-            var7.onFallenUpon(worldObj, var4, var5, var6, this, fallDistance);
+            var7.onFallenUpon(worldObj, x, y, z, this, fallDistance);
         }
 
         super.updateFallState(par1, par3);

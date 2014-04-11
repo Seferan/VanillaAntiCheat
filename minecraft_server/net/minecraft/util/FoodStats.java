@@ -71,7 +71,7 @@ public class FoodStats
 
                 VACState vacState = entityPlayer.getVACState();
                 long ticksTaken = vacState.aRegen.getTicksSinceLastHeal();
-                if (ticksTaken < MinecraftServer.getServer().getHealthRegenTickCount() && ticksTaken > -1)
+                if (ticksTaken < MinecraftServer.getServer().getHealthRegenTickCount() && ticksTaken > -1 && !MinecraftServer.isPlayerOpped(entityPlayer))
                 {
                     if (!vacState.aRegen.hasBeenLogged())
                     {

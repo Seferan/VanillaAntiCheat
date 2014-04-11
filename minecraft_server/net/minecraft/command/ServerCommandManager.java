@@ -10,6 +10,7 @@ import net.minecraft.command.server.CommandBroadcast;
 import net.minecraft.command.server.CommandDeOp;
 import net.minecraft.command.server.CommandDeOwner;
 import net.minecraft.command.server.CommandEmote;
+import net.minecraft.command.server.CommandGc;
 import net.minecraft.command.server.CommandListBans;
 import net.minecraft.command.server.CommandListPlayers;
 import net.minecraft.command.server.CommandMessage;
@@ -100,6 +101,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             registerCommand(new CommandReload());
             registerCommand(new CommandButcher());
             registerCommand(new CommandSpawn());
+            registerCommand(new CommandGc());
         }
         else
         {

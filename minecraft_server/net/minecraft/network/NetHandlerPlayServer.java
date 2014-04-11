@@ -85,6 +85,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IntHashMap;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.WorldServer;
 
@@ -620,11 +621,12 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
     private void resetPlayerForFlying()
     {
-        double setBackX = vacState.aFly.getX();
-        double setBackZ = vacState.aFly.getZ();
-        double setBackY = playerEntity.worldObj.getTopSolidOrLiquidBlock((int)setBackX, (int)setBackZ);
+        int setBackX = (int)vacState.aFly.getX();
+        int setBackZ = (int)vacState.aFly.getZ();
+        int setBackY = (int)playerEntity.worldObj.getTopSolidOrLiquidBlock(setBackX, setBackZ);
         setPlayerLocation(setBackX, setBackY, setBackZ, playerEntity.rotationYaw, playerEntity.rotationPitch);
-        playerEntity.attackEntityFrom(DamageSource.fall, 4);
+        playerEntity.handleFalling(Math.max(setBackY - playerEntity.posY, 0), true);
+        serverController.getConfigurationManager().serverUpdateMountedMovingPlayer(playerEntity);
         vacState.aFly.incrementResetCount();
     }
 

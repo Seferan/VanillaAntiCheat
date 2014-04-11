@@ -42,7 +42,7 @@ public class StatsComponent extends JComponent
     private void func_120034_a()
     {
         long var1 = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        System.gc();
+//        System.gc();
         field_120036_d[0] = "Memory use: " + var1 / 1024L / 1024L + " mb (" + Runtime.getRuntime().freeMemory() * 100L / Runtime.getRuntime().maxMemory() + "% free)";
         field_120036_d[1] = "Avg tick: " + field_120040_a.format(func_120035_a(field_120037_e.tickTimeArray) * 1.0E-6D) + " ms";
         this.repaint();
