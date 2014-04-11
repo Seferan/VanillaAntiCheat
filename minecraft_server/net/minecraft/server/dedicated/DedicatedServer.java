@@ -710,6 +710,15 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
         return settings.getIntProperty("vac-spam-cooldown-threshold", 3);
     }
+    
+    /**
+     * Return what percent of the heap has to be used for System.gc to be called.
+     */
+    public int getMemoryUsageGcThreshold()
+    {
+        return settings.getIntProperty("memory-usage-gc-threshold", 25);
+    }
+
 
     /**
      * Returns true if a player does not have permission to edit the block at

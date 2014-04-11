@@ -36,6 +36,7 @@ import net.minecraft.inventory.ContainerBeacon;
 import net.minecraft.inventory.ContainerMerchant;
 import net.minecraft.inventory.ContainerRepair;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemEditableBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemWritableBook;
@@ -671,7 +672,14 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             if (packetBlockDig.getStatus() == 0)
             {
                 var3 = true;
-                vacState.aFastBreak.startDiggingBlock();
+                if (playerEntity.theItemInWorldManager.isCreative())
+                {
+                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, false, x, y, z);
+                }
+                else
+                {
+                    vacState.aFastBreak.startDiggingBlock();   
+                }
             }
 
             // Stopped digging
@@ -687,6 +695,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 var3 = true;
 
                 if (processBlockDug(world, x, y, z, block)) return;
+                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, false, x, y, z);
             }
 
             if (var3)
@@ -831,6 +840,11 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             if (!processBlockPlaced(world.getBlock(x, y, z), itemStack) && hasMoved && playerEntity.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) < 64.0D && !serverController.isBlockProtected(world, x, y, z, playerEntity))
             {
                 playerEntity.theItemInWorldManager.activateBlockOrUseItem(playerEntity, world, itemStack, x, y, z, side, packetPlace.getXOffset(), packetPlace.getYOffset(), packetPlace.getZOffset());
+                Item item = itemStack.getItem();
+                if (VACUtils.loggedItems.contains(item.getClass()))
+                {
+                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, true, x, y, z);   
+                }
             }
 
             var4 = true;

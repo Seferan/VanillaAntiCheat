@@ -1,9 +1,11 @@
 package net.minecraft.server.dedicated;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +15,9 @@ import java.util.Map.Entry;
 
 import com.google.common.hash.BloomFilter;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.server.management.ServerConfigurationManager;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,13 +25,14 @@ import org.apache.logging.log4j.Logger;
 
 public class DedicatedPlayerList extends ServerConfigurationManager
 {
-    private static final Logger field_164439_d = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     private File opsList;
     private File ownersList;
     private File whiteList;
     private File proxyCheckCacheFile;
-    private static final String __OBFID = "CL_00001783";
     private File motdFile;
+    private File blockHistoryLog;
+    private static final String __OBFID = "CL_00001783";
 
     public DedicatedPlayerList(DedicatedServer par1DedicatedServer)
     {
@@ -35,6 +41,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         ownersList = par1DedicatedServer.getFile("owners.txt");
         whiteList = par1DedicatedServer.getFile("white-list.txt");
         motdFile = par1DedicatedServer.getFile("motd.txt");
+        blockHistoryLog  = par1DedicatedServer.getFile("block-history.txt");
         proxyCheckCacheFile = par1DedicatedServer.getFile("proxy-check-cache.txt");
         viewDistance = par1DedicatedServer.getIntProperty("view-distance", 10);
         maxPlayers = par1DedicatedServer.getIntProperty("max-players", 20);
@@ -64,6 +71,10 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         if (!ownersList.exists())
         {
             saveOwnersList();
+        }
+        if (!blockHistoryLog.exists())
+        {
+            createBlockHistoryLog();
         }
     }
 
@@ -147,7 +158,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception var3)
         {
-            field_164439_d.warn("Failed to load operators list: " + var3);
+            logger.warn("Failed to load operators list: " + var3);
         }
     }
 
@@ -168,7 +179,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception var4)
         {
-            field_164439_d.warn("Failed to save operators list: " + var4);
+            logger.warn("Failed to save operators list: " + var4);
         }
     }
 
@@ -189,7 +200,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception var3)
         {
-            field_164439_d.warn("Failed to load owners list: " + var3);
+            logger.warn("Failed to load owners list: " + var3);
         }
     }
 
@@ -210,7 +221,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception var4)
         {
-            field_164439_d.warn("Failed to save owners list: " + var4);
+            logger.warn("Failed to save owners list: " + var4);
         }
     }
 
@@ -231,7 +242,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception var3)
         {
-            field_164439_d.warn("Failed to load white-list: " + var3);
+            logger.warn("Failed to load white-list: " + var3);
         }
     }
 
@@ -252,7 +263,60 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception var4)
         {
-            field_164439_d.warn("Failed to save white-list: " + var4);
+            logger.warn("Failed to save white-list: " + var4);
+        }
+    }
+    
+    /**
+     * Append a line to the block history file.
+     * 
+     * @param state
+     *            true if the block was placed, false if it was broken
+     */
+    public void addBlockHistory(Block block, EntityPlayerMP player, boolean state, int x, int y, int z)
+    {
+        super.addBlockHistory(block, player, state, x, y, z);
+        addBlockHistory(Item.getItemFromBlock(block), player, state, x, y, z);
+    }
+    
+    public void addBlockHistory(Item item, EntityPlayerMP player, boolean state, int x, int y, int z)
+    {
+        super.addBlockHistory(item, player, state, x, y, z);
+        PrintWriter blockHistoryWriter;
+        try
+        {
+            blockHistoryWriter = new PrintWriter(new BufferedWriter(new FileWriter(blockHistoryLog, true)));
+            StringBuilder line = new StringBuilder();
+            line.append(player.getUsername());
+            line.append(" ");
+            line.append(state ? "placed" : "broke");
+            line.append(" ");
+            line.append(item.getUnlocalizedName());
+            line.append(" ");
+            line.append(x);
+            line.append(" ");
+            line.append(y);
+            line.append(" ");
+            line.append(z);
+            blockHistoryWriter.println(line.toString());
+            blockHistoryWriter.close();
+        }
+        catch (Exception e)
+        {
+            logger.warn("Failed to add block history!", e);
+            logger.warn("Player: " + player.getUsername() + " Item: " + item.getUnlocalizedName() + " State: " + state);
+        }
+    }
+    
+    private void createBlockHistoryLog()
+    {
+        try
+        {
+            blockHistoryLog.createNewFile();
+        }
+        catch (IOException e)
+        {
+            logger.warn("Failed to create block history log: " + e);
         }
     }
 
@@ -290,7 +354,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception e)
         {
-            field_164439_d.warn("Failed to read motd: " + e);
+            logger.warn("Failed to read motd: " + e);
             longMotd = new String[0];
             createMotdFile();
         }
@@ -317,7 +381,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception e)
         {
-            field_164439_d.warn("Failed to load proxy check cache: " + e);
+            logger.warn("Failed to load proxy check cache: " + e);
             proxyCheckCache = new HashMap<String, Boolean>();
             createProxyCheckCache();
         }
@@ -340,7 +404,7 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
         catch (Exception e)
         {
-            field_164439_d.warn("Failed to save proxy check cache: " + e);
+            logger.warn("Failed to save proxy check cache: " + e);
         }
     }
 
@@ -348,12 +412,11 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            PrintWriter writer = new PrintWriter(new FileWriter(motdFile, false));
-            writer.close();
+            motdFile.createNewFile();
         }
-        catch (Exception e)
+        catch (IOException e)
         {
-            field_164439_d.warn("Failed to create motd file: " + e);
+            logger.warn("Failed to create motd file: " + e);
         }
     }
     
@@ -361,12 +424,11 @@ public class DedicatedPlayerList extends ServerConfigurationManager
     {
         try
         {
-            PrintWriter writer = new PrintWriter(new FileWriter(proxyCheckCacheFile, false));
-            writer.close();
+            proxyCheckCacheFile.createNewFile();
         }
         catch (Exception e)
         {
-            field_164439_d.warn("Failed to create proxy check cache: " + e);
+            logger.warn("Failed to create proxy check cache: " + e);
         }
     }
     

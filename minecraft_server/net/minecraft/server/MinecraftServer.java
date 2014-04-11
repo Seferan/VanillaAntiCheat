@@ -861,6 +861,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
             }
 
             var15.startServerThread();
+            var15.startGcThread();
             Runtime.getRuntime().addShutdownHook(new Thread("Server Shutdown Thread")
             {
                 private static final String __OBFID = "CL_00001806";
@@ -886,6 +887,33 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
             public void run()
             {
                 MinecraftServer.this.run();
+            }
+        }).start();
+    }
+    
+    public void startGcThread()
+    {
+        (new Thread("Garbage collection thread")
+        {
+            public void run()
+            {
+                while (serverRunning)
+                {
+                    try
+                    {
+                        Thread.sleep(5L * 60L * 1000L);
+                    }
+                    catch (InterruptedException e)
+                    {
+                        logger.error("Could not call Thread.sleep!", e);
+                    }
+                    long maxMemory = Runtime.getRuntime().maxMemory();
+                    long freeMemory = Runtime.getRuntime().freeMemory();
+                    long usedMemory = maxMemory - freeMemory;
+                    long usedMemoryPercent = usedMemory * 100L / maxMemory;
+                    if (usedMemoryPercent > getMemoryUsageGcThreshold())
+                        System.gc();
+                }
             }
         }).start();
     }
@@ -1616,6 +1644,11 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return how many times a player can repeat a message in a row without getting a spam cooldown.
      */
     public abstract int getSpamCooldownThreshold();
+    
+    /**
+     * Return what percent of the heap has to be used for System.gc to be called.
+     */
+    public abstract int getMemoryUsageGcThreshold();
 
 
     public String getMOTD()

@@ -13,10 +13,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.network.NetworkManager;
@@ -307,7 +309,11 @@ public abstract class ServerConfigurationManager
             MinecraftServer.anonymousTell(par1EntityPlayerMP, "This has not been logged, nor will anyone else recieve this message.");
             MinecraftServer.anonymousTell(par1EntityPlayerMP, "Have a good day!");
         }
-        if (mcServer.getConfigurationManager().getMotd().length > 0) par1EntityPlayerMP.addChatMessage("Welcome! Please read the motd using /motd.");
+        if (mcServer.getConfigurationManager().getMotd().length >= 2)
+        {
+            par1EntityPlayerMP.addChatMessage("Welcome! Please read the motd using /motd.");
+            par1EntityPlayerMP.addChatMessage(longMotd[1]);
+        }
     }
 
     /**
@@ -1144,5 +1150,13 @@ public abstract class ServerConfigurationManager
     public void addIpToProxyCache(String ip, boolean proxy)
     {
         proxyCheckCache.put(ip, proxy);
+    }
+
+    public void addBlockHistory(Block block, EntityPlayerMP player, boolean state, int x, int y, int z)
+    {
+    }
+    
+    public void addBlockHistory(Item item, EntityPlayerMP player, boolean state, int x, int y, int z)
+    {
     }
 }
