@@ -840,10 +840,13 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             if (!processBlockPlaced(world.getBlock(x, y, z), itemStack) && hasMoved && playerEntity.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) < 64.0D && !serverController.isBlockProtected(world, x, y, z, playerEntity))
             {
                 playerEntity.theItemInWorldManager.activateBlockOrUseItem(playerEntity, world, itemStack, x, y, z, side, packetPlace.getXOffset(), packetPlace.getYOffset(), packetPlace.getZOffset());
-                Item item = itemStack.getItem();
-                if (VACUtils.loggedItems.contains(item.getClass()))
+                if (itemStack != null)
                 {
-                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, true, x, y, z);   
+                    Item item = itemStack.getItem();
+                    if (VACUtils.loggedItems.contains(item.getClass()))
+                    {
+                        MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, true, x, y, z);   
+                    }
                 }
             }
 
