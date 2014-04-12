@@ -10,6 +10,7 @@ import net.minecraft.item.ItemBed;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemDoor;
+import net.minecraft.item.ItemFireball;
 import net.minecraft.item.ItemFirework;
 import net.minecraft.item.ItemFireworkCharge;
 import net.minecraft.item.ItemFlintAndSteel;
@@ -87,8 +88,10 @@ public class VACUtils
         MinecraftServer.getServer().logVAC(message);
     }
     
-    public static final List<Class> loggedItems = Arrays.asList(new Class[] { ItemBed.class, ItemBlock.class, ItemBucket.class, 
-                                                ItemDoor.class, ItemFirework.class, ItemFireworkCharge.class, 
-                                                ItemFlintAndSteel.class, ItemRedstone.class, ItemReed.class,
-                                                ItemSeeds.class, ItemSign.class }); 
+    public static final List<Class> loggedItemsPlace = Arrays.asList(new Class[] { ItemBed.class, ItemBlock.class, ItemDoor.class,
+                                                                                 ItemFirework.class, ItemRedstone.class, ItemReed.class,
+                                                                                 ItemSeeds.class, ItemSign.class }); 
+    
+    public static final List<Class> loggedItemsUse = Arrays.asList(new Class[] { ItemBucket.class, ItemFireworkCharge.class, 
+                                                                                ItemFlintAndSteel.class, ItemFireball.class });
 }

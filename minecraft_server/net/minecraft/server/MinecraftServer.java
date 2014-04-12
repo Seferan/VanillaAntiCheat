@@ -901,7 +901,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
                 {
                     try
                     {
-                        Thread.sleep(5L * 60L * 1000L);
+                        Thread.sleep(60L * 1000L);
                     }
                     catch (InterruptedException e)
                     {
@@ -912,7 +912,10 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
                     long usedMemory = maxMemory - freeMemory;
                     long usedMemoryPercent = usedMemory * 100L / maxMemory;
                     if (usedMemoryPercent > getMemoryUsageGcThreshold())
+                    {
                         System.gc();
+                        getServer().logDebug("Collected garbage (" + String.valueOf(usedMemoryPercent) + "% used)");
+                    }
                 }
             }
         }).start();
@@ -1217,7 +1220,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
 
     public static boolean isPlayerOpped(String playerName)
     {
-        return MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(playerName);
+        return MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(playerName) || isPlayerOwner(playerName);
     }
 
     public static boolean isPlayerOpped(ICommandSender player)

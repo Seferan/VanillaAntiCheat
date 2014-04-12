@@ -1152,11 +1152,7 @@ public abstract class ServerConfigurationManager
         proxyCheckCache.put(ip, proxy);
     }
 
-    public void addBlockHistory(Block block, EntityPlayerMP player, boolean state, int x, int y, int z)
-    {
-    }
+    public abstract void addBlockHistory(Block block, EntityPlayerMP player, int state, int x, int y, int z);
     
-    public void addBlockHistory(Item item, EntityPlayerMP player, boolean state, int x, int y, int z)
-    {
-    }
+    public abstract void addBlockHistory(Item item, EntityPlayerMP player, int state, int x, int y, int z);
 }

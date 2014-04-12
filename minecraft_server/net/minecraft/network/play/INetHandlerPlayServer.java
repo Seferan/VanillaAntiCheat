@@ -31,7 +31,7 @@ public interface INetHandlerPlayServer extends INetHandler
 
     void func_147341_a(C14PacketTabComplete var1);
 
-    void handleCLientCommand(C16PacketClientStatus var1);
+    void handleClientCommand(C16PacketClientStatus var1);
 
     void func_147352_a(C15PacketClientSettings var1);
 

@@ -672,9 +672,9 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
             if (packetBlockDig.getStatus() == 0)
             {
                 var3 = true;
-                if (playerEntity.theItemInWorldManager.isCreative())
+                if (playerEntity.theItemInWorldManager.isCreative() && block != null)
                 {
-                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, false, x, y, z);
+                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, 0, x, y, z);
                 }
                 else
                 {
@@ -695,17 +695,24 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 var3 = true;
 
                 if (processBlockDug(world, x, y, z, block)) return;
-                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, false, x, y, z);
+                if (block != null)
+                {
+                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, 0, x, y, z);   
+                }
             }
 
             if (var3)
             {
-                double var7 = playerEntity.posX - (x + 0.5D);
-                double var9 = playerEntity.posY - (y + 0.5D) + 1.5D;
-                double var11 = playerEntity.posZ - (z + 0.5D);
-                double var13 = var7 * var7 + var9 * var9 + var11 * var11;
+                double playerDeltaX = playerEntity.posX - (x + 0.5D);
+                double playerDeltaYEyes = playerEntity.posY - (y + 0.5D) + 1.5D;
+                double playerDeltaZ = playerEntity.posZ - (z + 0.5D);
+                double distance = playerDeltaX * playerDeltaX + playerDeltaYEyes * playerDeltaYEyes + playerDeltaZ * playerDeltaZ;
 
-                if (var13 > 36.0D) { return; }
+                if (distance > 36.0D && ! MinecraftServer.isPlayerOpped(playerEntity)) 
+                {
+                    playerEntity.playerNetServerHandler.sendPacket(new S23PacketBlockChange(x, y, z, world));
+                    return;
+                }
 
                 if (y >= serverController.getBuildLimit()) { return; }
             }
@@ -837,15 +844,30 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
         else
         {
-            if (!processBlockPlaced(world.getBlock(x, y, z), itemStack) && hasMoved && playerEntity.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) < 64.0D && !serverController.isBlockProtected(world, x, y, z, playerEntity))
+            Block block = world.getBlock(x, y, z);
+            if (!processBlockPlaced(block, itemStack) && hasMoved && !serverController.isBlockProtected(world, x, y, z, playerEntity))
             {
-                playerEntity.theItemInWorldManager.activateBlockOrUseItem(playerEntity, world, itemStack, x, y, z, side, packetPlace.getXOffset(), packetPlace.getYOffset(), packetPlace.getZOffset());
-                if (itemStack != null)
+                if (playerEntity.getDistanceSq(x + 0.5D, y + 0.5D, z + 0.5D) < 64.0D || MinecraftServer.isPlayerOpped(playerEntity))
                 {
-                    Item item = itemStack.getItem();
-                    if (VACUtils.loggedItems.contains(item.getClass()))
+                    playerEntity.theItemInWorldManager.activateBlockOrUseItem(playerEntity, world, itemStack, x, y, z, side, packetPlace.getXOffset(), packetPlace.getYOffset(), packetPlace.getZOffset());
+                    if (itemStack != null)
                     {
-                        MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, true, x, y, z);   
+                        Item item = itemStack.getItem();
+                        if (item != null)
+                        {
+                            if (block != null && block instanceof BlockContainer)
+                            {
+                                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, 3, x, y, z);
+                            }
+                            else if (VACUtils.loggedItemsPlace.contains(item.getClass()))
+                            {
+                                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, 1, x, y, z);
+                            }
+                            else if (VACUtils.loggedItemsUse.contains(item.getClass()))
+                            {
+                                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, 2, x, y, z);
+                            }   
+                        }
                     }
                 }
             }
@@ -1163,7 +1185,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 var5 = 9.0D;
             }
 
-            if (playerEntity.getDistanceSqToEntity(var3) < var5)
+            if (playerEntity.getDistanceSqToEntity(var3) < var5 || MinecraftServer.isPlayerOpped(playerEntity))
             {
                 if (packetUseEntity.getAction() == C02PacketUseEntity.Action.INTERACT)
                 {
@@ -1184,7 +1206,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
         }
     }
 
-    public void handleCLientCommand(C16PacketClientStatus packet)
+    public void handleClientCommand(C16PacketClientStatus packet)
     {
         playerEntity.func_143004_u();
         C16PacketClientStatus.EnumState var2 = packet.func_149435_c();

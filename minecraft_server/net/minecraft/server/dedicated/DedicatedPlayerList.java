@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -273,23 +274,39 @@ public class DedicatedPlayerList extends ServerConfigurationManager
      * @param state
      *            true if the block was placed, false if it was broken
      */
-    public void addBlockHistory(Block block, EntityPlayerMP player, boolean state, int x, int y, int z)
+    public void addBlockHistory(Block block, EntityPlayerMP player, int state, int x, int y, int z)
     {
-        super.addBlockHistory(block, player, state, x, y, z);
         addBlockHistory(Item.getItemFromBlock(block), player, state, x, y, z);
     }
     
-    public void addBlockHistory(Item item, EntityPlayerMP player, boolean state, int x, int y, int z)
+    public void addBlockHistory(Item item, EntityPlayerMP player, int state, int x, int y, int z)
     {
-        super.addBlockHistory(item, player, state, x, y, z);
+        if (item == null) return;
+        if (player == null) return;
         PrintWriter blockHistoryWriter;
         try
         {
             blockHistoryWriter = new PrintWriter(new BufferedWriter(new FileWriter(blockHistoryLog, true)));
             StringBuilder line = new StringBuilder();
+            line.append(new Date());
+            line.append(" ");
             line.append(player.getUsername());
             line.append(" ");
-            line.append(state ? "placed" : "broke");
+            switch (state)
+            {
+            case 0:
+                line.append("broke");
+                break;
+            case 1:
+                line.append("placed");
+                break;
+            case 2:
+                line.append("used");
+                break;
+            case 3:
+                line.append("accessed");
+                break;
+            }
             line.append(" ");
             line.append(item.getUnlocalizedName());
             line.append(" ");
@@ -304,7 +321,6 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         catch (Exception e)
         {
             logger.warn("Failed to add block history!", e);
-            logger.warn("Player: " + player.getUsername() + " Item: " + item.getUnlocalizedName() + " State: " + state);
         }
     }
     

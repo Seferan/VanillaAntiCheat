@@ -102,6 +102,8 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
             registerCommand(new CommandButcher());
             registerCommand(new CommandSpawn());
             registerCommand(new CommandGc());
+            registerCommand(new CommandFeed());
+            registerCommand(new CommandHeal());
         }
         else
         {
