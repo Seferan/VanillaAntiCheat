@@ -13,6 +13,14 @@ public class CommandToggleDownfall extends CommandBase
     }
 
     /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
+    
+    /**
      * Return the required permission level for this command.
      */
     public int getRequiredPermissionLevel()
@@ -27,15 +35,8 @@ public class CommandToggleDownfall extends CommandBase
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        if (MinecraftServer.isPlayerOwner(par1ICommandSender))
-        {
-            toggleDownfall();
-            notifyAdmins(par1ICommandSender, "commands.downfall.success", new Object[0]);
-        }
-        else
-        {
-            notifyAdmins(par1ICommandSender, "Tried to use /toggledownfall!");
-        }
+        toggleDownfall();
+        notifyAdmins(par1ICommandSender, "commands.downfall.success", new Object[0]);
     }
 
     /**

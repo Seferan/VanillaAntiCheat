@@ -15,6 +15,14 @@ public class CommandTime extends CommandBase
     }
 
     /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
+    
+    /**
      * Return the required permission level for this command.
      */
     public int getRequiredPermissionLevel()
@@ -31,41 +39,33 @@ public class CommandTime extends CommandBase
     {
         if (par2ArrayOfStr.length > 1)
         {
-            if (MinecraftServer.isPlayerOwner(par1ICommandSender))
+            int var3;
+
+            if (par2ArrayOfStr[0].equals("set"))
             {
-                int var3;
-
-                if (par2ArrayOfStr[0].equals("set"))
+                if (par2ArrayOfStr[1].equals("day"))
                 {
-                    if (par2ArrayOfStr[1].equals("day"))
-                    {
-                        var3 = 1000;
-                    }
-                    else if (par2ArrayOfStr[1].equals("night"))
-                    {
-                        var3 = 13000;
-                    }
-                    else
-                    {
-                        var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
-                    }
-
-                    setTime(par1ICommandSender, var3);
-                    notifyAdmins(par1ICommandSender, "commands.time.set", new Object[] {Integer.valueOf(var3)});
-                    return;
+                    var3 = 1000;
                 }
-
-                if (par2ArrayOfStr[0].equals("add"))
+                else if (par2ArrayOfStr[1].equals("night"))
+                {
+                    var3 = 13000;
+                }
+                else
                 {
                     var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
-                    addTime(par1ICommandSender, var3);
-                    notifyAdmins(par1ICommandSender, "commands.time.added", new Object[] {Integer.valueOf(var3)});
-                    return;
                 }
+
+                setTime(par1ICommandSender, var3);
+                notifyAdmins(par1ICommandSender, "commands.time.set", new Object[] {Integer.valueOf(var3)});
+                return;
             }
-            else
+
+            if (par2ArrayOfStr[0].equals("add"))
             {
-                notifyAdmins(par1ICommandSender, "Tried to use /time!");
+                var3 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 0);
+                addTime(par1ICommandSender, var3);
+                notifyAdmins(par1ICommandSender, "commands.time.added", new Object[] {Integer.valueOf(var3)});
                 return;
             }
         }

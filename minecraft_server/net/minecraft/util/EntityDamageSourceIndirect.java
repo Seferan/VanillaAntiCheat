@@ -31,6 +31,6 @@ public class EntityDamageSourceIndirect extends EntityDamageSource
         ItemStack var3 = indirectEntity instanceof EntityLivingBase ? ((EntityLivingBase)indirectEntity).getHeldItem() : null;
         String var4 = "death.attack." + damageType;
         String var5 = var4 + ".item";
-        return var3 != null && var3.hasDisplayName() && StatCollector.canTranslate(var5) ? new ChatComponentTranslation(var5, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), var2, var3.func_151000_E()}) : new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), var2});
+        return var3 != null && var3.hasDisplayName() && StatCollector.canTranslate(var5) ? new ChatComponentTranslation(var5, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), var2, var3.getFormattedItemName()}) : new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), var2});
     }
 }

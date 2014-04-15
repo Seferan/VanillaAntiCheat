@@ -145,7 +145,7 @@ public class StatList
             if (var5 != null)
             {
                 int var3 = Item.getIdFromItem(var5);
-                objectCraftStats[var3] = (new StatCrafting("stat.craftItem." + var3, new ChatComponentTranslation("stat.craftItem", new Object[] {(new ItemStack(var5)).func_151000_E()}), var5)).registerStat();
+                objectCraftStats[var3] = (new StatCrafting("stat.craftItem." + var3, new ChatComponentTranslation("stat.craftItem", new Object[] {(new ItemStack(var5)).getFormattedItemName()}), var5)).registerStat();
             }
         }
 
@@ -166,7 +166,7 @@ public class StatList
 
                 if (var1.getEnableStats())
                 {
-                    mineBlockStatArray[var2] = (new StatCrafting("stat.mineBlock." + var2, new ChatComponentTranslation("stat.mineBlock", new Object[] {(new ItemStack(var1)).func_151000_E()}), Item.getItemFromBlock(var1))).registerStat();
+                    mineBlockStatArray[var2] = (new StatCrafting("stat.mineBlock." + var2, new ChatComponentTranslation("stat.mineBlock", new Object[] {(new ItemStack(var1)).getFormattedItemName()}), Item.getItemFromBlock(var1))).registerStat();
                     objectMineStats.add(mineBlockStatArray[var2]);
                 }
             }
@@ -186,7 +186,7 @@ public class StatList
             if (var1 != null)
             {
                 int var2 = Item.getIdFromItem(var1);
-                objectUseStats[var2] = (new StatCrafting("stat.useItem." + var2, new ChatComponentTranslation("stat.useItem", new Object[] {(new ItemStack(var1)).func_151000_E()}), var1)).registerStat();
+                objectUseStats[var2] = (new StatCrafting("stat.useItem." + var2, new ChatComponentTranslation("stat.useItem", new Object[] {(new ItemStack(var1)).getFormattedItemName()}), var1)).registerStat();
 
                 if (!(var1 instanceof ItemBlock))
                 {
@@ -212,7 +212,7 @@ public class StatList
 
                 if (var1.isDamageable())
                 {
-                    objectBreakStats[var2] = (new StatCrafting("stat.breakItem." + var2, new ChatComponentTranslation("stat.breakItem", new Object[] {(new ItemStack(var1)).func_151000_E()}), var1)).registerStat();
+                    objectBreakStats[var2] = (new StatCrafting("stat.breakItem." + var2, new ChatComponentTranslation("stat.breakItem", new Object[] {(new ItemStack(var1)).getFormattedItemName()}), var1)).registerStat();
                 }
             }
         }

@@ -200,7 +200,7 @@ public class ContainerEnchantment extends Container
 
                     if (var5)
                     {
-                        var3.func_150996_a(Items.enchanted_book);
+                        var3.setItem(Items.enchanted_book);
                     }
 
                     int var6 = var5 && var4.size() > 1 ? rand.nextInt(var4.size()) : -1;

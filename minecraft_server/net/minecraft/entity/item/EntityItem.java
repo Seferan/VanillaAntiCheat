@@ -32,8 +32,8 @@ public class EntityItem extends Entity
 
     /** The health of this EntityItem. (For example, damage for tools) */
     private int health;
-    private String field_145801_f;
-    private String field_145802_g;
+    private String thrower;
+    private String owner;
 
     /** The EntityItem's random initial float height. */
     public float hoverStart;
@@ -286,14 +286,14 @@ public class EntityItem extends Entity
         par1NBTTagCompound.setShort("Health", ((byte)health));
         par1NBTTagCompound.setShort("Age", (short)age);
 
-        if (func_145800_j() != null)
+        if (getThrower() != null)
         {
-            par1NBTTagCompound.setString("Thrower", field_145801_f);
+            par1NBTTagCompound.setString("Thrower", thrower);
         }
 
-        if (func_145798_i() != null)
+        if (getOwner() != null)
         {
-            par1NBTTagCompound.setString("Owner", field_145802_g);
+            par1NBTTagCompound.setString("Owner", owner);
         }
 
         if (getEntityItem() != null)
@@ -312,12 +312,12 @@ public class EntityItem extends Entity
 
         if (par1NBTTagCompound.hasKey("Owner"))
         {
-            field_145802_g = par1NBTTagCompound.getString("Owner");
+            owner = par1NBTTagCompound.getString("Owner");
         }
 
         if (par1NBTTagCompound.hasKey("Thrower"))
         {
-            field_145801_f = par1NBTTagCompound.getString("Thrower");
+            thrower = par1NBTTagCompound.getString("Thrower");
         }
 
         NBTTagCompound var2 = par1NBTTagCompound.getCompoundTag("Item");
@@ -339,7 +339,7 @@ public class EntityItem extends Entity
             ItemStack var2 = getEntityItem();
             int var3 = var2.stackSize;
 
-            if (delayBeforeCanPickup == 0 && (field_145802_g == null || 6000 - age <= 200 || field_145802_g.equals(par1EntityPlayer.getUsername())) && par1EntityPlayer.inventory.addItemStackToInventory(var2))
+            if (delayBeforeCanPickup == 0 && (owner == null || 6000 - age <= 200 || owner.equals(par1EntityPlayer.getUsername())) && par1EntityPlayer.inventory.addItemStackToInventory(var2))
             {
                 if (var2.getItem() == Item.getItemFromBlock(Blocks.log))
                 {
@@ -366,9 +366,9 @@ public class EntityItem extends Entity
                     par1EntityPlayer.triggerAchievement(AchievementList.blazeRod);
                 }
 
-                if (var2.getItem() == Items.diamond && func_145800_j() != null)
+                if (var2.getItem() == Items.diamond && getThrower() != null)
                 {
-                    EntityPlayer var4 = worldObj.getPlayerEntityByName(func_145800_j());
+                    EntityPlayer var4 = worldObj.getPlayerEntityByName(getThrower());
 
                     if (var4 != null && var4 != par1EntityPlayer)
                     {
@@ -451,23 +451,23 @@ public class EntityItem extends Entity
         getDataWatcher().setObjectWatched(10);
     }
 
-    public String func_145798_i()
+    public String getOwner()
     {
-        return field_145802_g;
+        return owner;
     }
 
-    public void func_145797_a(String p_145797_1_)
+    public void setOwner(String newOwner)
     {
-        field_145802_g = p_145797_1_;
+        owner = newOwner;
     }
 
-    public String func_145800_j()
+    public String getThrower()
     {
-        return field_145801_f;
+        return thrower;
     }
 
-    public void func_145799_b(String p_145799_1_)
+    public void setThrower(String newThrower)
     {
-        field_145801_f = p_145799_1_;
+        thrower = newThrower;
     }
 }

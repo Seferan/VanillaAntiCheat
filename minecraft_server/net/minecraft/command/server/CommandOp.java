@@ -24,6 +24,14 @@ public class CommandOp extends CommandBase
     {
         return 4;
     }
+    
+    /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)
     {
@@ -35,15 +43,8 @@ public class CommandOp extends CommandBase
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 0)
         {
             String name = par2ArrayOfStr[0];
-            if (MinecraftServer.isPlayerOwner(par1ICommandSender))
-            {
-                MinecraftServer.getServer().getConfigurationManager().addOp(name);
-                notifyAdmins(par1ICommandSender, "commands.op.success", new Object[] {name});
-            }
-            else
-            {
-                notifyAdmins(par1ICommandSender, "Tried to op " + name + "!");
-            }
+            MinecraftServer.getServer().getConfigurationManager().addOp(name);
+            notifyAdmins(par1ICommandSender, "commands.op.success", new Object[] {name});
         }
         else
         {

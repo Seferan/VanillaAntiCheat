@@ -11,6 +11,22 @@ public class CommandDefaultGameMode extends CommandGameMode
 {
     private static final String __OBFID = "CL_00000296";
 
+    /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
+    
+    /**
+     * Return the required permission level for this command.
+     */
+    public int getRequiredPermissionLevel()
+    {
+        return 4;
+    }
+    
     public String getCommandName()
     {
         return "defaultgamemode";

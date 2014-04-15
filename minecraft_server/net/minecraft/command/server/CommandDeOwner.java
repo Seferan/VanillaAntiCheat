@@ -9,12 +9,19 @@ import net.minecraft.server.MinecraftServer;
 
 public class CommandDeOwner extends CommandBase
 {
-
     public String getCommandName()
     {
         return "deowner";
     }
 
+    /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
+    
     /**
      * Return the required permission level for this command.
      */
@@ -33,15 +40,8 @@ public class CommandDeOwner extends CommandBase
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 0)
         {
             String name = par2ArrayOfStr[0];
-            if (MinecraftServer.isPlayerOwner(par1ICommandSender))
-            {
-                MinecraftServer.getServer().getConfigurationManager().removeOwner(name);
-                notifyAdmins(par1ICommandSender, "De-ownered " + name);
-            }
-            else
-            {
-                notifyAdmins(par1ICommandSender, "Tried to de-owner " + name + "!");
-            }
+            MinecraftServer.getServer().getConfigurationManager().removeOwner(name);
+            notifyAdmins(par1ICommandSender, "De-ownered " + name);
         }
         else
         {

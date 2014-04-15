@@ -580,8 +580,8 @@ public abstract class CommandBase implements ICommand
         return this.compareTo((ICommand)par1Obj);
     }
 
-    public boolean isTargetOp(EntityPlayerMP target, ICommandSender sender)
+    public boolean isTargetNonOp(EntityPlayerMP target, ICommandSender sender)
     {
-        return !target.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName()) && !MinecraftServer.isPlayerOwner(sender);
+        return !MinecraftServer.isPlayerOpped(target) && !MinecraftServer.isPlayerOwner(sender);
     }
 }

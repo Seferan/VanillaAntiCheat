@@ -381,7 +381,7 @@ public class EnchantmentHelper
 
         if (var4)
         {
-            par1ItemStack.func_150996_a(Items.enchanted_book);
+            par1ItemStack.setItem(Items.enchanted_book);
         }
 
         if (var3 != null)

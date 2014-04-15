@@ -79,6 +79,12 @@ public class CommandEffect extends CommandBase
                     var7 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[3], 0, 255);
                 }
 
+                if (isTargetNonOp(var3, par1ICommandSender))
+                {
+                    notifyAdmins(par1ICommandSender, "Tried to use /effect on non-op " + var3.getUsername() + "!");
+                    return;
+                }
+                
                 if (var6 == 0)
                 {
                     if (!var3.isPotionActive(var4)) { throw new CommandException("commands.effect.failure.notActive", new Object[] {new ChatComponentTranslation(Potion.potionTypes[var4].getName(), new Object[0]), var3.getUsername()}); }

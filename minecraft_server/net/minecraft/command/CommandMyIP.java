@@ -8,7 +8,6 @@ import net.minecraft.server.MinecraftServer;
 
 public class CommandMyIP extends CommandBase
 {
-
     public List getCommandAliases()
     {
         return Arrays.asList(new String[] {"ip", "whatismyip"});
@@ -34,7 +33,7 @@ public class CommandMyIP extends CommandBase
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        EntityPlayerMP sender = getPlayer(par1ICommandSender, par1ICommandSender.getUsername());
+        EntityPlayerMP sender = getCommandSenderAsPlayer(par1ICommandSender);
 
         if (sender == par1ICommandSender) // safety precautions, just in case
         {

@@ -90,7 +90,7 @@ public class CombatTracker
 
                         if (var8 != null && var8.hasDisplayName())
                         {
-                            var3 = new ChatComponentTranslation("death.fell.assist.item", new Object[] {fighter.getUsernameAsIChatComponent(), var6, var8.func_151000_E()});
+                            var3 = new ChatComponentTranslation("death.fell.assist.item", new Object[] {fighter.getUsernameAsIChatComponent(), var6, var8.getFormattedItemName()});
                         }
                         else
                         {
@@ -103,7 +103,7 @@ public class CombatTracker
 
                         if (var7 != null && var7.hasDisplayName())
                         {
-                            var3 = new ChatComponentTranslation("death.fell.finish.item", new Object[] {fighter.getUsernameAsIChatComponent(), var4, var7.func_151000_E()});
+                            var3 = new ChatComponentTranslation("death.fell.finish.item", new Object[] {fighter.getUsernameAsIChatComponent(), var4, var7.getFormattedItemName()});
                         }
                         else
                         {

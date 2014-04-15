@@ -50,7 +50,7 @@ public class ItemRecord extends Item
         }
     }
 
-    public EnumRarity func_77613_e(ItemStack p_77613_1_)
+    public EnumRarity getRarity(ItemStack p_77613_1_)
     {
         return EnumRarity.rare;
     }

@@ -17,6 +17,14 @@ public class CommandOwner extends CommandBase
     }
 
     /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
+    
+    /**
      * Return the required permission level for this command.
      */
     public int getRequiredPermissionLevel()
@@ -34,15 +42,8 @@ public class CommandOwner extends CommandBase
         if (par2ArrayOfStr.length == 1 && par2ArrayOfStr[0].length() > 0)
         {
             String name = par2ArrayOfStr[0];
-            if (MinecraftServer.isPlayerOwner(par1ICommandSender))
-            {
-                MinecraftServer.getServer().getConfigurationManager().addOwner(name);
-                notifyAdmins(par1ICommandSender, "Ownered " + name);
-            }
-            else
-            {
-                notifyAdmins(par1ICommandSender, "Tried to owner " + name + "!");
-            }
+            MinecraftServer.getServer().getConfigurationManager().addOwner(name);
+            notifyAdmins(par1ICommandSender, "Ownered " + name);
         }
         else
         {

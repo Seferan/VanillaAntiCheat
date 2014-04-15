@@ -21,9 +21,9 @@ public class ItemEnchantedBook extends Item
         return false;
     }
 
-    public EnumRarity func_77613_e(ItemStack p_77613_1_)
+    public EnumRarity getRarity(ItemStack p_77613_1_)
     {
-        return func_92110_g(p_77613_1_).tagCount() > 0 ? EnumRarity.uncommon : super.func_77613_e(p_77613_1_);
+        return func_92110_g(p_77613_1_).tagCount() > 0 ? EnumRarity.uncommon : super.getRarity(p_77613_1_);
     }
 
     public NBTTagList func_92110_g(ItemStack par1ItemStack)

@@ -17,17 +17,18 @@ public class CommandStop extends CommandBase
     {
         return "commands.stop.usage";
     }
+    
+    /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
 
     public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
     {
-        if (MinecraftServer.isPlayerOwner(par1ICommandSender))
-        {
-            notifyAdmins(par1ICommandSender, "commands.stop.start", new Object[0]);
-            MinecraftServer.getServer().initiateShutdown();
-        }
-        else
-        {
-            notifyAdmins(par1ICommandSender, "Tried to use /stop!");
-        }
+        notifyAdmins(par1ICommandSender, "commands.stop.start", new Object[0]);
+        MinecraftServer.getServer().initiateShutdown();
     }
 }

@@ -241,7 +241,7 @@ public class Bootstrap
 
                 if (var3.tryPlaceContainedLiquid(par1IBlockSource.getWorld(), var4 + var7.getFrontOffsetX(), var5 + var7.getFrontOffsetY(), var6 + var7.getFrontOffsetZ()))
                 {
-                    par2ItemStack.func_150996_a(Items.bucket);
+                    par2ItemStack.setItem(Items.bucket);
                     par2ItemStack.stackSize = 1;
                     return par2ItemStack;
                 }
@@ -284,7 +284,7 @@ public class Bootstrap
 
                 if (--par2ItemStack.stackSize == 0)
                 {
-                    par2ItemStack.func_150996_a(var10);
+                    par2ItemStack.setItem(var10);
                     par2ItemStack.stackSize = 1;
                 }
                 else if (((TileEntityDispenser)par1IBlockSource.getBlockTileEntity()).func_146019_a(new ItemStack(var10)) < 0)

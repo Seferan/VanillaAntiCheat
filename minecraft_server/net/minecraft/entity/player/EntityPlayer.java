@@ -770,7 +770,7 @@ public abstract class EntityPlayer extends EntityLivingBase implements ICommandS
 
             if (p_146097_3_)
             {
-                var4.func_145799_b(getUsername());
+                var4.setThrower(getUsername());
             }
 
             float var5 = 0.1F;

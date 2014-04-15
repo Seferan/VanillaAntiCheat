@@ -3,6 +3,7 @@ package net.minecraft.command.server;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChunkCoordinates;
 
 public class CommandSetDefaultSpawnpoint extends CommandBase
@@ -19,7 +20,15 @@ public class CommandSetDefaultSpawnpoint extends CommandBase
      */
     public int getRequiredPermissionLevel()
     {
-        return 2;
+        return 4;
+    }
+    
+    /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)

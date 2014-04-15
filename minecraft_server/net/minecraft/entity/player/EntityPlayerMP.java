@@ -173,6 +173,9 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
      * the spawn point while retaining inventory and XP
      */
     public boolean playerConqueredTheEnd;
+    
+    private static final List<String> allowedCommands = Arrays.asList(new String[] { "tell", "help", "me", "myip", "motd", "spawn", "list" });
+    
     private static final String __OBFID = "CL_00001440";
 
     public EntityPlayerMP(MinecraftServer p_i45285_1_, WorldServer p_i45285_2_, GameProfile p_i45285_3_, ItemInWorldManager p_i45285_4_)
@@ -352,7 +355,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
             }
         }
 
-        if (field_143005_bX > 0L && mcServer.func_143007_ar() > 0 && MinecraftServer.getCurrentTimeMillis() - field_143005_bX > mcServer.func_143007_ar() * 1000 * 60)
+        if (field_143005_bX > 0L && mcServer.func_143007_ar() > 0 && MinecraftServer.getCurrentTimeMillis() - field_143005_bX > mcServer.func_143007_ar() * 1000 * 60 && !MinecraftServer.isPlayerOpped(this))
         {
             playerNetServerHandler.kickPlayerFromServer("You have been idle for too long!");
         }
@@ -1114,7 +1117,7 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
         }
         else
         {
-            if (!("tell".equals(commandName) || "help".equals(commandName) || "me".equals(commandName) || "myip".equals(commandName) || "motd".equals(commandName) || "spawn".equals(commandName)))
+            if (!allowedCommands.contains(commandName))
             {
                 if (mcServer.getConfigurationManager().isPlayerOpped(getUsername()))
                 {
@@ -1130,11 +1133,6 @@ public class EntityPlayerMP extends EntityPlayer implements ICrafting
                 return true;
             }
         }
-        // return "seed".equals(par2Str) && !this.mcServer.isDedicatedServer() ?
-        // true : (!"tell".equals(par2Str) && !"help".equals(par2Str) &&
-        // !"me".equals(par2Str) ?
-        // (this.mcServer.getConfigurationManager().isPlayerOpped(this.getCommandSenderName())
-        // ? this.mcServer.getOpPermissionLevel() >= par1 : false) : true);
     }
 
     /**

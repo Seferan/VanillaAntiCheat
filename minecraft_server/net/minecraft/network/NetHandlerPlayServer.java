@@ -969,7 +969,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
      */
     public void onDisconnect(IChatComponent p_147231_1_)
     {
-        logger.info(playerEntity.getUsername() + " lost connection: " + p_147231_1_);
+        logger.info(playerEntity.getUsername() + " lost connection: " + p_147231_1_.getUnformattedText());
         serverController.func_147132_au();
         ChatComponentTranslation var2 = new ChatComponentTranslation("multiplayer.player.left", new Object[] {playerEntity.getUsernameAsIChatComponent()});
         var2.getChatStyle().setColor(EnumChatFormatting.YELLOW);
@@ -1490,7 +1490,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                     var3.setTagInfo("author", new NBTTagString(playerEntity.getUsername()));
                     var3.setTagInfo("title", new NBTTagString(var2.getTagCompound().getString("title")));
                     var3.setTagInfo("pages", var2.getTagCompound().getTagList("pages", 8));
-                    var3.func_150996_a(Items.written_book);
+                    var3.setItem(Items.written_book);
                 }
             }
             catch (Exception var11)

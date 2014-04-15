@@ -77,6 +77,7 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
         registerCommand(new CommandTestForBlock());
         registerCommand(new CommandMessageRaw());
         registerCommand(new CommandMyIP());
+        registerCommand(new CommandItem());
 
         if (MinecraftServer.getServer().isDedicatedServer())
         {

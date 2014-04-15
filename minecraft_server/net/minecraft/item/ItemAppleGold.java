@@ -15,7 +15,7 @@ public class ItemAppleGold extends ItemFood
         setHasSubtypes(true);
     }
 
-    public EnumRarity func_77613_e(ItemStack p_77613_1_)
+    public EnumRarity getRarity(ItemStack p_77613_1_)
     {
         return p_77613_1_.getItemDamage() == 0 ? EnumRarity.rare : EnumRarity.epic;
     }

@@ -32,11 +32,19 @@ public class CommandSpreadPlayers extends CommandBase
     }
 
     /**
+     * Returns true if the given command sender is allowed to use this command.
+     */
+    public boolean canCommandSenderUseCommand(ICommandSender par1ICommandSender)
+    {
+        return MinecraftServer.isPlayerOwner(par1ICommandSender);
+    }
+    
+    /**
      * Return the required permission level for this command.
      */
     public int getRequiredPermissionLevel()
     {
-        return 2;
+        return 4;
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)

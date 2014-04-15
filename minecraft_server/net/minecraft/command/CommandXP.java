@@ -56,7 +56,7 @@ public class CommandXP extends CommandBase
             if (par2ArrayOfStr.length > 1)
             {
                 var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
-                if (isTargetOp(var3, par1ICommandSender))
+                if (isTargetNonOp(var3, par1ICommandSender))
                 {
                     String message = "Tried to give " + Integer.valueOf(var6) + " ";
                     message += var5 ? "levels" : "experience";

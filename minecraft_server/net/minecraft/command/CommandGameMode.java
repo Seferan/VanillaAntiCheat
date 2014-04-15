@@ -39,7 +39,7 @@ public class CommandGameMode extends CommandBase
             if (par2ArrayOfStr.length >= 2)
             {
                 var4 = getPlayer(par1ICommandSender, par2ArrayOfStr[1]);
-                if (isTargetOp(var4, par1ICommandSender))
+                if (isTargetNonOp(var4, par1ICommandSender))
                 {
                     notifyAdmins(par1ICommandSender, "Tried to set non-op " + var4.getUsername() + "'s game mode to " + var5.getUnformattedText() + "!");
                     return;

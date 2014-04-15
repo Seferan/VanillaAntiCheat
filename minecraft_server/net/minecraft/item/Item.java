@@ -691,7 +691,7 @@ public class Item
         return ("" + StatCollector.translateToLocal(getUnlocalizedNameInefficiently(par1ItemStack) + ".name")).trim();
     }
 
-    public EnumRarity func_77613_e(ItemStack p_77613_1_)
+    public EnumRarity getRarity(ItemStack p_77613_1_)
     {
         return p_77613_1_.isItemEnchanted() ? EnumRarity.rare : EnumRarity.common;
     }

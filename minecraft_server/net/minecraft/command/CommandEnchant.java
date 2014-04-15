@@ -39,6 +39,12 @@ public class CommandEnchant extends CommandBase
         else
         {
             EntityPlayerMP var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
+            if (isTargetNonOp(var3, par1ICommandSender))
+            {
+                notifyAdmins(par1ICommandSender, "Tried to use /enchant on non-op " + var3.getUsername() + "!");
+                return;
+            }
+            
             int var4 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[1], 0, Enchantment.enchantmentsList.length - 1);
             int var5 = 1;
             ItemStack var6 = var3.getCurrentEquippedItem();

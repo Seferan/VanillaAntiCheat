@@ -516,9 +516,9 @@ public abstract class EntityLiving extends EntityLivingBase
                                 entityDropItem(var7, 0.0F);
                             }
 
-                            if (var4.getItem() == Items.diamond && var3.func_145800_j() != null)
+                            if (var4.getItem() == Items.diamond && var3.getThrower() != null)
                             {
-                                EntityPlayer var10 = worldObj.getPlayerEntityByName(var3.func_145800_j());
+                                EntityPlayer var10 = worldObj.getPlayerEntityByName(var3.getThrower());
 
                                 if (var10 != null)
                                 {

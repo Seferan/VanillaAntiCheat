@@ -11,6 +11,9 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumChatFormatting;
 
 public class CommandGive extends CommandBase
 {
@@ -84,16 +87,22 @@ public class CommandGive extends CommandBase
 
             String giverName = par1ICommandSender.getUsername();
             String recieverName = var3.getUsername();
-            if (isTargetOp(var3, par1ICommandSender))
+            if (isTargetNonOp(var3, par1ICommandSender))
             {
-                notifyAdmins(par1ICommandSender, "Tried to give " + var7.func_151000_E().getUnformattedText() + " * " + Integer.valueOf(var5) + " to non-op " + recieverName + "!");
+                notifyAdmins(par1ICommandSender, "Tried to give " + var7.getFormattedItemName().getUnformattedText() + " * " + Integer.valueOf(var5) + " to non-op " + recieverName + "!");
             }
             else
             {
+                if (var6 == 0 && var3 == par1ICommandSender)
+                {
+                    ChatComponentText cc = new ChatComponentText("Warning: Use /item next time if you are giving yourself an item with no data tag.");
+                    cc.getChatStyle().setColor(EnumChatFormatting.GRAY);
+                    par1ICommandSender.addChatMessage(cc);
+                }
                 EntityItem var11 = var3.dropPlayerItemWithRandomChoice(var7, false);
                 var11.delayBeforeCanPickup = 0;
-                var11.func_145797_a(var3.getUsername());
-                notifyAdmins(par1ICommandSender, "commands.give.success", new Object[] {var7.func_151000_E(), Integer.valueOf(var5), recieverName});
+                var11.setOwner(var3.getUsername());
+                notifyAdmins(par1ICommandSender, "commands.give.success", new Object[] {var7.getFormattedItemName(), Integer.valueOf(var5), recieverName});
             }
         }
     }

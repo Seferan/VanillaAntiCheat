@@ -300,6 +300,8 @@ public class ItemInWorldManager
      */
     public boolean tryUseItem(EntityPlayer par1EntityPlayer, World par2World, ItemStack par3ItemStack)
     {
+        if (par3ItemStack == null) return false;
+        
         int var4 = par3ItemStack.stackSize;
         int var5 = par3ItemStack.getItemDamage();
         ItemStack var6 = par3ItemStack.useItemRightClick(par2World, par1EntityPlayer);

@@ -26,7 +26,7 @@ public class EntityDamageSource extends DamageSource
         ItemStack var2 = damageSourceEntity instanceof EntityLivingBase ? ((EntityLivingBase)damageSourceEntity).getHeldItem() : null;
         String var3 = "death.attack." + damageType;
         String var4 = var3 + ".item";
-        return var2 != null && var2.hasDisplayName() && StatCollector.canTranslate(var4) ? new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), damageSourceEntity.getUsernameAsIChatComponent(), var2.func_151000_E()}) : new ChatComponentTranslation(var3, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), damageSourceEntity.getUsernameAsIChatComponent()});
+        return var2 != null && var2.hasDisplayName() && StatCollector.canTranslate(var4) ? new ChatComponentTranslation(var4, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), damageSourceEntity.getUsernameAsIChatComponent(), var2.getFormattedItemName()}) : new ChatComponentTranslation(var3, new Object[] {p_151519_1_.getUsernameAsIChatComponent(), damageSourceEntity.getUsernameAsIChatComponent()});
     }
 
     /**
