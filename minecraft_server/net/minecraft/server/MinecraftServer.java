@@ -914,7 +914,7 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
                     if (usedMemoryPercent > getMemoryUsageGcThreshold())
                     {
                         System.gc();
-                        getServer().logDebug("Collected garbage (" + String.valueOf(usedMemoryPercent) + "% used)");
+                        getServer().logInfo("Collected garbage (" + String.valueOf(usedMemoryPercent) + "% used)");
                     }
                 }
             }

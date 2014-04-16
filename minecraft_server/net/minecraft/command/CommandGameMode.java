@@ -1,10 +1,13 @@
 package net.minecraft.command;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.WorldSettings;
 
 public class CommandGameMode extends CommandBase
@@ -14,6 +17,11 @@ public class CommandGameMode extends CommandBase
     public String getCommandName()
     {
         return "gamemode";
+    }
+    
+    public List getCommandAliases()
+    {
+        return Arrays.asList(new String[] {"gm"});
     }
 
     /**
@@ -58,6 +66,9 @@ public class CommandGameMode extends CommandBase
             }
             else
             {
+                ChatComponentText cc = new ChatComponentText("Warning: Use /creative or /survival next time if you're setting your own gamemode.");
+                cc.getChatStyle().setColor(EnumChatFormatting.GRAY);
+                par1ICommandSender.addChatMessage(cc);
                 notifyAdmins(par1ICommandSender, 1, "commands.gamemode.success.self", new Object[] {var5});
             }
         }

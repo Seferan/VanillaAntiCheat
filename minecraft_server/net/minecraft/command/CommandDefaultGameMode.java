@@ -1,6 +1,8 @@
 package net.minecraft.command;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
@@ -30,6 +32,11 @@ public class CommandDefaultGameMode extends CommandGameMode
     public String getCommandName()
     {
         return "defaultgamemode";
+    }
+    
+    public List getCommandAliases()
+    {
+        return null;
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)

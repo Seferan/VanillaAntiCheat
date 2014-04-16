@@ -20,7 +20,7 @@ public class CommandGc extends CommandBase
      */
     public int getRequiredPermissionLevel()
     {
-        return 4;
+        return 2;
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)

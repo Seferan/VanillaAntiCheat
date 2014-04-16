@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 
 public class CommandEffect extends CommandBase
@@ -30,73 +31,86 @@ public class CommandEffect extends CommandBase
         return "commands.effect.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender sender, String[] args)
     {
-        if (par2ArrayOfStr.length < 2)
+        if (args.length < 2)
         {
             throw new WrongUsageException("commands.effect.usage", new Object[0]);
         }
         else
         {
-            EntityPlayerMP var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
+            EntityPlayerMP player = getPlayer(sender, args[0]);
 
-            if (par2ArrayOfStr[1].equals("clear"))
+            if (args[1].equals("clear"))
             {
-                if (var3.getActivePotionEffects().isEmpty()) { throw new CommandException("commands.effect.failure.notActive.all", new Object[] {var3.getUsername()}); }
+                if (player.getActivePotionEffects().isEmpty()) { throw new CommandException("commands.effect.failure.notActive.all", new Object[] {player.getUsername()}); }
 
-                var3.clearActivePotions();
-                notifyAdmins(par1ICommandSender, "commands.effect.success.removed.all", new Object[] {var3.getUsername()});
+                player.clearActivePotions();
+                notifyAdmins(sender, "commands.effect.success.removed.all", new Object[] {player.getUsername()});
             }
             else
             {
-                int var4 = parseIntWithMin(par1ICommandSender, par2ArrayOfStr[1], 1);
+                int effectId = parseIntWithMin(sender, args[1], 1);
                 int var5 = 600;
-                int var6 = 30;
-                int var7 = 0;
+                int effectLength = 30;
+                int effectAmplifier = 0;
 
-                if (var4 < 0 || var4 >= Potion.potionTypes.length || Potion.potionTypes[var4] == null) { throw new NumberInvalidException("commands.effect.notFound", new Object[] {Integer.valueOf(var4)}); }
+                if (effectId < 0 || effectId >= Potion.potionTypes.length || Potion.potionTypes[effectId] == null) { throw new NumberInvalidException("commands.effect.notFound", new Object[] {Integer.valueOf(effectId)}); }
 
-                if (par2ArrayOfStr.length >= 3)
+                if (args.length >= 3)
                 {
-                    var6 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[2], 0, 1000000);
+                    effectLength = parseIntBounded(sender, args[2], 0, 1000000);
 
-                    if (Potion.potionTypes[var4].isInstant())
+                    if (Potion.potionTypes[effectId].isInstant())
                     {
-                        var5 = var6;
+                        var5 = effectLength;
                     }
                     else
                     {
-                        var5 = var6 * 20;
+                        var5 = effectLength * 20;
                     }
                 }
-                else if (Potion.potionTypes[var4].isInstant())
+                else if (Potion.potionTypes[effectId].isInstant())
                 {
                     var5 = 1;
                 }
 
-                if (par2ArrayOfStr.length >= 4)
+                if (args.length >= 4)
                 {
-                    var7 = parseIntBounded(par1ICommandSender, par2ArrayOfStr[3], 0, 255);
-                }
-
-                if (isTargetNonOp(var3, par1ICommandSender))
-                {
-                    notifyAdmins(par1ICommandSender, "Tried to use /effect on non-op " + var3.getUsername() + "!");
-                    return;
+                    effectAmplifier = parseIntBounded(sender, args[3], 0, 255);
                 }
                 
-                if (var6 == 0)
+                if (effectLength == 0)
                 {
-                    if (!var3.isPotionActive(var4)) { throw new CommandException("commands.effect.failure.notActive", new Object[] {new ChatComponentTranslation(Potion.potionTypes[var4].getName(), new Object[0]), var3.getUsername()}); }
+                    if (!player.isPotionActive(effectId)) { throw new CommandException("commands.effect.failure.notActive", new Object[] {new ChatComponentTranslation(Potion.potionTypes[effectId].getName(), new Object[0]), player.getUsername()}); }
 
-                    var3.removePotionEffect(var4);
-                    notifyAdmins(par1ICommandSender, "commands.effect.success.removed", new Object[] {new ChatComponentTranslation(Potion.potionTypes[var4].getName(), new Object[0]), var3.getUsername()});
+                    player.removePotionEffect(effectId);
+                    notifyAdmins(sender, "commands.effect.success.removed", new Object[] {new ChatComponentTranslation(Potion.potionTypes[effectId].getName(), new Object[0]), player.getUsername()});
                 }
                 else
                 {
-                    PotionEffect var8 = new PotionEffect(var4, var5, var7);
-                    var3.addPotionEffect(var8);
-                    notifyAdmins(par1ICommandSender, "commands.effect.success", new Object[] {new ChatComponentTranslation(var8.getEffectName(), new Object[0]), Integer.valueOf(var4), Integer.valueOf(var7), var3.getUsername(), Integer.valueOf(var6)});
+                    PotionEffect effect = new PotionEffect(effectId, var5, effectAmplifier);
+                    if (isTargetNonOp(player, sender))
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("Tried to give ");
+                        sb.append((new ChatComponentTranslation(effect.getEffectName())).getUnformattedText());
+                        sb.append(" (ID ");
+                        sb.append(effectId);
+                        sb.append(") * ");
+                        sb.append(effectAmplifier);
+                        sb.append(" to ");
+                        sb.append(player.getUsername());
+                        sb.append(" for ");
+                        sb.append(effectLength);
+                        sb.append(" seconds!");
+                        notifyAdmins(sender, sb.toString());
+                    }
+                    else
+                    {
+                        player.addPotionEffect(effect);
+                        notifyAdmins(sender, "commands.effect.success", new Object[] {new ChatComponentTranslation(effect.getEffectName(), new Object[0]), Integer.valueOf(effectId), Integer.valueOf(effectAmplifier), player.getUsername(), Integer.valueOf(effectLength)});
+                    }
                 }
             }
         }

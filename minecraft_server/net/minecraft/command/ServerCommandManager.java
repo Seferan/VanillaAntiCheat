@@ -47,6 +47,8 @@ public class ServerCommandManager extends CommandHandler implements IAdminComman
     {
         registerCommand(new CommandTime());
         registerCommand(new CommandGameMode());
+        registerCommand(new CommandCreativeMode());
+        registerCommand(new CommandSurvivalMode());
         registerCommand(new CommandDifficulty());
         registerCommand(new CommandDefaultGameMode());
         registerCommand(new CommandKill());

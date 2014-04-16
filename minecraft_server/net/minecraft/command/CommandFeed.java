@@ -32,6 +32,10 @@ public class CommandFeed extends CommandBase
     {
         EntityPlayerMP player = par2ArrayOfStr.length == 0 ? getCommandSenderAsPlayer(par1ICommandSender) : getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
         player.getFoodStats().addStats(20, 20F);
+        if (player != par1ICommandSender)
+        {
+            player.addChatMessage("You were fed by " + par1ICommandSender.getUsername());
+        }
         notifyAdmins(par1ICommandSender, "Fed " + player.getUsername());
     }
 
