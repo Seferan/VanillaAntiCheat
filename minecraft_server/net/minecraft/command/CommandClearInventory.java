@@ -1,5 +1,6 @@
 package net.minecraft.command;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,6 +14,11 @@ public class CommandClearInventory extends CommandBase
     public String getCommandName()
     {
         return "clear";
+    }
+    
+    public List getCommandAliases()
+    {
+        return Arrays.asList(new String[] {"ci", "clearinventory"});
     }
 
     public String getCommandUsage(ICommandSender par1ICommandSender)

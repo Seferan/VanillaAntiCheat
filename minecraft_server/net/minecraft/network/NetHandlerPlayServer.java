@@ -674,7 +674,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 var3 = true;
                 if (playerEntity.theItemInWorldManager.isCreative() && block != null)
                 {
-                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, 0, x, y, z);
+                    vacState.blockLog.log(block, playerEntity, 0, x, y, z);
                 }
                 else
                 {
@@ -697,7 +697,7 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                 if (processBlockDug(world, x, y, z, block)) return;
                 if (block != null)
                 {
-                    MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, 0, x, y, z);   
+                    vacState.blockLog.log(block, playerEntity, 0, x, y, z);   
                 }
             }
 
@@ -857,15 +857,15 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
                         {
                             if (block != null && block instanceof BlockContainer)
                             {
-                                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(block, playerEntity, 3, x, y, z);
+                                vacState.blockLog.log(block, playerEntity, 3, x, y, z);
                             }
                             else if (VACUtils.loggedItemsPlace.contains(item.getClass()))
                             {
-                                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, 1, x, y, z);
+                                vacState.blockLog.log(item, playerEntity, 1, x, y, z);
                             }
                             else if (VACUtils.loggedItemsUse.contains(item.getClass()))
                             {
-                                MinecraftServer.getServer().getConfigurationManager().addBlockHistory(item, playerEntity, 2, x, y, z);
+                                vacState.blockLog.log(item, playerEntity, 2, x, y, z);
                             }   
                         }
                     }

@@ -32,9 +32,9 @@ public class CommandTeleport extends CommandBase
         return "commands.tp.usage";
     }
 
-    public void processCommand(ICommandSender par1ICommandSender, String[] par2ArrayOfStr)
+    public void processCommand(ICommandSender commandSender, String[] args)
     {
-        if (par2ArrayOfStr.length < 1)
+        if (args.length < 1)
         {
             throw new WrongUsageException("commands.tp.usage", new Object[0]);
         }
@@ -42,60 +42,60 @@ public class CommandTeleport extends CommandBase
         {
             EntityPlayerMP var3;
 
-            if (par2ArrayOfStr.length != 2 && par2ArrayOfStr.length != 4)
+            if (args.length != 2 && args.length != 4)
             {
-                var3 = getCommandSenderAsPlayer(par1ICommandSender);
+                var3 = getCommandSenderAsPlayer(commandSender);
             }
             else
             {
-                var3 = getPlayer(par1ICommandSender, par2ArrayOfStr[0]);
+                var3 = getPlayer(commandSender, args[0]);
 
                 if (var3 == null) { throw new PlayerNotFoundException(); }
             }
 
-            if (par2ArrayOfStr.length != 3 && par2ArrayOfStr.length != 4)
+            if (args.length != 3 && args.length != 4)
             {
-                if (par2ArrayOfStr.length == 1 || par2ArrayOfStr.length == 2)
+                if (args.length == 1 || args.length == 2)
                 {
-                    EntityPlayerMP var11 = getPlayer(par1ICommandSender, par2ArrayOfStr[par2ArrayOfStr.length - 1]);
+                    EntityPlayerMP var11 = getPlayer(commandSender, args[args.length - 1]);
 
                     if (var11 == null) { throw new PlayerNotFoundException(); }
 
                     if (var11.worldObj != var3.worldObj)
                     {
-                        notifyAdmins(par1ICommandSender, "commands.tp.notSameDimension", new Object[0]);
+                        notifyAdmins(commandSender, "commands.tp.notSameDimension", new Object[0]);
                         return;
                     }
-                    if (isTargetNonOp(var3, par1ICommandSender))
+                    if (isTargetNonOp(var3, commandSender))
                     {
-                        notifyAdmins(par1ICommandSender, "Tried to teleport non-op " + var3.getUsername() + " to " + var11.getUsername() + "!");
+                        notifyAdmins(commandSender, "Tried to teleport non-op " + var3.getUsername() + " to " + var11.getUsername() + "!");
                         return;
                     }
 
                     var3.mountEntity((Entity)null);
                     var3.playerNetServerHandler.setPlayerLocation(var11.posX, var11.posY, var11.posZ, var11.rotationYaw, var11.rotationPitch);
-                    notifyAdmins(par1ICommandSender, "commands.tp.success", new Object[] {var3.getUsername(), var11.getUsername()});
+                    notifyAdmins(commandSender, "commands.tp.success", new Object[] {var3.getUsername(), var11.getUsername()});
                 }
             }
             else if (var3.worldObj != null)
             {
-                int var4 = par2ArrayOfStr.length - 3;
-                double var5 = func_110666_a(par1ICommandSender, var3.posX, par2ArrayOfStr[var4++]);
-                double var7 = func_110665_a(par1ICommandSender, var3.posY, par2ArrayOfStr[var4++], 0, 0);
-                double var9 = func_110666_a(par1ICommandSender, var3.posZ, par2ArrayOfStr[var4++]);
+                int var4 = args.length - 3;
+                double var5 = func_110666_a(commandSender, var3.posX, args[var4++]);
+                double var7 = func_110665_a(commandSender, var3.posY, args[var4++], 0, 0);
+                double var9 = func_110666_a(commandSender, var3.posZ, args[var4++]);
 
-                if (isTargetNonOp(var3, par1ICommandSender))
+                if (isTargetNonOp(var3, commandSender))
                 {
                     StringBuilder message = new StringBuilder();
                     message.append("Tried to teleport non-op " + var3.getUsername() + " to ");
                     message.append(var5).append(",").append(var7).append(",").append(var9).append("!");
-                    notifyAdmins(par1ICommandSender, message.toString());
+                    notifyAdmins(commandSender, message.toString());
                     return;
                 }
 
                 var3.mountEntity((Entity)null);
                 var3.setPositionAndUpdate(var5, var7, var9);
-                notifyAdmins(par1ICommandSender, "commands.tp.success.coordinates", new Object[] {var3.getUsername(), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9)});
+                notifyAdmins(commandSender, "commands.tp.success.coordinates", new Object[] {var3.getUsername(), Double.valueOf(var5), Double.valueOf(var7), Double.valueOf(var9)});
             }
         }
     }

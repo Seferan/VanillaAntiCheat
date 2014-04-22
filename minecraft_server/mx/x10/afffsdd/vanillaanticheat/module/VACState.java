@@ -38,6 +38,10 @@ public class VACState implements IVacModule
      * The anti-wrong movement module.
      */
     public VACModuleAntiWrongMovement aWrong;
+    /**
+     * The block log module
+     */
+    public VACModuleBlockLog blockLog;
 
     public VACState()
     {
@@ -50,6 +54,7 @@ public class VACState implements IVacModule
         aSpeed = new VACModuleAntiSpeed();
         aSpam = new VACModuleAntiSpam();
         aWrong = new VACModuleAntiWrongMovement();
+        blockLog = new VACModuleBlockLog();
     }
 
     public String getModuleName()
@@ -68,5 +73,6 @@ public class VACState implements IVacModule
         aSpeed.updateState();
         aSpam.updateState();
         aWrong.updateState();
+        blockLog.updateState();
     }
 }

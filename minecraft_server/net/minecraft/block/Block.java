@@ -1023,7 +1023,7 @@ public class Block
     protected ItemStack createStackedBlock(int p_149644_1_)
     {
         int var2 = 0;
-        Item var3 = Item.getItemFromBlock(this);
+        Item var3 = getItem();
 
         if (var3 != null && var3.getHasSubtypes())
         {
@@ -1194,6 +1194,11 @@ public class Block
     public int getBlockId()
     {
         return Block.getIdFromBlock(this);
+    }
+    
+    public Item getItem()
+    {
+        return Item.getItemFromBlock(this);
     }
 
     public static class SoundType

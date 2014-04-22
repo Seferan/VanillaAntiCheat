@@ -1,5 +1,8 @@
 package net.minecraft.command;
 
+import java.util.Arrays;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.WorldSettings.GameType;
@@ -13,6 +16,11 @@ public class CommandSurvivalMode extends CommandBase
         return "survival";
     }
 
+    public List getCommandAliases()
+    {
+        return Arrays.asList(new String[] {"gm0"});
+    }
+    
     /**
      * Return the required permission level for this command.
      */

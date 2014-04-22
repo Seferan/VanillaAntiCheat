@@ -16,6 +16,7 @@ import java.util.Map.Entry;
 
 import com.google.common.hash.BloomFilter;
 
+import mx.x10.afffsdd.vanillaanticheat.BlockHistoryLogItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -268,54 +269,13 @@ public class DedicatedPlayerList extends ServerConfigurationManager
         }
     }
     
-    /**
-     * Append a line to the block history file.
-     * 
-     * @param state
-     *            true if the block was placed, false if it was broken
-     */
-    public void addBlockHistory(Block block, EntityPlayerMP player, int state, int x, int y, int z)
+    public void addBlockHistory(BlockHistoryLogItem logItem)
     {
-        addBlockHistory(Item.getItemFromBlock(block), player, state, x, y, z);
-    }
-    
-    public void addBlockHistory(Item item, EntityPlayerMP player, int state, int x, int y, int z)
-    {
-        if (item == null) return;
-        if (player == null) return;
         PrintWriter blockHistoryWriter;
         try
         {
             blockHistoryWriter = new PrintWriter(new BufferedWriter(new FileWriter(blockHistoryLog, true)));
-            StringBuilder line = new StringBuilder();
-            line.append(new Date());
-            line.append(" ");
-            line.append(player.getUsername());
-            line.append(" ");
-            switch (state)
-            {
-            case 0:
-                line.append("broke");
-                break;
-            case 1:
-                line.append("placed");
-                break;
-            case 2:
-                line.append("used");
-                break;
-            case 3:
-                line.append("accessed");
-                break;
-            }
-            line.append(" ");
-            line.append(item.getUnlocalizedName());
-            line.append(" ");
-            line.append(x);
-            line.append(" ");
-            line.append(y);
-            line.append(" ");
-            line.append(z);
-            blockHistoryWriter.println(line.toString());
+            blockHistoryWriter.println(logItem.toString());
             blockHistoryWriter.close();
         }
         catch (Exception e)

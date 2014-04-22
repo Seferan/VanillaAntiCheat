@@ -718,6 +718,14 @@ public class DedicatedServer extends MinecraftServer implements IServer
     {
         return settings.getIntProperty("memory-usage-gc-threshold", 25);
     }
+    
+    /**
+     * Return how many logs per second will be logged for a player.
+     */
+    public int getBlockLogMaxLogsPerSecond()
+    {
+        return settings.getIntProperty("vac-block-log-max-logs-per-second", 10);
+    }
 
 
     /**

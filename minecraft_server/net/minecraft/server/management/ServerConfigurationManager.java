@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import mx.x10.afffsdd.vanillaanticheat.BlockHistoryLogItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -1151,8 +1152,6 @@ public abstract class ServerConfigurationManager
     {
         proxyCheckCache.put(ip, proxy);
     }
-
-    public abstract void addBlockHistory(Block block, EntityPlayerMP player, int state, int x, int y, int z);
     
-    public abstract void addBlockHistory(Item item, EntityPlayerMP player, int state, int x, int y, int z);
+    public abstract void addBlockHistory(BlockHistoryLogItem logItem);
 }

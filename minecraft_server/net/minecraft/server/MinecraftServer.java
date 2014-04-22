@@ -1652,6 +1652,11 @@ public abstract class MinecraftServer implements ICommandSender, Runnable, IPlay
      * Return what percent of the heap has to be used for System.gc to be called.
      */
     public abstract int getMemoryUsageGcThreshold();
+    
+    /**
+     * Return how many logs per second will be logged for a player.
+     */
+    public abstract int getBlockLogMaxLogsPerSecond();
 
 
     public String getMOTD()
