@@ -561,19 +561,32 @@ public class NetHandlerPlayServer implements INetHandlerPlayServer
 
                 AxisAlignedBB var33 = playerEntity.boundingBox.copy().expand(var27, var27, var27).addCoord(0.0D, -0.55D, 0.0D);
 
-                if (!serverController.isFlightAllowed() && !playerEntity.theItemInWorldManager.isCreative() && !var2.checkBlockCollision(var33))
+                if (!serverController.isFlightAllowed() && !playerEntity.theItemInWorldManager.isCreative())
                 {
-                    if (deltaYPacketRaw >= -0.03125D)
+                    // Touching a block?
+                    if (var2.checkBlockCollision(var33))
                     {
-                        floatingTickCount++;
-
-                        processFloating();
+                        // Spider hack check
+                        if (Math.abs(deltaYPacketRaw - 0.2D) <= 0.0001D)
+                        {
+                            floatingTickCount++;
+                            processFloating();
+                        }
+                        else // Reset floating tick count
+                        {
+                            floatingTickCount = 0;
+                            vacState.aFly.setAntiFlyPosition(playerEntity);   
+                        }
                     }
-                }
-                else
-                {
-                    floatingTickCount = 0;
-                    vacState.aFly.setAntiFlyPosition(playerEntity);
+                    else
+                    {
+                        // Fly hack check                      glide hack check
+                        if (deltaYPacketRaw >= -0.03125D || Math.abs(deltaYPacketRaw + 0.125D) <= 0.01D)
+                        {
+                            floatingTickCount++;
+                            processFloating();
+                        }
+                    }
                 }
 
                 playerEntity.onGround = packet.getOnGround();
