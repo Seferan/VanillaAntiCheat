@@ -1,0 +1,27 @@
+# Copyright City
+
+## VanillaAntiCheat
+
+Hello, Mojang.
+
+Your game used to be good. I remember when I first bought Minecraft back in 2011. Back in Beta. After discovering multiplayer and the modding community surrounding Minecraft, it quickly became my favorite game.
+
+I still remember having fun back in the Beta days. I still remember waiting patiently for months for the pistons update. Wolves were the best back then. The nether was pretty useless, but still quirky and neat. I still remember the old door sounds. And the old cobblestone textures. However, what really drew me in was the modding. The ability to decompile the game, and make my own version of the client? That was unbelievable. I couldn't resist modding Minecraft, using what MCP versions we had back then. Bukkit was still in its infancy. The servers were simple, and the communities on them tight-knit and warm.
+
+But the game changed.
+
+Then the Adventure Update happened. Oh, how I resented it and everything it stood for. It was the epitome of everything Minecraft was not. Bows became much worse. Fighting was still the same clunky ping-based clicking battle, except with much more room to grind. With the addition of potions, the game soon moved farther and farther away from a sandbox game, and closer to a poorly-designed,  unintuitive RPG. The community changed to reflect this.
+
+Nowadays, although there are some new features added to the game to allow more creativity in building, most players focus primarily on the PvP aspect of the game, which was meant to be a sandbox game. Many of the new sandbox features like horses were bloat, a desperate attempt by Mojang to lengthen the lifespan of their game. It's nearly impossible to find a server with players that know each other well and are just focused on surviving, building, and helping each other out. All I see is just networks that take advantage of nine-year-olds who are willing to donate (more like pay) the server they play on to be able to have an unfair advantage over other players. And even with the new EULA that is designed to prevent pay-to-win mechanisms on servers, it hasn't done much. Large PvP, Minigames, or Factions networks are still primarily pay-to-win, just in different ways now. Additionally, the new EULA starves off smaller servers that can't afford custom plugin developers and builders and rely on donations and small in-game rewards to stay up. Sure, the EULA may not disallow donations, but let's be honest. What player is going to donate purely out of kindness rather than in return for some sort of in-game reward?
+
+As I played Minecraft multiplayer, I noticed something. The game was plagued by cheaters. Script kiddies who know nothing about how the cheats they use actually function, but who do know how to download and install a modified client. I noticed this, and many others noticed this, but at least cheaters weren't really a huge issue early on. Sure, an anticheat might prevent someone from smashing your house in a matter of seconds, but they're still going to smash your house eventually. But even with the Adventure Update, which was supposed to make PvP not about who has the better internet and who can click the fastest, PvP was still broken and luck-based. Thus, the only way to win reliably was to cheat. Kill Aura, Auto Soup, and other PvP-focused hacks were born. Most attempts to patch these hacks were futile, as they are simply simulating a human player's actions, but with a near perfect accuracy.
+
+Yet Mojang did nothing to stop the cheaters that were destroying the game, making it unenjoyable and downright unplayable for legitimate players on vanilla servers. Mojang did nothing to stop these cheaters, save for the occasional patch to the server software to fix crash exploits. Hell, Team Avolition was the group that released a full disclosure on the session stealing exploit. Instead, Mojang decided to offload this entire task to the Bukkit and NoCheat developers. They toiled to free Minecraft of blatant cheaters that could break blocks instantly, fly without permission, kill players from huge distances, and perform denial of service attacks by crashing the server. The worst part of it all is that Mojang secretly acquired Bukkit and basically had the Bukkit developers work for free, without them knowing. When they found out, the Bukkit developers all resigned and started a mass exodus from the game.
+
+This leads us into another issue: copyright city. Minecraft has recently had to deal with quite a bit of drama. First with the EULA, which upset many server owners, and then the CraftBukkit drama. Spigot was hit with a DCMA due to an upset CraftBukkit developer. Searge, the lead MCP developer, was hired sometime ago by Mojang, which basically means that Mojang  plans to eventually take over client-side modding. Now, my repository has been hit with a threat and I have been told to take my repository down, which I will do. I've been done with this game for a long time, and the last commit was five months ago. I thought that I could ignore this whole issue by being unimportant. I thought that I could develop my anti-cheat modification in safety, without having to worry about being struck by a takedown notice. I was wrong. Everyone lives in Copyright City now, especially after Mojang sold out and was acquired by Microsoft.
+
+Modding is the lifeblood of this game.
+
+Mojang wants to kill modding.
+
+Minecraft is dead. It's been dead.
